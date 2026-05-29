@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte VI — Projeto final · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--terra);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+.toptabs a.mov3.current{box-shadow:inset 0 -3px 0 var(--terra-deep)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--terra)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--terra);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--terra-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--terra);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--terra);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(168,85,46,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--terra);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:420px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(168,85,46,0.08);border-left-color:var(--terra);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--terra);font-weight:600;min-width:32px}
+.toc-list li.quiz-link a{border-top:1px solid var(--rule);margin-top:6px;padding-top:14px;font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--terra)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(168,85,46,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:8200px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--terra);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--terra)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--terra);position:relative}
+.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+.tbl td.ok{color:var(--olive);font-weight:600}
+.tbl td.no{color:var(--terra);font-weight:600}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4200px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--terra);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--terra);border:none;color:var(--paper);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+/* ===== CARD DE FECHAMENTO — leva ao Quiz Geral ===== */
+.closing{margin:26px 22px 8px;background:var(--olive-deep);color:var(--paper);padding:28px 22px 26px;position:relative;text-decoration:none;display:block;transition:transform 0.18s}
+.closing::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.closing:hover{transform:translateY(-2px)}
+.closing .ce{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mustard);margin-bottom:12px}
+.closing .ct{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:25px;line-height:1.12;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.closing .cd{font-size:14px;line-height:1.6;color:rgba(250,247,240,0.82);margin-bottom:18px;max-width:54ch}
+.closing .cgo{display:inline-flex;align-items:center;gap:10px;background:var(--mustard);color:var(--olive-deep);padding:12px 18px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+.closing .cgo::after{content:"→"}
+
+@media (min-width: 720px){
+  .closing{margin-left:auto;margin-right:auto;max-width:680px}
+  .block, .toc, .partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO — movimentos pedagógicos ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3 current"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">VI</div>
+    <div class="part-movement">
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1 class="title">Projeto <em>final</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">Tudo converge aqui: o cálculo vira um documento que conclui — O Projeto Final — e uma defesa em que você sustenta cada número diante dos professores. O produto final não é a planilha; é a sua capacidade de dizer, com fundamento, se o projeto é viável.</p>
+  <div class="meta">
+    <span>Parte VI de VI</span>
+    <span>2 aulas</span>
+    <span>Caps. 18 e 19</span>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc" id="toc">
+  <button class="toc-toggle" id="tocToggle" aria-expanded="false">
+    <span class="toc-toggle-label">Aulas desta parte</span>
+    <span class="toc-icon"></span>
+  </button>
+  <div class="toc-list">
+    <ol>
+      <li><a href="#projeto-final"><span class="toc-num">VI.1</span> Nota Técnica — o documento de conclusão</a></li>
+      <li><a href="#apresentação"><span class="toc-num">VI.2</span> Defesa do projeto — sustentar as escolhas</a></li>
+      <li class="quiz-link"><a href="quiz-geral.html"><span class="toc-num">→</span> Avaliação geral · Partes I a IV</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ===== AULA VI.1 ===== -->
+<section class="block" id="projeto-final">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">VI.1</span>
+    <span class="block-title">Projeto final — o documento de conclusão</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>O projeto final é o documento que <strong>fecha a disciplina</strong>. Ele traduz a planilha em texto: clara, objetiva, suficiente para que qualquer pessoa entenda o projeto e julgue sua viabilidade <em>sem precisar abrir o arquivo de cálculo</em>. Se a planilha é o motor, a Projeto Final é o laudo.</p>
+
+    <h3>As oito seções</h3>
+    <p>A estrutura é fixa. Cada seção responde a uma pergunta que os professores — ou o produtor — fará:</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Seção</th><th>O que contém</th></tr>
+      <tr><td><strong>1. Identificação</strong></td><td>Propriedade ou grupo, cultura/atividade, área (ha) ou nº de animais, safra/ciclo, localização.</td></tr>
+      <tr><td><strong>2. Premissas</strong></td><td>Produtividade esperada, preço de venda estimado <em>com a fonte da cotação</em>, safra de referência, principais coeficientes técnicos.</td></tr>
+      <tr><td><strong>3. Estrutura de custos</strong></td><td>Resumo de COE, COT e CT por hectare (ou cabeça/caixa), destacando os <em>três maiores grupos</em> de custo.</td></tr>
+      <tr><td><strong>4. Receita e margens</strong></td><td>Receita Bruta, Receita Líquida, Margem Bruta, Margem Líquida e Lucro Econômico — em valor total <em>e</em> por unidade.</td></tr>
+      <tr><td><strong>5. Indicadores</strong></td><td>IEE, Lucratividade (%), Rentabilidade (%) <em>÷ CT</em>, Produtividade e Preço de Nivelamento, Margem de Segurança.</td></tr>
+      <tr><td><strong>6. Cenários</strong></td><td>Resultado nos três cenários (pessimista, realista, otimista) e a conclusão sobre o risco.</td></tr>
+      <tr><td><strong>7. Fluxo de caixa</strong></td><td>Meses de maior déficit (necessidade de capital de giro/crédito) e meses de superávit.</td></tr>
+      <tr><td><strong>8. Conclusão</strong></td><td>O projeto é ou não é viável? Quais as condições para a viabilidade? Que riscos merecem atenção?</td></tr>
+    </table>
+    </div>
+
+    <h3>A regra do preço e da produtividade</h3>
+    <p>Duas premissas decidem a viabilidade na seção 2 e voltam na apresentação. O preço é o <strong>regional, posto cooperativa</strong> — não a cotação cheia do porto. A produtividade é a <strong>média histórica</strong> da região (CONAB/EMATER), não o melhor ano. Premissa otimista infla a viabilidade e cai na primeira pergunta da banca.</p>
+    <div class="example">
+      <p>Exemplo: Soja, 50 ha, São Gabriel/RS, safra 2025/26. Produtividade de <span class="calc">60 sc/ha</span> (média histórica) e preço posto cooperativa de <span class="calc">R$ 120/sc</span> (porto ~R$ 130 menos frete e deduções). Produção esperada: 3.000 sc.</p>
+      <p>Receita Bruta = <span class="calc">60 × 50 × 120 = R$ 360.000</span>. É esse o número que abre a seção 4 — com a fonte e a data da consulta registradas na seção 2.</p>
+    </div>
+
+    <h3>A conclusão (seção 8)</h3>
+    <p>É o que a banca lê primeiro e cobra mais. Não é "o projeto parece bom": é uma sentença fundamentada nos indicadores das seções anteriores.</p>
+    <div class="callout success">
+      <strong>Modelo de conclusão defensável</strong>
+      "O projeto é economicamente viável: IEE > 1, Lucro Econômico positivo e Rentabilidade ÷ CT acima do custo de oportunidade do capital. A margem de segurança de X% indica risco moderado; a viabilidade se mantém no cenário realista e otimista, e se perde apenas no pessimista, quando o preço cai abaixo do preço de nivelamento. Principal risco: preço de mercado."
+    </div>
+    <div class="callout">
+      <strong>A conclusão que não defende</strong>
+      Frase ambígua ("acredito que seja viável"), sem citar indicador, ou que contraria os próprios números da Nota. A banca não pede otimismo — pede uma leitura honesta do que a planilha mostra.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA VI.2 ===== -->
+<section class="block" id="defesa">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">VI.2</span>
+    <span class="block-title">Apresentação do projeto — sustentar as escolhas</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A apresentação pública do trabalho é a defesa do projeto. O objetivo <strong>não é mostrar que a planilha está preenchida</strong> — é demonstrar que você entende o que os números significam e consegue justificar cada escolha diante de uma banca técnica, composta pelos professores.</p>
+
+    <h3>O que a banca avalia</h3>
+    <div class="hierarchy">
+      <div class="hier-row ok"><span class="hier-tag">Técnica</span><span>Correção dos cálculos — os números estão certos?</span></div>
+      <div class="hier-row warn"><span class="hier-tag">Análise</span><span>Raciocínio — você entende o que calculou e o que decorre disso?</span></div>
+      <div class="hier-row danger"><span class="hier-tag">Comunicação</span><span>Clareza e segurança — consegue explicar sem ler o slide?</span></div>
+    </div>
+
+    <h3>Roteiro de 10 slides</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Slide</th><th>Conteúdo</th><th>Dica</th></tr>
+      <tr><td><strong>1 · Capa</strong></td><td>Projeto, cultura, área, safra, autores.</td><td>Simples e profissional; foto da cultura/região.</td></tr>
+      <tr><td><strong>2 · Identificação</strong></td><td>Propriedade, localização, área, atividade, ciclo.</td><td>Incluir o croqui do Google Earth — mostra planejamento espacial.</td></tr>
+      <tr><td><strong>3 · Premissas</strong></td><td>Produtividade (fonte), preço (CEPEA/CONAB/coop.), safra.</td><td>Citar a fonte da cotação — o preço não foi inventado.</td></tr>
+      <tr><td><strong>4 · Laudo de solo/Estrutura do rebanho</strong></td><td>pH, V%, P, K, MO; calcário calculado; nº de animais, etc</td><td>Tabela sintética: laudo → cálculo → custo.</td></tr>
+      <tr><td><strong>5 · Estrutura de custos</strong></td><td>COE, COT, CT em valores; gráfico da proporção dos grupos.</td><td>Gráfico de pizza/barras é mais eficiente que tabela.</td></tr>
+      <tr><td><strong>6 · Receita e margens</strong></td><td>RB, Margem Bruta, Margem Líquida, Lucro Econômico.</td><td>Sinal claro: verde positivo, vermelho negativo.</td></tr>
+      <tr><td><strong>7 · Indicadores</strong></td><td>IEE, Lucratividade, Rentabilidade, Prod. e Preço de Niv., Margem de Segurança.</td><td>Formato: Indicador = Valor | interpretação em uma linha.</td></tr>
+      <tr><td><strong>8 · Cenários</strong></td><td>Pessimista/realista/otimista: lucro ou prejuízo em cada.</td><td>Concluir: "viável em X dos 3 cenários".</td></tr>
+      <tr><td><strong>9 · Fluxo de caixa</strong></td><td>Entradas e saídas por mês; saldo acumulado.</td><td>Mostrar o mês de maior déficit — justifica o custeio.</td></tr>
+      <tr><td><strong>10 · Conclusão</strong></td><td>Viabilidade, principais riscos, recomendação final.</td><td>Frase direta, sem ambiguidade. Domínio do resultado.</td></tr>
+    </table>
+    </div>
+
+    <h3>As perguntas que a banca faz</h3>
+    <p>São previsíveis. Cada uma testa se você conhece a origem de um número. Prepare a resposta com o dado na mão, não com "acho que":</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Pergunta da banca</th><th>Como responder</th></tr>
+      <tr><td>"Por que esse preço de venda?"</td><td>Citar a fonte (CEPEA/ESALQ, cotação da cooperativa), a data da consulta e por que é representativo da safra planejada.</td></tr>
+      <tr><td>"Por que essa produtividade?"</td><td>É a média histórica da região (CONAB/EMATER), não o melhor ano — premissa conservadora.</td></tr>
+      <tr><td>"Se o preço cair 10%, ainda é viável?"</td><td>Responder pelo cenário pessimista e pelo preço de nivelamento — com os números, não com "acho que sim".</td></tr>
+      <tr><td>"Qual o maior risco do projeto?"</td><td>Pela análise de sensibilidade: mais sensível ao preço → risco de mercado; à produtividade → risco climático/agronômico.</td></tr>
+      <tr><td>"Por que o COT é maior que o COE?"</td><td>O COT inclui depreciação (desgaste de máquinas) e pró-labore — custos reais que não saem do caixa imediatamente.</td></tr>
+      <tr><td>"Contabilizou o custo de oportunidade da terra?"</td><td>A terra poderia estar arrendada; ao usá-la, abre-se mão dessa renda — entra no CT como custo implícito.</td></tr>
+    </table>
+    </div>
+
+    <h3>Postura na defesa</h3>
+    <ul class="bullets">
+      <li><strong>Conheça cada número.</strong> Se você não sabe de onde veio um valor, a banca percebe.</li>
+      <li><strong>Errou? Assuma e corrija.</strong> Mostrar que entende o erro vale mais do que escondê-lo.</li>
+      <li><strong>Não leia o slide.</strong> Fale claro e pausado; explique com suas palavras.</li>
+      <li><strong>Use linguagem técnica correta:</strong> COE, margem de segurança, ponto de equilíbrio, custo de oportunidade. Você estudou esses conceitos — use-os com precisão.</li>
+      <li><strong>Seja direto na conclusão:</strong> viável ou não. A banca espera resposta clara, fundamentada, sem rodeios.</li>
+    </ul>
+    <div class="callout success">
+      <strong>O fio que liga todo o curso</strong>
+      Cada pergunta da banca remete a uma Parte: preço e produtividade (IV), COE/COT/CT e depreciação (II), indicadores e cenários (III), custo de oportunidade da terra e do capital (III e IV). Defender o projeto é demonstrar que as seis Partes viraram uma única leitura coerente. ,<strong>Não esqueça: estude a parte agronômica ou zootécnica do projeto.</strong>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== CARD DE FECHAMENTO ===== -->
+<a class="closing" href="quiz-geral.html">
+  <div class="ce">Fechamento do curso</div>
+  <div class="ct">Você consegue defender cada escolha?</div>
+  <p class="cd">A Parte VI não tem quiz próprio — sua autoavaliação é a defesa acima. O passo final é a Avaliação geral: questões que percorrem as Partes I a IV e medem se o método virou raciocínio, não decoreba.</p>
+  <span class="cgo">Ir para a avaliação geral</span>
+</a>
+
+<!-- ===== NAV ENTRE PARTES ===== -->
+<nav class="partnav">
+  <a href="parte-5.html" class="prev">
+    <span class="dir">← Parte anterior</span>
+    <span class="pn">V</span>
+    <span class="lbl">Módulos aplicados</span>
+  </a>
+  <a href="quiz-geral.html" class="next">
+    <span class="dir">Fechamento →</span>
+    <span class="pn">★</span>
+    <span class="lbl">Avaliação geral</span>
+  </a>
+</nav>
+
+<footer>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+// ===== TOC + acordeão + back-to-top (sem quiz nesta Parte) =====
+const toc = document.getElementById('toc');
+const tocBtn = document.getElementById('tocToggle');
+tocBtn.addEventListener('click', () => {
+  toc.classList.toggle('open');
+  tocBtn.setAttribute('aria-expanded', toc.classList.contains('open'));
+});
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', () => {
+    toc.classList.remove('open');
+    tocBtn.setAttribute('aria-expanded', 'false');
+    const href = a.getAttribute('href');
+    if(href && href.startsWith('#')){
+      const target = document.getElementById(href.slice(1));
+      if(target && target.classList.contains('block')) target.classList.add('open');
+    }
+  });
+});
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(!header) return;
+  const block = header.closest('.block');
+  const open = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', open);
+});
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>

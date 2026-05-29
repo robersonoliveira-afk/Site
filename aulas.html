@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aulas em vídeo · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--terra);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+.toptabs a.mov3.current{box-shadow:inset 0 -3px 0 var(--terra-deep)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--terra)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--terra);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--terra-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--terra);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--terra);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(168,85,46,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--terra);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:420px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(168,85,46,0.08);border-left-color:var(--terra);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--terra);font-weight:600;min-width:32px}
+.toc-list li.quiz-link a{border-top:1px solid var(--rule);margin-top:6px;padding-top:14px;font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--terra)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(168,85,46,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--terra);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--terra)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--terra);position:relative}
+.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+.tbl td.ok{color:var(--olive);font-weight:600}
+.tbl td.no{color:var(--terra);font-weight:600}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4200px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--terra);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--terra);border:none;color:var(--paper);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+.toptabs a.vid .rn{color:var(--stone-light)}
+.toptabs a.vid.current .rn{color:var(--paper)}
+
+/* ===== AVISO DE CONSTRUÇÃO ===== */
+.build-note{margin:18px 22px 4px;padding:14px 16px;background:var(--highlight);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:var(--mustard-ink)}
+.build-note strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8A6E1A;font-weight:600;margin-bottom:5px}
+
+/* ===== LINHAS DE VÍDEO ===== */
+.serie-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);font-weight:500;white-space:nowrap}
+.vid-row{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;padding:13px 0;border-bottom:1px solid var(--rule-soft)}
+.vid-row:last-child{border-bottom:none}
+.vid-row .vn{grid-row:1 / span 3;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--terra);font-weight:600;padding-top:2px}
+.vid-row .vt{font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:600;line-height:1.3;color:var(--ink)}
+.vid-row.live .vt a{color:var(--terra);text-decoration:none}
+.vid-row.live .vt a:hover{text-decoration:underline}
+.vid-row .vd{font-size:12.5px;color:var(--stone);line-height:1.45;margin-top:1px}
+.vid-row .vmeta{margin-top:7px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vstatus{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:3px 8px}
+.vstatus.soon{color:var(--stone-light);border:1px solid var(--rule)}
+.vstatus.go{color:var(--paper);background:var(--terra);text-decoration:none}
+.vstatus.go:hover{background:var(--terra-deep)}
+.start-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--mustard-ink);background:#F2E3B4;padding:3px 8px}
+.vstatus.live-now{color:var(--paper);background:var(--terra)}
+.vid-embed{grid-column:1 / -1;margin-top:10px;position:relative;width:100%;aspect-ratio:16 / 9;background:#000;border:1px solid var(--rule)}
+.vid-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+@media (min-width: 720px){
+  .build-note{margin-left:auto;margin-right:auto;max-width:680px}
+  .block, .toc, .partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Produto final</a>
+    <a href="aulas.html" class="vid current"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">&#9655;</div>
+    <div class="part-movement">
+      <div class="mv">Complemento · <b>vídeos</b></div>
+      <h1 class="title">Aulas em <em>vídeo</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">Você já sabe produzir. Aqui você aprende a calcular se está ganhando dinheiro com isso. Vídeos curtos (3 a 5 min), conceito mais exemplo com números reais do RS — soja, arroz, videira, Hereford, Angus, leite, integrados.</p>
+  <div class="meta">
+    <span>10 séries</span>
+    <span>74 vídeos</span>
+    <span>Em construção</span>
+  </div>
+</header>
+
+<div class="build-note">
+  <strong>Página em construção</strong>
+  Os vídeos serão publicados gradualmente. Onde já houver gravação, o item mostra <em>assistir</em>; os demais aparecem como <em>em breve</em>. Os marcados com <em>comece aqui</em> são a porta de entrada recomendada.
+</div>
+
+<!-- ===== SÉRIES (geradas via JS a partir do array VIDEOS) ===== -->
+<div id="series"></div>
+
+<footer>
+  <strong>Sobre as aulas em vídeo</strong>
+  <p style="margin-bottom:14px">Complemento em vídeo da disciplina, com identidade gaúcha — exemplos da Campanha, Serra, Planalto, Missões e Fronteira Oeste. Referências regionais: IRGA, EMATER/RS, CQFS-RS/SC, CONAB, EMBRAPA e cooperativas. Base: apostila Gestão de Custos e Projetos Agropecuários.</p>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+/* =====================================================================
+   COMO PUBLICAR UM VÍDEO:
+   Encontre o vídeo pelo título e cole o link do YouTube entre as aspas
+   do campo url. Ex.: url: 'https://youtu.be/XXXXXXXX'
+   Vazio (url:'') = aparece como "em breve". Com link = vira "assistir".
+   start:true marca os 10 vídeos de largada com o selo "comece aqui".
+   ===================================================================== */
+const VIDEOS = [
+  { s: 1, nome: "A fazenda como empresa", videos: [
+    { n:"1.1", t:"Por que sua fazenda precisa ser gerida como empresa — mesmo sendo familiar", d:"Resultado econômico vs. financeiro", url:"https://www.youtube.com/embed/v7UmQ8v7_Eo", embed:true },
+    { n:"1.2", t:"O produtor gaúcho que trabalha 12 meses e não sabe se lucrou", d:"Ausência de controle de custos", url:"", start:true },
+    { n:"1.3", t:"Produzir mais soja não garante mais lucro — entenda por quê", d:"Custo por sc vs. receita por sc", url:"" },
+    { n:"1.4", t:"O técnico que recomenda sem calcular — um problema de formação", d:"Papel do técnico como gestor econômico", url:"" },
+    { n:"1.5", t:"A crise do endividamento rural no RS — o que os números mostram", d:"Custo crescente vs. margem encolhendo", url:"" },
+    { n:"1.6", t:"Como definir o objetivo econômico da sua propriedade", d:"Missão, metas e ciclo de gestão", url:"" }
+  ]},
+  { s: 2, nome: "Por que o preço não depende de você", videos: [
+    { n:"2.1", t:"Por que o preço da soja cai justamente quando você colhe no RS", d:"Sazonalidade, oferta concentrada, quando vender", url:"", start:true },
+    { n:"2.2", t:"Por que o preço do leite está baixo — e o que isso tem a ver com a China", d:"Demanda global, câmbio, poder do produtor", url:"" },
+    { n:"2.3", t:"O dólar sobe e você acha que vai ganhar mais — mas o custo da ração também sobe", d:"Dupla exposição ao câmbio no RS", url:"" },
+    { n:"2.4", t:"O ciclo do rebanho bovino no RS — por que o preço do boi sobe e cai em ondas", d:"Ciclo biológico, retenção e liquidação", url:"" },
+    { n:"2.5", t:"Como consultar o preço real que você vai receber — não o da bolsa", d:"CEPEA, IRGA, cooperativa, preço na porteira", url:"" },
+    { n:"2.6", t:"Vender o arroz na colheita ou guardar no silo — como calcular essa decisão", d:"Custo de armazenagem vs. ganho de preço", url:"" },
+    { n:"2.7", t:"Por que a safra recorde de soja no RS derrubou o preço em 2023", d:"Oferta, demanda, ponto de equilíbrio de mercado", url:"" }
+  ]},
+  { s: 3, nome: "Colocando número nos custos", videos: [
+    { n:"3.1", t:"O que é custo variável e fixo — com exemplos da lavoura gaúcha", d:"Ração, semente, diesel vs. depreciação, pró-labore", url:"" },
+    { n:"3.2", t:"Como separar os custos de cada atividade na sua propriedade", d:"Rateio por área, horas, receita", url:"" },
+    { n:"3.3", t:"O custo que não aparece no extrato bancário — e que destrói fazendas", d:"Custos implícitos, resultado econômico", url:"" },
+    { n:"3.4", t:"COE — o custo mínimo para não parar a fazenda", d:"Definição, composição, cálculo", url:"" },
+    { n:"3.5", t:"COT — quando a fazenda paga as contas mas consome o patrimônio", d:"COE + depreciação + pró-labore", url:"" },
+    { n:"3.6", t:"CT — o custo que responde se vale a pena continuar", d:"COT + custo de oportunidade", url:"" },
+    { n:"3.7", t:"COE, COT e CT — qual usar para cada decisão na sua fazenda", d:"Hierarquia decisória com exemplos RS", url:"", start:true },
+    { n:"3.8", t:"Como montar o orçamento de uma lavoura de soja no RS — do zero", d:"Passo a passo com coeficientes CONAB/EMATER", url:"" },
+    { n:"3.9", t:"O que é Funrural — e por que ele reduz sua receita antes de você receber", d:"Deduções sobre receita bruta", url:"" }
+  ]},
+  { s: 4, nome: "Os três custos que destroem fazendas em silêncio", videos: [
+    { n:"4.1", t:"Seu trator está envelhecendo — e você não está guardando dinheiro para substituí-lo", d:"Depreciação, reserva patrimonial", url:"", start:true },
+    { n:"4.2", t:"Como calcular a depreciação do trator, galpão e rebanho — passo a passo", d:"Método linear, vida útil, valor residual", url:"" },
+    { n:"4.3", t:"Você trabalha na fazenda há 20 anos sem se pagar — isso é custo", d:"Pró-labore, trabalho familiar como custo real", url:"", start:true },
+    { n:"4.4", t:"Arrendar sua terra para o vizinho poderia render mais do que plantar — calcule", d:"Custo de oportunidade da terra, referências RS", url:"" },
+    { n:"4.5", t:"O dinheiro investido na lavoura poderia estar rendendo na poupança — compare", d:"Custo de oportunidade do capital, Selic", url:"" },
+    { n:"4.6", t:"Por que o banco cheio não significa que você lucrou — resultado econômico", d:"Síntese dos três custos invisíveis", url:"" }
+  ]},
+  { s: 5, nome: "Quanto sua fazenda realmente lucra?", videos: [
+    { n:"5.1", t:"Receita bruta vs. receita líquida — o que realmente entra no seu bolso", d:"Funrural, frete, taxas, deduções regionais RS", url:"" },
+    { n:"5.2", t:"Margem Bruta, Margem Líquida e Lucro Econômico — as três perguntas do projeto", d:"Cascata de margens, interpretação", url:"" },
+    { n:"5.3", t:"O IEE — o índice que mostra se sua fazenda gera ou consome riqueza", d:"Fórmula, interpretação, IEE < 1 é alarme", url:"" },
+    { n:"5.4", t:"O que é lucratividade na agropecuária — e por que 35% pode ser pouco", d:"Lucro ÷ receita, comparação entre atividades", url:"", start:true },
+    { n:"5.5", t:"O que é rentabilidade — e como comparar sua fazenda com a poupança", d:"Lucro ÷ CT, comparação com Selic", url:"" },
+    { n:"5.6", t:"Como calcular o ponto de equilíbrio da sua lavoura ou criação", d:"PE de produtividade e de preço, RS", url:"", start:true },
+    { n:"5.7", t:"Margem de segurança — o quanto sua produção pode cair antes do prejuízo", d:"MS pelo COE, COT e CT", url:"" },
+    { n:"5.8", t:"Mais adubo sempre vale a pena? A análise marginal responde", d:"RM = CM, rendimentos decrescentes, ureia no milho RS", url:"" },
+    { n:"5.9", t:"Como montar os três cenários do seu projeto — pessimista, realista e otimista", d:"Variação de preço e produção, decisão de risco", url:"" },
+    { n:"5.10", t:"Qual é a variável que mais ameaça o resultado da sua fazenda", d:"Análise de sensibilidade, variável crítica", url:"" }
+  ]},
+  { s: 6, nome: "Caixa, crédito e endividamento rural", videos: [
+    { n:"6.1", t:"Por que uma lavoura lucrativa pode endividar o produtor", d:"Viabilidade vs. solvência, fluxo de caixa", url:"", start:true },
+    { n:"6.2", t:"Como montar o fluxo de caixa de uma safra de soja no RS", d:"Entradas e saídas mês a mês", url:"" },
+    { n:"6.3", t:"Quanto capital de giro você precisa para uma safra — e como calcular", d:"Déficit máximo acumulado", url:"" },
+    { n:"6.4", t:"O que é o Pronaf — quem pode acessar e quanto custa de verdade", d:"Modalidades, CAF, taxas, custo financeiro", url:"" },
+    { n:"6.5", t:"Pronaf vs. Pronamp — qual linha de crédito é a sua", d:"Critérios, limites, diferenças práticas", url:"" },
+    { n:"6.6", t:"O custo do crédito rural entra no orçamento — e muda a viabilidade", d:"Juros no COE, cálculo do custo financeiro", url:"" },
+    { n:"6.7", t:"Como a diversificação de atividades protege o caixa da fazenda", d:"Correlação de risco, entradas distribuídas", url:"" },
+    { n:"6.8", t:"Endividamento rural no RS — o que os números mostram e o que fazer", d:"Diagnóstico, margem apertada, custo crescente", url:"" }
+  ]},
+  { s: 7, nome: "Gestão de custos em pecuária gaúcha", videos: [
+    { n:"7.1", t:"Sua taxa de lotação está certa — ou está te custando dinheiro?", d:"UA, capacidade de suporte, custo por UA", url:"", start:true },
+    { n:"7.2", t:"GMD baixo não é só problema zootécnico — é problema econômico", d:"Ganho de peso × custo de ração × receita", url:"" },
+    { n:"7.3", t:"Como calcular o custo por kg produzido na pecuária de corte no RS", d:"Estrutura de custos, Hereford/Angus, campo nativo", url:"" },
+    { n:"7.4", t:"Confinamento bovino no RS — quando o spread compensa o investimento", d:"Boi magro vs. gordo, custo da ração, margem", url:"" },
+    { n:"7.5", t:"Seu rebanho leiteiro está dando lucro — ou você está trabalhando de graça?", d:"Custo por litro, pró-labore, Holandês/Jersey RS", url:"" },
+    { n:"7.6", t:"Concentrado para vaca leiteira — quanto aplicar para maximizar o lucro", d:"Relação concentrado:leite, análise marginal", url:"" },
+    { n:"7.7", t:"Gestão de custos em suinocultura integrada — o que o técnico precisa saber", d:"Conversão alimentar, custo/kg, contrato de integração", url:"" },
+    { n:"7.8", t:"Avicultura de corte integrada — como calcular se o lote foi lucrativo", d:"CA, custo/kg, margem por lote", url:"" },
+    { n:"7.9", t:"Os custos invisíveis da pecuária — depreciação do rebanho e das cercas", d:"Aplicação de depreciação ao setor pecuário", url:"" }
+  ]},
+  { s: 8, nome: "Fruticultura e perenes do RS", videos: [
+    { n:"8.1", t:"Por que a videira exige uma análise de custos diferente da lavoura", d:"Fase de formação, fluxo de caixa de longo prazo", url:"" },
+    { n:"8.2", t:"Como calcular o custo de implantação de um pomar no RS", d:"Mudas, espaldeira, preparo — passo a passo", url:"" },
+    { n:"8.3", t:"Em quanto tempo uma videira Bordô na Serra Gaúcha se paga", d:"Payback, custo de formação vs. receita acumulada", url:"" },
+    { n:"8.4", t:"VPL e TIR em linguagem simples — para quem vai plantar um pomar", d:"Conceito, interpretação, uso na decisão", url:"" },
+    { n:"8.5", t:"Pessegueiro no RS — como calcular se o projeto de implantação é viável", d:"Custo de formação, produtividade, preço ao produtor", url:"" },
+    { n:"8.6", t:"Como incluir o custo de um pomar já implantado no orçamento anual", d:"Amortização, depreciação de perenes", url:"" }
+  ]},
+  { s: 9, nome: "Do campo ao orçamento", videos: [
+    { n:"9.1", t:"O laudo de solo determina o maior custo da lavoura — sabia?", d:"pH, V%, SMP → custo de calcário e adubação", url:"" },
+    { n:"9.2", t:"Como calcular a necessidade de calagem pelo Índice SMP no RS", d:"3 passos, tabela CQFS-RS/SC, PRNT, custo final", url:"" },
+    { n:"9.3", t:"Do diagnóstico do rebanho ao orçamento pecuário — passo a passo", d:"Taxa de natalidade, evolução do rebanho, receita", url:"" },
+    { n:"9.4", t:"Como usar os coeficientes técnicos da EMATER/RS no seu projeto", d:"CONAB, EMATER, EMBRAPA — fontes regionais", url:"" },
+    { n:"9.5", t:"Croqui no Google Earth — como mapear sua propriedade de graça", d:"Passo a passo, área por talhão, KML, CAR", url:"" },
+    { n:"9.6", t:"Conhecer a biologia da cultura ou criação é parte da gestão de custos", d:"Ciclos produtivos, fases críticas, riscos e margens", url:"" }
+  ]},
+  { s: 10, nome: "Como elaborar um projeto agropecuário viável", videos: [
+    { n:"10.1", t:"O que o banco exige num projeto agropecuário — e por que a maioria reprova", d:"Premissas com fonte, COE, COT, CT, cenários", url:"", start:true },
+    { n:"10.2", t:"Como definir o preço de venda no projeto — o erro mais comum", d:"Cotação vs. preço na porteira, fonte e data", url:"" },
+    { n:"10.3", t:"Como calcular a produtividade esperada sem mentir para si mesmo", d:"Média histórica regional, CONAB, EMATER/RS", url:"" },
+    { n:"10.4", t:"Como mostrar que seu projeto agropecuário é viável — com números", d:"IEE, lucratividade, margem de segurança", url:"" },
+    { n:"10.5", t:"O que fazer quando o projeto só é viável no cenário otimista", d:"Análise de risco, seguro, escala, reformulação", url:"" },
+    { n:"10.6", t:"Como apresentar um projeto de investimento para a cooperativa ou banco", d:"Estrutura, indicadores, linguagem do agente financeiro", url:"" },
+    { n:"10.7", t:"Os erros que reprovam projetos agropecuários — e como evitá-los", d:"Premissas sem fonte, COT confundido com COE", url:"" }
+  ]}
+];
+
+/* ===== Render das séries em acordeão ===== */
+const ROMANOS = ['','I','II','III','IV','V','VI','VII','VIII','IX','X'];
+const wrap = document.getElementById('series');
+
+function esc(str){ const d=document.createElement('div'); d.textContent=str; return d.innerHTML; }
+
+VIDEOS.forEach(serie => {
+  const sec = document.createElement('section');
+  sec.className = 'block';
+  sec.id = 'serie-' + serie.s;
+  const total = serie.videos.length;
+  const prontos = serie.videos.filter(v => v.url).length;
+  let rows = '';
+  serie.videos.forEach(v => {
+    const live = !!v.url;
+    const embed = live && v.embed;
+    const status = embed
+      ? `<span class="vstatus live-now">no ar</span>`
+      : live
+      ? `<a class="vstatus go" href="${esc(v.url)}" target="_blank" rel="noopener">assistir &rarr;</a>`
+      : `<span class="vstatus soon">em breve</span>`;
+    const start = v.start ? `<span class="start-tag">comece aqui</span>` : '';
+    const titulo = (live && !embed)
+      ? `<a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.t)}</a>`
+      : esc(v.t);
+    const player = embed
+      ? `<div class="vid-embed"><iframe src="${esc(v.url)}" title="${esc(v.t)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
+      : '';
+    rows += `
+      <div class="vid-row${live ? ' live' : ''}">
+        <span class="vn">${esc(v.n)}</span>
+        <span class="vt">${titulo}</span>
+        <span class="vd">${esc(v.d)}</span>
+        <span class="vmeta">${status}${start}</span>
+        ${player}
+      </div>`;
+  });
+  sec.innerHTML = `
+    <button class="block-header" aria-expanded="false">
+      <span class="block-num">${ROMANOS[serie.s]}</span>
+      <span class="block-title">${esc(serie.nome)}</span>
+      <span class="block-chevron"></span>
+    </button>
+    <div class="block-body"><div class="block-content">
+      <p class="serie-meta">${total} vídeos${prontos ? ' · ' + prontos + ' no ar' : ''}</p>
+      ${rows}
+    </div></div>`;
+  wrap.appendChild(sec);
+});
+
+/* ===== Acordeão + back-to-top ===== */
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(!header) return;
+  const block = header.closest('.block');
+  const open = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', open);
+});
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>

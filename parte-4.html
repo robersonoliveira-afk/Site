@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte IV — Contexto operacional · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--terra);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+.toptabs a.mov3.current{box-shadow:inset 0 -3px 0 var(--terra-deep)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--terra)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--terra);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--terra-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--terra);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--terra);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(168,85,46,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--terra);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:420px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(168,85,46,0.08);border-left-color:var(--terra);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--terra);font-weight:600;min-width:32px}
+.toc-list li.quiz-link a{border-top:1px solid var(--rule);margin-top:6px;padding-top:14px;font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--terra)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(168,85,46,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--terra);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--terra)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--terra);position:relative}
+.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+.tbl td.ok{color:var(--olive);font-weight:600}
+.tbl td.no{color:var(--terra);font-weight:600}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4200px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--terra);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--terra);border:none;color:var(--paper);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+@media (min-width: 720px){
+  .block, .toc, .partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO — movimentos pedagógicos ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3 current"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">IV</div>
+    <div class="part-movement">
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1 class="title">Contexto <em>operacional</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">O projeto não opera no vácuo: ele vive num calendário de caixa, depende de crédito, vende a um preço regional que não é a cotação nacional e precisa estar regularizado no território. As quatro condições que tornam um bom cálculo um projeto exequível.</p>
+  <div class="meta">
+    <span>Parte IV de VI</span>
+    <span>4 aulas</span>
+    <span>Caps. 14 a 17</span>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc" id="toc">
+  <button class="toc-toggle" id="tocToggle" aria-expanded="false">
+    <span class="toc-toggle-label">Aulas desta parte</span>
+    <span class="toc-icon"></span>
+  </button>
+  <div class="toc-list">
+    <ol>
+      <li><a href="#fluxo-caixa"><span class="toc-num">IV.1</span> Fluxo de caixa e capital de giro</a></li>
+      <li><a href="#credito"><span class="toc-num">IV.2</span> Crédito rural e financiamento</a></li>
+      <li><a href="#preco"><span class="toc-num">IV.3</span> Preço de venda no RS</a></li>
+      <li><a href="#croqui"><span class="toc-num">IV.4</span> Croqui da propriedade e CAR</a></li>
+      <li class="quiz-link"><a href="#quiz"><span class="toc-num">→</span> Autoavaliação · Parte IV</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ===== AULA IV.1 ===== -->
+<section class="block" id="fluxo-caixa">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">IV.1</span>
+    <span class="block-title">Fluxo de caixa e capital de giro</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Um projeto pode ser lucrativo ao final do ciclo e, ainda assim, <strong>quebrar no meio do caminho</strong>. Na agricultura os custos se concentram no início — plantio, insumos, preparo — e a receita só chega na colheita. Imagina quem trabalha com pecuária de cria, que tem uma safra de terneiro por ano. Entre os dois momentos, o produtor precisa ter dinheiro para pagar as contas. Lucro é resultado; caixa é sobrevivência.</p>
+
+    <h3>O problema do tempo</h3>
+    <p>É a diferença entre o resultado econômico do ciclo e a <em>liquidez mês a mês</em>. O fluxo de caixa organiza todas as entradas e saídas no calendário, identificando os meses de déficit — quando é preciso capital de giro ou crédito — e os de superávit, quando há dinheiro para quitar dívidas ou investir.</p>
+
+    <h3>A estrutura: entradas, saídas, saldo</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Grupo</th><th>O que entra</th></tr>
+      <tr><td><strong>Entradas</strong></td><td>Venda da produção (safra principal, subprodutos), financiamentos recebidos, outras receitas (arrendamento de pastagem, venda de refugo).</td></tr>
+      <tr><td><strong>Saídas</strong></td><td>Todos os custos do orçamento, distribuídos nos meses em que ocorre o desembolso — sementes em outubro, adubos em out/nov, colheita em fev/mar.</td></tr>
+      <tr><td><strong>Saldo</strong></td><td>Entradas − saídas do período. O saldo <em>acumulado</em> revela se há déficit (necessidade de crédito) ou superávit ao longo do ciclo.</td></tr>
+    </table>
+    </div>
+    <div class="example">
+      <p>Uma lavoura de verão, o caixa fica fortemente negativo de <strong>outubro a janeiro</strong> (insumos e tratos) e só vira em <strong>fevereiro/março</strong>, com a venda. É esse vale de quatro meses que precisa ser financiado — por capital próprio ou crédito de custeio.</p>
+    </div>
+
+    <h3>Capital de giro</h3>
+    <p>É o dinheiro necessário para financiar o ciclo entre o primeiro desembolso e o recebimento da receita — o recurso que <em>sustenta</em> a operação durante a produção. A necessidade varia enormemente por atividade:</p>
+    <ul class="bullets">
+      <li><strong>Cultura de grãos:</strong> alto desembolso inicial, receita concentrada em 4–6 meses. Capital de giro alto no início da safra.</li>
+      <li><strong>Pecuária de corte (confinamento):</strong> desembolso diário de ração por 90–120 dias, receita no fim. Capital de giro proporcional ao nº de cabeças e ao custo diário.</li>
+      <li><strong>Pecuária leiteira:</strong> desembolso diário, receita mensal. Fluxo de caixa mais equilibrado.</li>
+      <li><strong>Fruticultura:</strong> anos de investimento sem receita na formação. Capital de giro de longo prazo, financiado por linha específica de implantação de perenes.</li>
+    </ul>
+    <div class="callout">
+      <strong>O erro que quebra projeto viável</strong>
+      Calcular só o resultado do ciclo e ignorar o calendário. Sem identificar o mês de maior déficit, o produtor descobre tarde que falta caixa para a próxima aplicação — e precisa vender mal, antecipado, para fechar o mês.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA IV.2 ===== -->
+<section class="block" id="credito">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">IV.2</span>
+    <span class="block-title">Crédito rural e financiamento agrícola</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>O crédito rural é o principal instrumento de financiamento do produtor que não dispõe de capital próprio suficiente. Criado pela Lei nº 4.829/1965 e regulamentado pelo <strong>Manual de Crédito Rural (MCR)</strong> do Banco Central, importa ao técnico por duas razões práticas: muitos projetos que ele elaborará serão submetidos a bancos e precisam estar nos moldes exigidos; e os juros do crédito são <em>um componente do custo total</em> do projeto.</p>
+
+    <div class="callout">
+      <strong>Atenção · dados que mudam a cada Plano Safra</strong>
+      Taxas, limites e faixas de renda abaixo são referências da apostila. Eles são revistos anualmente. Sempre confirmar os valores vigentes no Plano Safra e no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
+    </div>
+
+    <h3>Modalidades</h3>
+    <ul class="bullets">
+      <li><strong>Custeio:</strong> destina-se a cobrir despesas normais dos ciclos produtivos, da compra de insumos à fase de colheita. Prazo curto.</li>
+      <li><strong>Investimento:</strong> destina-se a aplicações em bens ou serviços cujo benefício se estenda por vários períodos de produção. Por exemplo na aquisição de máquinas, benfeitorias, implantação de pomar. Prazo longo.</li>
+      <li><strong>Comercialização:</strong> destina-se a viabilizar ao produtor rural ou às cooperativas os recursos necessários à comercialização de seus produtos no mercado.</li>
+      <li><strong>Industrialização:</strong> destina-se à industrialização de produtos agropecuários, quando efetuada por cooperativas ou pelo produtor na sua propriedade rural.</li>
+    </ul>
+
+    <h3>Principais programas</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Programa</th><th>Beneficiário</th><th>Juros (ref.)</th></tr>
+      <tr><td><strong>Pronaf</strong></td><td>Agricultura familiar (renda bruta até ~R$ 500 mil/ano). Exige DAP/CAF.</td><td class="num">2 a 6% a.a.</td></tr>
+      <tr><td><strong>Pronamp</strong></td><td>Médio produtor (renda ~R$ 500 mil a 3,5 milhões; ≥80% da renda no agro).</td><td class="num">7 a 10% a.a.</td></tr>
+      <tr><td><strong>Demais produtores</strong></td><td>Grande porte ou fora das linhas subsidiadas.</td><td class="num">12 a 20% a.a.</td></tr>
+    </table>
+    </div>
+    <p>O Pronaf tem as taxas mais baixas do mercado, fortemente subsidiadas (Lei nº 11.326/2006). O acesso depende da Declaração de Aptidão ao Pronaf (DAP) ou do Cadastro da Agricultura Familiar (CAF).</p>
+
+    <h3>O custo do crédito no projeto</h3>
+    <p>Quando o produtor usa crédito de custeio, os juros viram <strong>Despesas Financeiras</strong> do orçamento — calculados sobre o valor financiado pelo período de vigência.</p>
+    <div class="formula">
+      <span class="label">Juros de custeio</span>
+      R$ 100.000 × 6% a.a. × (6/12) = <b>R$ 3.000</b> em 6 meses
+    </div>
+    <div class="callout success">
+      <strong>Mesmo sem financiar, há custo de capital</strong>
+      Se o produtor usa capital próprio, o custo de oportunidade desse capital (Selic ou CDI) entra como custo implícito no <em>Custo Total</em>. O dinheiro aplicado na lavoura deixou de render na renda fixa — e a Parte III já tratou a Rentabilidade ÷ CT exatamente por isso.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA IV.3 ===== -->
+<section class="block" id="preco">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">IV.3</span>
+    <span class="block-title">Preço de venda e fontes de consulta</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A definição do preço de venda é uma das premissas mais críticas do projeto. Para o pequeno e médio produtor gaúcho, a referência <em>não</em> são bolsas internacionais nem contratos futuros: é o preço efetivo pago pela cooperativa local, pelo laticínio, pelo frigorífico ou pelo mercado municipal. <strong>Esse é o preço que entra na planilha.</strong></p>
+
+    <h3>O preço na porteira, não na cotação</h3>
+    <p>Entre a cotação nacional (ex.: soja ESALQ Paranaguá), vista nos jornais e o que o produtor gaúcho recebe há diferenças que reduzem a receita real:</p>
+    <ul class="bullets">
+      <li><strong>Frete:</strong> da propriedade até a cooperativa ou armazém. Quanto mais distante, menor o preço líquido.</li>
+      <li><strong>Descontos de umidade e impureza:</strong> soja acima de 14% de umidade ou trigo acima de 13% sofre desconto por ponto percentual.</li>
+      <li><strong>Funrural e taxa de ATER:</strong> descontados sobre a receita bruta no momento da venda.</li>
+      <li><strong>Armazenagem:</strong> custo mensal por saca, se o produto aguarda preço melhor no armazém.</li>
+    </ul>
+    <div class="example">
+      <p>Se a soja é cotada a R$ 130/sc na TV, o preço posto cooperativa em São Gabriel pode ficar perto de <span class="calc">R$ 120/sc</span> depois do frete e das deduções. É esse o número que sustenta a receita do projeto — usar a cotação cheia <em>superestima</em> a viabilidade.</p>
+    </div>
+
+    <h3>Onde consultar (RS)</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Fonte</th><th>O que oferece</th></tr>
+      <tr><td><strong>Cooperativa local</strong></td><td>A fonte mais direta e precisa: já desconta frete regional e reflete o mercado local. Muitas publicam boletins semanais.</td></tr>
+      <tr><td><strong>EMATER/RS</strong></td><td>Boletins periódicos regionalizados por produto e microrregião — leite, grãos, carne, hortifruti no RS.</td></tr>
+      <tr><td><strong>CEPEA/ESALQ</strong></td><td>Referência nacional diária (soja, milho, boi, leite, trigo). Boa para tendência; o preço gaúcho será inferior pelo frete.</td></tr>
+      <tr><td><strong>CONAB</strong></td><td>Custos de produção por estado/região, histórico de preços e projeções de safra. Valida as premissas do projeto.</td></tr>
+      <tr><td><strong>Sindicatos e associações</strong></td><td>Referências de arrendamento, diárias rurais, e insumos específicos de cada região.</td></tr>
+    </table>
+    </div>
+    <div class="callout">
+      <strong>A pergunta dos professores</strong>
+      "Por que você usou esse preço?" A resposta defensável cita a fonte, a data da consulta e por que é representativo para a safra planejada ou do produto vendido, carne, leite, ovos etc.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA IV.4 ===== -->
+<section class="block" id="croqui">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">IV.4</span>
+    <span class="block-title">Croqui da propriedade, Google Earth e CAR</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>O croqui é a representação espacial da propriedade — o mapa que mostra talhões, pastagens, matas, APP, reserva legal, benfeitorias e infraestrutura. No projeto produtivo cumpre três funções: <strong>delimitar a área</strong> (base de cálculo de tudo), atender a <strong>exigência do crédito rural</strong> (todo financiamento exige mapa) e apoiar o <strong>planejamento agronômico</strong> (variações de solo e relevo, base da agricultura de precisão).</p>
+
+    <h3>Google Earth Pro — o procedimento</h3>
+    <p>Gratuito (earth.google.com), é a ferramenta mais usada por técnicos para croqui rural, com imagens de satélite de todo o Brasil. Instalar a versão para computador, pelas ferramentas de medição e exportação.</p>
+    <ul class="bullets">
+      <li><strong>Localizar:</strong> buscar o município e a propriedade, ou inserir coordenadas (GPS ou do CAR).</li>
+      <li><strong>Desenhar polígonos:</strong> "Adicionar polígono" para cada área; nomear com clareza ("Talhão 1: soja", "Reserva Legal").</li>
+      <li><strong>Medir área:</strong> o Earth calcula automaticamente em hectares; conferir contra escritura/CCIR.</li>
+      <li><strong>Marcar pontos:</strong> benfeitorias, estradas, açudes, pontos de coleta de solo.</li>
+      <li><strong>Exportar:</strong> KML (Arquivo → Salvar lugar como) para o SICAR e geoprocessamento; ou imagem JPEG/PNG para os slides da defesa.</li>
+    </ul>
+
+    <h3>Cadastro Ambiental Rural (CAR)</h3>
+    <p>Registro público eletrônico obrigatório para toda propriedade rural (Lei nº 12.651/2012 — Novo Código Florestal). Georreferencia os limites, identifica APP e reserva legal, e é a base do licenciamento ambiental. Para o projeto, tem <em>duas implicações diretas</em>:</p>
+    <div class="callout">
+      <strong>Conformidade legal</strong>
+      Projetos em área de APP ou reserva legal são ilegais e não recebem crédito. O croqui deve confirmar que a área produtiva está regularizada no CAR.
+    </div>
+    <div class="callout success">
+      <strong>Acesso ao crédito</strong>
+      Bancos exigem o CAR ativo e sem pendências para liberar crédito rural. Propriedade irregular fica impedida de acessar financiamento subsidiado — a regularização ambiental é, na prática, porta de entrada do financiamento. <strong>Importante:</strong> o acesso ao crédito tem exigido profissionalismo e você técnico tem papel determinante.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== QUIZ (bloco acordeão) ===== -->
+<section class="block block-quiz" id="quiz">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">↻</span>
+    <span class="block-title">Autoavaliação · Parte III</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="quiz-inner">
+    <div class="quiz-eyebrow">O projeto sobrevive ao mundo real?</div>
+    <p class="quiz-intro">Seis situações em que o cálculo já está certo, mas falta encaixá-lo no calendário, no crédito, no preço regional e na regularização. Não há resposta decorada — o que se mede é a sua <em>visão operacional</em>. Responda com honestidade; o resultado aponta o próximo passo.</p>
+    <div id="quizContainer"></div>
+    <div class="q-progress" id="qProgressWrap" style="display:none"><div class="q-progress-bar" id="qProgress"></div></div>
+    <div class="quiz-result" id="quizResult">
+      <div class="result-eyebrow">Seu perfil predominante</div>
+      <div class="result-profile" id="resultProfile"></div>
+      <div class="result-message" id="resultMessage"></div>
+      <div class="result-tally" id="resultTally"></div>
+      <div class="result-revise"><strong>Para revisar</strong><span id="reviseBlocks"></span></div>
+      <button class="q-restart" id="restartQuiz">Refazer o quiz</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== NAV ENTRE PARTES ===== -->
+<nav class="partnav">
+  <a href="parte-3.html" class="prev">
+    <span class="dir">← Parte anterior</span>
+    <span class="pn">III</span>
+    <span class="lbl">Análise econômica</span>
+  </a>
+  <a href="parte-5.html" class="next">
+    <span class="dir">Próxima parte →</span>
+    <span class="pn">V</span>
+    <span class="lbl">Módulos aplicados</span>
+  </a>
+</nav>
+
+<footer>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+// ===== QUIZ — perfis: op Operador | tr Em transição | ge Gestor | es Estratégico =====
+const QUIZ = [
+  {
+    q: "Você projetou um lucro econômico positivo na safra. O produtor pergunta se pode dispensar o crédito de custeio. Você:",
+    a: [
+      {t:"Confirma — se o projeto dá lucro, não precisa de empréstimo.", p:"op"},
+      {t:"Monta o fluxo de caixa mês a mês: lucro no fim do ciclo não garante caixa em novembro.", p:"es"},
+      {t:"Sugere ver como o caixa se comporta ao longo do ano.", p:"tr"}
+    ]
+  },
+  {
+    q: "Ao orçar um projeto de agricultura familiar, sobre a linha de crédito você:",
+    a: [
+      {t:"Usa uma taxa de mercado qualquer, o que importa é ter o valor.", p:"op"},
+      {t:"Verifica o enquadramento no Pronaf e confirma taxa e limite no Plano Safra vigente.", p:"es"},
+      {t:"Coloca uma faixa de juros aproximada e ajusto depois.", p:"tr"}
+    ]
+  },
+  {
+    q: "Para a receita do projeto de soja em São Gabriel, você adota o preço:",
+    a: [
+      {t:"A cotação cheia da soja no porto (ESALQ Paranaguá).", p:"op"},
+      {t:"O preço posto cooperativa local, já líquido de frete e deduções.", p:"es"},
+      {t:"Uma média entre o porto e o que ouvi de vizinhos.", p:"tr"}
+    ]
+  },
+  {
+    q: "Os juros do crédito de custeio, no orçamento do projeto, você trata como:",
+    a: [
+      {t:"Não entram — é dívida, não custo de produção.", p:"op"},
+      {t:"Despesa financeira do projeto, calculada sobre o valor financiado pelo período.", p:"ge"},
+      {t:"Deixo para o banco calcular.", p:"tr"}
+    ]
+  },
+  {
+    q: "O produtor quer financiar a lavoura, mas a área não está regularizada no CAR. Você:",
+    a: [
+      {t:"Toca o projeto, regularização é problema do banco.", p:"op"},
+      {t:"Explica que sem CAR ativo o crédito não sai e o projeto em APP/reserva é ilegal; regularizar vem primeiro.", p:"es"},
+      {t:"Sugere tentar o financiamento e ver se passa.", p:"tr"}
+    ]
+  },
+  {
+    q: "Capital próprio na lavoura, sem financiamento. Sobre o custo do capital:",
+    a: [
+      {t:"Não há custo — o dinheiro é do produtor.", p:"op"},
+      {t:"Entra o custo de oportunidade (Selic/CDI) como custo implícito no CT.", p:"ge"},
+      {t:"Só se o produtor quiser considerar.", p:"tr"}
+    ]
+  }
+];
+
+const PROFILES = {
+  op: {
+    name: "Operador",
+    msg: "Você fecha o cálculo, mas ainda o trata como se o projeto existisse no vácuo — sem calendário de caixa, sem a linha de crédito certa, com o preço cheio do porto e sem a regularização. O próximo passo é encaixar o número no mundo real: o mês em que falta caixa, o preço na porteira, o CAR como porta do crédito.",
+    revise: "Aulas IV.1 (fluxo de caixa e capital de giro) e IV.3 (o preço que entra na planilha é o regional, não a cotação)."
+  },
+  tr: {
+    name: "Em transição",
+    msg: "Você percebe que há mais a verificar — o caixa, a linha, o preço — mas tende a aproximar valores e adiar a checagem. O salto seguinte é fechar cada premissa na fonte: o Plano Safra vigente, o boletim da cooperativa, o status do CAR. Premissa aproximada vira projeto frágil na defesa.",
+    revise: "Aulas IV.2 (enquadramento e custo do crédito) e IV.4 (croqui e CAR como exigência do financiamento)."
+  },
+  ge: {
+    name: "Gestor",
+    msg: "Você trata o crédito como custo do projeto e reconhece o custo de oportunidade do capital próprio. O produtor que conta com você não confunde dívida com prejuízo nem capital próprio com dinheiro de graça. O próximo passo é a visão estratégica completa — caixa, preço regional e regularização tratados como premissas que se defendem com fonte.",
+    revise: "Reforce a aula IV.1 (fluxo de caixa) e avance para a Parte V, onde o método se aplica a pecuária, fruticultura e precisão."
+  },
+  es: {
+    name: "Técnico estratégico",
+    msg: "Você opera no nível que o mercado demanda: lê o calendário de caixa, enquadra a linha de crédito na fonte vigente, adota o preço posto cooperativa e trata o CAR como condição do financiamento. Vê o projeto como um sistema que precisa funcionar no tempo, no território e no mercado real. Mantenha esse rigor — é o que faz o projeto sobreviver fora da planilha.",
+    revise: "Você domina a Parte IV. Aplique-a a um caso real (uma propriedade conhecida) e avance para a Parte V, módulos aplicados por atividade."
+  }
+};
+
+let currentQ = 0;
+let scores = {op:0, tr:0, ge:0, es:0};
+const container = document.getElementById('quizContainer');
+const progressWrap = document.getElementById('qProgressWrap');
+const progressBar = document.getElementById('qProgress');
+const resultBox = document.getElementById('quizResult');
+
+function renderQuestion(i){
+  if(i >= QUIZ.length){ showResult(); return; }
+  const q = QUIZ[i];
+  container.innerHTML = '';
+  const block = document.createElement('div');
+  block.className = 'quiz-question';
+  block.innerHTML = `
+    <div class="q-counter">Questão ${String(i+1).padStart(2,'0')} de ${QUIZ.length}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="q-options"></div>`;
+  const opts = block.querySelector('.q-options');
+  // Fisher-Yates: embaralhamento uniforme (substitui o sort enviesado)
+  const shuffled = [...q.a];
+  for (let s = shuffled.length - 1; s > 0; s--) {
+    const r = Math.floor(Math.random() * (s + 1));
+    [shuffled[s], shuffled[r]] = [shuffled[r], shuffled[s]];
+  }
+  shuffled.forEach((opt) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option';
+    btn.textContent = opt.t;
+    btn.addEventListener('click', () => {
+      scores[opt.p]++;
+      currentQ++;
+      progressBar.style.width = ((currentQ/QUIZ.length)*100) + '%';
+      renderQuestion(currentQ);
+    });
+    opts.appendChild(btn);
+  });
+  container.appendChild(block);
+  progressWrap.style.display = 'block';
+  progressBar.style.width = ((i/QUIZ.length)*100) + '%';
+}
+
+function showResult(){
+  container.style.display = 'none';
+  progressWrap.style.display = 'none';
+  let topScore = -1;
+  for(const k of ['op','tr','ge','es']){ if(scores[k] > topScore) topScore = scores[k]; }
+  let topKey = 'op';
+  const order = ['es','ge','tr','op'];
+  for(const k of order){ if(scores[k] === topScore){ topKey = k; break; } }
+  const profile = PROFILES[topKey];
+  document.getElementById('resultProfile').textContent = profile.name;
+  document.getElementById('resultMessage').textContent = profile.msg;
+  document.getElementById('reviseBlocks').textContent = profile.revise;
+  const tallyEl = document.getElementById('resultTally');
+  tallyEl.innerHTML = '';
+  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+  for(const k of ['op','tr','ge','es']){
+    const row = document.createElement('div');
+    row.className = 'tally-row' + (k === topKey ? ' winner' : '');
+    row.innerHTML = `<span>${labels[k]}</span><span>${scores[k]} pt${scores[k] !== 1 ? 's' : ''}</span>`;
+    tallyEl.appendChild(row);
+  }
+  resultBox.classList.add('active');
+  resultBox.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function restartQuiz(){
+  currentQ = 0;
+  scores = {op:0, tr:0, ge:0, es:0};
+  resultBox.classList.remove('active');
+  container.style.display = 'block';
+  renderQuestion(0);
+}
+document.getElementById('restartQuiz').addEventListener('click', restartQuiz);
+renderQuestion(0);
+
+// ===== TOC + acordeão + back-to-top =====
+const toc = document.getElementById('toc');
+const tocBtn = document.getElementById('tocToggle');
+tocBtn.addEventListener('click', () => {
+  toc.classList.toggle('open');
+  tocBtn.setAttribute('aria-expanded', toc.classList.contains('open'));
+});
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', () => {
+    toc.classList.remove('open');
+    tocBtn.setAttribute('aria-expanded', 'false');
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if(target && target.classList.contains('block')) target.classList.add('open');
+  });
+});
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(!header) return;
+  const block = header.closest('.block');
+  const open = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', open);
+});
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>

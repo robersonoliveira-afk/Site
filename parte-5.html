@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte V — Módulos aplicados · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--terra);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+.toptabs a.mov3.current{box-shadow:inset 0 -3px 0 var(--terra-deep)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--terra)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--terra);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--terra-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--terra);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--terra);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(168,85,46,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--terra);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:760px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(168,85,46,0.08);border-left-color:var(--terra);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--terra);font-weight:600;min-width:32px}
+.toc-list li.mod-head{padding:12px 22px 4px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);font-weight:600;border-top:1px solid var(--rule-soft);margin-top:4px}
+.toc-list li.mod-head:first-child{border-top:none;margin-top:0}
+.toc-list li.quiz-link a{font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== DIVISOR DE MÓDULO ===== */
+.module-divider{margin:36px 22px 16px;display:flex;align-items:center;gap:16px;border-top:1px solid var(--rule);padding-top:26px}
+.module-divider .ml{font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:600;line-height:0.85;color:var(--terra);letter-spacing:-0.02em}
+.module-divider .mt{display:flex;flex-direction:column;gap:4px}
+.module-divider .me{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone);font-weight:600}
+.module-divider .mh{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);line-height:1.1;letter-spacing:-0.01em}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--terra)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(168,85,46,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--terra);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--terra)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--terra);position:relative}
+.example::before{content:"caso pecuária · confinamento";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.example.ex-fruti::before{content:"caso fruticultura · pomar"}
+.example.ex-ap::before{content:"caso precisão · investimento"}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+.tbl td.ok{color:var(--olive);font-weight:600}
+.tbl td.no{color:var(--terra);font-weight:600}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4800px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--terra);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--terra);border:none;color:var(--paper);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+@media (min-width: 720px){
+  .block, .toc, .partnav, .module-divider{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO — movimentos pedagógicos ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3 current"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">V</div>
+    <div class="part-movement">
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1 class="title">Módulos <em>aplicados</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">A lógica econômica é a mesma das Partes I a IV — COE, COT, CT, margens, ponto de equilíbrio. O que muda são as unidades, os coeficientes técnicos e os indicadores. Três atividades, o mesmo método: pecuária, fruticultura e agricultura de precisão.</p>
+  <div class="meta">
+    <span>Parte V de VI</span>
+    <span>3 módulos · 7 aulas</span>
+    <span>Módulos A a C</span>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc" id="toc">
+  <button class="toc-toggle" id="tocToggle" aria-expanded="false">
+    <span class="toc-toggle-label">Aulas desta parte</span>
+    <span class="toc-icon"></span>
+  </button>
+  <div class="toc-list">
+    <ol>
+      <li class="mod-head">Módulo A · Pecuária</li>
+      <li><a href="#unidades"><span class="toc-num">A.1</span> Unidades e coeficientes</a></li>
+      <li><a href="#confinamento"><span class="toc-num">A.2</span> Custos e indicadores no confinamento</a></li>
+      <li><a href="#leite"><span class="toc-num">A.3</span> Leite e outros sistemas</a></li>
+      <li class="quiz-link"><a href="#quizA"><span class="toc-num">↻</span> Autoavaliação · Pecuária</a></li>
+      <li class="mod-head">Módulo B · Fruticultura e perenes</li>
+      <li><a href="#perenes"><span class="toc-num">B.1</span> A especificidade das perenes</a></li>
+      <li><a href="#investimento"><span class="toc-num">B.2</span> Payback, VPL e TIR</a></li>
+      <li class="quiz-link"><a href="#quizB"><span class="toc-num">↻</span> Autoavaliação · Fruticultura</a></li>
+      <li class="mod-head">Módulo C · Agricultura de precisão</li>
+      <li><a href="#ap-decisao"><span class="toc-num">C.1</span> Tecnologia como decisão econômica</a></li>
+      <li><a href="#ap-viabilidade"><span class="toc-num">C.2</span> Viabilidade do investimento em AP</a></li>
+      <li class="quiz-link"><a href="#quizC"><span class="toc-num">↻</span> Autoavaliação · Precisão</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- ===== MÓDULO A — PECUÁRIA ===== -->
+<!-- ============================================================ -->
+<div class="module-divider">
+  <span class="ml">A</span>
+  <div class="mt">
+    <div class="me">Módulo A</div>
+    <div class="mh">Gestão de custos em pecuária</div>
+  </div>
+</div>
+
+<!-- ===== AULA A.1 ===== -->
+<section class="block" id="unidades">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">A.1</span>
+    <span class="block-title">Unidades e coeficientes da pecuária</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A lógica econômica da pecuária é a mesma da lavoura: COE, COT, CT, margens, ponto de equilíbrio e fluxo de caixa. O que muda são as <strong>unidades de medida, os coeficientes técnicos e os indicadores de produtividade</strong>. Adaptar o método ao projeto animal começa por dominar essas unidades.</p>
+
+    <h3>O que muda da lavoura para a pecuária</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Elemento</th><th>Lavoura</th><th>Corte</th><th>Leite</th></tr>
+      <tr><td><strong>Escala</strong></td><td>Hectare (ha)</td><td>Cabeça ou UA</td><td>Vaca em lactação</td></tr>
+      <tr><td><strong>Produtividade</strong></td><td>sc/ha, t/ha</td><td>kg/cab, GMD</td><td>L/vaca/dia</td></tr>
+      <tr><td><strong>Receita unit.</strong></td><td>R$/sc</td><td>R$/kg</td><td>R$/L</td></tr>
+      <tr><td><strong>Ciclo</strong></td><td>Safra (meses)</td><td>Confinamento (dias)</td><td>Lactação (305 d)</td></tr>
+    </table>
+    </div>
+
+    <h3>Unidade Animal (UA)</h3>
+    <p>A UA padroniza categorias diferentes de bovinos numa medida comum, permitindo expressar a <em>capacidade de suporte do pasto</em> e os custos de manutenção de forma uniforme.</p>
+    <div class="formula">
+      <span class="label">Unidade Animal · padrão EMBRAPA</span>
+      1 UA = <b>450 kg</b> de peso vivo (bovino adulto)<br>
+      Novilha 250 kg = 250÷450 = <b>0,56 UA</b><br>
+      Touro 700 kg = 700÷450 = <b>1,56 UA</b>
+    </div>
+    <p>A <strong>taxa de lotação</strong> (UA/ha) é o principal indicador de uso da pastagem. Superlotação compromete a recuperação do pasto, eleva o custo de manutenção e <em>reduz</em> a produtividade do rebanho.</p>
+
+    <h3>Ganho Médio Diário (GMD) e produção por período</h3>
+    <p>O GMD é o indicador de eficiência técnica central da pecuária de corte. <em>1,2 kg/dia</em> é considerado bom em confinamento; <strong>abaixo de 0,8 kg/dia</strong> indica problema nutricional.</p>
+    <div class="formula">
+      <span class="label">Ganho de peso</span>
+      GPT = GMD × dias → 1,2 × 90 = <b>108 kg</b>/animal<br>
+      Peso de saída = entrada + GPT → 280 + 108 = <b>388 kg</b>
+    </div>
+
+    <h3>A arroba (@) — unidade de comercialização</h3>
+    <p>A arroba é a unidade de venda do boi gordo no Brasil: <strong>1 @ = 15 kg</strong>. No Rio Grande do Sul, utilizamos peso vivo ou por peso de carcaça, e o rendimento de carcaça (RC) varia de <em>50 a 58%</em> em raças de corte.</p>
+    <div class="example">
+      <p>Boi de saída com 388 kg vivos: 388 ÷ 15 = <span class="calc">25,9 @ de peso vivo</span>.</p>
+      <p>Em carcaça, a 52% de rendimento: 388 × 0,52 = 201,8 kg → 201,8 ÷ 15 = <span class="calc">13,5 @ de carcaça</span>. É indispensável saber <strong>qual base</strong> o comprador usa antes de fechar a receita.</p>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA A.2 ===== -->
+<section class="block" id="confinamento">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">A.2</span>
+    <span class="block-title">Custos e indicadores no confinamento</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A estrutura de custos do confinamento segue a mesma classificação da lavoura (variáveis, fixos, custo de oportunidade), com itens próprios da engorda animal.</p>
+
+    <h3>Estrutura de custos — confinamento</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Grupo</th><th>Base de cálculo</th></tr>
+      <tr><td><strong>Aquisição do animal</strong></td><td>R$/cabeça × nº de animais (boi magro)</td></tr>
+      <tr><td><strong>Alimentação</strong></td><td>kg/animal/dia × dias × nº × R$/kg</td></tr>
+      <tr><td><strong>Sanidade</strong></td><td>R$/cabeça × nº (vacinas, vermífugos, medicamentos)</td></tr>
+      <tr><td><strong>Mão de obra</strong></td><td>R$/mês × meses (tratadores, RT veterinário)</td></tr>
+      <tr><td><strong>Energia/combustível</strong></td><td>kWh ou L × preço × período (ordenhadeira, bomba)</td></tr>
+      <tr><td><strong>Depreciação</strong></td><td>valor ÷ vida útil ÷ nº (mangueiras, cochos, cerca)</td></tr>
+      <tr><td><strong>Oportunidade da terra</strong></td><td>R$/ha/ano × ha do confinamento e pastagem</td></tr>
+    </table>
+    </div>
+
+    <h3>Indicadores de eficiência</h3>
+    <p>Na pecuária, a produção é medida em <strong>kg</strong> (os kg que o animal põe durante o ciclo). Os indicadores espelham os da lavoura, trocando o sc/ha pelo k.</p>
+    <div class="formula">
+      <span class="label">Indicadores da pecuária de corte</span>
+      Custo por kg = CT ÷ total de kg produzidos<br>
+      PE de preço = COE ÷ total de kg → preço mínimo do kg<br>
+      PE de GMD = ganho mínimo/dia para viabilizar ao preço de mercado
+    </div>
+
+    <div class="example">
+      <p>Lote de 100 bois, 90 dias, GMD 1,2 → 108 kg de ganho/cab</span>.</p>
+      <p>Com CT de R$ 216.000 e COE de R$ 190.000 <em>(valores ilustrativos — use os da sua planilha)</em>:</p>
+      <p>Custo por kg = 101.000 ÷ 10.800 = <span class="calc">R$ 9,35/kg</span> · PE de preço = 88.000 ÷ 10.800 = <span class="calc">R$ 8,15/kg</span>.</p>
+      <p>Vendendo o kg a R$ 13,50 a margem de segurança sobre o preço é (13,50 − 8,15) ÷ 13,50 = <strong>40%</strong> antes de operar no prejuízo de caixa.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Margem de segurança na pecuária</strong>
+      Mede quanto o preço do kg (ou o GMD) pode cair antes de o projeto entrar no prejuízo. É o mesmo raciocínio da Parte III — só muda a unidade. Margem apertada = projeto sensível ao preço.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA A.3 ===== -->
+<section class="block" id="leite">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">A.3</span>
+    <span class="block-title">Pecuária leiteira e outros sistemas</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Na pecuária leiteira a unidade de receita é o <strong>litro</strong>, e a produtividade se mede por vaca/dia (L/VL/dia) e por lactação (305 dias). Como custo e receita ocorrem diariamente/mensalmente, o fluxo de caixa é <em>mais equilibrado</em> que o da lavoura anual.</p>
+
+    <div class="formula">
+      <span class="label">Indicador-chave do leite</span>
+      Custo por litro = CT ÷ total de litros no período<br>
+      Referência EMBRAPA (familiar): <b>R$ 1,50 a R$ 2,20/L</b>
+    </div>
+
+    <h3>Dois ajustes que mudam o custo médio</h3>
+    <ul class="bullets">
+      <li><strong>Relação concentrado:leite</strong> — kg de ração concentrada por litro produzido. Acima de <em>0,5 kg/L</em> indica ineficiência alimentar.</li>
+      <li><strong>Vaca seca vs. lactação</strong> — vacas no período seco (≈2 meses antes do parto) geram custo sem receita. Essa proporção precisa entrar no custo médio do rebanho.</li>
+    </ul>
+
+    <h3>O método se aplica a outros sistemas</h3>
+    <p>Muda a unidade e o indicador técnico; o método de custo permanece.</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Sistema</th><th>Unidade</th><th>Indicador-chave</th></tr>
+      <tr><td><strong>Apicultura</strong></td><td>Caixa (colmeia)</td><td>kg de mel/caixa/ano; custo/kg</td></tr>
+      <tr><td><strong>Avicultura</strong></td><td>Frango alojado</td><td>Conversão alimentar; ração = 65–70% do custo</td></tr>
+      <tr><td><strong>Suinocultura</strong></td><td>Animal terminado</td><td>Conversão 2,8–3,2 kg ração/kg; ciclo 90–100 d</td></tr>
+      <tr><td><strong>Aquicultura</strong></td><td>kg de peixe</td><td>Conversão alimentar; densidade por m³/ha</td></tr>
+    </table>
+    </div>
+    <div class="callout success">
+      <strong>Uma vez entendido o método, ele viaja</strong>
+      Seja boi, leite, mel ou peixe, a pergunta é sempre a mesma: qual a unidade de produção, quanto custa produzi-la e a que preço ela se paga. Quem domina COE/COT/CT domina em qualquer atividade.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== QUIZ A — PECUÁRIA ===== -->
+<section class="block block-quiz" id="quizA">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">↻</span>
+    <span class="block-title">Autoavaliação · Pecuária</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="quiz-inner">
+    <div class="quiz-eyebrow">Você adapta o método ao rebanho?</div>
+    <p class="quiz-intro">Oito situações de projeto pecuário. Os cálculos são os mesmos do curso — o que muda é a unidade. Não há resposta decorada: mede-se a sua <em>leitura técnica</em>. Responda com honestidade; o resultado aponta o próximo passo.</p>
+    <div id="quizContainerA"></div>
+    <div class="q-progress" id="qProgressWrapA" style="display:none"><div class="q-progress-bar" id="qProgressA"></div></div>
+    <div class="quiz-result" id="quizResultA">
+      <div class="result-eyebrow">Seu perfil predominante</div>
+      <div class="result-profile" id="resultProfileA"></div>
+      <div class="result-message" id="resultMessageA"></div>
+      <div class="result-tally" id="resultTallyA"></div>
+      <div class="result-revise"><strong>Para revisar</strong><span id="reviseBlocksA"></span></div>
+      <button class="q-restart" id="restartQuizA">Refazer o quiz</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ===== MÓDULO B — FRUTICULTURA ===== -->
+<!-- ============================================================ -->
+<div class="module-divider">
+  <span class="ml">B</span>
+  <div class="mt">
+    <div class="me">Módulo B</div>
+    <div class="mh">Fruticultura e culturas perenes</div>
+  </div>
+</div>
+
+<!-- ===== AULA B.1 ===== -->
+<section class="block" id="perenes">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">B.1</span>
+    <span class="block-title">A especificidade econômica das perenes</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Fruticultura e silvicultura têm uma característica que as separa radicalmente da lavoura anual: a <strong>fase de formação</strong> (pré-produtiva). Durante esse período — de 1 a 5 anos conforme a espécie — há <em>desembolso contínuo sem nenhuma receita</em>. Isso muda toda a análise.</p>
+
+    <h3>Tempo até a primeira colheita</h3>
+    <ul class="bullets">
+      <li><strong>Banana:</strong> 1 a 1,5 ano (a mais rápida).</li>
+      <li><strong>Maçã, pêssego, nectarina:</strong> 2 a 3 anos.</li>
+      <li><strong>Uva:</strong> 2 a 3 anos para a primeira colheita; 5 a 7 para plena produção.</li>
+      <li><strong>Café:</strong> 2 a 3 anos; 4 a 5 para plena produção.</li>
+      <li><strong>Laranja, limão, bergamota:</strong> 3 a 4 anos.</li>
+      <li><strong>Eucalipto:</strong> 6, 7 ou 15 anos até o corte.</li>
+    </ul>
+
+    <h3>O custo de implantação não é custo da safra</h3>
+    <p>O custo de implantar o pomar é tratado como <em>investimento de longo prazo</em>, amortizado ao longo dos anos de produção — de forma similar à depreciação de máquinas. Jogá-lo todo no primeiro ano distorce o resultado.</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Fase</th><th>Horizonte</th><th>Tipo de custo</th></tr>
+      <tr><td><strong>Implantação</strong></td><td>Ano 0</td><td>Investimento inicial (mudas, preparo, calagem, sistema de condução)</td></tr>
+      <tr><td><strong>Formação</strong></td><td>Anos 1 a N</td><td>Custo de formação capitalizado (poda, adubação, tratos)</td></tr>
+      <tr><td><strong>Produção</strong></td><td>Ano N+</td><td>Custo anual de manutenção (COE/COT: colheita, defensivos, frete)</td></tr>
+    </table>
+    </div>
+    <div class="callout">
+      <strong>O erro clássico em perenes</strong>
+      Comparar o lucro de um único ano com a lavoura anual. Na formação o resultado é negativo por definição; a viabilidade só aparece quando se olha o projeto inteiro, ano a ano, com o valor do dinheiro no tempo.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA B.2 ===== -->
+<section class="block" id="investimento">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">B.2</span>
+    <span class="block-title">Payback, VPL e TIR</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Para projetos longos, a análise de um ano só é insuficiente. Entram os indicadores de <strong>análise de investimento</strong>, que consideram o valor do dinheiro no tempo.</p>
+
+    <h3>Payback — o retorno do investimento</h3>
+    <p>É o número de anos para que os lucros acumulados igualem o investimento inicial. O mais intuitivo dos indicadores de risco no tempo.</p>
+    <div class="example ex-fruti">
+      <p>Implantação de pomar de 10 ha: <strong>R$ 200.000</strong>. Lucro anual médio esperado: <strong>R$ 40.000</strong>.</p>
+      <p>Payback = 200.000 ÷ 40.000 = <span class="calc">5 anos</span>.</p>
+      <p><em>Limitação:</em> ignora que R$ 1 hoje vale mais que R$ 1 daqui a 5 anos. Por isso existem o payback descontado, o VPL e a TIR.</p>
+    </div>
+
+    <h3>VPL — Valor Presente Líquido</h3>
+    <p>Traz todos os fluxos futuros (entradas e saídas) para o valor de hoje, usando uma <em>taxa de desconto</em> — normalmente a Selic ou o custo de oportunidade do capital.</p>
+    <div class="hierarchy">
+      <div class="hier-row ok"><span class="hier-tag">VPL &gt; 0</span><span>Viável. Gera valor acima da taxa de desconto.</span></div>
+      <div class="hier-row warn"><span class="hier-tag">VPL = 0</span><span>Empata com a alternativa de investimento.</span></div>
+      <div class="hier-row danger"><span class="hier-tag">VPL &lt; 0</span><span>Destrói valor frente à renda fixa. Não recomendado.</span></div>
+    </div>
+
+    <h3>TIR — Taxa Interna de Retorno</h3>
+    <p>É a taxa de desconto que torna o VPL igual a zero — na prática, o <em>rendimento anual</em> do projeto. Compara-se direto com a Selic.</p>
+    <div class="formula">
+      <span class="label">Regra de decisão da TIR</span>
+      TIR &gt; Selic → <b>projeto viável</b><br>
+      TIR &lt; Selic → melhor aplicar em renda fixa
+    </div>
+    <div class="callout success">
+      <strong>Nota pedagógica</strong>
+      VPL e TIR envolvem o valor do dinheiro no tempo e são calculados em planilha (funções VPL/TIR no Excel ou LibreOffice). O técnico não precisa fazê-los à mão — precisa saber montar o fluxo de caixa correto e interpretar o resultado.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== QUIZ B — FRUTICULTURA ===== -->
+<section class="block block-quiz" id="quizB">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">↻</span>
+    <span class="block-title">Autoavaliação · Fruticultura</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="quiz-inner">
+    <div class="quiz-eyebrow">Você pensa no projeto pelo tempo todo?</div>
+    <p class="quiz-intro">Oito situações de projeto perene, onde o resultado de um ano não conta a história inteira. Mede-se a sua <em>visão de investimento no tempo</em>. Responda com honestidade; o resultado aponta o próximo passo.</p>
+    <div id="quizContainerB"></div>
+    <div class="q-progress" id="qProgressWrapB" style="display:none"><div class="q-progress-bar" id="qProgressB"></div></div>
+    <div class="quiz-result" id="quizResultB">
+      <div class="result-eyebrow">Seu perfil predominante</div>
+      <div class="result-profile" id="resultProfileB"></div>
+      <div class="result-message" id="resultMessageB"></div>
+      <div class="result-tally" id="resultTallyB"></div>
+      <div class="result-revise"><strong>Para revisar</strong><span id="reviseBlocksB"></span></div>
+      <button class="q-restart" id="restartQuizB">Refazer o quiz</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ===== MÓDULO C — AGRICULTURA DE PRECISÃO ===== -->
+<!-- ============================================================ -->
+<div class="module-divider">
+  <span class="ml">C</span>
+  <div class="mt">
+    <div class="me">Módulo C</div>
+    <div class="mh">Agricultura de precisão</div>
+  </div>
+</div>
+
+<!-- ===== AULA C.1 ===== -->
+<section class="block" id="ap-decisao">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">C.1</span>
+    <span class="block-title">Tecnologia como decisão econômica</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A agricultura de precisão (AP) costuma ser apresentada como um conjunto de tecnologias — GPS, sensores, drones, mapas. E é. Mas do ponto de vista econômico, o que <strong>justifica o investimento</strong> é a capacidade de reduzir custo, aumentar produtividade e melhorar a decisão.</p>
+    <div class="callout">
+      <strong>A pergunta certa</strong>
+      Para o gestor, a pergunta não é "o que a tecnologia faz?", mas <em>"quanto ela economiza ou ganha por safra?"</em>. Essa é uma pergunta de gestão de custos — respondida com os métodos deste curso.
+    </div>
+
+    <h3>Ferramentas de AP e impacto econômico</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Ferramenta</th><th>Custo (ref.)</th><th>Impacto econômico</th></tr>
+      <tr><td><strong>Piloto autom. + GPS RTK</strong></td><td class="num">15–50 mil/trator</td><td>Elimina sobreposição: 5–8% de economia em insumos e combustível</td></tr>
+      <tr><td><strong>Taxa variável (ATR)</strong></td><td class="num">20–80 mil</td><td>Aplica só onde precisa: 10–20% em fertilizantes em lavoura heterogênea</td></tr>
+      <tr><td><strong>Amostragem georref.</strong></td><td class="num">R$ 15–40/ponto</td><td>Evita sub/superdosagem; reduz corretivos e adubos no longo prazo</td></tr>
+      <tr><td><strong>Mapa de produtividade</strong></td><td class="num">5–20 mil</td><td>Identifica zonas fracas para investigação e decisão por talhão</td></tr>
+      <tr><td><strong>Drone</strong></td><td class="num">10–80 mil ou R$ 15–50/ha</td><td>Detecção precoce; reduz 1–2 aplicações de fungicida/safra</td></tr>
+      <tr><td><strong>Sensoriamento remoto</strong></td><td class="num">grátis (Sentinel)</td><td>NDVI subsidia decisão de defensivos e adubação foliar</td></tr>
+    </table>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA C.2 ===== -->
+<section class="block" id="ap-viabilidade">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">C.2</span>
+    <span class="block-title">Viabilidade do investimento em AP</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A decisão de investir numa ferramenta de AP é tratada como <strong>qualquer análise de investimento</strong>: quanto custa, quanto economiza ou ganha, em quanto tempo se paga. Reaproveita-se o payback (e, em horizontes longos, VPL/TIR) do Módulo B.</p>
+
+    <div class="example ex-ap">
+      <p>Piloto automático em propriedade de 500 ha. Sistema: <strong>R$ 35.000</strong>, vida útil 8 anos → depreciação <span class="calc">R$ 4.375/ano</span>.</p>
+      <p>Economia: 7% de sobreposição eliminada sobre uma adubação de R$ 300.000/safra → 300.000 × 7% = <span class="calc">R$ 21.000/ano</span>.</p>
+      <p>Ganho líquido = 21.000 − 4.375 = <span class="calc">R$ 16.625/ano</span>.</p>
+      <p>Payback = 35.000 ÷ 16.625 = <span class="calc">2,1 anos</span>. <strong>Conclusão:</strong> investimento altamente viável nesta escala.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Atenção à escala</strong>
+      A economia da AP cresce com a área. A mesma tecnologia que se paga em 2 anos numa propriedade de 500 ha pode não fechar o payback em 50 ha — porque a economia absoluta é menor, mas o custo do equipamento é o mesmo. Cada caso é um cálculo.
+    </div>
+
+    <div class="callout success">
+      <strong>O método fecha o curso</strong>
+      O conjunto de indicadores desta apostila — COE, COT, CT, IEE, payback, margem de segurança — aplica-se a <em>qualquer</em> investimento tecnológico, não só à atividade produtiva. O técnico que quantifica o valor da tecnologia tem a vantagem de convencer o produtor com número, não com entusiasmo.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== QUIZ C — PRECISÃO ===== -->
+<section class="block block-quiz" id="quizC">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">↻</span>
+    <span class="block-title">Autoavaliação · Precisão</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="quiz-inner">
+    <div class="quiz-eyebrow">Você mede o valor da tecnologia?</div>
+    <p class="quiz-intro">Oito situações em que a pergunta não é o que a ferramenta faz, mas quanto ela paga. Mede-se a sua <em>leitura econômica da tecnologia</em>. Responda com honestidade; o resultado aponta o próximo passo.</p>
+    <div id="quizContainerC"></div>
+    <div class="q-progress" id="qProgressWrapC" style="display:none"><div class="q-progress-bar" id="qProgressC"></div></div>
+    <div class="quiz-result" id="quizResultC">
+      <div class="result-eyebrow">Seu perfil predominante</div>
+      <div class="result-profile" id="resultProfileC"></div>
+      <div class="result-message" id="resultMessageC"></div>
+      <div class="result-tally" id="resultTallyC"></div>
+      <div class="result-revise"><strong>Para revisar</strong><span id="reviseBlocksC"></span></div>
+      <button class="q-restart" id="restartQuizC">Refazer o quiz</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== NAV ENTRE PARTES ===== -->
+<nav class="partnav">
+  <a href="parte-4.html" class="prev">
+    <span class="dir">← Parte anterior</span>
+    <span class="pn">IV</span>
+    <span class="lbl">Contexto operacional</span>
+  </a>
+  <a href="parte-6.html" class="next">
+    <span class="dir">Próxima parte →</span>
+    <span class="pn">VI</span>
+    <span class="lbl">Produto final</span>
+  </a>
+</nav>
+
+<footer>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+/* ============================================================
+   QUIZZES APLICADOS — perfis: op Operador | tr Em transição | ge Gestor | es Estratégico
+   Três motores isolados (A/B/C) gerados pela mesma fábrica buildQuiz().
+   ============================================================ */
+
+/* ---------- MÓDULO A — PECUÁRIA ---------- */
+const QUIZ_A = [
+  { q:"Para comparar a capacidade de suporte do pasto entre categorias diferentes de animais, você usa:", a:[
+    {t:"O número de cabeças — é o que importa.", p:"op"},
+    {t:"A Unidade Animal (UA), padronizando tudo em 450 kg de peso vivo.", p:"es"},
+    {t:"Conto as cabeças e ajusto depois, se precisar.", p:"tr"} ]},
+  { q:"O GMD do confinamento ficou em 0,7 kg/dia. Você:", a:[
+    {t:"Está ganhando peso, então está ok.", p:"op"},
+    {t:"Abaixo de 0,8 indica problema nutricional — reviso a dieta antes de fechar o orçamento.", p:"es"},
+    {t:"Acho baixo, mas deixo passar por enquanto.", p:"tr"} ]},
+  { q:"O boi sai com 388 kg vivos e o frigorífico paga por carcaça. Para a receita você:", a:[
+    {t:"Multiplico 388 pelo preço por kg direto, sem mais nada.", p:"op"},
+    {t:"Aplico o rendimento de carcaça (50–58%) para obter o peso de carcaça antes de calcular a receita.", p:"es"},
+    {t:"Uso um peso de carcaça que vi por aí como referência.", p:"tr"} ]},
+  { q:"O principal indicador de eficiência econômica do confinamento é:", a:[
+    {t:"O peso final que o boi atingiu.", p:"op"},
+    {t:"O custo por kg de carcaça produzido (CT ÷ total de kg de carcaça).", p:"ge"},
+    {t:"O ganho diário, e nada além disso.", p:"tr"} ]},
+  { q:"Você precisa saber o preço mínimo do kg de carcaça para cobrir os desembolsos do lote:", a:[
+    {t:"É o preço de mercado, não há o que calcular.", p:"op"},
+    {t:"COE ÷ total de kg de carcaça = ponto de equilíbrio de preço.", p:"es"},
+    {t:"Chuto um valor um pouco abaixo do mercado.", p:"tr"} ]},
+  { q:"Na pecuária leiteira, as vacas no período seco (antes do parto):", a:[
+    {t:"Não importam — não dão leite no momento.", p:"op"},
+    {t:"Geram custo sem receita e entram no custo médio do rebanho.", p:"ge"},
+    {t:"Considero só se sobrar tempo na análise.", p:"tr"} ]},
+  { q:"A relação concentrado:leite do rebanho deu 0,7 kg/L. Você lê isso como:", a:[
+    {t:"Bom sinal — a vaca está comendo bem.", p:"op"},
+    {t:"Acima de 0,5 kg/L indica ineficiência alimentar; investigo dieta e custo/L.", p:"es"},
+    {t:"Número alto, mas não tenho o limite na cabeça.", p:"tr"} ]},
+  { q:"O custo por litro de leite deu R$ 2,80, e a referência EMBRAPA é R$ 1,50–2,20. Você:", a:[
+    {t:"Está perto da faixa, segue o projeto.", p:"op"},
+    {t:"Está acima — sinal de ineficiência; reviso alimentação, escala e vacas secas.", p:"es"},
+    {t:"Acho alto, mas não sei bem com o que comparar.", p:"tr"} ]}
+];
+const PROFILES_A = {
+  op:{ name:"Operador", msg:"Você lida com o rebanho pelo número de cabeças e pelo peso vivo, mas ainda não traduz isso em unidade econômica. O salto é trabalhar com o peso de carcaça e com o custo por kg produzido: é assim que o projeto pecuário deixa de ser 'quantos bois' e passa a ser 'quanto custa cada kg de carcaça que eu produzo'.", revise:"Aulas A.1 (UA, GMD, rendimento de carcaça) e A.2 (custo por kg de carcaça e ponto de equilíbrio)." },
+  tr:{ name:"Em transição", msg:"Você percebe que há indicadores a calcular, mas tende a aproximar e adiar a conta. O passo seguinte é fechar cada coeficiente — GMD, rendimento de carcaça, relação concentrado:leite — e usá-lo na decisão, não como número solto.", revise:"Aulas A.2 (indicadores do confinamento) e A.3 (custo/L e eficiência alimentar)." },
+  ge:{ name:"Gestor", msg:"Você trata custo por kg de carcaça e custo por litro como o que são: medidas de eficiência econômica. Reconhece a vaca seca como custo e o GMD como variável de resultado. O próximo passo é fechar todas as premissas na fonte e ler a margem de segurança como leitura de risco.", revise:"Reforce a aula A.2 (PE e margem de segurança) e avance para o Módulo B." },
+  es:{ name:"Técnico estratégico", msg:"Você adapta o método à pecuária com rigor: padroniza em UA, aplica o rendimento de carcaça, calcula custo por kg de carcaça e por litro, e lê a ineficiência alimentar pelos limites técnicos. Vê o rebanho como um sistema econômico, não como um lote de animais.", revise:"Você domina o módulo. Aplique-o a um confinamento ou laticínio real e avance para o Módulo B (perenes)." }
+};
+
+/* ---------- MÓDULO B — FRUTICULTURA ---------- */
+const QUIZ_B = [
+  { q:"O que distingue economicamente uma cultura perene de uma lavoura anual?", a:[
+    {t:"Nada de essencial — é só mais demorada.", p:"op"},
+    {t:"A fase de formação: anos de desembolso sem receita, que mudam toda a análise.", p:"es"},
+    {t:"Demora mais para colher, é o principal.", p:"tr"} ]},
+  { q:"O custo de implantar o pomar entra no orçamento como:", a:[
+    {t:"Custo da primeira safra de produção.", p:"op"},
+    {t:"Investimento de longo prazo, amortizado ao longo dos anos de produção.", p:"ge"},
+    {t:"Jogo tudo no primeiro ano para simplificar.", p:"tr"} ]},
+  { q:"Pomar de 10 ha custou R$ 200.000; o lucro anual médio esperado é R$ 40.000. O payback é:", a:[
+    {t:"Impossível saber sem o preço da fruta.", p:"op"},
+    {t:"200.000 ÷ 40.000 = 5 anos.", p:"es"},
+    {t:"Uns 3 ou 4 anos, por estimativa.", p:"tr"} ]},
+  { q:"A principal limitação do payback simples é:", a:[
+    {t:"Nenhuma — é o melhor indicador que existe.", p:"op"},
+    {t:"Ignora o valor do dinheiro no tempo.", p:"ge"},
+    {t:"É um pouco impreciso, mas serve.", p:"tr"} ]},
+  { q:"Um projeto apresentou VPL negativo. Isso significa:", a:[
+    {t:"O projeto deu prejuízo contábil no papel.", p:"op"},
+    {t:"O capital renderia mais na alternativa (renda fixa): o projeto destrói valor.", p:"es"},
+    {t:"Algo deu errado na conta, vou refazer.", p:"tr"} ]},
+  { q:"A TIR de um projeto é a taxa que:", a:[
+    {t:"O banco cobra de juros no financiamento.", p:"op"},
+    {t:"Zera o VPL — o 'rendimento anual' do projeto, comparável à Selic.", p:"es"},
+    {t:"Mostra mais ou menos o retorno esperado.", p:"tr"} ]},
+  { q:"Banana (colhe em 1–1,5 ano) versus maçã (2–3 anos). Para o fluxo de caixa do projeto:", a:[
+    {t:"Dá no mesmo — as duas são frutas.", p:"op"},
+    {t:"A banana exige bem menos capital de giro na formação; a receita entra antes.", p:"es"},
+    {t:"A banana é mais rápida, mas não calculo o impacto.", p:"tr"} ]},
+  { q:"A TIR do pomar deu 9% a.a. e a Selic está em 11% a.a. O projeto:", a:[
+    {t:"É viável — rende 9% ao ano.", p:"op"},
+    {t:"TIR abaixo da Selic: o capital renderia mais na renda fixa; não recomendado assim.", p:"es"},
+    {t:"Está perto da Selic, deve servir.", p:"tr"} ]}
+];
+const PROFILES_B = {
+  op:{ name:"Operador", msg:"Você analisa o pomar como se fosse uma lavoura anual — olhando o resultado de um ano e o custo da safra. Em perene isso engana: a formação é negativa por definição. O salto é separar implantação (investimento) de manutenção (COE/COT) e pensar o projeto pelo horizonte inteiro.", revise:"Aulas B.1 (fases da perene) e B.2 (payback como leitura do tempo)." },
+  tr:{ name:"Em transição", msg:"Você intui que o tempo importa, mas ainda aproxima os números e não fecha a conta. O passo seguinte é montar o fluxo de caixa ano a ano e levá-lo ao payback, ao VPL e à TIR — premissa aproximada não sobrevive à banca.", revise:"Aulas B.1 (custo de implantação amortizado) e B.2 (VPL e TIR na decisão)." },
+  ge:{ name:"Gestor", msg:"Você trata a implantação como investimento amortizável e reconhece a limitação do payback simples. O próximo passo é usar VPL e TIR com a taxa de desconto certa (Selic/custo de oportunidade) e ler o resultado como decisão, não como número de planilha.", revise:"Reforce a aula B.2 (regra de decisão de VPL e TIR) e avance para o Módulo C." },
+  es:{ name:"Técnico estratégico", msg:"Você lê o projeto perene pelo que ele é: um investimento no tempo. Separa fases, amortiza a implantação, compara TIR com a Selic e entende que VPL negativo significa destruir valor. Vê o capital de giro da formação como variável de sobrevivência.", revise:"Você domina o módulo. Aplique VPL/TIR a um pomar real e avance para o Módulo C (precisão)." }
+};
+
+/* ---------- MÓDULO C — AGRICULTURA DE PRECISÃO ---------- */
+const QUIZ_C = [
+  { q:"Ao avaliar um investimento em agricultura de precisão, a pergunta central é:", a:[
+    {t:"O que essa tecnologia faz de diferente?", p:"op"},
+    {t:"Quanto ela economiza ou ganha por safra?", p:"es"},
+    {t:"É moderna e está na moda? Então deve valer.", p:"tr"} ]},
+  { q:"O piloto automático com GPS RTK reduz custo principalmente por:", a:[
+    {t:"Deixar a operação mais moderna e bonita.", p:"op"},
+    {t:"Eliminar sobreposição de faixas — 5 a 8% de economia em insumos.", p:"ge"},
+    {t:"Gastar um pouco menos de combustível, mais ou menos.", p:"tr"} ]},
+  { q:"Um sistema custou R$ 35.000 e tem vida útil de 8 anos. A depreciação anual é:", a:[
+    {t:"R$ 35.000 — tudo no primeiro ano.", p:"op"},
+    {t:"35.000 ÷ 8 = R$ 4.375/ano.", p:"es"},
+    {t:"Uns R$ 5.000, arredondando.", p:"tr"} ]},
+  { q:"A economia é de R$ 21.000/ano e a depreciação, R$ 4.375/ano. O ganho líquido da tecnologia é:", a:[
+    {t:"R$ 21.000 — a economia cheia.", p:"op"},
+    {t:"21.000 − 4.375 = R$ 16.625/ano.", p:"ge"},
+    {t:"Algo em torno de R$ 20.000.", p:"tr"} ]},
+  { q:"O payback do sistema (R$ 35.000 ÷ R$ 16.625/ano) é:", a:[
+    {t:"Não dá para calcular sem saber a safra inteira.", p:"op"},
+    {t:"Cerca de 2,1 anos — investimento altamente viável nessa escala.", p:"es"},
+    {t:"Uns 2 ou 3 anos, por aí.", p:"tr"} ]},
+  { q:"Sobre o sensoriamento remoto por satélite (Sentinel/Landsat):", a:[
+    {t:"É caro, precisa de assinatura comercial.", p:"op"},
+    {t:"Há dados públicos gratuitos; o NDVI subsidia decisão de defensivos e adubação.", p:"es"},
+    {t:"Acho que existe uma versão de graça.", p:"tr"} ]},
+  { q:"A mesma ferramenta de AP numa propriedade de 50 ha, em vez de 500 ha:", a:[
+    {t:"Vale igual — é a mesma tecnologia.", p:"op"},
+    {t:"A economia escala com a área; em área pequena o payback pode não fechar.", p:"es"},
+    {t:"Deve demorar mais para pagar, mas não calculo.", p:"tr"} ]},
+  { q:"Que conjunto de indicadores se aplica a um investimento em AP?", a:[
+    {t:"Nenhum — tecnologia não se mede assim.", p:"op"},
+    {t:"Os mesmos do curso: COE/COT/CT, payback e margem de segurança.", p:"ge"},
+    {t:"Só o preço de compra da máquina.", p:"tr"} ]}
+];
+const PROFILES_C = {
+  op:{ name:"Operador", msg:"Você olha a AP pelo que a tecnologia faz, não pelo que ela paga. O salto é inverter a pergunta: quanto ela economiza ou ganha por safra, e em quanto tempo se paga. Tecnologia sem conta de retorno é entusiasmo, não decisão.", revise:"Aulas C.1 (a pergunta econômica certa) e C.2 (payback do investimento em AP)." },
+  tr:{ name:"Em transição", msg:"Você desconfia que há um cálculo por trás, mas ainda arredonda e não fecha o retorno. O passo seguinte é montar custo × economia × payback com os números reais da propriedade — a depreciação e a escala mudam a resposta.", revise:"Aulas C.2 (exemplo do piloto automático) e B.2 (payback e VPL)." },
+  ge:{ name:"Gestor", msg:"Você quantifica a economia, desconta a depreciação e chega ao ganho líquido. Reconhece que os indicadores do curso valem para qualquer investimento. O próximo passo é considerar a escala (a economia cresce com a área) e usar VPL/TIR em horizontes longos.", revise:"Reforce a aula C.2 (escala e payback) e revise B.2 (VPL/TIR)." },
+  es:{ name:"Técnico estratégico", msg:"Você trata a AP como qualquer investimento: custo, economia, depreciação, payback — e entende que a economia escala com a área. Sabe que o NDVI público é gratuito e que o método do curso mede qualquer tecnologia. É essa leitura que convence o produtor com número.", revise:"Você domina o módulo e a Parte V. Avance para a Parte VI (Nota Técnica e defesa) ou faça o Quiz Geral." }
+};
+
+/* ---------- FÁBRICA DE QUIZ (motor reutilizável) ---------- */
+function buildQuiz(sfx, QUIZ, PROFILES){
+  let currentQ = 0;
+  let scores = {op:0, tr:0, ge:0, es:0};
+  const container = document.getElementById('quizContainer'+sfx);
+  const progressWrap = document.getElementById('qProgressWrap'+sfx);
+  const progressBar = document.getElementById('qProgress'+sfx);
+  const resultBox = document.getElementById('quizResult'+sfx);
+
+  function renderQuestion(i){
+    if(i >= QUIZ.length){ showResult(); return; }
+    const q = QUIZ[i];
+    container.innerHTML = '';
+    const block = document.createElement('div');
+    block.className = 'quiz-question';
+    block.innerHTML = `
+      <div class="q-counter">Questão ${String(i+1).padStart(2,'0')} de ${QUIZ.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options"></div>`;
+    const opts = block.querySelector('.q-options');
+    // Fisher-Yates: embaralhamento uniforme (substitui o sort enviesado)
+    const shuffled = [...q.a];
+    for (let s = shuffled.length - 1; s > 0; s--) {
+      const r = Math.floor(Math.random() * (s + 1));
+      [shuffled[s], shuffled[r]] = [shuffled[r], shuffled[s]];
+    }
+    shuffled.forEach((opt) => {
+      const btn = document.createElement('button');
+      btn.className = 'q-option';
+      btn.textContent = opt.t;
+      btn.addEventListener('click', () => {
+        scores[opt.p]++;
+        currentQ++;
+        progressBar.style.width = ((currentQ/QUIZ.length)*100) + '%';
+        renderQuestion(currentQ);
+      });
+      opts.appendChild(btn);
+    });
+    container.appendChild(block);
+    progressWrap.style.display = 'block';
+    progressBar.style.width = ((i/QUIZ.length)*100) + '%';
+  }
+
+  function showResult(){
+    container.style.display = 'none';
+    progressWrap.style.display = 'none';
+    let topScore = -1;
+    for(const k of ['op','tr','ge','es']){ if(scores[k] > topScore) topScore = scores[k]; }
+    let topKey = 'op';
+    const order = ['es','ge','tr','op'];
+    for(const k of order){ if(scores[k] === topScore){ topKey = k; break; } }
+    const profile = PROFILES[topKey];
+    document.getElementById('resultProfile'+sfx).textContent = profile.name;
+    document.getElementById('resultMessage'+sfx).textContent = profile.msg;
+    document.getElementById('reviseBlocks'+sfx).textContent = profile.revise;
+    const tallyEl = document.getElementById('resultTally'+sfx);
+    tallyEl.innerHTML = '';
+    const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+    for(const k of ['op','tr','ge','es']){
+      const row = document.createElement('div');
+      row.className = 'tally-row' + (k === topKey ? ' winner' : '');
+      row.innerHTML = `<span>${labels[k]}</span><span>${scores[k]} pt${scores[k] !== 1 ? 's' : ''}</span>`;
+      tallyEl.appendChild(row);
+    }
+    resultBox.classList.add('active');
+    resultBox.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function restartQuiz(){
+    currentQ = 0;
+    scores = {op:0, tr:0, ge:0, es:0};
+    resultBox.classList.remove('active');
+    container.style.display = 'block';
+    renderQuestion(0);
+  }
+  document.getElementById('restartQuiz'+sfx).addEventListener('click', restartQuiz);
+  renderQuestion(0);
+}
+
+buildQuiz('A', QUIZ_A, PROFILES_A);
+buildQuiz('B', QUIZ_B, PROFILES_B);
+buildQuiz('C', QUIZ_C, PROFILES_C);
+
+/* ===== TOC + acordeão + back-to-top ===== */
+const toc = document.getElementById('toc');
+const tocBtn = document.getElementById('tocToggle');
+tocBtn.addEventListener('click', () => {
+  toc.classList.toggle('open');
+  tocBtn.setAttribute('aria-expanded', toc.classList.contains('open'));
+});
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', () => {
+    toc.classList.remove('open');
+    tocBtn.setAttribute('aria-expanded', 'false');
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if(target && target.classList.contains('block')) target.classList.add('open');
+  });
+});
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(!header) return;
+  const block = header.closest('.block');
+  const open = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', open);
+});
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>

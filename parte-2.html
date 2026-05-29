@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte II — Estrutura de custos · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--mustard-ink);background:var(--mustard);font-weight:600}
+.toptabs a.current .rn{color:var(--mustard-ink)}
+.toptabs a.mov1.active::after,.toptabs a.mov2.active::after,.toptabs a.mov3.active::after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2.current{box-shadow:inset 0 -3px 0 var(--mustard-ink)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--mustard)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--mustard);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--mustard-ink);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--mustard);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--mustard);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(184,146,51,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--mustard);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:420px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(184,146,51,0.08);border-left-color:var(--mustard);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--mustard);font-weight:600;min-width:32px}
+.toc-list li.quiz-link a{border-top:1px solid var(--rule);margin-top:6px;padding-top:14px;font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--mustard)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(184,146,51,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--olive);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--mustard)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--mustard);position:relative}
+.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(184,146,51,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--mustard);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.folha-ref{margin-top:18px;padding:10px 14px;background:none;border:1px dashed var(--stone-light);font-size:12.5px;color:var(--stone);font-style:italic;line-height:1.5}
+.folha-ref strong{font-style:normal;color:var(--ink);font-weight:600;display:block;margin-bottom:2px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-family:'IBM Plex Sans',sans-serif}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+.hier-row.best{background:#D4DEB8}
+.hier-row.best .hier-tag{background:var(--olive-deep)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4200px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--mustard);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--mustard)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--mustard);border:none;color:var(--mustard-ink);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--mustard-ink);border-left:2px solid var(--mustard-ink);transform:translate(-50%,-30%) rotate(45deg)}
+
+@media (min-width: 720px){
+  .block, .toc, .partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO — movimentos pedagógicos ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2 current"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">II</div>
+    <div class="part-movement">
+      <div class="mv">Movimento 2 · <b>Medir</b></div>
+      <h1 class="title">Estrutura de <em>custos</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">Como o gasto vira informação econômica: classificar os custos, organizá-los nas camadas COE, COT e CT, e trazer o dado real do campo para a planilha.</p>
+  <div class="meta">
+    <span>Parte II de VI</span>
+    <span>4 aulas</span>
+    <span>Caps. 5 a 9</span>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc" id="toc">
+  <button class="toc-toggle" id="tocToggle" aria-expanded="false">
+    <span class="toc-toggle-label">Aulas desta parte</span>
+    <span class="toc-icon"></span>
+  </button>
+  <div class="toc-list">
+    <ol>
+      <li><a href="#diagnostico"><span class="toc-num">II.1</span> Do diagnóstico técnico à planilha</a></li>
+      <li><a href="#classificacao"><span class="toc-num">II.2</span> Classificação dos custos</a></li>
+      <li><a href="#coe-cot-ct"><span class="toc-num">II.3</span> COE, COT e Custo Total</a></li>
+      <li><a href="#registro"><span class="toc-num">II.4</span> Registro de campo e controle</a></li>
+      <li class="quiz-link"><a href="#quiz"><span class="toc-num">→</span> Quiz: que tipo de gestor você é?</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ===== AULA II.1 ===== -->
+<section class="block" id="diagnostico">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">II.1</span>
+    <span class="block-title">Do diagnóstico técnico à planilha</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Todo projeto agropecuário sério começa por um <strong>diagnóstico técnico</strong> — uma leitura objetiva da realidade física que será trabalhada. Não é exigência burocrática: é o que transforma a descrição qualitativa do projeto em números concretos de insumos, animais e estruturas, que viram, linha por linha, os custos do orçamento.</p>
+    <p>A natureza do diagnóstico muda conforme a atividade, mas a lógica não.</p>
+    <div class="formula">
+      <span class="label">A lógica que não muda</span>
+      diagnóstico técnico → <b>coeficientes técnicos</b> → insumos e recursos → custos
+    </div>
+
+    <h3>Agricultura: o laudo de solo</h3>
+    <p>Nenhuma lavoura séria começa sem diagnóstico do solo. O laudo descreve as características químicas e físicas da gleba e é a <em>origem dos maiores custos variáveis</em> de qualquer cultura: a calagem e a adubação de base e cobertura. Sem laudo, esses valores são estimados — e a precisão do projeto inteiro fica comprometida.</p>
+    <p>Para fazer isso, devemos seguir o Manual de Calagem e Adubação CQFS-RS/SC (11ª ed., 2016). Lê-se os resultados do laudo, consulta-se a tabela do Manual e obtém-se a dose de calcário (t/ha, PRNT 100%) para elevar o pH ao valor de referência da cultura, por exemplo.</p>
+
+    <div class="example">
+      <p>A análise de solo é o <strong>primeiro item</strong> da planilha — cerca de <span class="calc">R$ 65/amostra</span> — justamente porque é a base de todos os outros. Sem ela, calagem e adubação são chute; com ela, são cálculo.</p>
+    </div>
+
+    <h3>Zootecnia: estrutura e evolução do rebanho</h3>
+    <p>Na pecuária, o equivalente ao laudo é responder: <em>quantos animais de cada categoria existem, e como esse número evolui no tempo?</em> A estrutura do rebanho define ração por animal/dia, vacinas por categoria e sal mineral por cabeça/mês — cada um um coeficiente técnico que alimenta o orçamento.</p>
+    <div class="callout">
+      <strong>Erro frequente</strong>
+      Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. As categorias têm perfis de custo completamente diferentes.
+    </div>
+
+    <h3>Fruticultura: sistema de produção e implantação</h3>
+    <p>No pomar, o diagnóstico é a definição do <strong>sistema de produção</strong> — decisões agronômicas de longo prazo que fixam os custos por 15 a 20 anos. O espaçamento define o número de mudas/ha, o coeficiente central. E há uma particularidade que nenhuma outra atividade do curso tem: a <em>fase de formação</em>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</p>
+    <div class="callout">
+      <strong>Erro frequente</strong>
+      Confundir custo de implantação (investimento amortizável) com custo de custeio anual (COE recorrente do pomar em produção). O Módulo B aprofunda payback e VPL.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA II.2 ===== -->
+<section class="block" id="classificacao">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">II.2</span>
+    <span class="block-title">Classificação dos custos</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Listar gastos numa tabela não basta para decidir bem. É preciso <strong>classificar</strong>, porque a classificação determina como cada custo se comporta quando a produção muda, quem é responsável por ele e como tratá-lo em cada análise.</p>
+    <p>Quem confunde custo variável com fixo erra o ponto de equilíbrio. Quem mistura direto com indireto distorce o resultado por atividade. <em>Classificar é o alicerce da análise econômica.</em></p>
+
+    <h3>Variáveis × fixos</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Custos variáveis (CV)</th><th>Custos fixos (CF)</th></tr>
+      <tr>
+        <td>Variam com a escala de produção. Mais área plantada, mais custo; menos área, menos custo.</td>
+        <td>Existem independentemente do volume. Mesmo em ano sem safra, permanecem. Remuneram a estrutura, não a produção.</td>
+      </tr>
+      <tr>
+        <td>Sementes, fertilizantes, corretivos, defensivos, combustível das operações, mão de obra temporária. Em pecuária: ração, sal mineral, vacinas, vermífugos.</td>
+        <td>Depreciação de máquinas e benfeitorias, arrendamento fixo, pró-labore, mão de obra permanente, ITR, seguro da propriedade.</td>
+      </tr>
+    </table>
+    </div>
+
+    <h3>Diretos × indiretos</h3>
+    <p>Importa quando a propriedade tem mais de uma atividade ao mesmo tempo (soja e milho, lavoura e pecuária). <strong>Diretos</strong> atribuem-se a uma atividade específica — o adubo da lavoura de milho é custo direto do milho. <strong>Indiretos</strong> são compartilhados e exigem rateio — o salário do gerente que cuida de lavoura e pecuária divide-se por algum critério (horas, área, nº de funcionários).</p>
+
+    <h3>Explícitos × implícitos</h3>
+    <p>A classificação que separa resultado financeiro de resultado econômico. <strong>Explícitos</strong> são desembolsos: aparecem no extrato (sementes, salários, diesel). <strong>Implícitos</strong> não saem do caixa mas têm valor econômico real: depreciação, custo de oportunidade da terra própria, pró-labore não sacado.</p>
+    <div class="callout">
+      <strong>O erro mais comum da gestão rural</strong>
+      Ignorar os custos implícitos. Quem não contabiliza a depreciação do trator acha que lucrou mais do que lucrou — até o trator quebrar e não haver reserva para substituí-lo.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA II.3 — coração técnico ===== -->
+<section class="block" id="coe-cot-ct">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">II.3</span>
+    <span class="block-title">COE, COT e Custo Total</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A metodologia de custo operacional, a partir de Matsunaga et al. (1976), utilizada no Projeto Campo Futuro CNA é a que vamos utilizar na disciplina, mas você pode usar a metodologia da CONAB ou CEPEA. Ela organiza os custos em <em>três camadas progressivas</em>, cada uma respondendo a uma pergunta gerencial diferente.</p>
+
+    <h3>COE — Custo Operacional Efetivo</h3>
+    <p>Todo o desembolso necessário para realizar o projeto. É o "caixa" — o dinheiro que precisa sair da conta para a produção acontecer.</p>
+    <div class="formula">
+      <span class="label">Composição</span>
+      COE = custos variáveis + custos fixos que exigem desembolso<br>(mão de obra permanente, manutenção corretiva, combustível)
+    </div>
+    <p><strong>Pergunta que responde:</strong> a receita da safra paga as contas do projeto?</p>
+    <div class="callout">
+      <strong>Leitura crítica</strong>
+      Se a Receita Bruta &lt; COE, a atividade não se sustenta no curto prazo — o produtor perde dinheiro a cada saca. Decisão: parar ou reformular já.
+    </div>
+
+    <h3>COT — Custo Operacional Total</h3>
+    <p>Adiciona ao COE dois custos que não são desembolso imediato, mas garantem a saúde patrimonial no longo prazo.</p>
+    <div class="formula">
+      <span class="label">Composição</span>
+      COT = COE + depreciação + pró-labore
+    </div>
+    <p><strong>Pergunta que responde:</strong> a receita paga os custos operacionais e ainda remunera o trabalho do produtor?</p>
+    <div class="callout success">
+      <strong>Leitura crítica</strong>
+      Se a receita cobre o COT, a atividade paga seus custos, remunera o gestor e repõe o desgaste do patrimônio — é o indicador mínimo de sustentabilidade. Se não cobre, a propriedade degrada o patrimônio e o produtor trabalha de graça.
+    </div>
+
+    <h3>CT — Custo Total</h3>
+    <p>O custo mais completo, o que responde à pergunta do investidor: <em>vale a pena correr o risco desta atividade?</em></p>
+    <div class="formula">
+      <span class="label">Composição</span>
+      CT = COT + custo de oportunidade do capital + custo de oportunidade da terra
+    </div>
+    <p><strong>Pergunta que responde:</strong> o retorno supera a melhor alternativa disponível (arrendar a terra, aplicar o capital)?</p>
+
+    <h3>As três camadas, em ordem</h3>
+    <div class="hierarchy">
+      <div class="hier-row danger"><span class="hier-tag">RB &lt; COE</span><span>Insustentável. Perde caixa a cada saca — parar ou reformular.</span></div>
+      <div class="hier-row warn"><span class="hier-tag">RB ≥ COE</span><span>Paga o caixa, mas ainda não o desgaste nem o trabalho do produtor.</span></div>
+      <div class="hier-row ok"><span class="hier-tag">RB ≥ COT</span><span>Sustentabilidade mínima: paga custos, repõe patrimônio, remunera o gestor.</span></div>
+      <div class="hier-row best"><span class="hier-tag">RB ≥ CT</span><span>Viabilidade econômica plena: gera riqueza acima da melhor alternativa.</span></div>
+    </div>
+
+    <div class="example">
+      <p>Para qualquer atividade cultivo ou criação, a sequência de perguntas é sempre a mesma: a receita cobre o COE? cobre o COT? cobre o CT? <strong>A rentabilidade do projeto é sempre medida sobre o CT</strong> — é o padrão deste curso, porque só o CT incorpora o custo de oportunidade da terra e do capital.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Encargos sobre a receita</strong>
+      Alguns custos entram como percentual da receita bruta — despesas de comercialização (frete, classificação) e Funrural. Tratados na Parte IV (preço de venda no RS).
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA II.4 ===== -->
+<section class="block" id="registro">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">II.4</span>
+    <span class="block-title">Registro de campo e controle</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Classificar custos, calcular depreciação e estruturar o orçamento — todo esse aparato depende de um insumo que nenhuma fórmula substitui: o <strong>dado real do campo</strong>. Este é o terreno da função de <em>controle</em>, a terceira do ciclo de gestão (Kay et al., 2014).</p>
+
+    <h3>Por que os dados históricos importam</h3>
+    <p>São a memória gerencial da propriedade: permitem comparar safras, identificar tendências, validar premissas e montar cenários realistas. Quem registra há três anos a produção por talhão e o consumo de cada insumo tem vantagem decisiva sobre quem planeja por estimativa genérica.</p>
+    <p>São também o insumo da <strong>análise marginal</strong> (Parte III): para saber se vale aumentar a dose de ureia, é preciso saber como a produtividade respondeu a doses passadas. Sem registro, a análise marginal é só teoria.</p>
+
+    <h3>Google Forms como registro em tempo real</h3>
+    <p>Gratuito, acessível pelo celular, gera planilha Google Sheets automaticamente. Pode ser configurado para funcionar offline — o operador preenche sem sinal e os dados sincronizam quando a conexão volta. Resolve um dos maiores obstáculos do campo: a falta de cobertura nas áreas de produção.</p>
+
+    <div class="formula">
+      <span class="label">O fluxo dos dados</span>
+      operação no campo → registro no Forms (celular) → planilha Sheets → análise por talhão → decisão de ajuste
+    </div>
+    <p>É a materialização do ciclo de gestão: o <em>controle</em> alimenta o <em>ajuste</em>, que retroalimenta o planejamento da próxima safra. A agricultura de precisão (Módulo C) é a evolução natural — sensores no lugar do preenchimento manual — mas o princípio é o mesmo: <strong>decisão baseada em dado real da propriedade.</strong></p>
+  </div></div>
+</section>
+
+<!-- ===== QUIZ (bloco acordeão) ===== -->
+<section class="block block-quiz" id="quiz">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">↻</span>
+    <span class="block-title">Autoavaliação · Parte II</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="quiz-inner">
+    <div class="quiz-eyebrow">Que tipo de gestor você é?</div>
+    <p class="quiz-intro">Seis situações de campo, sem resposta "certa" decorada. O que se mede aqui é a sua <em>mentalidade</em> diante do custo e da decisão. Responda com honestidade — o resultado aponta o próximo passo da sua formação.</p>
+    <div id="quizContainer"></div>
+    <div class="q-progress" id="qProgressWrap" style="display:none"><div class="q-progress-bar" id="qProgress"></div></div>
+    <div class="quiz-result" id="quizResult">
+      <div class="result-eyebrow">Seu perfil predominante</div>
+      <div class="result-profile" id="resultProfile"></div>
+      <div class="result-message" id="resultMessage"></div>
+      <div class="result-tally" id="resultTally"></div>
+      <div class="result-revise"><strong>Para revisar</strong><span id="reviseBlocks"></span></div>
+      <button class="q-restart" id="restartQuiz">Refazer o quiz</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== NAV ENTRE PARTES ===== -->
+<nav class="partnav">
+  <a href="parte-1.html" class="prev">
+    <span class="dir">← Parte anterior</span>
+    <span class="pn">I</span>
+    <span class="lbl">Fundamentos</span>
+  </a>
+  <a href="parte-3.html" class="next">
+    <span class="dir">Próxima parte →</span>
+    <span class="pn">III</span>
+    <span class="lbl">Análise econômica</span>
+  </a>
+</nav>
+
+<footer>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+// ===== QUIZ — perfis: op Operador | tr Em transição | ge Gestor | es Estratégico =====
+const QUIZ = [
+  {
+    q: "Você está montando o orçamento do arroz. O produtor diz que a terra é dele e não precisa entrar arrendamento. Você:",
+    a: [
+      {t:"Concorda — terra própria não tem custo no fluxo de caixa.", p:"op"},
+      {t:"Faz duas versões da planilha, com e sem o custo da terra, e deixa o produtor escolher.", p:"tr"},
+      {t:"Explica o custo de oportunidade: a terra arrendada renderia ~7 sc/ha/ano, que entra como custo implícito no CT.", p:"es"}
+    ]
+  },
+  {
+    q: "A safra fechou e o produtor comemora: 'Sobrou caixa, foi um bom ano.' Você responde:",
+    a: [
+      {t:"'Que bom! Vamos repetir tudo igual no ano que vem.'", p:"op"},
+      {t:"'Sobrou caixa, mas falta descontar depreciação e seu pró-labore para saber o lucro real.'", p:"es"},
+      {t:"'Vamos comparar o realizado com o planejado para ver onde foi diferente.'", p:"ge"}
+    ]
+  },
+  {
+    q: "Ao classificar os custos da lavoura, você trata a depreciação do trator como:",
+    a: [
+      {t:"Não entra — não saiu dinheiro do caixa este ano.", p:"op"},
+      {t:"Custo fixo e implícito; entra no COT mesmo sem desembolso, para repor o patrimônio.", p:"ge"},
+      {t:"Depende — pergunto ao contador como lançar.", p:"tr"}
+    ]
+  },
+  {
+    q: "A receita bruta da safra cobre o COE, mas não chega ao COT. Para você, isso significa:",
+    a: [
+      {t:"Está tudo certo — as contas do ano foram pagas.", p:"op"},
+      {t:"Vale acompanhar de perto na próxima safra.", p:"tr"},
+      {t:"Alerta: a propriedade paga o caixa mas degrada o patrimônio e não remunera o trabalho do produtor.", p:"es"}
+    ]
+  },
+  {
+    q: "O produtor não quer perder tempo anotando dados de campo: 'Está tudo na minha cabeça.' Você:",
+    a: [
+      {t:"Aceita — quem conhece a lavoura sabe os números de cabeça.", p:"op"},
+      {t:"Sugere anotar o essencial quando der.", p:"tr"},
+      {t:"Monta um Google Forms simples no celular dele: sem histórico, não há análise marginal nem cenário realista na próxima safra.", p:"ge"}
+    ]
+  },
+  {
+    q: "Ao apresentar a estrutura de custos do projeto, sua conclusão típica é:",
+    a: [
+      {t:"'O custo total deu R$ X por hectare.'", p:"op"},
+      {t:"'A receita cobre o COE e o COT; sobre o CT a margem é Y%, então o projeto remunera melhor que arrendar a terra.'", p:"ge"},
+      {t:"'Os números fecham — agora é o produtor decidir.'", p:"tr"}
+    ]
+  }
+];
+
+const PROFILES = {
+  op: {
+    name: "Operador",
+    msg: "Você ainda raciocina como executor — domina o lado agronômico, mas o econômico ainda é abstrato. A planilha parece exigência, não ferramenta de decisão. O próximo passo é enxergar cada decisão técnica como uma escolha financeira com consequência mensurável.",
+    revise: "Aulas II.2 (classificação, em especial explícitos × implícitos) e II.3 (as três camadas de custo). São a base que falta para sair do operacional."
+  },
+  tr: {
+    name: "Em transição",
+    msg: "Você já entende o vocabulário dos custos, mas hesita quando a decisão envolve incerteza e tende a oferecer meio-termos. O salto seguinte está em assumir posição com base em cálculo — e em distinguir com firmeza o que é desembolso do que é custo econômico.",
+    revise: "Aula II.3 (COE × COT × CT e suas leituras críticas) e II.4 (por que o registro sustenta a decisão)."
+  },
+  ge: {
+    name: "Gestor",
+    msg: "Você raciocina como gestor: classifica corretamente, lê as camadas de custo e entende para que serve o registro. O produtor que conta com você atravessa uma safra ruim sem comprometer o patrimônio. O próximo passo é o lado estratégico — conectar custo, mercado e crédito.",
+    revise: "Siga para a Parte III (análise econômica) e a Parte IV (contexto operacional), que ampliam a leitura do contexto em que o projeto opera."
+  },
+  es: {
+    name: "Técnico estratégico",
+    msg: "Você opera no nível que o mercado demanda: separa caixa de patrimônio, custo explícito de implícito, e lê as três camadas como o médico lê um hemograma. Continua medindo o custo econômico real, não só o financeiro. Mantenha esse rigor — é o que sustenta a confiança do produtor em decisões de longo prazo.",
+    revise: "Você domina a Parte II. Reforce a leitura das camadas com casos novos a cada safra e avance com segurança para a análise econômica (Parte III)."
+  }
+};
+
+let currentQ = 0;
+let scores = {op:0, tr:0, ge:0, es:0};
+const container = document.getElementById('quizContainer');
+const progressWrap = document.getElementById('qProgressWrap');
+const progressBar = document.getElementById('qProgress');
+const resultBox = document.getElementById('quizResult');
+
+function renderQuestion(i){
+  if(i >= QUIZ.length){ showResult(); return; }
+  const q = QUIZ[i];
+  container.innerHTML = '';
+  const block = document.createElement('div');
+  block.className = 'quiz-question';
+  block.innerHTML = `
+    <div class="q-counter">Questão ${String(i+1).padStart(2,'0')} de ${QUIZ.length}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="q-options"></div>`;
+  const opts = block.querySelector('.q-options');
+  // Fisher-Yates: embaralhamento uniforme (substitui o sort enviesado)
+  const shuffled = [...q.a];
+  for (let s = shuffled.length - 1; s > 0; s--) {
+    const r = Math.floor(Math.random() * (s + 1));
+    [shuffled[s], shuffled[r]] = [shuffled[r], shuffled[s]];
+  }
+  shuffled.forEach((opt) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option';
+    btn.textContent = opt.t;
+    btn.addEventListener('click', () => {
+      scores[opt.p]++;
+      currentQ++;
+      progressBar.style.width = ((currentQ/QUIZ.length)*100) + '%';
+      renderQuestion(currentQ);
+    });
+    opts.appendChild(btn);
+  });
+  container.appendChild(block);
+  progressWrap.style.display = 'block';
+  progressBar.style.width = ((i/QUIZ.length)*100) + '%';
+}
+
+function showResult(){
+  container.style.display = 'none';
+  progressWrap.style.display = 'none';
+  let topScore = -1;
+  for(const k of ['op','tr','ge','es']){ if(scores[k] > topScore) topScore = scores[k]; }
+  let topKey = 'op';
+  const order = ['es','ge','tr','op'];
+  for(const k of order){ if(scores[k] === topScore){ topKey = k; break; } }
+  const profile = PROFILES[topKey];
+  document.getElementById('resultProfile').textContent = profile.name;
+  document.getElementById('resultMessage').textContent = profile.msg;
+  document.getElementById('reviseBlocks').textContent = profile.revise;
+  const tallyEl = document.getElementById('resultTally');
+  tallyEl.innerHTML = '';
+  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+  for(const k of ['op','tr','ge','es']){
+    const row = document.createElement('div');
+    row.className = 'tally-row' + (k === topKey ? ' winner' : '');
+    row.innerHTML = `<span>${labels[k]}</span><span>${scores[k]} pt${scores[k] !== 1 ? 's' : ''}</span>`;
+    tallyEl.appendChild(row);
+  }
+  resultBox.classList.add('active');
+  resultBox.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function restartQuiz(){
+  currentQ = 0;
+  scores = {op:0, tr:0, ge:0, es:0};
+  resultBox.classList.remove('active');
+  container.style.display = 'block';
+  renderQuestion(0);
+}
+document.getElementById('restartQuiz').addEventListener('click', restartQuiz);
+renderQuestion(0);
+
+// ===== TOC + acordeão + back-to-top =====
+const toc = document.getElementById('toc');
+const tocBtn = document.getElementById('tocToggle');
+tocBtn.addEventListener('click', () => {
+  toc.classList.toggle('open');
+  tocBtn.setAttribute('aria-expanded', toc.classList.contains('open'));
+});
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', () => {
+    toc.classList.remove('open');
+    tocBtn.setAttribute('aria-expanded', 'false');
+    // abre o bloco-alvo ao navegar pelo sumário
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if(target && target.classList.contains('block')) target.classList.add('open');
+  });
+});
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(!header) return;
+  const block = header.closest('.block');
+  const open = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', open);
+});
+// abre bloco se a página foi acessada por deep-link (#id)
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>

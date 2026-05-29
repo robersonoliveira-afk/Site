@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte I — Fundamentos · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;font-feature-settings:'ss01','cv11';-webkit-font-smoothing:antialiased}
+
+/* NAV TOPO */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--olive);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+
+/* MASTHEAD */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--olive)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--olive);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--olive);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--olive-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--olive);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--olive);border-radius:50%}
+
+/* TOC */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(61,74,42,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--olive);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:300px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(61,74,42,0.06);border-left-color:var(--olive);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--olive);font-weight:600;min-width:32px}
+
+/* BLOCO ACORDEÃO */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--olive)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(61,74,42,0.04)}
+.block-num{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--olive);color:var(--paper);border-color:var(--olive)}
+.block-title{font-family:'Fraunces',serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--olive);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--olive)}
+
+/* COMPONENTES */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--mustard);position:relative}
+.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(184,146,51,0.10);padding:2px 6px}
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--olive);font-weight:600}
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+/* SWOT */
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
+.swot-cell{padding:12px;font-size:13px;line-height:1.4;border:1px solid var(--rule)}
+.swot-cell h4{font-family:'IBM Plex Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.swot-f{background:#E4EAD2}.swot-f h4{color:var(--olive-deep)}
+.swot-fr{background:#F5E4D8}.swot-fr h4{color:var(--terra)}
+.swot-o{background:#EFE6CC}.swot-o h4{color:#7A6020}
+.swot-a{background:#E8DAD2}.swot-a h4{color:#7A3A1F}
+.swot-cell ul{list-style:none}
+.swot-cell ul li{padding:3px 0;color:var(--ink-soft);font-size:12.5px}
+.swot-cell ul li::before{content:"— ";color:var(--stone-light)}
+
+/* NAV RODAPÉ */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--olive);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--olive)}
+
+/* FOOTER */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--olive);border:none;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+@media (min-width:720px){
+  .block,.toc,.partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px,calc(50% - 340px));padding-right:max(22px,calc(50% - 340px))}
+  footer{padding-left:max(22px,calc(50% - 340px));padding-right:max(22px,calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1 current"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">I</div>
+    <div class="part-movement">
+      <div class="mv">Movimento 1 · <b>Entender</b></div>
+      <h1 class="title">Fundamentos</h1>
+    </div>
+  </div>
+  <p class="subtitle">Antes de qualquer número: enxergar a propriedade rural como empresa, planejar o projeto produtivo com método e fazer o diagnóstico estratégico que orienta todas as decisões seguintes.</p>
+  <div class="meta">
+    <span>Parte I de VI</span>
+    <span>3 aulas</span>
+    <span>Caps. 1 a 4</span>
+  </div>
+</header>
+
+<nav class="toc" id="toc">
+  <button class="toc-toggle" id="tocToggle" aria-expanded="false">
+    <span class="toc-toggle-label">Aulas desta parte</span>
+    <span class="toc-icon"></span>
+  </button>
+  <div class="toc-list">
+    <ol>
+      <li><a href="#empresa"><span class="toc-num">I.1</span> A propriedade como empresa</a></li>
+      <li><a href="#planejamento"><span class="toc-num">I.2</span> Planejamento do projeto produtivo</a></li>
+      <li><a href="#diagnostico"><span class="toc-num">I.3</span> Diagnóstico estratégico (SWOT)</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ===== I.1 ===== -->
+<section class="block" id="empresa">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">I.1</span>
+    <span class="block-title">A propriedade como empresa</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A propriedade rural é uma <strong>empresa</strong> — gera receitas, consome custos, produz resultado. É também um modo de vida: a terra que a família trabalha, o ofício que se herda. As duas coisas convivem, e o bom técnico segura as duas pontas. Mas aplicar direto à lavoura os modelos de uma indústria é um equívoco: o campo tem características que o tornam mais complexo e mais arriscado que qualquer linha de montagem.</p>
+
+    <h3>O que torna a atividade agropecuária única</h3>
+    <ul class="bullets">
+      <li><strong>Sazonalidade</strong> — investimento e retorno ocorrem em momentos distintos do ano; o caixa é naturalmente descontínuo.</li>
+      <li><strong>Dependência climática</strong> — chuva, seca, geada e granizo fogem ao controle e entram no planejamento de risco.</li>
+      <li><strong>Seres vivos</strong> — animais adoecem, plantas sofrem pragas; perdas que não existem na indústria.</li>
+      <li><strong>Risco constante</strong> — mercado instável + clima imprevisível + ciclos longos. Gerir é, em boa parte, gerir riscos.</li>
+      <li><strong>Ciclos longos</strong> — da nogueira-pecã à pecuária de cria (retorno na desmama, ~18 meses), exige visão de longo prazo.</li>
+    </ul>
+
+    <h3>Resultado financeiro × resultado econômico</h3>
+    <p>Uma das distinções mais importantes da gestão rural — e confundir as duas é uma das principais causas de quebra. O <em>resultado financeiro</em> é o fluxo de caixa: a entrada e saída de dinheiro que paga as contas do mês. Pode parecer ótimo no curto prazo se o produtor vende um trator, toma um financiamento ou simplesmente não conta o próprio trabalho como custo. O <em>resultado econômico</em> é o lucro real: considera <strong>todos</strong> os custos, inclusive os que não saem do caixa — depreciação, custo de oportunidade do capital, pró-labore da família.</p>
+    <div class="callout">
+      <strong>Erro frequente</strong>
+      Ver dinheiro na conta no fim da safra e achar que lucrou. Sem contabilizar o próprio salário, o desgaste do trator, das mangueiras e o custo de oportunidade do capital, o produtor pode ter ficado mais pobre. <strong>Caixa positivo não é lucro econômico.</strong>
+    </div>
+
+    <h3>O técnico como agente de gestão</h3>
+    <p>O técnico agrícola não é só profissional de campo. É chamado a opinar sobre custos, recomendar insumos, elaborar projetos de financiamento e justificar escolhas em termos econômicos. Entender a linguagem dos números deixou de ser tarefa só do contador: é competência essencial para responder perguntas como <em>vale a pena mais uma aplicação de fungicida? compensa arrendar mais terra? com que preço do terneiro começar a vender?</em></p>
+    <p>É também quem conduz o <strong>ciclo de gestão</strong> (Kay et al., 2014): planejamento → implementação → controle → ajuste. Não é uma linha que termina na colheita, é um ciclo que se repete a cada safra. E a qualidade de uma decisão não se mede só pelo resultado — uma estiagem pode estragar uma boa decisão. O que distingue o bom gestor é o <em>processo</em>: decide com base em informação, em dado registrado e em cenários, não em intuição, memória e otimismo.</p>
+  </div></div>
+</section>
+
+<!-- ===== I.2 ===== -->
+<section class="block" id="planejamento">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">I.2</span>
+    <span class="block-title">Planejamento do projeto produtivo</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>"Plantar e ver no que dá" não é gestão — é aposta. Quem planta sem orçamento prévio não sabe, na colheita, se ganhou ou perdeu de verdade; e quem não sabe, não consegue melhorar. <em>O planejamento não elimina o risco</em> — isso é impossível no campo. Ele torna o risco <strong>visível e mensurável</strong>, permitindo decidir com consciência: contratar seguro? financiar insumos ou usar capital próprio? soja ou milho nesta safra? recriar ou vender os terneiros?</p>
+
+    <h3>Definição da atividade</h3>
+    <p>O primeiro passo é definir, com embasamento — não por tradição —, o que produzir e por quê:</p>
+    <ul class="bullets">
+      <li><strong>O quê</strong> — cultura ou sistema: soja, milho, pecuária de corte (cria/recria/engorda), leite, fruticultura etc.</li>
+      <li><strong>Justificativa técnica</strong> — clima, solo, infraestrutura e mão de obra são adequados? O laudo confirma que o solo suporta a cultura?</li>
+      <li><strong>Justificativa econômica</strong> — há mercado? Qual o histórico de preços? A margem compensa o risco?</li>
+    </ul>
+
+    <h3>Escala e escopo</h3>
+    <p>A <strong>escala</strong> é o tamanho (hectares, cabeças, caixas, aves) — define o volume de investimento e o poder de barganha na compra de insumos. O <strong>escopo</strong> é o que entra no orçamento: o galpão é parte do projeto ou investimento anterior? O trator entra no custo da safra ou vira depreciação? Definir o escopo evita que custos "escondidos" apareçam depois e distorçam o resultado.</p>
+
+    <h3>Premissas e coeficientes técnicos</h3>
+    <p>Um projeto é uma previsão do futuro, e toda previsão se apoia em <strong>premissas</strong> — definir premissas realistas é a etapa mais importante e mais negligenciada do planejamento. Os <strong>coeficientes técnicos</strong> são os índices que convertem a atividade física em consumo de insumos (kg de adubo/ha, dose de ração/animal/dia): a ponte entre o conhecimento agronômico e a gestão econômica.</p>
+    <div class="callout success">
+      <strong>A lógica que se repete em todo o curso</strong>
+      Eficiência não é produzir mais aumentando tudo proporcionalmente — é otimizar a relação entre o que se aplica e o que se colhe. A gestão busca o ponto ótimo de cada insumo, não o máximo.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== I.3 ===== -->
+<section class="block" id="diagnostico">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">I.3</span>
+    <span class="block-title">Diagnóstico estratégico (SWOT)</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Antes de coletar amostras de solo ou contar o rebanho, tira-se uma "fotografia" estratégica da propriedade. A ferramenta é a <strong>Análise SWOT</strong> (Matriz FOFA), que separa o que está sob controle do produtor — o ambiente interno, <em>da porteira para dentro</em> — daquilo que ele não muda mas precisa enfrentar — o ambiente externo, <em>da porteira para fora</em>.</p>
+
+    <div class="swot">
+      <div class="swot-cell swot-f">
+        <h4>Forças · interno</h4>
+        <ul><li>Maquinário moderno e revisado</li><li>Solo de boa fertilidade</li><li>Equipe treinada</li><li>Reserva financeira</li></ul>
+      </div>
+      <div class="swot-cell swot-fr">
+        <h4>Fraquezas · interno</h4>
+        <ul><li>Falta de registro de custos</li><li>Dependência de mão de obra temporária</li><li>Armazenagem precária</li></ul>
+      </div>
+      <div class="swot-cell swot-o">
+        <h4>Oportunidades · externo</h4>
+        <ul><li>Novos mercados</li><li>Queda no preço dos insumos</li><li>Linhas de crédito (Pronaf)</li></ul>
+      </div>
+      <div class="swot-cell swot-a">
+        <h4>Ameaças · externo</h4>
+        <ul><li>Previsão de seca (La Niña)</li><li>Alta do dólar</li><li>Pragas invasoras na região</li></ul>
+      </div>
+    </div>
+
+    <h3>Cruzar não é só listar</h3>
+    <p>O bom gestor cruza os quadrantes para gerar ação. <strong>Estratégia de crescimento</strong>: usar uma força para aproveitar uma oportunidade (maquinário próprio para plantar rápido e pegar a janela de preço alto). <strong>Estratégia de defesa</strong>: corrigir uma fraqueza para minimizar uma ameaça (começar o registro de custos agora para não ser pego de surpresa por uma queda de preço).</p>
+
+    <div class="callout success">
+      <strong>Ponto de conexão</strong>
+      O diagnóstico estratégico justifica o próximo passo. Se a "baixa fertilidade do solo" aparece como fraqueza, o diagnóstico técnico da Parte II é a ferramenta para quantificar e resolver — laudo de solo, calagem, adubação. Da fotografia estratégica ao número concreto.
+    </div>
+  </div></div>
+</section>
+
+<!-- NAV ENTRE PARTES -->
+<nav class="partnav">
+  <a href="index.html" class="prev">
+    <span class="dir">← Início</span>
+    <span class="pn">§</span>
+    <span class="lbl">Página inicial</span>
+  </a>
+  <a href="parte-2.html" class="next">
+    <span class="dir">Próxima parte →</span>
+    <span class="pn">II</span>
+    <span class="lbl">Estrutura de custos</span>
+  </a>
+</nav>
+
+<footer>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+const toc=document.getElementById('toc');
+const tocBtn=document.getElementById('tocToggle');
+tocBtn.addEventListener('click',()=>{toc.classList.toggle('open');tocBtn.setAttribute('aria-expanded',toc.classList.contains('open'));});
+document.querySelectorAll('.toc-list a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    toc.classList.remove('open');tocBtn.setAttribute('aria-expanded','false');
+    const id=a.getAttribute('href').slice(1);
+    const t=document.getElementById(id);
+    if(t&&t.classList.contains('block'))t.classList.add('open');
+  });
+});
+document.addEventListener('click',(e)=>{
+  const header=e.target.closest('.block-header');
+  if(!header)return;
+  const block=header.closest('.block');
+  const open=block.classList.toggle('open');
+  header.setAttribute('aria-expanded',open);
+});
+window.addEventListener('load',()=>{
+  if(location.hash){
+    const t=document.querySelector(location.hash);
+    if(t&&t.classList.contains('block')){t.classList.add('open');t.scrollIntoView();}
+  }
+});
+const backBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{if(window.scrollY>600)backBtn.classList.add('visible');else backBtn.classList.remove('visible');});
+backBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+
+</body>
+</html>

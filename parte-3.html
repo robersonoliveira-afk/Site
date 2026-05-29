@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte III — Análise econômica · Gestão de Custos Agropecuários</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.toptabs::-webkit-scrollbar{display:none}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--terra);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+.toptabs a.mov3.current{box-shadow:inset 0 -3px 0 var(--terra-deep)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--terra)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--terra);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--terra-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--terra);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--terra);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(168,85,46,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--terra);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:420px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(168,85,46,0.08);border-left-color:var(--terra);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--terra);font-weight:600;min-width:32px}
+.toc-list li.quiz-link a{border-top:1px solid var(--rule);margin-top:6px;padding-top:14px;font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--terra)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(168,85,46,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--terra);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--terra)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--terra);position:relative}
+.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+.tbl td.ok{color:var(--olive);font-weight:600}
+.tbl td.no{color:var(--terra);font-weight:600}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4200px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--terra);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--terra);border:none;color:var(--paper);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+@media (min-width: 720px){
+  .block, .toc, .partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO — movimentos pedagógicos ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3 current"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">III</div>
+    <div class="part-movement">
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1 class="title">Análise <em>econômica</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">Do custo medido à decisão fundamentada: transformar a estrutura de custos em margens, indicadores e pontos de equilíbrio, descobrir a dose ótima de cada insumo e tornar a incerteza visível com a análise de cenários.</p>
+  <div class="meta">
+    <span>Parte III de VI</span>
+    <span>4 aulas</span>
+    <span>Caps. 10 a 13</span>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc" id="toc">
+  <button class="toc-toggle" id="tocToggle" aria-expanded="false">
+    <span class="toc-toggle-label">Aulas desta parte</span>
+    <span class="toc-icon"></span>
+  </button>
+  <div class="toc-list">
+    <ol>
+      <li><a href="#receita-margens"><span class="toc-num">III.1</span> Receita, margens e indicadores</a></li>
+      <li><a href="#marginal"><span class="toc-num">III.2</span> Análise marginal: RM = CM</a></li>
+      <li><a href="#equilibrio"><span class="toc-num">III.3</span> Ponto de equilíbrio e margem de segurança</a></li>
+      <li><a href="#cenarios"><span class="toc-num">III.4</span> Análise de cenários</a></li>
+      <li class="quiz-link"><a href="#quiz"><span class="toc-num">→</span> Autoavaliação · Parte III</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ===== AULA III.1 ===== -->
+<section class="block" id="receita-margens">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">III.1</span>
+    <span class="block-title">Receita, margens e indicadores de viabilidade</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Medir o custo foi o trabalho da Parte II. Agora começa a decisão: confrontar o custo com a <strong>receita</strong> e ler o resultado em camadas. Cada camada de margem responde a uma pergunta gerencial diferente — e a ordem importa, porque uma margem positiva no topo pode esconder um prejuízo embaixo.</p>
+
+    <h3>Receita bruta e receita líquida</h3>
+    <p>A <strong>Receita Bruta Total (RBT)</strong> é o valor da venda sem nenhuma dedução: produtividade × área (ou nº de animais) × preço unitário. A <strong>Receita Líquida</strong> é o que efetivamente entra no caixa, já descontados os encargos sobre a venda — Funrural (1,63%), taxas de comercialização (1,0 a 2,0%), corretagem.</p>
+    <div class="formula">
+      <span class="label">Receita bruta</span>
+      RBT = produtividade × área × <b>preço unitário</b>
+    </div>
+
+    <div class="example">
+      <p>Soja, 50 ha, 60 sc/ha, a <span class="calc">R$ 120/sc</span> (cotação da cooperativa):</p>
+      <p>RBT = 60 × 50 × 120 = <span class="calc">R$ 360.000</span> na safra. Produção total: 3.000 sc.</p>
+    </div>
+
+    <h3>As três margens</h3>
+    <p>Cada margem subtrai uma camada de custo da Parte II. Lê-se de cima para baixo — e <em>só a última diz se o projeto é viável</em>.</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Margem</th><th>Fórmula</th><th>O que responde</th></tr>
+      <tr><td><strong>Margem Bruta (MB)</strong></td><td class="num">RB − COE</td><td>Quanto sobra após pagar os desembolsos. Curto prazo. Se negativa, parar imediatamente.</td></tr>
+      <tr><td><strong>Margem Líquida (ML)</strong></td><td class="num">RB − COT</td><td>Quanto sobra após remunerar o trabalho e repor o patrimônio. Sustentabilidade.</td></tr>
+      <tr><td><strong>Lucro Econômico (LE)</strong></td><td class="num">RB − CT</td><td>A riqueza acima das melhores alternativas de mercado. Viabilidade definitiva.</td></tr>
+    </table>
+    </div>
+    <div class="callout">
+      <strong>A leitura que separa o gestor do operador</strong>
+      Uma MB positiva diz apenas que o ano fechou no caixa. É o Lucro Econômico — sobre o CT, que inclui depreciação, pró-labore e custo de oportunidade da terra — que diz se valeu a pena ter plantado em vez de arrendar.
+    </div>
+
+    <h3>Indicadores de viabilidade</h3>
+    <p>As margens dão valores absolutos; os indicadores tornam o projeto <em>comparável</em> — com outros projetos, com a renda fixa, com a média da região.</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Indicador</th><th>Fórmula</th><th>Referência de qualidade</th></tr>
+      <tr><td>Lucratividade (%)</td><td class="num">LE ÷ RB × 100</td><td>&gt; 15 a 20%</td></tr>
+      <tr><td>Rentabilidade (%)</td><td class="num">LE ÷ CT × 100</td><td>&gt; taxa Selic do período</td></tr>
+      <tr><td>IEE</td><td class="num">RB ÷ CT</td><td>&gt; 1,0 (quanto maior, melhor)</td></tr>
+      <tr><td>Prod. de nivelamento</td><td class="num">COE ÷ preço ÷ área</td><td>bem abaixo da média regional</td></tr>
+      <tr><td>Preço de nivelamento</td><td class="num">COE ÷ produção</td><td>bem abaixo do preço de mercado</td></tr>
+    </table>
+    </div>
+    <div class="callout success">
+      <strong>Convenção do curso</strong>
+      A <strong>Rentabilidade</strong> é sempre calculada sobre o <em>CT</em> (LE ÷ CT), nunca sobre o COE. Só o CT incorpora o custo de oportunidade da terra e do capital — é a única base que compara o projeto com a alternativa de simplesmente arrendar e aplicar.
+    </div>
+    <p>A <strong>Lucratividade</strong> mede quanto da receita vira lucro (eficiência sobre o que se fatura); a <strong>Rentabilidade</strong> mede quanto o projeto rende sobre o capital nele imobilizado (eficiência sobre o que se investe). O <strong>IEE</strong> resume tudo num número: quantas vezes a receita cobre o custo total. IEE = 1,0 é o equilíbrio econômico; abaixo disso, o projeto destrói valor.</p>
+  </div></div>
+</section>
+
+<!-- ===== AULA III.2 ===== -->
+<section class="block" id="marginal">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">III.2</span>
+    <span class="block-title">Análise marginal e maximização do lucro</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Os indicadores da aula anterior dizem se o projeto é viável. Mas há uma pergunta que nenhum deles responde: <em>vale a pena fazer mais uma aplicação de fungicida? Compensa aumentar a ração das vacas? Devo colocar mais uréia no milho?</em> Essa é a pergunta da análise marginal — o instrumento que encontra o ponto de máximo lucro de cada insumo.</p>
+
+    <h3>Os três conceitos</h3>
+    <ul class="bullets">
+      <li><strong>PM — produto marginal:</strong> o quanto a produção aumenta ao se adicionar uma unidade do insumo.</li>
+      <li><strong>RM — receita marginal:</strong> o valor dessa produção extra (PM × preço do produto).</li>
+      <li><strong>CM — custo marginal:</strong> o custo de uma unidade adicional do insumo.</li>
+    </ul>
+
+    <h3>A regra de ouro: RM = CM</h3>
+    <p>O lucro é máximo no ponto em que a receita gerada pela última unidade de insumo iguala exatamente o custo dessa unidade. <em>Aplique enquanto RM &gt; CM; pare quando RM = CM.</em> Aplicar além desse ponto reduz o lucro, mesmo que a produção ainda esteja subindo.</p>
+    <div class="formula">
+      <span class="label">Regra de ouro</span>
+      ponto de máximo lucro → <b>RM = CM</b><br>(RM &gt; CM: aplicar mais · RM &lt; CM: já passou do ponto)
+    </div>
+
+    <h3>Lei dos rendimentos decrescentes</h3>
+    <p>A base do raciocínio: à medida que se aumenta a dose de um insumo mantendo os demais fixos, o incremento de produção por unidade adicional <strong>tende a diminuir</strong> e pode até se tornar negativo. A planta responde bem às primeiras doses — que corrigem uma deficiência — e cada vez menos às seguintes, até o limite biológico de absorção.</p>
+
+    <h3>Exemplo: milho e uréia no RS</h3>
+    <p>Milho a R$ 78/sc, uréia a R$ 4,20/kg (insumo + aplicação), com base nos registros de três safras de um produtor do Alto Uruguaí:</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Uréia (kg/ha)</th><th>Milho (sc/ha)</th><th>RM (R$/kg)</th><th>CM (R$/kg)</th><th></th></tr>
+      <tr><td class="num">0</td><td class="num">90</td><td class="num">—</td><td class="num">—</td><td>partida</td></tr>
+      <tr><td class="num">40</td><td class="num">118</td><td class="num">35,10</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">80</td><td class="num">138</td><td class="num">39,00</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">120</td><td class="num">152</td><td class="num">27,30</td><td class="num">4,20</td><td><strong>≈ ótimo</strong></td></tr>
+      <tr><td class="num">160</td><td class="num">160</td><td class="num">15,60</td><td class="num">4,20</td><td class="no">RM &lt; CM</td></tr>
+      <tr><td class="num">200</td><td class="num">163</td><td class="num">6,24</td><td class="num">4,20</td><td class="no">RM &lt; CM</td></tr>
+    </table>
+    </div>
+    <p>A <strong>máxima produção</strong> está em ~200 kg/ha (163 sc/ha). Mas o <strong>máximo lucro</strong> está em ~120 kg/ha. Subir de 120 para 200 kg acrescenta só 11 sc/ha (R$ 858) e custa R$ 336 a mais em uréia — a margem encolhe rápido, e esses recursos rendem mais em outra necessidade do sistema. <em>O ponto ótimo econômico é sempre menor que o de máxima produção.</em></p>
+    <div class="callout">
+      <strong>Por que isso exige registro de campo</strong>
+      Essa tabela só existe porque o produtor anotou produção e dose ao longo de três safras (aula II.4). Sem histórico, não há análise marginal — só chute. O mesmo vale para o exemplo do leite: 8 kg de concentrado/vaca/dia lucra mais do que 12 kg, embora produza menos leite.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA III.3 ===== -->
+<section class="block" id="equilibrio">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">III.3</span>
+    <span class="block-title">Ponto de equilíbrio e margem de segurança</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>O <strong>ponto de equilíbrio (PE)</strong> é o nível de produção ou de preço em que a receita iguala exatamente o custo considerado — sem lucro nem prejuízo. É a fronteira entre o sucesso e o fracasso do projeto, e todo gestor precisa saber onde ela está.</p>
+
+    <h3>Dois pontos de equilíbrio</h3>
+    <ul class="bullets">
+      <li><strong>PE de produtividade:</strong> qual a produtividade mínima (sc/ha, GMD, L/dia) para cobrir determinado nível de custo (COE, COT ou CT)?</li>
+      <li><strong>PE de preço:</strong> qual o preço mínimo de venda para cobrir o custo, dada a produtividade esperada?</li>
+    </ul>
+    <div class="formula">
+      <span class="label">As duas perguntas</span>
+      PE produtividade = custo ÷ preço ÷ área<br>PE preço = custo ÷ produção total
+    </div>
+
+    <h3>Margem de segurança</h3>
+    <p>A <strong>Margem de Segurança (MS)</strong> indica o quanto a produção pode cair, em percentual, antes que o projeto entre em prejuízo econômico. É o <em>principal indicador de risco</em> de um projeto agrícola: quanto maior a MS, mais a propriedade tolera uma quebra de safra ou uma queda de preço.</p>
+
+    <div class="example">
+      <p>Se a soja precisa de 38 sc/ha para cobrir o COE e a média esperada é 60 sc/ha, a produção pode cair <span class="calc">~37%</span> antes de não pagar nem o caixa. Sobre o CT, a margem é menor — e é essa a que diz se o projeto resiste a um ano ruim sem corroer o patrimônio.</p>
+    </div>
+
+    <h3>PE, risco e a decisão de seguro</h3>
+    <p>A análise tem aplicação prática direta. Com MS de apenas 10%, uma quebra modesta — uma geada, duas semanas de seca — pode inviabilizar o projeto: o custo do seguro agrícola (2 a 5% do custeio) se justifica plenamente. Com MS de 40%, há mais tolerância e o produtor pode avaliar se o seguro compensa.</p>
+    <p>O PE de preço define a <strong>estratégia de comercialização</strong>: se o preço de nivelamento é R$ 90/sc e o mercado paga R$ 130/sc, há ampla margem para esperar ou vender escalonado. Se o mercado está em R$ 95 e o PE em R$ 88, a margem é mínima e a venda exige cautela.</p>
+  </div></div>
+</section>
+
+<!-- ===== AULA III.4 ===== -->
+<section class="block" id="cenarios">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">III.4</span>
+    <span class="block-title">Análise de cenários</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>O futuro é incerto. Projetar um único resultado — como se a produtividade fosse exatamente 60 sc/ha e o preço exatamente R$ 120/sc — é uma armadilha: o gestor que conhece apenas o cenário base pode ser destruído pelo primeiro desvio da realidade. A análise de cenários não elimina o risco, mas <em>o torna visível e mensurável</em>.</p>
+
+    <h3>Os três cenários padrão</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Cenário</th><th>Premissas</th><th>Pergunta</th></tr>
+      <tr><td><strong>Pessimista</strong></td><td>Produtividade 15–20% abaixo da média; preços 10–15% abaixo; custos 5–10% acima do orçado.</td><td>Qual o pior prejuízo provável? A propriedade sobrevive?</td></tr>
+      <tr><td><strong>Realista (base)</strong></td><td>Médias históricas de produtividade, preços de mercado atuais, custos conforme orçamento.</td><td>Qual o resultado esperado nas condições mais prováveis?</td></tr>
+      <tr><td><strong>Otimista</strong></td><td>Produtividade 10–15% acima; preços em alta; custos dentro do orçamento.</td><td>Qual o potencial máximo em condições favoráveis?</td></tr>
+    </table>
+    </div>
+
+    <h3>Como decidir com os cenários</h3>
+    <div class="hierarchy">
+      <div class="hier-row ok"><span class="hier-tag">BAIXO RISCO</span><span>Pessimista já é viável → pode-se avançar com menos proteções.</span></div>
+      <div class="hier-row warn"><span class="hier-tag">ATENÇÃO</span><span>Pessimista gera prejuízo moderado → avaliar seguro, venda antecipada (hedge) ou reduzir escala.</span></div>
+      <div class="hier-row danger"><span class="hier-tag">REPENSAR</span><span>Pessimista seria catastrófico → escala grande demais ou margem pequena demais para o risco climático da região.</span></div>
+      <div class="hier-row danger"><span class="hier-tag">APOSTA</span><span>Só o otimista é viável → é aposta, não investimento. Não recomendado sem proteções significativas.</span></div>
+    </div>
+    <div class="callout success">
+      <strong>O que a análise de cenários entrega ao projeto</strong>
+      É o slide que responde à banca quando perguntam "e se o preço cair 10%?". A resposta vem dos números do cenário pessimista, não de um "acho que sim". Essa é a conexão direta com a Nota Técnica e a defesa (Parte VI).
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== QUIZ (bloco acordeão) ===== -->
+<section class="block block-quiz" id="quiz">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">↻</span>
+    <span class="block-title">Autoavaliação · Parte III</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="quiz-inner">
+    <div class="quiz-eyebrow">Você decide com base em quê?</div>
+    <p class="quiz-intro">Seis situações em que os números já estão na mesa e falta a decisão. Não há resposta decorada — o que se mede é a sua <em>leitura econômica</em>. Responda com honestidade; o resultado aponta o próximo passo.</p>
+    <div id="quizContainer"></div>
+    <div class="q-progress" id="qProgressWrap" style="display:none"><div class="q-progress-bar" id="qProgress"></div></div>
+    <div class="quiz-result" id="quizResult">
+      <div class="result-eyebrow">Seu perfil predominante</div>
+      <div class="result-profile" id="resultProfile"></div>
+      <div class="result-message" id="resultMessage"></div>
+      <div class="result-tally" id="resultTally"></div>
+      <div class="result-revise"><strong>Para revisar</strong><span id="reviseBlocks"></span></div>
+      <button class="q-restart" id="restartQuiz">Refazer o quiz</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== NAV ENTRE PARTES ===== -->
+<nav class="partnav">
+  <a href="parte-2.html" class="prev">
+    <span class="dir">← Parte anterior</span>
+    <span class="pn">II</span>
+    <span class="lbl">Estrutura de custos</span>
+  </a>
+  <a href="parte-4.html" class="next">
+    <span class="dir">Próxima parte →</span>
+    <span class="pn">IV</span>
+    <span class="lbl">Contexto operacional</span>
+  </a>
+</nav>
+
+<footer>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+// ===== QUIZ — perfis: op Operador | tr Em transição | ge Gestor | es Estratégico =====
+const QUIZ = [
+  {
+    q: "O produtor comemora: a margem bruta deu R$ 90.000 positiva. Para você, isso significa:",
+    a: [
+      {t:"Projeto aprovado — sobrou dinheiro, está tudo certo.", p:"op"},
+      {t:"Bom sinal de caixa, mas é preciso ver a margem líquida e o lucro econômico antes de concluir.", p:"ge"},
+      {t:"Vamos acompanhar como fica no ano que vem.", p:"tr"}
+    ]
+  },
+  {
+    q: "Pedem sua opinião sobre subir a dose de uréia no milho de 120 para 200 kg/ha, já que 'rende mais saca'. Você:",
+    a: [
+      {t:"Concorda — mais insumo, mais produção, mais receita.", p:"op"},
+      {t:"Calcula RM e CM: aos 200 kg o RM já caiu abaixo do CM em parte do intervalo; o lucro máximo está perto de 120 kg.", p:"es"},
+      {t:"Sugere testar um pouco mais e ver no fim da safra.", p:"tr"}
+    ]
+  },
+  {
+    q: "Para medir o retorno do projeto e comparar com a renda fixa, você calcula a rentabilidade como:",
+    a: [
+      {t:"Lucro ÷ COE — sobre o que efetivamente desembolsei.", p:"op"},
+      {t:"Lucro econômico ÷ CT — só o CT inclui o custo de oportunidade da terra e do capital.", p:"es"},
+      {t:"Depende do que o produtor preferir ver.", p:"tr"}
+    ]
+  },
+  {
+    q: "A margem de segurança do projeto deu 10%. Sua leitura:",
+    a: [
+      {t:"Está positiva, então o projeto é seguro.", p:"op"},
+      {t:"Risco alto: uma quebra modesta inviabiliza. O seguro agrícola (2–5% do custeio) se justifica.", p:"es"},
+      {t:"É um número de referência, sigo em frente.", p:"tr"}
+    ]
+  },
+  {
+    q: "Ao apresentar o projeto, o produtor pergunta: 'e se o preço cair 10%?'. Você:",
+    a: [
+      {t:"Responde que provavelmente dá conta.", p:"op"},
+      {t:"Recorre ao cenário pessimista já montado e mostra o resultado com proteções.", p:"ge"},
+      {t:"Diz que vai recalcular e responde depois.", p:"tr"}
+    ]
+  },
+  {
+    q: "Você só projetou o cenário realista (60 sc/ha, R$ 120/sc). Sobre isso:",
+    a: [
+      {t:"Suficiente — é a média histórica, a mais provável.", p:"op"},
+      {t:"Aceitável para começar, depois acrescento os outros.", p:"tr"},
+      {t:"Incompleto: sem pessimista e otimista, o risco fica invisível e a defesa, frágil.", p:"es"}
+    ]
+  }
+];
+
+const PROFILES = {
+  op: {
+    name: "Operador",
+    msg: "Você ainda lê o resultado pela camada de cima — caixa e produção bruta. A decisão econômica (margem líquida, lucro sobre o CT, ponto ótimo de insumo) ainda parece detalhe técnico, não ferramenta. O próximo passo é descer todas as camadas antes de concluir, e tratar cada dose de insumo como uma escolha de margem.",
+    revise: "Aulas III.1 (as três margens e a rentabilidade ÷ CT) e III.2 (RM = CM e a lei dos rendimentos decrescentes)."
+  },
+  tr: {
+    name: "Em transição",
+    msg: "Você reconhece que falta informação antes de decidir, mas tende a adiar a conclusão e oferecer meio-termos. O salto seguinte é fechar a leitura com cálculo — margem líquida, margem de segurança, cenário pessimista — e assumir posição com base nos números, não na sensação.",
+    revise: "Aulas III.3 (ponto de equilíbrio e margem de segurança) e III.4 (os três cenários como base da decisão)."
+  },
+  ge: {
+    name: "Gestor",
+    msg: "Você raciocina por camadas: não confunde caixa com lucro e recorre aos cenários quando o risco aparece. O produtor que conta com você decide com informação, não com otimismo. O próximo passo é o lado estratégico — ler o ponto ótimo de cada insumo e a rentabilidade sobre o capital como rotina, não só quando perguntam.",
+    revise: "Reforce a aula III.2 (análise marginal) e avance para a Parte IV (fluxo de caixa, crédito e preço no RS)."
+  },
+  es: {
+    name: "Técnico estratégico",
+    msg: "Você opera no nível que o mercado demanda: distingue as três margens, calcula rentabilidade sobre o CT, encontra o ponto ótimo pelo RM = CM e torna o risco visível com cenários. Lê o resultado econômico como um todo, não em fragmentos. Mantenha esse rigor — é o que sustenta a confiança do produtor em decisões de longo prazo.",
+    revise: "Você domina a Parte III. Aplique a análise marginal e os cenários a casos novos a cada safra e avance com segurança para a Parte IV."
+  }
+};
+
+let currentQ = 0;
+let scores = {op:0, tr:0, ge:0, es:0};
+const container = document.getElementById('quizContainer');
+const progressWrap = document.getElementById('qProgressWrap');
+const progressBar = document.getElementById('qProgress');
+const resultBox = document.getElementById('quizResult');
+
+function renderQuestion(i){
+  if(i >= QUIZ.length){ showResult(); return; }
+  const q = QUIZ[i];
+  container.innerHTML = '';
+  const block = document.createElement('div');
+  block.className = 'quiz-question';
+  block.innerHTML = `
+    <div class="q-counter">Questão ${String(i+1).padStart(2,'0')} de ${QUIZ.length}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="q-options"></div>`;
+  const opts = block.querySelector('.q-options');
+  // Fisher-Yates: embaralhamento uniforme (substitui o sort enviesado)
+  const shuffled = [...q.a];
+  for (let s = shuffled.length - 1; s > 0; s--) {
+    const r = Math.floor(Math.random() * (s + 1));
+    [shuffled[s], shuffled[r]] = [shuffled[r], shuffled[s]];
+  }
+  shuffled.forEach((opt) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option';
+    btn.textContent = opt.t;
+    btn.addEventListener('click', () => {
+      scores[opt.p]++;
+      currentQ++;
+      progressBar.style.width = ((currentQ/QUIZ.length)*100) + '%';
+      renderQuestion(currentQ);
+    });
+    opts.appendChild(btn);
+  });
+  container.appendChild(block);
+  progressWrap.style.display = 'block';
+  progressBar.style.width = ((i/QUIZ.length)*100) + '%';
+}
+
+function showResult(){
+  container.style.display = 'none';
+  progressWrap.style.display = 'none';
+  let topScore = -1;
+  for(const k of ['op','tr','ge','es']){ if(scores[k] > topScore) topScore = scores[k]; }
+  let topKey = 'op';
+  const order = ['es','ge','tr','op'];
+  for(const k of order){ if(scores[k] === topScore){ topKey = k; break; } }
+  const profile = PROFILES[topKey];
+  document.getElementById('resultProfile').textContent = profile.name;
+  document.getElementById('resultMessage').textContent = profile.msg;
+  document.getElementById('reviseBlocks').textContent = profile.revise;
+  const tallyEl = document.getElementById('resultTally');
+  tallyEl.innerHTML = '';
+  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+  for(const k of ['op','tr','ge','es']){
+    const row = document.createElement('div');
+    row.className = 'tally-row' + (k === topKey ? ' winner' : '');
+    row.innerHTML = `<span>${labels[k]}</span><span>${scores[k]} pt${scores[k] !== 1 ? 's' : ''}</span>`;
+    tallyEl.appendChild(row);
+  }
+  resultBox.classList.add('active');
+  resultBox.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function restartQuiz(){
+  currentQ = 0;
+  scores = {op:0, tr:0, ge:0, es:0};
+  resultBox.classList.remove('active');
+  container.style.display = 'block';
+  renderQuestion(0);
+}
+document.getElementById('restartQuiz').addEventListener('click', restartQuiz);
+renderQuestion(0);
+
+// ===== TOC + acordeão + back-to-top =====
+const toc = document.getElementById('toc');
+const tocBtn = document.getElementById('tocToggle');
+tocBtn.addEventListener('click', () => {
+  toc.classList.toggle('open');
+  tocBtn.setAttribute('aria-expanded', toc.classList.contains('open'));
+});
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', () => {
+    toc.classList.remove('open');
+    tocBtn.setAttribute('aria-expanded', 'false');
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if(target && target.classList.contains('block')) target.classList.add('open');
+  });
+});
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(!header) return;
+  const block = header.closest('.block');
+  const open = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', open);
+});
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>
