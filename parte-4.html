@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
 <title>Parte IV — Contexto operacional · Gestão de Custos Agropecuários</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,8 +41,10 @@ body{
 }
 
 /* ===== NAV TOPO — movimentos pedagógicos ===== */
-nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-nav.toptabs::-webkit-scrollbar{display:none}
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--rule-soft) transparent}
+nav.toptabs::-webkit-scrollbar{height:6px}
+nav.toptabs::-webkit-scrollbar-track{background:transparent}
+nav.toptabs::-webkit-scrollbar-thumb{background:var(--rule-soft);border-radius:3px;border:2px solid transparent;background-clip:padding-box}
 .toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
 .toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
 .toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
@@ -314,7 +317,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
     <div class="callout">
       <strong>Atenção · dados que mudam a cada Plano Safra</strong>
-      Taxas, limites e faixas de renda abaixo são referências da apostila. Eles são revistos anualmente. Sempre confirmar os valores vigentes no Plano Safra e no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
+      Taxas, limites e faixas de renda abaixo são referências da apostila. Eles são revistos anualmente. Sempre confirmar os valores vigentes no Plano Safra e no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank" rel="noopener">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
     </div>
 
     <h3>Modalidades</h3>
@@ -656,3 +659,5 @@ backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth
 
 </body>
 </html>
+
+
