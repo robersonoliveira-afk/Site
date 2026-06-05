@@ -127,29 +127,9 @@
     #filters{padding:12px 16px}#content{padding:16px}
   }
 </style>
-<style>
-/* ===== barra-anexo (navegação de volta ao site) ===== */
-.anexo-bar{position:sticky;top:0;z-index:1200;background:var(--surface);border-bottom:1px solid var(--border)}
-.anexo-bar-inner{display:flex;align-items:center;gap:2px;padding:0 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.anexo-bar a{display:flex;align-items:center;gap:6px;padding:11px 13px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;transition:background .15s,color .15s}
-.anexo-bar a:hover{background:var(--surface2);color:var(--ink)}
-.anexo-bar a.ab-home{color:var(--oliva)}
-.anexo-bar a.ab-back{color:var(--terra);border-bottom-color:var(--terra)}
-.anexo-bar .ab-tag{margin-left:auto;padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-@media(max-width:560px){.anexo-bar .ab-tag{display:none}}
-.anexo-foot-back{display:inline-block;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--terra);text-decoration:none;border-bottom:1px dotted var(--terra)}
-.anexo-foot-back:hover{color:var(--oliva)}
-</style>
 </head>
 
 <body>
-<nav class="anexo-bar">
-  <div class="anexo-bar-inner">
-    <a class="ab-home" href="index.html"><span>&#167;</span> Início</a>
-    <a class="ab-back" href="parte-4.html#credito"><span>&#8249;</span> Parte IV · Crédito rural</a>
-    <span class="ab-tag">Anexo · painel de dados</span>
-  </div>
-</nav>
 <div id="loading"><div class="spinner"></div><div style="color:var(--muted);font-size:.9rem">Carregando dados…</div></div>
 
 <header>
@@ -257,7 +237,7 @@
         <div style="display:flex;flex-wrap:wrap;gap:10px">
           <div class="filter-group"><label>Produto</label><select id="cmp-prod-a"></select></div>
           <div class="filter-group"><label>Ano</label><select id="cmp-ano-a"></select></div>
-          <div class="filter-group"><label>Nível regional</label><select id="cmp-nivel-a"><option value="bioma">Bioma</option><option value="corede">COREDE</option><option value="emater">Regional Emater</option></select></div>
+          <div class="filter-group"><label>Nível regional</label><select id="cmp-nivel-a"><option value="bioma">Bioma</option><option value="corede">COREDE</option><option value="emater">Regional Emater</option><option value="municipio">Município</option></select></div>
         </div>
       </div>
       <div class="region-box">
@@ -265,15 +245,15 @@
         <div style="display:flex;flex-wrap:wrap;gap:10px">
           <div class="filter-group"><label>Produto</label><select id="cmp-prod-b"></select></div>
           <div class="filter-group"><label>Ano</label><select id="cmp-ano-b"></select></div>
-          <div class="filter-group"><label>Nível regional</label><select id="cmp-nivel-b"><option value="bioma">Bioma</option><option value="corede" selected>COREDE</option><option value="emater">Regional Emater</option></select></div>
+          <div class="filter-group"><label>Nível regional</label><select id="cmp-nivel-b"><option value="bioma">Bioma</option><option value="corede" selected>COREDE</option><option value="emater">Regional Emater</option><option value="municipio">Município</option></select></div>
         </div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="cards" id="cmp-cards-a" style="margin-bottom:0"></div><div class="cards" id="cmp-cards-b" style="margin-bottom:0"></div></div>
     <div class="chart-box" style="margin-bottom:16px"><h3 id="cmp-chart-title">Confronto A vs B por região</h3><div class="chart-wrap" style="height:340px"><canvas id="chart-confronto"></canvas></div></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-      <div class="region-box"><h3 id="cmp-table-title-a">Painel A</h3><div style="overflow-x:auto;max-height:340px;overflow-y:auto"><table class="data-table" id="cmp-table-a"><thead><tr><th>Região</th><th class="num">Valor</th><th class="num">% total</th><th class="num area-only">Área (ha)</th><th class="num area-only">R$/ha</th><th class="num">Munic.</th></tr></thead><tbody></tbody></table></div></div>
-      <div class="region-box"><h3 id="cmp-table-title-b">Painel B</h3><div style="overflow-x:auto;max-height:340px;overflow-y:auto"><table class="data-table" id="cmp-table-b"><thead><tr><th>Região</th><th class="num">Valor</th><th class="num">% total</th><th class="num area-only">Área (ha)</th><th class="num area-only">R$/ha</th><th class="num">Munic.</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="region-box"><h3 id="cmp-table-title-a">Painel A</h3><div style="overflow-x:auto;max-height:340px;overflow-y:auto"><table class="data-table" id="cmp-table-a"><thead><tr><th>Região / município</th><th class="num">Valor</th><th class="num">% total</th><th class="num area-only">Área (ha)</th><th class="num area-only">R$/ha</th><th class="num">Munic.</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="region-box"><h3 id="cmp-table-title-b">Painel B</h3><div style="overflow-x:auto;max-height:340px;overflow-y:auto"><table class="data-table" id="cmp-table-b"><thead><tr><th>Região / município</th><th class="num">Valor</th><th class="num">% total</th><th class="num area-only">Área (ha)</th><th class="num area-only">R$/ha</th><th class="num">Munic.</th></tr></thead><tbody></tbody></table></div></div>
     </div>
   </div>
 </div>
@@ -281,7 +261,6 @@
 <footer>
   Dados: Matriz de Dados do Crédito Rural (MDCR), Banco Central do Brasil. Área financiada disponível apenas no custeio (ausente em 18% dos contratos — R$/ha calculado sobre a base com área informada).
   <div class="ia">Material de apoio didático. Processamento e visualização de dados elaborados com assistência de inteligência artificial (Claude, Anthropic), sob curadoria e revisão do docente.</div>
-  <a class="anexo-foot-back" href="parte-4.html#credito">&#8249; Voltar ao conceito de crédito rural · Parte IV</a>
 </footer>
 
 <script>
@@ -310,7 +289,7 @@ async function decompress(b64){
 let MODALIDADE='cust';
 let DATASETS={cust:null,inv:null};
 let MUNICIPIOS=[], PRODMETA={}, PRODUTOS=[], GEOJSON=null;
-let leafletMap=null, geoLayer=null, charts={}, prodOrderCache={};
+let leafletMap=null, geoLayer=null, charts={}, prodOrderCache={}, mmRef={}, selectedMun=null;
 const ANOS=[2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
 const PERIODO='2013–2026';
 const CORES=['#3D4A2A','#A8552E','#B89233','#6B7B47','#C97B4A','#8A6D3B','#586440','#D49A52','#7A4A2C','#9DA86B','#A88A4E','#4F5B33','#C0703F','#857C6A','#B5A36A'];
@@ -331,7 +310,13 @@ function getFilters(){return{ano:parseInt(document.getElementById('f-ano').value
 function getRegAgrupa(){const s=document.querySelector('input[name="reg-agrup"]:checked');return s?s.value:'corede';}
 function getMunsFiltrados(f){f=f||getFilters();if(f.recorteTipo==='TODOS'||!f.recorteValor||f.recorteValor==='TODOS')return MUNICIPIOS;return MUNICIPIOS.filter(m=>{const v=f.recorteTipo==='bioma'?m.bioma:f.recorteTipo==='corede'?m.corede:m.emater;return v===f.recorteValor;});}
 function getRecorteLabel(f){f=f||getFilters();if(f.recorteTipo==='TODOS')return null;const t=f.recorteTipo==='bioma'?'Bioma':f.recorteTipo==='corede'?'COREDE':'Emater';return t+': '+f.recorteValor;}
-function getProdutosAtivos(f){return PRODUTOS.filter(p=>{if(f.produto!=='TODOS'&&p!==f.produto)return false;const a=pativ(p);if(f.atividade!=='TODOS'&&a!==f.atividade&&a!=='Ambos')return false;return true;});}
+function getProdutosAtivos(f){
+  let base;
+  if(f.produto==='TODOS')base=PRODUTOS;
+  else if(f.produto.indexOf('grp:')===0){const g=f.produto.slice(4);base=PRODUTOS.filter(p=>PRODMETA[p].grupo===g);}
+  else base=[f.produto];
+  return base.filter(p=>{const a=pativ(p);if(f.atividade!=='TODOS'&&a!==f.atividade&&a!=='Ambos')return false;return true;});
+}
 function getCustMun(m,prods,ano){let c=0,a=0;for(const p of prods){if(ano===0){for(const y of ANOS){const e=pe(m,p,y);c+=e.cust;a+=e.area;}}else{const e=pe(m,p,ano);c+=e.cust;a+=e.area;}}return{cust:c,area:a};}
 
 // ===== ORDEM PRODUTOS (por valor total) =====
@@ -340,14 +325,16 @@ function prodOrder(){if(prodOrderCache[MODALIDADE])return prodOrderCache[MODALID
 // ===== POPULAR SELECTS DE PRODUTO =====
 function populaProdutos(){
   const ord=prodOrder();
+  const ativ=document.getElementById('f-atividade').value;
+  const matchA=p=>{const a=pativ(p);return ativ==='TODOS'||a===ativ||a==='Ambos';};
   const optsMain=['<option value="TODOS">Todos os produtos</option>'];
   grpOrdem().forEach(g=>{
-    const itens=ord.filter(p=>PRODMETA[p].grupo===g);
+    const itens=ord.filter(p=>PRODMETA[p].grupo===g&&matchA(p));
     if(!itens.length)return;
-    optsMain.push('<optgroup label="'+grpLabel(g)+'">'+itens.map(p=>'<option value="'+p+'">'+plabel(p)+'</option>').join('')+'</optgroup>');
+    optsMain.push('<optgroup label="'+grpLabel(g)+'"><option value="grp:'+g+'">↳ '+grpLabel(g)+' (todas deste grupo)</option>'+itens.map(p=>'<option value="'+p+'">'+plabel(p)+'</option>').join('')+'</optgroup>');
   });
   document.getElementById('f-produto').innerHTML=optsMain.join('');
-  // comparativo (com optgroup também)
+  // comparativo: nível de produto (sem filtro de atividade), como antes
   const optsCmp=grpOrdem().map(g=>{const it=ord.filter(p=>PRODMETA[p].grupo===g);return it.length?'<optgroup label="'+grpLabel(g)+'">'+it.map(p=>'<option value="'+p+'">'+plabel(p)+'</option>').join('')+'</optgroup>':'';}).join('');
   ['cmp-prod-a','cmp-prod-b'].forEach((id,i)=>{const s=document.getElementById(id);s.innerHTML=optsCmp;s.value=ord[i]||ord[0];});
 }
@@ -373,10 +360,12 @@ async function setModalidade(mod){
 }
 
 function reRenderAll(){
-  const c=document.getElementById('mun-content');
-  if(c){c.innerHTML='<div class="no-data">Selecione um município para ver o detalhamento</div>';const s=document.getElementById('mun-search');if(s)s.value='';}
   const tab=document.querySelector('.tab.active').dataset.tab;
-  if(tab==='mapa')renderMapa();else if(tab==='regioes')renderRegioes();else if(tab==='comparativo')renderComparativo();else renderVisao();
+  if(tab==='municipal'){
+    if(selectedMun!=null)selectMunicipio(selectedMun);
+    else{const c=document.getElementById('mun-content');if(c)c.innerHTML='<div class="no-data">Selecione um município para ver o detalhamento</div>';}
+  }
+  else if(tab==='mapa')renderMapa();else if(tab==='regioes')renderRegioes();else if(tab==='comparativo')renderComparativo();else renderVisao();
 }
 
 // ===== VISÃO GERAL =====
@@ -423,13 +412,21 @@ function renderMapa(){
   document.getElementById('leg-mid').textContent=metrica==='cust'?fmtR(vMid):fmtNum(vMid)+' ha';
   document.getElementById('leg-max').textContent=metrica==='cust'?fmtR(vMax):fmtNum(vMax)+' ha';
   function getColor(v){if(v<=0)return '#EFE8D6';const t=Math.pow(v/vMax,0.45);const idx=t*(ramp.length-1);const i=Math.floor(idx),j=Math.min(i+1,ramp.length-1),fr=idx-i;const r=Math.round(ramp[i][0]*(1-fr)+ramp[j][0]*fr),g=Math.round(ramp[i][1]*(1-fr)+ramp[j][1]*fr),b=Math.round(ramp[i][2]*(1-fr)+ramp[j][2]*fr);return `rgb(${r},${g},${b})`;}
-  if(!leafletMap){leafletMap=L.map('map',{zoomControl:true,attributionControl:false}).setView([-29.7,-53.5],7);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(leafletMap);}
-  if(geoLayer)leafletMap.removeLayer(geoLayer);
+  if(!leafletMap){leafletMap=L.map('map',{zoomControl:true,attributionControl:false,preferCanvas:true}).setView([-29.7,-53.5],7);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(leafletMap);}
   const mm={};MUNICIPIOS.forEach(m=>mm[m.cod]=m);
-  geoLayer=L.geoJSON(GEOJSON,{style:feat=>{const cod=parseInt(feat.properties.CD_MUN);const inR=codsF.size===0||codsF.has(cod);const v=vals[cod]||0;if(!inR)return{fillColor:'#EFE8D6',fillOpacity:0.35,color:'#DCD3BE',weight:0.4,opacity:0.4};return{fillColor:getColor(v),fillOpacity:0.88,color:'#FBF7EC',weight:0.6,opacity:0.9};},
-    onEachFeature:(feat,layer)=>{const cod=parseInt(feat.properties.CD_MUN);const m=mm[cod];if(!m)return;const v=vals[cod]||0;const lv=metrica==='cust'?fmtRFull(v):fmtNum(v)+' ha';
-      layer.bindTooltip(`<div class="tt-title">${m.nome}</div><div class="tt-row"><span class="tt-key">COREDE</span><span class="tt-val">${m.corede}</span></div><div class="tt-row"><span class="tt-key">Bioma</span><span class="tt-val">${m.bioma}</span></div><div class="tt-row"><span class="tt-key">${metrica==='cust'?LBL():'Área'}</span><span class="tt-val">${lv}</span></div>`,{sticky:true});
-      layer.on('click',()=>{document.querySelector('[data-tab="municipal"]').click();selectMunicipio(m.cod);});}}).addTo(leafletMap);
+  if(!geoLayer){
+    geoLayer=L.geoJSON(GEOJSON,{
+      style:{fillColor:'#EFE8D6',fillOpacity:0.5,color:'#FBF7EC',weight:0.6,opacity:0.9},
+      onEachFeature:(feat,layer)=>{const cod=parseInt(feat.properties.CD_MUN);layer._cod=cod;layer.bindTooltip('',{sticky:true});layer.on('click',()=>{if(mmRef[cod]){document.querySelector('[data-tab="municipal"]').click();selectMunicipio(cod);}});}
+    }).addTo(leafletMap);
+  }
+  mmRef=mm;
+  geoLayer.eachLayer(layer=>{const cod=layer._cod;const m=mm[cod];const inR=codsF.size===0||codsF.has(cod);const v=vals[cod]||0;
+    if(!m||!inR){layer.setStyle({fillColor:'#EFE8D6',fillOpacity:0.35,color:'#DCD3BE',weight:0.4,opacity:0.4});return;}
+    layer.setStyle({fillColor:getColor(v),fillOpacity:0.88,color:'#FBF7EC',weight:0.6,opacity:0.9});
+    const lv=metrica==='cust'?fmtRFull(v):fmtNum(v)+' ha';
+    layer.setTooltipContent(`<div class="tt-title">${m.nome}</div><div class="tt-row"><span class="tt-key">COREDE</span><span class="tt-val">${m.corede}</span></div><div class="tt-row"><span class="tt-key">Bioma</span><span class="tt-val">${m.bioma}</span></div><div class="tt-row"><span class="tt-key">${metrica==='cust'?LBL():'Área'}</span><span class="tt-val">${lv}</span></div>`);
+  });
   const top15=munsF.map(m=>({...m,v:vals[m.cod]||0})).sort((a,b)=>b.v-a.v).slice(0,15);
   document.getElementById('top-municipios').innerHTML=top15.map((m,i)=>`<div class="top-item"><span class="rank">${i+1}</span><span class="mname">${m.nome.replace(' (RS)','')}</span><span class="mval">${metrica==='cust'?fmtR(m.v):fmtNum(m.v)+' ha'}</span></div>`).join('');
 }
@@ -460,7 +457,7 @@ function renderMunicipal(){if(munListenerSet)return;munListenerSet=true;
     sug.querySelectorAll('.sug-item').forEach(el=>{el.addEventListener('mouseenter',()=>el.style.background='var(--surface2)');el.addEventListener('mouseleave',()=>el.style.background='');el.addEventListener('click',()=>{selectMunicipio(parseInt(el.dataset.cod));sug.innerHTML='';});});});
 }
 function selectMunicipio(cod){
-  const m=MUNICIPIOS.find(x=>x.cod===cod);if(!m)return;const f=getFilters();const prods=getProdutosAtivos(f);
+  const m=MUNICIPIOS.find(x=>x.cod===cod);if(!m)return;selectedMun=cod;const f=getFilters();const prods=getProdutosAtivos(f);
   document.getElementById('mun-search').value=m.nome;
   const pdata=prods.map(p=>{let c=0,a=0;if(f.ano===0)ANOS.forEach(y=>{const e=pe(m,p,y);c+=e.cust;a+=e.area;});else{const e=pe(m,p,f.ano);c=e.cust;a=e.area;}return{key:p,label:plabel(p),atividade:pativ(p),cust:c,area:a};}).filter(x=>x.cust>0).sort((a,b)=>b.cust-a.cust);
   const tc=pdata.reduce((a,b)=>a+b.cust,0),ta=pdata.reduce((a,b)=>a+b.area,0),mx=pdata[0]?.cust||1;
@@ -485,7 +482,7 @@ function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];
 function chartOpts(){return{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmtRFull(c.raw)}}},scales:{x:{ticks:{color:'#857C6A',font:{size:10}},grid:{color:'#DCD3BE'}},y:{ticks:{color:'#857C6A',font:{size:10},callback:v=>fmtR(v)},grid:{color:'#DCD3BE'}}}};}
 
 // ===== COMPARATIVO =====
-function calcPainel(pk,ano,nivel){const grupos={};MUNICIPIOS.forEach(m=>{const k=nivel==='bioma'?m.bioma:nivel==='corede'?m.corede:m.emater;if(!grupos[k])grupos[k]={cust:0,area:0,muns:0};let c=0,a=0;if(ano===0)ANOS.forEach(y=>{const e=pe(m,pk,y);c+=e.cust;a+=e.area;});else{const e=pe(m,pk,ano);c=e.cust;a=e.area;}grupos[k].cust+=c;grupos[k].area+=a;if(c>0)grupos[k].muns++;});const rows=Object.entries(grupos).map(([k,v])=>({reg:k,...v})).sort((a,b)=>b.cust-a.cust);return{rows,totalCust:rows.reduce((s,r)=>s+r.cust,0),totalArea:rows.reduce((s,r)=>s+r.area,0),totalMuns:rows.reduce((s,r)=>s+r.muns,0)};}
+function calcPainel(pk,ano,nivel){const grupos={};MUNICIPIOS.forEach(m=>{const k=nivel==='bioma'?m.bioma:nivel==='corede'?m.corede:nivel==='municipio'?m.nome.replace(' (RS)',''):m.emater;if(!grupos[k])grupos[k]={cust:0,area:0,muns:0};let c=0,a=0;if(ano===0)ANOS.forEach(y=>{const e=pe(m,pk,y);c+=e.cust;a+=e.area;});else{const e=pe(m,pk,ano);c=e.cust;a=e.area;}grupos[k].cust+=c;grupos[k].area+=a;if(c>0)grupos[k].muns++;});const rows=Object.entries(grupos).map(([k,v])=>({reg:k,...v})).sort((a,b)=>b.cust-a.cust);return{rows,totalCust:rows.reduce((s,r)=>s+r.cust,0),totalArea:rows.reduce((s,r)=>s+r.area,0),totalMuns:rows.reduce((s,r)=>s+r.muns,0)};}
 function renderCmpCards(id,d,cor){const ch=d.totalArea>0?d.totalCust/d.totalArea:0;document.getElementById(id).innerHTML=`<div class="card" style="border-left:3px solid ${cor}"><div class="label">${LBL()} total</div><div class="value" style="font-size:1.2rem;color:${cor}">${fmtR(d.totalCust)}</div></div><div class="card area-only"><div class="label">Área total</div><div class="value" style="font-size:1.2rem">${fmtNum(d.totalArea)} ha</div></div><div class="card"><div class="label">Municípios ativos</div><div class="value" style="font-size:1.2rem">${d.totalMuns}</div></div><div class="card area-only"><div class="label">R$ / ha</div><div class="value" style="font-size:1.2rem">${d.totalArea>0?fmtR(ch):'—'}</div></div>`;}
 function renderCmpTabela(id,d){document.querySelector('#'+id+' tbody').innerHTML=d.rows.filter(r=>r.cust>0).map(r=>{const pct=d.totalCust>0?(r.cust/d.totalCust*100).toFixed(1):'0.0';const ch=r.area>0?fmtR(r.cust/r.area):'—';return `<tr><td>${r.reg}</td><td class="num">${fmtRFull(r.cust)}</td><td class="num">${pct}%</td><td class="num area-only">${r.area>0?fmtNum(r.area):'—'}</td><td class="num area-only">${ch}</td><td class="num">${r.muns}</td></tr>`;}).join('');}
 function renderComparativo(){
@@ -507,16 +504,25 @@ function renderComparativo(){
 }
 
 // ===== TABS / LISTENERS =====
+function renderAtiva(){const t=document.querySelector('.tab.active').dataset.tab;
+  if(t==='visao')renderVisao();else if(t==='mapa')renderMapa();else if(t==='regioes')renderRegioes();
+  else if(t==='municipal'){if(selectedMun!=null)selectMunicipio(selectedMun);}else if(t==='comparativo')renderComparativo();}
 document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   tab.classList.add('active');document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
   const t=tab.dataset.tab;
   if(t==='mapa'){renderMapa();setTimeout(()=>leafletMap?.invalidateSize(),200);}
-  else if(t==='regioes')renderRegioes();else if(t==='municipal')renderMunicipal();else if(t==='comparativo')renderComparativo();else renderVisao();
+  else if(t==='regioes')renderRegioes();else if(t==='municipal'){renderMunicipal();if(selectedMun!=null)selectMunicipio(selectedMun);}else if(t==='comparativo')renderComparativo();else renderVisao();
 }));
 document.querySelectorAll('#modal-toggle button').forEach(b=>b.addEventListener('click',()=>setModalidade(b.dataset.mod)));
-document.querySelectorAll('#f-ano,#f-produto,#f-atividade,#map-metrica').forEach(el=>el.addEventListener('change',()=>{const t=document.querySelector('.tab.active').dataset.tab;if(t==='visao')renderVisao();else if(t==='mapa')renderMapa();else if(t==='regioes')renderRegioes();}));
+document.querySelectorAll('#f-ano,#f-produto,#map-metrica').forEach(el=>el.addEventListener('change',renderAtiva));
+document.getElementById('f-atividade').addEventListener('change',()=>{
+  const fp=document.getElementById('f-produto');const prev=fp.value;
+  populaProdutos();
+  fp.value=[...fp.options].some(o=>o.value===prev)?prev:'TODOS';
+  renderAtiva();
+});
 
 // ===== INIT =====
 async function init(){
