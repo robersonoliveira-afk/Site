@@ -83,7 +83,7 @@ h1.title em{font-style:italic;color:var(--olive);font-weight:500}
 .block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
 .block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
 .block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.block.open .block-body{max-height:6000px}
+.block.open .block-body{max-height:10000px}
 .block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
 .block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
 .block-content p strong{color:var(--ink);font-weight:600}
@@ -120,6 +120,17 @@ ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var
 .swot-cell ul li{padding:3px 0;color:var(--ink-soft);font-size:12.5px}
 .swot-cell ul li::before{content:"— ";color:var(--stone-light)}
 
+/* TABELA ENXUTA */
+.ntable{margin:16px 0;border:1px solid var(--rule);width:100%;border-collapse:collapse;font-size:13px}
+.ntable caption{caption-side:top;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;padding:0 0 8px}
+.ntable th{background:var(--paper-warm);text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:8px 10px;border-bottom:1px solid var(--rule)}
+.ntable th.num,.ntable td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.ntable td{padding:9px 10px;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);line-height:1.4;vertical-align:top}
+.ntable tr:last-child td{border-bottom:none}
+.ntable td .cat{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:var(--stone-light);margin-bottom:2px}
+.ntable .peso{font-weight:600;color:var(--terra)}
+.ntable tfoot td{background:var(--success-bg);font-weight:500;color:var(--ink);border-top:1px solid var(--olive)}
+
 /* NAV RODAPÉ */
 .partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
@@ -132,8 +143,11 @@ ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var
 /* FOOTER */
 footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
 footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
-footer .sources{margin-bottom:14px}
-footer .src-item{margin-bottom:3px}
+footer .sources{margin-bottom:18px}
+footer .src-item{margin-bottom:8px;line-height:1.45;font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:var(--stone)}
+footer .src-item a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--rule)}
+footer .src-item a:hover{border-bottom-color:var(--olive)}
+footer .src-item b{color:var(--ink-soft);font-weight:600}
 footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
 
 .back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--olive);border:none;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
@@ -176,7 +190,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <p class="subtitle">Antes de qualquer número: enxergar a propriedade rural como empresa, planejar o projeto produtivo com método e fazer o diagnóstico estratégico que orienta todas as decisões seguintes.</p>
   <div class="meta">
     <span>Parte I de VI</span>
-    <span>3 aulas</span>
+    <span>4 aulas</span>
       </div>
 </header>
 
@@ -188,8 +202,9 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <div class="toc-list">
     <ol>
       <li><a href="#empresa"><span class="toc-num">I.1</span> A propriedade como empresa</a></li>
-      <li><a href="#planejamento"><span class="toc-num">I.2</span> Planejamento do projeto produtivo</a></li>
-      <li><a href="#diagnostico"><span class="toc-num">I.3</span> Diagnóstico estratégico (SWOT)</a></li>
+      <li><a href="#sistema"><span class="toc-num">I.2</span> A propriedade dentro do sistema</a></li>
+      <li><a href="#planejamento"><span class="toc-num">I.3</span> Planejamento do projeto produtivo</a></li>
+      <li><a href="#diagnostico"><span class="toc-num">I.4</span> Diagnóstico estratégico (SWOT)</a></li>
     </ol>
   </div>
 </nav>
@@ -202,15 +217,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>A propriedade rural é uma <strong>empresa</strong> — gera receitas, consome custos, produz resultado. É também um modo de vida: a terra que a família trabalha, o ofício que se herda. As duas coisas convivem, e o bom técnico segura as duas pontas. Mas aplicar direto à lavoura os modelos de uma indústria é um equívoco: o campo tem características que o tornam mais complexo e mais arriscado que qualquer linha de montagem.</p>
+    <p>A propriedade rural é uma <strong>empresa</strong> — gera receitas, consome custos, produz resultado. É também um modo de vida: a terra que a família trabalha, o ofício que se herda. As duas coisas convivem, e o bom técnico segura as duas pontas. Mas "empresa" é uma <em>lente</em>, não a natureza única da propriedade. A abordagem sistêmica (Miguel et al., 2022) lembra que existem tipos distintos de unidade de produção — da familiar à grande propriedade — e que reduzir todas a "empresa rural" apaga os objetivos da família, que o retorno financeiro nem sempre encabeça. Usamos a régua econômica sem confundir a régua com o território. E aplicar direto ao campo os modelos de uma indústria também é equívoco: a atividade agropecuária tem características que a tornam mais complexa e mais arriscada que qualquer linha de montagem.</p>
 
     <h3>O que torna a atividade agropecuária única</h3>
     <ul class="bullets">
-      <li><strong>Sazonalidade</strong> — investimento e retorno ocorrem em momentos distintos do ano; o caixa é naturalmente descontínuo.</li>
+      <li><strong>Sazonalidade da produção e do consumo</strong> — investimento e retorno ocorrem em momentos distintos do ano, e a própria demanda oscila no calendário. O caixa é naturalmente descontínuo dos dois lados.</li>
       <li><strong>Dependência climática</strong> — chuva, seca, geada e granizo fogem ao controle e entram no planejamento de risco.</li>
-      <li><strong>Seres vivos</strong> — animais adoecem, plantas sofrem pragas; perdas que não existem na indústria.</li>
-      <li><strong>Risco constante</strong> — mercado instável + clima imprevisível + ciclos longos. Gerir é, em boa parte, gerir riscos.</li>
-      <li><strong>Ciclos longos</strong> — da nogueira-pecã à pecuária de cria (retorno na desmama, ~18 meses), exige visão de longo prazo.</li>
+      <li><strong>Seres vivos e perecibilidade</strong> — animais adoecem, plantas sofrem pragas, e o produto se deteriora rápido depois de colhido. Perdas e prazos que a indústria não enfrenta.</li>
+      <li><strong>Tomador de preço e baixo valor agregado</strong> — o produtor raramente define o preço do que vende (commodity) nem do que compra (insumo). Vende barato a matéria-prima; o valor se agrega depois da porteira.</li>
+      <li><strong>Dispersão e diversidade</strong> — a produção é espalhada no território e heterogênea em qualidade, o que dificulta padronização e logística.</li>
+      <li><strong>Ciclos longos e risco constante</strong> — da nogueira-pecã à pecuária de cria (retorno na desmama, ~18 meses), o tempo é longo e o risco é a regra. Gerir é, em boa parte, gerir risco.</li>
     </ul>
 
     <h3>Resultado financeiro × resultado econômico</h3>
@@ -220,6 +236,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       Ver dinheiro na conta no fim da safra e achar que lucrou. Sem contabilizar o próprio salário, o desgaste do trator, das mangueiras e o custo de oportunidade do capital, o produtor pode ter ficado mais pobre. <strong>Caixa positivo não é lucro econômico.</strong>
     </div>
 
+    <h3>A propriedade é um sistema, não um amontoado</h3>
+    <p>Antes de medir custos, vale enxergar como as partes se encaixam. A abordagem sistêmica (Miguel et al., 2022) descreve a propriedade como uma <strong>Unidade de Produção Agrícola (UPA)</strong>: o resultado da interação entre o sistema social — os objetivos da família — e o sistema natural. Dentro dela operam, de forma encadeada, os <strong>sistemas de cultivo</strong> (o que se planta, em que sucessão, com qual itinerário técnico) e os <strong>sistemas de criação</strong> (como se conduz cada categoria do rebanho). A consequência prática é direta: nenhuma decisão é isolada. Mudar a época de plantio mexe na janela da pastagem; trocar a categoria do rebanho muda a exigência de área e de capital de giro. Quem gere custo precisa ver o sistema, não a soma de itens soltos.</p>
+
+    <h3>Quem decide é gente</h3>
+    <p>Por que dois produtores vizinhos, com solo e clima parecidos, tomam decisões diferentes? Porque os objetivos da família — não só o lucro — estão no centro (Miguel et al., 2022). O agricultor age com coerência entre seus fins e seus meios, mesmo quando foge da recomendação técnica: pode preferir segurança a rentabilidade máxima, ou preservar o campo nativo por escolha, não por desconhecimento. E decide de forma <em>adaptativa</em> — os objetivos mudam conforme a situação, e a situação muda conforme os objetivos. Para o técnico, a lição é de método: entender os objetivos do produtor antes de propor o número. Um bom projeto que ignora o que a família quer não sai do papel.</p>
+
     <h3>O técnico como agente de gestão</h3>
     <p>O técnico agrícola não é só profissional de campo. É chamado a opinar sobre custos, recomendar insumos, elaborar projetos de financiamento e justificar escolhas em termos econômicos. Entender a linguagem dos números deixou de ser tarefa só do contador: é competência essencial para responder perguntas como <em>vale a pena mais uma aplicação de fungicida? compensa arrendar mais terra? com que preço do terneiro começar a vender?</em></p>
     <p>É também quem conduz o <strong>ciclo de gestão</strong> (Kay et al., 2014): planejamento → implementação → controle → ajuste. Não é uma linha que termina na colheita, é um ciclo que se repete a cada safra. E a qualidade de uma decisão não se mede só pelo resultado — uma estiagem pode estragar uma boa decisão. O que distingue o bom gestor é o <em>processo</em>: decide com base em informação, em dado registrado e em cenários, não em intuição, memória e otimismo.</p>
@@ -227,9 +249,58 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 </section>
 
 <!-- ===== I.2 ===== -->
-<section class="block" id="planejamento">
+<section class="block" id="sistema">
   <button class="block-header" aria-expanded="false">
     <span class="block-num">I.2</span>
+    <span class="block-title">A propriedade dentro do sistema</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A porteira não é o limite do negócio. Em 1957, dois professores de Harvard, John Davis e Ray Goldberg, cunharam o termo <strong>agronegócio</strong> (<em>agribusiness</em>) para nomear algo que a economia tratava como setor isolado: a soma das operações de produção e distribuição de insumos, das operações dentro da fazenda, e do armazenamento, processamento e distribuição dos produtos e seus derivados (Davis &amp; Goldberg, 1957). A tese central é que o mundo agrícola e o industrial não são economias separadas com uma simples relação de compra e venda — estão entrelaçados, e pensar um sem o outro leva a erro.</p>
+
+    <h3>As três porteiras</h3>
+    <p>É costume dividir o sistema em três elos, conforme a posição em relação à fazenda:</p>
+    <ul class="bullets">
+      <li><strong>Antes da porteira</strong> (a montante) — insumos e serviços: sementes, fertilizantes, defensivos, máquinas, crédito, pesquisa, assistência técnica.</li>
+      <li><strong>Dentro da porteira</strong> — a produção propriamente dita: preparo de solo, plantio, tratos, colheita, manejo do rebanho até o animal pronto.</li>
+      <li><strong>Depois da porteira</strong> (a jusante) — armazenagem, indústria, abate, logística, distribuição, varejo, consumo.</li>
+    </ul>
+    <p>Na pecuária de corte do Pampa isso é tangível: o produtor compra a montante (suplemento, sanidade, genética), produz dentro (cria, recria, engorda no campo nativo) e entrega a jusante (frigorífico, desossa, varejo, mesa do consumidor). Cada elo retém uma fatia do valor — e quase sempre a menor fica com quem produz.</p>
+
+    <h3>Por que isso importa para custos</h3>
+    <p>A propriedade é <strong>tomadora de preço dos dois lados</strong>: não define o preço do insumo que compra (boa parte dolarizada) nem o do produto que vende (cotação de mercado). Na soja isso é nítido — preço atado a Chicago, insumo atado ao dólar. É exatamente essa posição apertada entre dois preços que ela não controla que torna a gestão de custos <em>dentro</em> da porteira a principal alavanca de resultado. É o que o curso inteiro vai destrinchar.</p>
+
+    <h3>Uma visão ainda mais ampla</h3>
+    <p>Olhando além do agronegócio, fala-se em <strong>sistemas alimentares</strong>: toda a cadeia da produção ao consumo e ao descarte, com seus efeitos econômicos, sociais e ambientais. O HLPE (2014, p. 29) define sistema alimentar sustentável como aquele que assegura "a segurança alimentar e nutricional para todos com base em práticas econômicas, sociais e ambientais que não comprometem a segurança alimentar e nutricional das gerações futuras". Para uma aula de custos, fica a ideia-chave: as decisões dentro da porteira não param na porteira — repercutem em emprego, ambiente e alimentação (Grisa et al., 2022).</p>
+
+    <h3>O que controlamos e o que só monitoramos</h3>
+    <p>Quanto do resultado está, de fato, nas mãos do gestor? Um estudo de simulação no Cinturão do Milho dos EUA decompôs a variabilidade da <strong>dose econômica ótima de nitrogênio</strong> no milho em três fontes (Baum et al., 2024):</p>
+    <table class="ntable">
+      <caption>Fontes de variação da dose ótima de N no milho</caption>
+      <thead>
+        <tr><th>Fonte de variação</th><th>Sob decisão humana?</th><th class="num">Peso</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="cat">Ambiente</span>Clima entre anos e nitrogênio mineral no solo</td><td>Não — só monitorar</td><td class="num peso">41%</td></tr>
+        <tr><td><span class="cat">Manejo</span>Data de plantio, densidade, dose de N</td><td>Sim</td><td class="num peso">31%</td></tr>
+        <tr><td><span class="cat">Genética</span>Traços do híbrido (ex.: uso da radiação)</td><td>Sim, na escolha do híbrido</td><td class="num peso">27%</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="2">Manejo + genética — sob decisão humana</td><td class="num">≈ 58%</td></tr>
+      </tfoot>
+    </table>
+    <p>Perto de <strong>60% da variabilidade está sob decisão humana</strong>. O ambiente pesa, mas não manda sozinho. É a tradução numérica do que vem a seguir: o gestor separa o que pode mudar daquilo que só pode monitorar — e é isso que a análise SWOT organiza.</p>
+    <div class="callout success">
+      <strong>Ponto de conexão</strong>
+      O número vem da dose ótima de nitrogênio no milho, em simulação para o clima dos EUA — não é uma regra fixa para o RS. Vale como princípio, não como receita: boa parte do resultado responde a escolhas, desde que medidas e registradas.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== I.3 ===== -->
+<section class="block" id="planejamento">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">I.3</span>
     <span class="block-title">Planejamento do projeto produtivo</span>
     <span class="block-chevron"></span>
   </button>
@@ -256,10 +327,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   </div></div>
 </section>
 
-<!-- ===== I.3 ===== -->
+<!-- ===== I.4 ===== -->
 <section class="block" id="diagnostico">
   <button class="block-header" aria-expanded="false">
-    <span class="block-num">I.3</span>
+    <span class="block-num">I.4</span>
     <span class="block-title">Diagnóstico estratégico (SWOT)</span>
     <span class="block-chevron"></span>
   </button>
@@ -310,6 +381,15 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 </nav>
 
 <footer>
+  <div class="sources">
+    <strong>Fontes</strong>
+    <div class="src-item"><b>Davis, J. H.; Goldberg, R. A.</b> A Concept of Agribusiness. Boston: Harvard University, 1957. <a href="https://archive.org/details/conceptofagribus00davi" target="_blank" rel="noopener">archive.org</a></div>
+    <div class="src-item"><b>Miguel, L. A. et al.</b> Fundamentos para o estudo das unidades de produção agrícola. In: Miguel; Schreiner (org.). Gestão e Planejamento de Unidades de Produção Agrícola. 2. ed. Porto Alegre: Ed. da UFRGS, 2022. <a href="https://lume.ufrgs.br/handle/10183/240215" target="_blank" rel="noopener">lume.ufrgs.br</a></div>
+    <div class="src-item"><b>Grisa, C. et al. (org.).</b> Sistemas alimentares e territórios no Brasil. Porto Alegre: Ed. da UFRGS, 2022. <a href="https://lume.ufrgs.br/handle/10183/251530" target="_blank" rel="noopener">lume.ufrgs.br</a></div>
+    <div class="src-item"><b>HLPE.</b> Food losses and waste in the context of sustainable food systems. Roma: FAO, 2014. <a href="https://www.fao.org/cfs/cfs-hlpe/publications" target="_blank" rel="noopener">fao.org</a></div>
+    <div class="src-item"><b>Baum, M. E.; Sawyer, J. E.; Castellano, M. J.; Archontoulis, S. V.</b> Ranking genotype, environment, management effects on the optimum nitrogen rate for maize. Agronomy Journal, 2024. <a href="https://doi.org/10.1002/agj2.21596" target="_blank" rel="noopener">doi.org/10.1002/agj2.21596</a></div>
+    <div class="src-item"><b>Kay, R. D.; Edwards, W. M.; Duffy, P. A.</b> Farm Management. 8. ed. McGraw-Hill, 2014.</div>
+  </div>
   <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
 </footer>
 
