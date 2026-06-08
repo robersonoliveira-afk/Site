@@ -131,6 +131,15 @@ ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var
 .ntable .peso{font-weight:600;color:var(--terra)}
 .ntable tfoot td{background:var(--success-bg);font-weight:500;color:var(--ink);border-top:1px solid var(--olive)}
 
+/* FIGURA COM LIGHTBOX */
+.fig-zoom{margin:20px 0;text-align:center}
+.fig-zoom img{max-width:100%;border:1px solid var(--rule);cursor:zoom-in;transition:opacity 0.2s;display:block;margin:0 auto}
+.fig-zoom img:hover{opacity:0.88}
+.fig-zoom figcaption{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:7px}
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(20,20,18,0.92);z-index:200;align-items:center;justify-content:center;cursor:zoom-out;padding:16px}
+.lb-overlay.open{display:flex}
+.lb-overlay img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,0.5);object-fit:contain}
+
 /* NAV RODAPÉ */
 .partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
@@ -267,11 +276,27 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </ul>
     <p>Na pecuária de corte do Pampa isso é tangível: o produtor compra a montante (suplemento, sanidade, genética), produz dentro (cria, recria, engorda no campo nativo) e entrega a jusante (frigorífico, desossa, varejo, mesa do consumidor). Cada elo retém uma fatia do valor — e quase sempre a menor fica com quem produz.</p>
 
+    <figure class="fig-zoom">
+      <img src="Agro.png"
+           alt="Infográfico 'O Agronegócio: Um Sistema Integrado'. Três faixas verticais conectadas por setas laranja e verde: Antes da porteira, com sementes certificadas, fertilizantes, defensivos NPK, trator, pesquisa e desenvolvimento, assistência técnica e crédito; Dentro da porteira, com a fazenda — solo, plantio, colheita à esquerda e manejo do rebanho, cria, recria, engorda à direita, separados pela porteira ao centro; Depois da porteira, com armazenagem, indústria, abate, frigorífico, logística e transporte, varejo e distribuição, e mesa do consumidor. Rodapé: Agrícola e industrial não são economias separadas — Davis e Goldberg, 1957."
+           loading="lazy">
+      <figcaption>O agronegócio como sistema integrado. Toque para ampliar.</figcaption>
+    </figure>
+
     <h3>Por que isso importa para custos</h3>
     <p>A propriedade é <strong>tomadora de preço dos dois lados</strong>: não define o preço do insumo que compra (boa parte dolarizada) nem o do produto que vende (cotação de mercado). Na soja isso é nítido — preço atado a Chicago, insumo atado ao dólar. É exatamente essa posição apertada entre dois preços que ela não controla que torna a gestão de custos <em>dentro</em> da porteira a principal alavanca de resultado. É o que o curso inteiro vai destrinchar.</p>
 
     <h3>Uma visão ainda mais ampla</h3>
     <p>Olhando além do agronegócio, fala-se em <strong>sistemas alimentares</strong>: toda a cadeia da produção ao consumo e ao descarte, com seus efeitos econômicos, sociais e ambientais. O HLPE (2014, p. 29) define sistema alimentar sustentável como aquele que assegura "a segurança alimentar e nutricional para todos com base em práticas econômicas, sociais e ambientais que não comprometem a segurança alimentar e nutricional das gerações futuras". Para uma aula de custos, fica a ideia-chave: as decisões dentro da porteira não param na porteira — repercutem em emprego, ambiente e alimentação (Grisa et al., 2022).</p>
+
+    <p>O mapa abaixo, da organização Nourish Life (EUA), representa o sistema alimentar como uma rede de conexões: cada nó é um ator ou processo, cada seta é uma relação de influência. O ponto a perceber não é decorar os nós — é enxergar que a decisão de um afeta todos os outros.</p>
+
+    <figure class="fig-zoom">
+      <img src="https://www.nourishlife.org/wp-content/uploads/2020/10/food_system_map-01.jpg"
+           alt="Mapa de sistemas alimentares da Nourish Life: representação em rede das conexões entre produção agrícola, processamento, distribuição, consumo e descarte de alimentos, com destaque para impactos em saúde, meio ambiente, economia e comunidade. O diagrama mostra atores como agricultores, indústria, varejo, governo e consumidores interligados por setas de influência mútua."
+           loading="lazy">
+      <figcaption>Mapa do sistema alimentar — Nourish Life. Toque para ampliar.</figcaption>
+    </figure>
 
     <h3>O que controlamos e o que só monitoramos</h3>
     <p>Quanto do resultado está, de fato, nas mãos do gestor? Um estudo de simulação no Cinturão do Milho dos EUA decompôs a variabilidade da <strong>dose econômica ótima de nitrogênio</strong> no milho em três fontes (Baum et al., 2024):</p>
@@ -423,6 +448,25 @@ window.addEventListener('load',()=>{
 const backBtn=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{if(window.scrollY>600)backBtn.classList.add('visible');else backBtn.classList.remove('visible');});
 backBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// lightbox
+document.querySelectorAll('.fig-zoom img').forEach(img=>{
+  img.addEventListener('click',()=>{
+    let ov=document.getElementById('lbOverlay');
+    if(!ov){
+      ov=document.createElement('div');
+      ov.id='lbOverlay';
+      ov.className='lb-overlay';
+      const i=document.createElement('img');
+      ov.appendChild(i);
+      document.body.appendChild(ov);
+      ov.addEventListener('click',()=>ov.classList.remove('open'));
+    }
+    ov.querySelector('img').src=img.src;
+    ov.querySelector('img').alt=img.alt;
+    ov.classList.add('open');
+  });
+});
 </script>
 
 </body>
