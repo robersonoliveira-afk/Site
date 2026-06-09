@@ -89,6 +89,20 @@ body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-s
 .quizcard .qc-cta{margin-top:18px;display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mustard)}
 .quizcard .qc-cta::after{content:"→";font-size:15px}
 
+/* ===== MAPA DO CURSO ===== */
+.coursemap{padding:28px 22px 22px;border-bottom:1px solid var(--rule)}
+.coursemap .cm-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.coursemap .cm-eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cm-item{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;background:#fff;border:1px solid var(--rule);border-left:3px solid transparent;text-decoration:none;transition:border-left-color 0.2s}
+.cm-item:hover{border-left-color:var(--mustard)}
+.cm-item .cm-num{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;line-height:1;min-width:24px;padding-top:1px}
+.cm-item .cm-title{display:block;font-family:'Fraunces',serif;font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.2}
+.cm-item .cm-sub{display:block;font-size:11px;color:var(--stone);line-height:1.3;margin-top:3px}
+.cm-item.mov-e .cm-num{color:var(--olive)}
+.cm-item.mov-m .cm-num{color:var(--mustard)}
+.cm-item.mov-d .cm-num{color:var(--terra)}
+
 /* ===== FOOTER ===== */
 footer{padding:34px 22px 40px;border-top:1px solid var(--rule);margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
 footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
@@ -105,7 +119,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 .vidcard .vc-desc{font-size:13.5px;color:var(--stone);line-height:1.5;margin-bottom:14px}
 .vidcard .vc-cta{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--terra)}
 .vidcard .vc-cta::after{content:"\2192";font-size:15px}
-  .header-bar,.intro,.movement,.quizcard-wrap,.vidcard-wrap,footer{padding-left:max(22px,calc(50% - 340px));padding-right:max(22px,calc(50% - 340px))}
+  .header-bar,.intro,.coursemap,.movement,.vidcard-wrap,footer{padding-left:max(22px,calc(50% - 340px));padding-right:max(22px,calc(50% - 340px))}
+  .cm-grid{grid-template-columns:repeat(3,1fr)}
   .header-banner{max-height:460px;object-fit:cover;object-position:center}
   .intro h2{font-size:30px}
 }
@@ -645,10 +660,41 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <div class="eyebrow">Guia de estudo · Gestão e Projetos</div>
   <h2>Da porteira à planilha: <em>medir para decidir</em></h2>
   <p>
-Este guia reúne, em um único local acessível, os principais conceitos da disciplina Gestão de Custos e Projetos Agropecuários.
+Este guia reúne, em um único local acessível, os principais conceitos das disciplinas: Gestão de Custos e Projetos Agropecuários (Técnico em Agricultura), Administração Rural e Projetos Zootécnicos (Técncico em Zootecnia), Gestão de Custos e Projetos em Agricultura de Precisão (Técnico em Agricultura de Precisão) e Gestão de Custos na Agricultura (Técnico em Agricultura). O material traz um módulo final de projeto, que propõe a elaboração de uma nota técnica e defesa oral do projeto.
 Organizado em seis partes, o material acompanha três movimentos pedagógicos: primeiro <strong>entender</strong> a propriedade como empresa; depois <strong>medir</strong> seus custos com método; e, por fim, <strong>decidir</strong> com base em números.
-O conteúdo foi pensado para atender às necessidades de estudantes dos cursos do Eixo Tecnológico Recursos Naturais, futuros Técnicos Agrícolas.
+O material é resultado de um trabalho de sistematização e organização dos conteúdos, pensado para facilitar a compreensão e aplicação dos conceitos pelos estudantes. Espera-se que atenda às necessidades de estudantes dos cursos do Eixo Tecnológico Recursos Naturais, futuros Técnicos Agrícolas.
 </p>
+</section>
+
+<!-- ===== MAPA DO CURSO ===== -->
+<section class="coursemap">
+  <div class="cm-eyebrow">Mapa do curso · 6 partes</div>
+  <div class="cm-grid">
+    <a class="cm-item mov-e" href="parte-1.html">
+      <span class="cm-num">I</span>
+      <span><span class="cm-title">Fundamentos</span><span class="cm-sub">Mov. 1 · Entender</span></span>
+    </a>
+    <a class="cm-item mov-m" href="parte-2.html">
+      <span class="cm-num">II</span>
+      <span><span class="cm-title">Estrutura de custos</span><span class="cm-sub">Mov. 2 · Medir</span></span>
+    </a>
+    <a class="cm-item mov-d" href="parte-3.html">
+      <span class="cm-num">III</span>
+      <span><span class="cm-title">Análise econômica</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
+    </a>
+    <a class="cm-item mov-d" href="parte-4.html">
+      <span class="cm-num">IV</span>
+      <span><span class="cm-title">Contexto operacional</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
+    </a>
+    <a class="cm-item mov-d" href="parte-5.html">
+      <span class="cm-num">V</span>
+      <span><span class="cm-title">Módulos aplicados</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
+    </a>
+    <a class="cm-item mov-d" href="parte-6.html">
+      <span class="cm-num">VI</span>
+      <span><span class="cm-title">Projeto final</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
+    </a>
+  </div>
 </section>
 
 <!-- ===== MOVIMENTO 1 · ENTENDER ===== -->
@@ -714,16 +760,6 @@ O conteúdo foi pensado para atender às necessidades de estudantes dos cursos d
   </div>
 </section>
 
-<!-- ===== CARD QUIZ GERAL ===== -->
-<div class="quizcard-wrap">
-  <a class="quizcard" href="quiz-geral.html">
-    <div class="qc-eyebrow">Autoavaliação geral</div>
-    <div class="qc-title">Que tipo de gestor você é?</div>
-    <p class="qc-desc">Situações reais de campo que medem sua mentalidade diante do custo e da decisão — do Operador ao Técnico estratégico. Sem resposta decorada: o resultado aponta o próximo passo da sua formação.</p>
-    <div class="qc-note">Responda só depois de percorrer os 3 movimentos propostos: entender, medir, decidir e aplicar. O quiz pressupõe os conceitos desenvolvidos nos movimentos.</div>
-    <span class="qc-cta">Fazer a autoavaliação</span>
-  </a>
-</div>
 
 <footer>
   <strong>Sobre este material</strong>
