@@ -107,7 +107,7 @@ h1.title em{font-style:italic;color:var(--terra);font-weight:500}
 .block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
 .block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
 .block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.block.open .block-body{max-height:6000px}
+.block.open .block-body{max-height:9000px}
 .block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
 .block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
 .block-content p strong{color:var(--ink);font-weight:600}
@@ -323,6 +323,23 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <div class="block-body"><div class="block-content">
     <p>O crédito rural é o principal instrumento de financiamento do produtor que não dispõe de capital próprio suficiente. Criado pela Lei nº 4.829/1965 e regulamentado pelo <strong>Manual de Crédito Rural (MCR)</strong> do Banco Central, importa ao técnico por duas razões práticas: muitos projetos que ele elaborará serão submetidos a bancos e precisam estar nos moldes exigidos; e os juros do crédito são <em>um componente do custo total</em> do projeto.</p>
 
+    <h3>Crédito rural × crédito livre</h3>
+    <p>O crédito rural existe como política pública porque o crédito livre é caro demais para a agropecuária. A comparação de taxas mostra a escala do benefício:</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Modalidade</th><th>Taxa aprox. (a.a.)</th><th></th></tr>
+      <tr><td><strong>Cartão de crédito rotativo</strong></td><td class="num">~440%</td><td class="no">Crédito livre — proibido para uso rural</td></tr>
+      <tr><td><strong>Cheque especial</strong></td><td class="num">~134%</td><td class="no">Crédito livre — emergencial</td></tr>
+      <tr><td><strong>Crédito rural — demais produtores</strong></td><td class="num">12 a 20%</td><td>Regulado pelo MCR</td></tr>
+      <tr><td><strong>Pronamp</strong></td><td class="num">7 a 10%</td><td class="ok">Subsidiado — médio produtor</td></tr>
+      <tr><td><strong>Pronaf</strong></td><td class="num">2 a 6%</td><td class="ok">Fortemente subsidiado — agricultura familiar</td></tr>
+    </table>
+    </div>
+    <div class="callout success">
+      <strong>O crédito rural não é gratuito — mas é regulado</strong>
+      Para um produtor familiar que financia R$ 100 mil por 6 meses: Pronaf a 4% a.a. = R$ 2.000 em juros; cheque especial a 134% a.a. = R$ 67.000 no mesmo período. A linha subsidiada pode ser a diferença entre viabilidade e inviabilidade do projeto.
+    </div>
+
     <div class="callout">
       <strong>Atenção · dados que mudam a cada Plano Safra</strong>
       Taxas, limites e faixas de renda abaixo são referências da apostila. Eles são revistos anualmente. Sempre confirmar os valores vigentes no Plano Safra e no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank" rel="noopener">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
@@ -369,11 +386,17 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td><strong>Proirriga</strong> — irrigação, cultivo protegido e tela antigranizo na fruticultura</td><td>até R$ 3,5 mi (indiv.) / R$ 10,5 mi (coletivo)</td><td class="num">12,5%</td></tr>
       <tr><td><strong>Pronaf Agroecologia</strong> — sistemas de base agroecológica ou orgânica, bioinsumos, sementes crioulas</td><td>até R$ 250 mil (R$ 450 mil em algumas atividades)</td><td class="num">3%</td></tr>
       <tr><td><strong>Pronaf Jovem</strong> — jovem de 16 a 29 anos com formação rural: estrutura produtiva e equipamentos</td><td>até R$ 35 mil</td><td class="num">3%</td></tr>
+      <tr><td><strong>RenovAgro</strong> — recuperação de pastagens degradadas, integração lavoura-pecuária-floresta (ILPF), plantio direto, sistemas de baixo carbono e produção sustentável</td><td>até R$ 5 mi (PF) / R$ 25 mi (coletivo)</td><td class="num">8,5 a 10%</td></tr>
+      <tr><td><strong>Inovagro</strong> — agricultura de precisão: sensores, drones, automação, sistemas de gestão e conectividade rural</td><td>até R$ 1,3 mi (PF)</td><td class="num">8,5%</td></tr>
     </table>
     </div>
     <div class="callout">
       <strong>Atenção · isto muda a cada ciclo</strong>
       Os números das duas tabelas são de um Plano Safra específico, reproduzidos apenas como ilustração. As condições — taxas, limites, prazos e carências — são redefinidas todo ano agrícola (1º de julho a 30 de junho). Antes de orçar um projeto, confirme sempre no Plano Safra e no MCR vigentes.
+    </div>
+    <div class="callout success">
+      <strong>Desconto sustentabilidade</strong>
+      Produtores com CAR regularizado que adotam boas práticas ambientais (agricultura orgânica, Boas Práticas Agropecuárias — BPA, ou financiamento via RenovAgro) podem obter redução de até 0,5 ponto percentual na taxa. Os dois critérios podem acumular, chegando a 1 p.p. de desconto. Verificar disponibilidade no Plano Safra vigente e confirmar com o agente financeiro.
     </div>
 
     <h3>Como o produtor acessa o crédito</h3>
@@ -437,6 +460,20 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       Se o produtor usa capital próprio, o custo de oportunidade desse capital (Selic ou CDI) entra como custo implícito no <em>Custo Total</em>. O dinheiro aplicado na lavoura deixou de render na renda fixa — e a Parte III já tratou a Rentabilidade ÷ CT exatamente por isso.
     </div>
 
+    <h3>Custo Efetivo Total (CET)</h3>
+    <p>A taxa nominal do contrato não é o custo real. O <strong>Custo Efetivo Total (CET)</strong> soma juros + IOF + taxa de cadastro + prêmio de seguro + demais encargos autorizados pelo MCR 2-3-1 — e é o número que permite comparar propostas de bancos diferentes. No crédito rural, o banco é obrigado a informar o <strong>CETCR</strong> antes da assinatura do contrato (MCR 2-3-15).</p>
+    <div class="formula">
+      <span class="label">Exemplo · custeio a 10% a.a. por 6 meses</span>
+      Taxa nominal:     10% a.a.
+      CET sem seguro: ~15,4% a.a.   (+ IOF + taxa de cadastro)
+      CET com seguro: ~25,0% a.a.   (+ prêmio do Proagro ou seguro privado)
+    </div>
+    <p>Encargos autorizados (MCR 2-3-1): juros, IOF, taxa de risco de crédito, prêmio de seguro rural contratado pelo produtor e taxa de emissão de boleto. Qualquer cobrança fora dessa lista é vedada.</p>
+    <div class="callout">
+      <strong>Venda casada — proibida (MCR 2-1-18)</strong>
+      O banco não pode condicionar o crédito rural à contratação de seguro de vida, título de capitalização, consórcio ou pacote de serviços bancários. Essa prática é <em>venda casada</em>, vedada pelo MCR e pelo Código de Defesa do Consumidor. Reclamações: Banco Central 0800 979 2345 ou aplicativo Registra BO.
+    </div>
+
     <h3>Passo a passo: acessar o crédito pelo Pronaf</h3>
     <p>Para a agricultura familiar — renda bruta familiar de até cerca de R$ 500 mil por ano —, o caminho até o crédito tem três passos. No RS, a <a href="https://www.emater.tche.br/" target="_blank" rel="noopener">EMATER/RS</a> costuma ser a porta de entrada: emite documentos e ajuda a montar o projeto, sem custo. É também o papel que o técnico em agropecuária vai exercer.</p>
 
@@ -463,8 +500,25 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <ul class="bullets">
       <li>O banco confere os documentos (CAF-Pronaf, projeto, consulta a SPC/Serasa — não pode haver restrição), analisa o projeto, formaliza o contrato e libera os recursos conforme o cronograma.</li>
       <li><strong>Garantias:</strong> penhor da safra ou aval; nos grupos A e B, a proposta pode ser simplificada, sem garantia real — mas o CAR é exigido.</li>
-      <li>No RS operam, entre outros: Banco do Brasil, Sicredi, Sicoob, Cresol e Caixa.</li>
+      <li>No RS operam, entre outros: Banrisul, Banco do Brasil, Sicredi, Sicoob, Cresol e Caixa.</li>
     </ul>
+
+    <h3>Checklist de documentos para o banco</h3>
+    <p>O banco verifica quatro grupos. O custeio costuma exigir menos — projeto, CAF e ZARC são o núcleo; o investimento pede documentação completa. Use como lista de verificação antes de marcar a reunião com o agente.</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Grupo</th><th>Documentos principais</th></tr>
+      <tr><td><strong>1 · Produtor</strong></td><td>Proposta de financiamento rural assinada · CAF-Pronaf válido (Pronaf) ou comprovação de renda (Pronamp) · Inscrição estadual ou declaração de IR (exceto Pronaf)</td></tr>
+      <tr><td><strong>2 · Empreendimento</strong></td><td>Projeto técnico (orçamento de custeio ou de investimento) · Licença ambiental ou documento de regularidade (DCAA) · Outorga de uso de recursos hídricos (irrigação) · Ficha sanitária estadual — validade máx. 1 ano (custeio/investimento pecuário) · Nota fiscal + GTA (aquisição de animais) · Proposta do fabricante com código FINAME (compra de máquinas)</td></tr>
+      <tr><td><strong>3 · Imóvel rural</strong></td><td>Recibo de inscrição no CAR · CND do ITR ou comprovante dos últimos 5 anos (exceto Pronaf) · Certidão de Inteiro Teor da Matrícula ou Certidão de Ônus · Documento de posse · Contrato de arrendamento/comodato registrado em cartório — válido até o vencimento (imóvel de terceiros)</td></tr>
+      <tr><td><strong>4 · Garantia</strong></td><td>Documento de propriedade do bem · CCIR — Certificado de Cadastro de Imóvel Rural (imóvel rural) · CND do ITR dos últimos 5 anos (imóvel rural) · CND de IPTU/TLP (imóvel urbano)</td></tr>
+    </table>
+    </div>
+
+    <div class="callout">
+      <strong>Crédito não é receita</strong>
+      O financiamento entra no caixa, mas não é resultado: vai sair com juros. Um erro frequente em projetos de alunos é lançar o crédito recebido como receita, superestimando o resultado e escondendo o déficit. No fluxo de caixa, o crédito entra como <em>entrada de financiamento</em>; as parcelas + juros saem como <em>despesa financeira</em>. Só o que ficou com o produtor no fim do ciclo é resultado.
+    </div>
 
     <div class="callout success">
       <strong>O ciclo se fecha no controle</strong>
