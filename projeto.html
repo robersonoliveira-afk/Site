@@ -526,7 +526,8 @@
 
   <!-- ferramentas -->
   <div class="toolbar no-print">
-    <button class="btn ghost" id="exemplo">carregar exemplo (São Gabriel)</button>
+    <button class="btn ghost" id="exemplo">carregar exemplo (São Gabriel — soja)</button>
+    <button class="btn ghost" id="exemplo-uva">carregar exemplo (Uva BRS Magna)</button>
     <button class="btn ghost" id="exportar">exportar JSON</button>
     <button class="btn ghost" id="importar">importar JSON</button>
     <button class="btn ghost" id="reiniciar">reiniciar</button>
@@ -1341,6 +1342,37 @@ const EXEMPLO = {
 };
 
 // ===========================================================================
+// EXEMPLO — Uva BRS Magna / Campanha Gaúcha (PF, perenes, 1 ha)
+// Fonte: Estudo de Caso "A implantação de 1 ha de Uva BRS Magna" (27 slides)
+// Investimento total: R$ 104.000 | COE: R$ 15.000/ano | RB: 18.000 kg × R$ 4,00
+// ===========================================================================
+const EXEMPLO_UVA = {
+  identificacao:{projeto:"Implantação de 1 ha de Uva BRS Magna — Campanha Gaúcha/RS",
+    produtor:"Produtor exemplo (PF)", unidade:"Vinhedo BRS Magna", municipio:"Campanha Gaúcha/RS", data:""},
+  template:"perenes", fiscal:"PF",
+  p1:{produto:"Uva BRS Magna", qtd:"1", unQtd:"ha", prod:"18000", unProd:"kg/ha", preco:"4", unPreco:"R$/kg", secDesc:"", secValor:"", comerc:""},
+  p2:{campos:{especie:"BRS Magna / raiz própria", espacamento:"2,8 × 1,8 m", plantas_ha:"2083", ano_impl:"2024", fase:"Produção", podas:"2", adub_perene:"NPK anual + calcário conforme laudo", fitossan:"8", irrigacao:"Sim"},
+    observacoes:"Vinhedo adulto em plena produção. Espaldeira, espaçamento 2,8 × 1,8 m (2.083 plantas/ha). Poda de inverno (jul/ago) define o potencial da safra; colheita jan/fev. Irrigação localizada por gotejamento. Manejo fitossanitário preventivo durante todo o ciclo produtivo."},
+  p3:{itens:[
+    {desc:"Mão de obra (manejo e colheita)", cat:"Mão de obra (tratos)", un:"ha", qtd:"1", preco:"10650"},
+    {desc:"Insumos — adubação e tratamentos fitossanitários", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"4050"},
+    {desc:"Energia elétrica (irrigação por gotejamento)", cat:"Energia/água", un:"ha", qtd:"1", preco:"300"},
+  ], seguro:"", ater:"", juros:""},
+  p4:{bens:[{desc:"Estrutura do vinhedo — postes, arames, irrigação, mudas (implantação total)", aq:"104000", res:"0", vida:"15"}],
+    prolabore:"", outros:"", taxaCapital:"", arrendamento:"", area:""},
+  p5:{cultura:"uva",
+    itens:[
+      {desc:"Estrutura — postes (595 un.) e arames (28 rolos)", un:"ha", qtd:"1", preco:"49525"},
+      {desc:"Sistema de irrigação — mangueiras e gotejadores", un:"ha", qtd:"1", preco:"5200"},
+      {desc:"Mudas BRS Magna (2.083 un.) + tela espaldeira", un:"ha", qtd:"1", preco:"33379"},
+      {desc:"Insumos de base — calcário, MAP, KCl, ureia", un:"ha", qtd:"1", preco:"2299"},
+      {desc:"Mão de obra de implantação (15% dos materiais)", un:"ha", qtd:"1", preco:"13560"},
+    ],
+    area:"1", form:"2", vida:"15"},
+  p6:{custoFormacao:"9000", taxaDesconto:"6"},
+};
+
+// ===========================================================================
 // NAVEGAÇÃO
 // ===========================================================================
 const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","dossiê"];
@@ -1401,7 +1433,8 @@ el('add-imp').addEventListener('click',()=>{addImp();recalc();});
 el('prev').addEventListener('click',()=>vizinho(-1));
 el('next').addEventListener('click',()=>vizinho(1));
 el('print').addEventListener('click',()=>window.print());
-el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
+el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel (soja)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
+el('exemplo-uva').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Uva BRS Magna (Campanha Gaúcha)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_UVA); renderSteps(); recalc(); irPara(0); }});
 el('exportar').addEventListener('click',()=>{
   const E=coletarTudo();
   const blob=new Blob([JSON.stringify(E,null,2)],{type:'application/json'});
