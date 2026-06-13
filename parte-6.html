@@ -224,6 +224,13 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
   h1.title{font-size:36px}
 }
+.go-dash{display:flex;align-items:center;gap:16px;margin-top:8px;padding:18px 20px;background:var(--terra);color:var(--paper);text-decoration:none;transition:transform .15s,box-shadow .2s}
+.go-dash:hover{transform:translateX(2px);box-shadow:-4px 0 0 var(--terra-deep)}
+.go-dash .gd-icon{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:600;line-height:1;flex-shrink:0}
+.go-dash .gd-body{min-width:0}
+.go-dash .gd-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;margin-bottom:4px}
+.go-dash .gd-title{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.2}
+.go-dash .gd-arrow{margin-left:auto;font-size:20px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -273,6 +280,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </ol>
   </div>
 </nav>
+
+<!-- ===== Ferramenta: simulador de projeto ===== -->
+<a class="go-dash" href="projeto.html">
+  <span class="gd-icon">&#9636;</span>
+  <span class="gd-body">
+    <span class="gd-eyebrow">Ferramenta &middot; simulador &middot; 8 passos</span>
+    <span class="gd-title">Projeto Agropecuário</span>
+  </span>
+  <span class="gd-arrow">&#8594;</span>
+</a>
 
 <!-- ===== AULA VI.1 ===== -->
 <section class="block" id="projeto-final">
