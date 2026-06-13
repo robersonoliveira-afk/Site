@@ -156,8 +156,15 @@
   /* navegação inferior */
   .nav{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
   .nav .right{display:flex;gap:8px}
-  .toolbar{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--linha);margin-top:24px;padding-top:16px}
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid var(--linha);margin-top:24px;padding-top:16px}
   .toolbar .sp{flex:1}
+  .ex-grupo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ex-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:#6a6354;white-space:nowrap}
+  .ex-cards{display:flex;gap:6px}
+  .ex-card{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 18px;border:1px solid var(--linha);border-radius:8px;background:none;cursor:pointer;font-family:var(--sans);color:var(--tinta);transition:background .15s,border-color .15s}
+  .ex-card .ex-icon{font-size:1.4rem;line-height:1.1}
+  .ex-card .ex-nome{font-size:.76rem;font-weight:500;letter-spacing:.01em}
+  .ex-card:hover{background:var(--papel-2);border-color:var(--oliva)}
   .saved{font-family:var(--mono);font-size:.74rem;color:#8a8270;align-self:center}
 
   section[data-step]{display:none}
@@ -529,14 +536,16 @@
 
   <!-- ferramentas -->
   <div class="toolbar no-print">
-    <button class="btn ghost" id="exemplo">carregar exemplo (São Gabriel — soja)</button>
-    <button class="btn ghost" id="exemplo-uva">carregar exemplo (Uva BRS Magna)</button>
-    <button class="btn ghost" id="exemplo-bovinos">carregar exemplo (Bovinos de corte)</button>
-    <button class="btn ghost" id="exportar">exportar JSON</button>
-    <button class="btn ghost" id="importar">importar JSON</button>
-    <button class="btn ghost" id="reiniciar">reiniciar</button>
-    <input type="file" id="arquivo" accept="application/json" style="display:none">
+    <div class="ex-grupo">
+      <span class="ex-label">Veja um exemplo de projeto:</span>
+      <div class="ex-cards">
+        <button class="ex-card" id="exemplo"><span class="ex-icon">🌾</span><span class="ex-nome">Soja</span></button>
+        <button class="ex-card" id="exemplo-uva"><span class="ex-icon">🍇</span><span class="ex-nome">Uva</span></button>
+        <button class="ex-card" id="exemplo-bovinos"><span class="ex-icon">🐄</span><span class="ex-nome">Bovinos</span></button>
+      </div>
+    </div>
     <span class="sp"></span>
+    <button class="btn ghost" id="reiniciar">reiniciar</button>
     <span class="saved" id="saved"></span>
   </div>
 
@@ -1475,19 +1484,6 @@ el('print').addEventListener('click',()=>window.print());
 el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel (soja)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
 el('exemplo-uva').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Uva BRS Magna (Campanha Gaúcha)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_UVA); renderSteps(); recalc(); irPara(0); }});
 el('exemplo-bovinos').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Recria de bovinos de corte (Braford)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_BOVINOS); renderSteps(); recalc(); irPara(0); }});
-el('exportar').addEventListener('click',()=>{
-  const E=coletarTudo();
-  const blob=new Blob([JSON.stringify(E,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='projeto_viabilidade.json';a.click();URL.revokeObjectURL(a.href);
-});
-el('importar').addEventListener('click',()=>el('arquivo').click());
-el('arquivo').addEventListener('change',e=>{
-  const f=e.target.files[0];if(!f)return;
-  const r=new FileReader();
-  r.onload=()=>{ try{ aplicarEstado(JSON.parse(r.result)); renderSteps(); recalc(); irPara(0); }catch(err){ alert('JSON inválido: '+err.message); } };
-  r.readAsText(f); e.target.value='';
-});
 el('reiniciar').addEventListener('click',()=>{
   if(confirm('Reiniciar o projeto? Tudo será apagado.')){
     try{localStorage.removeItem(KEY);}catch(e){}
