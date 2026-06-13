@@ -20,7 +20,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projeto Agropecuário</title>
+<title>Simulador de Projeto Agropecuário · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Simulador de projeto agropecuário — preencha em 8 etapas e gere dossiê com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/projeto.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -223,6 +225,7 @@
 </style>
 </head>
 <body>
+<noscript><p style="background:#fff3cd;color:#856404;padding:12px 16px;margin:0;font-family:sans-serif">O simulador requer JavaScript. Ative o JavaScript no seu navegador para usar esta ferramenta.</p></noscript>
 <div class="wrap">
 
   <div class="top">
@@ -1316,7 +1319,7 @@ function montarDossie(C){
   const bViz='<div class="bloco"><h2><span class="n">6</span>Leitura visual e indicadores</h2>'+visuaisHTML(vViz)+'</div>';
   const hoje=id.data||new Date().toLocaleDateString('pt-BR');
   const head='<div class="doc-head"><p class="eyebrow">dossiê de viabilidade · '+esc(tpl.nome.toLowerCase())+'</p>'+
-    '<h1>'+esc(id.projeto||'Projeto de viabilidade agropecuária')+'</h1><div class="meta">'+
+    '<h2>'+esc(id.projeto||'Projeto de viabilidade agropecuária')+'</h2><div class="meta">'+
     (id.produtor?'<span>produtor: <b>'+esc(id.produtor)+'</b></span>':'')+
     (id.unidade?'<span>unidade: <b>'+esc(id.unidade)+'</b></span>':'')+
     (id.municipio?'<span>município: <b>'+esc(id.municipio)+'</b></span>':'')+

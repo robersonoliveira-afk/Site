@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crédito rural RS — custeio e investimento</title>
+<meta name="description" content="Painel interativo de crédito rural no Rio Grande do Sul — custeio e investimento por município (2013–2026). Dados do Banco Central do Brasil.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/credito.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -126,12 +128,17 @@
     #map{height:400px}
     #filters{padding:12px 16px}#content{padding:16px}
   }
+  .back-link{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:#4a6741;text-decoration:none;margin:12px 16px 0;opacity:.75;transition:opacity .15s}
+  .back-link:hover{opacity:1;color:#a8552e}
+  @media print{.no-print{display:none}}
 </style>
 </head>
 
 <body>
+<noscript><p style="background:#fff3cd;color:#856404;padding:12px 16px;margin:0;font-family:sans-serif">Este painel requer JavaScript para carregar os dados. Ative o JavaScript no seu navegador.</p></noscript>
 <div id="loading"><div class="spinner"></div><div style="color:var(--muted);font-size:.9rem">Carregando dados…</div></div>
 
+<a href="index.html" class="back-link no-print">&#8592; voltar ao índice</a>
 <header>
   <h1>Crédito rural — Rio Grande do Sul</h1>
   <div class="sub">Custeio e investimento · 2013–2026 · 496 municípios</div>
