@@ -528,6 +528,7 @@
   <div class="toolbar no-print">
     <button class="btn ghost" id="exemplo">carregar exemplo (São Gabriel — soja)</button>
     <button class="btn ghost" id="exemplo-uva">carregar exemplo (Uva BRS Magna)</button>
+    <button class="btn ghost" id="exemplo-bovinos">carregar exemplo (Bovinos de corte)</button>
     <button class="btn ghost" id="exportar">exportar JSON</button>
     <button class="btn ghost" id="importar">importar JSON</button>
     <button class="btn ghost" id="reiniciar">reiniciar</button>
@@ -1373,6 +1374,41 @@ const EXEMPLO_UVA = {
 };
 
 // ===========================================================================
+// EXEMPLO — Recria de bovinos de corte / Braford (PF, anuais, 50 cab.)
+// Fonte: Projeto Técnico "Recria de bovinos de corte" — Santa Maria/RS
+// RB: 50 cab. × 320 kg × R$ 9,50 = R$ 152.000 | COE: R$ 83.900 | Dep: R$ 20.500
+// ===========================================================================
+const EXEMPLO_BOVINOS = {
+  identificacao:{projeto:"Recria de bovinos de corte — terneiras Braford (50 cabeças)",
+    produtor:"João Silva (PF)", unidade:"Pecuária de corte — recria", municipio:"Santa Maria/RS", data:""},
+  template:"anuais", fiscal:"PF",
+  p1:{produto:"Novilhas Braford para entoure (320 kg)", qtd:"50", unQtd:"cab.", prod:"320", unProd:"kg/cab.", preco:"9.5", unPreco:"R$/kg", secDesc:"", secValor:"", comerc:""},
+  p2:{campos:{sistema:"Recria em campo nativo (30 ha — Campanha Gaúcha)", cultivar:"Terneiras Braford (8 meses, 160 kg)", mes_plantio:"mar", mes_colheita:"mar", adub_base:"Calcário 1 t/ha (3 anos) + 100 kg 05-25-25/ha", ap_fung:"4"},
+    observacoes:"Recria de 50 terneiras Braford de 160 kg (8 meses) até 320 kg para novilhas de entoure de outono. Ciclo de 12 meses em 30 ha de campo nativo. GMD esperado: 0,44 kg/dia. Lotação: 1,67 cab./ha. Suplementação mineral à vontade (sal específico para recria). Manejo sanitário: vermífugo mai/jun; parasiticida injetável set + pour-on out; carrapaticida jan/fev/abr. Um mês antes da venda, avaliar apitidão reprodutiva — inaptas encaminhar para engorda."},
+  p3:{itens:[
+    {desc:"Aquisição de terneiras Braford (160 kg, 8 meses)", cat:"Animais/mudas", un:"cab.", qtd:"50", preco:"1364.80"},
+    {desc:"Transporte externo (compra e venda)", cat:"Outros", un:"km", qtd:"100", preco:"8"},
+    {desc:"Vermífugos e parasiticidas", cat:"Agrotóxicos", un:"L", qtd:"1", preco:"160"},
+    {desc:"Sal mineral para recria", cat:"Outros", un:"saco 25 kg", qtd:"50", preco:"88"},
+    {desc:"Vacinas (calendário sanitário)", cat:"Outros", un:"cab.", qtd:"50", preco:"10"},
+    {desc:"Carrapaticida e mosquicida (3 aplicações)", cat:"Agrotóxicos", un:"dose", qtd:"3", preco:"300"},
+    {desc:"Medicamentos diversos", cat:"Outros", un:"vb", qtd:"1", preco:"300"},
+    {desc:"Outros insumos e custos variáveis", cat:"Outros", un:"vb", qtd:"1", preco:"600"},
+    {desc:"Mão de obra (manejo e trato)", cat:"Mão de obra (tratos)", un:"vb", qtd:"1", preco:"3000"},
+    {desc:"Serviços gerais", cat:"Outros", un:"vb", qtd:"1", preco:"500"},
+    {desc:"Manutenção de máquinas e benfeitorias", cat:"Operações/mecanização", un:"vb", qtd:"1", preco:"500"},
+    {desc:"Despesas administrativas", cat:"Outros", un:"vb", qtd:"1", preco:"500"},
+  ], seguro:"", ater:"1000", juros:"2500"},
+  p4:{bens:[
+    {desc:"Trator Massey 75 CV (2000)", aq:"90000", res:"0", vida:"10"},
+    {desc:"Plantadeira PANTHER 9000 Vence Tudo (2008)", aq:"85000", res:"0", vida:"10"},
+    {desc:"Pulverizador Cross 2200 L (2020)", aq:"30000", res:"0", vida:"10"},
+  ], prolabore:"", outros:"", taxaCapital:"", arrendamento:"", area:"30"},
+  p5:{cultura:"", itens:[], area:"", form:"", vida:""},
+  p6:{custoFormacao:"", taxaDesconto:""},
+};
+
+// ===========================================================================
 // NAVEGAÇÃO
 // ===========================================================================
 const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","dossiê"];
@@ -1435,6 +1471,7 @@ el('next').addEventListener('click',()=>vizinho(1));
 el('print').addEventListener('click',()=>window.print());
 el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel (soja)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
 el('exemplo-uva').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Uva BRS Magna (Campanha Gaúcha)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_UVA); renderSteps(); recalc(); irPara(0); }});
+el('exemplo-bovinos').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Recria de bovinos de corte (Braford)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_BOVINOS); renderSteps(); recalc(); irPara(0); }});
 el('exportar').addEventListener('click',()=>{
   const E=coletarTudo();
   const blob=new Blob([JSON.stringify(E,null,2)],{type:'application/json'});
