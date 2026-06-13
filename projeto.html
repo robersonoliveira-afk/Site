@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<!--
+  Projeto de viabilidade agropecuária — WIZARD INTEGRADO (projeto.html)
+  HTML/CSS/JS puro, sem framework. Integração dos passos 0–7 num fluxo único.
+
+  ARQUITETURA (resumo para edição posterior):
+  - ESTADO: objeto único com tudo. Persiste em localStorage (autosave).
+  - TEMPLATES: objeto único fundido (nome, unidade, rótulos, família, modo, giro).
+  - derivar(ESTADO): calcula RB→RL, COE, COT, CT e o fluxo perene — fonte única
+    de verdade. Qualquer passo que mude um número propaga para frente.
+  - Cada etapa é uma <section data-step>. Navegação mostra/esconde; barra de progresso.
+  - O passo 5 (implantação) só aparece quando template === 'perenes'.
+  - estadoCanonico(): adapta o ESTADO para o schema que o dossiê (passo 7) consome.
+
+  O QUE EDITAR COM FREQUÊNCIA:
+  - TEMPLATES (rótulos/unidades por atividade) · FUNRURAL (1,63% PF / 2,23% PJ) ·
+    MODOS (campos de manejo) · CATEGORIAS (custeio) · CULTURAS (perenes).
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projeto Agropecuário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#F4EFE3;--papel-2:#EDE6D5;--tinta:#2E2A22;
+    --oliva:#3D4A2A;--terra:#A8552E;--mostarda:#B89233;
+    --linha:#D8CFB9;--verde-ok:#3D6B2E;--vermelho:#9C3528;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:24px 20px 80px}
+
+  /* cabeçalho do wizard */
+  .top{margin-bottom:18px}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin:0 0 6px}
+  h1{font-family:var(--serif);font-weight:600;font-size:1.9rem;line-height:1.1;margin:0 0 4px}
+  .sub{color:#6a6354;font-size:.95rem;margin:0 0 4px}
+
+  /* barra de progresso / passos */
+  .steps{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 22px}
+  .steps button{
+    font-family:var(--mono);font-size:.74rem;border:1px solid var(--linha);
+    background:#fff;color:#6a6354;border-radius:999px;padding:6px 12px;cursor:pointer;
+    display:flex;align-items:center;gap:6px;line-height:1
+  }
+  .steps button .ix{color:var(--mostarda)}
+  .steps button.atual{border-color:var(--oliva);color:var(--oliva);background:var(--papel-2)}
+  .steps button.feito{color:var(--oliva)}
+  .steps button.feito .ix{color:var(--verde-ok)}
+  .steps button:disabled{opacity:.4;cursor:not-allowed}
+
+  .card{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:20px;margin-bottom:18px}
+  .card h2{font-family:var(--serif);font-weight:500;font-size:1.15rem;margin:0 0 14px;display:flex;align-items:baseline;gap:10px}
+  .card h2 .n{font-family:var(--mono);font-size:.8rem;color:var(--mostarda);border:1px solid var(--linha);border-radius:4px;padding:1px 7px}
+  label{display:block;font-size:.82rem;color:#5d5648;margin:0 0 5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .field{margin-bottom:14px}
+  input,select,textarea{font-family:var(--sans);font-size:.95rem;color:var(--tinta);background:var(--papel);border:1px solid var(--linha);border-radius:7px;padding:9px 11px;width:100%}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--mostarda);outline-offset:1px}
+  input[type=number]{font-family:var(--mono)}
+  textarea{min-height:90px;resize:vertical;line-height:1.5}
+
+  /* trio do passo 1 */
+  .trio-row{display:grid;grid-template-columns:1fr 120px;gap:10px;align-items:end;margin-bottom:14px}
+  .unidade input{font-family:var(--mono);font-size:.82rem;text-align:center;color:var(--oliva)}
+  .hint{font-size:.74rem;color:#8a8270;margin-top:4px;font-family:var(--mono)}
+  .note{font-size:.8rem;color:#8a8270;margin-top:10px}
+
+  /* DRE / cascata */
+  .dre{border-top:1px dashed var(--linha);margin-top:6px;padding-top:14px}
+  .dre .line{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;font-size:.92rem}
+  .dre .line .v{font-family:var(--mono)}
+  .dre .ded{color:var(--terra)}
+  .dre .sub{border-top:1px solid var(--linha);margin-top:6px;padding-top:10px;font-weight:600}
+  .dre .total{border-top:1px solid var(--linha);margin-top:8px;padding-top:12px;font-family:var(--serif);font-size:1.05rem}
+  .dre .total .v{font-family:var(--mono);font-size:1.25rem;color:var(--oliva);font-weight:500}
+  .destaque{background:var(--papel-2);border-color:#cfc4a8}
+  .pos{color:var(--verde-ok)} .neg{color:var(--vermelho)}
+
+  /* itens dinâmicos (custeio, bens, implantação) */
+  .item{border:1px solid var(--linha);border-radius:8px;padding:14px;margin-bottom:12px;background:var(--papel)}
+  .item .top2{display:flex;gap:10px;align-items:end;margin-bottom:10px}
+  .item .top2 .desc{flex:1}
+  .item .quad{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:10px;align-items:end}
+  .item .tri{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end}
+  .item .triq{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end}
+  .item .total-item{margin-top:10px;font-family:var(--mono);font-size:.86rem;color:var(--oliva);text-align:right}
+  .item .total-item b{font-weight:500}
+  .rm{background:none;border:1px solid var(--linha);color:var(--terra);border-radius:7px;padding:9px 11px;cursor:pointer;font-family:var(--mono);font-size:.85rem;line-height:1}
+  .rm:hover{background:#fff}
+  .btn{background:var(--terra);color:#fff;border:none;border-radius:8px;padding:11px 16px;cursor:pointer;font-family:var(--sans);font-size:.92rem;font-weight:500}
+  .btn:hover{background:#92471f}
+  .btn.ghost{background:#fff;color:var(--oliva);border:1px solid var(--linha)}
+  .btn.ghost:hover{background:var(--papel-2)}
+  .subtotal{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--linha);margin-top:6px;padding-top:14px;font-size:.95rem}
+  .subtotal .v{font-family:var(--mono)}
+
+  /* caixa Pareto */
+  .pareto{background:var(--papel-2);border:1px solid var(--linha);border-left:4px solid var(--terra);border-radius:8px;padding:18px 20px;margin-bottom:22px}
+  .pareto h3{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:0 0 8px;color:var(--oliva)}
+  .pareto p{font-size:.9rem;margin:0 0 8px;color:#4a4536}
+  .pareto p:last-child{margin-bottom:0}
+  .pareto .sintese{font-style:italic;color:var(--terra)}
+
+  /* coerência manejo→custo (passo 3) */
+  .coer{border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:.86rem;border:1px solid var(--linha)}
+  .coer.ok{background:#f0f3ea;border-color:#cdd8bd;color:var(--oliva)}
+  .coer.alerta{background:#f7ede6;border-color:#e4c4ad;color:var(--terra)}
+  .coer ul{margin:6px 0 0;padding-left:18px}
+
+  /* ligação / painéis informativos */
+  .liga{background:var(--papel-2);border:1px solid var(--linha);border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:.88rem;color:#4a4536}
+  .liga b{color:var(--oliva)}
+  .liga .destino{font-family:var(--mono);font-size:.76rem;color:var(--terra);margin-top:8px}
+
+  /* resumo confinamento */
+  .resumo{background:var(--papel-2);border:1px dashed var(--linha);border-radius:8px;padding:12px 14px;font-size:.86rem;color:#4a4536;margin-top:12px}
+  .resumo .conf{font-family:var(--mono);font-size:.76rem;color:var(--terra)}
+  .resumo.vazio{display:none}
+
+  /* seletor de cultura (passo 5) */
+  .cultgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  .cult{display:flex;flex-direction:column;align-items:center;gap:6px;border:1px solid var(--linha);background:#fff;border-radius:9px;padding:12px 6px;cursor:pointer;font-family:var(--sans);font-size:.82rem;color:#5d5648}
+  .cult .ic{width:34px;height:34px;display:block}
+  .cult .ic svg{width:100%;height:100%}
+  .cult:hover{border-color:var(--mostarda)}
+  .cult.sel{border-color:var(--oliva);background:var(--papel-2);color:var(--oliva)}
+  .timeline{display:flex;gap:4px;margin:14px 0 6px;height:42px}
+  .seg{display:flex;align-items:center;justify-content:center;border-radius:6px;font-family:var(--mono);font-size:.72rem;color:#fff;padding:0 8px;white-space:nowrap;min-width:54px}
+  .seg.impl{background:var(--terra)} .seg.form{background:var(--mostarda)} .seg.prod{background:var(--oliva);flex:1}
+  .tl-leg{font-family:var(--mono);font-size:.76rem;color:#8a8270}
+
+  /* KPIs perenes (passo 6) */
+  .kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:14px 0}
+  .kpi{border:1px solid var(--linha);border-radius:8px;padding:12px 14px;background:var(--papel)}
+  .kpi .k{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#8a8270}
+  .kpi .v{font-family:var(--mono);font-size:1.2rem;font-weight:500;margin:4px 0 2px}
+  .kpi .h{font-size:.76rem;color:#8a8270}
+  table.fluxo{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:8px}
+  table.fluxo th,table.fluxo td{border-bottom:1px solid var(--linha);padding:7px 8px;text-align:right}
+  table.fluxo th:first-child,table.fluxo td:first-child,table.fluxo th:nth-child(2),table.fluxo td:nth-child(2){text-align:left}
+  table.fluxo .fase{font-family:var(--mono);font-size:.7rem;padding:1px 6px;border-radius:4px;color:#fff}
+  table.fluxo .fase.impl{background:var(--terra)} table.fluxo .fase.form{background:var(--mostarda)} table.fluxo .fase.prod{background:var(--oliva)}
+  .equil{background:var(--papel-2);border:1px solid var(--linha);border-radius:8px;padding:12px 14px;font-size:.88rem;margin-top:12px}
+
+  /* navegação inferior */
+  .nav{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+  .nav .right{display:flex;gap:8px}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--linha);margin-top:24px;padding-top:16px}
+  .toolbar .sp{flex:1}
+  .saved{font-family:var(--mono);font-size:.74rem;color:#8a8270;align-self:center}
+
+  section[data-step]{display:none}
+  section[data-step].on{display:block}
+
+  /* ===== dossiê (passo 7) ===== */
+  .dossie{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:32px}
+  .doc-head{border-bottom:2px solid var(--oliva);padding-bottom:14px;margin-bottom:18px}
+  .doc-head h1{font-size:1.6rem;margin:2px 0 8px}
+  .doc-head .meta{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:#6a6354}
+  .doc-head .meta b{color:var(--tinta)}
+  .bloco{margin-bottom:20px;break-inside:avoid}
+  .bloco h2{font-family:var(--serif);font-weight:500;font-size:1.12rem;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+  .bloco h2 .n{font-family:var(--mono);font-size:.78rem;color:var(--mostarda);border:1px solid var(--linha);border-radius:4px;padding:1px 7px}
+  .bloco .leg{font-size:.84rem;color:#6a6354;margin:0 0 8px}
+  table.tab{width:100%;border-collapse:collapse;font-size:.9rem}
+  table.tab td{padding:7px 0;border-bottom:1px solid var(--linha)}
+  table.tab td.v{text-align:right;font-family:var(--mono)}
+  table.tab tr.sub td{font-weight:600;border-bottom:1px solid var(--oliva)}
+  table.tab tr.tot td{font-family:var(--serif);font-size:1.05rem;border-bottom:2px solid var(--oliva);padding-top:10px}
+  .obs{background:var(--papel-2);border-radius:7px;padding:12px 14px;font-size:.88rem;color:#4a4536;margin-top:6px}
+  .pe{background:var(--papel-2);border:1px solid var(--linha);border-radius:8px;padding:12px 14px;font-size:.88rem;margin-top:10px}
+  .rodape{border-top:1px solid var(--linha);margin-top:24px;padding-top:14px;font-size:.78rem;color:#6a6354}
+  .rodape .ia{font-style:italic;color:var(--terra);margin:0 0 6px}
+  .rodape p{margin:0 0 4px}
+
+  @media(max-width:620px){
+    .grid2,.grid3{grid-template-columns:1fr}
+    .trio-row{grid-template-columns:1fr 96px}
+    .item .quad,.item .tri,.item .triq{grid-template-columns:1fr 1fr}
+    .cultgrid{grid-template-columns:repeat(2,1fr)}
+    .kpis{grid-template-columns:1fr}
+    h1{font-size:1.6rem}
+  }
+  @media print{
+    body{background:#fff}
+    .top,.steps,.nav,.toolbar,.no-print{display:none!important}
+    .wrap{max-width:none;padding:0}
+    section[data-step]{display:none!important}
+    section[data-step="7"]{display:block!important}
+    .dossie{border:none;padding:0}
+  }
+  /* leitura visual e indicadores (passo 6 + dossiê) */
+  .viz-sep{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#8a8270;margin:20px 0 2px;border-top:1px solid var(--linha);padding-top:12px}
+  .viz-sep:first-child{border-top:none;padding-top:0;margin-top:4px}
+  .viz-svg{width:100%;height:auto;display:block;margin:6px 0 2px;max-width:560px}
+  .indic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
+  .indic{border:1px solid var(--linha);border-radius:8px;padding:11px 13px;background:var(--papel)}
+  .indic .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:#8a8270}
+  .indic .val{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--tinta);margin:3px 0 2px;line-height:1}
+  .indic .val.pos{color:var(--verde-ok)} .indic .val.neg{color:var(--vermelho)}
+  .indic .desc{font-size:.73rem;color:#8a8270;line-height:1.3}
+  .efic-bar{height:6px;border-radius:3px;background:var(--papel-2);position:relative;margin:8px 0 4px}
+  .efic-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+  .efic-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--tinta)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <p class="eyebrow">Simulador</p>
+    <h1 id="titulo-topo">Projeto Agropecuário</h1>
+    <p class="sub" id="sub-topo">Preencha em etapas; cada número se justifica e propaga para o dossiê final.</p>
+  </div>
+
+  <nav class="steps" id="steps"></nav>
+
+  <!-- ===== PASSO 0 — identificação e atividade ===== -->
+  <section data-step="0">
+    <div class="card">
+      <h2><span class="n">0</span>Identificação do projeto</h2>
+      <div class="grid2">
+        <div class="field"><label for="id-projeto">Título do projeto</label>
+          <input type="text" id="id-projeto" placeholder="ex.: Soja em São Gabriel/RS — análise de viabilidade"></div>
+        <div class="field"><label for="id-produtor">Produtor</label>
+          <input type="text" id="id-produtor" placeholder="nome ou identificação"></div>
+        <div class="field"><label for="id-unidade">Unidade de produção</label>
+          <input type="text" id="id-unidade" placeholder="ex.: Lavoura de soja, Sala de ordenha"></div>
+        <div class="field"><label for="id-municipio">Município</label>
+          <input type="text" id="id-municipio" placeholder="ex.: Santa Maria/RS"></div>
+        <div class="field"><label for="id-data">Data</label>
+          <input type="text" id="id-data" placeholder="dd/mm/aaaa (em branco = hoje)"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2><span class="n">1</span>Atividade e enquadramento</h2>
+      <div class="grid2">
+        <div class="field"><label for="template">Atividade (template)</label>
+          <select id="template"></select></div>
+        <div class="field"><label for="fiscal">Enquadramento fiscal</label>
+          <select id="fiscal">
+            <option value="PF">Pessoa Física — Funrural 1,63%</option>
+            <option value="PJ">Pessoa Jurídica — Funrural 2,23%</option>
+          </select></div>
+      </div>
+      <p class="note">A atividade define os rótulos e unidades dos próximos passos. O passo de
+      implantação (perenes) só aparece quando a atividade for culturas perenes.</p>
+    </div>
+  </section>
+
+  <!-- ===== PASSO 1 — produção e receita ===== -->
+  <section data-step="1">
+    <div class="card">
+      <h2><span class="n">1</span>Produção principal</h2>
+      <div class="field"><label for="produto" id="lbl-produto">O que você produz (produto/cultura)</label>
+        <input type="text" id="produto" placeholder="ex.: soja, leite tipo B, uva niágara"></div>
+      <div class="trio-row">
+        <div><label id="lbl-qtd">Unidades de produção</label>
+          <input type="number" id="qtd" min="0" step="any" placeholder="ex.: 50"></div>
+        <div class="unidade"><label>unidade</label>
+          <input type="text" id="un-qtd" aria-label="unidade da quantidade"></div>
+      </div>
+      <div class="trio-row">
+        <div><label id="lbl-prod">Produtividade</label>
+          <input type="number" id="prod" min="0" step="any" placeholder="ex.: 60"></div>
+        <div class="unidade"><label>unidade</label>
+          <input type="text" id="un-prod" aria-label="unidade da produtividade"></div>
+      </div>
+      <div class="trio-row">
+        <div><label id="lbl-preco">Preço</label>
+          <input type="number" id="preco" min="0" step="any" placeholder="ex.: 120"></div>
+        <div class="unidade"><label>unidade</label>
+          <input type="text" id="un-preco" aria-label="unidade do preço"></div>
+      </div>
+      <p class="hint" id="hint-trio"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">2</span>Receita secundária</h2>
+      <div class="grid2">
+        <div class="field"><label for="sec-desc">Descrição</label>
+          <input type="text" id="sec-desc" placeholder="descarte, subprodutos, esterco..."></div>
+        <div class="field"><label for="sec-valor">Valor (R$)</label>
+          <input type="number" id="sec-valor" min="0" step="any" placeholder="0"></div>
+      </div>
+      <p class="hint" id="hint-sec"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">3</span>Deduções da receita</h2>
+      <div class="grid2">
+        <div class="field"><label for="comerc">Comercialização (% sobre a receita)</label>
+          <input type="number" id="comerc" min="0" step="any" placeholder="ex.: 3"></div>
+        <div class="field"><label>Funrural (automático, conforme PF/PJ)</label>
+          <input type="text" id="funrural-pct" readonly></div>
+      </div>
+      <p class="note">Comercialização e Funrural são deduções da receita — não entram no
+      COE (custeio). O custeio é o passo seguinte.</p>
+    </div>
+
+    <div class="card destaque">
+      <h2><span class="n">=</span>Da bruta à líquida</h2>
+      <div class="dre">
+        <div class="line"><span>Receita principal</span><span class="v" id="r-principal">R$ 0,00</span></div>
+        <div class="line"><span>(+) Receita secundária</span><span class="v" id="r-sec">R$ 0,00</span></div>
+        <div class="line sub"><span>Receita bruta (RB)</span><span class="v" id="r-bruta">R$ 0,00</span></div>
+        <div class="line ded"><span>(−) Comercialização</span><span class="v" id="r-comerc">R$ 0,00</span></div>
+        <div class="line ded"><span>(−) Funrural</span><span class="v" id="r-funrural">R$ 0,00</span></div>
+        <div class="line total"><span>Receita líquida (RL)</span><span class="v" id="r-liquida">R$ 0,00</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PASSO 2 — manejo ===== -->
+  <section data-step="2">
+    <div class="card">
+      <h2><span class="n">1</span>Práticas de manejo</h2>
+      <p class="note" id="modo-hint"></p>
+      <div class="liga">
+        <b>O manejo precisa fechar com o custo.</b> O que você descrever aqui deve
+        reaparecer como custo no passo 3:
+        <ul id="liga-itens"></ul>
+        <div class="destino" id="liga-destino"></div>
+      </div>
+      <div class="grid2" id="campos"></div>
+      <div class="resumo vazio" id="resumo"></div>
+    </div>
+    <div class="card">
+      <h2><span class="n">2</span>Observações de manejo</h2>
+      <textarea id="obs" placeholder="Descreva em poucas linhas como a atividade é conduzida: o que define o resultado, onde estão os maiores cuidados e os maiores custos."></textarea>
+      <p class="note">Esse texto vai para o bloco de manejo do dossiê.</p>
+    </div>
+  </section>
+
+  <!-- ===== PASSO 3 — custeio (COE) ===== -->
+  <section data-step="3">
+    <div class="pareto">
+      <h3>A regra dos poucos que pesam — lei de Pareto</h3>
+      <p>No fim do século XIX, o economista italiano Vilfredo Pareto notou que cerca de
+      80% da terra na Itália estava com uns 20% das pessoas. A proporção reaparece em
+      quase tudo: poucas causas respondem pela maior parte do efeito. No orçamento é
+      igual — um punhado de itens concentra quase todo o desembolso.</p>
+      <p id="pareto-ex"></p>
+      <p class="sintese">Em resumo: precisão onde há dinheiro, paciência onde há centavos.
+      <span id="pareto-fim"></span></p>
+    </div>
+    <div class="coer" id="coer"></div>
+    <div class="card">
+      <h2><span class="n">1</span>Itens de custeio</h2>
+      <p class="note" id="giro-hint"></p>
+      <div id="itens-coe"></div>
+      <button class="btn" id="add-coe">+ adicionar item</button>
+      <datalist id="cats"></datalist>
+      <div class="subtotal"><span>Subtotal dos itens diretos</span><span class="v" id="subtotal">R$ 0,00</span></div>
+    </div>
+    <div class="card">
+      <h2><span class="n">2</span>Itens automáticos (% sobre o subtotal)</h2>
+      <div class="grid3">
+        <div><label for="seguro">Seguro (%)</label><input type="number" id="seguro" min="0" step="any" placeholder="ex.: 2"></div>
+        <div><label for="ater">Assistência técnica (%)</label><input type="number" id="ater" min="0" step="any" placeholder="ex.: 2"></div>
+        <div><label for="juros">Juros de custeio (%)</label><input type="number" id="juros" min="0" step="any" placeholder="ex.: 8"></div>
+      </div>
+    </div>
+    <div class="card destaque">
+      <h2><span class="n">=</span>COE total</h2>
+      <div class="dre">
+        <div class="line"><span>Subtotal dos itens diretos</span><span class="v" id="r-sub">R$ 0,00</span></div>
+        <div class="line"><span>(+) Seguro</span><span class="v" id="r-seguro">R$ 0,00</span></div>
+        <div class="line"><span>(+) Assistência técnica</span><span class="v" id="r-ater">R$ 0,00</span></div>
+        <div class="line"><span>(+) Juros de custeio</span><span class="v" id="r-juros">R$ 0,00</span></div>
+        <div class="line total"><span>COE total</span><span class="v" id="r-coe">R$ 0,00</span></div>
+      </div>
+      <p class="note" id="coe-unid"></p>
+    </div>
+  </section>
+
+  <!-- ===== PASSO 4 — fixos e capital ===== -->
+  <section data-step="4">
+    <div class="card">
+      <h2><span class="n">1</span>Depreciação (bens de capital)</h2>
+      <p class="note" id="dephint"></p>
+      <div id="itens-dep"></div>
+      <button class="btn" id="add-dep">+ adicionar bem</button>
+      <div class="subtotal"><span>Depreciação anual total</span><span class="v" id="sub-dep">R$ 0,00</span></div>
+      <p class="note" id="cap-base"></p>
+    </div>
+    <div class="card">
+      <h2><span class="n">2</span>Outros fixos e remuneração dos fatores</h2>
+      <div class="grid2">
+        <div class="field"><label for="prolabore">Pró-labore anual (R$)</label>
+          <input type="number" id="prolabore" min="0" step="any" placeholder="0"></div>
+        <div class="field"><label for="outros">Outros fixos (R$)</label>
+          <input type="number" id="outros" min="0" step="any" placeholder="0"></div>
+      </div>
+      <p class="note">Remuneração dos fatores é custo de oportunidade — opcional. Em geral
+      basta a mais perceptível; não precisa somar as duas.</p>
+      <div class="grid2" style="margin-top:6px">
+        <div class="field"><label for="taxa-cap">Remuneração do capital — taxa (% a.a.)</label>
+          <input type="number" id="taxa-cap" min="0" step="any" placeholder="ex.: 6 (poupança)"></div>
+        <div class="field"><label for="arrend">Remuneração da terra — arrendamento (R$/ha)</label>
+          <input type="number" id="arrend" min="0" step="any" placeholder="0"></div>
+      </div>
+      <div class="field"><label for="area">Área para arrendamento (ha)</label>
+        <input type="number" id="area" min="0" step="any" placeholder="0"></div>
+    </div>
+    <div class="card destaque">
+      <h2><span class="n">=</span>COE → COT → CT</h2>
+      <div class="dre">
+        <div class="line"><span>COE (do passo 3)</span><span class="v" id="r4-coe">R$ 0,00</span></div>
+        <div class="line"><span>(+) Depreciação</span><span class="v" id="r4-dep">R$ 0,00</span></div>
+        <div class="line"><span>(+) Pró-labore</span><span class="v" id="r4-prol">R$ 0,00</span></div>
+        <div class="line"><span>(+) Outros fixos</span><span class="v" id="r4-out">R$ 0,00</span></div>
+        <div class="line sub"><span>COT</span><span class="v" id="r4-cot">R$ 0,00</span></div>
+        <div class="line"><span>(+) Remuneração do capital</span><span class="v" id="r4-cap">R$ 0,00</span></div>
+        <div class="line"><span>(+) Remuneração da terra</span><span class="v" id="r4-terra">R$ 0,00</span></div>
+        <div class="line total"><span>CT</span><span class="v" id="r4-ct">R$ 0,00</span></div>
+      </div>
+      <p class="note" id="por-unid"></p>
+    </div>
+  </section>
+
+  <!-- ===== PASSO 5 — implantação (perenes) ===== -->
+  <section data-step="5">
+    <div class="card">
+      <h2><span class="n">1</span>Cultura perene</h2>
+      <div class="cultgrid" id="cultgrid"></div>
+      <p class="note" id="cult-nota"></p>
+      <div class="grid2">
+        <div class="field"><label for="form">Anos de formação (até produzir)</label>
+          <input type="number" id="form" min="0" step="1" placeholder="ex.: 3"></div>
+        <div class="field"><label for="vida">Vida útil produtiva (anos)</label>
+          <input type="number" id="vida" min="1" step="1" placeholder="ex.: 20"></div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+      <p class="tl-leg" id="tl-leg"></p>
+    </div>
+    <div class="card">
+      <h2><span class="n">2</span>Implantação no ano 0 (por ha)</h2>
+      <div id="itens-imp"></div>
+      <button class="btn" id="add-imp">+ adicionar item</button>
+      <div class="subtotal"><span>Investimento por ha</span><span class="v" id="sub-ha">R$ 0,00</span></div>
+      <div class="field" style="margin-top:14px"><label for="area5">Área implantada (ha)</label>
+        <input type="number" id="area5" min="0" step="any" placeholder="ex.: 5"></div>
+    </div>
+    <div class="card destaque">
+      <h2><span class="n">=</span>Investimento total</h2>
+      <div class="dre">
+        <div class="line"><span>Investimento por ha</span><span class="v" id="r5-ha">R$ 0,00</span></div>
+        <div class="line"><span>× área</span><span class="v" id="r5-area">0 ha</span></div>
+        <div class="line total"><span>Investimento total (ano 0)</span><span class="v" id="r5-total">R$ 0,00</span></div>
+      </div>
+      <div class="liga" style="margin-top:12px" id="liga4"></div>
+    </div>
+  </section>
+
+  <!-- ===== PASSO 6 — resultado e indicadores ===== -->
+  <section data-step="6">
+    <div class="card">
+      <h2><span class="n">1</span>Resultado por nível</h2>
+      <div class="dre">
+        <div class="line"><span>Receita líquida (RL)</span><span class="v" id="r6-rl">R$ 0,00</span></div>
+        <div class="line"><span>(−) COE</span><span class="v" id="r6-coe">R$ 0,00</span></div>
+        <div class="line sub"><span>Margem bruta</span><span class="v" id="r6-mb">R$ 0,00</span></div>
+        <div class="line"><span>(−) fixos (COT − COE)</span><span class="v" id="r6-fix">R$ 0,00</span></div>
+        <div class="line sub"><span>Margem líquida</span><span class="v" id="r6-ml">R$ 0,00</span></div>
+        <div class="line"><span>(−) fatores (CT − COT)</span><span class="v" id="r6-fat">R$ 0,00</span></div>
+        <div class="line total"><span>Resultado</span><span class="v" id="r6-res">R$ 0,00</span></div>
+      </div>
+      <p class="note" id="r6-unid"></p>
+      <div class="equil" id="equil"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">2</span>Leitura visual e indicadores</h2>
+      <div id="r6-visual"></div>
+    </div>
+
+    <div class="card" id="perene-on" style="display:none">
+      <h2><span class="n">3</span>Avaliação plurianual (perenes)</h2>
+      <div class="grid2">
+        <div class="field"><label for="custoform">Custo de formação anual (R$)</label>
+          <input type="number" id="custoform" min="0" step="any" placeholder="0"></div>
+        <div class="field"><label for="taxa">Taxa de desconto (% a.a.)</label>
+          <input type="number" id="taxa" min="0" step="any" placeholder="ex.: 6"></div>
+      </div>
+      <p class="note" id="dica-form"></p>
+      <div class="kpis">
+        <div class="kpi"><div class="k">VPL</div><div class="v" id="k-vpl">—</div><div class="h" id="h-vpl"></div></div>
+        <div class="kpi"><div class="k">TIR</div><div class="v" id="k-tir">—</div><div class="h" id="h-tir"></div></div>
+        <div class="kpi"><div class="k">Payback</div><div class="v" id="k-pay">—</div><div class="h" id="h-pay"></div></div>
+      </div>
+      <table class="fluxo">
+        <thead><tr><th>Ano</th><th>Fase</th><th>Fluxo</th><th>Descontado</th><th>Acum.</th></tr></thead>
+        <tbody id="fluxo-body"></tbody>
+      </table>
+      <p class="note" id="leitura-perene"></p>
+    </div>
+    <p class="note" id="perene-off">Atividade de ciclo anual: o resultado acima já encerra a análise.
+    A avaliação plurianual (VPL/TIR/payback) só se aplica a culturas perenes.</p>
+  </section>
+
+  <!-- ===== PASSO 7 — dossiê final ===== -->
+  <section data-step="7">
+    <div class="no-print" style="margin-bottom:16px">
+      <button class="btn" id="print">Imprimir / salvar PDF</button>
+    </div>
+    <div class="dossie" id="dossie"></div>
+  </section>
+
+  <!-- navegação -->
+  <div class="nav no-print">
+    <button class="btn ghost" id="prev">← anterior</button>
+    <div class="right">
+      <button class="btn" id="next">próximo →</button>
+    </div>
+  </div>
+
+  <!-- ferramentas -->
+  <div class="toolbar no-print">
+    <button class="btn ghost" id="exemplo">carregar exemplo (São Gabriel)</button>
+    <button class="btn ghost" id="exportar">exportar JSON</button>
+    <button class="btn ghost" id="importar">importar JSON</button>
+    <button class="btn ghost" id="reiniciar">reiniciar</button>
+    <input type="file" id="arquivo" accept="application/json" style="display:none">
+    <span class="sp"></span>
+    <span class="saved" id="saved"></span>
+  </div>
+
+</div>
+<script>
+"use strict";
+// ===========================================================================
+// UTILITÁRIOS
+// ===========================================================================
+const el  = id => document.getElementById(id);
+const brl = v => (Number(v)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const pct = v => (v*100).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+const num = v => {const n=Number(v); return isNaN(n)?0:n;};
+const numv= v => {const n=parseFloat(v); return isNaN(n)||n<0?0:n;};
+const inteiro = v => {const n=parseInt(v,10); return isNaN(n)?0:n;};
+const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+// ===========================================================================
+// TEMPLATES — objeto único fundido (passos 1+2+3+4).
+//   un/lbl*: rótulos do passo 1 · familia/giro: passo 3 · modo: passo 2/4
+// ===========================================================================
+const TEMPLATES = {
+  anuais:    {nome:"Culturas anuais (grãos, fumo, horta)",              un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"sc/ha",                 unPreco:"R$/sc",        sec:"2ª categoria (raro)",        familia:"lavoura", modo:"A"},
+  perenes:   {nome:"Culturas perenes (fruta, silvicultura, erva-mate)", un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",        sec:"2ª categoria, lenha/resíduo",familia:"lavoura", modo:"B"},
+  corte:     {nome:"Corte / confinamento",                              un:"cabeça",  lblQtd:"Cabeças (giro)",     lblProd:"Peso de venda", unProd:"kg PV/cab",             unPreco:"R$/kg vivo",   sec:"esterco",                    familia:"criacao", modo:"D", giro:true},
+  leite:     {nome:"Leite",                                             un:"vaca",    lblQtd:"Vacas em lactação",  lblProd:"Produção",      unProd:"L/vaca/ano",            unPreco:"R$/L",         sec:"bezerros, descarte, esterco",familia:"criacao", modo:"C"},
+  cria:      {nome:"Cria",                                              un:"matriz",  lblQtd:"Matrizes",           lblProd:"Produção",      unProd:"kg bezerro/matriz/ano", unPreco:"R$/kg",        sec:"descarte de matrizes/touros",familia:"criacao", modo:"C"},
+  ovinos:    {nome:"Ovinos",                                            un:"matriz",  lblQtd:"Matrizes (ovelhas)", lblProd:"Produção",      unProd:"kg carcaça/matriz/ano", unPreco:"R$/kg carcaça",sec:"lã",                         familia:"criacao", modo:"C"},
+  suinosaves:{nome:"Suínos / aves",                                     un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",        sec:"esterco / cama",             familia:"criacao", modo:"D", giro:true},
+  apicultura:{nome:"Apicultura",                                        un:"colmeia", lblQtd:"Colmeias",           lblProd:"Produção",      unProd:"kg mel/colmeia/ano",    unPreco:"R$/kg",        sec:"própolis, cera, pólen, enxames",familia:"criacao", modo:"C"},
+  tilapia:   {nome:"Tilápia",                                           un:"tanque",  lblQtd:"Tanques",            lblProd:"Produção",      unProd:"kg/tanque",             unPreco:"R$/kg",        sec:"—",                          familia:"criacao", modo:"D", giro:true},
+  outra:     {nome:"Outra",                                             un:"unidade", lblQtd:"Unidades",           lblProd:"Produtividade", unProd:"un.",                   unPreco:"R$/un.",       sec:"livre",                      familia:"outra",   modo:"E"},
+};
+
+const FUNRURAL = {PF:0.0163, PJ:0.0223}; // LC 224/2025 (vigência abril/2026)
+const MESES = ["—","jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+
+// MODOS de manejo (passo 2) — campos + custos que o manejo justifica no COE
+const MODOS = {
+  A:{titulo:"Lavoura anual",custos:["Sementes/mudas","Fertilizantes","Corretivos","Agrotóxicos","Operações/mecanização"],destino:"",campos:[
+    {id:"sistema",label:"Sistema de cultivo",tipo:"select",opcoes:["Plantio direto","Convencional","Cultivo mínimo"]},
+    {id:"cultivar",label:"Cultivar / variedade",tipo:"text",ph:"ex.: soja precoce, fumo Virgínia"},
+    {id:"mes_plantio",label:"Mês de plantio",tipo:"select",opcoes:MESES},
+    {id:"mes_colheita",label:"Mês de colheita",tipo:"select",opcoes:MESES},
+    {id:"adub_base",label:"Adubação de base",tipo:"text",ph:"ex.: 300 kg/ha de 02-20-20"},
+    {id:"adub_cob",label:"Adubação de cobertura",tipo:"text",ph:"ex.: 150 kg/ha de ureia"},
+    {id:"ap_herb",label:"Aplicações de herbicida (nº)",tipo:"num"},
+    {id:"ap_fung",label:"Aplicações de fungicida (nº)",tipo:"num"},
+    {id:"ap_inset",label:"Aplicações de inseticida (nº)",tipo:"num"},
+    {id:"irrigacao",label:"Irrigação",tipo:"select",opcoes:["Não","Sim"]},
+  ]},
+  B:{titulo:"Lavoura perene",custos:["Mudas/insumos","Fertilizantes","Agrotóxicos","Mão de obra (tratos)","Operações/mecanização"],destino:"Implantação (mudas, preparo, formação até produzir) entra no passo 5, no ano 0 — não aqui.",campos:[
+    {id:"especie",label:"Espécie / cultivar / porta-enxerto",tipo:"text",ph:"ex.: laranja sobre limão-cravo"},
+    {id:"espacamento",label:"Espaçamento",tipo:"text",ph:"ex.: 6 × 4 m"},
+    {id:"plantas_ha",label:"Plantas por ha",tipo:"num"},
+    {id:"ano_impl",label:"Ano de implantação",tipo:"num",ph:"ex.: 2022"},
+    {id:"fase",label:"Fase atual",tipo:"select",opcoes:["Formação","Produção"]},
+    {id:"podas",label:"Podas por ano (nº)",tipo:"num"},
+    {id:"adub_perene",label:"Adubação anual",tipo:"text",ph:"ex.: NPK por planta, esterco"},
+    {id:"fitossan",label:"Tratamentos fitossanitários (nº)",tipo:"num"},
+    {id:"irrigacao",label:"Irrigação",tipo:"select",opcoes:["Não","Sim"]},
+  ]},
+  C:{titulo:"Criação de plantel",custos:["Alimentação","Sanidade","Mão de obra","Pastagem/insumos"],destino:"O plantel é capital que deprecia (reprodutores, matrizes, colmeias, pomar) — a depreciação entra no passo 4.",campos:[
+    {id:"composicao",label:"Composição do plantel",tipo:"text",ph:"ex.: 40 matrizes, 1 reprodutor, 10 de reposição"},
+    {id:"sist_alim",label:"Sistema alimentar",tipo:"select",opcoes:["Pasto nativo","Pasto cultivado","Semi-confinado","Confinado"]},
+    {id:"lotacao",label:"Lotação",tipo:"text",ph:"ex.: 0,8 UA/ha"},
+    {id:"tipo_pasto",label:"Tipo de pastagem / volumoso",tipo:"text",ph:"ex.: campo nativo melhorado, silagem"},
+    {id:"sanidade",label:"Sanidade (calendário)",tipo:"text",ph:"ex.: vacinas, vermífugo, carrapato"},
+    {id:"reproducao",label:"Reprodução",tipo:"text",ph:"ex.: estação de monta, IATF, fluxo contínuo"},
+  ]},
+  D:{titulo:"Criação de giro",custos:["Aquisição de animais (giro)","Alimentação","Sanidade","Mão de obra"],destino:"A compra do animal magro (ou alevino/leitão) é custeio: entra no COE, no passo 3.",campos:[
+    {id:"categoria",label:"Categoria de entrada",tipo:"text",ph:"ex.: bezerro magro, leitão, alevino"},
+    {id:"peso_entrada",label:"Peso de entrada (kg/cab)",tipo:"num"},
+    {id:"gmd",label:"Ganho médio diário (kg/dia)",tipo:"num"},
+    {id:"dias",label:"Período do ciclo (dias)",tipo:"num"},
+    {id:"ciclos_ano",label:"Ciclos por ano (nº)",tipo:"num"},
+    {id:"conversao",label:"Conversão alimentar (kg ração/kg ganho)",tipo:"num"},
+    {id:"dieta",label:"Dieta",tipo:"text",ph:"ex.: volumoso + concentrado; ração comercial"},
+    {id:"mortalidade",label:"Mortalidade esperada (%)",tipo:"num"},
+  ]},
+  E:{titulo:"Outra atividade",custos:["Insumos","Mão de obra","Operações"],destino:"",campos:[
+    {id:"descricao",label:"Descrição do manejo",tipo:"text",ph:"descreva livremente o ciclo e as práticas"},
+  ]},
+};
+
+// CATEGORIAS de custeio (passo 3)
+const CATEGORIAS = {
+  lavoura: ["Sementes/mudas","Fertilizantes","Corretivos","Agrotóxicos","Operações/mecanização","Mão de obra","Outros"],
+  criacao: ["Alimentação","Sanidade","Aquisição de animais (giro)","Mão de obra","Energia/água","Outros"],
+  outra:   ["Insumos","Mão de obra","Operações","Outros"],
+};
+const PARETO = {
+  lavoura:{ex:"Numa lavoura, fertilizante e agrotóxicos mandam no custeio — esses você precisa ter. A graxa do trator entra na conta, mas não decide o resultado; pode ficar para depois.",fim:"Fertilizante você precisa ter; graxa pode esperar."},
+  criacao:{ex:"Numa criação, a alimentação — ração, sal mineral, pastagem — é quase sempre o maior custo. Essa você precisa ter; os itens miúdos podem ficar para depois.",fim:"A alimentação você precisa ter; o resto pode esperar."},
+  outra:  {ex:"Comece pelos itens que mais pesam no seu custo. Os miúdos podem ficar para depois, se faltar dado.",fim:"O que pesa, você precisa ter; o miúdo pode esperar."},
+};
+const DEP_HINT = {
+  A:"Máquinas, implementos, benfeitorias e silos. A lavoura anual em si não deprecia — ela é custeio no passo 3.",
+  B:"Inclua o pomar ou povoamento em produção (valor de formação como aquisição, vida útil produtiva), além de máquinas e benfeitorias.",
+  C:"Inclua as matrizes e os reprodutores (aquisição, descarte como residual, vida útil reprodutiva), além de máquinas e benfeitorias.",
+  D:"Máquinas, instalações e equipamentos. O animal de giro não deprecia — ele é custeio no passo 3.",
+  E:"Bens duráveis usados na atividade: máquinas, equipamentos, benfeitorias.",
+};
+
+// CULTURAS perenes (passo 5) + ícones SVG
+const SVG = {
+  uva:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7.5V5"/><path d="M12 5.5c1.4-1.2 3.2-1.2 4.4-.2-.5 1.5-2 2.3-3.4 2"/><circle cx="8.6" cy="10" r="1.7"/><circle cx="12" cy="10" r="1.7"/><circle cx="15.4" cy="10" r="1.7"/><circle cx="10.3" cy="13.2" r="1.7"/><circle cx="13.7" cy="13.2" r="1.7"/><circle cx="12" cy="16.4" r="1.7"/></svg>`,
+  maca:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9c-1.2-1.3-3.3-1.5-4.7-.3C5.5 10 5.4 13 7 15.6c1 1.8 2.6 3.4 5 3.4s4-1.6 5-3.4c1.6-2.6 1.5-5.6-.3-6.9C15.3 7.5 13.2 7.7 12 9z"/><path d="M12 9V5.6"/><path d="M12 6.4c1-1.6 2.6-2.1 3.7-1.8"/></svg>`,
+  citros:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="5.5"/><path d="M12 8c.4-1.5 1.9-2.4 3.4-2.4"/><circle cx="12" cy="13.5" r="0.7" fill="currentColor" stroke="none"/></svg>`,
+  pessego:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c3.1 0 5.6 2.4 5.6 5.8 0 3-2.2 5.5-5.6 5.5s-5.6-2.5-5.6-5.5C6.4 10.4 8.9 8 12 8z"/><path d="M12 8.4c-1 2.2-1 7.7 0 10.6"/><path d="M12 8c.4-1.4 1.8-2.2 3.2-2.2"/></svg>`,
+  erva:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V6"/><path d="M12 10.5C9.7 10 8.1 8.4 7.6 6.4c2-.3 3.8.6 4.4 2.1"/><path d="M12 14c2.3-.5 3.9-2.1 4.4-4.1-2-.3-3.8.6-4.4 2.1"/><path d="M12 17.5c-2.3-.5-3.9-2.1-4.4-4.1 2-.3 3.8.6 4.4 2.1"/></svg>`,
+  peca:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="4" ry="6.2"/><path d="M12 6.8v12.4"/><path d="M9.8 9.4c.9 1.4.9 5.8 0 7.2"/><path d="M14.2 9.4c-.9 1.4-.9 5.8 0 7.2"/></svg>`,
+  oliveira:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18.5C8.5 14 13 9 18.5 5.8"/><ellipse cx="11" cy="12.8" rx="1.4" ry="1.9" transform="rotate(-35 11 12.8)"/><ellipse cx="14.6" cy="9.4" rx="1.4" ry="1.9" transform="rotate(-35 14.6 9.4)"/><path d="M8.8 14.6c-1.6.4-3.2 0-4-1.1 1-.8 2.7-.8 3.6 0"/></svg>`,
+  eucalipto:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-5.5"/><path d="M12 4c2.2 2.1 3.3 4.6 3.3 7.1 0 2.6-1.4 4.9-3.3 4.9s-3.3-2.3-3.3-4.9C8.7 8.6 9.8 6.1 12 4z"/></svg>`,
+};
+
+const CULTURAS = {
+  uva:      {nome:"Uva",        form:3, vida:20, nota:"Serra Gaúcha. Formação ~3 anos; vida útil ~20. Espaldeira/latada pesa na implantação.", svg:SVG.uva},
+  maca:     {nome:"Maçã",       form:4, vida:20, nota:"Vacaria e Campos de Cima da Serra. Formação ~4 anos; vida útil ~20.", svg:SVG.maca},
+  citros:   {nome:"Citros",     form:3, vida:20, nota:"Laranja, bergamota. Vale do Caí. Formação ~3 anos; vida útil ~20+.", svg:SVG.citros},
+  pessego:  {nome:"Pêssego",    form:3, vida:12, nota:"Pelotas e região. Formação ~3 anos; vida útil ~12-15.", svg:SVG.pessego},
+  erva:     {nome:"Erva-mate",  form:5, vida:30, nota:"Alto Uruguai e Norte. Formação ~4-5 anos; vida útil longa, 30+.", svg:SVG.erva},
+  peca:     {nome:"Noz-pecã",   form:7, vida:40, nota:"RS lidera o país. Formação longa, ~6-8 anos; vida útil 40+.", svg:SVG.peca},
+  oliveira: {nome:"Oliveira",   form:4, vida:30, nota:"Campanha e Serra do Sudeste. Formação ~4 anos; vida útil 30+.", svg:SVG.oliveira},
+  eucalipto:{nome:"Eucalipto",  form:7, vida:7,  nota:"Silvicultura. Corte aos ~7 anos (rotação única); pode rebrotar.", svg:SVG.eucalipto},
+};
+
+// ===========================================================================
+// ESTADO — montado a partir do DOM (coletarTudo) e reidratado (aplicarEstado).
+// derivar() é a fonte única de verdade dos números calculados.
+// ===========================================================================
+const KEY = 'projeto_viabilidade_v1';
+let cultSel = 'uva';
+let passoAtual = 0;
+
+function estadoVazio(){
+  return {
+    identificacao:{projeto:'',produtor:'',unidade:'',municipio:'',data:''},
+    template:'anuais', fiscal:'PF',
+    p1:{produto:'',qtd:'',unQtd:'',prod:'',unProd:'',preco:'',unPreco:'',secDesc:'',secValor:'',comerc:''},
+    p2:{campos:{},observacoes:''},
+    p3:{itens:[],seguro:'',ater:'',juros:''},
+    p4:{bens:[],prolabore:'',outros:'',taxaCapital:'',arrendamento:'',area:''},
+    p5:{cultura:'uva',itens:[],area:'',form:'',vida:''},
+    p6:{custoFormacao:'',taxaDesconto:''},
+  };
+}
+
+// --- ler todo o DOM para um objeto ESTADO ---
+function coletarTudo(){
+  const E = estadoVazio();
+  E.template = el('template').value;
+  E.fiscal   = el('fiscal').value;
+  E.identificacao = {
+    projeto:el('id-projeto').value, produtor:el('id-produtor').value,
+    unidade:el('id-unidade').value, municipio:el('id-municipio').value, data:el('id-data').value,
+  };
+  E.p1 = {produto:el('produto').value, qtd:el('qtd').value, unQtd:el('un-qtd').value,
+    prod:el('prod').value, unProd:el('un-prod').value, preco:el('preco').value, unPreco:el('un-preco').value,
+    secDesc:el('sec-desc').value, secValor:el('sec-valor').value, comerc:el('comerc').value};
+  // passo 2 — campos do modo
+  const campos={};
+  document.querySelectorAll('#campos [data-campo]').forEach(i=>{campos[i.dataset.campo]=i.value;});
+  E.p2 = {campos, observacoes:el('obs').value};
+  // passo 3 — itens de custeio
+  E.p3 = {
+    itens:[...document.querySelectorAll('#itens-coe .item')].map(it=>({
+      desc:it.querySelector('.i-desc').value, cat:it.querySelector('.i-cat').value,
+      un:it.querySelector('.i-un').value, qtd:it.querySelector('.i-qtd').value, preco:it.querySelector('.i-preco').value})),
+    seguro:el('seguro').value, ater:el('ater').value, juros:el('juros').value};
+  // passo 4 — bens
+  E.p4 = {
+    bens:[...document.querySelectorAll('#itens-dep .item')].map(it=>({
+      desc:it.querySelector('.i-desc').value, aq:it.querySelector('.i-aq').value,
+      res:it.querySelector('.i-res').value, vida:it.querySelector('.i-vida').value})),
+    prolabore:el('prolabore').value, outros:el('outros').value,
+    taxaCapital:el('taxa-cap').value, arrendamento:el('arrend').value, area:el('area').value};
+  // passo 5 — implantação
+  E.p5 = {cultura:cultSel,
+    itens:[...document.querySelectorAll('#itens-imp .item')].map(it=>({
+      desc:it.querySelector('.i-desc').value, un:it.querySelector('.i-un').value,
+      qtd:it.querySelector('.i-qtd').value, preco:it.querySelector('.i-preco').value})),
+    area:el('area5').value, form:el('form').value, vida:el('vida').value};
+  // passo 6 — perene extra
+  E.p6 = {custoFormacao:el('custoform').value, taxaDesconto:el('taxa').value};
+  return E;
+}
+
+// --- cálculo central: do ESTADO derivam todos os números ---
+function derivar(E){
+  const n = numv(E.p1.qtd);
+  const rb = numv(E.p1.qtd)*numv(E.p1.prod)*numv(E.p1.preco) + numv(E.p1.secValor);
+  const principal = numv(E.p1.qtd)*numv(E.p1.prod)*numv(E.p1.preco);
+  const sec = numv(E.p1.secValor);
+  const fAliq = FUNRURAL[E.fiscal];
+  const fVal  = rb*fAliq;
+  const comerc = rb*numv(E.p1.comerc)/100;
+  const rl = rb - comerc - fVal;
+
+  let subtotalCoe = 0;
+  E.p3.itens.forEach(it=>{ subtotalCoe += numv(it.qtd)*numv(it.preco)*n; });
+  const seguro = subtotalCoe*numv(E.p3.seguro)/100;
+  const ater   = subtotalCoe*numv(E.p3.ater)/100;
+  const juros  = subtotalCoe*numv(E.p3.juros)/100;
+  const coe = subtotalCoe + seguro + ater + juros;
+
+  let dep=0, capMedio=0;
+  E.p4.bens.forEach(b=>{
+    const aq=numv(b.aq), res=numv(b.res), vida=numv(b.vida);
+    dep += vida>0 ? Math.max(0,(aq-res)/vida) : 0;
+    capMedio += (aq+res)/2;
+  });
+  const prol = numv(E.p4.prolabore), out = numv(E.p4.outros);
+  const cot = coe + dep + prol + out;
+  const remCap   = capMedio*numv(E.p4.taxaCapital)/100;
+  const remTerra = numv(E.p4.arrendamento)*numv(E.p4.area);
+  const ct = cot + remCap + remTerra;
+
+  let investHa=0;
+  E.p5.itens.forEach(it=>{ investHa += numv(it.qtd)*numv(it.preco); });
+  const investimento = investHa*numv(E.p5.area);
+
+  return {n, principal, sec, rb, fAliq, fVal, comerc, rl,
+    subtotalCoe, seguro, ater, juros, coe,
+    dep, capMedio, prol, out, cot, remCap, remTerra, ct,
+    investHa, investimento};
+}
+
+// --- finanças (mesma lógica dos passos 6 e 7) ---
+function vpl(taxa,f){const i=taxa/100;return f.reduce((a,fc,t)=>a+fc/Math.pow(1+i,t),0);}
+function tir(f){const g=r=>f.reduce((a,fc,t)=>a+fc/Math.pow(1+r,t),0);let lo=-0.9,hi=10,flo=g(lo),fhi=g(hi);
+  if(isNaN(flo)||isNaN(fhi)||flo*fhi>0)return null;
+  for(let k=0;k<200;k++){const m=(lo+hi)/2,fm=g(m);if(Math.abs(fm)<1e-6)return m;if(flo*fm<0){hi=m;fhi=fm;}else{lo=m;flo=fm;}}return(lo+hi)/2;}
+function payback(f,desc,taxa){const i=taxa/100;let acc=0,prev=0;
+  for(let t=0;t<f.length;t++){const fc=desc?f[t]/Math.pow(1+i,t):f[t];prev=acc;acc+=fc;
+    if(acc>=0&&t>0){const falta=-prev;return (t-1)+(fc!==0?falta/fc:0);}}return null;}
+function montarFluxos(form,vida,inv,cf,rl,ct){
+  form=Math.max(0,Math.round(form)); vida=Math.max(1,Math.round(vida));
+  const f=[-inv], fases=['impl'];
+  for(let a=0;a<form;a++){f.push(-cf);fases.push('form');}
+  for(let a=0;a<vida;a++){f.push(rl-ct);fases.push('prod');}
+  return {f,fases,form,vida};
+}
+
+// --- persistência ---
+let saveTimer=null;
+function persistir(E){
+  try{ localStorage.setItem(KEY, JSON.stringify(E));
+    el('saved').textContent = 'salvo · ' + new Date().toLocaleTimeString('pt-BR');
+  }catch(e){ el('saved').textContent='não foi possível salvar localmente'; }
+}
+function carregarSalvo(){
+  try{ const t=localStorage.getItem(KEY); return t?JSON.parse(t):null; }catch(e){ return null; }
+}
+
+// ===========================================================================
+// SETUP DE SELETORES
+// ===========================================================================
+(function popularTemplate(){
+  const sel=el('template');
+  for(const [k,t] of Object.entries(TEMPLATES)){
+    const o=document.createElement('option');o.value=k;o.textContent=t.nome;sel.appendChild(o);
+  }
+})();
+(function popularCulturas(){
+  const grid=el('cultgrid');
+  for(const [k,c] of Object.entries(CULTURAS)){
+    const b=document.createElement('button');
+    b.type='button';b.className='cult';b.dataset.key=k;
+    b.innerHTML='<span class="ic">'+c.svg+'</span><span class="nm">'+c.nome+'</span>';
+    b.addEventListener('click',()=>{escolherCultura(k,true);recalc();});
+    grid.appendChild(b);
+  }
+})();
+
+// montar um campo de manejo conforme o tipo (passo 2)
+function montarCampo(c){
+  const div=document.createElement('div');div.className='field';
+  let controle;
+  if(c.tipo==='select'){
+    controle='<select id="m-'+c.id+'" data-campo="'+c.id+'">'+c.opcoes.map(o=>'<option value="'+esc(o)+'">'+esc(o)+'</option>').join('')+'</select>';
+  }else if(c.tipo==='num'){
+    controle='<input type="number" id="m-'+c.id+'" data-campo="'+c.id+'" min="0" step="any" placeholder="'+esc(c.ph||'0')+'">';
+  }else{
+    controle='<input type="text" id="m-'+c.id+'" data-campo="'+c.id+'" placeholder="'+esc(c.ph||'')+'">';
+  }
+  div.innerHTML='<label for="m-'+c.id+'">'+esc(c.label)+'</label>'+controle;
+  return div;
+}
+
+// aplica tudo o que depende do template escolhido (rótulos cross-passo + campos do passo 2)
+function aplicarTemplate(){
+  const k=el('template').value, t=TEMPLATES[k], m=MODOS[t.modo];
+  // passo 1 — rótulos do trio (só se vazios, para não apagar edição do aluno)
+  el('lbl-qtd').textContent=t.lblQtd;
+  el('lbl-prod').textContent=t.lblProd;
+  if(!el('un-qtd').value)  el('un-qtd').value=t.un;
+  if(!el('un-prod').value) el('un-prod').value=t.unProd;
+  if(!el('un-preco').value)el('un-preco').value=t.unPreco;
+  el('hint-trio').textContent=t.lblQtd.toLowerCase()+' × '+(el('un-prod').value||t.unProd)+' × '+(el('un-preco').value||t.unPreco)+' = receita';
+  el('hint-sec').textContent=t.sec==='—'?'':'típico: '+t.sec;
+  // passo 2 — modo + coerência + campos
+  el('modo-hint').textContent='Modo de manejo: '+m.titulo.toLowerCase()+'.';
+  el('liga-itens').innerHTML=m.custos.map(c=>'<li>'+esc(c)+'</li>').join('');
+  el('liga-destino').textContent=m.destino;
+  const box=el('campos');box.innerHTML='';
+  m.campos.forEach(c=>box.appendChild(montarCampo(c)));
+  box.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',recalc));
+  el('resumo').className=(t.modo==='D')?'resumo':'resumo vazio';
+  // passo 3 — pareto + categorias + dica de giro
+  el('pareto-ex').textContent=PARETO[t.familia].ex;
+  el('pareto-fim').textContent=PARETO[t.familia].fim;
+  const dl=el('cats');dl.innerHTML='';
+  CATEGORIAS[t.familia].forEach(c=>{const o=document.createElement('option');o.value=c;dl.appendChild(o);});
+  el('giro-hint').textContent=t.giro?'Criação de giro: a compra do animal (alevino, leitão, magro) entra como item de custeio abaixo.':'';
+  document.querySelectorAll('#itens-coe .lbl-qtd').forEach(l=>l.textContent='qtd por '+t.un);
+  // passo 4 — dica de depreciação
+  el('dephint').textContent=DEP_HINT[t.modo];
+}
+
+// ---- itens dinâmicos ----
+function addCoe(desc='',cat='',un='',qtd='',preco=''){
+  const un_base=TEMPLATES[el('template').value].un;
+  const div=document.createElement('div');div.className='item';
+  div.innerHTML=
+    '<div class="top2"><div class="desc"><label>Descrição</label>'+
+    '<input type="text" class="i-desc" value="'+esc(desc)+'" placeholder="ex.: ureia, ração inicial, herbicida..."></div>'+
+    '<button class="rm" type="button">remover</button></div>'+
+    '<div class="quad">'+
+    '<div><label>Categoria</label><input type="text" class="i-cat" list="cats" value="'+esc(cat)+'" placeholder="categoria"></div>'+
+    '<div><label>Unidade</label><input type="text" class="i-un" value="'+esc(un)+'" placeholder="kg, L, dose, h-máq..."></div>'+
+    '<div><label class="lbl-qtd">qtd por '+un_base+'</label><input type="number" class="i-qtd" min="0" step="any" value="'+qtd+'" placeholder="0"></div>'+
+    '<div><label>Preço unitário (R$)</label><input type="number" class="i-preco" min="0" step="any" value="'+preco+'" placeholder="0"></div></div>'+
+    '<div class="total-item">custo por '+un_base+': <b class="v-und">R$ 0,00</b> · custo total: <b class="v-tot">R$ 0,00</b></div>';
+  el('itens-coe').appendChild(div);
+  div.querySelector('.rm').addEventListener('click',()=>{div.remove();recalc();});
+}
+function addDep(desc='',aq='',res='',vida=''){
+  const div=document.createElement('div');div.className='item';
+  div.innerHTML=
+    '<div class="top2"><div class="desc"><label>Bem</label>'+
+    '<input type="text" class="i-desc" value="'+esc(desc)+'" placeholder="ex.: trator, galpão, matrizes, pomar..."></div>'+
+    '<button class="rm" type="button">remover</button></div>'+
+    '<div class="triq">'+
+    '<div><label>Valor de aquisição (R$)</label><input type="number" class="i-aq" min="0" step="any" value="'+aq+'" placeholder="0"></div>'+
+    '<div><label>Valor residual (R$)</label><input type="number" class="i-res" min="0" step="any" value="'+res+'" placeholder="0"></div>'+
+    '<div><label>Vida útil (anos)</label><input type="number" class="i-vida" min="0" step="any" value="'+vida+'" placeholder="ex.: 10"></div></div>'+
+    '<div class="total-item">depreciação anual: <b class="v-dep">R$ 0,00</b></div>';
+  el('itens-dep').appendChild(div);
+  div.querySelector('.rm').addEventListener('click',()=>{div.remove();recalc();});
+}
+function addImp(desc='',un='',qtd='',preco=''){
+  const div=document.createElement('div');div.className='item';
+  div.innerHTML=
+    '<div class="top2"><div class="desc"><label>Item de implantação</label>'+
+    '<input type="text" class="i-desc" value="'+esc(desc)+'" placeholder="ex.: mudas, mourões, arame, preparo de solo..."></div>'+
+    '<button class="rm" type="button">remover</button></div>'+
+    '<div class="tri">'+
+    '<div><label>Unidade</label><input type="text" class="i-un" value="'+esc(un)+'" placeholder="muda, m, h-máq..."></div>'+
+    '<div><label>Qtd por ha</label><input type="number" class="i-qtd" min="0" step="any" value="'+qtd+'" placeholder="0"></div>'+
+    '<div><label>Preço unitário (R$)</label><input type="number" class="i-preco" min="0" step="any" value="'+preco+'" placeholder="0"></div></div>'+
+    '<div class="total-item">custo por ha: <b class="v-ha">R$ 0,00</b></div>';
+  el('itens-imp').appendChild(div);
+  div.querySelector('.rm').addEventListener('click',()=>{div.remove();recalc();});
+}
+
+function escolherCultura(k,preencherDefaults){
+  cultSel=k;const c=CULTURAS[k];
+  document.querySelectorAll('.cult').forEach(b=>b.classList.toggle('sel',b.dataset.key===k));
+  el('cult-nota').textContent=c.nota;
+  if(preencherDefaults){ el('form').value=c.form; el('vida').value=c.vida; }
+}
+
+// ===========================================================================
+// REIDRATAR DOM a partir de um ESTADO (exemplo, import, ou localStorage)
+// ===========================================================================
+function aplicarEstado(E){
+  E = Object.assign(estadoVazio(), E||{});
+  el('template').value = TEMPLATES[E.template]?E.template:'anuais';
+  el('fiscal').value   = (E.fiscal==='PJ')?'PJ':'PF';
+  const id=E.identificacao||{};
+  el('id-projeto').value=id.projeto||''; el('id-produtor').value=id.produtor||'';
+  el('id-unidade').value=id.unidade||''; el('id-municipio').value=id.municipio||''; el('id-data').value=id.data||'';
+  // passo 1
+  const p1=E.p1||{};
+  el('produto').value=p1.produto||''; el('qtd').value=p1.qtd||''; el('un-qtd').value=p1.unQtd||'';
+  el('prod').value=p1.prod||''; el('un-prod').value=p1.unProd||''; el('preco').value=p1.preco||''; el('un-preco').value=p1.unPreco||'';
+  el('sec-desc').value=p1.secDesc||''; el('sec-valor').value=p1.secValor||''; el('comerc').value=p1.comerc||'';
+  // aplica template DEPOIS de un-* (para não sobrescrever) e cria campos do passo 2
+  aplicarTemplate();
+  // passo 2 — preencher campos do modo recém-criados
+  const campos=(E.p2&&E.p2.campos)||{};
+  Object.keys(campos).forEach(cid=>{ const i=el('m-'+cid); if(i) i.value=campos[cid]; });
+  el('obs').value=(E.p2&&E.p2.observacoes)||'';
+  // passo 3
+  el('itens-coe').innerHTML='';
+  const p3=E.p3||{itens:[]};
+  (p3.itens&&p3.itens.length?p3.itens:[{}]).forEach(it=>addCoe(it.desc,it.cat,it.un,it.qtd,it.preco));
+  el('seguro').value=p3.seguro||''; el('ater').value=p3.ater||''; el('juros').value=p3.juros||'';
+  // passo 4
+  el('itens-dep').innerHTML='';
+  const p4=E.p4||{bens:[]};
+  (p4.bens&&p4.bens.length?p4.bens:[{}]).forEach(b=>addDep(b.desc,b.aq,b.res,b.vida));
+  el('prolabore').value=p4.prolabore||''; el('outros').value=p4.outros||'';
+  el('taxa-cap').value=p4.taxaCapital||''; el('arrend').value=p4.arrendamento||''; el('area').value=p4.area||'';
+  // passo 5
+  const p5=E.p5||{itens:[]};
+  escolherCultura(CULTURAS[p5.cultura]?p5.cultura:'uva',false);
+  el('itens-imp').innerHTML='';
+  (p5.itens&&p5.itens.length?p5.itens:[{}]).forEach(it=>addImp(it.desc,it.un,it.qtd,it.preco));
+  el('area5').value=p5.area||''; el('form').value=p5.form||''; el('vida').value=p5.vida||'';
+  // passo 6
+  const p6=E.p6||{};
+  el('custoform').value=p6.custoFormacao||''; el('taxa').value=p6.taxaDesconto||'';
+}
+
+// ===========================================================================
+// PINTAR resultados (todos os passos) a partir de E + D
+// ===========================================================================
+function pintar(E,D){
+  // passo 1
+  el('funrural-pct').value=(D.fAliq*100).toLocaleString('pt-BR',{minimumFractionDigits:2})+'%';
+  el('r-principal').textContent=brl(D.principal);
+  el('r-sec').textContent=brl(D.sec);
+  el('r-bruta').textContent=brl(D.rb);
+  el('r-comerc').textContent='− '+brl(D.comerc);
+  el('r-funrural').textContent='− '+brl(D.fVal);
+  el('r-liquida').textContent=brl(D.rl);
+  // passo 2 — resumo confinamento
+  if(TEMPLATES[E.template].modo==='D'){
+    const ent=numv((el('m-peso_entrada')||{}).value), gmd=numv((el('m-gmd')||{}).value), dias=numv((el('m-dias')||{}).value);
+    const ganho=gmd*dias, venda=ent+ganho, r=el('resumo');
+    if(ganho>0||ent>0){
+      r.innerHTML='ganho do ciclo: '+ganho.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kg/cab · peso de venda estimado: '+venda.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kg/cab<br><span class="conf">confira com o peso de venda lançado no passo 1.</span>';
+    }else{ r.innerHTML='informe peso de entrada, ganho diário e dias para estimar o peso de venda.'; }
+  }
+  // passo 3 — itens + COE + coerência
+  const un=TEMPLATES[E.template].un;
+  document.querySelectorAll('#itens-coe .item').forEach(it=>{
+    const c=numv(it.querySelector('.i-qtd').value)*numv(it.querySelector('.i-preco').value);
+    it.querySelector('.v-und').textContent=brl(c);
+    it.querySelector('.v-tot').textContent=brl(c*D.n);
+  });
+  el('subtotal').textContent=brl(D.subtotalCoe);
+  el('r-sub').textContent=brl(D.subtotalCoe);
+  el('r-seguro').textContent=brl(D.seguro);
+  el('r-ater').textContent=brl(D.ater);
+  el('r-juros').textContent=brl(D.juros);
+  el('r-coe').textContent=brl(D.coe);
+  el('coe-unid').textContent=D.n>0?('COE por unidade de produção: '+brl(D.coe/D.n)+' / '+un):'';
+  pintarCoerencia(E,D);
+  // passo 4 — depreciação por bem + cascata
+  document.querySelectorAll('#itens-dep .item').forEach(it=>{
+    const aq=numv(it.querySelector('.i-aq').value),res=numv(it.querySelector('.i-res').value),vida=numv(it.querySelector('.i-vida').value);
+    it.querySelector('.v-dep').textContent=brl(vida>0?Math.max(0,(aq-res)/vida):0);
+  });
+  el('sub-dep').textContent=brl(D.dep);
+  el('cap-base').textContent=D.capMedio>0?('valor médio do capital: '+brl(D.capMedio)+' (base da remuneração)'):'';
+  el('r4-coe').textContent=brl(D.coe); el('r4-dep').textContent=brl(D.dep);
+  el('r4-prol').textContent=brl(D.prol); el('r4-out').textContent=brl(D.out);
+  el('r4-cot').textContent=brl(D.cot); el('r4-cap').textContent=brl(D.remCap);
+  el('r4-terra').textContent=brl(D.remTerra); el('r4-ct').textContent=brl(D.ct);
+  el('por-unid').textContent=D.n>0?('por unidade: COT '+brl(D.cot/D.n)+' / '+un+' · CT '+brl(D.ct/D.n)+' / '+un):'';
+  // passo 5 — implantação
+  document.querySelectorAll('#itens-imp .item').forEach(it=>{
+    const c=numv(it.querySelector('.i-qtd').value)*numv(it.querySelector('.i-preco').value);
+    it.querySelector('.v-ha').textContent=brl(c);
+  });
+  const area5=numv(E.p5.area), form=Math.round(numv(E.p5.form)), vida5=Math.round(numv(E.p5.vida));
+  el('sub-ha').textContent=brl(D.investHa);
+  el('r5-ha').textContent=brl(D.investHa);
+  el('r5-area').textContent=area5.toLocaleString('pt-BR',{maximumFractionDigits:2})+' ha';
+  el('r5-total').textContent=brl(D.investimento);
+  const depAnual=vida5>0?D.investimento/vida5:0;
+  el('liga4').innerHTML=vida5>0?
+    'Para o passo 4: lance o pomar como bem depreciável — aquisição '+brl(D.investimento)+', residual R$ 0,00, vida útil '+vida5+' anos. Depreciação anual: <b>'+brl(depAnual)+'/ano</b>.':
+    'Informe a vida útil produtiva para calcular a depreciação anual que vai ao passo 4.';
+  const tl=el('timeline');tl.innerHTML='';
+  const s0=document.createElement('div');s0.className='seg impl';s0.textContent='ano 0';tl.appendChild(s0);
+  if(form>0){const s=document.createElement('div');s.className='seg form';s.style.flex=form;s.textContent='formação · '+form+(form>1?' anos':' ano');tl.appendChild(s);}
+  if(vida5>0){const s=document.createElement('div');s.className='seg prod';s.style.flex=vida5;s.textContent='produção · '+vida5+(vida5>1?' anos':' ano');tl.appendChild(s);}
+  el('tl-leg').textContent=(form>0||vida5>0)?('1ª colheita ao fim do ano '+form+' · ciclo total '+(form+vida5)+' anos'):'';
+  // passo 6 — resultado
+  const mb=D.rl-D.coe, ml=D.rl-D.cot, res=D.rl-D.ct;
+  el('r6-rl').textContent=brl(D.rl); el('r6-coe').textContent=brl(D.coe);
+  el('r6-fix').textContent=brl(Math.max(0,D.cot-D.coe)); el('r6-fat').textContent=brl(Math.max(0,D.ct-D.cot));
+  const setSign=(id,v)=>{const e=el(id);e.textContent=brl(v);e.className='v '+(v>=0?'pos':'neg');};
+  setSign('r6-mb',mb); setSign('r6-ml',ml); setSign('r6-res',res);
+  el('r6-unid').textContent=D.n>0?('por unidade — COE '+brl(D.coe/D.n)+' · COT '+brl(D.cot/D.n)+' · CT '+brl(D.ct/D.n)+' / '+un):'';
+  if(D.rl>0){
+    const ms=(D.rl-D.ct)/D.rl, qEq=D.ct/(D.rl/(D.n>0?D.n:1));
+    let txt='Ponto de equilíbrio (CT): receita de <b>'+brl(D.ct)+'</b>';
+    if(D.n>0) txt+=' ≈ <b>'+qEq.toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+un+'</b> de '+D.n.toLocaleString('pt-BR');
+    txt+='. Margem de segurança: <b>'+pct(ms)+'</b>'+(ms<0?' (no vermelho)':'')+'.';
+    el('equil').innerHTML=txt;
+  }else{ el('equil').textContent='Informe a receita líquida para ver o ponto de equilíbrio.'; }
+  // passo 6 — leitura visual e indicadores
+  el('r6-visual').innerHTML = visuaisHTML({rb:D.rb,coe:D.coe,cot:D.cot,ct:D.ct,rl:D.rl,n:D.n,prod:numv(E.p1.prod),preco:numv(E.p1.preco),un:un,unProd:TEMPLATES[E.template].unProd,lblProd:TEMPLATES[E.template].lblProd});
+  // passo 6 — perenes
+  const ehPerene=E.template==='perenes';
+  el('perene-on').style.display=ehPerene?'':'none';
+  el('perene-off').style.display=ehPerene?'none':'';
+  if(ehPerene) pintarPerene(E,D);
+}
+
+function pintarPerene(E,D){
+  const taxa=numv(E.p6.taxaDesconto);
+  const cf=numv(E.p6.custoFormacao);
+  const {f,fases,form,vida}=montarFluxos(numv(E.p5.form),numv(E.p5.vida),D.investimento,cf,D.rl,D.ct);
+  el('dica-form').textContent=D.ct>0?
+    ('referência: manutenção sem receita plena, em geral 30–50% do CT ('+brl(D.ct*0.3)+'–'+brl(D.ct*0.5)+').'):
+    'manutenção do pomar durante a formação, sem receita plena.';
+  const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
+  const vplE=el('k-vpl');vplE.textContent=brl(valVpl);vplE.className='v '+(valVpl>=0?'pos':'neg');
+  el('h-vpl').textContent='a '+pct(i)+' a.a.';
+  const tirE=el('k-tir');
+  if(valTir===null){tirE.textContent='n/d';tirE.className='v';el('h-tir').textContent='sem troca de sinal';}
+  else{tirE.textContent=pct(valTir);tirE.className='v '+(valTir>=i?'pos':'neg');el('h-tir').textContent=valTir>=i?'acima da taxa de desconto':'abaixo da taxa';}
+  const payE=el('k-pay');
+  if(payS===null){payE.textContent='n/d';payE.className='v neg';el('h-pay').textContent='não retorna no horizonte';}
+  else{payE.textContent=payS.toLocaleString('pt-BR',{maximumFractionDigits:1})+' anos';payE.className='v';el('h-pay').textContent='fluxo simples (não descontado)';}
+  let acc=0,linhas='';const rot={impl:'ano 0',form:'formação',prod:'produção'};
+  f.forEach((fc,t)=>{const d=fc/Math.pow(1+i,t);acc+=d;
+    linhas+='<tr><td>'+t+'</td><td><span class="fase '+fases[t]+'">'+rot[fases[t]]+'</span></td>'+
+      '<td class="'+(fc>=0?'pos':'neg')+'">'+brl(fc)+'</td><td>'+brl(d)+'</td><td class="'+(acc>=0?'pos':'neg')+'">'+brl(acc)+'</td></tr>';});
+  el('fluxo-body').innerHTML=linhas;
+  const horizonte=f.length-1;
+  el('leitura-perene').innerHTML=valVpl>=0?
+    'VPL positivo em '+horizonte+' anos: a '+pct(i)+' a.a., o projeto cobre o investimento e ainda gera valor.':
+    'VPL negativo em '+horizonte+' anos: a '+pct(i)+' a.a., o projeto não recompõe o investimento de implantação.';
+}
+
+// check de coerência manejo→custo (leve, não-bloqueante)
+function pintarCoerencia(E,D){
+  const box=el('coer'); const modo=TEMPLATES[E.template].modo, c=E.p2.campos||{};
+  const catsCoe=E.p3.itens.map(it=>((it.cat||'')+' '+(it.desc||'')).toLowerCase()).join(' | ');
+  const tem=(...kw)=>kw.some(k=>catsCoe.includes(k));
+  const pend=[];
+  if(modo==='A'||modo==='B'){
+    const aplica=(numv(c.ap_herb)+numv(c.ap_fung)+numv(c.ap_inset)+numv(c.fitossan))>0;
+    if(aplica && !tem('agrotóxico','agrotoxico','herbic','fungic','inset','fitossan'))
+      pend.push('descreveu aplicações no manejo — confirme um item de agrotóxicos no COE.');
+    if((c.adub_base||c.adub_cob||c.adub_perene) && !tem('fertiliz','adub','npk','ureia'))
+      pend.push('descreveu adubação — confirme um item de fertilizantes no COE.');
+  }
+  if(modo==='C'||modo==='D'){
+    if(!tem('aliment','ração','racao','sal mineral','pasto','volumoso'))
+      pend.push('criação sem item de alimentação no COE — em geral é o maior custo.');
+    if(modo==='D' && c.categoria && !tem('aquisi','animal','magro','leitão','leitao','alevino'))
+      pend.push('giro: a compra do animal magro entra como custeio no COE.');
+  }
+  if(pend.length){
+    box.className='coer alerta';
+    box.innerHTML='<b>Coerência manejo → custo</b><ul>'+pend.map(p=>'<li>'+p+'</li>').join('')+'</ul>';
+  }else{
+    box.className='coer ok';
+    box.innerHTML='Coerência manejo → custo: o que você descreveu no manejo aparece no custeio.';
+  }
+}
+
+// ===========================================================================
+// VISUAIS DE RESULTADO — gráfico-escada, break-even, indicadores
+// usados no passo 6 e espelhados no dossiê
+// ===========================================================================
+function fmtN(x,d){ d=d||0; return (Number(x)||0).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+
+function calcIndic(v){
+  const res=v.rl-v.ct, mb=v.rl-v.coe;
+  const prodTot=v.n*v.prod, cf=Math.max(0,v.ct-v.coe);
+  const base=(v.preco>0&&v.n>0)?v.preco*v.n:0;
+  const prodNiv=base>0?v.coe/base:null;
+  return { res, mb, cf, prodNiv,
+    precoNiv: prodTot>0? v.coe/prodTot : null,
+    margemSeg:(v.prod>0&&prodNiv!=null)?(v.prod-prodNiv)/v.prod:null,
+    lucr: v.rb>0? res/v.rb : null,
+    roi:  v.coe>0? res/v.coe : null,
+    recCF: cf>0? v.rb/cf : null,
+    pctCF: v.rb>0? cf/v.rb : null,
+    efic: v.ct>0? v.rb/v.ct : null };
+}
+
+function svgEscada(v){
+  const coe=v.coe, depPro=Math.max(0,v.cot-v.coe), oport=Math.max(0,v.ct-v.cot), ct=v.ct, rb=v.rb;
+  const topo=Math.max(rb,ct)*1.04; if(topo<=0) return '';
+  const k=x=>'R$ '+fmtN(x);
+  const Y0=345,H=285,bx=110,bw=92,cx=156, fy=val=>Y0-val/topo*H;
+  const yCoe=fy(coe), yCot=fy(v.cot), yCt=fy(ct), yRb=fy(rb);
+  const lbl=(yA,yB,txt,dark)=>{ const h=yA-yB; if(h<15) return '';
+    return '<text x="'+cx+'" y="'+(((yA+yB)/2)+3)+'" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="'+(dark?'#352A08':'#F4EFE3')+'">'+txt+'</text>'; };
+  const brace=(x,yTop,sig,val)=>{ const ym=(Y0+yTop)/2;
+    return '<path d="M '+x+' '+Y0+' L '+(x-6)+' '+Y0+' M '+x+' '+Y0+' L '+x+' '+yTop+' M '+x+' '+yTop+' L '+(x-6)+' '+yTop+' M '+x+' '+ym+' L '+(x+6)+' '+ym+'" fill="none" stroke="#8a8270" stroke-width="1"/>'+
+      '<text x="'+(x+11)+'" y="'+(ym-3)+'" font-family="var(--sans)" font-size="12" fill="var(--tinta)" font-weight="500">'+sig+'</text>'+
+      '<text x="'+(x+11)+'" y="'+(ym+12)+'" font-family="var(--mono)" font-size="11" fill="#6b6457">'+val+'</text>'; };
+  return '<svg viewBox="0 0 500 400" class="viz-svg" role="img" aria-label="Estrutura de custos COE, COT e CT frente à receita bruta">'+
+    '<rect x="'+bx+'" y="'+yCoe+'" width="'+bw+'" height="'+(Y0-yCoe)+'" fill="#3D4A2A"/>'+
+    '<rect x="'+bx+'" y="'+yCot+'" width="'+bw+'" height="'+(yCoe-yCot)+'" fill="#B89233"/>'+
+    '<rect x="'+bx+'" y="'+yCt+'" width="'+bw+'" height="'+(yCot-yCt)+'" fill="#A8552E"/>'+
+    lbl(Y0,yCoe,k(coe),false)+lbl(yCoe,yCot,k(depPro),true)+lbl(yCot,yCt,k(oport),false)+
+    '<line x1="'+(bx-8)+'" y1="'+yRb+'" x2="430" y2="'+yRb+'" stroke="var(--tinta)" stroke-width="1.5" stroke-dasharray="5 4"/>'+
+    '<circle cx="'+cx+'" cy="'+yRb+'" r="5" fill="var(--tinta)"/>'+
+    '<text x="'+(bx-8)+'" y="'+(yRb-8)+'" font-family="var(--sans)" font-size="12" fill="var(--tinta)" font-weight="500">Receita bruta · '+k(rb)+'</text>'+
+    brace(222,yCoe,'COE',k(coe))+brace(304,yCot,'COT',k(v.cot))+brace(386,yCt,'CT',k(ct))+
+    '<g font-family="var(--sans)" font-size="11" fill="#6b6457">'+
+    '<rect x="0" y="372" width="11" height="11" fill="#3D4A2A"/><text x="16" y="381">COE</text>'+
+    '<rect x="58" y="372" width="11" height="11" fill="#B89233"/><text x="74" y="381">Depreciações e pró-labore</text>'+
+    '<rect x="232" y="372" width="11" height="11" fill="#A8552E"/><text x="248" y="381">Custos de oportunidade</text></g>'+
+    '</svg>';
+}
+
+function svgBreakEven(v,ind){
+  if(!(v.prod>0&&v.preco>0&&v.n>0&&v.coe>0&&ind.prodNiv!=null)) return '';
+  const k=x=>'R$ '+fmtN(x);
+  const prod=v.prod, niv=ind.prodNiv, xMax=Math.max(prod,niv)*1.18;
+  const rec=q=>q*v.preco*v.n, yMax=rec(xMax);
+  const X0=70,X1=470,Y0=345,Y1=45, fx=q=>X0+q/xMax*(X1-X0), fy=val=>Y0-val/yMax*(Y0-Y1);
+  const xNiv=fx(niv), yC=fy(v.coe), xAt=fx(prod), yAt=fy(rec(prod));
+  let yt='';
+  for(let kk=1;kk<=4;kk++){ const val=yMax*kk/4, y=fy(val);
+    yt+='<line x1="'+X0+'" y1="'+y+'" x2="'+X1+'" y2="'+y+'" stroke="#00000010" stroke-width="0.5"/>'+
+        '<text x="'+(X0-6)+'" y="'+(y+3)+'" text-anchor="end" font-family="var(--mono)" font-size="9" fill="#8a8270">'+fmtN(val/1000)+'</text>'; }
+  let brace='';
+  if(prod>niv){ const xm=(xNiv+xAt)/2;
+    brace='<path d="M '+xNiv+' 358 L '+xNiv+' 364 M '+xNiv+' 364 L '+xAt+' 364 M '+xAt+' 364 L '+xAt+' 358 M '+xm+' 364 L '+xm+' 370" fill="none" stroke="#B89233" stroke-width="1.5"/>'+
+      '<text x="'+xm+'" y="384" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="#946F1E" font-weight="500">margem de segurança · '+pct(ind.margemSeg)+'</text>'; }
+  const xR=190, qR=(xR-X0)/(X1-X0)*xMax, yR=fy(rec(qR));
+  return '<svg viewBox="0 0 480 400" class="viz-svg" role="img" aria-label="Ponto de equilíbrio: receita contra custo operacional por produtividade">'+
+    '<rect x="'+X0+'" y="'+Y1+'" width="'+(xNiv-X0)+'" height="'+(Y0-Y1)+'" fill="#A8552E" fill-opacity="0.10"/>'+
+    '<rect x="'+xNiv+'" y="'+Y1+'" width="'+(X1-xNiv)+'" height="'+(Y0-Y1)+'" fill="#3D4A2A" fill-opacity="0.08"/>'+yt+
+    '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X0+'" y2="'+Y0+'" stroke="#8a827099" stroke-width="1"/>'+
+    '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X1+'" y2="'+Y0+'" stroke="#8a827099" stroke-width="1"/>'+
+    '<text x="26" y="'+((Y0+Y1)/2)+'" transform="rotate(-90 26 '+((Y0+Y1)/2)+')" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="#8a8270">R$ (mil)</text>'+
+    '<line x1="'+X0+'" y1="'+yC+'" x2="'+X1+'" y2="'+yC+'" stroke="#A8552E" stroke-width="2" stroke-dasharray="6 4"/>'+
+    '<text x="'+(X0+6)+'" y="'+(yC-7)+'" font-family="var(--sans)" font-size="11" fill="#A8552E" font-weight="500">Custo operacional (COE) · '+k(v.coe)+'</text>'+
+    '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X1+'" y2="'+Y1+'" stroke="#3D4A2A" stroke-width="2.5"/>'+
+    '<text x="'+(xR+6)+'" y="'+(yR-8)+'" font-family="var(--sans)" font-size="11" fill="#3D4A2A" font-weight="500">Receita</text>'+
+    '<circle cx="'+xNiv+'" cy="'+yC+'" r="6" fill="#F4EFE3" stroke="#2E2A22" stroke-width="2"/>'+
+    '<text x="'+(xNiv+9)+'" y="'+(yC+20)+'" font-family="var(--sans)" font-size="11" fill="#2E2A22" font-weight="500">equilíbrio · '+fmtN(niv,1)+' '+(v.unProd||'')+'</text>'+
+    '<line x1="'+xAt+'" y1="'+Y0+'" x2="'+xAt+'" y2="'+yAt+'" stroke="#2E2A22" stroke-width="1" stroke-dasharray="3 3"/>'+
+    '<circle cx="'+xAt+'" cy="'+yAt+'" r="5" fill="#3D4A2A"/>'+
+    '<text x="'+xAt+'" y="'+(yAt-9)+'" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="#2E2A22" font-weight="500">atual · '+fmtN(prod,1)+'</text>'+
+    '<text x="'+xNiv+'" y="'+(Y0+14)+'" text-anchor="middle" font-family="var(--mono)" font-size="9" fill="#8a8270">'+fmtN(niv,1)+'</text>'+
+    '<text x="'+xAt+'" y="'+(Y0+14)+'" text-anchor="middle" font-family="var(--mono)" font-size="9" fill="#8a8270">'+fmtN(prod,1)+'</text>'+
+    '<text x="'+((X0+X1)/2)+'" y="398" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="#8a8270">produtividade ('+(v.unProd||v.lblProd||'')+')</text>'+
+    brace+'</svg>';
+}
+
+function visuaisHTML(v){
+  const ind=calcIndic(v), escadaSvg=svgEscada(v), beSvg=svgBreakEven(v,ind), sgn=x=>x>=0?'pos':'neg';
+  const card=(k,val,desc,cls)=>'<div class="indic"><div class="k">'+k+'</div><div class="val '+(cls||'')+'">'+val+'</div><div class="desc">'+desc+'</div></div>';
+  let eficCard='';
+  if(ind.efic!=null){ const e=ind.efic, max=Math.max(2,e*1.1), fill=Math.min(100,e/max*100), mark=1/max*100, cor=e>=1?'var(--verde-ok)':'var(--vermelho)';
+    eficCard='<div class="indic"><div class="k">Eficiência econômica</div><div class="val '+(e>=1?'pos':'neg')+'">'+fmtN(e,2)+'</div>'+
+      '<div class="efic-bar"><div class="efic-fill" style="width:'+fill+'%;background:'+cor+'"></div><div class="efic-mark" style="left:'+mark+'%"></div></div>'+
+      '<div class="desc">quantas vezes a RB cobre o CT (1,0 = equilíbrio)</div></div>'; }
+  const cards=
+    (ind.prodNiv!=null?card('Produtividade de nivelamento',fmtN(ind.prodNiv,1)+' '+(v.unProd||''),'produção mínima para cobrir o COE'):'')+
+    (ind.precoNiv!=null?card('Preço de nivelamento',brl(ind.precoNiv),'preço mínimo de venda para cobrir o COE'):'')+
+    (ind.margemSeg!=null?card('Margem de segurança',pct(ind.margemSeg),'quanto a produção pode cair até o equilíbrio',sgn(ind.margemSeg)):'')+
+    (ind.lucr!=null?card('Lucratividade',pct(ind.lucr),'lucro líquido sobre a receita bruta',sgn(ind.lucr)):'')+
+    (ind.roi!=null?card('Rentabilidade (ROI)',pct(ind.roi),'retorno sobre o capital de giro (COE)',sgn(ind.roi)):'')+
+    eficCard+
+    (ind.recCF!=null?card('Receita / custos fixos',fmtN(ind.recCF,2)+'×','quantas vezes a RB cobre os custos fixos'):'')+
+    (ind.pctCF!=null?card('% custos fixos da RB',pct(ind.pctCF),'parte da receita comprometida com fixos'):'');
+  let out='';
+  if(escadaSvg) out+='<div class="viz-sep">Estrutura de custos e resultado</div>'+escadaSvg;
+  if(beSvg) out+='<div class="viz-sep">Ponto de equilíbrio e margem de segurança</div>'+beSvg;
+  out+='<div class="viz-sep">Indicadores</div><div class="indic-grid">'+cards+'</div>';
+  return out;
+}
+
+// ===========================================================================
+// SCHEMA CANÔNICO (consumido pelo dossiê) — adapta o ESTADO interno
+// ===========================================================================
+function estadoCanonico(E,D){
+  const t=TEMPLATES[E.template], m=MODOS[t.modo];
+  return {
+    identificacao:E.identificacao,
+    template:E.template,
+    nUnidades:D.n,
+    passo1:{produto:E.p1.produto||'', produtividade:E.p1.prod||'',
+      unidProd:E.p1.unProd||t.unProd, preco:numv(E.p1.preco),
+      rb:D.rb, funruralAliq:(D.fAliq*100).toLocaleString('pt-BR',{minimumFractionDigits:2}),
+      funruralValor:D.fVal, comerc:D.comerc, rl:D.rl},
+    passo2:{modo:t.modo+' — '+m.titulo.toLowerCase(), observacoes:E.p2.observacoes},
+    passo3:{itens:E.p3.itens
+      .filter(it=>(it.desc||it.cat) && (numv(it.qtd)*numv(it.preco))>0)
+      .map(it=>({item:it.desc||it.cat, valor:numv(it.qtd)*numv(it.preco)*D.n})), coe:D.coe},
+    passo4:{depreciacao:D.dep, prolabore:D.prol, outros:D.out, cot:D.cot,
+      remCapital:D.remCap, remTerra:D.remTerra, ct:D.ct},
+    passo5: E.template==='perenes' ? {
+      cultura:CULTURAS[E.p5.cultura]?CULTURAS[E.p5.cultura].nome:E.p5.cultura,
+      investimento:D.investimento, formacao:numv(E.p5.form), vidaUtil:numv(E.p5.vida),
+      custoFormacao:numv(E.p6.custoFormacao), taxaDesconto:numv(E.p6.taxaDesconto)} : null,
+  };
+}
+
+// ===========================================================================
+// DOSSIÊ (passo 7) — consome o schema canônico
+// ===========================================================================
+function montarDossie(C){
+  const tpl=TEMPLATES[C.template]||TEMPLATES.outra, un=tpl.un, n=num(C.nUnidades);
+  const p1=C.passo1||{},p2=C.passo2||{},p3=C.passo3||{},p4=C.passo4||{},p5=C.passo5||null;
+  const rl=num(p1.rl),coe=num(p3.coe),cot=num(p4.cot),ct=num(p4.ct);
+  const id=C.identificacao||{};
+  const mb=rl-coe,ml=rl-cot,res=rl-ct,sign=v=>v>=0?'pos':'neg';
+  const unidLinha=n>0?('por '+un+': COE '+brl(coe/n)+' · COT '+brl(cot/n)+' · CT '+brl(ct/n)):'';
+
+  const linComerc=num(p1.comerc)>0?'<tr><td>(−) Comercialização</td><td class="v">'+brl(p1.comerc)+'</td></tr>':'';
+  const b1='<div class="bloco"><h2><span class="n">1</span>Produção e receita</h2><table class="tab">'+
+    '<tr><td>'+esc(p1.produto||'Produto')+' — '+esc(p1.produtividade||'')+' '+esc(p1.unidProd||'')+' × '+num(n).toLocaleString('pt-BR')+' '+un+' · preço '+brl(p1.preco)+'</td><td class="v"></td></tr>'+
+    '<tr><td>Receita bruta (RB)</td><td class="v">'+brl(p1.rb)+'</td></tr>'+linComerc+
+    '<tr><td>(−) Funrural '+(p1.funruralAliq?('· '+p1.funruralAliq+'%'):'')+'</td><td class="v">'+brl(p1.funruralValor)+'</td></tr>'+
+    '<tr class="sub"><td>Receita líquida (RL)</td><td class="v">'+brl(rl)+'</td></tr></table></div>';
+
+  const b2=(p2.modo||p2.observacoes)?'<div class="bloco"><h2><span class="n">2</span>Manejo</h2>'+
+    (p2.modo?'<p class="leg">Modo: '+esc(p2.modo)+'</p>':'')+
+    (p2.observacoes?'<div class="obs">'+esc(p2.observacoes)+'</div>':'')+'</div>':'';
+
+  const linhasItens=(p3.itens||[]).map(it=>'<tr><td>'+esc(it.item)+'</td><td class="v">'+brl(it.valor)+'</td></tr>').join('');
+  const b3='<div class="bloco"><h2><span class="n">3</span>Custeio — COE</h2>'+
+    '<p class="leg">Custo operacional efetivo: o que sai do bolso na safra ou no ciclo.</p>'+
+    '<table class="tab">'+linhasItens+'<tr class="sub"><td>COE total</td><td class="v">'+brl(coe)+'</td></tr></table></div>';
+
+  const b4='<div class="bloco"><h2><span class="n">4</span>Estrutura de custos — COE → COT → CT</h2>'+
+    '<p class="leg">Metodologia CNA/Campo Futuro. Remuneração dos fatores é custo de oportunidade.</p><table class="tab">'+
+    '<tr><td>COE</td><td class="v">'+brl(coe)+'</td></tr>'+
+    '<tr><td>(+) Depreciação</td><td class="v">'+brl(p4.depreciacao)+'</td></tr>'+
+    '<tr><td>(+) Pró-labore</td><td class="v">'+brl(p4.prolabore)+'</td></tr>'+
+    '<tr><td>(+) Outros fixos</td><td class="v">'+brl(p4.outros)+'</td></tr>'+
+    '<tr class="sub"><td>COT</td><td class="v">'+brl(cot)+'</td></tr>'+
+    '<tr><td>(+) Remuneração do capital</td><td class="v">'+brl(p4.remCapital)+'</td></tr>'+
+    '<tr><td>(+) Remuneração da terra</td><td class="v">'+brl(p4.remTerra)+'</td></tr>'+
+    '<tr class="tot"><td>CT</td><td class="v">'+brl(ct)+'</td></tr></table></div>';
+
+  let pe='';
+  if(rl>0){const ms=(rl-ct)/rl;let t='Ponto de equilíbrio (CT): receita de <b>'+brl(ct)+'</b>';
+    if(n>0){const q=ct/(rl/n);t+=' ≈ <b>'+q.toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+un+'</b> de '+n.toLocaleString('pt-BR');}
+    t+='. Margem de segurança: <b>'+pct(ms)+'</b>'+(ms<0?' (no vermelho)':'')+'.';pe='<div class="pe">'+t+'</div>';}
+  const b5='<div class="bloco"><h2><span class="n">5</span>Resultado por nível</h2><table class="tab">'+
+    '<tr><td>Receita líquida (RL)</td><td class="v">'+brl(rl)+'</td></tr>'+
+    '<tr><td>(−) COE</td><td class="v">'+brl(coe)+'</td></tr>'+
+    '<tr class="sub"><td>Margem bruta</td><td class="v '+sign(mb)+'">'+brl(mb)+'</td></tr>'+
+    '<tr><td>(−) fixos (COT − COE)</td><td class="v">'+brl(Math.max(0,cot-coe))+'</td></tr>'+
+    '<tr class="sub"><td>Margem líquida</td><td class="v '+sign(ml)+'">'+brl(ml)+'</td></tr>'+
+    '<tr><td>(−) fatores (CT − COT)</td><td class="v">'+brl(Math.max(0,ct-cot))+'</td></tr>'+
+    '<tr class="tot"><td>Resultado</td><td class="v '+sign(res)+'">'+brl(res)+'</td></tr></table>'+
+    (unidLinha?'<p class="leg" style="margin-top:10px">'+unidLinha+'</p>':'')+pe+'</div>';
+
+  let b6='';
+  if(C.template==='perenes'&&p5){
+    const taxa=num(p5.taxaDesconto);
+    const {f,fases,form,vida}=montarFluxos(num(p5.formacao),num(p5.vidaUtil),num(p5.investimento),num(p5.custoFormacao),rl,ct);
+    const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
+    let acc=0,linhas='';const rot={impl:'ano 0',form:'formação',prod:'produção'};
+    f.forEach((fc,t)=>{const d=fc/Math.pow(1+i,t);acc+=d;
+      linhas+='<tr><td>'+t+'</td><td><span class="fase '+fases[t]+'">'+rot[fases[t]]+'</span></td>'+
+        '<td class="'+(fc>=0?'pos':'neg')+'">'+brl(fc)+'</td><td>'+brl(d)+'</td><td class="'+(acc>=0?'pos':'neg')+'">'+brl(acc)+'</td></tr>';});
+    b6='<div class="bloco"><h2><span class="n">7</span>Avaliação plurianual</h2>'+
+      '<p class="leg">Implantação no ano 0, formação por '+form+' ano(s), produção por '+vida+' ano(s). Fase produtiva = RL − CT (escala total). Taxa de desconto '+pct(i)+' a.a.</p>'+
+      '<div class="kpis">'+
+      '<div class="kpi"><div class="k">VPL</div><div class="v '+(valVpl>=0?'pos':'neg')+'">'+brl(valVpl)+'</div><div class="h">a '+pct(i)+' a.a.</div></div>'+
+      '<div class="kpi"><div class="k">TIR</div><div class="v '+(valTir===null?'':(valTir>=i?'pos':'neg'))+'">'+(valTir===null?'n/d':pct(valTir))+'</div><div class="h">'+(valTir===null?'sem troca de sinal':(valTir>=i?'acima da taxa':'abaixo da taxa'))+'</div></div>'+
+      '<div class="kpi"><div class="k">Payback</div><div class="v">'+(payS===null?'n/d':payS.toLocaleString('pt-BR',{maximumFractionDigits:1})+' anos')+'</div><div class="h">fluxo simples</div></div></div>'+
+      '<table class="fluxo"><thead><tr><th>Ano</th><th>Fase</th><th>Fluxo</th><th>Descontado</th><th>Acum.</th></tr></thead><tbody>'+linhas+'</tbody></table></div>';
+  }
+
+  const vViz={rb:num(p1.rb),coe:coe,cot:cot,ct:ct,rl:rl,n:n,prod:num(p1.produtividade),preco:num(p1.preco),un:un,unProd:p1.unidProd||'',lblProd:'Produtividade'};
+  const bViz='<div class="bloco"><h2><span class="n">6</span>Leitura visual e indicadores</h2>'+visuaisHTML(vViz)+'</div>';
+  const hoje=id.data||new Date().toLocaleDateString('pt-BR');
+  const head='<div class="doc-head"><p class="eyebrow">dossiê de viabilidade · '+esc(tpl.nome.toLowerCase())+'</p>'+
+    '<h1>'+esc(id.projeto||'Projeto de viabilidade agropecuária')+'</h1><div class="meta">'+
+    (id.produtor?'<span>produtor: <b>'+esc(id.produtor)+'</b></span>':'')+
+    (id.unidade?'<span>unidade: <b>'+esc(id.unidade)+'</b></span>':'')+
+    (id.municipio?'<span>município: <b>'+esc(id.municipio)+'</b></span>':'')+
+    '<span>escala: <b>'+num(n).toLocaleString('pt-BR')+' '+un+'</b></span>'+
+    '<span>data: <b>'+esc(hoje)+'</b></span></div></div>';
+
+  const rodape='<div class="rodape">'+
+    '<p class="ia">Material de apoio elaborado com assistência de IA (Claude, Anthropic). A responsabilidade técnica pelo conteúdo é do professor responsável.</p>'+
+    '<p>Metodologia de custos: CNA/Campo Futuro (Matsunaga) — COE → COT → CT.</p>'+
+    '<p>Números ilustrativos; conferir com fontes oficiais (CONAB, EMATER-RS, CEPEA, MCR/Bacen) antes de decidir.</p></div>';
+
+  el('dossie').innerHTML=head+b1+b2+b3+b4+b5+bViz+b6+rodape;
+}
+
+// ===========================================================================
+// EXEMPLO — São Gabriel / soja (PF → Funrural 1,63%), no formato ESTADO interno
+// ===========================================================================
+const EXEMPLO = {
+  identificacao:{projeto:"Soja em São Gabriel/RS — análise de viabilidade",
+    produtor:"Produtor exemplo (PF)", unidade:"Lavoura de soja", municipio:"São Gabriel/RS", data:""},
+  template:"anuais", fiscal:"PF",
+  p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"120", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:""},
+  p2:{campos:{sistema:"Plantio direto", cultivar:"soja precoce", mes_plantio:"nov", mes_colheita:"abr", adub_base:"300 kg/ha 02-20-20", ap_fung:"2"},
+    observacoes:"Plantio direto sobre cobertura de inverno; tratamento de sementes; duas aplicações de fungicida no enchimento de grãos; colheita mecanizada própria."},
+  p3:{itens:[
+    {desc:"Fertilizantes", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"1800"},
+    {desc:"Defensivos (incl. fungicidas)", cat:"Agrotóxicos", un:"ha", qtd:"1", preco:"1100"},
+    {desc:"Sementes", cat:"Sementes/mudas", un:"ha", qtd:"1", preco:"600"},
+    {desc:"Operações e combustível", cat:"Operações/mecanização", un:"ha", qtd:"1", preco:"560"},
+    {desc:"Outros (frete, secagem, mão de obra)", cat:"Outros", un:"ha", qtd:"1", preco:"440"},
+  ], seguro:"", ater:"", juros:""},
+  p4:{bens:[{desc:"Máquinas e benfeitorias", aq:"180000", res:"0", vida:"10"}],
+    prolabore:"24000", outros:"6000", taxaCapital:"", arrendamento:"900", area:"50"},
+  p5:{cultura:"uva", itens:[], area:"", form:"", vida:""},
+  p6:{custoFormacao:"", taxaDesconto:""},
+};
+
+// ===========================================================================
+// NAVEGAÇÃO
+// ===========================================================================
+const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","dossiê"];
+function passosAtivos(){
+  const base=[0,1,2,3,4];
+  if(el('template').value==='perenes') base.push(5);
+  return base.concat([6,7]);
+}
+function renderSteps(){
+  const ativos=passosAtivos(), cont=el('steps');cont.innerHTML='';
+  ativos.forEach(p=>{
+    const b=document.createElement('button');b.type='button';
+    b.innerHTML='<span class="ix">'+p+'</span>'+ROTULOS[p];
+    if(p===passoAtual) b.classList.add('atual');
+    else if(ativos.indexOf(p)<ativos.indexOf(passoAtual)) b.classList.add('feito');
+    b.addEventListener('click',()=>irPara(p));
+    cont.appendChild(b);
+  });
+}
+function irPara(p){
+  passoAtual=p;
+  document.querySelectorAll('section[data-step]').forEach(s=>s.classList.toggle('on', +s.dataset.step===p));
+  const ativos=passosAtivos(), idx=ativos.indexOf(p);
+  el('prev').disabled=idx<=0;
+  el('next').disabled=idx>=ativos.length-1;
+  if(p===7){ const E=coletarTudo(); montarDossie(estadoCanonico(E,derivar(E))); }
+  renderSteps();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function vizinho(dir){
+  const ativos=passosAtivos(), idx=ativos.indexOf(passoAtual);
+  const novo=idx+dir;
+  if(novo>=0&&novo<ativos.length) irPara(ativos[novo]);
+}
+
+// ===========================================================================
+// RECALC — ciclo central
+// ===========================================================================
+function recalc(){
+  const E=coletarTudo();
+  const D=derivar(E);
+  pintar(E,D);
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>persistir(E),300);
+}
+
+// ===========================================================================
+// EVENTOS
+// ===========================================================================
+const wrapEl=document.querySelector('.wrap');
+wrapEl.addEventListener('input',e=>{
+  if(e.target.id==='template'){ aplicarTemplate(); renderSteps(); }
+  recalc();
+});
+el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
+el('add-dep').addEventListener('click',()=>{addDep();recalc();});
+el('add-imp').addEventListener('click',()=>{addImp();recalc();});
+el('prev').addEventListener('click',()=>vizinho(-1));
+el('next').addEventListener('click',()=>vizinho(1));
+el('print').addEventListener('click',()=>window.print());
+el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
+el('exportar').addEventListener('click',()=>{
+  const E=coletarTudo();
+  const blob=new Blob([JSON.stringify(E,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='projeto_viabilidade.json';a.click();URL.revokeObjectURL(a.href);
+});
+el('importar').addEventListener('click',()=>el('arquivo').click());
+el('arquivo').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ aplicarEstado(JSON.parse(r.result)); renderSteps(); recalc(); irPara(0); }catch(err){ alert('JSON inválido: '+err.message); } };
+  r.readAsText(f); e.target.value='';
+});
+el('reiniciar').addEventListener('click',()=>{
+  if(confirm('Reiniciar o projeto? Tudo será apagado.')){
+    try{localStorage.removeItem(KEY);}catch(e){}
+    aplicarEstado(estadoVazio()); renderSteps(); recalc(); irPara(0);
+  }
+});
+
+// ===========================================================================
+// INIT
+// ===========================================================================
+(function init(){
+  const salvo=carregarSalvo();
+  aplicarEstado(salvo||estadoVazio());
+  renderSteps();
+  recalc();
+  irPara(0);
+})();
+</script>
+</body>
+</html>
