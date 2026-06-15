@@ -840,14 +840,16 @@ function montarCampo(c){
 }
 
 // aplica tudo o que depende do template escolhido (rótulos cross-passo + campos do passo 2)
-function aplicarTemplate(){
+// forcarUnidades=true quando o usuário troca o tipo de projeto no dropdown — garante que as
+// unidades sejam atualizadas mesmo que os campos já tenham valor de outro template.
+function aplicarTemplate(forcarUnidades=false){
   const k=el('template').value, t=TEMPLATES[k], m=MODOS[t.modo];
-  // passo 1 — rótulos do trio (só se vazios, para não apagar edição do aluno)
+  // passo 1 — rótulos do trio
   el('lbl-qtd').textContent=t.lblQtd;
   el('lbl-prod').textContent=t.lblProd;
-  if(!el('un-qtd').value)  el('un-qtd').value=t.un;
-  if(!el('un-prod').value) el('un-prod').value=t.unProd;
-  if(!el('un-preco').value)el('un-preco').value=t.unPreco;
+  if(forcarUnidades||!el('un-qtd').value)  el('un-qtd').value=t.un;
+  if(forcarUnidades||!el('un-prod').value) el('un-prod').value=t.unProd;
+  if(forcarUnidades||!el('un-preco').value)el('un-preco').value=t.unPreco;
   el('hint-trio').textContent=t.lblQtd.toLowerCase()+' × '+(el('un-prod').value||t.unProd)+' × '+(el('un-preco').value||t.unPreco)+' = receita';
   el('hint-sec').textContent=t.sec==='—'?'':'típico: '+t.sec;
   // passo 2 — modo + coerência + campos
@@ -1477,7 +1479,7 @@ function recalc(){
 // ===========================================================================
 const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
-  if(e.target.id==='template'){ aplicarTemplate(); renderSteps(); }
+  if(e.target.id==='template'){ aplicarTemplate(true); renderSteps(); }
   recalc();
 });
 el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
