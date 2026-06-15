@@ -9,7 +9,7 @@
   - derivar(ESTADO): calcula RB→RL, COE, COT, CT e o fluxo perene — fonte única
     de verdade. Qualquer passo que mude um número propaga para frente.
   - Cada etapa é uma <section data-step>. Navegação mostra/esconde; barra de progresso.
-  - O passo 5 (implantação) só aparece quando template === 'perenes'.
+  - O passo 5 (implantação) só aparece quando TEMPLATES[template].perene === true (fruta, ervamate, madeira).
   - estadoCanonico(): adapta o ESTADO para o schema que o dossiê (passo 7) consome.
 
   O QUE EDITAR COM FREQUÊNCIA:
@@ -265,8 +265,6 @@
             <option value="PJ">Pessoa Jurídica — Funrural 2,23%</option>
           </select></div>
       </div>
-      <p class="note">A atividade define os rótulos e unidades dos próximos passos. O passo de
-      implantação (perenes) só aparece quando a atividade for culturas perenes.</p>
     </div>
   </section>
 
@@ -568,20 +566,33 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
 
 // ===========================================================================
 // TEMPLATES — objeto único fundido (passos 1+2+3+4).
-//   un/lbl*: rótulos do passo 1 · familia/giro: passo 3 · modo: passo 2/4
+//   un/lbl*: rótulos do passo 1 · familia/giro/perene: passo 3/5 · modo: passo 2/4
+//   grupo: rótulo do <optgroup> no seletor de atividade
 // ===========================================================================
 const TEMPLATES = {
-  anuais:    {nome:"Culturas anuais (grãos, fumo, horta)",              un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"sc/ha",                 unPreco:"R$/sc",        sec:"2ª categoria (raro)",        familia:"lavoura", modo:"A"},
-  perenes:   {nome:"Culturas perenes (fruta, silvicultura, erva-mate)", un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",        sec:"2ª categoria, lenha/resíduo",familia:"lavoura", modo:"B"},
-  corte:     {nome:"Corte / confinamento",                              un:"cabeça",  lblQtd:"Cabeças (giro)",     lblProd:"Peso de venda", unProd:"kg PV/cab",             unPreco:"R$/kg vivo",   sec:"esterco",                    familia:"criacao", modo:"D", giro:true},
-  leite:     {nome:"Leite",                                             un:"vaca",    lblQtd:"Vacas em lactação",  lblProd:"Produção",      unProd:"L/vaca/ano",            unPreco:"R$/L",         sec:"bezerros, descarte, esterco",familia:"criacao", modo:"C"},
-  cria:      {nome:"Cria",                                              un:"matriz",  lblQtd:"Matrizes",           lblProd:"Produção",      unProd:"kg bezerro/matriz/ano", unPreco:"R$/kg",        sec:"descarte de matrizes/touros",familia:"criacao", modo:"C"},
-  ovinos:    {nome:"Ovinos",                                            un:"matriz",  lblQtd:"Matrizes (ovelhas)", lblProd:"Produção",      unProd:"kg carcaça/matriz/ano", unPreco:"R$/kg carcaça",sec:"lã",                         familia:"criacao", modo:"C"},
-  suinosaves:{nome:"Suínos / aves",                                     un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",        sec:"esterco / cama",             familia:"criacao", modo:"D", giro:true},
-  apicultura:{nome:"Apicultura",                                        un:"colmeia", lblQtd:"Colmeias",           lblProd:"Produção",      unProd:"kg mel/colmeia/ano",    unPreco:"R$/kg",        sec:"própolis, cera, pólen, enxames",familia:"criacao", modo:"C"},
-  tilapia:   {nome:"Tilápia",                                           un:"tanque",  lblQtd:"Tanques",            lblProd:"Produção",      unProd:"kg/tanque",             unPreco:"R$/kg",        sec:"—",                          familia:"criacao", modo:"D", giro:true},
-  outra:     {nome:"Outra",                                             un:"unidade", lblQtd:"Unidades",           lblProd:"Produtividade", unProd:"un.",                   unPreco:"R$/un.",       sec:"livre",                      familia:"outra",   modo:"E"},
+  // ── LAVOURA ANUAL ────────────────────────────────────────────────────────
+  graos:       {nome:"Grãos e cereais (soja, milho, arroz, trigo)",  un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"sc/ha",                 unPreco:"R$/sc",      sec:"palha, grão 2ª categoria",       familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  fumo:        {nome:"Fumo (tabaco)",                                 un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"@/ha",                  unPreco:"R$/@",       sec:"—",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  horta:       {nome:"Horta / olericultura (alface, tomate...)",      un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"—",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  // ── LAVOURA PERENE ───────────────────────────────────────────────────────
+  fruta:       {nome:"Fruticultura (uva, maçã, pêssego, citros...)", un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"2ª categoria, lenha/resíduo",    familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
+  ervamate:    {nome:"Erva-mate",                                     un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"—",                              familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
+  madeira:     {nome:"Silvicultura / reflorestamento",                un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"m³/ha",                 unPreco:"R$/m³",      sec:"lenha, resíduo",                 familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
+  // ── CRIAÇÃO ──────────────────────────────────────────────────────────────
+  corte:       {nome:"Corte / confinamento",                          un:"cabeça",  lblQtd:"Cabeças (giro)",     lblProd:"Peso de venda", unProd:"kg PV/cab",             unPreco:"R$/kg vivo", sec:"esterco",                        familia:"criacao", modo:"D", grupo:"Criação", giro:true},
+  leite:       {nome:"Leite",                                         un:"vaca",    lblQtd:"Vacas em lactação",  lblProd:"Produção",      unProd:"L/vaca/ano",            unPreco:"R$/L",       sec:"bezerros, descarte, esterco",    familia:"criacao", modo:"C", grupo:"Criação"},
+  cria:        {nome:"Cria (bovinos)",                                un:"matriz",  lblQtd:"Matrizes",           lblProd:"Produção",      unProd:"kg terneiro/matriz/ano",unPreco:"R$/kg",      sec:"descarte de matrizes/touros",    familia:"criacao", modo:"C", grupo:"Criação"},
+  ovinos:      {nome:"Ovinos",                                        un:"matriz",  lblQtd:"Matrizes (ovelhas)", lblProd:"Produção",      unProd:"kg PV/matriz/ano",      unPreco:"R$/kg PV",   sec:"lã",                             familia:"criacao", modo:"C", grupo:"Criação"},
+  suinos:      {nome:"Suínos",                                        un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",      sec:"esterco / cama",                 familia:"criacao", modo:"D", grupo:"Criação", giro:true},
+  aves_corte:  {nome:"Aves de corte (frango, peru)",                  un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",      sec:"cama / esterco",                 familia:"criacao", modo:"D", grupo:"Criação", giro:true},
+  aves_postura:{nome:"Galinhas poedeiras",                            un:"matriz",  lblQtd:"Matrizes (galinhas)",lblProd:"Produção",      unProd:"dúzias/matriz/ano",     unPreco:"R$/dúzia",   sec:"esterco / descarte",             familia:"criacao", modo:"C", grupo:"Criação"},
+  apicultura:  {nome:"Apicultura",                                    un:"colmeia", lblQtd:"Colmeias",           lblProd:"Produção",      unProd:"kg mel/colmeia/ano",    unPreco:"R$/kg",      sec:"própolis, cera, pólen, enxames", familia:"criacao", modo:"C", grupo:"Criação"},
+  tilapia:     {nome:"Tilápia",                                       un:"tanque",  lblQtd:"Tanques",            lblProd:"Produção",      unProd:"kg/tanque",             unPreco:"R$/kg",      sec:"—",                              familia:"criacao", modo:"D", grupo:"Criação", giro:true},
+  // ── OUTRA ────────────────────────────────────────────────────────────────
+  outra:       {nome:"Outra",                                         un:"unidade", lblQtd:"Unidades",           lblProd:"Produtividade", unProd:"un.",                   unPreco:"R$/un.",     sec:"livre",                          familia:"outra",   modo:"E", grupo:"Outra"},
 };
+// helper: retorna true para templates de cultura perene (passo 5 ativo)
+const ehPerene = k => !!(TEMPLATES[k] && TEMPLATES[k].perene);
 
 const FUNRURAL = {PF:0.0163, PJ:0.0223}; // LC 224/2025 (vigência abril/2026)
 const MESES = ["—","jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
@@ -687,7 +698,7 @@ let passoAtual = 0;
 function estadoVazio(){
   return {
     identificacao:{projeto:'',produtor:'',unidade:'',municipio:'',data:''},
-    template:'anuais', fiscal:'PF',
+    template:'graos', fiscal:'PF',
     p1:{produto:'',qtd:'',unQtd:'',prod:'',unProd:'',preco:'',unPreco:'',secDesc:'',secValor:'',comerc:''},
     p2:{campos:{},observacoes:''},
     p3:{itens:[],seguro:'',ater:'',juros:''},
@@ -809,8 +820,14 @@ function carregarSalvo(){
 // ===========================================================================
 (function popularTemplate(){
   const sel=el('template');
+  const gs={};
   for(const [k,t] of Object.entries(TEMPLATES)){
-    const o=document.createElement('option');o.value=k;o.textContent=t.nome;sel.appendChild(o);
+    (gs[t.grupo]=gs[t.grupo]||[]).push({k,nome:t.nome});
+  }
+  for(const [g,opts] of Object.entries(gs)){
+    const og=document.createElement('optgroup');og.label=g;
+    opts.forEach(({k,nome})=>{const o=document.createElement('option');o.value=k;o.textContent=nome;og.appendChild(o);});
+    sel.appendChild(og);
   }
 })();
 (function popularCulturas(){
@@ -840,16 +857,14 @@ function montarCampo(c){
 }
 
 // aplica tudo o que depende do template escolhido (rótulos cross-passo + campos do passo 2)
-// forcarUnidades=true quando o usuário troca o tipo de projeto no dropdown — garante que as
-// unidades sejam atualizadas mesmo que os campos já tenham valor de outro template.
-function aplicarTemplate(forcarUnidades=false){
+function aplicarTemplate(){
   const k=el('template').value, t=TEMPLATES[k], m=MODOS[t.modo];
-  // passo 1 — rótulos do trio
+  // passo 1 — rótulos do trio (só se vazios, para não apagar edição do aluno)
   el('lbl-qtd').textContent=t.lblQtd;
   el('lbl-prod').textContent=t.lblProd;
-  if(forcarUnidades||!el('un-qtd').value)  el('un-qtd').value=t.un;
-  if(forcarUnidades||!el('un-prod').value) el('un-prod').value=t.unProd;
-  if(forcarUnidades||!el('un-preco').value)el('un-preco').value=t.unPreco;
+  if(!el('un-qtd').value)  el('un-qtd').value=t.un;
+  if(!el('un-prod').value) el('un-prod').value=t.unProd;
+  if(!el('un-preco').value)el('un-preco').value=t.unPreco;
   el('hint-trio').textContent=t.lblQtd.toLowerCase()+' × '+(el('un-prod').value||t.unProd)+' × '+(el('un-preco').value||t.unPreco)+' = receita';
   el('hint-sec').textContent=t.sec==='—'?'':'típico: '+t.sec;
   // passo 2 — modo + coerência + campos
@@ -929,7 +944,7 @@ function escolherCultura(k,preencherDefaults){
 // ===========================================================================
 function aplicarEstado(E){
   E = Object.assign(estadoVazio(), E||{});
-  el('template').value = TEMPLATES[E.template]?E.template:'anuais';
+  el('template').value = TEMPLATES[E.template]?E.template:'graos';
   el('fiscal').value   = (E.fiscal==='PJ')?'PJ':'PF';
   const id=E.identificacao||{};
   el('id-projeto').value=id.projeto||''; el('id-produtor').value=id.produtor||'';
@@ -1050,9 +1065,9 @@ function pintar(E,D){
   // passo 6 — leitura visual e indicadores
   el('r6-visual').innerHTML = visuaisHTML({rb:D.rb,coe:D.coe,cot:D.cot,ct:D.ct,rl:D.rl,n:D.n,prod:numv(E.p1.prod),preco:numv(E.p1.preco),un:un,unProd:TEMPLATES[E.template].unProd,lblProd:TEMPLATES[E.template].lblProd});
   // passo 6 — perenes
-  const ehPerene=E.template==='perenes';
-  el('perene-on').style.display=ehPerene?'':'none';
-  el('perene-off').style.display=ehPerene?'none':'';
+  const isPerene=ehPerene(E.template);
+  el('perene-on').style.display=isPerene?'':'none';
+  el('perene-off').style.display=isPerene?'none':'';
   if(ehPerene) pintarPerene(E,D);
 }
 
@@ -1240,7 +1255,7 @@ function estadoCanonico(E,D){
       .map(it=>({item:it.desc||it.cat, valor:numv(it.qtd)*numv(it.preco)*D.n})), coe:D.coe},
     passo4:{depreciacao:D.dep, prolabore:D.prol, outros:D.out, cot:D.cot,
       remCapital:D.remCap, remTerra:D.remTerra, ct:D.ct},
-    passo5: E.template==='perenes' ? {
+    passo5: ehPerene(E.template) ? {
       cultura:CULTURAS[E.p5.cultura]?CULTURAS[E.p5.cultura].nome:E.p5.cultura,
       investimento:D.investimento, formacao:numv(E.p5.form), vidaUtil:numv(E.p5.vida),
       custoFormacao:numv(E.p6.custoFormacao), taxaDesconto:numv(E.p6.taxaDesconto)} : null,
@@ -1300,7 +1315,7 @@ function montarDossie(C){
     (unidLinha?'<p class="leg" style="margin-top:10px">'+unidLinha+'</p>':'')+pe+'</div>';
 
   let b6='';
-  if(C.template==='perenes'&&p5){
+  if(ehPerene(C.template)&&p5){
     const taxa=num(p5.taxaDesconto);
     const {f,fases,form,vida}=montarFluxos(num(p5.formacao),num(p5.vidaUtil),num(p5.investimento),num(p5.custoFormacao),rl,ct);
     const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
@@ -1342,7 +1357,7 @@ function montarDossie(C){
 const EXEMPLO = {
   identificacao:{projeto:"Soja em São Gabriel/RS — análise de viabilidade",
     produtor:"Produtor exemplo (PF)", unidade:"Lavoura de soja", municipio:"São Gabriel/RS", data:""},
-  template:"anuais", fiscal:"PF",
+  template:"graos", fiscal:"PF",
   p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"115", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:""},
   p2:{campos:{sistema:"Plantio direto (cobertura de inverno: azevém ou aveia-preta)", cultivar:"Variedade precoce — ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
     observacoes:"Antes de semear, analise o solo e corrija o pH para 6,0–6,5 com calcário. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo — em R1 (floração), R3 (início de grão) e R5 (enchimento de grão) — alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
@@ -1367,7 +1382,7 @@ const EXEMPLO = {
 const EXEMPLO_UVA = {
   identificacao:{projeto:"Implantação de 1 ha de Uva BRS Magna — Campanha Gaúcha/RS",
     produtor:"Produtor exemplo (PF)", unidade:"Vinhedo BRS Magna", municipio:"Campanha Gaúcha/RS", data:""},
-  template:"perenes", fiscal:"PF",
+  template:"fruta", fiscal:"PF",
   p1:{produto:"Uva BRS Magna", qtd:"1", unQtd:"ha", prod:"18000", unProd:"kg/ha", preco:"4", unPreco:"R$/kg", secDesc:"", secValor:"", comerc:""},
   p2:{campos:{especie:"BRS Magna / raiz própria", espacamento:"2,8 × 1,8 m", plantas_ha:"2083", ano_impl:"2024", fase:"Produção", podas:"2", adub_perene:"NPK parcelado + calcário conforme laudo foliar", fitossan:"10", irrigacao:"Sim"},
     observacoes:"Poda de inverno (jul/ago) — operação mais crítica: selecione 1–2 varas por planta com 6–8 gemas, limitando a 8–10 cachos por planta para atingir 18 t/ha com qualidade ≥ 16° Brix; aplique pasta bordalesa nos cortes. Adubação de cobertura (set/out): fracione N e K conforme laudo foliar. Manejo verde (set–dez): realize desbrotas, esladronamentos e amarrações para aeração do dossel — reduz doenças e melhora qualidade. Tratamentos fitossanitários: 8–10 pulverizações por ciclo priorizando míldio (Plasmopara viticola), oídio e podridões — alterne grupos químicos a cada aplicação. Irrigação por gotejamento: forneça 2–4 mm/dia no pegamento das flores e no enchimento de bagas; suspenda 10–15 dias antes da colheita para concentrar açúcares. Raleie cachos se a carga estiver excessiva. Colheita (jan/fev): colha manualmente quando atingir ≥ 16° Brix; use caixas de 12 kg limpas e colha nas horas frescas do dia para preservar qualidade."},
@@ -1433,7 +1448,7 @@ const EXEMPLO_BOVINOS = {
 const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","dossiê"];
 function passosAtivos(){
   const base=[0,1,2,3,4];
-  if(el('template').value==='perenes') base.push(5);
+  if(ehPerene(el('template').value)) base.push(5);
   return base.concat([6,7]);
 }
 function renderSteps(){
@@ -1479,7 +1494,7 @@ function recalc(){
 // ===========================================================================
 const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
-  if(e.target.id==='template'){ aplicarTemplate(true); renderSteps(); }
+  if(e.target.id==='template'){ aplicarTemplate(); renderSteps(); }
   recalc();
 });
 el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
