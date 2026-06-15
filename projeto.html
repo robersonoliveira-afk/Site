@@ -232,7 +232,7 @@
     <a href="parte-6.html" class="back-link no-print">&#8592; voltar ao site</a>
     <p class="eyebrow">Simulador</p>
     <h1 id="titulo-topo">Projeto Agropecuário</h1>
-    <p class="sub" id="sub-topo">Preencha em etapas; cada número se justifica e propaga para o dossiê final.</p>
+    <p class="sub" id="sub-topo">Preencha em etapas; cada número se justifica e propaga para o relatório de viabilidade.</p>
   </div>
 
   <nav class="steps" id="steps"></nav>
@@ -293,6 +293,8 @@
           <input type="text" id="un-preco" aria-label="unidade do preço"></div>
       </div>
       <p class="hint" id="hint-trio"></p>
+      <p class="note">Verifique a cotação na cooperativa, sindicato rural ou EMATER da sua região antes de fixar o preço.
+        Preços semanais de referência: <a href="https://www.emater.tche.br/site/info-agro/precos_semanais.php" target="_blank" rel="noopener">EMATER-RS — Preços Semanais</a>.</p>
     </div>
 
     <div class="card">
@@ -370,6 +372,9 @@
       <p class="note" id="giro-hint"></p>
       <div id="itens-coe"></div>
       <button class="btn" id="add-coe">+ adicionar item</button>
+      <p class="note">Pesquise os preços dos insumos na agroveterinária, cooperativa ou nas bases da CONAB:
+        <a href="https://sistemas.conab.gov.br/consulta-precos-insumos/home" target="_blank" rel="noopener">Preços de insumos</a> ·
+        <a href="https://portaldeinformacoes.conab.gov.br/custos-de-producao.html" target="_blank" rel="noopener">Custos de produção</a>.</p>
       <datalist id="cats"></datalist>
       <div class="subtotal"><span>Subtotal dos itens diretos</span><span class="v" id="subtotal">R$ 0,00</span></div>
     </div>
@@ -399,6 +404,8 @@
     <div class="card">
       <h2><span class="n">1</span>Depreciação (bens de capital)</h2>
       <p class="note" id="dephint"></p>
+      <p class="note">Para vida útil e valor residual dos bens, consulte as <strong>páginas 38 a 43</strong> da
+        <a href="https://www.gov.br/conab/pt-br/acesso-a-informacao/institucional/atos-normativos/normas-da-organizacao/operacoes/30-302_norma_metodologia_de_custo_de_producao.pdf/@@download/file" target="_blank" rel="noopener">Metodologia de Custo de Produção da CONAB</a>.</p>
       <div id="itens-dep"></div>
       <button class="btn" id="add-dep">+ adicionar bem</button>
       <div class="subtotal"><span>Depreciação anual total</span><span class="v" id="sub-dep">R$ 0,00</span></div>
@@ -1344,7 +1351,8 @@ function montarDossie(C){
     '<span>data: <b>'+esc(hoje)+'</b></span></div></div>';
 
   const rodape='<div class="rodape">'+
-    '<p class="ia">Material de apoio elaborado com assistência de IA (Claude, Anthropic). A responsabilidade técnica pelo conteúdo é do professor responsável.</p>'+
+    '<p class="ia">Material de apoio elaborado com assistência de IA (Claude, Anthropic). Responsabilidade técnica: prof. Róberson Macedo de Oliveira — '+
+    '<a href="https://robersonoliveira-afk.github.io/Site/" target="_blank" rel="noopener">robersonoliveira-afk.github.io/Site</a>.</p>'+
     '<p>Metodologia de custos: CNA/Campo Futuro (Matsunaga) — COE → COT → CT.</p>'+
     '<p>Números ilustrativos; conferir com fontes oficiais (CONAB, EMATER-RS, CEPEA, MCR/Bacen) antes de decidir.</p></div>';
 
@@ -1445,7 +1453,7 @@ const EXEMPLO_BOVINOS = {
 // ===========================================================================
 // NAVEGAÇÃO
 // ===========================================================================
-const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","dossiê"];
+const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","relatório"];
 function passosAtivos(){
   const base=[0,1,2,3,4];
   if(ehPerene(el('template').value)) base.push(5);
@@ -1467,7 +1475,9 @@ function irPara(p){
   document.querySelectorAll('section[data-step]').forEach(s=>s.classList.toggle('on', +s.dataset.step===p));
   const ativos=passosAtivos(), idx=ativos.indexOf(p);
   el('prev').disabled=idx<=0;
-  el('next').disabled=idx>=ativos.length-1;
+  const isLast=idx>=ativos.length-1;
+  el('next').disabled=false;
+  el('next').textContent=isLast?'Imprimir / Salvar PDF':'próximo →';
   if(p===7){ const E=coletarTudo(); montarDossie(estadoCanonico(E,derivar(E))); }
   renderSteps();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -1501,7 +1511,11 @@ el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
 el('add-dep').addEventListener('click',()=>{addDep();recalc();});
 el('add-imp').addEventListener('click',()=>{addImp();recalc();});
 el('prev').addEventListener('click',()=>vizinho(-1));
-el('next').addEventListener('click',()=>vizinho(1));
+el('next').addEventListener('click',()=>{
+  const ativos=passosAtivos();
+  if(passoAtual===ativos[ativos.length-1]) window.print();
+  else vizinho(1);
+});
 el('print').addEventListener('click',()=>window.print());
 el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel (soja)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
 el('exemplo-uva').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Uva BRS Magna (Campanha Gaúcha)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_UVA); renderSteps(); recalc(); irPara(0); }});
