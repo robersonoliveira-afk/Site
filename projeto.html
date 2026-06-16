@@ -593,7 +593,7 @@ const TEMPLATES = {
   suinos:      {nome:"Suínos",                                        un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",      sec:"esterco / cama",                 familia:"criacao", modo:"D", grupo:"Criação", giro:true},
   aves_corte:  {nome:"Aves de corte (frango, peru)",                  un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",      sec:"cama / esterco",                 familia:"criacao", modo:"D", grupo:"Criação", giro:true},
   aves_postura:{nome:"Galinhas poedeiras",                            un:"matriz",  lblQtd:"Matrizes (galinhas)",lblProd:"Produção",      unProd:"dúzias/matriz/ano",     unPreco:"R$/dúzia",   sec:"esterco / descarte",             familia:"criacao", modo:"C", grupo:"Criação"},
-  apicultura:  {nome:"Apicultura",                                    un:"colmeia", lblQtd:"Colmeias",           lblProd:"Produção",      unProd:"kg mel/colmeia/ano",    unPreco:"R$/kg",      sec:"própolis, cera, pólen, enxames", familia:"criacao", modo:"C", grupo:"Criação"},
+  apicultura:  {nome:"Apicultura",                                    un:"colmeia", lblQtd:"Colmeias",           lblProd:"Produção",      unProd:"kg mel/colmeia/ano",    unPreco:"R$/kg",      sec:"própolis, cera, pólen, enxames", familia:"apicultura", modo:"F", grupo:"Criação"},
   tilapia:     {nome:"Tilápia",                                       un:"tanque",  lblQtd:"Tanques",            lblProd:"Produção",      unProd:"kg/tanque",             unPreco:"R$/kg",      sec:"—",                              familia:"criacao", modo:"D", grupo:"Criação", giro:true},
   // ── OUTRA ────────────────────────────────────────────────────────────────
   outra:       {nome:"Outra",                                         un:"unidade", lblQtd:"Unidades",           lblProd:"Produtividade", unProd:"un.",                   unPreco:"R$/un.",     sec:"livre",                          familia:"outra",   modo:"E", grupo:"Outra"},
@@ -650,18 +650,29 @@ const MODOS = {
   E:{titulo:"Outra atividade",custos:["Insumos","Mão de obra","Operações"],destino:"",campos:[
     {id:"descricao",label:"Descrição do manejo",tipo:"text",ph:"descreva livremente o ciclo e as práticas"},
   ]},
+  F:{titulo:"Apicultura",custos:["Alimentação suplementar","Sanidade","Mão de obra","Materiais e equipamentos"],destino:"Caixas, colmeias, centrífuga e outros bens duráveis entram como depreciação no passo 4.",campos:[
+    {id:"composicao",label:"Composição do apiário",tipo:"text",ph:"ex.: 50 colmeias Langstroth, 5 núcleos de recria"},
+    {id:"linhagem",label:"Linhagem / raça",tipo:"select",opcoes:["Africanizada","Europeia melífera (italiana, carnica)","Meliponíneos (abelha sem ferrão)"]},
+    {id:"florada",label:"Principais floradas",tipo:"text",ph:"ex.: eucalipto (set–nov), laranjeira (ago), mata nativa"},
+    {id:"sistema",label:"Sistema de manejo",tipo:"select",opcoes:["Fixo","Migratório (transumância)"]},
+    {id:"revisoes",label:"Revisões por ano (nº)",tipo:"num"},
+    {id:"sanidade",label:"Sanidade",tipo:"text",ph:"ex.: varroatose (ácido oxálico), nosemose, traça-da-cera"},
+    {id:"mel_unifloral",label:"Mel unifloral?",tipo:"select",opcoes:["Não — mel silvestre","Sim — registrar florada de origem"]},
+  ]},
 };
 
 // CATEGORIAS de custeio (passo 3)
 const CATEGORIAS = {
-  lavoura: ["Sementes/mudas","Fertilizantes","Corretivos","Agrotóxicos","Operações/mecanização","Mão de obra","Outros"],
-  criacao: ["Alimentação","Sanidade","Aquisição de animais (giro)","Mão de obra","Energia/água","Outros"],
-  outra:   ["Insumos","Mão de obra","Operações","Outros"],
+  lavoura:    ["Sementes/mudas","Fertilizantes","Corretivos","Agrotóxicos","Operações/mecanização","Mão de obra","Outros"],
+  criacao:    ["Alimentação","Sanidade","Aquisição de animais (giro)","Mão de obra","Energia/água","Outros"],
+  apicultura: ["Alimentação suplementar (xarope/proteína)","Sanidade (varroa, nosemose)","Rainha e enxames","Materiais e embalagens","Mão de obra","Outros"],
+  outra:      ["Insumos","Mão de obra","Operações","Outros"],
 };
 const PARETO = {
   lavoura:{ex:"Numa lavoura, fertilizante e agrotóxicos mandam no custeio — esses você precisa ter. A graxa do trator entra na conta, mas não decide o resultado; pode ficar para depois.",fim:"Fertilizante você precisa ter; graxa pode esperar."},
-  criacao:{ex:"Numa criação, a alimentação — ração, sal mineral, pastagem — é quase sempre o maior custo. Essa você precisa ter; os itens miúdos podem ficar para depois.",fim:"A alimentação você precisa ter; o resto pode esperar."},
-  outra:  {ex:"Comece pelos itens que mais pesam no seu custo. Os miúdos podem ficar para depois, se faltar dado.",fim:"O que pesa, você precisa ter; o miúdo pode esperar."},
+  criacao:    {ex:"Numa criação, a alimentação — ração, sal mineral, pastagem — é quase sempre o maior custo. Essa você precisa ter; os itens miúdos podem ficar para depois.",fim:"A alimentação você precisa ter; o resto pode esperar."},
+  apicultura: {ex:"Na apicultura, os maiores custos são a mão de obra de manejo e revisão, embalagens e materiais. A sanidade (controle de varroa, nosemose) é custo fixo de toda safra — não pode ficar de fora.",fim:"Mão de obra e sanidade você precisa ter; materiais menores podem esperar."},
+  outra:      {ex:"Comece pelos itens que mais pesam no seu custo. Os miúdos podem ficar para depois, se faltar dado.",fim:"O que pesa, você precisa ter; o miúdo pode esperar."},
 };
 const DEP_HINT = {
   A:"Máquinas, implementos, benfeitorias e silos. A lavoura anual em si não deprecia — ela é custeio no passo 3.",
@@ -669,6 +680,7 @@ const DEP_HINT = {
   C:"Inclua as matrizes e os reprodutores (aquisição, descarte como residual, vida útil reprodutiva), além de máquinas e benfeitorias.",
   D:"Máquinas, instalações e equipamentos. O animal de giro não deprecia — ele é custeio no passo 3.",
   E:"Bens duráveis usados na atividade: máquinas, equipamentos, benfeitorias.",
+  F:"Caixas/colmeias (Langstroth ou outros modelos), centrífuga, decantador, melgueiras, extractores e benfeitorias do apiário. As colmeias e o plantel são capital fixo — entram aqui como depreciação, não como custeio.",
 };
 
 // CULTURAS perenes (passo 5) + ícones SVG
