@@ -139,6 +139,13 @@ h1.title em{font-style:italic;color:var(--terra);font-weight:500}
 .example p:last-child{margin-bottom:0}
 .calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
 
+.go-dash{display:flex;align-items:center;gap:16px;margin-top:8px;padding:18px 20px;background:var(--olive);color:var(--paper);text-decoration:none;transition:transform .15s,box-shadow .2s}
+.go-dash:hover{transform:translateX(2px);box-shadow:-4px 0 0 var(--olive-deep)}
+.go-dash .gd-icon{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;line-height:1;flex-shrink:0}
+.go-dash .gd-body{min-width:0}
+.go-dash .gd-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;margin-bottom:4px}
+.go-dash .gd-title{font-family:'Fraunces',serif;font-size:17px;font-weight:500;font-variation-settings:'opsz' 36;line-height:1.2}
+.go-dash .gd-arrow{font-size:20px;margin-left:auto;flex-shrink:0;opacity:.8}
 .tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
 .tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
 .tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
@@ -429,6 +436,15 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <strong>Uma vez entendido o método, ele viaja</strong>
       Seja boi, leite, mel ou peixe, a pergunta é sempre a mesma: qual a unidade de produção, quanto custa produzi-la e a que preço ela se paga. Quem domina COE/COT/CT domina em qualquer atividade.
     </div>
+
+    <a class="go-dash" href="rebanho.html">
+      <span class="gd-icon">🐄</span>
+      <span class="gd-body">
+        <span class="gd-eyebrow">Ferramenta interativa · Zootecnia</span>
+        <span class="gd-title">Calcular a estrutura do rebanho leiteiro</span>
+      </span>
+      <span class="gd-arrow">&#8594;</span>
+    </a>
   </div></div>
 </section>
 
