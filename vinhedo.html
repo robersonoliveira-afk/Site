@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3D4A2A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍇</text></svg>">
+<title>Planejador de Vinhedo — Espaldeira · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Calculadora de implantação de vinhedo em espaldeira — informe as dimensões do talhão e obtenha mudas, postes, rabichos e fios para o orçamento.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/vinhedo.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --olive-mid:#5A6E3C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --ok-bg:#E4EAD2;
+  --warn-bg:#FDF3D0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.current{color:var(--paper);background:var(--olive);font-weight:600}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+
+/* BACK */
+.back-link{display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:.70rem;letter-spacing:.09em;text-transform:uppercase;color:var(--olive);text-decoration:none;margin:14px 22px 0;opacity:.75;transition:opacity .15s}
+.back-link:hover{opacity:1;color:var(--terra)}
+
+/* HEADER */
+header.masthead{padding:28px 22px 22px;border-bottom:1px solid var(--rule);position:relative}
+header.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--olive)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:28px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px;font-variation-settings:'opsz' 144}
+.subtitle{font-size:14.5px;color:var(--ink-soft);max-width:62ch}
+
+/* LAYOUT */
+.wrap{max-width:960px;margin:0 auto;padding-bottom:60px}
+.cols{display:grid;grid-template-columns:310px 1fr;gap:24px;padding:22px}
+@media(max-width:720px){.cols{grid-template-columns:1fr}}
+
+/* PAINEL */
+.panel{background:#fff;border:1px solid var(--rule);padding:20px}
+.panel-title{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--rule-soft)}
+.panel-section{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone-light);margin:18px 0 10px}
+.panel-section:first-of-type{margin-top:0}
+
+.field-sm{margin-bottom:12px}
+.field-sm label{display:block;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px;font-weight:500}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field-sm input{width:100%;padding:8px 10px;border:1px solid var(--rule);background:var(--paper-warm);font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink);outline:none;transition:border-color .15s}
+.field-sm input:focus{border-color:var(--olive);background:#fff}
+.field-sm .hint-sm{font-size:11px;color:var(--stone-light);margin-top:3px}
+
+.range-wrap{display:flex;align-items:center;gap:10px}
+.range-wrap input[type=range]{flex:1;accent-color:var(--olive)}
+.range-val{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--olive);min-width:36px;text-align:right}
+
+.btn-calc{width:100%;margin-top:18px;padding:12px;background:var(--olive);color:#fff;border:none;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:background .15s}
+.btn-calc:hover{background:var(--olive-deep)}
+
+/* DIAGRAMA */
+.diagrama-wrap{background:#fff;border:1px solid var(--rule);padding:16px}
+.diagrama-title{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:12px}
+svg.diagrama{width:100%;height:auto;display:block}
+
+/* RESULTADOS */
+.result-area{display:flex;flex-direction:column;gap:16px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:500px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:#fff;border:1px solid var(--rule);padding:12px 14px;border-left:3px solid var(--olive)}
+.kpi .kpi-val{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;color:var(--olive);line-height:1}
+.kpi .kpi-label{font-size:11px;color:var(--stone);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.kpi .kpi-ref{font-size:11px;color:var(--stone-light);margin-top:2px}
+
+/* TABELA DE MATERIAIS */
+.mat-table-wrap{background:#fff;border:1px solid var(--rule)}
+.mat-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.mat-table thead th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);padding:10px 14px;text-align:left;border-bottom:1px solid var(--rule);background:var(--paper-warm)}
+.mat-table thead th:not(:first-child){text-align:right}
+.mat-table tbody tr{border-bottom:1px solid var(--rule-soft)}
+.mat-table tbody tr.sep td{border-top:2px solid var(--rule);padding-top:10px;font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--stone-light);background:var(--paper-warm)}
+.mat-table tbody tr.total-row td{font-weight:700;background:var(--paper-warm);border-top:2px solid var(--rule)}
+.mat-table td{padding:9px 14px;color:var(--ink)}
+.mat-table td:not(:first-child){text-align:right;font-family:'IBM Plex Mono',monospace}
+.mat-table .dot{display:inline-block;width:8px;height:8px;border-radius:1px;margin-right:8px;vertical-align:middle}
+.mat-table .sub{font-size:11px;color:var(--stone-light);margin-top:2px}
+
+/* REFLEXÃO */
+.reflexao{background:var(--paper-warm);border:1px solid var(--rule);border-left:4px solid var(--olive);padding:20px 22px;font-size:14px;line-height:1.65;color:var(--ink-soft)}
+.reflexao-titulo{font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--ink);margin-bottom:12px;font-variation-settings:'opsz' 36}
+.reflexao p{margin-bottom:10px}
+.reflexao p:last-child{margin-bottom:0}
+.reflexao-cta{font-size:13px;color:var(--olive);font-weight:500;border-top:1px solid var(--rule);padding-top:12px;margin-top:12px!important}
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;font-size:13px}
+.ref-item{background:#fff;border:1px solid var(--rule);padding:10px 12px;border-radius:1px}
+.ref-item b{display:block;color:var(--olive);margin-bottom:2px}
+
+/* EMPTY */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 20px;text-align:center;gap:12px;color:var(--stone)}
+.empty-icon{font-size:48px;opacity:.3}
+.empty p{font-size:14px;max-width:28ch;line-height:1.5}
+
+/* REFERÊNCIA */
+.ref-box{background:#fff;border:1px solid var(--rule);padding:16px 18px;font-size:13px;line-height:1.6;color:var(--ink-soft)}
+.ref-box strong{color:var(--ink)}
+.ref-box .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--olive)}
+
+/* CORES */
+.c-muda{background:#3D4A2A}
+.c-pe{background:#7A8F5A}
+.c-pi{background:#B89233}
+.c-rab{background:#D4AE6A}
+.c-fio{background:#A8552E}
+.c-tut{background:#8B6BAE}
+</style>
+</head>
+
+<body>
+<noscript><p style="background:#fff3cd;color:#856404;padding:12px 16px;margin:0;font-family:sans-serif">Esta calculadora requer JavaScript.</p></noscript>
+
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">⌂</span>Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span>Fundamentos</a>
+    <a href="parte-2.html" class="mov1"><span class="rn">II</span>Custos</a>
+    <a href="parte-3.html" class="mov2"><span class="rn">III</span>Análise</a>
+    <a href="parte-4.html" class="mov2"><span class="rn">IV</span>Contexto</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span>Módulos</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span>Projeto</a>
+    <a href="projeto.html" class="mov3">Simulador</a>
+    <a href="rebanho.html">Rebanho</a>
+    <a href="vinhedo.html" class="current">Vinhedo</a>
+    <a href="credito.html">Crédito rural</a>
+  </div>
+</nav>
+
+<div class="wrap">
+<a href="parte-5.html" class="back-link">&#8592; voltar ao módulo V</a>
+
+<header class="masthead">
+  <div class="eyebrow">Zootecnia · Fruticultura · Implantação</div>
+  <h1 class="title">Planejador de vinhedo — espaldeira</h1>
+  <p class="subtitle">Informe as dimensões do talhão e os parâmetros de plantio. A calculadora gera as quantidades de <strong>mudas, postes, rabichos, tutores e fios</strong> para o orçamento de implantação.</p>
+</header>
+
+<div class="cols">
+  <!-- ENTRADAS -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="panel">
+      <div class="panel-title">Dados do talhão e plantio</div>
+
+      <div class="panel-section">Dimensões do talhão</div>
+      <div class="field-row">
+        <div class="field-sm">
+          <label for="comp">Comprimento das linhas (m)</label>
+          <input type="number" id="comp" min="10" max="2000" step="1" placeholder="ex.: 100">
+          <div class="hint-sm">Ao longo das fileiras de uva</div>
+        </div>
+        <div class="field-sm">
+          <label for="larg">Largura do talhão (m)</label>
+          <input type="number" id="larg" min="10" max="2000" step="1" placeholder="ex.: 100">
+          <div class="hint-sm">Perpendicular às fileiras</div>
+        </div>
+      </div>
+
+      <div class="panel-section">Espaçamento</div>
+      <div class="field-sm">
+        <label for="el">Entrelinhas — distância entre fileiras (m)</label>
+        <div class="range-wrap">
+          <input type="range" id="el" min="1.5" max="3.0" step="0.1" value="2.0">
+          <span class="range-val" id="el-val">2,0 m</span>
+        </div>
+        <div class="hint-sm">Referência: 2,0–2,5 m (espaldeira Serra Gaúcha / Campanha)</div>
+      </div>
+      <div class="field-sm">
+        <label for="ep">Entre plantas — espaçamento na linha (m)</label>
+        <div class="range-wrap">
+          <input type="range" id="ep" min="0.8" max="3.0" step="0.1" value="1.5">
+          <span class="range-val" id="ep-val">1,5 m</span>
+        </div>
+        <div class="hint-sm">Referência: 1,5–2,0 m conforme cultivar e fertilidade</div>
+      </div>
+
+      <div class="panel-section">Estrutura de sustentação</div>
+      <div class="field-sm">
+        <label for="mp">Espaçamento entre postes internos (m)</label>
+        <div class="range-wrap">
+          <input type="range" id="mp" min="4.0" max="8.0" step="0.5" value="5.0">
+          <span class="range-val" id="mp-val">5,0 m</span>
+        </div>
+        <div class="hint-sm">Referência: 5,0–6,0 m (manual Embrapa/UFRGS)</div>
+      </div>
+      <div class="field-sm">
+        <label for="nf">Número de fios de arame</label>
+        <div class="range-wrap">
+          <input type="range" id="nf" min="3" max="8" step="1" value="7">
+          <span class="range-val" id="nf-val">7 fios</span>
+        </div>
+        <div class="hint-sm">Referência: 7 fios (1 produção + 3 fixos + 3 móveis)</div>
+      </div>
+
+      <button class="btn-calc" id="btn-calc">Calcular materiais</button>
+    </div>
+
+    <div class="ref-box">
+      <strong>Referência técnica</strong><br>
+      Embrapa Uva e Vinho / UFRGS — <em>Implantação e manejo de vinhedos de base ecológica</em>. Parâmetros para 1 ha em espaldeira:<br>
+      <span class="mono">2,0 × 1,5 m · postes 5,0 m · 7 fios</span><br>
+      Postes externos: 102 · Rabichos: 102 · Postes internos: 969 · Tutores: 3.333 · Fios: ~36.000 m
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="result-area" id="result-area">
+    <div class="empty" id="empty-state">
+      <div class="empty-icon">🍇</div>
+      <p>Informe as dimensões do talhão e clique em <strong>Calcular materiais</strong>.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// Sliders com display ao vivo
+function initSlider(id, suffix, decimals){
+  const el = document.getElementById(id);
+  const val = document.getElementById(id+'-val');
+  function upd(){ val.textContent = parseFloat(el.value).toFixed(decimals).replace('.',',')+' '+suffix; }
+  el.addEventListener('input', upd);
+  upd();
+}
+initSlider('el','m',1);
+initSlider('ep','m',1);
+initSlider('mp','m',1);
+initSlider('nf','fios',0);
+
+function numv(id){ return parseFloat(document.getElementById(id).value)||0; }
+
+function fmt(n){ return n.toLocaleString('pt-BR'); }
+
+document.getElementById('btn-calc').addEventListener('click', calcular);
+['comp','larg'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')calcular()}));
+
+function calcular(){
+  const comp = numv('comp');   // comprimento das linhas (m)
+  const larg = numv('larg');   // largura do talhão (m)
+  const el   = numv('el');     // entrelinhas (m)
+  const ep   = numv('ep');     // entre plantas (m)
+  const mp   = numv('mp');     // entre postes internos (m)
+  const nf   = numv('nf');     // número de fios
+
+  if(!comp || !larg){ alert('Informe o comprimento e a largura do talhão.'); return; }
+
+  // --- CÁLCULOS ---
+  // Número de linhas: primeira e última a el/2 da borda → round(larg/el) + 1
+  // Usamos floor+1 para ser conservador e consistente com a referência
+  const n_linhas = Math.floor(larg / el) + 1;
+
+  // Área efetiva
+  const area_m2  = comp * (n_linhas - 1) * el;   // linhas × espaço entre elas
+  const area_ha  = area_m2 / 10000;
+
+  // Densidade e plantas
+  const densidade   = Math.round(10000 / (el * ep));
+  const n_plantas   = Math.floor(comp / ep) + 1;   // por linha (inclui extremidades)
+  const total_plantas = n_plantas * n_linhas;
+
+  // Postes externos: 2 por linha (cabeceiras)
+  const postes_ext = n_linhas * 2;
+
+  // Rabichos: 1 por poste externo (escoras de ancoragem)
+  const rabichos = postes_ext;
+
+  // Postes internos: ceil(comp/mp) - 1 por linha
+  const pi_linha  = Math.ceil(comp / mp) - 1;
+  const postes_int = pi_linha * n_linhas;
+
+  // Tutores: 1 por planta
+  const tutores = total_plantas;
+
+  // Fio: nf fios × comprimento × n_linhas × 1,05 (perda/tensionamento)
+  const fios_m = Math.round(nf * comp * n_linhas * 1.05);
+
+  // Gemas/ha (referência: 65–80 mil/ha)
+  const gemas_planta = 6;  // estimativa conservadora (poda mista 2 varas × 3 gemas)
+  const gemas_ha = Math.round(total_plantas * gemas_planta / area_ha);
+
+  // --- RENDERIZAR ---
+  const area = document.getElementById('result-area');
+  document.getElementById('empty-state') && (document.getElementById('empty-state').style.display='none');
+
+  // verifica se gemas/ha está na faixa recomendada
+  const gemaOk = gemas_ha >= 65000 && gemas_ha <= 80000;
+  const gemaWarn = gemas_ha < 65000 ? 'baixa' : gemas_ha > 80000 ? 'alta' : '';
+
+  area.innerHTML = `
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-val">${area_ha.toFixed(2).replace('.',',')}</div>
+        <div class="kpi-label">Área efetiva (ha)</div>
+        <div class="kpi-ref">${fmt(Math.round(area_m2))} m²</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">${fmt(n_linhas)}</div>
+        <div class="kpi-label">Nº de fileiras</div>
+        <div class="kpi-ref">${fmt(n_plantas)} plantas/fileira</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">${fmt(densidade)}</div>
+        <div class="kpi-label">Plantas / ha</div>
+        <div class="kpi-ref">espaçamento ${el.toFixed(1).replace('.',',')} × ${ep.toFixed(1).replace('.',',')} m</div>
+      </div>
+    </div>
+
+    <div class="mat-table-wrap">
+      <table class="mat-table">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Dimensão / especificação</th>
+            <th>Por fileira</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" class="sep">Estrutura viva</td></tr>
+          <tr>
+            <td><span class="dot c-muda"></span>Mudas / tutores</td>
+            <td><span style="color:var(--stone-light);font-size:12px">1 tutor por muda, bambu ou madeira</span></td>
+            <td>${fmt(n_plantas)}</td>
+            <td><strong>${fmt(total_plantas)}</strong></td>
+          </tr>
+          <tr><td colspan="4" class="sep">Mouração</td></tr>
+          <tr>
+            <td><span class="dot c-pe"></span>Postes externos (cabeceiras)</td>
+            <td><span style="color:var(--stone-light);font-size:12px">250 cm × 10 × 10 cm · pedra/concreto/madeira</span></td>
+            <td>2</td>
+            <td><strong>${fmt(postes_ext)}</strong></td>
+          </tr>
+          <tr>
+            <td><span class="dot c-rab"></span>Rabichos (escoras)</td>
+            <td><span style="color:var(--stone-light);font-size:12px">120 cm × 10 × 10 cm · 1 por poste externo</span></td>
+            <td>2</td>
+            <td><strong>${fmt(rabichos)}</strong></td>
+          </tr>
+          <tr>
+            <td><span class="dot c-pi"></span>Postes internos</td>
+            <td><span style="color:var(--stone-light);font-size:12px">220 cm × 8 × 8 cm · madeira tratada · a cada ${mp.toFixed(1).replace('.',',')} m</span></td>
+            <td>${fmt(pi_linha)}</td>
+            <td><strong>${fmt(postes_int)}</strong></td>
+          </tr>
+          <tr><td colspan="4" class="sep">Aramado</td></tr>
+          <tr>
+            <td><span class="dot c-fio"></span>Fio de arame galvanizado</td>
+            <td><span style="color:var(--stone-light);font-size:12px">${nf} fios × ${fmt(comp)} m × ${fmt(n_linhas)} fileiras + 5% perda</span></td>
+            <td>${fmt(Math.round(nf * comp * 1.05))} m</td>
+            <td><strong>${fmt(fios_m)} m</strong></td>
+          </tr>
+          <tr><td colspan="4" class="sep">Referência de carga</td></tr>
+          <tr>
+            <td colspan="2">Gemas/ha estimadas <span style="font-size:11px;color:var(--stone-light)">(2 varas × 3 gemas/vara × plantas/ha)</span></td>
+            <td colspan="2" style="text-align:right;color:${gemaOk?'var(--olive-mid)':'var(--terra)'}"><strong>${fmt(gemas_ha)}</strong> <span style="font-size:11px">${gemaOk?'✓ faixa ideal (65–80 mil/ha)':'⚠ '+gemaWarn+' — meta: 65–80 mil/ha'}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="reflexao-div"></div>
+  `;
+
+  // Card de reflexão
+  const rfDiv = document.getElementById('reflexao-div');
+  rfDiv.innerHTML = `
+    <div class="reflexao">
+      <div class="reflexao-titulo">Da estrutura ao orçamento de implantação</div>
+      <p>Cada linha da tabela acima é um <strong>item do custeio de implantação</strong> — o que no simulador de projeto corresponde ao passo 5. Multiplicar a quantidade pelo preço unitário é o que transforma o planejamento técnico em projeto econômico.</p>
+      <div class="ref-grid">
+        <div class="ref-item"><b>${fmt(total_plantas)} mudas</b>Custo por muda × total = maior item da implantação</div>
+        <div class="ref-item"><b>${fmt(postes_ext + postes_int)} postes</b>Externos + internos — preço varia por material (pedra, concreto, madeira tratada)</div>
+        <div class="ref-item"><b>${fmt(rabichos)} rabichos</b>Escoras de ancoragem nas cabeceiras</div>
+        <div class="ref-item"><b>${fmt(fios_m)} m de fio</b>Considerar arame liso galvanizado + grampos + tensores</div>
+      </div>
+      <p>Além dos materiais, a implantação inclui: <strong>mão de obra de marcação, coveamento e plantio</strong> (~60–100 dias/ha), preparo do solo (calagem, adubação de fundação) e irrigação de estabelecimento se houver.</p>
+      <p class="reflexao-cta">→ Use esses números no passo 5 do <a href="projeto.html" style="color:var(--olive);font-weight:600">simulador de projeto</a> para calcular o custo de formação e o fluxo de caixa do vinhedo.</p>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
