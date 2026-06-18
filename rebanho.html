@@ -151,8 +151,6 @@ h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:28px;line-height
 .c-bez-txt{color:#B89233}
 .c-nov{background:#D4AE6A}
 .c-nov-txt{color:#D4AE6A}
-.c-touro{background:#A8552E}
-.c-touro-txt{color:#A8552E}
 
 /* CARD DE REFLEXÃO */
 .reflexao{background:var(--paper-warm);border:1px solid var(--rule);border-left:4px solid var(--olive);padding:20px 22px;font-size:14px;line-height:1.65;color:var(--ink-soft)}
@@ -240,11 +238,6 @@ h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:28px;line-height
           <input type="number" id="mort" min="0" max="20" step="1" value="5">
           <div class="hint-sm">Referência Embrapa: meta ≤ 5% com bom manejo sanitário.</div>
         </div>
-        <div class="field-sm">
-          <label for="touroratio">Relação touro : vaca</label>
-          <input type="number" id="touroratio" min="10" max="50" step="1" value="25">
-          <div class="hint-sm">1 touro para cada N vacas. Típico: 1:20 a 1:30.</div>
-        </div>
       </div>
 
       <button class="btn-calc" id="btn-calc">Calcular estrutura</button>
@@ -304,7 +297,6 @@ function calcular(){
   const ipp      = n('ipp') || 24;
   const desc     = n('descarte') || 25;
   const mort     = n('mort') || 5;
-  const tratio   = n('touroratio') || 25;
 
   if(!vl || vl < 1){ alert('Informe o número de vacas em lactação.'); return; }
 
@@ -331,14 +323,11 @@ function calcular(){
   }
   const totalNov = novPorGrupo.reduce((a,b)=>a+b,0);
 
-  // Touros
-  const touros = Math.max(1, Math.ceil(vt / tratio));
-
   // Reposição necessária por ano
   const reposAnual = Math.round(vt * desc / 100);
 
   // TOTAL
-  const total = vt + bez_0_6 + totalNov + touros;
+  const total = vt + bez_0_6 + totalNov;
 
   // INDICADORES
   const pctVlVtReal = (vl / vt * 100).toFixed(1);
@@ -371,7 +360,6 @@ function calcular(){
     {label:'Vacas secas',       n:secas,   cls:'c-seca'},
     {label:'Bezerras 0–6 m',    n:bez_0_6, cls:'c-bez'},
     ...novPorGrupo.map((nv,i)=>({label:faixaNov(i), n:nv, cls:'c-nov'})),
-    {label:'Touros',            n:touros,  cls:'c-touro'},
   ];
 
   // Linhas da tabela
@@ -380,7 +368,6 @@ function calcular(){
     {cat:'Vacas secas',       n:secas,   cls:'c-seca',  note:'pré-parto (~'+Math.round((ip-pl))+' meses)'},
     {cat:'Bezerras 0–6 meses', n:bez_0_6, cls:'c-bez',  note:'ambos os sexos · mort. aplicada'},
     ...novPorGrupo.map((nv,i)=>({cat:faixaNov(i), n:nv, cls:'c-nov', note:'fêmeas · recria'})),
-    {cat:'Touros',            n:touros,  cls:'c-touro', note:'1 : '+tratio+' vacas'},
   ];
 
   area.innerHTML = `
