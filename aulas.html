@@ -216,22 +216,38 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 .build-note{margin:18px 22px 4px;padding:14px 16px;background:var(--highlight);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:var(--mustard-ink)}
 .build-note strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8A6E1A;font-weight:600;margin-bottom:5px}
 
+/* ===== BANNERS DE MOVIMENTO ===== */
+.mov-banner{margin:22px 22px 6px;padding:14px 16px;display:flex;align-items:center;gap:14px;border-left:4px solid}
+.mov-banner.mov1{border-color:var(--olive);background:#EEF1E7}
+.mov-banner.mov2{border-color:var(--mustard);background:#F5EDD1}
+.mov-banner.mov3{border-color:var(--terra);background:#F5E4D8}
+.mov-banner-emoji{font-size:20px;line-height:1}
+.mov-banner-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);display:block}
+.mov-banner-sub{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);font-style:italic;margin-top:2px;display:block}
+
+/* Acento dos blocos por movimento */
+.block.mov1.open{border-color:var(--olive)}
+.block.mov1.open .block-num{background:var(--olive);border-color:var(--olive)}
+.block.mov2.open{border-color:var(--mustard)}
+.block.mov2.open .block-num{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+
 /* ===== LINHAS DE VÍDEO ===== */
 .serie-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);font-weight:500;white-space:nowrap}
 .vid-row{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;padding:13px 0;border-bottom:1px solid var(--rule-soft)}
 .vid-row:last-child{border-bottom:none}
-.vid-row .vn{grid-row:1 / span 3;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--terra);font-weight:600;padding-top:2px}
-.vid-row .vt{font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:600;line-height:1.3;color:var(--ink)}
-.vid-row.live .vt a{color:var(--terra);text-decoration:none}
-.vid-row.live .vt a:hover{text-decoration:underline}
-.vid-row .vd{font-size:12.5px;color:var(--stone);line-height:1.45;margin-top:1px}
-.vid-row .vmeta{margin-top:7px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vid-row .vn{grid-row:1 / span 2;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--terra);font-weight:600;padding-top:4px}
+.vt-btn{background:none;border:none;padding:0;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:600;line-height:1.35;color:var(--ink);text-align:left;cursor:pointer;width:100%}
+.vt-btn:hover{color:var(--terra)}
+.vt-btn[aria-expanded="true"]{color:var(--terra)}
+.vid-row .vmeta{margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .vstatus{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:3px 8px}
 .vstatus.soon{color:var(--stone-light);border:1px solid var(--rule)}
 .vstatus.go{color:var(--paper);background:var(--terra);text-decoration:none}
 .vstatus.go:hover{background:var(--terra-deep)}
-.start-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--mustard-ink);background:#F2E3B4;padding:3px 8px}
 .vstatus.live-now{color:var(--paper);background:var(--terra)}
+.vid-foco{grid-column:1 / -1;margin-top:8px;padding:12px 14px;background:var(--paper-warm);border-left:3px solid var(--terra);font-size:13.5px;line-height:1.6;color:var(--ink-soft);display:none}
+.vid-foco.open{display:block}
+.vid-foco-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra);font-weight:600;display:block;margin-bottom:6px}
 .vid-embed{grid-column:1 / -1;margin-top:10px;position:relative;width:100%;aspect-ratio:16 / 9;background:#000;border:1px solid var(--rule)}
 .vid-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
@@ -272,8 +288,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   </div>
   <p class="subtitle">Você já sabe produzir. Aqui você aprende a calcular se está ganhando dinheiro com isso. Vídeos curtos (3 a 5 min), conceito mais exemplo com números reais do RS — soja, arroz, videira, Hereford, Angus, leite, integrados.</p>
   <div class="meta">
-    <span>10 séries</span>
-    <span>74 vídeos</span>
+    <span>6 séries</span>
+    <span>12 vídeos</span>
     <span>Em construção</span>
   </div>
 </header>
@@ -297,165 +313,146 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 <script>
 /* =====================================================================
    COMO PUBLICAR UM VÍDEO:
-   Encontre o vídeo pelo título e cole o link do YouTube entre as aspas
-   do campo url. Ex.: url: 'https://youtu.be/XXXXXXXX'
-   Vazio (url:'') = aparece como "em breve". Com link = vira "assistir".
-   start:true marca os 10 vídeos de largada com o selo "comece aqui".
+   Cole o link embed do YouTube no campo url e defina embed:true.
+   Ex.: url:'https://www.youtube.com/embed/XXXXXXXXXXX', embed:true
+   Sem url = "em breve". Com url sem embed = link externo "assistir".
    ===================================================================== */
+const MOVIMENTOS = {
+  1: { emoji:"🟢", label:"Movimento 1 · Entender", sub:"A Base Estrutural",        cls:"mov1" },
+  2: { emoji:"🟡", label:"Movimento 2 · Medir",    sub:"A Realidade dos Números",  cls:"mov2" },
+  3: { emoji:"🔴", label:"Movimento 3 · Decidir",  sub:"O Futuro do Negócio",      cls:"mov3" }
+};
+
 const VIDEOS = [
-  { s: 1, nome: "A fazenda como empresa", videos: [
-    { n:"1.1", t:"Por que sua fazenda precisa ser gerida como empresa — mesmo sendo familiar", d:"Resultado econômico vs. financeiro", url:"https://www.youtube.com/embed/v7UmQ8v7_Eo", embed:true },
-    { n:"1.2", t:"O produtor gaúcho que trabalha 12 meses e não sabe se lucrou", d:"Ausência de controle de custos", url:"", start:true },
-    { n:"1.3", t:"Produzir mais soja não garante mais lucro — entenda por quê", d:"Custo por sc vs. receita por sc", url:"" },
-    { n:"1.4", t:"O técnico que recomenda sem calcular — um problema de formação", d:"Papel do técnico como gestor econômico", url:"" },
-    { n:"1.5", t:"A crise do endividamento rural no RS — o que os números mostram", d:"Custo crescente vs. margem encolhendo", url:"" },
-    { n:"1.6", t:"Como definir o objetivo econômico da sua propriedade", d:"Missão, metas e ciclo de gestão", url:"" }
+  { s:1, mov:1, nome:"Parte 1 · Fundamentos de Gestão Agropecuária", videos:[
+    { n:"1", t:"Por que trabalhar 12 meses no campo pode não sobrar lucro?",
+      foco:"A diferença prática entre resultado de caixa e lucro econômico. Introdução aos três custos invisíveis (pró-labore, depreciação e custo de oportunidade), ilustrados através de um cenário prático de produção de soja.",
+      url:"https://www.youtube.com/embed/v7UmQ8v7_Eo", embed:true },
+    { n:"2", t:"Classificação de Custos: O Desafio na Pecuária de Leite",
+      foco:"Desmistificação de Custos Fixos vs. Variáveis e Diretos vs. Indiretos. Como separar na prática o custo do concentrado (variável/direto) da manutenção estrutural da sala de ordenha (fixo/indireto).",
+      url:"" }
   ]},
-  { s: 2, nome: "Por que o preço não depende de você", videos: [
-    { n:"2.1", t:"Por que o preço da soja cai justamente quando você colhe no RS", d:"Sazonalidade, oferta concentrada, quando vender", url:"", start:true },
-    { n:"2.2", t:"Por que o preço do leite está baixo — e o que isso tem a ver com a China", d:"Demanda global, câmbio, poder do produtor", url:"" },
-    { n:"2.3", t:"O dólar sobe e você acha que vai ganhar mais — mas o custo da ração também sobe", d:"Dupla exposição ao câmbio no RS", url:"" },
-    { n:"2.4", t:"O ciclo do rebanho bovino no RS — por que o preço do boi sobe e cai em ondas", d:"Ciclo biológico, retenção e liquidação", url:"" },
-    { n:"2.5", t:"Como consultar o preço real que você vai receber — não o da bolsa", d:"CEPEA, IRGA, cooperativa, preço na porteira", url:"" },
-    { n:"2.6", t:"Vender o arroz na colheita ou guardar no silo — como calcular essa decisão", d:"Custo de armazenagem vs. ganho de preço", url:"" },
-    { n:"2.7", t:"Por que a safra recorde de soja no RS derrubou o preço em 2023", d:"Oferta, demanda, ponto de equilíbrio de mercado", url:"" }
+  { s:2, mov:1, nome:"Parte 2 · Estrutura de Custos", videos:[
+    { n:"3", t:"O Custo Operacional na Lavoura de Arroz Irrigado",
+      foco:"A metodologia oficial de mercado (CONAB/EMATER-RS). O cálculo prático do COE (Custo Operacional Efetivo), COT e CT, evidenciando o peso de itens específicos, como o bombeamento de água e o diesel, na planilha da safra.",
+      url:"" },
+    { n:"4", t:"Máquinas e Tecnologia: A Conta da Depreciação",
+      foco:"O cálculo real do desgaste das máquinas e do capital investido em implementos e tecnologias de precisão. O impacto direto da modernização da frota na conta de depreciação ao final do ano.",
+      url:"" }
   ]},
-  { s: 3, nome: "Colocando número nos custos", videos: [
-    { n:"3.1", t:"O que é custo variável e fixo — com exemplos da lavoura gaúcha", d:"Ração, semente, diesel vs. depreciação, pró-labore", url:"" },
-    { n:"3.2", t:"Como separar os custos de cada atividade na sua propriedade", d:"Rateio por área, horas, receita", url:"" },
-    { n:"3.3", t:"O custo que não aparece no extrato bancário — e que destrói fazendas", d:"Custos implícitos, resultado econômico", url:"" },
-    { n:"3.4", t:"COE — o custo mínimo para não parar a fazenda", d:"Definição, composição, cálculo", url:"" },
-    { n:"3.5", t:"COT — quando a fazenda paga as contas mas consome o patrimônio", d:"COE + depreciação + pró-labore", url:"" },
-    { n:"3.6", t:"CT — o custo que responde se vale a pena continuar", d:"COT + custo de oportunidade", url:"" },
-    { n:"3.7", t:"COE, COT e CT — qual usar para cada decisão na sua fazenda", d:"Hierarquia decisória com exemplos RS", url:"", start:true },
-    { n:"3.8", t:"Como montar o orçamento de uma lavoura de soja no RS — do zero", d:"Passo a passo com coeficientes CONAB/EMATER", url:"" },
-    { n:"3.9", t:"O que é Funrural — e por que ele reduz sua receita antes de você receber", d:"Deduções sobre receita bruta", url:"" }
+  { s:3, mov:2, nome:"Parte 3 · Análise Econômica", videos:[
+    { n:"5", t:"Margens de Resultado em Culturas Perenes (Fruticultura)",
+      foco:"A diferença entre Margem Bruta, Margem Líquida e Lucro Real em pomares. O desafio financeiro de analisar a viabilidade em atividades que exigem anos de investimento antes de gerar o primeiro retorno comercial.",
+      url:"" },
+    { n:"6", t:"Ponto de Equilíbrio na Pecuária de Corte (Recria e Gorda)",
+      foco:"A aplicação do Ponto de Equilíbrio e da Margem de Contribuição. O cálculo de quantos quilos de carcaça por hectare o produtor precisa entregar apenas para \"empatar\" o custo fixo da estância.",
+      url:"" }
   ]},
-  { s: 4, nome: "Os três custos que destroem fazendas em silêncio", videos: [
-    { n:"4.1", t:"Seu trator está envelhecendo — e você não está guardando dinheiro para substituí-lo", d:"Depreciação, reserva patrimonial", url:"", start:true },
-    { n:"4.2", t:"Como calcular a depreciação do trator, galpão e rebanho — passo a passo", d:"Método linear, vida útil, valor residual", url:"" },
-    { n:"4.3", t:"Você trabalha na fazenda há 20 anos sem se pagar — isso é custo", d:"Pró-labore, trabalho familiar como custo real", url:"", start:true },
-    { n:"4.4", t:"Arrendar sua terra para o vizinho poderia render mais do que plantar — calcule", d:"Custo de oportunidade da terra, referências RS", url:"" },
-    { n:"4.5", t:"O dinheiro investido na lavoura poderia estar rendendo na poupança — compare", d:"Custo de oportunidade do capital, Selic", url:"" },
-    { n:"4.6", t:"Por que o banco cheio não significa que você lucrou — resultado econômico", d:"Síntese dos três custos invisíveis", url:"" }
+  { s:4, mov:2, nome:"Parte 4 · Contexto Operacional e Gestão de Riscos", videos:[
+    { n:"7", t:"Economia de Escala: Pequena Propriedade vs. Grandes Áreas",
+      foco:"A dinâmica da diluição de custos fixos. A quebra do mito do tamanho da terra: como é possível ter alta rentabilidade e ser competitivo em pequenas áreas aumentando a eficiência dos fatores de produção.",
+      url:"" },
+    { n:"8", t:"Gestão de Riscos e Competitividade na Avicultura de Postura Colonial 🥚",
+      foco:"O desafio diário da agricultura familiar na produção de ovos coloniais e galinhas livres de gaiola (cage-free). Como gerenciar a oscilação de preços da ração (milho/soja), os custos de biosseguridade e como justificar um custo unitário maior para competir com a escala dos grandes aviários industriais através da agregação de valor.",
+      url:"" }
   ]},
-  { s: 5, nome: "Quanto sua fazenda realmente lucra?", videos: [
-    { n:"5.1", t:"Receita bruta vs. receita líquida — o que realmente entra no seu bolso", d:"Funrural, frete, taxas, deduções regionais RS", url:"" },
-    { n:"5.2", t:"Margem Bruta, Margem Líquida e Lucro Econômico — as três perguntas do projeto", d:"Cascata de margens, interpretação", url:"" },
-    { n:"5.3", t:"O IEE — o índice que mostra se sua fazenda gera ou consome riqueza", d:"Fórmula, interpretação, IEE < 1 é alarme", url:"" },
-    { n:"5.4", t:"O que é lucratividade na agropecuária — e por que 35% pode ser pouco", d:"Lucro ÷ receita, comparação entre atividades", url:"", start:true },
-    { n:"5.5", t:"O que é rentabilidade — e como comparar sua fazenda com a poupança", d:"Lucro ÷ CT, comparação com Selic", url:"" },
-    { n:"5.6", t:"Como calcular o ponto de equilíbrio da sua lavoura ou criação", d:"PE de produtividade e de preço, RS", url:"", start:true },
-    { n:"5.7", t:"Margem de segurança — o quanto sua produção pode cair antes do prejuízo", d:"MS pelo COE, COT e CT", url:"" },
-    { n:"5.8", t:"Mais adubo sempre vale a pena? A análise marginal responde", d:"RM = CM, rendimentos decrescentes, ureia no milho RS", url:"" },
-    { n:"5.9", t:"Como montar os três cenários do seu projeto — pessimista, realista e otimista", d:"Variação de preço e produção, decisão de risco", url:"" },
-    { n:"5.10", t:"Qual é a variável que mais ameaça o resultado da sua fazenda", d:"Análise de sensibilidade, variável crítica", url:"" }
+  { s:5, mov:3, nome:"Parte 5 · Módulos Aplicados", videos:[
+    { n:"9", t:"Sistemas Integrados: A Complexidade dos Custos na ILP",
+      foco:"O desafio contábil da Integração Lavoura-Pecuária. Como ratear corretamente os custos de fertilidade e o uso da terra entre a lavoura de verão e a pastagem de inverno sem mascarar o resultado financeiro de nenhuma das duas atividades.",
+      url:"" },
+    { n:"10", t:"Crédito Rural e Plano Safra na Prática Gaúcha",
+      foco:"Estratégias para captação inteligente de recursos. A leitura correta das taxas de juros, o impacto das contrapartidas exigidas pelos bancos e o efeito do pagamento de parcelas no fluxo de caixa da propriedade.",
+      url:"" }
   ]},
-  { s: 6, nome: "Caixa, crédito e endividamento rural", videos: [
-    { n:"6.1", t:"Por que uma lavoura lucrativa pode endividar o produtor", d:"Viabilidade vs. solvência, fluxo de caixa", url:"", start:true },
-    { n:"6.2", t:"Como montar o fluxo de caixa de uma safra de soja no RS", d:"Entradas e saídas mês a mês", url:"" },
-    { n:"6.3", t:"Quanto capital de giro você precisa para uma safra — e como calcular", d:"Déficit máximo acumulado", url:"" },
-    { n:"6.4", t:"O que é o Pronaf — quem pode acessar e quanto custa de verdade", d:"Modalidades, CAF, taxas, custo financeiro", url:"" },
-    { n:"6.5", t:"Pronaf vs. Pronamp — qual linha de crédito é a sua", d:"Critérios, limites, diferenças práticas", url:"" },
-    { n:"6.6", t:"O custo do crédito rural entra no orçamento — e muda a viabilidade", d:"Juros no COE, cálculo do custo financeiro", url:"" },
-    { n:"6.7", t:"Como a diversificação de atividades protege o caixa da fazenda", d:"Correlação de risco, entradas distribuídas", url:"" },
-    { n:"6.8", t:"Endividamento rural no RS — o que os números mostram e o que fazer", d:"Diagnóstico, margem apertada, custo crescente", url:"" }
-  ]},
-  { s: 7, nome: "Gestão de custos em pecuária gaúcha", videos: [
-    { n:"7.1", t:"Sua taxa de lotação está certa — ou está te custando dinheiro?", d:"UA, capacidade de suporte, custo por UA", url:"", start:true },
-    { n:"7.2", t:"GMD baixo não é só problema zootécnico — é problema econômico", d:"Ganho de peso × custo de ração × receita", url:"" },
-    { n:"7.3", t:"Como calcular o custo por kg produzido na pecuária de corte no RS", d:"Estrutura de custos, Hereford/Angus, campo nativo", url:"" },
-    { n:"7.4", t:"Confinamento bovino no RS — quando o spread compensa o investimento", d:"Boi magro vs. gordo, custo da ração, margem", url:"" },
-    { n:"7.5", t:"Seu rebanho leiteiro está dando lucro — ou você está trabalhando de graça?", d:"Custo por litro, pró-labore, Holandês/Jersey RS", url:"" },
-    { n:"7.6", t:"Concentrado para vaca leiteira — quanto aplicar para maximizar o lucro", d:"Relação concentrado:leite, análise marginal", url:"" },
-    { n:"7.7", t:"Gestão de custos em suinocultura integrada — o que o técnico precisa saber", d:"Conversão alimentar, custo/kg, contrato de integração", url:"" },
-    { n:"7.8", t:"Avicultura de corte integrada — como calcular se o lote foi lucrativo", d:"CA, custo/kg, margem por lote", url:"" },
-    { n:"7.9", t:"Os custos invisíveis da pecuária — depreciação do rebanho e das cercas", d:"Aplicação de depreciação ao setor pecuário", url:"" }
-  ]},
-  { s: 8, nome: "Fruticultura e perenes do RS", videos: [
-    { n:"8.1", t:"Por que a videira exige uma análise de custos diferente da lavoura", d:"Fase de formação, fluxo de caixa de longo prazo", url:"" },
-    { n:"8.2", t:"Como calcular o custo de implantação de um pomar no RS", d:"Mudas, espaldeira, preparo — passo a passo", url:"" },
-    { n:"8.3", t:"Em quanto tempo uma videira Bordô na Serra Gaúcha se paga", d:"Payback, custo de formação vs. receita acumulada", url:"" },
-    { n:"8.4", t:"VPL e TIR em linguagem simples — para quem vai plantar um pomar", d:"Conceito, interpretação, uso na decisão", url:"" },
-    { n:"8.5", t:"Pessegueiro no RS — como calcular se o projeto de implantação é viável", d:"Custo de formação, produtividade, preço ao produtor", url:"" },
-    { n:"8.6", t:"Como incluir o custo de um pomar já implantado no orçamento anual", d:"Amortização, depreciação de perenes", url:"" }
-  ]},
-  { s: 9, nome: "Do campo ao orçamento", videos: [
-    { n:"9.1", t:"O laudo de solo determina o maior custo da lavoura — sabia?", d:"pH, V%, SMP → custo de calcário e adubação", url:"" },
-    { n:"9.2", t:"Como calcular a necessidade de calagem pelo Índice SMP no RS", d:"3 passos, tabela CQFS-RS/SC, PRNT, custo final", url:"" },
-    { n:"9.3", t:"Do diagnóstico do rebanho ao orçamento pecuário — passo a passo", d:"Taxa de natalidade, evolução do rebanho, receita", url:"" },
-    { n:"9.4", t:"Como usar os coeficientes técnicos da EMATER/RS no seu projeto", d:"CONAB, EMATER, EMBRAPA — fontes regionais", url:"" },
-    { n:"9.5", t:"Croqui no Google Earth — como mapear sua propriedade de graça", d:"Passo a passo, área por talhão, KML, CAR", url:"" },
-    { n:"9.6", t:"Conhecer a biologia da cultura ou criação é parte da gestão de custos", d:"Ciclos produtivos, fases críticas, riscos e margens", url:"" }
-  ]},
-  { s: 10, nome: "Como elaborar um projeto agropecuário viável", videos: [
-    { n:"10.1", t:"O que o banco exige num projeto agropecuário — e por que a maioria reprova", d:"Premissas com fonte, COE, COT, CT, cenários", url:"", start:true },
-    { n:"10.2", t:"Como definir o preço de venda no projeto — o erro mais comum", d:"Cotação vs. preço na porteira, fonte e data", url:"" },
-    { n:"10.3", t:"Como calcular a produtividade esperada sem mentir para si mesmo", d:"Média histórica regional, CONAB, EMATER/RS", url:"" },
-    { n:"10.4", t:"Como mostrar que seu projeto agropecuário é viável — com números", d:"IEE, lucratividade, margem de segurança", url:"" },
-    { n:"10.5", t:"O que fazer quando o projeto só é viável no cenário otimista", d:"Análise de risco, seguro, escala, reformulação", url:"" },
-    { n:"10.6", t:"Como apresentar um projeto de investimento para a cooperativa ou banco", d:"Estrutura, indicadores, linguagem do agente financeiro", url:"" },
-    { n:"10.7", t:"Os erros que reprovam projetos agropecuários — e como evitá-los", d:"Premissas sem fonte, COT confundido com COE", url:"" }
+  { s:6, mov:3, nome:"Parte 6 · Projeto Final e Viabilidade", videos:[
+    { n:"11", t:"Investindo em Infraestrutura: O Retorno de um Pivô de Irrigação",
+      foco:"A aplicação prática dos indicadores de viabilidade: VPL, TIR e Payback. Como fundamentar matematicamente a decisão de imobilizar alto capital em infraestrutura para mitigar o risco climático, calculando o tempo exato de retorno do investimento.",
+      url:"" },
+    { n:"12", t:"Estruturando um Projeto Agropecuário",
+      foco:"A aplicação final do conhecimento. Como transformar a necessidade da fazenda em um documento formal para captação de recursos. As diferenças entre estruturar projetos de custeio (ciclo), investimento (bens duráveis) e comercialização, comprovando a capacidade técnica e de pagamento do produtor.",
+      url:"" }
   ]}
 ];
 
-/* ===== Render das séries em acordeão ===== */
-const ROMANOS = ['','I','II','III','IV','V','VI','VII','VIII','IX','X'];
+/* ===== Render organizado por movimento ===== */
 const wrap = document.getElementById('series');
-
 function esc(str){ const d=document.createElement('div'); d.textContent=str; return d.innerHTML; }
 
+let currentMov = 0;
 VIDEOS.forEach(serie => {
+  if(serie.mov !== currentMov){
+    currentMov = serie.mov;
+    const m = MOVIMENTOS[currentMov];
+    const banner = document.createElement('div');
+    banner.className = `mov-banner ${m.cls}`;
+    banner.innerHTML = `<span class="mov-banner-emoji">${m.emoji}</span><div><span class="mov-banner-label">${esc(m.label)}</span><span class="mov-banner-sub">${esc(m.sub)}</span></div>`;
+    wrap.appendChild(banner);
+  }
+
+  const m = MOVIMENTOS[serie.mov];
   const sec = document.createElement('section');
-  sec.className = 'block';
+  sec.className = `block ${m.cls}`;
   sec.id = 'serie-' + serie.s;
+
   const total = serie.videos.length;
   const prontos = serie.videos.filter(v => v.url).length;
   let rows = '';
-  serie.videos.forEach(v => {
+
+  serie.videos.forEach((v, idx) => {
     const live = !!v.url;
     const embed = live && v.embed;
+    const focoId = `foco-${serie.s}-${idx}`;
+
     const status = embed
       ? `<span class="vstatus live-now">no ar</span>`
       : live
       ? `<a class="vstatus go" href="${esc(v.url)}" target="_blank" rel="noopener">assistir &rarr;</a>`
       : `<span class="vstatus soon">em breve</span>`;
-    const start = v.start ? `<span class="start-tag">comece aqui</span>` : '';
-    const titulo = (live && !embed)
-      ? `<a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.t)}</a>`
-      : esc(v.t);
+
     const player = embed
       ? `<div class="vid-embed"><iframe src="${esc(v.url)}" title="${esc(v.t)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
       : '';
+
     rows += `
-      <div class="vid-row${live ? ' live' : ''}">
+      <div class="vid-row">
         <span class="vn">${esc(v.n)}</span>
-        <span class="vt">${titulo}</span>
-        <span class="vd">${esc(v.d)}</span>
-        <span class="vmeta">${status}${start}</span>
+        <button class="vt-btn" aria-expanded="false" aria-controls="${focoId}">${esc(v.t)}</button>
+        <span class="vmeta">${status}</span>
+        <div class="vid-foco" id="${focoId}"><span class="vid-foco-label">Foco</span>${esc(v.foco)}</div>
         ${player}
       </div>`;
   });
+
   sec.innerHTML = `
     <button class="block-header" aria-expanded="false">
-      <span class="block-num">${ROMANOS[serie.s]}</span>
+      <span class="block-num">${serie.s}</span>
       <span class="block-title">${esc(serie.nome)}</span>
       <span class="block-chevron"></span>
     </button>
     <div class="block-body"><div class="block-content">
-      <p class="serie-meta">${total} vídeos${prontos ? ' · ' + prontos + ' no ar' : ''}</p>
+      <p class="serie-meta">${total} vídeo${total > 1 ? 's' : ''}${prontos ? ' · ' + prontos + ' no ar' : ''}</p>
       ${rows}
     </div></div>`;
   wrap.appendChild(sec);
 });
 
-/* ===== Acordeão + back-to-top ===== */
+/* ===== Acordeão de série + toggle foco + back-to-top ===== */
 document.addEventListener('click', (e) => {
   const header = e.target.closest('.block-header');
-  if(!header) return;
-  const block = header.closest('.block');
-  const open = block.classList.toggle('open');
-  header.setAttribute('aria-expanded', open);
+  if(header){
+    const block = header.closest('.block');
+    const open = block.classList.toggle('open');
+    header.setAttribute('aria-expanded', open);
+    return;
+  }
+  const btn = e.target.closest('.vt-btn');
+  if(btn){
+    const focoId = btn.getAttribute('aria-controls');
+    const foco = document.getElementById(focoId);
+    if(!foco) return;
+    const open = foco.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  }
 });
 window.addEventListener('load', () => {
   if(location.hash){
