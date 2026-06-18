@@ -154,6 +154,16 @@ h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:28px;line-height
 .c-touro{background:#A8552E}
 .c-touro-txt{color:#A8552E}
 
+/* CARD DE REFLEXÃO */
+.reflexao{background:var(--paper-warm);border:1px solid var(--rule);border-left:4px solid var(--olive);padding:20px 22px;font-size:14px;line-height:1.65;color:var(--ink-soft)}
+.reflexao-titulo{font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--ink);margin-bottom:12px;font-variation-settings:'opsz' 36}
+.reflexao p{margin-bottom:12px}
+.reflexao p:last-of-type{margin-bottom:0}
+.reflexao-exemplos{margin:14px 0;display:flex;flex-direction:column;gap:7px}
+.ref-item{display:flex;align-items:flex-start;gap:10px;font-size:13px}
+.ref-dot{width:10px;height:10px;border-radius:1px;flex-shrink:0;margin-top:3px}
+.reflexao-cta{font-size:13px;color:var(--olive);font-weight:500;border-top:1px solid var(--rule);padding-top:12px;margin-top:12px!important}
+
 @media(max-width:500px){
   .kpis{grid-template-columns:1fr 1fr}
   .kpi .kpi-val{font-size:20px}
@@ -461,6 +471,23 @@ function calcular(){
   trTot.className = 'total-row';
   trTot.innerHTML = `<td><b>Total do rebanho</b></td><td><b>${total}</b></td><td></td><td></td>`;
   tbody.appendChild(trTot);
+
+  // Card de reflexão — próximo passo para o orçamento
+  const reflexao = document.createElement('div');
+  reflexao.className = 'reflexao';
+  reflexao.innerHTML = `
+    <div class="reflexao-titulo">Agora que você tem a estrutura — e os custos?</div>
+    <p>Cada categoria que aparece na tabela tem um <strong>perfil de custo diferente</strong>. Uma vaca em lactação consome ração concentrada diariamente e exige monitoramento constante. Uma bezerra de 0–6 meses precisa de leite ou sucedâneo, vacinas específicas e abrigo aquecido. Uma novilha em recria come volumoso, sal mineral e praticamente não gera receita durante meses.</p>
+    <p>Tratar o rebanho como um número único — "tenho ${total} animais, então o custo de alimentação é X × ${total}" — é o erro mais comum em projetos de pecuária leiteira. <em>O orçamento correto multiplica o custo por cabeça de cada categoria pelo número de animais naquela categoria.</em></p>
+    <div class="reflexao-exemplos">
+      ${rows.map(r=>`<div class="ref-item">
+        <span class="ref-dot ${r.cls}"></span>
+        <span><b>${r.cat}</b> (${r.n} animais) — que insumos são exclusivos desta categoria?</span>
+      </div>`).join('')}
+    </div>
+    <p class="reflexao-cta">Use esses números como ponto de partida para o passo 3 do simulador de projeto — um item de custo para cada categoria com coeficientes técnicos próprios.</p>
+  `;
+  area.appendChild(reflexao);
 }
 </script>
 </body>

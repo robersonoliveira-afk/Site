@@ -140,6 +140,13 @@ ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-hei
 ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--mustard);font-weight:600}
 
 .callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.go-link{display:flex;align-items:center;gap:14px;margin:14px 0 18px;padding:14px 18px;background:var(--olive);color:var(--paper);text-decoration:none;transition:transform .15s,box-shadow .2s}
+.go-link:hover{transform:translateX(2px);box-shadow:-4px 0 0 var(--olive-deep)}
+.go-link-icon{font-size:22px;flex-shrink:0}
+.go-link-body{display:flex;flex-direction:column;min-width:0}
+.go-link-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:2px}
+.go-link-title{font-family:'Fraunces',serif;font-size:15px;font-weight:500;font-variation-settings:'opsz' 36;line-height:1.2}
+.go-link-arrow{margin-left:auto;font-size:18px;flex-shrink:0;opacity:.8}
 .callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
 .callout.success{background:var(--success-bg);border-left-color:var(--olive)}
 .callout.success strong{color:var(--olive)}
@@ -298,6 +305,14 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <strong>Erro frequente</strong>
       Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. As categorias têm perfis de custo completamente diferentes.
     </div>
+    <a class="go-link" href="rebanho.html">
+      <span class="go-link-icon">🐄</span>
+      <span class="go-link-body">
+        <span class="go-link-eyebrow">Ferramenta interativa</span>
+        <span class="go-link-title">Calcular a estrutura do rebanho leiteiro — por categoria</span>
+      </span>
+      <span class="go-link-arrow">&#8594;</span>
+    </a>
 
     <h3>Fruticultura: sistema de produção e implantação</h3>
     <p>No pomar, o diagnóstico é a definição do <strong>sistema de produção</strong> — decisões agronômicas de longo prazo que fixam os custos por 15 a 20 anos. O espaçamento define o número de mudas/ha, o coeficiente central. E há uma particularidade que nenhuma outra atividade do curso tem: a <em>fase de formação</em>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</p>
