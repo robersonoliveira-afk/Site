@@ -10,7 +10,7 @@
     de verdade. Qualquer passo que mude um número propaga para frente.
   - Cada etapa é uma <section data-step>. Navegação mostra/esconde; barra de progresso.
   - O passo 5 (implantação) só aparece quando TEMPLATES[template].perene === true (fruta, ervamate, madeira).
-  - estadoCanonico(): adapta o ESTADO para o schema que o dossiê (passo 7) consome.
+  - estadoCanonico(): adapta o ESTADO para o schema que o projeto final (passo 7) consome.
 
   O QUE EDITAR COM FREQUÊNCIA:
   - TEMPLATES (rótulos/unidades por atividade) · FUNRURAL (1,63% PF / 2,23% PJ) ·
@@ -21,7 +21,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simulador de Projeto Agropecuário · Gestão de Custos Agropecuários</title>
-<meta name="description" content="Simulador de projeto agropecuário — preencha em 8 etapas e gere dossiê com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
+<meta name="description" content="Simulador de projeto agropecuário — preencha em 8 etapas e gere o projeto final com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/projeto.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -172,7 +172,7 @@
   section[data-step]{display:none}
   section[data-step].on{display:block}
 
-  /* ===== dossiê (passo 7) ===== */
+  /* ===== projeto final (passo 7) ===== */
   .dossie{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:32px}
   .doc-head{border-bottom:2px solid var(--oliva);padding-bottom:14px;margin-bottom:18px}
   .doc-head h1{font-size:1.6rem;margin:2px 0 8px}
@@ -209,7 +209,7 @@
     section[data-step="7"]{display:block!important}
     .dossie{border:none;padding:0}
   }
-  /* leitura visual e indicadores (passo 6 + dossiê) */
+  /* leitura visual e indicadores (passo 6 + projeto final) */
   .viz-sep{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#8a8270;margin:20px 0 2px;border-top:1px solid var(--linha);padding-top:12px}
   .viz-sep:first-child{border-top:none;padding-top:0;margin-top:4px}
   .viz-svg{width:100%;height:auto;display:block;margin:6px 0 2px;max-width:560px}
@@ -298,7 +298,7 @@
     </div>
 
     <div class="card">
-      <h2><span class="n">2</span>Receita secundária</h2>
+      <h2><span class="n">2</span>Outras receitas</h2>
       <div class="grid2">
         <div class="field"><label for="sec-desc">Descrição</label>
           <input type="text" id="sec-desc" placeholder="descarte, subprodutos, esterco..."></div>
@@ -324,7 +324,7 @@
       <h2><span class="n">=</span>Da bruta à líquida</h2>
       <div class="dre">
         <div class="line"><span>Receita principal</span><span class="v" id="r-principal">R$ 0,00</span></div>
-        <div class="line"><span>(+) Receita secundária</span><span class="v" id="r-sec">R$ 0,00</span></div>
+        <div class="line"><span>(+) Outras receitas</span><span class="v" id="r-sec">R$ 0,00</span></div>
         <div class="line sub"><span>Receita bruta (RB)</span><span class="v" id="r-bruta">R$ 0,00</span></div>
         <div class="line ded"><span>(−) Comercialização</span><span class="v" id="r-comerc">R$ 0,00</span></div>
         <div class="line ded"><span>(−) Funrural</span><span class="v" id="r-funrural">R$ 0,00</span></div>
@@ -350,7 +350,7 @@
     <div class="card">
       <h2><span class="n">2</span>Observações de manejo</h2>
       <textarea id="obs" placeholder="Descreva em poucas linhas como a atividade é conduzida: o que define o resultado, onde estão os maiores cuidados e os maiores custos."></textarea>
-      <p class="note">Esse texto vai para o bloco de manejo do dossiê.</p>
+      <p class="note">Esse texto vai para o bloco de manejo do projeto.</p>
     </div>
   </section>
 
@@ -526,7 +526,7 @@
     A avaliação plurianual (VPL/TIR/payback) só se aplica a culturas perenes.</p>
   </section>
 
-  <!-- ===== PASSO 7 — dossiê final ===== -->
+  <!-- ===== PASSO 7 — projeto final ===== -->
   <section data-step="7">
     <div class="no-print" style="margin-bottom:16px">
       <button class="btn" id="print">Imprimir / salvar PDF</button>
@@ -1172,7 +1172,7 @@ function pintarCoerencia(E,D){
 
 // ===========================================================================
 // VISUAIS DE RESULTADO — gráfico-escada, break-even, indicadores
-// usados no passo 6 e espelhados no dossiê
+// usados no passo 6 e espelhados no projeto final
 // ===========================================================================
 function fmtN(x,d){ d=d||0; return (Number(x)||0).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 
@@ -1281,7 +1281,7 @@ function visuaisHTML(v){
 }
 
 // ===========================================================================
-// SCHEMA CANÔNICO (consumido pelo dossiê) — adapta o ESTADO interno
+// SCHEMA CANÔNICO (consumido pelo projeto final) — adapta o ESTADO interno
 // ===========================================================================
 function estadoCanonico(E,D){
   const t=TEMPLATES[E.template], m=MODOS[t.modo];
@@ -1379,7 +1379,7 @@ function montarDossie(C){
   const vViz={rb:num(p1.rb),coe:coe,cot:cot,ct:ct,rl:rl,n:n,prod:num(p1.produtividade),preco:num(p1.preco),un:un,unProd:p1.unidProd||'',lblProd:'Produtividade'};
   const bViz='<div class="bloco"><h2><span class="n">6</span>Leitura visual e indicadores</h2>'+visuaisHTML(vViz)+'</div>';
   const hoje=id.data||new Date().toLocaleDateString('pt-BR');
-  const head='<div class="doc-head"><p class="eyebrow">dossiê de viabilidade · '+esc(tpl.nome.toLowerCase())+'</p>'+
+  const head='<div class="doc-head"><p class="eyebrow">projeto de viabilidade · '+esc(tpl.nome.toLowerCase())+'</p>'+
     '<h2>'+esc(id.projeto||'Projeto de viabilidade agropecuária')+'</h2><div class="meta">'+
     (id.produtor?'<span>produtor: <b>'+esc(id.produtor)+'</b></span>':'')+
     (id.unidade?'<span>unidade: <b>'+esc(id.unidade)+'</b></span>':'')+
