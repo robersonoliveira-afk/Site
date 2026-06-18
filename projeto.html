@@ -78,6 +78,20 @@
   .hint{font-size:.74rem;color:#8a8270;margin-top:4px;font-family:var(--mono)}
   .note{font-size:.8rem;color:#8a8270;margin-top:10px}
 
+  /* caixas de ajuda expansível */
+  .lbl-aj{display:flex;align-items:center;gap:6px}
+  .ajuda-btn{flex:none;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid var(--linha);border-radius:50%;background:#fff;color:var(--mostarda);
+    font-family:var(--mono);font-size:.7rem;line-height:1;cursor:pointer}
+  .ajuda-btn:hover{border-color:var(--mostarda);color:var(--terra)}
+  .ajuda-btn[aria-expanded="true"]{background:var(--mostarda);color:#fff;border-color:var(--mostarda)}
+  .ajuda-box{background:var(--papel-2);border:1px solid var(--linha);border-left:3px solid var(--mostarda);
+    border-radius:7px;padding:10px 12px;margin:6px 0 0;font-size:.82rem;color:#4a4536}
+  .ajuda-box[hidden]{display:none}
+  .ajuda-box p{margin:0 0 6px}
+  .ajuda-box a{font-family:var(--mono);font-size:.74rem;color:var(--terra);text-decoration:none}
+  .ajuda-box a:hover{text-decoration:underline}
+
   /* DRE / cascata */
   .dre{border-top:1px dashed var(--linha);margin-top:6px;padding-top:14px}
   .dre .line{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;font-size:.92rem}
@@ -257,23 +271,125 @@
     <div class="card">
       <h2><span class="n">1</span>Atividade e enquadramento</h2>
       <div class="grid2">
-        <div class="field"><label for="template">Atividade (template)</label>
-          <select id="template"></select></div>
-        <div class="field"><label for="fiscal">Enquadramento fiscal</label>
+        <div class="field">
+          <label class="lbl-aj" for="template">Atividade (template)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-atividade">?</button>
+          </label>
+          <select id="template"></select>
+          <div class="ajuda-box" id="aj-atividade" hidden>
+            <p>A atividade define rótulos, unidades e os custos típicos. Escolha a mais próxima; "Outra" libera campos livres.</p>
+            <a href="parte-1.html#sistema" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl-aj" for="fiscal">Enquadramento fiscal
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-fiscal">?</button>
+          </label>
           <select id="fiscal">
             <option value="PF">Pessoa Física — Funrural 1,63%</option>
             <option value="PJ">Pessoa Jurídica — Funrural 2,23%</option>
-          </select></div>
+          </select>
+          <div class="ajuda-box" id="aj-fiscal" hidden>
+            <p>PF ou PJ define a alíquota de Funrural sobre a receita bruta (PF 1,63%, PJ 2,23%; LC 224/2025). Quem recolhe pela folha não é afetado.</p>
+            <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="card">
+      <h2><span class="n">2</span>Crédito</h2>
+      <div class="field">
+        <label class="lbl-aj" for="usa-credito">Projeto para tomada de crédito?
+          <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-usacred">?</button>
+        </label>
+        <select id="usa-credito"><option value="nao">Não</option><option value="sim">Sim</option></select>
+        <div class="ajuda-box" id="aj-usacred" hidden>
+          <p>Se o projeto vai ao banco, abra os campos de crédito. Senão, o simulador funciona como análise de viabilidade pura.</p>
+          <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+        </div>
+      </div>
+
+      <div id="bloco-credito" hidden>
+        <div class="grid2">
+          <div class="field">
+            <label class="lbl-aj" for="cred-finalidade">Finalidade
+              <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-finalidade">?</button>
+            </label>
+            <select id="cred-finalidade">
+              <option value="">—</option><option>Custeio</option><option>Investimento</option>
+              <option>Comercialização</option><option>Industrialização</option>
+            </select>
+            <div class="ajuda-box" id="aj-finalidade" hidden>
+              <p>Custeio (safra/ciclo) ou investimento (bens duráveis). Comercialização e industrialização existem, mas este simulador modela custeio e investimento.</p>
+              <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+            </div>
+          </div>
+          <div class="field">
+            <label class="lbl-aj" for="cred-enq">Enquadramento
+              <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-enq">?</button>
+            </label>
+            <select id="cred-enq">
+              <option value="">—</option><option>Pronaf</option><option>Pronamp</option><option>Demais produtores</option>
+            </select>
+            <div class="ajuda-box" id="aj-enq" hidden>
+              <p>Pronaf, Pronamp ou demais produtores define a linha e a taxa do Plano Safra. Aqui é só rótulo; os juros você informa no passo de custeio.</p>
+              <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+            </div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label class="lbl-aj" for="cred-docs">Documentos organizados?
+              <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-docs">?</button>
+            </label>
+            <select id="cred-docs"><option value="nao">Ainda não</option><option value="sim">Sim</option></select>
+            <div class="ajuda-box" id="aj-docs" hidden>
+              <p>O banco pede CPF/CNPJ, prova de área (CAR/matrícula), DAP/CAF no Pronaf, orçamentos. Veja o checklist completo.</p>
+              <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+            </div>
+          </div>
+          <div class="field">
+            <label class="lbl-aj" for="cred-mf">Módulos fiscais
+              <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-mf">?</button>
+            </label>
+            <input type="number" id="cred-mf" min="0" step="any" placeholder="ex.: 3">
+            <div class="ajuda-box" id="aj-mf" hidden>
+              <p>Medida da área do imóvel, definida por município (INCRA). Importa para o enquadramento (Pronaf vai até 4 módulos fiscais).</p>
+              <a href="https://www.embrapa.br/codigo-florestal/area-de-reserva-legal-arl/modulo-fiscal" target="_blank" rel="noopener">ver na Embrapa →</a>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl-aj" for="cred-local">Localização do empreendimento / talhão
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-local">?</button>
+          </label>
+          <input type="text" id="cred-local" placeholder="coordenadas ou descrição do talhão">
+          <div class="ajuda-box" id="aj-local" hidden>
+            <p>Localize o talhão ou imóvel. Veja como gerar o croqui no Google Earth Pro e o Cadastro Ambiental Rural (CAR).</p>
+            <a href="parte-4.html#croqui" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Vai tomar crédito? Antes de avançar, leia
+      <a href="parte-4.html#credito" target="_blank" rel="noopener">crédito rural</a> — programas, taxas e documentos.</p>
   </section>
 
   <!-- ===== PASSO 1 — produção e receita ===== -->
   <section data-step="1">
     <div class="card">
       <h2><span class="n">1</span>Produção principal</h2>
-      <div class="field"><label for="produto" id="lbl-produto">O que você produz (produto/cultura)</label>
-        <input type="text" id="produto" placeholder="ex.: soja, leite tipo B, uva niágara"></div>
+      <div class="field">
+        <label class="lbl-aj" for="produto" id="lbl-produto">O que você produz (produto/cultura)
+          <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-producao">?</button>
+        </label>
+        <input type="text" id="produto" placeholder="ex.: soja, leite tipo B, uva niágara">
+        <div class="ajuda-box" id="aj-producao" hidden>
+          <p>Aqui se forma a receita: área × produtividade × preço. Use as unidades certas — elas mudam conforme a atividade, e um erro de unidade distorce o projeto inteiro.</p>
+          <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
+        </div>
+      </div>
       <div class="trio-row">
         <div><label id="lbl-qtd">Unidades de produção</label>
           <input type="number" id="qtd" min="0" step="any" placeholder="ex.: 50"></div>
@@ -287,8 +403,16 @@
           <input type="text" id="un-prod" aria-label="unidade da produtividade"></div>
       </div>
       <div class="trio-row">
-        <div><label id="lbl-preco">Preço</label>
-          <input type="number" id="preco" min="0" step="any" placeholder="ex.: 120"></div>
+        <div>
+          <label class="lbl-aj" id="lbl-preco">Preço
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-preco">?</button>
+          </label>
+          <input type="number" id="preco" min="0" step="any" placeholder="ex.: 120">
+          <div class="ajuda-box" id="aj-preco" hidden>
+            <p>Use o preço na porteira (já líquido de frete e classificação), não a cotação de bolsa. Confira na cooperativa, sindicato ou EMATER.</p>
+            <a href="parte-4.html#preco" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
         <div class="unidade"><label>unidade</label>
           <input type="text" id="un-preco" aria-label="unidade do preço"></div>
       </div>
@@ -300,8 +424,16 @@
     <div class="card">
       <h2><span class="n">2</span>Outras receitas</h2>
       <div class="grid2">
-        <div class="field"><label for="sec-desc">Descrição</label>
-          <input type="text" id="sec-desc" placeholder="descarte, subprodutos, esterco..."></div>
+        <div class="field">
+          <label class="lbl-aj" for="sec-desc">Descrição
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-outras">?</button>
+          </label>
+          <input type="text" id="sec-desc" placeholder="descarte, subprodutos, esterco...">
+          <div class="ajuda-box" id="aj-outras" hidden>
+            <p>Só se houver receita adicional da própria atividade — ex.: animais de descarte e esterco na pecuária, subprodutos. Se não houver, deixe em branco.</p>
+            <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
         <div class="field"><label for="sec-valor">Valor (R$)</label>
           <input type="number" id="sec-valor" min="0" step="any" placeholder="0"></div>
       </div>
@@ -311,8 +443,16 @@
     <div class="card">
       <h2><span class="n">3</span>Deduções da receita</h2>
       <div class="grid2">
-        <div class="field"><label for="comerc">Comercialização (% sobre a receita)</label>
-          <input type="number" id="comerc" min="0" step="any" placeholder="ex.: 3"></div>
+        <div class="field">
+          <label class="lbl-aj" for="comerc">Comercialização (% sobre a receita)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-deducoes">?</button>
+          </label>
+          <input type="number" id="comerc" min="0" step="any" placeholder="ex.: 3">
+          <div class="ajuda-box" id="aj-deducoes" hidden>
+            <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE) — isso é o passo seguinte.</p>
+            <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
         <div class="field"><label>Funrural (automático, conforme PF/PJ)</label>
           <input type="text" id="funrural-pct" readonly></div>
       </div>
@@ -336,7 +476,13 @@
   <!-- ===== PASSO 2 — manejo ===== -->
   <section data-step="2">
     <div class="card">
-      <h2><span class="n">1</span>Práticas de manejo</h2>
+      <h2 class="lbl-aj"><span class="n">1</span>Práticas de manejo
+        <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-manejo">?</button>
+      </h2>
+      <div class="ajuda-box" id="aj-manejo" hidden>
+        <p>Descreva como a atividade é conduzida. O que aparecer aqui precisa reaparecer como custo no passo 3.</p>
+        <a href="parte-5.html#confinamento" target="_blank" rel="noopener">ver no site →</a>
+      </div>
       <p class="note" id="modo-hint"></p>
       <div class="liga">
         <b>O manejo precisa fechar com o custo.</b> O que você descrever aqui deve
@@ -368,7 +514,13 @@
     </div>
     <div class="coer" id="coer"></div>
     <div class="card">
-      <h2><span class="n">1</span>Itens de custeio</h2>
+      <h2 class="lbl-aj"><span class="n">1</span>Itens de custeio
+        <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-coe">?</button>
+      </h2>
+      <div class="ajuda-box" id="aj-coe" hidden>
+        <p>COE é o que sai do bolso na safra ou no ciclo: insumos, operações, mão de obra variável. Concentre-se nos poucos itens que pesam (Pareto).</p>
+        <a href="parte-2.html#classificacao" target="_blank" rel="noopener">ver no site →</a>
+      </div>
       <p class="note" id="giro-hint"></p>
       <div id="itens-coe"></div>
       <button class="btn" id="add-coe">+ adicionar item</button>
@@ -381,9 +533,36 @@
     <div class="card">
       <h2><span class="n">2</span>Itens automáticos (% sobre o subtotal)</h2>
       <div class="grid3">
-        <div><label for="seguro">Seguro (%)</label><input type="number" id="seguro" min="0" step="any" placeholder="ex.: 2"></div>
-        <div><label for="ater">Assistência técnica (%)</label><input type="number" id="ater" min="0" step="any" placeholder="ex.: 2"></div>
-        <div><label for="juros">Juros de custeio (%)</label><input type="number" id="juros" min="0" step="any" placeholder="ex.: 8"></div>
+        <div>
+          <label class="lbl-aj" for="seguro">Seguro (%)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-seguro">?</button>
+          </label>
+          <input type="number" id="seguro" min="0" step="any" placeholder="ex.: 2">
+          <div class="ajuda-box" id="aj-seguro" hidden>
+            <p>Seguro da produção (ex.: Proagro). Se não contratou, coloque 0.</p>
+            <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
+        <div>
+          <label class="lbl-aj" for="ater">Assistência técnica (%)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-ater">?</button>
+          </label>
+          <input type="number" id="ater" min="0" step="any" placeholder="ex.: 2">
+          <div class="ajuda-box" id="aj-ater" hidden>
+            <p>Honorário do técnico que elabora e acompanha o projeto: 0,5% a 2% do valor financiado. A taxa de 2% é a mais comum e geralmente aplicada quando o profissional também presta assistência técnica contínua na aplicação dos recursos durante a safra.</p>
+            <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
+        <div>
+          <label class="lbl-aj" for="juros">Juros de custeio (%)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-juros">?</button>
+          </label>
+          <input type="number" id="juros" min="0" step="any" placeholder="ex.: 8">
+          <div class="ajuda-box" id="aj-juros" hidden>
+            <p>Custo do crédito tomado. Sem crédito, coloque 0.</p>
+            <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card destaque">
@@ -402,7 +581,13 @@
   <!-- ===== PASSO 4 — fixos e capital ===== -->
   <section data-step="4">
     <div class="card">
-      <h2><span class="n">1</span>Depreciação (bens de capital)</h2>
+      <h2 class="lbl-aj"><span class="n">1</span>Depreciação (bens de capital)
+        <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-deprec">?</button>
+      </h2>
+      <div class="ajuda-box" id="aj-deprec" hidden>
+        <p>Bens de capital perdem valor com o uso. Para vida útil e valor residual, veja a metodologia da CONAB (p. 38–43).</p>
+        <a href="parte-2.html#coe-cot-ct" target="_blank" rel="noopener">ver no site →</a>
+      </div>
       <p class="note" id="dephint"></p>
       <p class="note">Para vida útil e valor residual dos bens, consulte as <strong>páginas 38 a 43</strong> da
         <a href="https://www.gov.br/conab/pt-br/acesso-a-informacao/institucional/atos-normativos/normas-da-organizacao/operacoes/30-302_norma_metodologia_de_custo_de_producao.pdf/@@download/file" target="_blank" rel="noopener">Metodologia de Custo de Produção da CONAB</a>.</p>
@@ -431,7 +616,13 @@
         <input type="number" id="area" min="0" step="any" placeholder="0"></div>
     </div>
     <div class="card destaque">
-      <h2><span class="n">=</span>COE → COT → CT</h2>
+      <h2 class="lbl-aj"><span class="n">=</span>COE → COT → CT
+        <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-cttotal">?</button>
+      </h2>
+      <div class="ajuda-box" id="aj-cttotal" hidden>
+        <p>COE + fixos = COT; COT + remuneração dos fatores = CT. Metodologia CNA/Campo Futuro.</p>
+        <a href="parte-2.html#coe-cot-ct" target="_blank" rel="noopener">ver no site →</a>
+      </div>
       <div class="dre">
         <div class="line"><span>COE (do passo 3)</span><span class="v" id="r4-coe">R$ 0,00</span></div>
         <div class="line"><span>(+) Depreciação</span><span class="v" id="r4-dep">R$ 0,00</span></div>
@@ -453,8 +644,16 @@
       <div class="cultgrid" id="cultgrid"></div>
       <p class="note" id="cult-nota"></p>
       <div class="grid2">
-        <div class="field"><label for="form">Anos de formação (até produzir)</label>
-          <input type="number" id="form" min="0" step="1" placeholder="ex.: 3"></div>
+        <div class="field">
+          <label class="lbl-aj" for="form">Anos de formação (até produzir)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-perene">?</button>
+          </label>
+          <input type="number" id="form" min="0" step="1" placeholder="ex.: 3">
+          <div class="ajuda-box" id="aj-perene" hidden>
+            <p>Perenes têm anos de formação antes de produzir. O investimento do ano 0 entra na análise plurianual (VPL/TIR/payback).</p>
+            <a href="parte-5.html#perenes" target="_blank" rel="noopener">ver no site →</a>
+          </div>
+        </div>
         <div class="field"><label for="vida">Vida útil produtiva (anos)</label>
           <input type="number" id="vida" min="1" step="1" placeholder="ex.: 20"></div>
       </div>
@@ -495,6 +694,13 @@
       </div>
       <p class="note" id="r6-unid"></p>
       <div class="equil" id="equil"></div>
+      <div style="margin-top:8px">
+        <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-equil" style="float:none">?</button>
+        <div class="ajuda-box" id="aj-equil" hidden>
+          <p>Ponto de equilíbrio: quanto precisa produzir/vender para cobrir os custos.</p>
+          <a href="parte-3.html#equilibrio" target="_blank" rel="noopener">ver no site →</a>
+        </div>
+      </div>
     </div>
 
     <div class="card">
@@ -503,7 +709,13 @@
     </div>
 
     <div class="card" id="perene-on" style="display:none">
-      <h2><span class="n">3</span>Avaliação plurianual (perenes)</h2>
+      <h2 class="lbl-aj"><span class="n">3</span>Avaliação plurianual (perenes)
+        <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-viab">?</button>
+      </h2>
+      <div class="ajuda-box" id="aj-viab" hidden>
+        <p>VPL, TIR e payback medem se o investimento perene compensa ao longo do tempo.</p>
+        <a href="parte-5.html#ap-viabilidade" target="_blank" rel="noopener">ver no site →</a>
+      </div>
       <div class="grid2">
         <div class="field"><label for="custoform">Custo de formação anual (R$)</label>
           <input type="number" id="custoform" min="0" step="any" placeholder="0"></div>
@@ -741,6 +953,7 @@ function estadoVazio(){
   return {
     identificacao:{projeto:'',produtor:'',unidade:'',municipio:'',data:''},
     template:'graos', fiscal:'PF',
+    credito:{usa:'nao',finalidade:'',enquadramento:'',docs:'nao',modulos:'',local:''},
     p1:{produto:'',qtd:'',unQtd:'',prod:'',unProd:'',preco:'',unPreco:'',secDesc:'',secValor:'',comerc:''},
     p2:{campos:{},observacoes:''},
     p3:{itens:[],seguro:'',ater:'',juros:''},
@@ -755,6 +968,11 @@ function coletarTudo(){
   const E = estadoVazio();
   E.template = el('template').value;
   E.fiscal   = el('fiscal').value;
+  E.credito  = {
+    usa:el('usa-credito').value, finalidade:el('cred-finalidade').value,
+    enquadramento:el('cred-enq').value, docs:el('cred-docs').value,
+    modulos:el('cred-mf').value, local:el('cred-local').value,
+  };
   E.identificacao = {
     projeto:el('id-projeto').value, produtor:el('id-produtor').value,
     unidade:el('id-unidade').value, municipio:el('id-municipio').value, data:el('id-data').value,
@@ -990,6 +1208,11 @@ function aplicarEstado(E){
   E = Object.assign(estadoVazio(), E||{});
   el('template').value = TEMPLATES[E.template]?E.template:'graos';
   el('fiscal').value   = (E.fiscal==='PJ')?'PJ':'PF';
+  const c=E.credito||{};
+  el('usa-credito').value=c.usa||'nao'; el('cred-finalidade').value=c.finalidade||'';
+  el('cred-enq').value=c.enquadramento||''; el('cred-docs').value=c.docs||'nao';
+  el('cred-mf').value=c.modulos||''; el('cred-local').value=c.local||'';
+  toggleCredito();
   const id=E.identificacao||{};
   el('id-projeto').value=id.projeto||''; el('id-produtor').value=id.produtor||'';
   el('id-unidade').value=id.unidade||''; el('id-municipio').value=id.municipio||''; el('id-data').value=id.data||'';
@@ -1285,9 +1508,13 @@ function visuaisHTML(v){
 // ===========================================================================
 function estadoCanonico(E,D){
   const t=TEMPLATES[E.template], m=MODOS[t.modo];
+  const fam=(t||{}).familia;
+  const modalidade=fam==='lavoura'?'Agrícola':(['criacao','postura','apicultura'].includes(fam)?'Pecuária':'Outra');
   return {
     identificacao:E.identificacao,
     template:E.template,
+    credito:E.credito,
+    modalidade,
     nUnidades:D.n,
     passo1:{produto:E.p1.produto||'', produtividade:E.p1.prod||'',
       unidProd:E.p1.unProd||t.unProd, preco:numv(E.p1.preco),
@@ -1393,7 +1620,17 @@ function montarDossie(C){
     '<p>Metodologia de custos: CNA/Campo Futuro (Matsunaga) — COE → COT → CT.</p>'+
     '<p>Números ilustrativos; conferir com fontes oficiais (CONAB, EMATER-RS, CEPEA, MCR/Bacen) antes de decidir.</p></div>';
 
-  el('dossie').innerHTML=head+b1+b2+b3+b4+b5+bViz+b6+rodape;
+  const cr=C.credito||{};
+  const bCred=cr.usa==='sim'?'<div class="bloco"><h2><span class="n">·</span>Crédito</h2><table class="tab">'+
+    '<tr><td>Modalidade</td><td class="v">'+esc(C.modalidade||'')+'</td></tr>'+
+    '<tr><td>Finalidade</td><td class="v">'+esc(cr.finalidade||'—')+'</td></tr>'+
+    '<tr><td>Enquadramento</td><td class="v">'+esc(cr.enquadramento||'—')+'</td></tr>'+
+    '<tr><td>Módulos fiscais</td><td class="v">'+esc(cr.modulos||'—')+'</td></tr>'+
+    '<tr><td>Documentos</td><td class="v">'+(cr.docs==='sim'?'organizados':'pendentes')+'</td></tr>'+
+    '<tr><td>Localização</td><td class="v">'+esc(cr.local||'—')+'</td></tr>'+
+    '</table></div>':'';
+
+  el('dossie').innerHTML=head+bCred+b1+b2+b3+b4+b5+bViz+b6+rodape;
 }
 
 // ===========================================================================
@@ -1539,9 +1776,23 @@ function recalc(){
 // ===========================================================================
 // EVENTOS
 // ===========================================================================
+// toggle das caixas de ajuda (delegação; clique não dispara 'input')
+document.querySelector('.wrap').addEventListener('click', e=>{
+  const b = e.target.closest('.ajuda-btn'); if(!b) return;
+  const box = document.getElementById(b.getAttribute('aria-controls')); if(!box) return;
+  const abrir = box.hasAttribute('hidden');
+  if(abrir){ box.removeAttribute('hidden'); b.setAttribute('aria-expanded','true'); }
+  else     { box.setAttribute('hidden',''); b.setAttribute('aria-expanded','false'); }
+});
+
+function toggleCredito(){
+  el('bloco-credito').toggleAttribute('hidden', el('usa-credito').value!=='sim');
+}
+
 const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
   if(e.target.id==='template'){ aplicarTemplate(true); renderSteps(); }
+  if(e.target.id==='usa-credito') toggleCredito();
   recalc();
 });
 el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
