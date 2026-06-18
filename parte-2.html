@@ -122,7 +122,7 @@ h1.title em{font-style:italic;color:var(--mustard);font-weight:500}
 .formula b{font-weight:600;color:var(--terra)}
 
 .example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--mustard);position:relative}
-.example::before{content:"caso são gabriel/rs · soja 50 ha";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600}
+.example::before{content:"Para não esquecer";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600}
 .example p{font-size:14px;line-height:1.6;margin-bottom:8px}
 .example p:last-child{margin-bottom:0}
 .calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(184,146,51,0.10);padding:2px 6px;white-space:nowrap}
@@ -292,7 +292,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>Agricultura: o laudo de solo</h3>
-    <p>Nenhuma lavoura séria começa sem diagnóstico do solo. O laudo descreve as características químicas e físicas da gleba e é a <em>origem dos maiores custos variáveis</em> de qualquer cultura: a calagem e a adubação de base e cobertura. Sem laudo, esses valores são estimados — e a precisão do projeto inteiro fica comprometida.</p>
+    <p>
+  Nenhuma lavoura séria começa sem diagnóstico do solo. O laudo descreve as características químicas e físicas da gleba e é a 
+  <em>origem dos maiores custos variáveis</em> de qualquer cultura: a calagem e a adubação de base e cobertura. 
+  A título de exemplo, a participação no COE (Custo Operacional Efetivo) dos fertilizantes, para uma lavoura de trigo, alta tecnologia, 
+  com rendimento esperado de 60 sacas é de aproximadamente 38,79%<a href="https://cepa.epagri.sc.gov.br/index.php/custos-de-producao/" target="_blank">¹</a>, 
+  na safra 2026. Sem laudo, esses valores são estimados — e a precisão do projeto inteiro fica comprometida.
+</p>
+
+<p><small>¹ Fonte: CEPA/Epagri — Custos de Produção.</small></p>
+
     <p>Para fazer isso, devemos seguir o 
   <a href="https://www.sbcs-nrs.org.br/docs/Manual_de_Calagem_e_Adubacao_para_os_Estados_do_RS_e_de_SC-2016.pdf" target="_blank">
     Manual de Calagem e Adubação CQFS-RS/SC (11ª ed., 2016)
@@ -302,7 +311,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
 
     <div class="example">
-      <p>A análise de solo é o <strong>primeiro item</strong> da planilha — cerca de <span class="calc">R$ 65/amostra</span> — justamente porque é a base de todos os outros. Sem ela, calagem e adubação são chute; com ela, são cálculo. Importante destacar que a análise química e física são requisitos para o crédito rural. Mais detalhes você encontra na parte IV.2 Crédito rural e financiamento agrícola.</p>
+      <p>A análise de solo é o <strong>primeiro item</strong> da planilha — cerca de <span class="calc">R$ 65/150 amostra</span> — justamente porque é a base de todos os outros. Sem ela, calagem e adubação são chute; com ela, são cálculo. Importante destacar que a análise química e física são requisitos para o crédito rural. Mais detalhes você encontra na parte IV.2 Crédito rural e financiamento agrícola.</p>
     </div>
 
     <h3>Zootecnia: estrutura e evolução do rebanho</h3>
@@ -383,7 +392,18 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>A disciplina adota a estrutura de Custo Total (CT) conforme a metodologia oficial do Projeto Campo Futuro da CNA/SENAR, que utiliza a base de Matsunaga et al. (1976) para o Custo Operacional Efetivo (COE) e o Custo Operacional Total (COT), e expande o framework com a incorporação dos custos de oportunidade do capital e da terra para a apuração do CT. Você pode usar a metodologia da CONAB ou CEPEA. Ela organiza os custos em <em>três camadas progressivas</em>, cada uma respondendo a uma pergunta gerencial diferente.</p>
+    <p>
+  A disciplina adota a estrutura de Custo Total (CT) conforme a metodologia oficial do Projeto Campo Futuro da CNA/SENAR, que utiliza a base de Matsunaga et al. (1976) para o Custo Operacional Efetivo (COE) e o Custo Operacional Total (COT), e expande o framework com a incorporação dos custos de oportunidade do capital e da terra para a apuração do CT. Você pode usar a metodologia da CONAB ou CEPEA<sup>2</sup>. Ela organiza os custos em <em>três camadas progressivas</em>, cada uma respondendo a uma pergunta gerencial diferente.
+</p>
+
+<p>
+  <small><sup>2</sup> Fonte: 
+    <a href="https://www.cepea.org.br/upload/kceditor/files/Metodologias_Conab_Cepea_Abr15.pdf" target="_blank">
+      Metodologias CONAB/CEPEA (PDF)
+    </a>.
+  </small>
+</p>
+
 
     <h3>COE — Custo Operacional Efetivo</h3>
     <p>Todo o desembolso necessário para realizar o projeto. É o "caixa" — o dinheiro que precisa sair da conta para a produção acontecer.</p>
@@ -426,7 +446,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <div class="example">
-      <p>Para qualquer atividade cultivo ou criação, a sequência de perguntas é sempre a mesma: a receita cobre o COE? cobre o COT? cobre o CT? <strong>A rentabilidade do projeto é sempre medida sobre o CT</strong> — é o padrão deste curso, porque só o CT incorpora o custo de oportunidade da terra e do capital.</p>
+      <p>Qualquer atividade cultivo ou criação, a sequência de perguntas é sempre a mesma: a receita cobre o COE? cobre o COT? cobre o CT? <strong>A rentabilidade do projeto é sempre medida sobre o CT</strong> — é o padrão deste curso, porque só o CT incorpora o custo de oportunidade da terra e do capital.</p>
     </div>
 
     <div class="callout">
@@ -447,11 +467,13 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>Classificar custos, calcular depreciação e estruturar o orçamento — todo esse aparato depende de um insumo que nenhuma fórmula substitui: o <strong>dado real do campo</strong>. Este é o terreno da função de <em>controle</em>, a terceira do ciclo de gestão (Kay et al., 2014).</p>
 
     <h3>Por que os dados históricos importam</h3>
-    <p>São a memória gerencial da propriedade: permitem comparar safras, identificar tendências, validar premissas e montar cenários realistas. Quem registra há três anos a produção por talhão e o consumo de cada insumo tem vantagem decisiva sobre quem planeja por estimativa genérica.</p>
+    <p>São a memória gerencial da propriedade: permitem comparar safras, identificar tendências, validar premissas e montar cenários realistas. Quem registra há três anos a produção por talhão e o consumo de cada insumo tem vantagem decisiva sobre quem planeja por estimativa genérica. Importante registrar, que muitas instituições financeiras utilizam esses dados para avaliar riscos e conceder crédito.</p>
     <p>São também o insumo da <strong>análise marginal</strong> (Parte III): para saber se vale aumentar a dose de ureia, é preciso saber como a produtividade respondeu a doses passadas. Sem registro, a análise marginal é só teoria.</p>
 
     <h3>Google Forms como registro em tempo real</h3>
-    <p>Gratuito, acessível pelo celular, gera planilha Google Sheets automaticamente. Pode ser configurado para funcionar offline — o operador preenche sem sinal e os dados sincronizam quando a conexão volta. Resolve um dos maiores obstáculos do campo: a falta de cobertura nas áreas de produção.</p>
+    <p>Uma solução prática e sem custo: crie um formulário no <strong>Google Forms</strong> com os campos essenciais — data, talhão, operador, leituras (pH, N, P, K) e observações. Ative <em>Respostas → Vincular a uma Planilha</em> e cada envio é gravado automaticamente numa <strong>Google Sheets</strong>, formando um histórico centralizado e acessível de qualquer lugar.</p>
+
+    <p>Para que a equipe use sem fricção, compartilhe o link público do formulário num <strong>grupo de WhatsApp</strong> com os funcionários: cole-o na descrição do grupo e fixe uma mensagem rápida de instrução ("Ao entrar no talhão, abra o link e registre"). Sem aplicativo extra, sem papel — o registro acontece no mesmo celular que já está no bolso.</p>
 
     <div class="formula">
       <span class="label">O fluxo dos dados</span>
