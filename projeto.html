@@ -255,6 +255,12 @@
   .swot-q textarea:focus{outline:2px solid var(--mostarda);outline-offset:1px;background:rgba(255,255,255,.85)}
   @media(max-width:620px){.swot-grid{grid-template-columns:1fr}}
 
+  /* Linha de depreciação automática da formação (passo 4) */
+  .dep-auto-line{background:#F4F0E6;border:1px dashed #C4BB9A;border-radius:6px;padding:8px 12px;margin-bottom:8px}
+  .item-auto{display:flex;justify-content:space-between;align-items:center;font-size:.88rem;color:#4a4536}
+  .item-auto .ia-desc{font-style:italic}
+  .item-auto .v{font-weight:600;color:#3D4A2A}
+
   /* SWOT no dossiê */
   .swot-doc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
   .swot-dc{border-radius:6px;padding:10px 12px;font-size:.86rem;break-inside:avoid}
@@ -644,6 +650,12 @@
       <p class="note" id="dephint"></p>
       <p class="note">Para vida útil e valor residual dos bens, consulte as <strong>páginas 38 a 43</strong> da
         <a href="https://www.gov.br/conab/pt-br/acesso-a-informacao/institucional/atos-normativos/normas-da-organizacao/operacoes/30-302_norma_metodologia_de_custo_de_producao.pdf/@@download/file" target="_blank" rel="noopener">Metodologia de Custo de Produção da CONAB</a>.</p>
+      <div id="dep-formacao-auto" class="dep-auto-line" style="display:none">
+        <div class="item-auto">
+          <span class="ia-desc" id="dep-auto-desc"></span>
+          <span class="v" id="dep-auto-val"></span>
+        </div>
+      </div>
       <div id="itens-dep"></div>
       <button class="btn" id="add-dep">+ adicionar bem</button>
       <div class="subtotal"><span>Depreciação anual total</span><span class="v" id="sub-dep">R$ 0,00</span></div>
@@ -703,7 +715,7 @@
           </label>
           <input type="number" id="form" min="0" step="1" placeholder="ex.: 3">
           <div class="ajuda-box" id="aj-perene" hidden>
-            <p>Perenes têm anos de formação antes de produzir. O investimento do ano 0 entra na análise plurianual (VPL/TIR/payback).</p>
+            <p>Perenes têm anos de formação antes de produzir. O investimento do ano 0 entra na análise plurianual (VPL/TIR/payback). A depreciação da formação flui automaticamente para o passo de custos fixos.</p>
             <a href="parte-5.html#perenes" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
@@ -962,13 +974,13 @@ const PARETO = {
 };
 const DEP_HINT = {
   A:"Máquinas, implementos, benfeitorias e silos. A lavoura anual em si não deprecia — ela é custeio no passo 3.",
-  B:"Inclua o pomar ou povoamento em produção (valor de formação como aquisição, vida útil produtiva), além de máquinas e benfeitorias.",
+  B:"A depreciação da formação (pomar/plantio perene) é calculada automaticamente a partir do passo de implantação. Aqui, acrescente apenas máquinas, implementos e benfeitorias além da formação.",
   C:"Inclua as matrizes e os reprodutores (aquisição, descarte como residual, vida útil reprodutiva), além de máquinas e benfeitorias.",
   D:"Máquinas, instalações e equipamentos. O animal de giro não deprecia — ele é custeio no passo 3.",
   E:"Bens duráveis usados na atividade: máquinas, equipamentos, benfeitorias.",
   F:"Caixas/colmeias (Langstroth ou outros modelos), centrífuga, decantador, melgueiras, extractores e benfeitorias do apiário. As colmeias e o plantel são capital fixo — entram aqui como depreciação, não como custeio.",
   G:"Aviário, gaiolas ou boxes, bebedouros, comedouros, ventilação e demais equipamentos. As aves poedeiras são plantel (capital) — depreciam ao longo do ciclo produtivo; não entram como custeio.",
-  H:"Benfeitorias, máquinas e implementos florestais (motosserra, skidder, forwarder). O valor do povoamento em crescimento é capital imobilizado — não entra como custo anual; é recuperado na venda da madeira.",
+  H:"A depreciação do investimento florestal (plantio) é calculada automaticamente a partir do passo de implantação. Aqui, acrescente apenas máquinas e implementos florestais (motosserra, skidder, forwarder) além do plantio.",
 };
 
 // CULTURAS perenes (passo 5) + ícones SVG
@@ -1084,25 +1096,31 @@ function derivar(E){
   const juros  = subtotalCoe*numv(E.p3.juros)/100;
   const coe = subtotalCoe + seguro + ater + juros;
 
-  let dep=0, capMedio=0;
+  let investHa=0;
+  E.p5.itens.forEach(it=>{ investHa += numv(it.qtd)*numv(it.preco); });
+  const investimento = investHa*numv(E.p5.area);
+
+  const perene = ehPerene(E.template);
+  const vidaProd = numv(E.p5.vida);
+  const depFormacao = (perene && vidaProd>0) ? investimento/vidaProd : 0;
+
+  let depBens=0, capMedio=0;
   E.p4.bens.forEach(b=>{
     const aq=numv(b.aq), res=numv(b.res), vida=numv(b.vida);
-    dep += vida>0 ? Math.max(0,(aq-res)/vida) : 0;
+    depBens += vida>0 ? Math.max(0,(aq-res)/vida) : 0;
     capMedio += (aq+res)/2;
   });
+  if(perene) capMedio += investimento/2;
+  const dep = depBens + depFormacao;
   const prol = numv(E.p4.prolabore), out = numv(E.p4.outros);
   const cot = coe + dep + prol + out;
   const remCap   = capMedio*numv(E.p4.taxaCapital)/100;
   const remTerra = numv(E.p4.arrendamento)*numv(E.p4.area);
   const ct = cot + remCap + remTerra;
 
-  let investHa=0;
-  E.p5.itens.forEach(it=>{ investHa += numv(it.qtd)*numv(it.preco); });
-  const investimento = investHa*numv(E.p5.area);
-
   return {n, principal, sec, rb, fAliq, fVal, comerc, rl,
     subtotalCoe, seguro, ater, juros, coe,
-    dep, capMedio, prol, out, cot, remCap, remTerra, ct,
+    depBens, depFormacao, dep, capMedio, prol, out, cot, remCap, remTerra, ct,
     investHa, investimento};
 }
 
@@ -1350,6 +1368,12 @@ function pintar(E,D){
     const aq=numv(it.querySelector('.i-aq').value),res=numv(it.querySelector('.i-res').value),vida=numv(it.querySelector('.i-vida').value);
     it.querySelector('.v-dep').textContent=brl(vida>0?Math.max(0,(aq-res)/vida):0);
   });
+  const autoBox=el('dep-formacao-auto');
+  if(D.depFormacao>0){
+    el('dep-auto-desc').textContent='Depreciação da formação (automática — '+Math.round(numv(E.p5.vida))+' anos)';
+    el('dep-auto-val').textContent=brl(D.depFormacao);
+    autoBox.style.display='';
+  }else{ autoBox.style.display='none'; }
   el('sub-dep').textContent=brl(D.dep);
   el('cap-base').textContent=D.capMedio>0?('valor médio do capital: '+brl(D.capMedio)+' (base da remuneração)'):'';
   el('r4-coe').textContent=brl(D.coe); el('r4-dep').textContent=brl(D.dep);
@@ -1369,8 +1393,8 @@ function pintar(E,D){
   el('r5-total').textContent=brl(D.investimento);
   const depAnual=vida5>0?D.investimento/vida5:0;
   el('liga4').innerHTML=vida5>0?
-    'Para o passo 4: lance o pomar como bem depreciável — aquisição '+brl(D.investimento)+', residual R$ 0,00, vida útil '+vida5+' anos. Depreciação anual: <b>'+brl(depAnual)+'/ano</b>.':
-    'Informe a vida útil produtiva para calcular a depreciação anual que vai ao passo 4.';
+    'Depreciação da formação calculada automaticamente: <b>'+brl(depAnual)+'/ano</b> ('+brl(D.investimento)+' ÷ '+vida5+' anos). Ela entra automaticamente no próximo passo (custos fixos) — não precisa lançar o pomar como bem depreciável.':
+    'Informe a vida útil produtiva para calcular a depreciação anual, que será incorporada automaticamente aos custos fixos.';
   const tl=el('timeline');tl.innerHTML='';
   const s0=document.createElement('div');s0.className='seg impl';s0.textContent='ano 0';tl.appendChild(s0);
   if(form>0){const s=document.createElement('div');s.className='seg form';s.style.flex=form;s.textContent='formação · '+form+(form>1?' anos':' ano');tl.appendChild(s);}
@@ -1402,9 +1426,10 @@ function pintar(E,D){
 function pintarPerene(E,D){
   const taxa=numv(E.p6.taxaDesconto);
   const cf=numv(E.p6.custoFormacao);
-  const {f,fases,form,vida}=montarFluxos(numv(E.p5.form),numv(E.p5.vida),D.investimento,cf,D.rl,D.ct);
-  el('dica-form').textContent=D.ct>0?
-    ('referência: manutenção sem receita plena, em geral 30–50% do CT ('+brl(D.ct*0.3)+'–'+brl(D.ct*0.5)+').'):
+  const ctCaixa=D.ct-D.depFormacao;
+  const {f,fases,form,vida}=montarFluxos(numv(E.p5.form),numv(E.p5.vida),D.investimento,cf,D.rl,ctCaixa);
+  el('dica-form').textContent=ctCaixa>0?
+    ('referência: manutenção sem receita plena, em geral 30–50% do custo em caixa ('+brl(ctCaixa*0.3)+'–'+brl(ctCaixa*0.5)+').'):
     'manutenção do pomar durante a formação, sem receita plena.';
   const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
   const vplE=el('k-vpl');vplE.textContent=brl(valVpl);vplE.className='v '+(valVpl>=0?'pos':'neg');
@@ -1586,7 +1611,7 @@ function estadoCanonico(E,D){
     passo3:{itens:E.p3.itens
       .filter(it=>(it.desc||it.cat) && (numv(it.qtd)*numv(it.preco))>0)
       .map(it=>({item:it.desc||it.cat, valor:numv(it.qtd)*numv(it.preco)*D.n})), coe:D.coe},
-    passo4:{depreciacao:D.dep, prolabore:D.prol, outros:D.out, cot:D.cot,
+    passo4:{depreciacao:D.depBens, depFormacao:D.depFormacao, prolabore:D.prol, outros:D.out, cot:D.cot,
       remCapital:D.remCap, remTerra:D.remTerra, ct:D.ct},
     passo5: ehPerene(E.template) ? {
       cultura:CULTURAS[E.p5.cultura]?CULTURAS[E.p5.cultura].nome:E.p5.cultura,
@@ -1622,10 +1647,13 @@ function montarDossie(C){
     '<p class="leg">Custo operacional efetivo: o que sai do bolso na safra ou no ciclo.</p>'+
     '<table class="tab">'+linhasItens+'<tr class="sub"><td>COE total</td><td class="v">'+brl(coe)+'</td></tr></table></div>';
 
+  const linDepForm=num(p4.depFormacao)>0?
+    '<tr><td>(+) Dep. formação (automática)</td><td class="v">'+brl(p4.depFormacao)+'</td></tr>':'';
   const b4='<div class="bloco"><h2><span class="n">4</span>Estrutura de custos — COE → COT → CT</h2>'+
     '<p class="leg">Metodologia CNA/Campo Futuro. Remuneração dos fatores é custo de oportunidade.</p><table class="tab">'+
     '<tr><td>COE</td><td class="v">'+brl(coe)+'</td></tr>'+
-    '<tr><td>(+) Depreciação</td><td class="v">'+brl(p4.depreciacao)+'</td></tr>'+
+    (num(p4.depreciacao)>0?'<tr><td>(+) Depreciação (bens)</td><td class="v">'+brl(p4.depreciacao)+'</td></tr>':'')+
+    linDepForm+
     '<tr><td>(+) Pró-labore</td><td class="v">'+brl(p4.prolabore)+'</td></tr>'+
     '<tr><td>(+) Outros fixos</td><td class="v">'+brl(p4.outros)+'</td></tr>'+
     '<tr class="sub"><td>COT</td><td class="v">'+brl(cot)+'</td></tr>'+
@@ -1650,7 +1678,8 @@ function montarDossie(C){
   let b6='';
   if(ehPerene(C.template)&&p5){
     const taxa=num(p5.taxaDesconto);
-    const {f,fases,form,vida}=montarFluxos(num(p5.formacao),num(p5.vidaUtil),num(p5.investimento),num(p5.custoFormacao),rl,ct);
+    const ctCaixa=ct-num(p4.depFormacao||0);
+    const {f,fases,form,vida}=montarFluxos(num(p5.formacao),num(p5.vidaUtil),num(p5.investimento),num(p5.custoFormacao),rl,ctCaixa);
     const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
     let acc=0,linhas='';const rot={impl:'ano 0',form:'formação',prod:'produção'};
     f.forEach((fc,t)=>{const d=fc/Math.pow(1+i,t);acc+=d;
@@ -1801,9 +1830,8 @@ const EXEMPLO_BOVINOS = {
 // ===========================================================================
 const ROTULOS=["identificação","receita","manejo","custeio","fixos","implantação","resultado","relatório"];
 function passosAtivos(){
-  const base=[0,1,2,3,4];
-  if(ehPerene(el('template').value)) base.push(5);
-  return base.concat([6,7]);
+  if(ehPerene(el('template').value)) return [0,1,2,3,5,4,6,7];
+  return [0,1,2,3,4,6,7];
 }
 function renderSteps(){
   const ativos=passosAtivos(), cont=el('steps');cont.innerHTML='';
