@@ -236,6 +236,35 @@
   .efic-bar{height:6px;border-radius:3px;background:var(--papel-2);position:relative;margin:8px 0 4px}
   .efic-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
   .efic-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--tinta)}
+
+  /* SWOT interativa (passo 0) */
+  .swot-intro{font-size:.84rem;color:#5d5648;margin:0 0 14px;line-height:1.55}
+  .swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .swot-q{border-radius:8px;padding:12px 13px;display:flex;flex-direction:column;gap:6px}
+  .swot-q.sq-f {background:#E4EAD2;border:1px solid #c5d1aa}
+  .swot-q.sq-fr{background:#F5E4D8;border:1px solid #e2bfa8}
+  .swot-q.sq-o {background:#EFE6CC;border:1px solid #d9cc99}
+  .swot-q.sq-a {background:#E8DAD2;border:1px solid #d4bdb2}
+  .swot-qh{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .swot-q.sq-f  .swot-qh{color:var(--oliva)}
+  .swot-q.sq-fr .swot-qh{color:var(--terra)}
+  .swot-q.sq-o  .swot-qh{color:#7A6020}
+  .swot-q.sq-a  .swot-qh{color:#7A3A1F}
+  .swot-sub{font-size:.62rem;font-weight:400;letter-spacing:.04em;opacity:.75}
+  .swot-q textarea{background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.1);border-radius:6px;min-height:80px;font-size:.85rem;padding:8px 10px;resize:vertical;color:var(--tinta);font-family:var(--sans);line-height:1.5}
+  .swot-q textarea:focus{outline:2px solid var(--mostarda);outline-offset:1px;background:rgba(255,255,255,.85)}
+  @media(max-width:620px){.swot-grid{grid-template-columns:1fr}}
+
+  /* SWOT no dossiê */
+  .swot-doc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .swot-dc{border-radius:6px;padding:10px 12px;font-size:.86rem;break-inside:avoid}
+  .swot-dc.sq-f {background:#E4EAD2} .swot-dc.sq-fr{background:#F5E4D8}
+  .swot-dc.sq-o {background:#EFE6CC} .swot-dc.sq-a {background:#E8DAD2}
+  .swot-dc b{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:5px}
+  .swot-dc.sq-f  b{color:var(--oliva)} .swot-dc.sq-fr b{color:var(--terra)}
+  .swot-dc.sq-o  b{color:#7A6020}     .swot-dc.sq-a  b{color:#7A3A1F}
+  .swot-dc p{margin:0;color:#4a4536;white-space:pre-wrap;line-height:1.55}
+  @media print{.swot-doc{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -374,6 +403,30 @@
     </div>
     <p class="note">Vai tomar crédito? Antes de avançar, leia
       <a href="parte-4.html#credito" target="_blank" rel="noopener">crédito rural</a> — programas, taxas e documentos.</p>
+
+    <div class="card">
+      <h2><span class="n">3</span>Diagnóstico estratégico (SWOT)</h2>
+      <p class="swot-intro">Antes de projetar qualquer número, tire uma "fotografia" da situação atual da sua propriedade. <b>Forças e Fraquezas</b> são internas — você controla. <b>Oportunidades e Ameaças</b> são externas — você monitora. Seja honesto: um bom diagnóstico evita surpresas no projeto.</p>
+      <div class="swot-grid">
+        <div class="swot-q sq-f">
+          <div class="swot-qh">Forças <span class="swot-sub">interno · favorável</span></div>
+          <textarea id="swot-forcas" placeholder="O que a propriedade faz bem? Quais recursos, habilidades ou vantagens se destacam?"></textarea>
+        </div>
+        <div class="swot-q sq-fr">
+          <div class="swot-qh">Fraquezas <span class="swot-sub">interno · desfavorável</span></div>
+          <textarea id="swot-fraquezas" placeholder="O que precisa melhorar? Quais limitações internas existem?"></textarea>
+        </div>
+        <div class="swot-q sq-o">
+          <div class="swot-qh">Oportunidades <span class="swot-sub">externo · favorável</span></div>
+          <textarea id="swot-oportunidades" placeholder="Quais tendências de mercado ou fatores externos podem ser aproveitados?"></textarea>
+        </div>
+        <div class="swot-q sq-a">
+          <div class="swot-qh">Ameaças <span class="swot-sub">externo · desfavorável</span></div>
+          <textarea id="swot-ameacas" placeholder="Quais riscos externos podem prejudicar o projeto?"></textarea>
+        </div>
+      </div>
+      <p class="note" style="margin-top:10px">Campos opcionais — mas o diagnóstico aparece no relatório final. Veja mais em <a href="parte-1.html#diagnostico" target="_blank" rel="noopener">Parte 1 — diagnóstico estratégico</a>.</p>
+    </div>
   </section>
 
   <!-- ===== PASSO 1 — produção e receita ===== -->
@@ -954,6 +1007,7 @@ function estadoVazio(){
     identificacao:{projeto:'',produtor:'',unidade:'',municipio:'',data:''},
     template:'graos', fiscal:'PF',
     credito:{usa:'nao',finalidade:'',enquadramento:'',docs:'nao',modulos:'',local:''},
+    swot:{forcas:'',fraquezas:'',oportunidades:'',ameacas:''},
     p1:{produto:'',qtd:'',unQtd:'',prod:'',unProd:'',preco:'',unPreco:'',secDesc:'',secValor:'',comerc:''},
     p2:{campos:{},observacoes:''},
     p3:{itens:[],seguro:'',ater:'',juros:''},
@@ -976,6 +1030,10 @@ function coletarTudo(){
   E.identificacao = {
     projeto:el('id-projeto').value, produtor:el('id-produtor').value,
     unidade:el('id-unidade').value, municipio:el('id-municipio').value, data:el('id-data').value,
+  };
+  E.swot = {
+    forcas:el('swot-forcas').value, fraquezas:el('swot-fraquezas').value,
+    oportunidades:el('swot-oportunidades').value, ameacas:el('swot-ameacas').value,
   };
   E.p1 = {produto:el('produto').value, qtd:el('qtd').value, unQtd:el('un-qtd').value,
     prod:el('prod').value, unProd:el('un-prod').value, preco:el('preco').value, unPreco:el('un-preco').value,
@@ -1216,6 +1274,9 @@ function aplicarEstado(E){
   const id=E.identificacao||{};
   el('id-projeto').value=id.projeto||''; el('id-produtor').value=id.produtor||'';
   el('id-unidade').value=id.unidade||''; el('id-municipio').value=id.municipio||''; el('id-data').value=id.data||'';
+  const sw=E.swot||{};
+  el('swot-forcas').value=sw.forcas||''; el('swot-fraquezas').value=sw.fraquezas||'';
+  el('swot-oportunidades').value=sw.oportunidades||''; el('swot-ameacas').value=sw.ameacas||'';
   // passo 1
   const p1=E.p1||{};
   el('produto').value=p1.produto||''; el('qtd').value=p1.qtd||''; el('un-qtd').value=p1.unQtd||'';
@@ -1514,6 +1575,7 @@ function estadoCanonico(E,D){
     identificacao:E.identificacao,
     template:E.template,
     credito:E.credito,
+    swot:E.swot,
     modalidade,
     nUnidades:D.n,
     passo1:{produto:E.p1.produto||'', produtividade:E.p1.prod||'',
@@ -1630,7 +1692,17 @@ function montarDossie(C){
     '<tr><td>Localização</td><td class="v">'+esc(cr.local||'—')+'</td></tr>'+
     '</table></div>':'';
 
-  el('dossie').innerHTML=head+bCred+b1+b2+b3+b4+b5+bViz+b6+rodape;
+  const sw=C.swot||{};
+  const swotTemDados=sw.forcas||sw.fraquezas||sw.oportunidades||sw.ameacas;
+  const bSwot=swotTemDados?'<div class="bloco"><h2><span class="n">·</span>Diagnóstico estratégico (SWOT)</h2>'+
+    '<div class="swot-doc">'+
+    '<div class="swot-dc sq-f"><b>Forças</b><p>'+esc(sw.forcas||'—')+'</p></div>'+
+    '<div class="swot-dc sq-fr"><b>Fraquezas</b><p>'+esc(sw.fraquezas||'—')+'</p></div>'+
+    '<div class="swot-dc sq-o"><b>Oportunidades</b><p>'+esc(sw.oportunidades||'—')+'</p></div>'+
+    '<div class="swot-dc sq-a"><b>Ameaças</b><p>'+esc(sw.ameacas||'—')+'</p></div>'+
+    '</div></div>':'';
+
+  el('dossie').innerHTML=head+bCred+bSwot+b1+b2+b3+b4+b5+bViz+b6+rodape;
 }
 
 // ===========================================================================
