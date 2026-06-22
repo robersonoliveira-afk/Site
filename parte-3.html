@@ -246,7 +246,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <p class="subtitle">Do custo medido à decisão fundamentada: transformar a estrutura de custos em margens, indicadores e pontos de equilíbrio, descobrir a dose ótima de cada insumo e tornar a incerteza visível com a análise de cenários.</p>
   <div class="meta">
     <span>Parte III de VI</span>
-    <span>4 aulas</span>
+    <span>5 aulas</span>
       </div>
 </header>
 
@@ -259,9 +259,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <div class="toc-list">
     <ol>
       <li><a href="#receita-margens"><span class="toc-num">III.1</span> Receita, margens e indicadores</a></li>
-      <li><a href="#marginal"><span class="toc-num">III.2</span> Análise marginal: RM = CM</a></li>
-      <li><a href="#equilibrio"><span class="toc-num">III.3</span> Ponto de equilíbrio e margem de segurança</a></li>
-      <li><a href="#cenarios"><span class="toc-num">III.4</span> Análise de cenários</a></li>
+      <li><a href="#fatores-producao"><span class="toc-num">III.2</span> Fatores de produção e função de produção</a></li>
+      <li><a href="#marginal"><span class="toc-num">III.3</span> Análise marginal: RM = CM</a></li>
+      <li><a href="#equilibrio"><span class="toc-num">III.4</span> Ponto de equilíbrio e margem de segurança</a></li>
+      <li><a href="#cenarios"><span class="toc-num">III.5</span> Análise de cenários</a></li>
       <li class="quiz-link"><a href="#quiz"><span class="toc-num">→</span> Autoavaliação · Parte III</a></li>
     </ol>
   </div>
@@ -325,14 +326,138 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 </section>
 
 <!-- ===== AULA III.2 ===== -->
-<section class="block" id="marginal">
+<section class="block" id="fatores-producao">
   <button class="block-header" aria-expanded="false">
     <span class="block-num">III.2</span>
+    <span class="block-title">Fatores de produção e função de produção</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>A regra RM = CM (aula III.3) encontra o ponto ótimo de insumo porque parte de uma lei fundamental: a resposta da lavoura ou do rebanho a qualquer insumo <strong>não é linear</strong>. Para entender por que — e aplicar a análise marginal com consistência — é preciso conhecer os fatores de produção, a função que os relaciona ao produto e as três fases dessa relação.</p>
+
+    <h3>Os quatro fatores de produção</h3>
+    <p>Todo processo produtivo combina quatro categorias de recursos. Na agropecuária gaúcha, eles assumem formas concretas — e cada um tem uma remuneração específica:</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Fator</th><th>O que é</th><th>Exemplos no campo</th><th>Remuneração</th></tr>
+      <tr><td><strong>Terra</strong></td><td>Espaço físico, fertilidade, topografia, acesso à água</td><td>Área plantada, qualidade do solo, lavoura irrigada</td><td class="num">Renda</td></tr>
+      <tr><td><strong>Trabalho</strong></td><td>A força humana direta no processo produtivo</td><td>Mão de obra familiar, funcionários, d/H de tratos</td><td class="num">Salário</td></tr>
+      <tr><td><strong>Capital</strong></td><td>Bens produzidos usados para gerar mais produção</td><td>Tratores, instalações, rebanho reprodutor, insumos</td><td class="num">Juros</td></tr>
+      <tr><td><strong>Gestão</strong></td><td>Capacidade de organizar, decidir e assumir o risco</td><td>Planejamento da safra, escolha de cultivares, venda</td><td class="num">Lucro</td></tr>
+    </table>
+    </div>
+    <div class="callout success">
+      <strong>Por que a coluna "Remuneração" importa</strong>
+      Um projeto que não remunera os quatro fatores está consumindo patrimônio — mesmo que o caixa seja positivo. O COE cobre parte do capital e do trabalho; só o CT remunera todos os quatro. Por isso a rentabilidade se calcula sempre sobre o CT (aula III.1).
+    </div>
+
+    <h3>A função de produção</h3>
+    <p>A <strong>função de produção</strong> expressa a quantidade máxima de produto que se obtém para cada combinação de insumos, dado o estado da tecnologia:</p>
+    <div class="formula">
+      <span class="label">Função de produção</span>
+      Q = f(X₁, X₂, …, Xₙ)<br>
+      <span style="font-size:11px;opacity:0.75">Q = produto obtido · X = quantidade de cada insumo (terra, N, ração, mão de obra…)</span>
+    </div>
+    <p>Na prática, fixa-se a maioria dos fatores — área, máquinas, mão de obra — e varia-se <strong>um insumo por vez</strong>. Isso revela como o produto responde àquele fator mantendo os demais constantes: a curva do Produto Total.</p>
+
+    <h3>Produto Total, Produto Médio e Produto Marginal</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Conceito</th><th>Símbolo</th><th>Como calcular</th><th>Para que serve</th></tr>
+      <tr><td><strong>Produto Total</strong></td><td class="num">PT</td><td>Soma produzida com X unidades do insumo</td><td>Ver o resultado acumulado da dose</td></tr>
+      <tr><td><strong>Produto Médio</strong></td><td class="num">PM = PT ÷ X</td><td>Produção por unidade do insumo utilizado</td><td>Medir a eficiência técnica média</td></tr>
+      <tr><td><strong>Produto Marginal</strong></td><td class="num">PMg = ΔPT ÷ ΔX</td><td>Incremento no PT ao adicionar 1 unidade extra</td><td>Base da regra RM = CM (aula III.3)</td></tr>
+    </table>
+    </div>
+
+    <h3>Gráfico da função de produção — milho e nitrogênio</h3>
+    <p>O gráfico mostra como o Produto Total (sc/ha) responde ao aumento da dose de N, revelando as três fases. Dados representativos de milho irrigado no Alto Uruguaí/RS:</p>
+
+    <svg viewBox="0 0 520 278" style="width:100%;display:block;margin:16px 0 4px;font-family:'IBM Plex Mono',monospace" role="img" aria-label="Gráfico da função de produção: milho e nitrogênio, três fases">
+      <rect x="60" y="22" width="114" height="200" fill="#EEF1E7"/>
+      <rect x="174" y="22" width="229" height="200" fill="#F5EDD1"/>
+      <rect x="403" y="22" width="57" height="200" fill="#F5E4D8"/>
+      <line x1="60" y1="22" x2="60" y2="222" stroke="#3A3833" stroke-width="1.5"/>
+      <line x1="60" y1="222" x2="470" y2="222" stroke="#3A3833" stroke-width="1.5"/>
+      <line x1="174" y1="22" x2="174" y2="222" stroke="#D9D3C2" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="403" y1="22" x2="403" y2="222" stroke="#D9D3C2" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="117" y="14" text-anchor="middle" fill="#3D4A2A" font-size="8.5" font-weight="600" letter-spacing="1">FASE I</text>
+      <text x="288" y="14" text-anchor="middle" fill="#8A6E1A" font-size="8.5" font-weight="600" letter-spacing="1">FASE II</text>
+      <text x="431" y="14" text-anchor="middle" fill="#A8552E" font-size="8.5" font-weight="600" letter-spacing="1">FASE III</text>
+      <line x1="288" y1="60" x2="288" y2="222" stroke="#B89233" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="403" y1="31" x2="403" y2="222" stroke="#A8552E" stroke-width="1" stroke-dasharray="3,3"/>
+      <polyline points="60,222 117,186 174,135 231,92 288,60 346,39 403,31 460,39" fill="none" stroke="#2A331C" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="60" cy="222" r="3" fill="#3D4A2A"/>
+      <circle cx="117" cy="186" r="3" fill="#3D4A2A"/>
+      <circle cx="174" cy="135" r="3.5" fill="#3D4A2A"/>
+      <circle cx="231" cy="92" r="3.5" fill="#B89233"/>
+      <circle cx="288" cy="60" r="4" fill="#B89233" stroke="white" stroke-width="1.5"/>
+      <circle cx="346" cy="39" r="3.5" fill="#B89233"/>
+      <circle cx="403" cy="31" r="4.5" fill="#A8552E" stroke="white" stroke-width="2"/>
+      <circle cx="460" cy="39" r="3.5" fill="#A8552E"/>
+      <text x="292" y="56" fill="#8A6E1A" font-size="7.5" font-weight="600">RM = CM</text>
+      <text x="292" y="66" fill="#8A6E1A" font-size="7">ponto ótimo</text>
+      <text x="292" y="76" fill="#8A6E1A" font-size="7">≈ 120 kg/ha</text>
+      <text x="407" y="27" fill="#A8552E" font-size="7.5" font-weight="600">PT máx</text>
+      <text x="407" y="37" fill="#A8552E" font-size="7">180 kg/ha</text>
+      <line x1="57" y1="222" x2="60" y2="222" stroke="#6B6960" stroke-width="1"/>
+      <line x1="57" y1="186" x2="60" y2="186" stroke="#6B6960" stroke-width="1"/>
+      <line x1="57" y1="135" x2="60" y2="135" stroke="#6B6960" stroke-width="1"/>
+      <line x1="57" y1="92" x2="60" y2="92" stroke="#6B6960" stroke-width="1"/>
+      <line x1="57" y1="60" x2="60" y2="60" stroke="#6B6960" stroke-width="1"/>
+      <line x1="57" y1="31" x2="60" y2="31" stroke="#6B6960" stroke-width="1"/>
+      <text x="55" y="225" text-anchor="end" fill="#6B6960" font-size="7.5">70</text>
+      <text x="55" y="189" text-anchor="end" fill="#6B6960" font-size="7.5">91</text>
+      <text x="55" y="138" text-anchor="end" fill="#6B6960" font-size="7.5">120</text>
+      <text x="55" y="95" text-anchor="end" fill="#6B6960" font-size="7.5">145</text>
+      <text x="55" y="63" text-anchor="end" fill="#6B6960" font-size="7.5">163</text>
+      <text x="55" y="34" text-anchor="end" fill="#6B6960" font-size="7.5">180</text>
+      <text transform="translate(12,122) rotate(-90)" text-anchor="middle" fill="#6B6960" font-size="8.5" letter-spacing="0.5">PT (sc/ha)</text>
+      <line x1="60" y1="222" x2="60" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="117" y1="222" x2="117" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="174" y1="222" x2="174" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="231" y1="222" x2="231" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="288" y1="222" x2="288" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="346" y1="222" x2="346" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="403" y1="222" x2="403" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <line x1="460" y1="222" x2="460" y2="225" stroke="#6B6960" stroke-width="1"/>
+      <text x="60" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">0</text>
+      <text x="117" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">30</text>
+      <text x="174" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">60</text>
+      <text x="231" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">90</text>
+      <text x="288" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">120</text>
+      <text x="346" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">150</text>
+      <text x="403" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">180</text>
+      <text x="460" y="235" text-anchor="middle" fill="#6B6960" font-size="7.5">210</text>
+      <text x="265" y="252" text-anchor="middle" fill="#6B6960" font-size="8.5" letter-spacing="0.5">N — NITROGÊNIO (kg/ha)</text>
+      <text x="265" y="270" text-anchor="middle" fill="#9B9890" font-size="7" letter-spacing="0.3">milho irrigado · Alto Uruguaí RS · dados ilustrativos</text>
+    </svg>
+
+    <h3>As três fases da produção</h3>
+    <div class="hierarchy">
+      <div class="hier-row ok"><span class="hier-tag">FASE I</span><span><strong>Retornos crescentes:</strong> PMg sobe a cada dose. O insumo corrige uma deficiência grave — cada kg de N rende mais que o anterior. Produtores abaixo desse nível operam abaixo da eficiência mínima.</span></div>
+      <div class="hier-row warn"><span class="hier-tag">FASE II</span><span><strong>Retornos decrescentes:</strong> PMg cai, mas é positivo — o PT ainda cresce. É a <em>zona racional de produção</em>. O ponto ótimo econômico (RM = CM) está sempre aqui.</span></div>
+      <div class="hier-row danger"><span class="hier-tag">FASE III</span><span><strong>Retornos negativos:</strong> PMg &lt; 0, o PT cai. Excesso de N causa toxicidade e acamamento. Nenhum produtor racional opera aqui.</span></div>
+    </div>
+
+    <h3>Lei dos Rendimentos Decrescentes</h3>
+    <p>O padrão da Fase II tem nome formal: <strong>Lei dos Rendimentos Decrescentes</strong>. Ela afirma que, mantidos os demais fatores constantes, <em>a partir de certo ponto, cada unidade adicional do insumo variável gera incrementos de produto cada vez menores</em>. É uma regularidade empírica — observada em milho, soja, leite, carne, aves — não uma exceção.</p>
+    <div class="callout">
+      <strong>Ponto ótimo econômico ≠ máxima produção</strong>
+      O gráfico mostra que a máxima produção ocorre em ~180 kg/ha de N (PT = 180 sc/ha). O máximo lucro está antes — em ~120 kg/ha, onde RM = CM. Avançar de 120 para 180 kg acrescenta apenas 17 sc/ha ao custo de 60 kg de N a mais. A aula III.3 mostra como calcular exatamente esse ponto com os dados reais da propriedade.
+    </div>
+  </div></div>
+</section>
+
+<!-- ===== AULA III.3 ===== -->
+<section class="block" id="marginal">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">III.3</span>
     <span class="block-title">Análise marginal e maximização do lucro</span>
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>Os indicadores da aula anterior dizem se o projeto é viável. Mas há uma pergunta que nenhum deles responde: <em>vale a pena fazer mais uma aplicação de fungicida? Compensa aumentar a ração das vacas? Devo colocar mais uréia no milho?</em> Essa é a pergunta da análise marginal — o instrumento que encontra o ponto de máximo lucro de cada insumo.</p>
+    <p>Os indicadores da aula III.1 medem se o projeto é viável; a função de produção (aula III.2) explica por que a resposta ao insumo não é linear. A pergunta que nenhuma das duas responde diretamente é: <em>vale a pena fazer mais uma aplicação de fungicida? Compensa aumentar a ração das vacas? Devo colocar mais uréia no milho?</em> Essa é a pergunta da análise marginal — o instrumento que encontra o ponto de máximo lucro de cada insumo.</p>
 
     <h3>Os três conceitos</h3>
     <ul class="bullets">
@@ -347,9 +472,6 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <span class="label">Regra de ouro</span>
       ponto de máximo lucro → <b>RM = CM</b><br>(RM &gt; CM: aplicar mais · RM &lt; CM: já passou do ponto)
     </div>
-
-    <h3>Lei dos rendimentos decrescentes</h3>
-    <p>A base do raciocínio: à medida que se aumenta a dose de um insumo mantendo os demais fixos, o incremento de produção por unidade adicional <strong>tende a diminuir</strong> e pode até se tornar negativo. A planta responde bem às primeiras doses — que corrigem uma deficiência — e cada vez menos às seguintes, até o limite biológico de absorção.</p>
 
     <h3>Exemplo: milho e uréia no RS</h3>
     <p>Milho a R$ 78/sc, uréia a R$ 4,20/kg (insumo + aplicação), com base nos registros de três safras de um produtor do Alto Uruguaí:</p>
@@ -372,10 +494,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   </div></div>
 </section>
 
-<!-- ===== AULA III.3 ===== -->
+<!-- ===== AULA III.4 ===== -->
 <section class="block" id="equilibrio">
   <button class="block-header" aria-expanded="false">
-    <span class="block-num">III.3</span>
+    <span class="block-num">III.4</span>
     <span class="block-title">Ponto de equilíbrio e margem de segurança</span>
     <span class="block-chevron"></span>
   </button>
@@ -405,10 +527,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   </div></div>
 </section>
 
-<!-- ===== AULA III.4 ===== -->
+<!-- ===== AULA III.5 ===== -->
 <section class="block" id="cenarios">
   <button class="block-header" aria-expanded="false">
-    <span class="block-num">III.4</span>
+    <span class="block-num">III.5</span>
     <span class="block-title">Análise de cenários</span>
     <span class="block-chevron"></span>
   </button>
@@ -539,17 +661,17 @@ const PROFILES = {
   op: {
     name: "Operador",
     msg: "Você ainda lê o resultado pela camada de cima — caixa e produção bruta. A decisão econômica (margem líquida, lucro sobre o CT, ponto ótimo de insumo) ainda parece detalhe técnico, não ferramenta. O próximo passo é descer todas as camadas antes de concluir, e tratar cada dose de insumo como uma escolha de margem.",
-    revise: "Aulas III.1 (as três margens e a rentabilidade ÷ CT) e III.2 (RM = CM e a lei dos rendimentos decrescentes)."
+    revise: "Aulas III.1 (as três margens e a rentabilidade ÷ CT) e III.3 (análise marginal e RM = CM)."
   },
   tr: {
     name: "Em transição",
     msg: "Você reconhece que falta informação antes de decidir, mas tende a adiar a conclusão e oferecer meio-termos. O salto seguinte é fechar a leitura com cálculo — margem líquida, margem de segurança, cenário pessimista — e assumir posição com base nos números, não na sensação.",
-    revise: "Aulas III.3 (ponto de equilíbrio e margem de segurança) e III.4 (os três cenários como base da decisão)."
+    revise: "Aulas III.4 (ponto de equilíbrio e margem de segurança) e III.5 (os três cenários como base da decisão)."
   },
   ge: {
     name: "Gestor",
     msg: "Você raciocina por camadas: não confunde caixa com lucro e recorre aos cenários quando o risco aparece. O produtor que conta com você decide com informação, não com otimismo. O próximo passo é o lado estratégico — ler o ponto ótimo de cada insumo e a rentabilidade sobre o capital como rotina, não só quando perguntam.",
-    revise: "Reforce a aula III.2 (análise marginal) e avance para a Parte IV (fluxo de caixa, crédito e preço no RS)."
+    revise: "Reforce as aulas III.2 (fatores de produção) e III.3 (análise marginal), e avance para a Parte IV."
   },
   es: {
     name: "Técnico estratégico",
