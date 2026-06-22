@@ -449,22 +449,22 @@ const QUIZ_G = [
 
 const PROFILES_G = {
   op: {
-    name: "Operador",
+    name: "🚜 Operador",
     msg: "Você executa, mas ainda trata cada número como uma ilha — o custo que se sente no fim do ano, o preço que o mercado dita, o caixa que 'se resolve'. O salto é enxergar o projeto como sistema: custo por unidade, lucro econômico (não só caixa), preço regional e calendário de caixa amarrados num só raciocínio. Comece pelos fundamentos.",
     revise: "Partes I e II — o que é custo, investimento e despesa, e como se monta COE, COT e CT."
   },
   tr: {
-    name: "Em transição",
+    name: "🌱 Em transição",
     msg: "Você já desconfia que falta fechar premissa — o custo real, o preço certo, o caixa do mês — mas tende a aproximar valores e adiar a conta. O próximo passo é fechar cada número na fonte e na fórmula: rentabilidade ÷ CT, preço de nivelamento, fluxo de caixa mês a mês. Premissa aproximada vira projeto frágil na defesa.",
     revise: "Parte III (indicadores e cenários) e Parte IV (fluxo de caixa, crédito e preço regional)."
   },
   ge: {
-    name: "Gestor",
+    name: "📋 Gestor",
     msg: "Você trata depreciação, pró-labore, juros e custo de oportunidade como custos reais — e é isso que separa o gestor do operador. Falta consolidar a leitura estratégica: ler IEE, margem de segurança e cenários como um único quadro de risco, e adotar sempre o preço regional e o calendário de caixa como premissas que se defendem com fonte.",
     revise: "Parte III — IEE, margem de segurança, cenários e VPL/TIR para projetos plurianuais."
   },
   es: {
-    name: "Técnico estratégico",
+    name: "🎯 Técnico estratégico",
     msg: "Você lê o projeto como sistema: custo por unidade, lucro econômico sobre o CT, preço posto cooperativa, fluxo de caixa mês a mês e crédito enquadrado na fonte vigente. É o nível que o mercado demanda do técnico. Mantenha o rigor das premissas — é o que faz o projeto sobreviver fora da planilha e resistir à banca.",
     revise: "Você domina as Partes I a IV. Avance para a Parte VI: monte a Nota Técnica e prepare a defesa do projeto."
   }
@@ -527,7 +527,7 @@ function buildQuiz(sfx, QUIZ, PROFILES){
     document.getElementById('reviseBlocks'+sfx).textContent = profile.revise;
     const tallyEl = document.getElementById('resultTally'+sfx);
     tallyEl.innerHTML = '';
-    const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+    const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
     for(const k of ['op','tr','ge','es']){
       const row = document.createElement('div');
       row.className = 'tally-row' + (k === topKey ? ' winner' : '');

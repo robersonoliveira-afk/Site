@@ -473,7 +473,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       ponto de máximo lucro → <b>RM = CM</b><br>(RM &gt; CM: aplicar mais · RM &lt; CM: já passou do ponto)
     </div>
 
-    <h3>Exemplo: milho e uréia no RS</h3>
+    <h3>🌽 Exemplo: milho e uréia no RS</h3>
     <p>Milho a R$ 78/sc, uréia a R$ 4,20/kg (insumo + aplicação), com base nos registros de três safras de um produtor do Alto Uruguaí:</p>
     <div class="tbl-wrap">
     <table class="tbl">
@@ -659,22 +659,22 @@ const QUIZ = [
 
 const PROFILES = {
   op: {
-    name: "Operador",
+    name: "🚜 Operador",
     msg: "Você ainda lê o resultado pela camada de cima — caixa e produção bruta. A decisão econômica (margem líquida, lucro sobre o CT, ponto ótimo de insumo) ainda parece detalhe técnico, não ferramenta. O próximo passo é descer todas as camadas antes de concluir, e tratar cada dose de insumo como uma escolha de margem.",
     revise: "Aulas III.1 (as três margens e a rentabilidade ÷ CT) e III.3 (análise marginal e RM = CM)."
   },
   tr: {
-    name: "Em transição",
+    name: "🌱 Em transição",
     msg: "Você reconhece que falta informação antes de decidir, mas tende a adiar a conclusão e oferecer meio-termos. O salto seguinte é fechar a leitura com cálculo — margem líquida, margem de segurança, cenário pessimista — e assumir posição com base nos números, não na sensação.",
     revise: "Aulas III.4 (ponto de equilíbrio e margem de segurança) e III.5 (os três cenários como base da decisão)."
   },
   ge: {
-    name: "Gestor",
+    name: "📋 Gestor",
     msg: "Você raciocina por camadas: não confunde caixa com lucro e recorre aos cenários quando o risco aparece. O produtor que conta com você decide com informação, não com otimismo. O próximo passo é o lado estratégico — ler o ponto ótimo de cada insumo e a rentabilidade sobre o capital como rotina, não só quando perguntam.",
     revise: "Reforce as aulas III.2 (fatores de produção) e III.3 (análise marginal), e avance para a Parte IV."
   },
   es: {
-    name: "Técnico estratégico",
+    name: "🎯 Técnico estratégico",
     msg: "Você opera no nível que o mercado demanda: distingue as três margens, calcula rentabilidade sobre o CT, encontra o ponto ótimo pelo RM = CM e torna o risco visível com cenários. Lê o resultado econômico como um todo, não em fragmentos. Mantenha esse rigor — é o que sustenta a confiança do produtor em decisões de longo prazo.",
     revise: "Você domina a Parte III. Aplique a análise marginal e os cenários a casos novos a cada safra e avance com segurança para a Parte IV."
   }
@@ -735,7 +735,7 @@ function showResult(){
   document.getElementById('reviseBlocks').textContent = profile.revise;
   const tallyEl = document.getElementById('resultTally');
   tallyEl.innerHTML = '';
-  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+  const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
   for(const k of ['op','tr','ge','es']){
     const row = document.createElement('div');
     row.className = 'tally-row' + (k === topKey ? ' winner' : '');

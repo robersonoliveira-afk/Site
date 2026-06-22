@@ -314,11 +314,11 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <p>A análise de solo é o <strong>primeiro item</strong> da planilha — cerca de <span class="calc">R$ 65/150 amostra</span> — justamente porque é a base de todos os outros. Sem ela, calagem e adubação são chute; com ela, são cálculo. Importante destacar que a análise química e física são requisitos para o crédito rural. Mais detalhes você encontra na parte IV.2 Crédito rural e financiamento agrícola.</p>
     </div>
 
-    <h3>Zootecnia: estrutura e evolução do rebanho</h3>
+    <h3>🐄 Zootecnia: estrutura e evolução do rebanho</h3>
     <p>Na pecuária, o equivalente ao laudo é responder: <em>quantos animais de cada categoria existem, e como esse número evolui no tempo?</em> A estrutura do rebanho define ração por animal/dia, vacinas por categoria e sal mineral por cabeça/mês — cada um um coeficiente técnico que alimenta o orçamento.</p>
     <div class="callout">
       <strong>Erro frequente</strong>
-      Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. As categorias têm perfis de custo completamente diferentes.
+      Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. As categorias têm perfis de custo completamente diferentes. Experimente a ferramenta interativa que calcula a estrutura do rebanho leiteiro por categoria, e veja como o resultado muda.
     </div>
     <a class="go-link" href="rebanho.html">
       <span class="go-link-icon">🐄</span>
@@ -329,7 +329,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <span class="go-link-arrow">&#8594;</span>
     </a>
 
-    <h3>Fruticultura: sistema de produção e implantação</h3>
+    <h3>🍇 Fruticultura: sistema de produção e implantação</h3>
     <p>No pomar, o diagnóstico é a definição do <strong>sistema de produção</strong> — decisões agronômicas de longo prazo que fixam os custos por 15 a 20 anos. O espaçamento define o número de mudas/ha, o coeficiente central. E há uma particularidade que nenhuma outra atividade do curso tem: a <em>fase de formação</em>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</p>
     <div class="callout">
       <strong>Erro frequente</strong>
@@ -581,22 +581,22 @@ const QUIZ = [
 
 const PROFILES = {
   op: {
-    name: "Operador",
+    name: "🚜 Operador",
     msg: "Você ainda raciocina como executor — domina o lado agronômico, mas o econômico ainda é abstrato. A planilha parece exigência, não ferramenta de decisão. O próximo passo é enxergar cada decisão técnica como uma escolha financeira com consequência mensurável.",
     revise: "Aulas II.2 (classificação, em especial explícitos × implícitos) e II.3 (as três camadas de custo). São a base que falta para sair do operacional."
   },
   tr: {
-    name: "Em transição",
+    name: "🌱 Em transição",
     msg: "Você já entende o vocabulário dos custos, mas hesita quando a decisão envolve incerteza e tende a oferecer meio-termos. O salto seguinte está em assumir posição com base em cálculo — e em distinguir com firmeza o que é desembolso do que é custo econômico.",
     revise: "Aula II.3 (COE × COT × CT e suas leituras críticas) e II.4 (por que o registro sustenta a decisão)."
   },
   ge: {
-    name: "Gestor",
+    name: "📋 Gestor",
     msg: "Você raciocina como gestor: classifica corretamente, lê as camadas de custo e entende para que serve o registro. O produtor que conta com você atravessa uma safra ruim sem comprometer o patrimônio. O próximo passo é o lado estratégico — conectar custo, mercado e crédito.",
     revise: "Siga para a Parte III (análise econômica) e a Parte IV (contexto operacional), que ampliam a leitura do contexto em que o projeto opera."
   },
   es: {
-    name: "Técnico estratégico",
+    name: "🎯 Técnico estratégico",
     msg: "Você opera no nível que o mercado demanda: separa caixa de patrimônio, custo explícito de implícito, e lê as três camadas como o médico lê um hemograma. Continua medindo o custo econômico real, não só o financeiro. Mantenha esse rigor — é o que sustenta a confiança do produtor em decisões de longo prazo.",
     revise: "Você domina a Parte II. Reforce a leitura das camadas com casos novos a cada safra e avance com segurança para a análise econômica (Parte III)."
   }
@@ -657,7 +657,7 @@ function showResult(){
   document.getElementById('reviseBlocks').textContent = profile.revise;
   const tallyEl = document.getElementById('resultTally');
   tallyEl.innerHTML = '';
-  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+  const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
   for(const k of ['op','tr','ge','es']){
     const row = document.createElement('div');
     row.className = 'tally-row' + (k === topKey ? ' winner' : '');

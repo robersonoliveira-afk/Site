@@ -709,22 +709,22 @@ const QUIZ = [
 
 const PROFILES = {
   op: {
-    name: "Operador",
+    name: "🚜 Operador",
     msg: "Você fecha o cálculo, mas ainda o trata como se o projeto existisse no vácuo — sem calendário de caixa, sem a linha de crédito certa, com o preço cheio do porto e sem a regularização. O próximo passo é encaixar o número no mundo real: o mês em que falta caixa, o preço na porteira, o CAR como porta do crédito.",
     revise: "Aulas IV.1 (fluxo de caixa e capital de giro) e IV.3 (o preço que entra na planilha é o regional, não a cotação)."
   },
   tr: {
-    name: "Em transição",
+    name: "🌱 Em transição",
     msg: "Você percebe que há mais a verificar — o caixa, a linha, o preço — mas tende a aproximar valores e adiar a checagem. O salto seguinte é fechar cada premissa na fonte: o Plano Safra vigente, o boletim da cooperativa, o status do CAR. Premissa aproximada vira projeto frágil na defesa.",
     revise: "Aulas IV.2 (enquadramento e custo do crédito) e IV.4 (croqui e CAR como exigência do financiamento)."
   },
   ge: {
-    name: "Gestor",
+    name: "📋 Gestor",
     msg: "Você trata o crédito como custo do projeto e reconhece o custo de oportunidade do capital próprio. O produtor que conta com você não confunde dívida com prejuízo nem capital próprio com dinheiro de graça. O próximo passo é a visão estratégica completa — caixa, preço regional e regularização tratados como premissas que se defendem com fonte.",
     revise: "Reforce a aula IV.1 (fluxo de caixa) e avance para a Parte V, onde o método se aplica a pecuária, fruticultura e precisão."
   },
   es: {
-    name: "Técnico estratégico",
+    name: "🎯 Técnico estratégico",
     msg: "Você opera no nível que o mercado demanda: lê o calendário de caixa, enquadra a linha de crédito na fonte vigente, adota o preço posto cooperativa e trata o CAR como condição do financiamento. Vê o projeto como um sistema que precisa funcionar no tempo, no território e no mercado real. Mantenha esse rigor — é o que faz o projeto sobreviver fora da planilha.",
     revise: "Você domina a Parte IV. Aplique-a a um caso real (uma propriedade conhecida) e avance para a Parte V, módulos aplicados por atividade."
   }
@@ -785,7 +785,7 @@ function showResult(){
   document.getElementById('reviseBlocks').textContent = profile.revise;
   const tallyEl = document.getElementById('resultTally');
   tallyEl.innerHTML = '';
-  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Estratégico'};
+  const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
   for(const k of ['op','tr','ge','es']){
     const row = document.createElement('div');
     row.className = 'tally-row' + (k === topKey ? ' winner' : '');
