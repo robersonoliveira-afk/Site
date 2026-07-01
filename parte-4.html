@@ -138,6 +138,37 @@ h1.title em{font-style:italic;color:var(--terra);font-weight:500}
 .tbl td.ok{color:var(--olive);font-weight:600}
 .tbl td.no{color:var(--terra);font-weight:600}
 
+/* Ícone SVG inline nas linhas */
+.tbl td .line-ico{display:inline-block;width:14px;height:14px;vertical-align:-3px;margin-right:7px;color:var(--terra);stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* Cores sutis de fundo na coluna de juros (hierarquia visual) */
+.tbl td.j-min{background:#E4EAD2;color:var(--olive-deep);font-weight:600}
+.tbl td.j-baixo{background:#EEF0DC;color:var(--olive);font-weight:600}
+.tbl td.j-med{background:#F4EFE2;color:var(--mustard-ink);font-weight:600}
+.tbl td.j-alto{background:#F0DCC8;color:var(--terra-deep);font-weight:600}
+.tbl td.j-max{background:#E8C9B0;color:var(--terra-deep);font-weight:600}
+
+/* Peça comparativa dos dois Planos Safra */
+.planos-compare{display:grid;grid-template-columns:1fr;gap:12px;margin:20px 0 22px}
+@media (min-width:520px){.planos-compare{grid-template-columns:1fr 1fr}}
+.plano-card{padding:22px 20px 20px;position:relative;color:var(--paper);overflow:hidden}
+.plano-card.empresarial{background:var(--olive-deep)}
+.plano-card.familiar{background:var(--terra-deep)}
+.plano-card::before{content:"";position:absolute;top:0;left:0;width:44px;height:4px}
+.plano-card.empresarial::before{background:var(--mustard)}
+.plano-card.familiar::before{background:var(--paper-warm)}
+.plano-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,247,240,0.65);margin-bottom:6px}
+.plano-nome{font-family:'Fraunces',serif;font-weight:500;font-size:20px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:14px}
+.plano-nome em{font-style:italic;font-weight:400}
+.plano-cifra{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:1;margin-bottom:2px}
+.plano-cifra-label{font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(250,247,240,0.7);margin-bottom:16px}
+.plano-linha{font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.5;color:rgba(250,247,240,0.85);padding:5px 0;border-top:1px solid rgba(250,247,240,0.14)}
+.plano-linha:first-of-type{border-top:none}
+.plano-linha b{color:var(--paper);font-weight:600}
+.plano-faixa{margin-top:14px;padding-top:12px;border-top:1px solid rgba(250,247,240,0.2);font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(250,247,240,0.75);letter-spacing:0.04em}
+.plano-faixa b{color:var(--mustard);font-weight:600}
+.plano-card.familiar .plano-faixa b{color:var(--paper-warm)}
+
 ul.bullets{list-style:none;margin:10px 0 16px}
 ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
 ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
@@ -265,8 +296,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   </button>
   <div class="toc-list">
     <ol>
-      <li><a href="#fluxo-caixa"><span class="toc-num">IV.1</span> Fluxo de caixa e capital de giro</a></li>
-      <li><a href="#credito"><span class="toc-num">IV.2</span> Crédito rural e financiamento</a></li>
+      <li><a href="#credito"><span class="toc-num">IV.1</span> Crédito rural e financiamento</a></li>
+      <li><a href="#fluxo-caixa"><span class="toc-num">IV.2</span> Fluxo de caixa e capital de giro</a></li>
       <li><a href="#preco"><span class="toc-num">IV.3</span> Preço de venda no RS</a></li>
       <li><a href="#croqui"><span class="toc-num">IV.4</span> Croqui da propriedade e CAR</a></li>
       <li class="quiz-link"><a href="#quiz"><span class="toc-num">→</span> Autoavaliação · Parte IV</a></li>
@@ -275,50 +306,9 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 </nav>
 
 <!-- ===== AULA IV.1 ===== -->
-<section class="block" id="fluxo-caixa">
-  <button class="block-header" aria-expanded="false">
-    <span class="block-num">IV.1</span>
-    <span class="block-title">Fluxo de caixa e capital de giro</span>
-    <span class="block-chevron"></span>
-  </button>
-  <div class="block-body"><div class="block-content">
-    <p>Um projeto pode ser lucrativo ao final do ciclo e, ainda assim, <strong>quebrar no meio do caminho</strong>. Na agricultura os custos se concentram no início — plantio, insumos, preparo — e a receita só chega na colheita. Imagina quem trabalha com pecuária de cria, que tem uma safra de terneiro por ano. Entre os dois momentos, o produtor precisa ter dinheiro para pagar as contas. Lucro é resultado; caixa é sobrevivência.</p>
-
-    <h3>O problema do tempo</h3>
-    <p>É a diferença entre o resultado econômico do ciclo e a <em>liquidez mês a mês</em>. O fluxo de caixa organiza todas as entradas e saídas no calendário, identificando os meses de déficit — quando é preciso capital de giro ou crédito — e os de superávit, quando há dinheiro para quitar dívidas ou investir.</p>
-
-    <h3>A estrutura: entradas, saídas, saldo</h3>
-    <div class="tbl-wrap">
-    <table class="tbl">
-      <tr><th>Grupo</th><th>O que entra</th></tr>
-      <tr><td><strong>Entradas</strong></td><td>Venda da produção (safra principal, subprodutos), financiamentos recebidos, outras receitas (arrendamento de pastagem, venda de refugo).</td></tr>
-      <tr><td><strong>Saídas</strong></td><td>Todos os custos do orçamento, distribuídos nos meses em que ocorre o desembolso — sementes em outubro, adubos em out/nov, colheita em fev/mar.</td></tr>
-      <tr><td><strong>Saldo</strong></td><td>Entradas − saídas do período. O saldo <em>acumulado</em> revela se há déficit (necessidade de crédito) ou superávit ao longo do ciclo.</td></tr>
-    </table>
-    </div>
-    <div class="example">
-      <p>Uma lavoura de verão, o caixa fica fortemente negativo de <strong>outubro a janeiro</strong> (insumos e tratos) e só vira em <strong>fevereiro/março</strong>, com a venda. É esse vale de quatro meses que precisa ser financiado — por capital próprio ou crédito de custeio.</p>
-    </div>
-
-    <h3>Capital de giro</h3>
-    <p>É o dinheiro necessário para financiar o ciclo entre o primeiro desembolso e o recebimento da receita — o recurso que <em>sustenta</em> a operação durante a produção. A necessidade varia enormemente por atividade:</p>
-    <ul class="bullets">
-      <li><strong>Cultura de grãos:</strong> alto desembolso inicial, receita concentrada em 4–6 meses. Capital de giro alto no início da safra.</li>
-      <li><strong>Pecuária de corte (confinamento):</strong> desembolso diário de ração por 90–120 dias, receita no fim. Capital de giro proporcional ao nº de cabeças e ao custo diário.</li>
-      <li><strong>Pecuária leiteira:</strong> desembolso diário, receita mensal. Fluxo de caixa mais equilibrado.</li>
-      <li><strong>Fruticultura:</strong> anos de investimento sem receita na formação. Capital de giro de longo prazo, financiado por linha específica de implantação de perenes.</li>
-    </ul>
-    <div class="callout">
-      <strong>O erro que quebra projeto viável</strong>
-      Calcular só o resultado do ciclo e ignorar o calendário. Sem identificar o mês de maior déficit, o produtor descobre tarde que falta caixa para a próxima aplicação — e precisa vender mal, antecipado, para fechar o mês.
-    </div>
-  </div></div>
-</section>
-
-<!-- ===== AULA IV.2 ===== -->
 <section class="block" id="credito">
   <button class="block-header" aria-expanded="false">
-    <span class="block-num">IV.2</span>
+    <span class="block-num">IV.1</span>
     <span class="block-title">Crédito rural e financiamento agrícola</span>
     <span class="block-chevron"></span>
   </button>
@@ -332,73 +322,113 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><th>Modalidade</th><th>Taxa aprox. (a.a.)</th><th></th></tr>
       <tr><td><strong>Cartão de crédito rotativo</strong></td><td class="num">~440%</td><td class="no">Crédito livre — proibido para uso rural</td></tr>
       <tr><td><strong>Cheque especial</strong></td><td class="num">~134%</td><td class="no">Crédito livre — emergencial</td></tr>
-      <tr><td><strong>Crédito rural — demais produtores</strong></td><td class="num">12 a 20%</td><td>Regulado pelo MCR</td></tr>
-      <tr><td><strong>Pronamp</strong></td><td class="num">7 a 10%</td><td class="ok">Subsidiado — médio produtor</td></tr>
-      <tr><td><strong>Pronaf</strong></td><td class="num">2 a 6%</td><td class="ok">Fortemente subsidiado — agricultura familiar</td></tr>
+      <tr><td><strong>Crédito rural — demais produtores</strong></td><td class="num">12 a 20%</td><td>Regulado pelo MCR, fora dos planos subsidiados</td></tr>
+      <tr><td><strong>Agricultura Empresarial</strong></td><td class="num">8 a 12,5%</td><td class="ok">Subsidiado — Pronamp e demais linhas do MAPA</td></tr>
+      <tr><td><strong>Agricultura Familiar (Pronaf)</strong></td><td class="num">0,5 a 7,5%</td><td class="ok">Fortemente subsidiado — MDA</td></tr>
     </table>
     </div>
     <div class="callout success">
       <strong>O crédito rural não é gratuito — mas é regulado</strong>
-      Para um produtor familiar que financia R$ 100 mil por 6 meses: Pronaf a 4% a.a. = R$ 2.000 em juros; cheque especial a 134% a.a. = R$ 67.000 no mesmo período. A linha subsidiada pode ser a diferença entre viabilidade e inviabilidade do projeto.
+      Para uma família que financia R$ 100 mil por 6 meses: Pronaf alimento básico a 2% a.a. = R$ 1.000 em juros; cheque especial a 134% a.a. = R$ 67.000 no mesmo período. A linha subsidiada pode ser a diferença entre viabilidade e inviabilidade do projeto.
     </div>
 
     <div class="callout">
-      <strong>Atenção · dados que mudam a cada Plano Safra</strong>
-      Taxas, limites e faixas de renda abaixo são referências da apostila. Eles são revistos anualmente. Sempre confirmar os valores vigentes no Plano Safra e no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank" rel="noopener">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
+      <strong>Atenção · dados anuais</strong>
+      Taxas, limites e faixas de renda desta aula referem-se ao Plano Safra 2026/27 (publicado em junho/2026 pelo MAPA e pelo MDA). São revistos a cada ano-safra. Sempre confirmar os valores vigentes no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank" rel="noopener">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
     </div>
 
-    <h3>Modalidades</h3>
+    <h3>O Brasil tem dois Planos Safra</h3>
+    <p>Desde 2003 o país opera com <em>dois pacotes anuais separados</em>, cada um sob um ministério, cada um com sua lógica de público e de instrumentos. Confundir os dois é erro comum: um mesmo produtor pode estar apto a um e não ao outro, e as taxas de juros são bem distintas.</p>
+
+    <div class="planos-compare">
+      <div class="plano-card empresarial">
+        <div class="plano-tag">Ministério da Agricultura e Pecuária</div>
+        <div class="plano-nome">Agricultura <em>Empresarial</em></div>
+        <div class="plano-cifra">R$ 525,1 bi</div>
+        <div class="plano-cifra-label">2026/27 · custeio, investimento e comercialização</div>
+        <div class="plano-linha"><b>Público:</b> médio (Pronamp) e grande produtor, cooperativas, agroindústria</div>
+        <div class="plano-linha"><b>Enquadramento:</b> renda até R$ 3,6 mi/ano no Pronamp; demais sem teto</div>
+        <div class="plano-linha"><b>Principais linhas:</b> Pronamp, Custeio Empresarial, Moderfrota, RenovAgro, PCA, Inovagro, Prodecoop</div>
+        <div class="plano-faixa">Faixa de juros 26/27: <b>8,0% a 12,5% a.a.</b></div>
+      </div>
+      <div class="plano-card familiar">
+        <div class="plano-tag">Ministério do Desenvolvimento Agrário</div>
+        <div class="plano-nome">Agricultura <em>Familiar</em></div>
+        <div class="plano-cifra">R$ 85,2 bi</div>
+        <div class="plano-cifra-label">2026/27 · Pronaf · pacote total R$ 97,3 bi</div>
+        <div class="plano-linha"><b>Público:</b> famílias com DAP/CAF, renda anual até R$ 500 mil</div>
+        <div class="plano-linha"><b>Enquadramento:</b> Pronaf B até R$ 60 mil · demais grupos até R$ 500 mil</div>
+        <div class="plano-linha"><b>Principais linhas:</b> Pronaf B, Custeio, Mais Alimentos, Pronaf A, Jovem, Mulher, Bioeconomia</div>
+        <div class="plano-faixa">Faixa de juros 26/27: <b>0,5% a 7,5% a.a.</b></div>
+      </div>
+    </div>
+
+    <h3>Modalidades (comuns aos dois planos)</h3>
     <ul class="bullets">
-      <li><strong>Custeio:</strong> destina-se a cobrir despesas normais dos ciclos produtivos, da compra de insumos à fase de colheita. Prazo curto.</li>
-      <li><strong>Investimento:</strong> destina-se a aplicações em bens ou serviços cujo benefício se estenda por vários períodos de produção. Por exemplo na aquisição de máquinas, benfeitorias, implantação de pomar. Prazo longo.</li>
-      <li><strong>Comercialização:</strong> destina-se a viabilizar ao produtor rural ou às cooperativas os recursos necessários à comercialização de seus produtos no mercado.</li>
-      <li><strong>Industrialização:</strong> destina-se à industrialização de produtos agropecuários, quando efetuada por cooperativas ou pelo produtor na sua propriedade rural.</li>
+      <li><strong>Custeio:</strong> financia o ciclo produtivo (insumos, tratos). Prazo curto, casado com a safra.</li>
+      <li><strong>Investimento:</strong> financia bens duráveis (máquinas, benfeitorias, implantação de pomar, matrizes). Prazo longo.</li>
+      <li><strong>Comercialização:</strong> financia estocagem e venda da produção.</li>
+      <li><strong>Industrialização:</strong> financia a industrialização de produtos agropecuários, quando efetuada por cooperativas ou pelo produtor na sua propriedade rural.</li>
     </ul>
 
-    <h3>Principais programas</h3>
-    <div class="tbl-wrap">
-    <table class="tbl">
-      <tr><th>Programa</th><th>Beneficiário</th><th>Juros (ref.)</th></tr>
-      <tr><td><strong>Pronaf</strong></td><td>Agricultura familiar (renda bruta até ~R$ 500 mil/ano). Exige DAP/CAF.</td><td class="num">2 a 6% a.a.</td></tr>
-      <tr><td><strong>Pronamp</strong></td><td>Médio produtor (renda ~R$ 500 mil a 3,5 milhões; ≥80% da renda no agro).</td><td class="num">7 a 10% a.a.</td></tr>
-      <tr><td><strong>Demais produtores</strong></td><td>Grande porte ou fora das linhas subsidiadas.</td><td class="num">12 a 20% a.a.</td></tr>
-    </table>
-    </div>
-    <p>O Pronaf tem as taxas mais baixas do mercado, fortemente subsidiadas (Lei nº 11.326/2006). O acesso depende da Declaração de Aptidão ao Pronaf (DAP) ou do Cadastro da Agricultura Familiar (CAF).</p>
+    <h3>A · Plano Safra da Agricultura Empresarial 2026/27</h3>
+    <p>Instituído pelo MAPA, é o pacote para o médio (Pronamp) e o grande produtor. Total de <strong>R$ 525,1 bilhões</strong> (custeio e comercialização R$ 384,9 bi; investimento R$ 140,2 bi). Do total, R$ 72,6 bi vão ao Pronamp e R$ 452,5 bi aos demais produtores e cooperativas.</p>
 
-    <h3>Exemplo: condições vigentes no custeio (Plano Safra 2025/26)</h3>
-    <p>Para dar concretude às faixas acima, veja as condições de <em>custeio agrícola</em> de um ciclo recente, por categoria de produtor:</p>
     <div class="tbl-wrap">
     <table class="tbl">
-      <tr><th>Categoria (custeio)</th><th>Limite por ano agrícola</th><th>Juros (a.a.)</th></tr>
-      <tr><td><strong>Pronaf</strong></td><td>até R$ 250 mil</td><td class="num">2% a 3% (custeio); varia por linha</td></tr>
-      <tr><td><strong>Pronamp</strong></td><td>até R$ 1,5 milhão</td><td class="num">10%</td></tr>
-      <tr><td><strong>Demais produtores</strong></td><td>até R$ 3 milhões</td><td class="num">14%</td></tr>
+      <tr><th>Linha</th><th>Beneficiário / uso</th><th>Juros 26/27</th></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><strong>Pronamp</strong></td><td>Médio produtor: renda até ~R$ 3,6 mi/ano e ≥80% da renda no agro. Custeio.</td><td class="num j-med">9,0%*</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10l3-3 3 3"/></svg><strong>Custeio Empresarial</strong></td><td>Grande produtor, fora do Pronamp.</td><td class="num j-max">12,5%*</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7" cy="19" r="2"/><circle cx="15" cy="19" r="2"/><path d="M17 12h4v3h-3"/></svg><strong>Moderfrota</strong></td><td>Aquisição de máquinas e implementos. Até 85% financiado, 7 anos.</td><td class="num j-max">12,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7" cy="19" r="2"/><circle cx="15" cy="19" r="2"/><path d="M17 12h4v3h-3"/></svg><strong>Moderfrota Pronamp</strong></td><td>Moderfrota para médio produtor. Até 100% financiado.</td><td class="num j-alto">11,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 3c-3 4-6 6-6 10a6 6 0 0012 0c0-4-3-6-6-10z"/><path d="M12 9v8"/></svg><strong>RenovAgro</strong></td><td>Práticas sustentáveis (ILPF, plantio direto, fixação biológica). 12 anos, 8 de carência.</td><td class="num j-med">9,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 3c-3 4-6 6-6 10a6 6 0 0012 0c0-4-3-6-6-10z"/><path d="M12 9v8"/></svg><strong>RenovAgro Ambiental</strong></td><td>Recuperação de APP/RL e recuperação/conversão de pastagens degradadas.</td><td class="num j-baixo">8,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M5 10l7-5 7 5v10H5z"/><path d="M9 20v-6h6v6"/></svg><strong>PCA</strong></td><td>Construção e ampliação de armazéns e sistemas de armazenagem.</td><td class="num j-med">9,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M5 10l7-5 7 5v10H5z"/><path d="M9 20v-6h6v6"/></svg><strong>PCA até 12.000 t</strong></td><td>PCA para pequenos e médios armazéns.</td><td class="num j-baixo">8,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg><strong>Inovagro</strong></td><td>Inovação tecnológica na propriedade (AP, irrigação, automação).</td><td class="num j-alto">11,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M4 16c2-4 6-4 8 0s6 4 8 0"/><path d="M12 4v8"/></svg><strong>Proirriga</strong></td><td>Sistemas de irrigação e uso racional da água.</td><td class="num j-alto">11,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="15" r="3"/><path d="M11 11l3 3"/></svg><strong>Prodecoop</strong></td><td>Desenvolvimento e modernização de cooperativas.</td><td class="num j-max">12,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="15" r="3"/><path d="M11 11l3 3"/></svg><strong>Procap-Agro</strong></td><td>Capital de giro e integralização de cotas em cooperativas.</td><td class="num j-max">12,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M4 20h16M6 20V10l6-5 6 5v10M10 20v-6h4v6"/></svg><strong>Invest. Empresarial</strong></td><td>Investimento sem programa específico. Limite ampliado para R$ 1,5 mi/ano.</td><td class="num j-alto">11,5%</td></tr>
     </table>
     </div>
-    <h3>Principais linhas de investimento (Plano Safra 2025/26)</h3>
-    <p>O investimento financia bens que duram vários ciclos — por isso tem prazos longos (em geral até 8 a 10 anos, com carência) e juros menores que o custeio. As principais linhas:</p>
-    <div class="tbl-wrap">
-    <table class="tbl">
-      <tr><th>Linha (investimento)</th><th>Limite</th><th>Juros (a.a.)</th></tr>
-      <tr><td><strong>Pronaf Mais Alimentos</strong> — investimento geral da agricultura familiar: máquinas, benfeitorias, fruticultura, pecuária, residência rural</td><td>até R$ 250 mil (R$ 450 mil em avicultura, suíno, aquicultura e fruticultura)</td><td class="num">2,5% a 8%</td></tr>
-      <tr><td><strong>Pronaf Agroindústria</strong> — beneficiamento, armazenagem e comercialização da produção familiar</td><td>até R$ 210 mil (PF) / R$ 450 mil (empreend. familiar)</td><td class="num">8%</td></tr>
-      <tr><td><strong>Pronaf Mulher</strong> — mesmas finalidades do Mais Alimentos, com titularidade e preferência da mulher</td><td>até R$ 250 mil</td><td class="num">2,5% a 3%</td></tr>
-      <tr><td><strong>Moderfrota</strong> — tratores, colheitadeiras e implementos, novos e usados</td><td>85% a 100% do valor do bem</td><td class="num">12,5% a 13,5%</td></tr>
-      <tr><td><strong>Proirriga</strong> — irrigação, cultivo protegido e tela antigranizo na fruticultura</td><td>até R$ 3,5 mi (indiv.) / R$ 10,5 mi (coletivo)</td><td class="num">12,5%</td></tr>
-      <tr><td><strong>Pronaf Agroecologia</strong> — sistemas de base agroecológica ou orgânica, bioinsumos, sementes crioulas</td><td>até R$ 250 mil (R$ 450 mil em algumas atividades)</td><td class="num">3%</td></tr>
-      <tr><td><strong>Pronaf Jovem</strong> — jovem de 16 a 29 anos com formação rural: estrutura produtiva e equipamentos</td><td>até R$ 35 mil</td><td class="num">3%</td></tr>
-      <tr><td><strong>RenovAgro</strong> — recuperação de pastagens degradadas, integração lavoura-pecuária-floresta (ILPF), plantio direto, sistemas de baixo carbono e produção sustentável</td><td>até R$ 5 mi (PF) / R$ 25 mi (coletivo)</td><td class="num">8,5 a 10%</td></tr>
-      <tr><td><strong>Inovagro</strong> — agricultura de precisão: sensores, drones, automação, sistemas de gestão e conectividade rural</td><td>até R$ 1,3 mi (PF)</td><td class="num">8,5%</td></tr>
-    </table>
-    </div>
-    <div class="callout">
-      <strong>Atenção · isto muda a cada ciclo</strong>
-      Os números das duas tabelas são de um Plano Safra específico, reproduzidos apenas como ilustração. As condições — taxas, limites, prazos e carências — são redefinidas todo ano agrícola (1º de julho a 30 de junho). Antes de orçar um projeto, confirme sempre no Plano Safra e no MCR vigentes.
-    </div>
+    <p style="font-size:11.5px;color:var(--stone);margin-top:8px">* Redução de até 1 ponto percentual na finalidade custeio para produtores com adicionais de sustentabilidade.</p>
+
     <div class="callout success">
-      <strong>Desconto sustentabilidade</strong>
-      Produtores com CAR regularizado que adotam boas práticas ambientais (agricultura orgânica, Boas Práticas Agropecuárias — BPA, ou financiamento via RenovAgro) podem obter redução de até 0,5 ponto percentual na taxa. Os dois critérios podem acumular, chegando a 1 p.p. de desconto. Verificar disponibilidade no Plano Safra vigente e confirmar com o agente financeiro.
+      <strong>Novidades do 26/27 · Empresarial</strong>
+      Investimento sem programa específico subiu de R$ 1 mi para <strong>R$ 1,5 mi/beneficiário/ano</strong>. Pronamp passou a admitir financiamento expresso de matrizes e reprodutores em investimento (até 30%) e ganhou crédito de comercialização com limite de R$ 2,25 mi/ano. PCA foi ampliado de "armazéns" para "sistemas de armazenagem". Prodecoop e Inovagro passam a financiar armazenamento de energia elétrica associado à geração sustentável.
+    </div>
+
+    <h3>B · Plano Safra da Agricultura Familiar 2026/27</h3>
+    <p>Instituído pelo MDA, é o pacote para o público do Pronaf: famílias com renda bruta anual até R$ 500 mil, com <strong>DAP</strong> (Declaração de Aptidão ao Pronaf) ou <strong>CAF</strong> (Cadastro Nacional da Agricultura Familiar). Total de <strong>R$ 85,2 bilhões</strong> em crédito Pronaf, e R$ 97,3 bi no pacote completo (Proagro R$ 6,6 bi, Garantia-Safra R$ 1,1 bi, compras públicas R$ 3,65 bi, ATER R$ 749 mi, PGPM-Bio R$ 20 mi).</p>
+
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Linha</th><th>Beneficiário / uso</th><th>Juros 26/27</th></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M4 20l4-8 4 4 4-10 4 14"/></svg><strong>Pronaf B (Microcrédito)</strong></td><td>Famílias com renda até R$ 60 mil/ano. Limite potencial familiar: R$ 74 mil. Bônus de adimplência 25–40%.</td><td class="num j-min">0,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 20c-4 0-7-3-7-7 0-2 1-4 3-5-1-2 0-4 2-5 1 2 3 3 5 2 1 2 1 4 0 6 2 1 3 3 3 5 0 4-3 4-6 4z"/></svg><strong>Custeio · agroecologia, orgânicos, sociobio</strong></td><td>Sistemas certificados ou em transição agroecológica.</td><td class="num j-min">1,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/></svg><strong>Custeio · alimentos básicos</strong></td><td>Arroz, feijão, leite, mandioca, FLV, ovos, apicultura, ovino/caprino, pesca/aquicultura.</td><td class="num j-min">2,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M5 14c2-1 4-1 6 0M13 14c2-1 4-1 6 0M12 4v6M8 6l4 4 4-4"/></svg><strong>Custeio · demais produtos</strong></td><td>Milho, trigo, cana, fumo e demais culturas fora dos grupos acima.</td><td class="num j-baixo">5,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M5 17c0-3 3-5 7-5s7 2 7 5"/><circle cx="9" cy="8" r="2"/><circle cx="15" cy="8" r="2"/></svg><strong>Custeio · soja e bovinocultura de corte</strong></td><td>Commodities dentro do Pronaf.</td><td class="num j-med">7,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><rect x="4" y="10" width="10" height="7" rx="1"/><circle cx="7" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><path d="M14 13h4"/></svg><strong>Mais Alimentos · Faixa 3</strong></td><td>Máquinas de pequeno porte. Limite R$ 120 mil (renda até R$ 150 mil).</td><td class="num j-min">1,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg><strong>Mais Alimentos · Tecnificação</strong></td><td>Cultivo protegido, armazenagem, pecuária, aquicultura, conectividade rural. Limite R$ 250 mil.</td><td class="num j-min">2,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7" cy="19" r="2"/><circle cx="15" cy="19" r="2"/><path d="M17 12h4v3h-3"/></svg><strong>Mais Alimentos · Tratores</strong></td><td>Renda até R$ 500 mil. Limite R$ 250 mil.</td><td class="num j-baixo">5,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12M9 20v-6h6v6"/></svg><strong>Pronaf A</strong></td><td>Assentados da reforma agrária, indígenas, quilombolas. Limite R$ 55 mil, bônus até 40%.</td><td class="num j-min">0,5%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20c0-3 3-6 6-6s6 3 6 6"/></svg><strong>Pronaf Jovem</strong></td><td>Até 2 jovens por família. Limite R$ 50 mil.</td><td class="num j-min">2,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20c0-3 3-6 6-6s6 3 6 6"/></svg><strong>Pronaf Mulher</strong></td><td>Mulher como titular, renda até R$ 150 mil. Até R$ 120 mil (máquinas pequenas) ou R$ 100 mil (demais).</td><td class="num j-min">1,5–2%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 3v18M8 8c0-3 8-3 8 0M8 16c0 3 8 3 8 0"/></svg><strong>Pronaf Bioeconomia / Floresta</strong></td><td>Silvicultura e sistemas agroflorestais. Limite R$ 450 mil (bioeconomia).</td><td class="num j-min">2,0%</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M4 20V10l8-5 8 5v10M9 20v-7h6v7"/></svg><strong>Habitação Rural</strong></td><td>Pronaf B: até R$ 10 mil, reforma e banheiro. Mais Alimentos: até R$ 150 mil, 10 anos.</td><td class="num j-med">0,5–7,5%</td></tr>
+    </table>
+    </div>
+
+    <div class="callout success">
+      <strong>Novidades do 26/27 · Familiar</strong>
+      Todas as taxas do Pronaf caíram 0,5 a 1 ponto percentual. Pronaf B teve o limite familiar potencial ampliado de R$ 53 mil para <strong>R$ 74 mil</strong>, com nova rubrica "Mulher · custeio" (R$ 8 mil extras) e Jovem passando a admitir até 2 por família (R$ 16 mil). Pronaf Regularização Fundiária (Terras do Brasil): limite subiu para R$ 40 mil, juros 7,5%.
+    </div>
+
+    <div class="callout">
+      <strong>A lógica editorial do 26/27</strong>
+      Observe a hierarquia de juros no Pronaf: <em>agroecologia 1% · alimento básico 2% · demais produtos 5,5% · soja e boi 7,5%</em>. É uma política deliberada de preço do crédito: quanto mais o sistema produtivo contribui para a segurança alimentar e a sustentabilidade, menor a taxa. Para o técnico, isso é premissa direta do orçamento: <em>a mesma família pode ter dois custos financeiros bem diferentes conforme escolha produzir feijão ou soja.</em>
     </div>
 
     <h3>Como o produtor acessa o crédito</h3>
@@ -454,8 +484,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <h3>O custo do crédito no projeto</h3>
     <p>Quando o produtor usa crédito de custeio, os juros viram <strong>Despesas Financeiras</strong> do orçamento — calculados sobre o valor financiado pelo período de vigência.</p>
     <div class="formula">
-      <span class="label">Juros de custeio</span>
-      R$ 100.000 × 6% a.a. × (6/12) = <b>R$ 3.000</b> em 6 meses
+      <span class="label">Juros de custeio · exemplo Pronaf alimento básico</span>
+      R$ 100.000 × 2% a.a. × (6/12) = <b>R$ 1.000</b> em 6 meses
+    </div>
+    <div class="formula">
+      <span class="label">Juros de custeio · exemplo Pronamp</span>
+      R$ 100.000 × 9% a.a. × (6/12) = <b>R$ 4.500</b> em 6 meses
     </div>
     <div class="callout success">
       <strong>Mesmo sem financiar, há custo de capital</strong>
@@ -465,10 +499,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <h3>Custo Efetivo Total (CET)</h3>
     <p>A taxa nominal do contrato não é o custo real. O <strong>Custo Efetivo Total (CET)</strong> soma juros + IOF + taxa de cadastro + prêmio de seguro + demais encargos autorizados pelo MCR 2-3-1 — e é o número que permite comparar propostas de bancos diferentes. No crédito rural, o banco é obrigado a informar o <strong>CETCR</strong> antes da assinatura do contrato (MCR 2-3-15).</p>
     <div class="formula">
-      <span class="label">Exemplo · custeio a 10% a.a. por 6 meses</span>
-      Taxa nominal:     10% a.a.
-      CET sem seguro: ~15,4% a.a.   (+ IOF + taxa de cadastro)
-      CET com seguro: ~25,0% a.a.   (+ prêmio do Proagro ou seguro privado)
+      <span class="label">Exemplo · custeio Pronamp a 9% a.a. por 6 meses</span>
+      Taxa nominal:     9% a.a.
+      CET sem seguro: ~14,0% a.a.   (+ IOF + taxa de cadastro)
+      CET com seguro: ~23,5% a.a.   (+ prêmio do Proagro ou seguro privado)
     </div>
     <p>Encargos autorizados (MCR 2-3-1): juros, IOF, taxa de risco de crédito, prêmio de seguro rural contratado pelo produtor e taxa de emissão de boleto. Qualquer cobrança fora dessa lista é vedada.</p>
     <div class="callout">
@@ -535,6 +569,47 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       </span>
       <span class="gd-arrow">&#8594;</span>
     </a>
+  </div></div>
+</section>
+
+<!-- ===== AULA IV.2 ===== -->
+<section class="block" id="fluxo-caixa">
+  <button class="block-header" aria-expanded="false">
+    <span class="block-num">IV.2</span>
+    <span class="block-title">Fluxo de caixa e capital de giro</span>
+    <span class="block-chevron"></span>
+  </button>
+  <div class="block-body"><div class="block-content">
+    <p>Agora que conhecemos as linhas de crédito disponíveis, chegamos à pergunta que dá sentido a elas: <em>quando, e quanto, financiar?</em> Um projeto pode ser lucrativo ao final do ciclo e, ainda assim, <strong>quebrar no meio do caminho</strong>. Na agricultura os custos se concentram no início — plantio, insumos, preparo — e a receita só chega na colheita. Imagina quem trabalha com pecuária de cria, que tem uma safra de terneiro por ano. Entre os dois momentos, o produtor precisa ter dinheiro para pagar as contas. Lucro é resultado; caixa é sobrevivência.</p>
+
+    <h3>O problema do tempo</h3>
+    <p>É a diferença entre o resultado econômico do ciclo e a <em>liquidez mês a mês</em>. O fluxo de caixa organiza todas as entradas e saídas no calendário, identificando os meses de déficit — quando é preciso capital de giro ou crédito — e os de superávit, quando há dinheiro para quitar dívidas ou investir.</p>
+
+    <h3>A estrutura: entradas, saídas, saldo</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>Grupo</th><th>O que entra</th></tr>
+      <tr><td><strong>Entradas</strong></td><td>Venda da produção (safra principal, subprodutos), financiamentos recebidos, outras receitas (arrendamento de pastagem, venda de refugo).</td></tr>
+      <tr><td><strong>Saídas</strong></td><td>Todos os custos do orçamento, distribuídos nos meses em que ocorre o desembolso — sementes em outubro, adubos em out/nov, colheita em fev/mar.</td></tr>
+      <tr><td><strong>Saldo</strong></td><td>Entradas − saídas do período. O saldo <em>acumulado</em> revela se há déficit (necessidade de crédito) ou superávit ao longo do ciclo.</td></tr>
+    </table>
+    </div>
+    <div class="example">
+      <p>Uma lavoura de verão, o caixa fica fortemente negativo de <strong>outubro a janeiro</strong> (insumos e tratos) e só vira em <strong>fevereiro/março</strong>, com a venda. É esse vale de quatro meses que precisa ser financiado — por capital próprio ou pela linha de custeio adequada (Pronamp a 9% se for médio, Custeio Empresarial a 12,5% se for grande, ou Pronaf a 7,5% se a família se enquadra).</p>
+    </div>
+
+    <h3>Capital de giro</h3>
+    <p>É o dinheiro necessário para financiar o ciclo entre o primeiro desembolso e o recebimento da receita — o recurso que <em>sustenta</em> a operação durante a produção. A necessidade varia enormemente por atividade:</p>
+    <ul class="bullets">
+      <li><strong>Cultura de grãos:</strong> alto desembolso inicial, receita concentrada em 4–6 meses. Capital de giro alto no início da safra.</li>
+      <li><strong>Pecuária de corte (confinamento):</strong> desembolso diário de ração por 90–120 dias, receita no fim. Capital de giro proporcional ao nº de cabeças e ao custo diário.</li>
+      <li><strong>Pecuária leiteira:</strong> desembolso diário, receita mensal. Fluxo de caixa mais equilibrado.</li>
+      <li><strong>Fruticultura:</strong> anos de investimento sem receita na formação. Capital de giro de longo prazo, financiado por linha específica de implantação de perenes.</li>
+    </ul>
+    <div class="callout">
+      <strong>O erro que quebra projeto viável</strong>
+      Calcular só o resultado do ciclo e ignorar o calendário. Sem identificar o mês de maior déficit, o produtor descobre tarde que falta caixa para a próxima aplicação — e precisa vender mal, antecipado, para fechar o mês.
+    </div>
   </div></div>
 </section>
 
@@ -711,17 +786,17 @@ const PROFILES = {
   op: {
     name: "🚜 Operador",
     msg: "Você fecha o cálculo, mas ainda o trata como se o projeto existisse no vácuo — sem calendário de caixa, sem a linha de crédito certa, com o preço cheio do porto e sem a regularização. O próximo passo é encaixar o número no mundo real: o mês em que falta caixa, o preço na porteira, o CAR como porta do crédito.",
-    revise: "Aulas IV.1 (fluxo de caixa e capital de giro) e IV.3 (o preço que entra na planilha é o regional, não a cotação)."
+    revise: "Aulas IV.2 (fluxo de caixa e capital de giro) e IV.3 (o preço que entra na planilha é o regional, não a cotação)."
   },
   tr: {
     name: "🌱 Em transição",
     msg: "Você percebe que há mais a verificar — o caixa, a linha, o preço — mas tende a aproximar valores e adiar a checagem. O salto seguinte é fechar cada premissa na fonte: o Plano Safra vigente, o boletim da cooperativa, o status do CAR. Premissa aproximada vira projeto frágil na defesa.",
-    revise: "Aulas IV.2 (enquadramento e custo do crédito) e IV.4 (croqui e CAR como exigência do financiamento)."
+    revise: "Aulas IV.1 (enquadramento e custo do crédito) e IV.4 (croqui e CAR como exigência do financiamento)."
   },
   ge: {
     name: "📋 Gestor",
     msg: "Você trata o crédito como custo do projeto e reconhece o custo de oportunidade do capital próprio. O produtor que conta com você não confunde dívida com prejuízo nem capital próprio com dinheiro de graça. O próximo passo é a visão estratégica completa — caixa, preço regional e regularização tratados como premissas que se defendem com fonte.",
-    revise: "Reforce a aula IV.1 (fluxo de caixa) e avance para a Parte V, onde o método se aplica a pecuária, fruticultura e precisão."
+    revise: "Reforce a aula IV.2 (fluxo de caixa) e avance para a Parte V, onde o método se aplica a pecuária, fruticultura e precisão."
   },
   es: {
     name: "🎯 Técnico estratégico",
