@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#B89233">
+<title>T2 — Receita: da bruta à líquida · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 2 — Receita bruta, deduções e receita líquida; preço e fontes de consulta. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --accent:var(--mustard);
+  --accent-text:#7A6020;
+  --accent-deep:#8A6D1F;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--terra)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--mustard-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--mustard);border-color:var(--mustard)}
+.sem-cell.now b,.sem-cell.now{color:var(--mustard-ink)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata RB → RL */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T2</div>
+    <div>
+      <div class="mv">Movimento 2 · <b>Medir</b></div>
+      <h1>Receita: <em>da bruta à líquida</em></h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>Começa o movimento <em>Medir</em></h2>
+  <p>Da S4 à S8, o projeto ganha números: primeiro a receita, depois os custos — a ordem dos passos do simulador.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2 now"><b>S4</b>T2</div>
+    <div class="sem-cell m2"><b>S5</b>T3</div>
+    <div class="sem-cell m2"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3"><b>S9</b>T5</div>
+    <div class="sem-cell m3"><b>S10</b>T6</div>
+    <div class="sem-cell m3"><b>S11</b>T7</div>
+    <div class="sem-cell m3"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>O projeto já tem identidade</h2>
+  <ul class="bullets">
+    <li><strong>Passo 0 fechado</strong> — identificação, atividade, enquadramento e a SWOT com 2+ itens por quadrante.</li>
+    <li><strong>Área medida</strong> — os hectares marcados na S2 viram agora base de cálculo.</li>
+  </ul>
+  <p>Por que receita antes de custo? Porque a receita define a <strong>escala do que está em jogo</strong> — e porque é o número que o produtor superestima com mais frequência.</p>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    O passo 1 do simulador: produção principal, outras receitas e deduções — a linha de cima da planilha do projeto.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>Quanto <em>entra de verdade</em> com a venda?</h2>
+  <p class="lead">Entre a cotação vista na TV e o dinheiro na conta há uma cadeia de descontos — quem não a conhece superestima o próprio projeto.</p>
+  <p>Três respostas hoje: como se calcula a receita bruta, o que a separa da líquida, e onde buscar um preço que se defenda.</p>
+</section>
+
+<!-- 5 · fórmula RB -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · receita bruta</div>
+  <h2>Três números multiplicados</h2>
+  <div class="formula">
+    <span class="label">Receita bruta total</span>
+    RBT = produtividade × área × <b>preço unitário</b>
+  </div>
+  <p>Na pecuária, troque área por número de animais; no leite, litros/dia × dias × preço/litro. A estrutura é sempre a mesma: <strong>quantidade × preço</strong>.</p>
+  <p class="note">Unidades consagradas: sacas para grãos, kg para carne, litros para leite.</p>
+</section>
+
+<!-- 6 · cada termo é premissa -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · por trás da fórmula</div>
+  <h2>Cada termo é uma premissa</h2>
+  <ul class="bullets">
+    <li><strong>Área</strong> — a única já medida: os hectares do croqui da S2. Não é chute, é polígono.</li>
+    <li><strong>Produtividade</strong> — histórico da propriedade, média regional (CONAB, EMATER/RS) ou potencial do sistema. Sempre justificada.</li>
+    <li><strong>Preço</strong> — a premissa mais crítica e mais volátil. O resto da aula é sobre ela.</li>
+  </ul>
+  <div class="callout">
+    <strong>Tentação clássica</strong>
+    Produtividade otimista × preço de pico = projeto que só existe no papel. Premissa realista dói menos agora do que na colheita.
+  </div>
+</section>
+
+<!-- 7 · cotação × porteira -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o preço que vale</div>
+  <h2>Cotação não é preço na porteira</h2>
+  <p>Entre a cotação nacional e o que o produtor gaúcho recebe, a receita encolhe:</p>
+  <ul class="bullets">
+    <li><strong>Frete</strong> — da propriedade à cooperativa ou armazém; quanto mais longe, menor o líquido.</li>
+    <li><strong>Umidade e impureza</strong> — soja acima de 14% de umidade sofre desconto por ponto percentual.</li>
+    <li><strong>Armazenagem</strong> — custo mensal por saca, se o produto espera preço melhor.</li>
+  </ul>
+  <p class="lead">O preço que entra na planilha é o <em>posto cooperativa</em> — não o da TV.</p>
+</section>
+
+<!-- 8 · deduções legais -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · deduções sobre a venda</div>
+  <h2>Os descontos que a lei e o mercado cobram</h2>
+  <ul class="bullets">
+    <li><strong>Funrural</strong> — 1,63% sobre a receita bruta da venda, retido no ato (produtor pessoa física).</li>
+    <li><strong>Taxas de comercialização</strong> — 1,0 a 2,0%: corretagem, taxa da cooperativa, classificação.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">Receita líquida</span>
+    RL = RBT − Funrural − taxas de comercialização
+  </div>
+  <p class="note">Parecem centavos por saca — em 3.000 sacas viram o salário de um mês. Dedução se calcula, não se ignora.</p>
+</section>
+
+<!-- 9 · por que RL -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · bruta × líquida</div>
+  <h2>É a líquida que paga as contas</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Receita bruta</h3>
+      <p>O valor cheio da venda. Boa para dimensionar a escala do projeto e comparar atividades.</p>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Receita líquida</h3>
+      <p>O que efetivamente entra no caixa. É contra ela que as margens serão calculadas (T5).</p>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Erro frequente</strong>
+    Planejar com a bruta e se surpreender no acerto da cooperativa. A diferença não é erro do caixa — é dedução que ficou fora da conta.
+  </div>
+</section>
+
+<!-- 10 · outras receitas -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · além do produto principal</div>
+  <h2>Outras receitas da atividade</h2>
+  <ul class="bullets">
+    <li><strong>Subprodutos</strong> — terneiro macho e vaca de descarte no leite; casca e farelo na agroindústria; esterco vendido.</li>
+    <li><strong>Excedentes</strong> — silagem ou feno vendidos a vizinhos; palha; serviços de máquina.</li>
+    <li><strong>Programas</strong> — venda institucional (PNAE, PAA) com preço diferenciado.</li>
+  </ul>
+  <p>No leite, o descarte e os terneiros podem responder por <strong>10 a 20% da receita</strong> — esquecê-los distorce o projeto inteiro.</p>
+</section>
+
+<!-- 11 · fontes de preço -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · onde consultar</div>
+  <h2>Fontes de preço no RS</h2>
+  <table class="tbl">
+    <thead><tr><th>Fonte</th><th>O que oferece</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cooperativa local</strong></td><td>A mais direta: já desconta frete regional. Boletins semanais.</td></tr>
+      <tr><td><strong>EMATER/RS</strong></td><td>Boletins regionalizados — leite, grãos, carne, hortifruti.</td></tr>
+      <tr><td><strong>CEPEA/ESALQ</strong></td><td>Indicador nacional diário. Boa tendência; o preço gaúcho será menor.</td></tr>
+      <tr><td><strong>CONAB</strong></td><td>Histórico de preços, custos por estado, projeções de safra.</td></tr>
+      <tr><td><strong>Sindicatos</strong></td><td>Arrendamento, diárias rurais, insumos da região.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 12 · CEPEA -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · lendo o indicador</div>
+  <h2>O que é o indicador CEPEA</h2>
+  <p>O CEPEA (ESALQ/USP) publica <strong>indicadores diários</strong> de preço — soja, milho, boi, leite, trigo. Para a soja, a referência é o porto de <strong>Paranaguá/PR</strong>: o preço da exportação, não o da sua cooperativa.</p>
+  <ul class="bullets">
+    <li>Serve para enxergar <strong>tendência e momento</strong> de mercado.</li>
+    <li>O preço no interior do RS fica abaixo: desconta o frete até o porto.</li>
+    <li>Vamos consultar o indicador do dia <em>ao vivo</em> daqui a pouco.</li>
+  </ul>
+</section>
+
+<!-- 13 · preço defensável -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da banca</div>
+  <h2>"Por que você usou esse preço?"</h2>
+  <p class="lead">Essa pergunta virá na defesa do projeto (S15). A resposta defensável tem três partes:</p>
+  <ul class="bullets">
+    <li><strong>Fonte</strong> — de onde veio o número (cooperativa, EMATER/RS, CEPEA).</li>
+    <li><strong>Data</strong> — quando foi consultado.</li>
+    <li><strong>Representatividade</strong> — por que vale para a safra planejada, no seu município.</li>
+  </ul>
+  <p class="note">"Ouvi de um vizinho" reprova nos três critérios.</p>
+</section>
+
+<!-- 14 · gancho AP -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
+  <h2>A lavoura não rende igual em toda parte</h2>
+  <p>O mapa de produtividade do monitor de colheita mostra: a mesma lavoura tem <strong>zonas de manejo</strong> com rendimentos muito diferentes.</p>
+  <div class="formula">
+    <span class="label">RB por zona de manejo</span>
+    RB = Σ (produtividade da zona × área da zona) × preço
+  </div>
+  <p>A média esconde; a soma por zona revela onde a receita nasce — e onde ela se perde. Vamos usar isso no exemplo.</p>
+</section>
+
+<!-- 15 · quando vender -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o tempo do preço</div>
+  <h2>Vender na colheita ou armazenar?</h2>
+  <p>O preço tem <strong>sazonalidade</strong>: na colheita, a oferta concentrada derruba a cotação; na entressafra, ela tende a recuperar.</p>
+  <ul class="bullets">
+    <li>Armazenar custa: taxa mensal por saca + o capital parado.</li>
+    <li>E arrisca: o preço pode não subir o suficiente para pagar a espera.</li>
+  </ul>
+  <p class="note">Não existe resposta única — existe conta feita. Na T6 (cenários) essa decisão volta com ferramenta própria.</p>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 16 · o caso -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · soja em Santa Maria</div>
+  <h2>50 hectares de soja</h2>
+  <p>Lavoura de soja na região de Santa Maria — premissas declaradas:</p>
+  <ul class="bullets">
+    <li><strong>Área</strong> — 50 ha (medidos no croqui, como na S2).</li>
+    <li><strong>Produtividade</strong> — 60 sc/ha, compatível com o histórico regional.</li>
+    <li><strong>Preço</strong> — o que vamos pesquisar agora, com fonte e data.</li>
+  </ul>
+  <p class="note">Produção esperada: 3.000 sacas. Cada real por saca vale R$ 3.000 no projeto — por isso o preço merece cuidado.</p>
+</section>
+
+<!-- 17 · preço pesquisado -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · passo 1 · o preço</div>
+  <h2>Indicador × cooperativa</h2>
+  <table class="tbl">
+    <thead><tr><th>Referência</th><th>Fonte · data</th><th class="num">R$/sc</th></tr></thead>
+    <tbody>
+      <tr><td>Indicador soja (porto Paranaguá)</td><td>CEPEA/ESALQ · 17 jul 2026</td><td class="num">141</td></tr>
+      <tr><td>Posto cooperativa, região de Santa Maria</td><td>cotação do dia — consultar em aula</td><td class="num"><b>128</b></td></tr>
+    </tbody>
+  </table>
+  <p>A diferença (~R$ 13/sc) é o frete até o porto e as condições locais. <strong>O projeto usa o preço da cooperativa</strong> — com fonte e data anotadas.</p>
+  <p class="note">Em aula: abrir cepea.esalq.usp.br e o boletim da cooperativa e atualizar os dois números.</p>
+</section>
+
+<!-- 18 · RB -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · passo 2 · receita bruta</div>
+  <h2>A conta de cima</h2>
+  <div class="formula">
+    <span class="label">Receita bruta</span>
+    RBT = 60 sc/ha × 50 ha × R$ 128/sc = <b>R$ 384.000</b>
+  </div>
+  <p>3.000 sacas na safra. Este é o teto — nenhum real além disso entra pela produção principal.</p>
+  <p class="note">Se tivéssemos usado o preço do porto (R$ 141): R$ 423.000 — uma receita R$ 39.000 maior que jamais vai se realizar.</p>
+</section>
+
+<!-- 19 · deduções → RL -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · passo 3 · da bruta à líquida</div>
+  <h2>A cascata das deduções</h2>
+  <div class="cascade">
+    <div class="row total"><span>Receita bruta (3.000 sc × R$ 128)</span><span>R$ 384.000</span></div>
+    <div class="row minus"><span>− Funrural · 1,63%</span><span>R$ 6.259</span></div>
+    <div class="row minus"><span>− Comercialização · 1,5%</span><span>R$ 5.760</span></div>
+    <div class="row final"><span>Receita líquida</span><span>R$ 371.981</span></div>
+  </div>
+  <p>Cerca de <strong>R$ 4 por saca</strong> somem entre a venda e o caixa — 3,1% da receita. É a RL que enfrenta os custos a partir da T3.</p>
+</section>
+
+<!-- 20 · versão AP -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a mesma lavoura por zonas</div>
+  <h2>O que a média esconde</h2>
+  <table class="tbl">
+    <thead><tr><th>Zona de manejo</th><th class="num">Área</th><th class="num">sc/ha</th><th class="num">Sacas</th></tr></thead>
+    <tbody>
+      <tr><td>Alta produtividade</td><td class="num">15 ha</td><td class="num">66</td><td class="num">990</td></tr>
+      <tr><td>Média</td><td class="num">25 ha</td><td class="num">60</td><td class="num">1.500</td></tr>
+      <tr><td>Baixa (solo raso, compactação)</td><td class="num">10 ha</td><td class="num">48</td><td class="num">480</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total — média real 59,4 sc/ha</td><td class="num">50 ha</td><td class="num"></td><td class="num">2.970</td></tr></tfoot>
+  </table>
+  <p class="note">A zona baixa entrega 12 sc/ha a menos: R$ 15.360/safra que o mapa localiza — e a T6 pergunta se vale a pena corrigir.</p>
+</section>
+
+<!-- 21 · lição do exemplo -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o que fica</div>
+  <h2>Três lições do caso</h2>
+  <ul class="bullets">
+    <li><strong>Preço da cooperativa, não do porto</strong> — R$ 39.000 de diferença numa premissa.</li>
+    <li><strong>Dedução se calcula</strong> — R$ 12.000 saíram antes de qualquer custo de produção.</li>
+    <li><strong>Fonte e data anotadas</strong> — a banca vai perguntar; a resposta já está pronta.</li>
+  </ul>
+  <div class="callout success">
+    <strong>Regra de ouro — versão receita</strong>
+    Assim como toda prática de manejo precisa reaparecer como custo, todo real de receita precisa ter origem declarada: quantidade, preço, fonte, data.
+  </div>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 22 · passo 1 mockup -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 1 · receitas</div>
+  <h2>Tarefa de saída — parte 1</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 1 de 7</span><span>receitas</span></div>
+    <div class="fields">
+      <div class="field"><label>Quantidade / área</label><span class="ph">ex.: 50 ha · nº de animais</span></div>
+      <div class="field"><label>Produtividade</label><span class="ph">ex.: 60 sc/ha · L/vaca/dia</span></div>
+      <div class="field"><label>Preço unitário</label><span class="ph">o preço pesquisado — posto cooperativa</span></div>
+      <div class="field"><label>Outras receitas</label><span class="ph">descarte, subprodutos, excedentes</span></div>
+      <div class="field"><label>Funrural</label><span class="ph">1,63% — automático sobre a venda</span></div>
+      <div class="field"><label>Comercialização</label><span class="ph">1,0–2,0% conforme o canal</span></div>
+    </div>
+  </div>
+  <p class="note">O simulador calcula RB e RL na hora — confiram se a cascata bate com a conta de vocês.</p>
+</section>
+
+<!-- 23 · a pesquisa de preço -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · a pesquisa</div>
+  <h2>Tarefa de saída — parte 2</h2>
+  <p>Cada grupo pesquisa <strong>agora, no celular</strong>, o preço do produto do seu projeto:</p>
+  <ul class="bullets">
+    <li>Uma referência de <strong>indicador</strong> (CEPEA, CONAB).</li>
+    <li>Uma referência <strong>local</strong> (cooperativa, EMATER/RS, agroindústria da região).</li>
+    <li>Anotar <strong>fonte e data</strong> no campo de observações do passo 1.</li>
+  </ul>
+  <div class="callout">
+    <strong>Grupo de pecuária ou leite</strong>
+    Não esquecer as outras receitas: descarte e terneiros entram hoje — são parte relevante da RB.
+  </div>
+</section>
+
+<!-- 24 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Preço pesquisado com fonte e data anotadas</li>
+    <li>Produção principal lançada (quantidade × produtividade × preço)</li>
+    <li>Outras receitas identificadas e lançadas</li>
+    <li>Deduções aplicadas — RB → RL fechada no passo 1</li>
+  </ul>
+  <p class="note">Terminou antes? Comece a listar, no papel, tudo o que a atividade consome — é a matéria-prima da T3.</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 25 · próxima aula -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>T3 — Do manejo técnico ao custo</h2>
+  <p>A linha de cima está pronta. Na próxima teórica começa a linha de baixo: <strong>traduzir o manejo em itens de custo</strong> — e classificá-los (fixo × variável, direto × indireto, metodologia Matsunaga/IEA).</p>
+  <ul class="bullets">
+    <li><strong>Revisar no site</strong> — Parte III, bloco 1 (seção receita) e Parte IV, bloco 3 (preço e fontes).</li>
+    <li><strong>Trazer para a T3</strong> — como a atividade do projeto é conduzida: práticas, insumos, máquinas.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">Regra de ouro do curso</span>
+    toda prática de manejo declarada precisa reaparecer como <b>custo</b>
+  </div>
+</section>
+
+<!-- 26 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T2 · Receita: da bruta à líquida · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    <b>CEPEA/ESALQ-USP</b> — Indicador da soja, Paranaguá/PR, consulta em 17 jul 2026 ·
+    <b>CONAB</b> — custos de produção e séries de preços ·
+    <b>EMATER/RS</b> — boletins de preços regionais ·
+    Metodologia de custos: Matsunaga et al. (IEA), base CNA/Campo Futuro ·
+    Alíquotas e deduções conforme convenções do material da disciplina (Parte III.1 e IV.3 do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-3.html#receita-margens">Parte III.1 — Receita</a> · <a href="parte-4.html#preco">Parte IV.3 — Preço e fontes</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T2 · Receita: da bruta à líquida</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T2 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>

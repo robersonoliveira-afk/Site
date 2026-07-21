@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#B89233">
+<title>T3 — Do manejo técnico ao custo · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 3 — Do diagnóstico técnico aos itens de custo; classificação fixo × variável, direto × indireto. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --accent:var(--mustard);
+  --accent-text:#7A6020;
+  --accent-deep:#8A6D1F;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--terra)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--mustard-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--mustard);border-color:var(--mustard)}
+.sem-cell.now b,.sem-cell.now{color:var(--mustard-ink)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata de custos */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T3</div>
+    <div>
+      <div class="mv">Movimento 2 · <b>Medir</b></div>
+      <h1>Do manejo técnico <em>ao custo</em></h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>Meio do movimento <em>Medir</em></h2>
+  <p>A receita está lançada. Hoje começa a linha de baixo da planilha: os custos — primeiro identificá-los, depois classificá-los. Somar vem na T4.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2"><b>S4</b>T2</div>
+    <div class="sem-cell m2 now"><b>S5</b>T3</div>
+    <div class="sem-cell m2"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3"><b>S9</b>T5</div>
+    <div class="sem-cell m3"><b>S10</b>T6</div>
+    <div class="sem-cell m3"><b>S11</b>T7</div>
+    <div class="sem-cell m3"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>Vocês têm o <em>onde</em> e o <em>quanto entra</em></h2>
+  <ul class="bullets">
+    <li><strong>O onde</strong> — a área marcada na S2: croqui, hectares medidos, talhões nomeados.</li>
+    <li><strong>O quanto entra</strong> — passo 1 fechado na T2: RB → RL com preço pesquisado, fonte e data.</li>
+  </ul>
+  <p>Hoje entra o <strong>como</strong>: a forma de conduzir a atividade — práticas, insumos, máquinas — traduzida em itens de custo.</p>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    Os passos 2 e 3 do simulador: o manejo descrito e a lista de custos rascunhada — a matéria-prima do orçamento da T4.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>Quanto custa produzir o que você <em>declarou</em>?</h2>
+  <p class="lead">O manejo que o grupo descreveu no projeto não é texto decorativo: cada prática consome insumo, máquina ou trabalho — e tudo isso tem preço.</p>
+  <div class="formula">
+    <span class="label">Regra de ouro do curso</span>
+    toda prática de manejo declarada precisa reaparecer como <b>custo</b>
+  </div>
+  <p class="note">A banca da defesa vai cruzar as duas listas. Manejo sem custo é conta esquecida; custo sem manejo é número sem origem.</p>
+</section>
+
+<!-- 5 · a lógica que não muda -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · diagnóstico técnico</div>
+  <h2>A lógica que não muda</h2>
+  <p>Todo projeto sério começa por um <strong>diagnóstico técnico</strong> — a leitura objetiva da realidade física que será trabalhada. É ele que transforma descrição qualitativa em números.</p>
+  <div class="formula">
+    <span class="label">Do campo à planilha</span>
+    diagnóstico técnico → coeficientes técnicos → insumos e recursos → <b>custos</b>
+  </div>
+  <p>A natureza do diagnóstico muda conforme a atividade — laudo de solo, estrutura do rebanho, sistema de produção — mas a cadeia é sempre essa.</p>
+</section>
+
+<!-- 6 · coeficiente técnico -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a ponte</div>
+  <h2>Coeficiente técnico: a ponte entre manejo e planilha</h2>
+  <p>Coeficiente técnico é a <strong>quantidade de insumo ou serviço por unidade de produção</strong>: kg de ureia por hectare, ração por animal/dia, horas de trator por talhão.</p>
+  <div class="formula">
+    <span class="label">Cada linha do orçamento</span>
+    custo do item = coeficiente técnico × <b>preço unitário</b>
+  </div>
+  <p class="note">O diagnóstico fornece o coeficiente; a pesquisa de preço (T2) fornece o preço. Quem chuta o coeficiente erra o custo inteiro — por isso o diagnóstico vem primeiro.</p>
+</section>
+
+<!-- 7 · agricultura: laudo de solo -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 1/3</div>
+  <h2>Agricultura: o laudo de solo</h2>
+  <p>Nenhuma lavoura séria começa sem análise de solo. O laudo é a origem dos <strong>maiores custos variáveis</strong> de qualquer cultura: calagem e adubação de base e cobertura.</p>
+  <ul class="bullets">
+    <li>Lê-se o laudo, consulta-se o <strong>Manual CQFS-RS/SC</strong> (11ª ed., 2016), obtém-se a dose — calcário em t/ha, adubo em kg/ha.</li>
+    <li>Em trigo de alta tecnologia (60 sc/ha esperadas), fertilizantes chegam a <strong>~39% do COE</strong> (CEPA/Epagri, safra 2026).</li>
+    <li>A análise custa <strong>R$ 65–150 por amostra</strong> — e é o primeiro item da planilha, porque fundamenta todos os outros.</li>
+  </ul>
+  <p class="note">Análise química e física do solo também é requisito do crédito rural (Parte IV.2).</p>
+</section>
+
+<!-- 8 · zootecnia: rebanho -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 2/3</div>
+  <h2>Zootecnia: estrutura e evolução do rebanho</h2>
+  <p>O equivalente ao laudo é responder: <strong>quantos animais de cada categoria</strong> existem, e como esse número evolui no tempo?</p>
+  <ul class="bullets">
+    <li>A estrutura do rebanho define ração por animal/dia, vacinas por categoria, sal mineral por cabeça/mês — cada um, um coeficiente técnico.</li>
+    <li>Vaca em lactação, vaca seca, novilha e terneira têm <strong>perfis de custo completamente diferentes</strong>.</li>
+  </ul>
+  <div class="callout">
+    <strong>Erro frequente</strong>
+    Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. A calculadora do site (rebanho.html) mostra como o resultado muda por categoria.
+  </div>
+</section>
+
+<!-- 9 · fruticultura: sistema -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 3/3</div>
+  <h2>Fruticultura: o sistema de produção</h2>
+  <p>No pomar, o diagnóstico é a definição do sistema — decisões agronômicas de longo prazo que <strong>fixam os custos por 15 a 20 anos</strong>.</p>
+  <ul class="bullets">
+    <li>O espaçamento define o número de <strong>mudas por hectare</strong> — o coeficiente central da implantação.</li>
+    <li>Particularidade única: a <strong>fase de formação</strong>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</li>
+  </ul>
+  <p class="note">Implantação (investimento amortizável) não se confunde com custeio anual (COE recorrente). A T8 aprofunda perenes, payback e VPL.</p>
+</section>
+
+<!-- 10 · o inventário -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · levantar antes de classificar</div>
+  <h2>O inventário do que a atividade consome</h2>
+  <p>Antes de classificar, é preciso <strong>listar tudo</strong>. Um roteiro que evita esquecimentos:</p>
+  <ul class="bullets">
+    <li><strong>Insumos</strong> — sementes, fertilizantes, corretivos, defensivos, ração, medicamentos.</li>
+    <li><strong>Operações</strong> — preparo, plantio, tratos, colheita: combustível, manutenção, horas de máquina.</li>
+    <li><strong>Serviços e mão de obra</strong> — permanente, temporária, aviação, frete, secagem, assistência técnica.</li>
+    <li><strong>Estrutura</strong> — depreciação, arrendamento, impostos e taxas, seguros, energia.</li>
+  </ul>
+  <p class="note">Percorra o calendário da atividade mês a mês: o que acontece na lavoura ou no rebanho em cada momento — e o que cada evento consome.</p>
+</section>
+
+<!-- 11 · por que classificar -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · classificação</div>
+  <h2>Listar não basta: é preciso <em>classificar</em></h2>
+  <p class="lead">A classificação determina como cada custo se comporta quando a produção muda — e como tratá-lo em cada análise.</p>
+  <ul class="bullets">
+    <li>Quem confunde <strong>variável com fixo</strong> erra o ponto de equilíbrio (T6).</li>
+    <li>Quem mistura <strong>direto com indireto</strong> distorce o resultado por atividade.</li>
+    <li>Quem ignora os <strong>implícitos</strong> acha que lucrou mais do que lucrou.</li>
+  </ul>
+  <p class="note">Três pares de óculos para o mesmo gasto — cada um responde uma pergunta diferente. Metodologia: Matsunaga et al. (IEA), base do Campo Futuro/CNA.</p>
+</section>
+
+<!-- 12 · fixos × variáveis -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · par 1</div>
+  <h2>Variáveis × fixos</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Custos variáveis (CV)</h3>
+      <p>Variam com a escala de produção: mais área, mais custo; menos área, menos custo.</p>
+      <ul class="bullets compact">
+        <li>Sementes, fertilizantes, corretivos, defensivos</li>
+        <li>Combustível das operações, mão de obra temporária</li>
+        <li>Pecuária: ração, sal mineral, vacinas, vermífugos</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Custos fixos (CF)</h3>
+      <p>Existem independentemente do volume. Mesmo em ano sem safra, permanecem — remuneram a estrutura, não a produção.</p>
+      <ul class="bullets compact">
+        <li>Depreciação de máquinas e benfeitorias</li>
+        <li>Arrendamento fixo, pró-labore, mão de obra permanente</li>
+        <li>ITR, seguro da propriedade</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · teste na dúvida -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · par 1 · na dúvida</div>
+  <h2>O teste do ano sem safra</h2>
+  <p class="lead">Na dúvida, pergunte: <em>se eu não plantar nada este ano, esse gasto continua existindo?</em></p>
+  <ul class="bullets">
+    <li>Continua → <strong>fixo</strong>. O ITR vence e o funcionário mensalista recebe, com ou sem lavoura.</li>
+    <li>Desaparece → <strong>variável</strong>. Sem plantio não há semente, adubo nem diesel de operação.</li>
+  </ul>
+  <p>Segundo teste, equivalente: <em>se eu dobrar a área, esse gasto dobra junto?</em> Dobra → variável; não dobra → fixo.</p>
+  <p class="note">Alguns itens resistem aos dois testes — energia da irrigação, por exemplo. Guardem essa: ela volta no exemplo do arroz.</p>
+</section>
+
+<!-- 14 · diretos × indiretos -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · par 2</div>
+  <h2>Diretos × indiretos</h2>
+  <p>Este par importa quando a propriedade tem <strong>mais de uma atividade</strong> — soja e milho, lavoura e pecuária.</p>
+  <ul class="bullets">
+    <li><strong>Diretos</strong> — atribuem-se a uma atividade específica: o adubo da lavoura de milho é custo direto do milho.</li>
+    <li><strong>Indiretos</strong> — compartilhados, exigem <strong>rateio</strong>: o salário do gerente que cuida de lavoura e pecuária divide-se por algum critério (horas dedicadas, área, nº de animais).</li>
+  </ul>
+  <div class="callout">
+    <strong>Sem rateio declarado</strong>
+    Jogar o custo do gerente inteiro numa atividade só faz a outra parecer mais lucrativa do que é — e a decisão de expandir sai errada.
+  </div>
+</section>
+
+<!-- 15 · explícitos × implícitos -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · par 3</div>
+  <h2>Explícitos × implícitos</h2>
+  <p>A classificação que separa resultado <strong>financeiro</strong> de resultado <strong>econômico</strong>.</p>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Explícitos</h3>
+      <p>Desembolsos: aparecem no extrato bancário. Sementes, salários, diesel, frete.</p>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Implícitos</h3>
+      <p>Não saem do caixa, mas têm valor econômico real: depreciação, custo de oportunidade da terra própria, pró-labore não sacado.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>O erro mais comum da gestão rural</strong>
+    Ignorar os implícitos. Quem não contabiliza a depreciação do trator acha que lucrou — até o trator quebrar e não haver reserva para substituí-lo.
+  </div>
+</section>
+
+<!-- 16 · prévia COE/COT/CT -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · para onde isso vai</div>
+  <h2>Onde a classificação se encaixa</h2>
+  <p>Na T4, os itens classificados hoje serão somados em três camadas — a estrutura Matsunaga/IEA usada pelo Campo Futuro/CNA:</p>
+  <div class="cascade">
+    <div class="row total"><span>COE — desembolsos do ciclo (explícitos)</span><span>T4</span></div>
+    <div class="row"><span>+ depreciação → COT</span><span>T4</span></div>
+    <div class="row"><span>+ remuneração dos fatores → CT</span><span>T4</span></div>
+    <div class="row final"><span>RL − cada camada = margens</span><span>T5</span></div>
+  </div>
+  <p class="note">Hoje o trabalho é ter a lista completa e bem classificada. Sem ela, a T4 soma errado — e a T5 interpreta errado.</p>
+</section>
+
+<!-- 17 · gancho AP -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
+  <h2>Quando o coeficiente vira mapa</h2>
+  <p>Na agricultura de precisão, o coeficiente técnico deixa de ser um número único por lavoura: a <strong>taxa variável</strong> aplica dose diferente em cada zona de manejo.</p>
+  <ul class="bullets">
+    <li>O laudo de solo vira <strong>grade de amostragem</strong> — vários laudos georreferenciados.</li>
+    <li>O custo do adubo passa a ser <strong>Σ (dose da zona × área da zona × preço)</strong> — a mesma soma por zonas que fizemos com a receita na T2.</li>
+  </ul>
+  <p class="note">A pergunta econômica — a economia de insumo paga o custo da tecnologia? — é o tema da T8 para a turma de AP.</p>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 18 · o caso -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · arroz irrigado</div>
+  <h2>Arroz irrigado na metade sul</h2>
+  <p>O IRGA publica todo ano o <strong>custo médio ponderado</strong> do arroz irrigado gaúcho — média de Uruguaiana (Fronteira Oeste), Cachoeira do Sul, Pelotas, Bagé, São Lourenço do Sul e Santo Antônio da Patrulha.</p>
+  <ul class="bullets">
+    <li><strong>Safra 2025/26</strong> — sistema cultivo mínimo, publicação de junho de 2026.</li>
+    <li><strong>Produtividade média</strong> — 174,79 sc/ha (média das três safras anteriores).</li>
+  </ul>
+  <p class="note">É um orçamento completo e público, feito com a mesma lógica que o projeto de vocês: manejo típico → coeficientes → custos. Vamos lê-lo com os óculos da aula.</p>
+</section>
+
+<!-- 19 · do manejo à lista -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a regra de ouro em ação</div>
+  <h2>Cada prática reaparece como custo</h2>
+  <table class="tbl">
+    <thead><tr><th>Prática declarada</th><th>Itens que ela gera na planilha IRGA</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Irrigação por inundação</strong></td><td>diesel e energia das bombas, água, canais e condutos, taipas, aguador</td></tr>
+      <tr><td><strong>Adubação conforme laudo</strong></td><td>adubo de base e cobertura, ureia, aplicação</td></tr>
+      <tr><td><strong>Controle fitossanitário</strong></td><td>agroquímicos, aviação agrícola</td></tr>
+      <tr><td><strong>Colheita mecanizada</strong></td><td>combustível, manutenção, transportes internos, secagem, frete</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Teste reverso: se o projeto declara "controle de invasoras" e a planilha não tem herbicida nem aplicação, falta uma linha.</p>
+</section>
+
+<!-- 20 · os números -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a estrutura do custo</div>
+  <h2>O custo do arroz, por camadas</h2>
+  <div class="cascade">
+    <div class="row"><span>Despesas de custeio (insumos, operações, salários)</span><span>R$ 8.551/ha</span></div>
+    <div class="row"><span>+ outras despesas (frete, secagem, taxas, seguro)</span><span>R$ 2.143/ha</span></div>
+    <div class="row"><span>+ despesas financeiras (juros do custeio)</span><span>R$ 1.087/ha</span></div>
+    <div class="row total"><span>= custo variável · 74,7% do total</span><span>R$ 11.781/ha</span></div>
+    <div class="row"><span>+ depreciação (custo fixo)</span><span>R$ 1.246/ha</span></div>
+    <div class="row"><span>+ renda dos fatores (capital e terra)</span><span>R$ 2.743/ha</span></div>
+    <div class="row final"><span>= custo total da safra 2025/26</span><span>R$ 15.770/ha</span></div>
+  </div>
+  <p class="note">Fonte: IRGA, Custo de Produção do Arroz Irrigado 2025/26 (junho 2026). Três em cada quatro reais são custo variável — o arroz é uma atividade intensiva em insumo e operação.</p>
+</section>
+
+<!-- 21 · discussão energia -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · discussão</div>
+  <h2>Energia da irrigação: fixa ou variável?</h2>
+  <p class="lead">Na planilha IRGA, energia elétrica da irrigação (R$ 429/ha) está no custeio — variável. Mas a conta de luz do bombeamento tem duas partes:</p>
+  <ul class="bullets">
+    <li><strong>Consumo (kWh)</strong> — varia com as horas de bombeamento: mais área ou mais levantes, mais consumo. Comportamento de <strong>variável</strong>.</li>
+    <li><strong>Demanda contratada</strong> — o valor pago pela potência disponível, que vence <strong>mesmo com as bombas desligadas</strong>. Comportamento de <strong>fixo</strong>.</li>
+  </ul>
+  <div class="callout success">
+    <strong>O que importa</strong>
+    Mais que o rótulo, o critério: classifique pelo comportamento do gasto na sua propriedade — e declare o critério no projeto.
+  </div>
+</section>
+
+<!-- 22 · custo × preço -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o número que dói</div>
+  <h2>R$ 90 de custo, e o preço?</h2>
+  <div class="formula">
+    <span class="label">Custo por saca — IRGA 2025/26</span>
+    R$ 15.770/ha ÷ 174,79 sc/ha = <b>R$ 90,22/sc</b>
+  </div>
+  <p>A referência de preço usada na própria planilha: <strong>R$ 61,02/sc</strong>. O custo variável sozinho já dá R$ 67,40/sc — acima do preço.</p>
+  <ul class="bullets">
+    <li>Foi por isso que orizicultores <strong>reduziram área</strong> na safra 2025/26.</li>
+    <li>Como uma atividade sobrevive vendendo abaixo do custo total? A resposta exige as <strong>margens</strong> — é exatamente a T5.</li>
+  </ul>
+  <p class="note">Em aula: conferir o indicador CEPEA do arroz em casca do dia e refazer a comparação.</p>
+</section>
+
+<!-- 23 · lições -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o que fica</div>
+  <h2>Três lições do caso</h2>
+  <ul class="bullets">
+    <li><strong>O manejo gera a lista</strong> — cada prática do arroz reapareceu como item de custo; nenhuma linha caiu do céu.</li>
+    <li><strong>A classificação revela a estrutura</strong> — saber que 74,7% é variável diz muito sobre o risco e a escala da atividade.</li>
+    <li><strong>Itens ambíguos existem</strong> — energia da irrigação: o critério declarado vale mais que o rótulo.</li>
+  </ul>
+  <div class="callout success">
+    <strong>Para o projeto de vocês</strong>
+    O orçamento IRGA é o padrão de qualidade a imitar: completo, classificado, com fonte em cada número.
+  </div>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 24 · passo 2 -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 2 · manejo</div>
+  <h2>Tarefa de saída — parte 1</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 2 de 7</span><span>manejo técnico</span></div>
+    <div class="fields">
+      <div class="field"><label>Diagnóstico</label><span class="ph">laudo de solo · estrutura do rebanho · sistema de produção</span></div>
+      <div class="field"><label>Práticas de manejo</label><span class="ph">preparo, plantio, tratos, colheita — ou o ciclo do rebanho</span></div>
+      <div class="field"><label>Coeficientes técnicos</label><span class="ph">kg/ha, L/animal/dia, horas de máquina</span></div>
+      <div class="field"><label>Calendário</label><span class="ph">o que acontece em cada mês do ciclo</span></div>
+    </div>
+  </div>
+  <p class="note">Descrevam o manejo como se explicassem a um técnico que vai executar: específico, quantificado, datado.</p>
+</section>
+
+<!-- 25 · passo 3 -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 3 · custos</div>
+  <h2>Tarefa de saída — parte 2</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 3 de 7</span><span>lista de custos</span></div>
+    <div class="fields">
+      <div class="field"><label>Item de custo</label><span class="ph">ex.: adubo de base 08-20-30</span></div>
+      <div class="field"><label>Origem no manejo</label><span class="ph">qual prática declarada gera este item</span></div>
+      <div class="field"><label>Coeficiente × preço</label><span class="ph">ex.: 300 kg/ha × R$ 3,26/kg</span></div>
+      <div class="field"><label>Classificação</label><span class="ph">variável ou fixo · direto ou indireto</span></div>
+    </div>
+  </div>
+  <p class="note">Rascunho vale: o refinamento e a soma são a T4. O que não pode é faltar prática sem custo — a regra de ouro.</p>
+</section>
+
+<!-- 26 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Diagnóstico técnico identificado (laudo, rebanho ou sistema)</li>
+    <li>Manejo descrito no passo 2, com coeficientes e calendário</li>
+    <li>Lista de custos rascunhada no passo 3 — cada prática com seu item</li>
+    <li>Cada item classificado: variável ou fixo, direto ou indireto</li>
+  </ul>
+  <p class="note">Terminou antes? Confronte as duas listas: alguma prática sem custo? Algum custo sem prática?</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 27 · próxima aula -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>T4 — COE, COT e Custo Total</h2>
+  <p>A lista está feita e classificada. Na próxima teórica ela vira <strong>orçamento em três camadas</strong>: COE, COT e CT — incluindo a depreciação linear e o autoengano de não pagar a própria mão de obra.</p>
+  <ul class="bullets">
+    <li><strong>Revisar no site</strong> — Parte II, blocos II.1 (diagnóstico) e II.3 (classificação) + a autoavaliação do bloco.</li>
+    <li><strong>Trazer para a T4</strong> — a lista de custos do passo 3, o mais completa possível, e os valores de máquinas e benfeitorias da propriedade.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">A estrutura da T4</span>
+    COE → COT (+ depreciação) → <b>CT</b> (+ remuneração dos fatores)
+  </div>
+</section>
+
+<!-- 28 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T3 · Do manejo técnico ao custo · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    <b>IRGA</b> — Custo de Produção Médio Ponderado do Arroz Irrigado do RS, safra 2025/26 (publicação junho 2026, consulta em 21 jul 2026) ·
+    <b>CEPA/Epagri</b> — custos de produção do trigo, safra 2026 ·
+    <b>CQFS-RS/SC</b> — Manual de Calagem e Adubação para os Estados do RS e SC, 11ª ed. (2016) ·
+    Metodologia de custos: Matsunaga et al. (IEA), base CNA/Campo Futuro ·
+    Estrutura conceitual conforme material da disciplina (Parte II, blocos II.1 e II.3 do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-2.html#diagnostico">Parte II.1 — Diagnóstico técnico</a> · <a href="parte-2.html#classificacao">Parte II.3 — Classificação dos custos</a> · <a href="rebanho.html">calculadora do rebanho</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T3 · Do manejo técnico ao custo</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T3 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
