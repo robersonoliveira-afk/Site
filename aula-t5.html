@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<title>T5 — Margens e indicadores · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 5 — Margem bruta, margem líquida e lucro econômico; indicadores de viabilidade. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --terra-ink:#3D1E0E;
+  --accent:var(--terra);
+  --accent-text:#8A4322;
+  --accent-deep:#93492A;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--olive)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--terra-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--terra);border-color:var(--terra)}
+.sem-cell.now b,.sem-cell.now{color:var(--paper)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.bad{background:var(--critical-bg);border-left:4px solid var(--terra);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T5</div>
+    <div>
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1>Margens e <em>indicadores</em></h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>Começa o movimento <em>Decidir</em></h2>
+  <p>Medir acabou na P1. Da S9 em diante, os números do projeto deixam de ser descrição e viram <strong>argumento para decisão</strong> — a começar pela pergunta mais direta: sobrou ou faltou?</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2"><b>S4</b>T2</div>
+    <div class="sem-cell m2"><b>S5</b>T3</div>
+    <div class="sem-cell m2"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3 now"><b>S9</b>T5</div>
+    <div class="sem-cell m3"><b>S10</b>T6</div>
+    <div class="sem-cell m3"><b>S11</b>T7</div>
+    <div class="sem-cell m3"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>O projeto inteiro está medido</h2>
+  <ul class="bullets">
+    <li><strong>A linha de cima</strong> — RB → RL, com preço defensável (T2).</li>
+    <li><strong>A linha de baixo</strong> — manejo → itens classificados (T3) → COE, COT e CT fechados (T4, conferidos na P1).</li>
+  </ul>
+  <p>Hoje as duas linhas se encontram. A subtração é trivial — <strong>a interpretação é que é a aula</strong>: a mesma sobra pode ser sinal de saúde ou de agonia lenta, dependendo da camada em que aparece.</p>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    O passo 6 do simulador: o resultado por nível — MB, ML, lucro econômico e os indicadores de viabilidade do projeto de vocês.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>Sobrou — mas sobrou <em>de verdade</em>?</h2>
+  <p class="lead">"Deu lucro" é a frase mais ambígua da gestão rural. Sobrou depois de pagar o quê? O boleto? O desgaste? O próprio salário? A alternativa de nem ter plantado?</p>
+  <p>Cada resposta é uma margem diferente — e a ordem de leitura importa, porque <strong>uma margem positiva no topo pode esconder um prejuízo embaixo</strong>.</p>
+</section>
+
+<!-- 5 · a pilha relembrada -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o material da conta</div>
+  <h2>Tudo já está na mesa</h2>
+  <div class="cascade">
+    <div class="row total"><span>RL — receita líquida (passo 1)</span><span>T2</span></div>
+    <div class="row"><span>COE — o caixa do ciclo (passo 3)</span><span>T4</span></div>
+    <div class="row"><span>COT — COE + depreciação + pró-labore (passo 4)</span><span>T4</span></div>
+    <div class="row"><span>CT — COT + oportunidade do capital e da terra (passo 4)</span><span>T4</span></div>
+  </div>
+  <p>Três subtrações contra a mesma receita líquida — três margens, três horizontes de decisão.</p>
+  <p class="note">Convenção do curso (e do simulador): as margens são calculadas sobre a <strong>receita líquida</strong>, porque os encargos da venda já saíram no passo 1 — não entram de novo no COE.</p>
+</section>
+
+<!-- 6 · as três margens -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · as fórmulas</div>
+  <h2>As três margens</h2>
+  <div class="formula">
+    <span class="label">Margem bruta — curto prazo</span>
+    MB = RL − COE
+  </div>
+  <div class="formula">
+    <span class="label">Margem líquida — sustentabilidade</span>
+    ML = RL − COT
+  </div>
+  <div class="formula">
+    <span class="label">Lucro econômico — viabilidade</span>
+    LE = RL − <b>CT</b>
+  </div>
+</section>
+
+<!-- 7 · MB -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · margem 1</div>
+  <h2>MB: o ano fechou no caixa?</h2>
+  <p>A margem bruta diz se a receita cobriu os <strong>desembolsos do ciclo</strong> — nada mais.</p>
+  <ul class="bullets">
+    <li><strong>MB negativa</strong> — cada unidade produzida piora o caixa: parar ou reformular <em>imediatamente</em>; não há o que esperar.</li>
+    <li><strong>MB positiva</strong> — o ciclo se paga no curto prazo. É a condição para continuar a safra em andamento — e só isso.</li>
+  </ul>
+  <div class="callout">
+    <strong>A armadilha</strong>
+    MB positiva é a margem que o produtor sente no bolso — e por isso é a que mais engana. Ela não diz nada sobre o trator envelhecendo nem sobre o salário que ninguém pagou.
+  </div>
+</section>
+
+<!-- 8 · ML -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · margem 2</div>
+  <h2>ML: a propriedade se mantém de pé?</h2>
+  <p>A margem líquida desconta também a <strong>depreciação e o pró-labore</strong> — os dois custos invisíveis da T4.</p>
+  <ul class="bullets">
+    <li><strong>ML positiva</strong> — a atividade paga as contas, repõe o patrimônio e remunera o gestor: sustentável no médio prazo.</li>
+    <li><strong>ML negativa</strong> — a atividade funciona <em>consumindo</em> patrimônio e trabalho não pago: descapitalização lenta.</li>
+  </ul>
+  <p class="note">Descapitalização não aparece no extrato — aparece na cerca que não se refaz, na máquina que não se substitui, no filho que vai embora porque o trabalho não paga.</p>
+</section>
+
+<!-- 9 · LE -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · margem 3</div>
+  <h2>LE: valeu a pena ter produzido?</h2>
+  <p>O lucro econômico desconta o custo completo — inclusive o que a terra e o capital <strong>renderiam na melhor alternativa</strong> (arrendar, aplicar).</p>
+  <ul class="bullets">
+    <li><strong>LE positivo</strong> — o projeto gera riqueza acima de qualquer alternativa: viabilidade plena.</li>
+    <li><strong>LE = 0</strong> — não é fracasso: significa que tudo foi remunerado, inclusive a terra, o capital e o gestor, exatamente como a melhor alternativa remuneraria.</li>
+    <li><strong>LE negativo</strong> — o produtor ganharia mais arrendando e aplicando. A atividade pode continuar de pé — mas está deixando riqueza na mesa.</li>
+  </ul>
+</section>
+
+<!-- 10 · a ordem importa -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · leitura em camadas</div>
+  <h2>Lê-se de cima para baixo</h2>
+  <table class="tbl">
+    <thead><tr><th>Resultado</th><th>Diagnóstico</th><th>Decisão típica</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><b>MB &lt; 0</b></td><td>Insustentável até no caixa</td><td>Parar ou reformular já</td></tr>
+      <tr><td class="num">MB &gt; 0, ML &lt; 0</td><td>Vive de consumir patrimônio</td><td>Reestruturar antes que o patrimônio acabe</td></tr>
+      <tr><td class="num">ML &gt; 0, LE &lt; 0</td><td>Sustentável, mas rende menos que a alternativa</td><td>Melhorar eficiência ou repensar a atividade</td></tr>
+      <tr><td class="num">LE &gt; 0</td><td>Gera riqueza acima das alternativas</td><td>Manter, expandir, investir</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A leitura que separa o gestor do operador: MB positiva diz que o ano fechou no caixa; só o LE diz se valeu a pena ter plantado em vez de arrendar.</p>
+</section>
+
+<!-- 11 · horizontes -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o tempo de cada margem</div>
+  <h2>Cada margem tem seu horizonte</h2>
+  <ul class="bullets">
+    <li><strong>Curto prazo (a safra)</strong> — decide-se pela MB: com os fixos já pagos ou inevitáveis, produzir vale enquanto a receita cobrir o desembolso do ciclo.</li>
+    <li><strong>Médio prazo (2–5 anos)</strong> — decide-se pela ML: nenhuma atividade sobrevive anos repondo nada e pagando ninguém.</li>
+    <li><strong>Longo prazo (a vida do projeto)</strong> — decide-se pelo LE: capital e terra sempre têm alternativa; ignorá-la é escolher ficar mais pobre devagar.</li>
+  </ul>
+  <p class="note">É por isso que uma atividade pode ser racional de manter <em>nesta safra</em> e irracional de manter <em>por dez anos</em> — as duas coisas ao mesmo tempo.</p>
+</section>
+
+<!-- 12 · indicadores -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · de valores a índices</div>
+  <h2>Lucratividade e rentabilidade</h2>
+  <p>Margens são valores absolutos — R$ 30.000 é muito ou pouco? Depende da escala. Os indicadores tornam o projeto <strong>comparável</strong>.</p>
+  <div class="formula">
+    <span class="label">Lucratividade — eficiência sobre o que se fatura</span>
+    lucratividade = LE ÷ RB × 100
+  </div>
+  <div class="formula">
+    <span class="label">Rentabilidade — eficiência sobre o que se investe</span>
+    rentabilidade = LE ÷ <b>CT</b> × 100
+  </div>
+  <p class="note">Convenção do curso: rentabilidade sempre sobre o CT — a única base que compara o projeto com a alternativa de arrendar e aplicar.</p>
+</section>
+
+<!-- 13 · IEE e nivelamento -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · três alarmes</div>
+  <h2>IEE e os pontos de nivelamento</h2>
+  <ul class="bullets">
+    <li><strong>IEE = RB ÷ CT</strong> — quantas vezes a receita cobre o custo total. 1,0 é o equilíbrio econômico; abaixo disso, o projeto destrói valor.</li>
+    <li><strong>Produção de nivelamento</strong> — COE ÷ preço ÷ área: quantas unidades por hectare só para pagar o caixa.</li>
+    <li><strong>Preço de nivelamento</strong> — COE ÷ produção: abaixo desse preço, nem o desembolso volta.</li>
+  </ul>
+  <p>Os nivelamentos são <strong>alarmes antecipados</strong>: comparados com a média regional e o preço de mercado, dizem quanto de folga o projeto tem antes da safra acontecer.</p>
+  <p class="note">Na T6 eles crescem e viram ponto de equilíbrio e margem de segurança.</p>
+</section>
+
+<!-- 14 · referências -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · réguas de qualidade</div>
+  <h2>Com o que comparar</h2>
+  <table class="tbl">
+    <thead><tr><th>Indicador</th><th class="num">Referência</th><th>Contra o quê</th></tr></thead>
+    <tbody>
+      <tr><td>Lucratividade</td><td class="num">&gt; 15–20%</td><td>projetos da mesma atividade</td></tr>
+      <tr><td>Rentabilidade</td><td class="num">&gt; Selic</td><td>a aplicação financeira sem risco</td></tr>
+      <tr><td>IEE</td><td class="num">&gt; 1,0</td><td>o equilíbrio econômico</td></tr>
+      <tr><td>Produção de nivelamento</td><td class="num">&lt;&lt; média regional</td><td>CONAB, EMATER/RS, IRGA</td></tr>
+      <tr><td>Preço de nivelamento</td><td class="num">&lt;&lt; preço de mercado</td><td>CEPEA, cooperativa</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Rentabilidade menor que a Selic com risco de seca e de preço? O número obriga a pergunta — não a responde sozinho. Contexto e projeto de vida também decidem.</p>
+</section>
+
+<!-- 15 · gancho AP -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
+  <h2>A margem também é um mapa</h2>
+  <p>Se a receita varia por zona (T2) e o custo varia por zona (T3), então a <strong>margem varia por zona</strong> — e a média da lavoura esconde os extremos.</p>
+  <ul class="bullets">
+    <li>Zonas de alta produtividade: MB por hectare muito acima da média.</li>
+    <li>Zonas degradadas: podem ter <strong>MB negativa</strong> dentro de uma lavoura lucrativa — hectares que destroem valor todo ano.</li>
+  </ul>
+  <p class="note">O mapa de margem é o argumento econômico da AP: ele aponta onde investir em correção — e onde talvez nem valha a pena plantar. A conta de "corrigir se paga?" é a T6.</p>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 16 · o caso -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · leite na região central</div>
+  <h2>A propriedade leiteira que "vai bem"</h2>
+  <p>Propriedade familiar da região de Santa Maria — o retrato típico dos painéis Campo Futuro/CNA da pecuária de leite:</p>
+  <ul class="bullets">
+    <li><strong>30 vacas em lactação</strong>, 20 L/vaca/dia — 600 L/dia, ~219.000 L/ano.</li>
+    <li>Mão de obra 100% familiar; terra própria; equipamentos quitados.</li>
+    <li>O produtor diz: <em>"o leite paga as contas do mês — vamos bem"</em>.</li>
+  </ul>
+  <p class="note">Valores por litro no padrão Campo Futuro, como referência didática — em aula, atualizar com o painel mais recente da região e o preço EMATER/RS do dia.</p>
+</section>
+
+<!-- 17 · a pilha por litro -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · os números</div>
+  <h2>A pilha, por litro de leite</h2>
+  <table class="tbl">
+    <thead><tr><th>Camada</th><th class="num">R$/litro</th><th>O que contém</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RL</strong></td><td class="num">2,40</td><td>preço recebido, líquido de Funrural e frete</td></tr>
+      <tr><td><strong>COE</strong></td><td class="num">2,05</td><td>ração, sanidade, energia, ordenha, manutenção</td></tr>
+      <tr><td><strong>COT</strong></td><td class="num">2,45</td><td>+ depreciação (sala de ordenha, resfriador, matrizes) + pró-labore da família</td></tr>
+      <tr><td><strong>CT</strong></td><td class="num"><b>2,75</b></td><td>+ oportunidade da terra (arrendamento) e do capital</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A conta que quase nenhuma propriedade leiteira faz: o que os painéis Campo Futuro fazem questão de mostrar.</p>
+</section>
+
+<!-- 18 · as três margens -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o veredito</div>
+  <h2>Três margens, três verdades</h2>
+  <div class="cascade">
+    <div class="row final"><span>MB = 2,40 − 2,05 = +R$ 0,35/L</span><span>+R$ 76.650/ano</span></div>
+    <div class="row bad"><span>ML = 2,40 − 2,45 = −R$ 0,05/L</span><span>−R$ 10.950/ano</span></div>
+    <div class="row bad"><span>LE = 2,40 − 2,75 = −R$ 0,35/L</span><span>−R$ 76.650/ano</span></div>
+  </div>
+  <p>O produtor tem razão: sobram R$ 76 mil no caixa — <strong>a MB é positiva</strong>. E os painéis também: a cada litro, 5 centavos de patrimônio se consomem e 35 centavos deixam de ser ganhos frente a arrendar e aplicar.</p>
+</section>
+
+<!-- 19 · como se vive assim -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a descapitalização silenciosa</div>
+  <h2>Por que ninguém percebe?</h2>
+  <p class="lead">Porque a MB positiva paga o mercado, a luz e o combustível — <em>a sensação de normalidade é real</em>. O prejuízo está nos itens sem boleto:</p>
+  <ul class="bullets">
+    <li>O resfriador que envelhece sem fundo de reposição.</li>
+    <li>As diárias de 365 dias por ano que a família nunca recebeu.</li>
+    <li>O arrendamento que a terra renderia sem nenhuma ordenha às 5h da manhã.</li>
+  </ul>
+  <p class="note">É o retrato de parte relevante da pecuária leiteira gaúcha nos painéis Campo Futuro — e uma das razões estruturais do abandono da atividade e da sucessão interrompida.</p>
+</section>
+
+<!-- 20 · o que fazer -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · da leitura à ação</div>
+  <h2>O diagnóstico aponta as alavancas</h2>
+  <ul class="bullets">
+    <li><strong>Diluir o fixo</strong> — a depreciação e o pró-labore por litro caem se cada vaca produzir mais: produtividade é a alavanca mais forte do leite.</li>
+    <li><strong>Rever o COE</strong> — ração é o maior item: produzir volumoso de qualidade em casa versus comprar concentrado.</li>
+    <li><strong>Comparar de frente</strong> — se nem com eficiência o LE fica positivo, a comparação honesta com arrendar a terra precisa ir para a mesa da família.</li>
+  </ul>
+  <div class="callout success">
+    <strong>O papel do técnico</strong>
+    Não é decidir pela família — é colocar as três margens na mesa para que a decisão seja tomada enxergando, e não no escuro.
+  </div>
+</section>
+
+<!-- 21 · lições -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o que fica</div>
+  <h2>Três lições do caso</h2>
+  <ul class="bullets">
+    <li><strong>"Paga as contas" ≠ viável</strong> — MB positiva com LE negativo é a combinação mais comum e mais perigosa da agropecuária familiar.</li>
+    <li><strong>O prejuízo mora nos invisíveis</strong> — depreciação, pró-labore e oportunidade: exatamente os custos que a T4 obrigou a lançar.</li>
+    <li><strong>A margem certa para a pergunta certa</strong> — continuar a safra? MB. Continuar na atividade? ML. Continuar investido? LE.</li>
+  </ul>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 22 · passo 6 -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 6 · resultado</div>
+  <h2>Tarefa de saída — parte 1</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 6 de 7</span><span>resultado por nível</span></div>
+    <div class="fields">
+      <div class="field"><label>Margem bruta</label><span class="ph">RL − COE — o caixa do ciclo</span></div>
+      <div class="field"><label>Margem líquida</label><span class="ph">RL − COT — repõe e remunera?</span></div>
+      <div class="field"><label>Lucro econômico</label><span class="ph">RL − CT — acima da melhor alternativa?</span></div>
+      <div class="field"><label>Indicadores</label><span class="ph">lucratividade · rentabilidade · IEE · nivelamentos</span></div>
+    </div>
+  </div>
+  <p class="note">O simulador calcula tudo sozinho a partir dos passos 1–4. A tarefa de hoje não é digitar — é <strong>ler</strong>.</p>
+</section>
+
+<!-- 23 · interpretação escrita -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · a entrega</div>
+  <h2>Tarefa de saída — parte 2</h2>
+  <p>Cada grupo escreve, no campo de observações do passo 6, a <strong>interpretação das três margens do próprio projeto</strong> — um parágrafo por margem:</p>
+  <ul class="bullets">
+    <li>O valor, o sinal e <strong>o que ele significa</strong> neste projeto específico.</li>
+    <li>A decisão que essa margem sustentaria (continuar? reestruturar? comparar com arrendamento?).</li>
+    <li>Uma comparação externa: rentabilidade × Selic, nivelamento × média regional.</li>
+  </ul>
+  <div class="callout">
+    <strong>Critério de qualidade</strong>
+    "MB deu R$ 40 mil" não interpreta nada. "A MB cobre o ciclo, mas a ML negativa mostra que estamos consumindo o resfriador" — isso é interpretação.
+  </div>
+</section>
+
+<!-- 24 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Passo 6 aberto e conferido — MB, ML e LE do projeto anotados</li>
+    <li>Indicadores lidos: lucratividade, rentabilidade, IEE, nivelamentos</li>
+    <li>Interpretação escrita das três margens no campo de observações</li>
+    <li>Uma comparação externa registrada (Selic, média regional ou preço de mercado)</li>
+  </ul>
+  <p class="note">Terminou antes? Mude o preço do passo 1 em −10% e veja o que acontece com as margens — é o aperitivo da T6.</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 25 · próxima aula -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>T6 — Equilíbrio, análise marginal e cenários</h2>
+  <p>As margens de hoje são uma fotografia. A T6 pergunta o que acontece quando o quadro se move: <strong>quanto a produção pode cair antes do prejuízo? A próxima dose de adubo se paga? E se o preço despencar?</strong></p>
+  <ul class="bullets">
+    <li><strong>Revisar no site</strong> — Parte III, bloco 1 completo (margens e indicadores) + autoavaliação.</li>
+    <li><strong>Trazer para a T6</strong> — as três margens do projeto anotadas; elas serão o cenário-base.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">As perguntas da T6</span>
+    ponto de equilíbrio · margem de segurança · RM = CM · <b>cenários</b>
+  </div>
+</section>
+
+<!-- 26 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T5 · Margens e indicadores · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    <b>Projeto Campo Futuro — CNA/SENAR</b> — estrutura de margens e retrato da pecuária de leite (valores do exemplo: referência didática no padrão dos painéis; atualizar com o painel regional mais recente) ·
+    <b>EMATER/RS</b> — preço do leite ao produtor ·
+    Metodologia de custos: Matsunaga et al. (1976, IEA) ·
+    Estrutura conceitual conforme material da disciplina (Parte III, bloco 1 do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-3.html#receita-margens">Parte III.1 — Receita, margens e indicadores</a> · <a href="parte-3.html#quiz">autoavaliação da Parte III</a> · <a href="rebanho.html">calculadora do rebanho</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T5 · Margens e indicadores</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T5 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
