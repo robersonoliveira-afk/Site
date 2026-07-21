@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<title>T6 — Equilíbrio, análise marginal e cenários · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 6 — Ponto de equilíbrio, margem de segurança, análise marginal e cenários. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --terra-ink:#3D1E0E;
+  --accent:var(--terra);
+  --accent-text:#8A4322;
+  --accent-deep:#93492A;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--olive)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--terra-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--terra);border-color:var(--terra)}
+.sem-cell.now b,.sem-cell.now{color:var(--paper)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.bad{background:var(--critical-bg);border-left:4px solid var(--terra);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T6</div>
+    <div>
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1>Equilíbrio, análise marginal e <em>cenários</em></h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>O quadro começa a se <em>mover</em></h2>
+  <p>Na T5 as margens saíram — uma fotografia do projeto num único cenário. Hoje a pergunta muda: <strong>e quando a realidade desviar do plano?</strong> Quanto a produção pode cair, quanto a próxima dose rende, o que sobra se o preço despencar.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2"><b>S4</b>T2</div>
+    <div class="sem-cell m2"><b>S5</b>T3</div>
+    <div class="sem-cell m2"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3"><b>S9</b>T5</div>
+    <div class="sem-cell m3 now"><b>S10</b>T6</div>
+    <div class="sem-cell m3"><b>S11</b>T7</div>
+    <div class="sem-cell m3"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>As margens viram cenário-base</h2>
+  <ul class="bullets">
+    <li><strong>Da T5</strong> — MB, ML e LE do projeto calculados e interpretados no passo 6; os nivelamentos lidos como alarmes.</li>
+    <li><strong>Da P1</strong> — COE, COT e CT conferidos: a estrutura de custos é confiável.</li>
+  </ul>
+  <p>Esse conjunto é o <strong>cenário-base</strong> de hoje. A aula inteira consiste em sacudi-lo: mover preço, produtividade e custo, e ver o que resiste.</p>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    O passo 6 do simulador vira máquina de cenários: mudar o passo 1 e observar a propagação até o lucro econômico. A saída da aula é o cenário pessimista do projeto, registrado.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>O plano encontra o <em>imprevisto</em></h2>
+  <p class="lead">Nenhuma safra sai como o orçamento. O gestor que só conhece o cenário-base descobre o risco quando ele chega — o que sabe onde fica a fronteira do prejuízo decide antes.</p>
+  <ul class="bullets">
+    <li><strong>Ponto de equilíbrio</strong> — onde exatamente a receita empata com o custo?</li>
+    <li><strong>Análise marginal</strong> — a próxima dose de insumo ainda se paga?</li>
+    <li><strong>Cenários</strong> — o projeto sobrevive ao ano ruim?</li>
+  </ul>
+</section>
+
+<!-- 5 · PE conceito -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · ponto de equilíbrio</div>
+  <h2>A fronteira entre lucro e prejuízo</h2>
+  <p>O <strong>ponto de equilíbrio (PE)</strong> é o nível de produção ou de preço em que a receita iguala exatamente o custo — nem sobra, nem falta. São os nivelamentos da T5, agora como instrumento central de decisão.</p>
+  <div class="formula">
+    <span class="label">PE de produtividade — quanto preciso colher</span>
+    PE produção = custo ÷ preço ÷ área
+  </div>
+  <div class="formula">
+    <span class="label">PE de preço — por quanto preciso vender</span>
+    PE preço = custo ÷ produção total
+  </div>
+</section>
+
+<!-- 6 · três fronteiras -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · qual custo na fórmula?</div>
+  <h2>Três custos, três fronteiras</h2>
+  <p>O "custo" da fórmula pode ser o COE, o COT ou o CT — e cada escolha desenha uma fronteira diferente, na mesma lógica das camadas da T5:</p>
+  <table class="tbl">
+    <thead><tr><th>PE sobre</th><th>A fronteira que desenha</th><th>Abaixo dela</th></tr></thead>
+    <tbody>
+      <tr><td><strong>COE</strong></td><td>o caixa do ciclo se paga</td><td>cada unidade piora o caixa: alarme máximo</td></tr>
+      <tr><td><strong>COT</strong></td><td>repõe patrimônio e remunera a família</td><td>a atividade vive de consumir o que tem</td></tr>
+      <tr><td><strong>CT</strong></td><td>vale mais que arrendar e aplicar</td><td>viável no caixa, mas deixando riqueza na mesa</td></tr>
+    </tbody>
+  </table>
+  <p class="note">O PE sobre o COE é o alarme de curto prazo; o PE sobre o CT é a régua da viabilidade — o mesmo par de leituras das margens.</p>
+</section>
+
+<!-- 7 · MS -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · margem de segurança</div>
+  <h2>Quanta folga o projeto tem?</h2>
+  <p>A <strong>margem de segurança (MS)</strong> mede a distância entre o que se espera produzir e o mínimo necessário — em percentual: quanto a produção pode cair antes do prejuízo.</p>
+  <div class="formula">
+    <span class="label">Margem de segurança</span>
+    MS = (produção esperada − PE) ÷ produção esperada × 100
+  </div>
+  <p>É o <strong>principal indicador de risco</strong> de um projeto agropecuário: MS de 40% tolera seca moderada e preço fraco; MS de 10% quebra com uma geada.</p>
+  <p class="note">Exemplo do site: soja que precisa de 38 sc/ha para cobrir o COE, com expectativa de 60 sc/ha → a produção pode cair ~37% antes de não pagar nem o caixa.</p>
+</section>
+
+<!-- 8 · MS e decisões -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a MS decide coisas concretas</div>
+  <h2>Da folga à decisão</h2>
+  <ul class="bullets">
+    <li><strong>Seguro agrícola</strong> — com MS de 10%, o seguro (2 a 5% do custeio) se justifica plenamente; com MS de 40%, é escolha, não necessidade.</li>
+    <li><strong>Comercialização</strong> — PE de preço em R$ 90/sc com mercado a R$ 130: há margem para escalonar a venda. PE em R$ 88 com mercado a R$ 95: vender exige cautela.</li>
+    <li><strong>Escala</strong> — MS estreita numa área grande é exposição grande; às vezes a decisão certa é plantar menos e proteger mais.</li>
+  </ul>
+  <div class="callout">
+    <strong>Regra de ouro do curso</strong>
+    Toda prática de manejo declarada precisa reaparecer como custo — inclusive o seguro que o cenário pessimista recomendar.
+  </div>
+</section>
+
+<!-- 9 · função de produção -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · função de produção</div>
+  <h2>A lavoura não responde em linha reta</h2>
+  <p>A <strong>função de produção</strong> relaciona a quantidade de insumo ao produto obtido, com a tecnologia dada. Na prática: fixa-se tudo e varia-se <strong>um insumo por vez</strong>.</p>
+  <div class="formula">
+    <span class="label">Função de produção</span>
+    Q = f(X₁, X₂, …, Xₙ)
+  </div>
+  <ul class="bullets compact">
+    <li><strong>PT — produto total</strong>: o acumulado com X unidades do insumo.</li>
+    <li><strong>PM — produto médio</strong>: PT ÷ X, a eficiência média.</li>
+    <li><strong>PMg — produto marginal</strong>: ΔPT ÷ ΔX, o que a <em>última</em> unidade acrescentou — a base de toda a análise de hoje.</li>
+  </ul>
+</section>
+
+<!-- 10 · três fases -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · lei dos rendimentos decrescentes</div>
+  <h2>As três fases da resposta</h2>
+  <table class="tbl">
+    <thead><tr><th>Fase</th><th>O que acontece</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>PMg cresce — o insumo corrige deficiência grave</td><td>abaixo da eficiência mínima: aplicar mais</td></tr>
+      <tr><td><strong>II</strong></td><td>PMg cai, mas segue positivo — o PT ainda sobe</td><td><strong>zona racional</strong>: o ótimo econômico está aqui</td></tr>
+      <tr><td><strong>III</strong></td><td>PMg negativo — excesso derruba o PT</td><td>toxicidade, acamamento: ninguém racional opera aqui</td></tr>
+    </tbody>
+  </table>
+  <p>A fase II é a <strong>lei dos rendimentos decrescentes</strong>: a partir de certo ponto, cada unidade adicional rende menos que a anterior. Vale para N no milho, concentrado na vaca, lotação no campo — é regularidade, não exceção.</p>
+</section>
+
+<!-- 11 · análise marginal -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · análise marginal</div>
+  <h2>A pergunta certa é sempre sobre a <em>próxima</em> dose</h2>
+  <p>Se cada dose rende menos que a anterior, existe um ponto em que a dose seguinte deixa de se pagar. Encontrá-lo exige comparar duas grandezas na margem:</p>
+  <ul class="bullets">
+    <li><strong>RM — receita marginal</strong>: o valor do produto extra da última unidade (PMg × preço do produto).</li>
+    <li><strong>CM — custo marginal</strong>: o custo dessa unidade de insumo.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">Regra de ouro do máximo lucro</span>
+    aplicar enquanto RM &gt; CM · parar quando <b>RM = CM</b>
+  </div>
+  <p class="note">Aplicar além desse ponto reduz o lucro — mesmo com a produção ainda subindo.</p>
+</section>
+
+<!-- 12 · milho × ureia -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · milho e ureia no RS</div>
+  <h2>Máximo lucro ≠ máxima produção</h2>
+  <p class="note">Milho a R$ 78/sc, ureia a R$ 4,20/kg (insumo + aplicação) — registros de três safras de um produtor do Alto Uruguai (Parte III.3 do site).</p>
+  <table class="tbl">
+    <thead><tr><th class="num">Ureia (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">RM (R$/kg)</th><th class="num">CM (R$/kg)</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td class="num">40</td><td class="num">118</td><td class="num">54,60</td><td class="num">4,20</td><td>RM &gt; CM: seguir</td></tr>
+      <tr><td class="num">80</td><td class="num">138</td><td class="num">39,00</td><td class="num">4,20</td><td>RM &gt; CM: seguir</td></tr>
+      <tr><td class="num">120</td><td class="num">152</td><td class="num">27,30</td><td class="num">4,20</td><td><strong>≈ ótimo econômico</strong></td></tr>
+      <tr><td class="num">160</td><td class="num">160</td><td class="num">15,60</td><td class="num">4,20</td><td>passou do ponto</td></tr>
+      <tr><td class="num">200</td><td class="num">163</td><td class="num">5,85</td><td class="num">4,20</td><td>quase nada, pagando caro</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A máxima produção está em 200 kg/ha; o máximo lucro, perto de 120. E a tabela só existe porque alguém <strong>anotou dose e produção</strong> por três safras — sem registro, não há análise marginal; há chute.</p>
+</section>
+
+<!-- 13 · gancho AP -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
+  <h2>Taxa variável é análise marginal por zona</h2>
+  <p>A dose ótima depende da resposta da lavoura — e a resposta <strong>muda de zona para zona</strong>: solo corrigido responde pouco a mais adubo; zona deficiente responde muito.</p>
+  <ul class="bullets">
+    <li>Dose única na média: sobra insumo onde não responde, falta onde responderia — desperdício dos dois lados.</li>
+    <li>Taxa variável: resolver <strong>RM = CM em cada zona de manejo</strong> — o mapa de prescrição é a regra de ouro georreferenciada.</li>
+  </ul>
+  <p class="note">É o argumento econômico central da AP: o equipamento não cria a lógica — executa, hectare a hectare, a conta desta aula. Se ele mesmo se paga é a pergunta da T8.</p>
+</section>
+
+<!-- 14 · cenários -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · análise de cenários</div>
+  <h2>Um número só é uma armadilha</h2>
+  <p>Projetar um único resultado — produtividade exata, preço exato — é apostar que nada desvia. A análise de cenários não elimina o risco: <strong>torna-o visível e mensurável</strong>, em três versões do futuro:</p>
+  <table class="tbl">
+    <thead><tr><th>Cenário</th><th>Premissas típicas</th><th>Pergunta que responde</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pessimista</strong></td><td>produtividade −15 a −20% · preço −10 a −15% · custos +5 a +10%</td><td>qual o pior prejuízo provável? sobrevive-se a ele?</td></tr>
+      <tr><td><strong>Base</strong></td><td>médias históricas, preços atuais, orçamento</td><td>qual o resultado esperado?</td></tr>
+      <tr><td><strong>Otimista</strong></td><td>produtividade +10 a +15% · preços em alta · custos no orçado</td><td>qual o potencial máximo?</td></tr>
+    </tbody>
+  </table>
+  <p class="note">As premissas não são chute: vêm da série histórica da região (CONAB, EMATER/RS, IRGA) e da variação real dos preços (CEPEA).</p>
+</section>
+
+<!-- 15 · decidir com cenários -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o veredito dos três futuros</div>
+  <h2>Como decidir com os cenários</h2>
+  <table class="tbl">
+    <thead><tr><th>Se…</th><th>Diagnóstico</th><th>Decisão típica</th></tr></thead>
+    <tbody>
+      <tr><td>o pessimista já é viável</td><td>baixo risco</td><td>avançar, com menos proteções</td></tr>
+      <tr><td>o pessimista dá prejuízo moderado</td><td>atenção</td><td>seguro, venda antecipada, reduzir escala</td></tr>
+      <tr><td>o pessimista seria catastrófico</td><td>repensar</td><td>escala ou margem incompatíveis com o risco da região</td></tr>
+      <tr><td class="num"><b>só o otimista fecha</b></td><td>aposta, não investimento</td><td>não avançar sem proteções significativas</td></tr>
+    </tbody>
+  </table>
+  <div class="callout success">
+    <strong>Na defesa do projeto</strong>
+    Quando a banca perguntar "e se o preço cair 10%?", a resposta sai do cenário pessimista — com número, não com "acho que sim".
+  </div>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 16 · arroz: o caso -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · arroz irrigado</div>
+  <h2>O arroz gaúcho em 2025/26</h2>
+  <p>Levantamento oficial do IRGA para a safra 2025/26 (lavoura média do RS, publicado em junho de 2026):</p>
+  <table class="tbl">
+    <thead><tr><th>Item</th><th class="num">Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Custo total (CT)</td><td class="num">R$ 15.770,36/ha</td></tr>
+      <tr><td>— custo variável (74,7% do CT)</td><td class="num">R$ 11.781,29/ha</td></tr>
+      <tr><td>Produtividade média</td><td class="num">174,79 sc/ha</td></tr>
+      <tr><td>Custo total por saca</td><td class="num">R$ 90,22/sc</td></tr>
+      <tr><td>Custo variável por saca</td><td class="num">R$ 67,40/sc</td></tr>
+      <tr><td>Preço de referência</td><td class="num"><b>R$ 61,02/sc</b></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Uma das maiores produtividades de arroz do mundo — e um preço que não cobre o custo. Conferir o preço CEPEA do dia em aula.</p>
+</section>
+
+<!-- 17 · arroz: PE de preço -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · a fronteira do preço</div>
+  <h2>PE de preço: a conta em três linhas</h2>
+  <div class="cascade">
+    <div class="row total"><span>PE preço (CT) = 15.770,36 ÷ 174,79</span><span>R$ 90,22/sc</span></div>
+    <div class="row"><span>PE preço (variável) = 11.781,29 ÷ 174,79</span><span>R$ 67,40/sc</span></div>
+    <div class="row bad"><span>preço de referência da saca</span><span>R$ 61,02/sc</span></div>
+  </div>
+  <p>O mercado paga <strong>R$ 29,20 abaixo do custo total</strong> — e R$ 6,38 abaixo até do custo variável: no preço de referência, cada saca colhida não repõe nem o desembolso que a produziu.</p>
+  <p class="note">Prejuízo econômico na lavoura média: ~R$ 29,20/sc × 174,79 sc/ha ≈ R$ 5.104/ha.</p>
+</section>
+
+<!-- 18 · arroz: MS negativa -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · a fronteira da produção</div>
+  <h2>Quando o PE fica acima do teto</h2>
+  <div class="cascade">
+    <div class="row"><span>PE produção (CT) = 15.770,36 ÷ 61,02</span><span>258,4 sc/ha</span></div>
+    <div class="row"><span>PE produção (variável) = 11.781,29 ÷ 61,02</span><span>193,1 sc/ha</span></div>
+    <div class="row bad"><span>produtividade média real</span><span>174,79 sc/ha</span></div>
+  </div>
+  <p>Para empatar com o custo total seriam necessárias <strong>258 sc/ha — além do teto biológico da cultura</strong>. Nem o custo variável fecha: a MS é <em>negativa</em> (−10,5% sobre o variável, −47,8% sobre o CT).</p>
+  <div class="callout">
+    <strong>A lição</strong>
+    MS negativa significa que "produzir mais" não resolve — o problema não é eficiência da lavoura, é a relação preço × custo. A saída está em outra variável.
+  </div>
+</section>
+
+<!-- 19 · arroz: leitura -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · da conta à decisão</div>
+  <h2>O que o gestor faz com isso?</h2>
+  <ul class="bullets">
+    <li><strong>Curto prazo</strong> — com a lavoura plantada, colher ainda é racional se o preço cobrir o custo <em>que falta desembolsar</em>: decisão de MB, não de LE.</li>
+    <li><strong>Comercialização</strong> — PE de preço em mãos, cada centavo acima de R$ 67,40 recupera desembolso; escalonar venda e armazenar viram decisões calculadas.</li>
+    <li><strong>Próxima safra</strong> — replantar exige cenário: o pessimista repete 2025/26. Reduzir área, cortar custo, arrendar? A conta da T5 e a desta aula, juntas, na mesa.</li>
+  </ul>
+  <p class="note">É a situação real de milhares de produtores gaúchos nesta safra — e o motivo de o PE ser a primeira conta do técnico, não a última.</p>
+</section>
+
+<!-- 20 · soja: cenário-base -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · soja em Santa Maria</div>
+  <h2>O cenário-base da nossa soja</h2>
+  <p>A lavoura da T2: 50 ha, 60 sc/ha esperadas, R$ 128/sc posto cooperativa. Custos didáticos por hectare — COE R$ 4.480 e CT R$ 5.760 (equivalente a 45 sc/ha, na linha dos levantamentos da safra 25/26 no RS) — <em>atualizar em aula</em>.</p>
+  <div class="cascade">
+    <div class="row"><span>PE produção (COE) = 4.480 ÷ 128</span><span>35,0 sc/ha</span></div>
+    <div class="row total"><span>PE produção (CT) = 5.760 ÷ 128</span><span>45,0 sc/ha</span></div>
+    <div class="row final"><span>MS sobre o CT = (60 − 45) ÷ 60</span><span>25%</span></div>
+  </div>
+  <p class="note">Folga de 25% até o prejuízo econômico e de 41,7% até o caixa: projeto saudável — no cenário-base. Agora, o quadro se move.</p>
+</section>
+
+<!-- 21 · soja: o preço se move -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · por que o preço muda</div>
+  <h2>O preço da soja mora em Chicago — e no câmbio</h2>
+  <div class="formula">
+    <span class="label">Formação do preço interno</span>
+    preço interno ≈ (Chicago + prêmio) × <b>câmbio</b> − frete
+  </div>
+  <ul class="bullets compact">
+    <li><strong>Julho de 2026</strong> — indicador CEPEA/Paranaguá a R$ 141,02/sc (17/jul), maior nível em seis meses, +5,6% no mês; o interior do RS acompanha com desconto de frete.</li>
+    <li><strong>O dólar no mesmo mês</strong> — recuou de mais de R$ 5,20 no início de julho para R$ 5,09 (20/jul): a alta veio de Chicago e do prêmio, <em>apesar</em> do câmbio.</li>
+  </ul>
+  <p>Duas variáveis fora do controle do produtor, multiplicando-se. É exatamente por isso que o preço entra nos cenários como <strong>faixa</strong>, nunca como certeza.</p>
+</section>
+
+<!-- 22 · soja: tabela de cenários -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · os três futuros</div>
+  <h2>A mesma lavoura, três resultados</h2>
+  <table class="tbl">
+    <thead><tr><th>Cenário</th><th>Premissas</th><th class="num">RL (R$/ha)</th><th class="num">CT (R$/ha)</th><th class="num">LE (R$/ha)</th><th class="num">Projeto (50 ha)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pessimista</strong></td><td>48 sc × R$ 109 · CT +5%</td><td class="num">5.068</td><td class="num">6.048</td><td class="num"><b>−980</b></td><td class="num"><b>−49.000</b></td></tr>
+      <tr><td><strong>Base</strong></td><td>60 sc × R$ 128</td><td class="num">7.440</td><td class="num">5.760</td><td class="num">+1.680</td><td class="num">+84.000</td></tr>
+      <tr><td><strong>Otimista</strong></td><td>66 sc × R$ 138</td><td class="num">8.823</td><td class="num">5.760</td><td class="num">+3.063</td><td class="num">+153.150</td></tr>
+    </tbody>
+  </table>
+  <p class="note">RL = RB − 3,13% de encargos da venda (Funrural 1,63% + comercialização 1,5%), como na T2. Pessimista: produção −20%, preço −15%; otimista: produção +10%, preço firme como o de julho/2026.</p>
+</section>
+
+<!-- 23 · soja: leitura -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · o veredito</div>
+  <h2>Entre +153 mil e −49 mil</h2>
+  <p class="lead">O mesmo projeto, as mesmas 50 ha, o mesmo manejo — e um intervalo de R$ 200 mil entre o melhor e o pior futuro provável.</p>
+  <ul class="bullets">
+    <li>O pessimista dá prejuízo <strong>moderado e sobrevivível</strong> — quadro de "atenção": seguro agrícola e venda escalonada entram na conta, não por medo, mas por número.</li>
+    <li>Uma MS de 25% que parecia confortável <strong>desaparece</strong> quando preço e produção caem juntos — e no RS eles caem juntos: estiagem derruba a produção estadual sem derrubar o preço de Chicago.</li>
+    <li>Contraste com o arroz: lá nem o otimista fecha o CT — cenários também servem para dizer <strong>quando a atividade, e não o ano, é o problema</strong>.</li>
+  </ul>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 24 · passo 6 máquina de cenários -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 6 · cenários</div>
+  <h2>O passo 6 vira máquina de cenários</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 6 de 7</span><span>cenário: pessimista</span></div>
+    <div class="fields">
+      <div class="field"><label>Passo 1 · produtividade</label><span class="ph">−15 a −20% sobre a média histórica</span></div>
+      <div class="field"><label>Passo 1 · preço</label><span class="ph">−10 a −15% sobre o preço atual</span></div>
+      <div class="field"><label>Propagação</label><span class="ph">RL → MB → ML → LE recalculados na hora</span></div>
+      <div class="field"><label>Anotar</label><span class="ph">LE e MS do pessimista, antes de restaurar a base</span></div>
+    </div>
+  </div>
+  <p class="note">O simulador propaga sozinho: mexer no passo 1 e <strong>ler o passo 6</strong>. Anotar antes de restaurar — o número pessimista some quando a base volta.</p>
+</section>
+
+<!-- 25 · tarefa de saída -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · a entrega</div>
+  <h2>Tarefa de saída: o cenário pessimista</h2>
+  <p>Cada grupo registra, no campo de observações do passo 6, o <strong>cenário pessimista do próprio projeto</strong>:</p>
+  <ul class="bullets">
+    <li><strong>As premissas</strong> — quanto de queda de produção e preço, e por quê (série da região, não palpite).</li>
+    <li><strong>O resultado</strong> — LE e MS no pessimista, comparados com a base.</li>
+    <li><strong>A decisão</strong> — o que o número recomenda: seguro? venda antecipada? escala menor? E o custo dessa proteção lançado no COE.</li>
+  </ul>
+  <div class="callout">
+    <strong>Critério de qualidade</strong>
+    "No pessimista dá prejuízo" não é análise. "Com −20% de produção o LE vai a −R$ 980/ha, sobrevivível por um ano; o seguro de R$ 190/ha se justifica" — isso é análise.
+  </div>
+</section>
+
+<!-- 26 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>PE de produção e de preço do projeto calculados (sobre COE e sobre CT)</li>
+    <li>MS do cenário-base anotada</li>
+    <li>Cenário pessimista rodado no simulador — LE e MS anotados</li>
+    <li>Premissas e decisão registradas no campo de observações do passo 6</li>
+    <li>Simulador restaurado ao cenário-base</li>
+  </ul>
+  <p class="note">Terminou antes? Rode também o otimista — e descubra se o seu projeto é investimento ou aposta.</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 27 · próxima aula -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>T7 — Crédito rural e fluxo de caixa</h2>
+  <p>Os cenários dizem <em>se</em> o projeto aguenta o ano ruim. A T7 pergunta <strong>com que dinheiro</strong> ele atravessa o ano: Plano Safra, enquadramento (Pronaf, Pronamp), custeio × investimento, e o fluxo de caixa que o banco vai querer ver.</p>
+  <ul class="bullets">
+    <li><strong>Revisar no site</strong> — Parte III, blocos 2 a 5 (função de produção, análise marginal, equilíbrio, cenários) + autoavaliação.</li>
+    <li><strong>Trazer para a T7</strong> — o cenário pessimista registrado; ele dimensiona o crédito e a proteção.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">As perguntas da T7</span>
+    Plano Safra · enquadramento · custeio × investimento · <b>fluxo de caixa</b>
+  </div>
+</section>
+
+<!-- 28 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T6 · Equilíbrio, análise marginal e cenários · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    <b>IRGA — Custos de Produção 2025/26</b> (publ. jun 2026) — CT R$ 15.770,36/ha, 174,79 sc/ha, preço de referência R$ 61,02/sc ·
+    <b>CEPEA/ESALQ</b> — indicador da soja Paranaguá R$ 141,02/sc em 17 jul 2026 ·
+    <b>Câmbio</b> — dólar a R$ 5,09 em 20 jul 2026 ·
+    Custos da soja: referência didática (CT ≈ 45 sc/ha, na linha dos levantamentos da safra 25/26 no RS) — atualizar em aula ·
+    Exemplo milho × ureia: Parte III.3 do site ·
+    Metodologia de custos: Matsunaga et al. (1976, IEA) ·
+    Estrutura conceitual conforme material da disciplina (Parte III, blocos 2–5 do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-3.html#fatores-producao">Parte III.2 — Fatores e função de produção</a> · <a href="parte-3.html#marginal">III.3 — Análise marginal</a> · <a href="parte-3.html#equilibrio">III.4 — Ponto de equilíbrio</a> · <a href="parte-3.html#cenarios">III.5 — Cenários</a> · <a href="parte-3.html#quiz">autoavaliação</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T6 · Equilíbrio e cenários</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T6 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
