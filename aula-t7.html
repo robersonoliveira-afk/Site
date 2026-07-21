@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<title>T7 — Crédito rural e fluxo de caixa · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 7 — Plano Safra, enquadramento, custeio × investimento, fluxo de caixa e capital de giro. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --terra-ink:#3D1E0E;
+  --accent:var(--terra);
+  --accent-text:#8A4322;
+  --accent-deep:#93492A;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--olive)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--terra-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--terra);border-color:var(--terra)}
+.sem-cell.now b,.sem-cell.now{color:var(--paper)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.bad{background:var(--critical-bg);border-left:4px solid var(--terra);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T7</div>
+    <div>
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1>Crédito rural e <em>fluxo de caixa</em></h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>Do <em>se</em> para o <em>como</em></h2>
+  <p>Os cenários da T6 disseram <em>se</em> o projeto aguenta o ano ruim. Hoje a pergunta é operacional: <strong>com que dinheiro ele atravessa o ciclo?</strong> Quando falta caixa, quanto falta, e qual linha de crédito — na taxa certa — cobre o buraco.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2"><b>S4</b>T2</div>
+    <div class="sem-cell m2"><b>S5</b>T3</div>
+    <div class="sem-cell m2"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3"><b>S9</b>T5</div>
+    <div class="sem-cell m3"><b>S10</b>T6</div>
+    <div class="sem-cell m3 now"><b>S11</b>T7</div>
+    <div class="sem-cell m3"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>O pessimista dimensiona o crédito</h2>
+  <ul class="bullets">
+    <li><strong>Da T6</strong> — o cenário pessimista registrado no passo 6: quanto o projeto pode perder num ano ruim e que proteção isso recomenda.</li>
+    <li><strong>Da P1 e da T5</strong> — COE, COT e CT conferidos; margens calculadas: o banco vai ler exatamente esses números.</li>
+    <li><strong>Da S2</strong> — croqui da propriedade e recibo do CAR: dois documentos do checklist de hoje já estão prontos.</li>
+  </ul>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    A seção de crédito do passo 0 do simulador: finalidade, enquadramento e documentos. A saída da aula é o enquadramento do projeto do grupo — justificado, não chutado.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>Lucro é resultado; <em>caixa</em> é sobrevivência</h2>
+  <p class="lead">Um projeto pode ser lucrativo no fim do ciclo e quebrar no meio dele. Na agricultura o desembolso se concentra no plantio e a receita só chega na colheita — entre os dois, alguém paga as contas.</p>
+  <ul class="bullets">
+    <li><strong>Fluxo de caixa</strong> — quando o dinheiro entra e sai, mês a mês?</li>
+    <li><strong>Capital de giro</strong> — de quanto o projeto precisa para atravessar o vale?</li>
+    <li><strong>Crédito rural</strong> — qual linha, a que taxa, com que documentos?</li>
+  </ul>
+</section>
+
+<!-- 5 · o problema do tempo -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · fluxo de caixa</div>
+  <h2>O problema do tempo</h2>
+  <p>O orçamento da T4 diz <strong>quanto</strong> custa; o fluxo de caixa diz <strong>quando</strong> custa. É a mesma planilha de custos distribuída no calendário — sementes em outubro, adubo em outubro e novembro, colheita em março, venda em abril.</p>
+  <p>Na pecuária de cria o descompasso é ainda maior: desembolso o ano inteiro, <strong>uma safra de terneiros por ano</strong>. No leite, o oposto: receita mensal, caixa mais equilibrado.</p>
+  <p class="note">Lucro e caixa medem coisas diferentes: o lucro compara receita e custo do ciclo; o caixa pergunta se há dinheiro na conta <em>neste mês</em>.</p>
+</section>
+
+<!-- 6 · estrutura do fluxo -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a estrutura</div>
+  <h2>Entradas, saídas, saldo</h2>
+  <table class="tbl">
+    <thead><tr><th>Grupo</th><th>O que entra</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Entradas</strong></td><td>venda da produção e subprodutos · financiamentos recebidos · outras receitas (arrendamento de pastagem, venda de refugo)</td></tr>
+      <tr><td><strong>Saídas</strong></td><td>todos os custos do orçamento, lançados no mês do desembolso · parcelas e juros de financiamento</td></tr>
+      <tr><td><strong>Saldo</strong></td><td>entradas − saídas do mês</td></tr>
+    </tbody>
+  </table>
+  <div class="formula">
+    <span class="label">O número que decide</span>
+    saldo acumulado do mês = saldo acumulado anterior + saldo do mês
+  </div>
+  <p class="note">O saldo <strong>acumulado</strong> revela o vale: o mês de maior déficit é a necessidade máxima de caixa do projeto.</p>
+</section>
+
+<!-- 7 · capital de giro -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · capital de giro</div>
+  <h2>O dinheiro que sustenta o ciclo</h2>
+  <p><strong>Capital de giro</strong> é o recurso que financia a operação entre o primeiro desembolso e o recebimento da receita. A necessidade muda de atividade para atividade:</p>
+  <table class="tbl">
+    <thead><tr><th>Atividade</th><th>Perfil do caixa</th><th>Capital de giro</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Grãos</strong></td><td>desembolso forte no plantio, receita em 4–6 meses</td><td>alto no início da safra</td></tr>
+      <tr><td><strong>Confinamento</strong></td><td>ração todos os dias por 90–120 dias, receita no fim</td><td>proporcional a cabeças × custo diário</td></tr>
+      <tr><td><strong>Leite</strong></td><td>desembolso diário, receita mensal</td><td>o mais equilibrado</td></tr>
+      <tr><td><strong>Perenes</strong></td><td>anos de formação sem receita</td><td>de longo prazo — linha de investimento</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Sem identificar o mês de maior déficit, o produtor descobre tarde que falta caixa — e vende mal, antecipado, para fechar o mês.</p>
+</section>
+
+<!-- 8 · crédito não é receita -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o erro clássico</div>
+  <h2>Crédito não é receita</h2>
+  <p>O financiamento entra no caixa, mas <strong>não é resultado</strong>: vai sair com juros. Lançar o crédito recebido como receita superestima o resultado e esconde o déficit — erro frequente em projetos de alunos.</p>
+  <div class="formula">
+    <span class="label">Onde cada coisa entra no fluxo</span>
+    crédito recebido  → entrada de <b>financiamento</b><br>
+    parcelas + juros  → saída de <b>despesa financeira</b>
+  </div>
+  <p class="note">Só o que ficou com o produtor no fim do ciclo é resultado. O fluxo de caixa separa o dinheiro que é seu do dinheiro que está de passagem.</p>
+</section>
+
+<!-- 9 · por que o crédito rural existe -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · crédito rural</div>
+  <h2>Por que existe crédito <em>rural</em></h2>
+  <p>Criado pela Lei nº 4.829/1965 e regulado pelo <strong>Manual de Crédito Rural (MCR)</strong> do Banco Central, o crédito rural existe porque o crédito livre é caro demais para financiar comida:</p>
+  <table class="tbl">
+    <thead><tr><th>Modalidade</th><th class="num">Taxa aprox. (a.a.)</th><th>Natureza</th></tr></thead>
+    <tbody>
+      <tr><td>Cartão de crédito rotativo</td><td class="num">~440%</td><td>livre — proibido para uso rural</td></tr>
+      <tr><td>Cheque especial</td><td class="num">~134%</td><td>livre — emergencial</td></tr>
+      <tr><td>Crédito rural — demais produtores</td><td class="num">12 a 20%</td><td>regulado pelo MCR</td></tr>
+      <tr><td>Agricultura empresarial (Plano Safra)</td><td class="num">8 a 12,5%</td><td>subsidiado — MAPA</td></tr>
+      <tr><td><strong>Agricultura familiar (Pronaf)</strong></td><td class="num"><b>0,5 a 7,5%</b></td><td>fortemente subsidiado — MDA</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A linha certa pode ser a diferença entre viabilidade e inviabilidade — e é o técnico quem enquadra o produtor nela.</p>
+</section>
+
+<!-- 10 · dois Planos Safra -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · Plano Safra 2026/27</div>
+  <h2>O Brasil tem <em>dois</em> Planos Safra</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Agricultura empresarial · MAPA</h3>
+      <p><strong>R$ 525,1 bilhões</strong> — custeio e comercialização R$ 384,9 bi; investimento R$ 140,2 bi.</p>
+      <ul class="bullets compact">
+        <li>Público: médio (Pronamp, R$ 72,6 bi) e grande produtor, cooperativas.</li>
+        <li>Linhas: Pronamp, Custeio Empresarial, Moderfrota, RenovAgro, PCA, Inovagro.</li>
+        <li>Juros 26/27: <strong>8,0 a 12,5% a.a.</strong></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Agricultura familiar · MDA</h3>
+      <p><strong>R$ 85,2 bilhões</strong> em crédito Pronaf — R$ 97,3 bi no pacote completo (Proagro, Garantia-Safra, ATER, compras públicas).</p>
+      <ul class="bullets compact">
+        <li>Público: famílias com DAP/CAF, renda anual até R$ 500 mil.</li>
+        <li>Linhas: Pronaf B, Custeio, Mais Alimentos, Mulher, Jovem, Bioeconomia.</li>
+        <li>Juros 26/27: <strong>0,5 a 7,5% a.a.</strong></li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Vigência: 1º de julho de 2026 a 30 de junho de 2027. Um mesmo produtor pode estar apto a um plano e não ao outro — confundir os dois é erro comum.</p>
+</section>
+
+<!-- 11 · enquadramento -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · enquadramento</div>
+  <h2>Quem é quem para o banco</h2>
+  <table class="tbl">
+    <thead><tr><th>Categoria</th><th>Critérios</th><th class="num">Juros custeio 26/27</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pronaf</strong></td><td>UFPA de até 4 módulos fiscais · mão de obra predominantemente familiar · renda bruta anual até R$ 500 mil · CAF-Pronaf válido</td><td class="num">0,5 a 7,5%</td></tr>
+      <tr><td><strong>Pronamp</strong></td><td>renda bruta anual até R$ 3,6 milhões · pelo menos 80% da renda vinda do agro</td><td class="num">9,0%</td></tr>
+      <tr><td><strong>Demais produtores</strong></td><td>acima dos tetos — sem limite de renda</td><td class="num">12,5%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Módulo fiscal é definido por município (INCRA) — em Santa Maria, 22 ha; 4 módulos = 88 ha. O enquadramento é a primeira linha do projeto que o banco confere.</p>
+</section>
+
+<!-- 12 · custeio × investimento -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · modalidades</div>
+  <h2>Custeio × investimento</h2>
+  <table class="tbl">
+    <thead><tr><th></th><th>Custeio</th><th>Investimento</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Financia</strong></td><td>o ciclo: insumos, tratos, colheita</td><td>bens duráveis: máquinas, benfeitorias, matrizes, implantação de pomar</td></tr>
+      <tr><td><strong>Prazo</strong></td><td>curto, casado com a safra</td><td>longo — anos, com carência</td></tr>
+      <tr><td><strong>Dimensionado por</strong></td><td>fluxo de caixa do ciclo (o vale)</td><td>payback, VPL e TIR do bem — a conta da T8</td></tr>
+      <tr><td><strong>No simulador</strong></td><td>juros como despesa financeira no passo de custeio</td><td>passos 5 e 6</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Há ainda comercialização (estocagem e venda) e industrialização (agroindústria própria ou cooperativa) — modalidades comuns aos dois planos.</p>
+</section>
+
+<!-- 13 · hierarquia Pronaf -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a lógica editorial do Pronaf</div>
+  <h2>O juro tem <em>intenção</em></h2>
+  <p>A hierarquia de taxas do custeio Pronaf 26/27 não é acaso — é política deliberada de preço do crédito:</p>
+  <div class="cascade">
+    <div class="row final"><span>agroecologia, orgânicos, sociobioeconomia</span><span>1,0% a.a.</span></div>
+    <div class="row final"><span>alimentos básicos (arroz, feijão, leite, FLV, ovos)</span><span>2,0% a.a.</span></div>
+    <div class="row"><span>demais produtos (milho, trigo, cana)</span><span>5,5% a.a.</span></div>
+    <div class="row total"><span>soja e bovinocultura de corte</span><span>7,5% a.a.</span></div>
+  </div>
+  <p>Quanto mais o sistema produtivo contribui para segurança alimentar e sustentabilidade, menor a taxa. Para o técnico, é premissa direta do orçamento: <strong>a mesma família tem custos financeiros muito diferentes conforme escolha feijão ou soja</strong>.</p>
+</section>
+
+<!-- 14 · juros no orçamento -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o custo do crédito no projeto</div>
+  <h2>Juros são custo — e vão para a planilha</h2>
+  <p>Quando o projeto usa custeio, os juros viram <strong>despesas financeiras</strong> do orçamento: valor financiado × taxa × fração do ano.</p>
+  <div class="formula">
+    <span class="label">Pronaf alimento básico · 2% a.a. · 6 meses</span>
+    R$ 100.000 × 2% × (6/12) = <b>R$ 1.000</b>
+  </div>
+  <div class="formula">
+    <span class="label">Pronamp · 9% a.a. · 6 meses</span>
+    R$ 100.000 × 9% × (6/12) = <b>R$ 4.500</b>
+  </div>
+  <div class="callout">
+    <strong>Regra de ouro do curso</strong>
+    Todo crédito declarado precisa reaparecer como custo — os juros no COE do projeto, na linha de despesas financeiras. Crédito sem juros na planilha é manejo sem custo: erro de reprovação.
+  </div>
+</section>
+
+<!-- 15 · CET -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · custo efetivo total</div>
+  <h2>A taxa do contrato não é o custo real</h2>
+  <p>O <strong>Custo Efetivo Total (CET)</strong> soma juros + IOF + taxa de cadastro + prêmio de seguro — e é o número que compara propostas de bancos diferentes. No crédito rural, o banco é obrigado a informá-lo antes da assinatura (MCR 2-3-15).</p>
+  <div class="formula">
+    <span class="label">Exemplo · custeio Pronamp por 6 meses</span>
+    taxa nominal:    9,0% a.a.<br>
+    CET sem seguro: ~14,0% a.a.  (+ IOF + cadastro)<br>
+    CET com seguro: <b>~23,5% a.a.</b>  (+ prêmio do Proagro ou seguro privado)
+  </div>
+  <div class="callout">
+    <strong>Venda casada é proibida (MCR 2-1-18)</strong>
+    O banco não pode condicionar o crédito rural a seguro de vida, título de capitalização, consórcio ou pacote de serviços. Encargo fora da lista do MCR 2-3-1 é cobrança vedada.
+  </div>
+</section>
+
+<!-- 16 · ZARC -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · ZARC, Proagro e seguro</div>
+  <h2>A data de plantio vira condição de crédito</h2>
+  <p>O <strong>ZARC</strong> (Zoneamento Agrícola de Risco Climático) indica, para cada município, cultura, solo e ciclo de cultivar, a janela de plantio de menor risco. Segui-lo é condição para:</p>
+  <ul class="bullets">
+    <li><strong>Proagro e Proagro Mais</strong> — amparo do financiamento em perda climática.</li>
+    <li><strong>Seguro rural (PSR)</strong> — subvenção federal ao prêmio do seguro privado.</li>
+    <li><strong>O próprio custeio</strong> — desde 2025/26, observância obrigatória nas operações acima de R$ 200 mil com recursos controlados.</li>
+  </ul>
+  <p class="note">Os parâmetros do ZARC vêm da análise de solo (química: validade 2 anos; física: 10 anos) — o laudo técnico vira condição de cobertura. Na Campanha, com estiagem recorrente, decidir a data de semeadura é decidir o risco que o projeto assume.</p>
+</section>
+
+<!-- 17 · checklist de documentos -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · documentos para o banco</div>
+  <h2>O checklist em quatro grupos</h2>
+  <table class="tbl">
+    <thead><tr><th>Grupo</th><th>Núcleo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 · Produtor</strong></td><td>proposta assinada · CAF-Pronaf válido (Pronaf) ou comprovação de renda (Pronamp)</td></tr>
+      <tr><td><strong>2 · Empreendimento</strong></td><td>projeto técnico (o orçamento que vocês estão montando) · licença ambiental · ficha sanitária (pecuária) · código FINAME (máquinas)</td></tr>
+      <tr><td><strong>3 · Imóvel rural</strong></td><td>recibo do CAR · matrícula ou documento de posse · contrato de arrendamento registrado (terra de terceiros)</td></tr>
+      <tr><td><strong>4 · Garantia</strong></td><td>penhor da safra, alienação do bem financiado, aval ou hipoteca, conforme porte</td></tr>
+    </tbody>
+  </table>
+  <p class="note">O croqui e o recibo do CAR do grupo 3 vocês produziram na S2 — o projeto começou pelos documentos sem saber. Custeio pede menos (projeto + CAF + ZARC); investimento pede a lista completa.</p>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 18 · soja vai ao banco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a soja de Santa Maria vai ao banco</div>
+  <h2>O caixa da nossa lavoura, mês a mês</h2>
+  <p class="note">A lavoura da T2: 50 ha × 60 sc/ha × R$ 128/sc → RL R$ 371.981. COE R$ 4.480/ha → desembolso total R$ 224.000. Distribuição didática do desembolso — atualizar em aula.</p>
+  <div class="cascade">
+    <div class="row minus"><span>out–dez · preparo, semente, adubo (~60% do COE)</span><span>−134.400</span></div>
+    <div class="row minus"><span>jan–fev · tratos e fungicidas (~30%)</span><span>−67.200</span></div>
+    <div class="row bad"><span>mar · colheita e frete (~10%) → fundo do vale</span><span>−224.000</span></div>
+    <div class="row final"><span>abr · venda: entra a RL de 371.981</span><span>+147.981</span></div>
+  </div>
+  <p class="note">O projeto é lucrativo desde o orçamento — e passa <strong>sete meses no vermelho</strong>. O saldo acumulado de março é a pergunta que o banco responde.</p>
+</section>
+
+<!-- 19 · capital de giro do caso -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o tamanho do vale</div>
+  <h2>R$ 224 mil entre o plantio e a venda</h2>
+  <div class="formula">
+    <span class="label">Necessidade de capital de giro</span>
+    capital de giro = maior déficit do saldo acumulado = <b>R$ 224.000</b>
+  </div>
+  <p>Alguém precisa colocar esse dinheiro na lavoura por até sete meses. As opções são duas — e nenhuma é de graça:</p>
+  <ul class="bullets">
+    <li><strong>Capital próprio</strong> — custa o que deixaria de render aplicado (custo de oportunidade).</li>
+    <li><strong>Crédito de custeio</strong> — custa a taxa da linha em que o produtor se enquadra.</li>
+  </ul>
+  <p class="note">É por isso que o enquadramento vem antes do orçamento fechar: a linha muda o custo financeiro — e o custo financeiro muda o resultado.</p>
+</section>
+
+<!-- 20 · custo do dinheiro -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o mesmo vale, quatro custos</div>
+  <h2>Quanto custam os R$ 224 mil por 6 meses?</h2>
+  <table class="tbl">
+    <thead><tr><th>Fonte do dinheiro</th><th class="num">Taxa (a.a.)</th><th class="num">Juros no semestre</th></tr></thead>
+    <tbody>
+      <tr><td>Pronaf custeio · soja</td><td class="num">7,5%</td><td class="num">R$ 8.400</td></tr>
+      <tr><td>Pronamp</td><td class="num">9,0%</td><td class="num">R$ 10.080</td></tr>
+      <tr><td>Custeio empresarial</td><td class="num">12,5%</td><td class="num">R$ 14.000</td></tr>
+      <tr><td>Cheque especial (livre)</td><td class="num">~134%</td><td class="num"><b>~R$ 150.000</b></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Juros simples, aproximação didática. No cheque especial, o custo do dinheiro consome o lucro inteiro do projeto (MB de R$ 147.981) — é a diferença entre política agrícola e emergência bancária. Se a mesma família plantasse feijão: 2% a.a. = R$ 2.240.</p>
+</section>
+
+<!-- 21 · Selic e capital próprio -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · e se usar dinheiro próprio?</div>
+  <h2>Capital próprio também tem preço</h2>
+  <p>Com a Selic a <strong>14,25% a.a.</strong> (Copom, jun 2026), os R$ 224 mil aplicados renderiam <strong>~R$ 15.960 no semestre</strong>. Esse é o custo de oportunidade de enterrá-los na lavoura — o custo implícito que o CT já cobra desde a T4.</p>
+  <div class="cascade">
+    <div class="row"><span>financiar no Pronaf soja (7,5%) e manter o capital aplicado</span><span>−8.400 +15.960</span></div>
+    <div class="row final"><span>resultado financeiro da decisão</span><span>+7.560</span></div>
+  </div>
+  <p>Com juro subsidiado abaixo da Selic, <strong>tomar crédito pode ser racional mesmo para quem tem o dinheiro</strong> — desde que a conta use o CET, e não a taxa nominal: o CET com seguro (~23,5% no exemplo Pronamp) pode inverter o sinal.</p>
+</section>
+
+<!-- 22 · painel BCB -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o crédito rural do RS em dados</div>
+  <h2>496 municípios no painel</h2>
+  <p>O anexo <strong>credito.html</strong> do site carrega a Matriz de Dados do Crédito Rural (BCB): contratos reais de custeio e investimento, por produto e por município do RS.</p>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Painel do crédito rural</b> · anexo da Parte IV</span><span>fonte: MDCR/BCB</span></div>
+    <div class="fields">
+      <div class="field"><label>Aba municipal</label><span class="ph">buscar o município do projeto do grupo</span></div>
+      <div class="field"><label>Custeio × investimento</label><span class="ph">quanto entra por ano em cada modalidade?</span></div>
+      <div class="field"><label>Por produto</label><span class="ph">qual atividade domina o crédito local?</span></div>
+      <div class="field"><label>Comparativo</label><span class="ph">seu município × COREDE × regional Emater</span></div>
+    </div>
+  </div>
+  <p class="note">Consulta em aula: cada grupo abre o próprio município. O padrão local de crédito diz muito sobre o que o banco da praça está acostumado a financiar.</p>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 23 · passo 0 crédito -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 0 · seção crédito</div>
+  <h2>O projeto declara se vai ao banco</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 0 de 7</span><span>seção 2 · crédito</span></div>
+    <div class="fields">
+      <div class="field"><label>Projeto para tomada de crédito?</label><span class="ph">sim / não — se não, viabilidade pura</span></div>
+      <div class="field"><label>Finalidade</label><span class="ph">custeio ou investimento</span></div>
+      <div class="field"><label>Enquadramento</label><span class="ph">Pronaf · Pronamp · demais produtores</span></div>
+      <div class="field"><label>Documentos e módulos fiscais</label><span class="ph">checklist + módulo fiscal do município</span></div>
+    </div>
+  </div>
+  <p class="note">O enquadramento aqui é rótulo; os juros vocês lançam no passo de custeio, como despesa financeira — o rótulo e o custo precisam contar a mesma história.</p>
+</section>
+
+<!-- 24 · tarefa de saída -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · a entrega</div>
+  <h2>Tarefa de saída: o enquadramento justificado</h2>
+  <p>Cada grupo preenche a seção de crédito do passo 0 e registra nas observações:</p>
+  <ul class="bullets">
+    <li><strong>O enquadramento</strong> — Pronaf, Pronamp ou demais, com o critério que o sustenta (módulos fiscais, renda, CAF).</li>
+    <li><strong>A linha e a taxa</strong> — qual linha do Plano Safra 26/27 financia o projeto, e a que juros.</li>
+    <li><strong>Os juros na planilha</strong> — a despesa financeira lançada no custeio, coerente com valor, taxa e prazo do vale de caixa.</li>
+  </ul>
+  <div class="callout">
+    <strong>Critério de qualidade</strong>
+    "Vamos usar Pronaf" não é enquadramento. "UFPA de 2 módulos fiscais, renda de R$ 190 mil, CAF ativo → Pronaf custeio soja a 7,5%; R$ 110 mil por 6 meses = R$ 4.125 de juros no COE" — isso é enquadramento.
+  </div>
+</section>
+
+<!-- 25 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Seção de crédito do passo 0 preenchida (finalidade + enquadramento)</li>
+    <li>Enquadramento justificado nas observações, com critério</li>
+    <li>Linha e taxa do Plano Safra 26/27 identificadas para o projeto</li>
+    <li>Juros do custeio lançados como despesa financeira na planilha</li>
+    <li>Município do projeto consultado no painel de crédito</li>
+  </ul>
+  <p class="note">Terminou antes? Esboce o fluxo de caixa mensal do projeto e encontre o fundo do vale — é o valor que o banco vai financiar.</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 26 · próxima aula -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>T8 — a aula se divide por turma</h2>
+  <p>Definido <em>com que dinheiro</em>, falta a última pergunta: <strong>o investimento se paga?</strong> Payback, VPL e TIR — e a análise plurianual dos perenes — em duas versões da mesma aula:</p>
+  <ul class="bullets">
+    <li><strong>Técnico em Agropecuária</strong> — UA e lotação, custos no confinamento e o leite da T5 na calculadora de rebanho.</li>
+    <li><strong>Agricultura de Precisão</strong> — a tecnologia como decisão econômica: em quantos hectares o monitor de colheita se paga? (a pergunta que a T6 deixou armada).</li>
+  </ul>
+  <ul class="bullets">
+    <li><strong>Revisar no site</strong> — Parte IV, blocos 1 e 2 (crédito e fluxo de caixa) + autoavaliação + painel de crédito do seu município.</li>
+    <li><strong>Trazer para a T8</strong> — o enquadramento registrado; o investimento da T8 vai procurar a linha dele.</li>
+  </ul>
+</section>
+
+<!-- 27 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T7 · Crédito rural e fluxo de caixa · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    <b>Plano Safra 2026/27</b> (MAPA e MDA, jun 2026) — agricultura empresarial R$ 525,1 bi; Pronaf R$ 85,2 bi; taxas por linha conforme Parte IV.1 do site; vigência 1º jul 2026 – 30 jun 2027 ·
+    <b>BCB</b> — Selic 14,25% a.a. (Copom, 17 jun 2026) · Manual de Crédito Rural (MCR) ·
+    <b>Matriz de Dados do Crédito Rural (MDCR/BCB)</b> — painel credito.html ·
+    Custos da soja: referência didática das T2 e T6 (COE R$ 4.480/ha) — atualizar em aula ·
+    Distribuição mensal do desembolso: didática ·
+    Metodologia de custos: Matsunaga et al. (1976, IEA) ·
+    Estrutura conceitual conforme material da disciplina (Parte IV, blocos 1–2 do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-4.html#credito">Parte IV.1 — Crédito rural e financiamento</a> · <a href="parte-4.html#fluxo-caixa">IV.2 — Fluxo de caixa e capital de giro</a> · <a href="parte-4.html#quiz">autoavaliação</a> · <a href="credito.html">painel do crédito rural do RS</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T7 · Crédito e caixa</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T7 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
