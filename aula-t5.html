@@ -100,6 +100,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
 .cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
 .cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.cover .cred{margin-top:3vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:clamp(34px,6vh,54px);width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
 .hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
 
 /* mapa do semestre */
@@ -193,7 +196,10 @@ a{color:var(--accent-text)}
       <h1>Margens e <em>indicadores</em></h1>
     </div>
   </div>
-  <p class="sub">Prof. Róberson Macedo de Oliveira · Colégio Politécnico da UFSM</p>
+  <div class="cred">
+    <img src="logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span>Colégio Politécnico da UFSM</span></div>
+  </div>
   <div class="hint">→ avançar · ← voltar</div>
 </section>
 
