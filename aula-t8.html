@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<title>T8 — Investimento e módulos aplicados · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 8 — Payback, VPL e TIR; perenes, pecuária, fruticultura e agricultura de precisão integradas pelo mesmo método. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --terra-ink:#3D1E0E;
+  --accent:var(--terra);
+  --accent-text:#8A4322;
+  --accent-deep:#93492A;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--olive)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--terra-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--terra);border-color:var(--terra)}
+.sem-cell.now b,.sem-cell.now{color:var(--paper)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.bad{background:var(--critical-bg);border-left:4px solid var(--terra);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T8</div>
+    <div>
+      <div class="mv">Movimento 3 · <b>Decidir</b></div>
+      <h1>O investimento se <em>paga</em>?</h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>A última aula de <em>conceito</em> novo</h2>
+  <p>A T7 respondeu com que dinheiro o projeto atravessa o ano. Hoje, a última pergunta do curso: <strong>o que dura anos — máquina, pomar, rebanho, tecnologia — vale o que custa?</strong> E uma demonstração: o método que vocês aprenderam no hectare funciona em qualquer atividade.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2"><b>S4</b>T2</div>
+    <div class="sem-cell m2"><b>S5</b>T3</div>
+    <div class="sem-cell m2"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3"><b>S9</b>T5</div>
+    <div class="sem-cell m3"><b>S10</b>T6</div>
+    <div class="sem-cell m3"><b>S11</b>T7</div>
+    <div class="sem-cell m3 now"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>Todas as peças estão na mesa</h2>
+  <ul class="bullets">
+    <li><strong>Da T4</strong> — o trator de R$ 200 mil depreciado; hoje ele volta como decisão: comprar ou terceirizar?</li>
+    <li><strong>Da T5</strong> — o leite com ML negativa; hoje perguntamos se investir tira a atividade do buraco.</li>
+    <li><strong>Da T6</strong> — a pergunta armada: o equipamento de AP se paga em quantos hectares?</li>
+    <li><strong>Da T7</strong> — o enquadramento registrado; o investimento de hoje vai procurar a linha dele.</li>
+  </ul>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    Os passos 5 e 6 do simulador: implantação de perenes e a avaliação plurianual (VPL, TIR, payback). Grupos de ciclo anual aplicam o payback ao principal investimento do projeto.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>Um ano não conta a história inteira</h2>
+  <p class="lead">Até aqui, tudo coube num ciclo: plantar, colher, vender. Mas trator, pomar, aviário e piloto automático atravessam muitos ciclos — e julgá-los por um ano é o erro que esta aula corrige.</p>
+  <ul class="bullets">
+    <li><strong>Payback</strong> — em quanto tempo o dinheiro volta?</li>
+    <li><strong>VPL</strong> — o projeto vale mais que deixar o dinheiro aplicado?</li>
+    <li><strong>TIR</strong> — qual o rendimento anual do projeto, para comparar com a Selic?</li>
+  </ul>
+</section>
+
+<!-- 5 · valor do dinheiro no tempo -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o valor do dinheiro no tempo</div>
+  <h2>R$ 1 hoje não é R$ 1 em cinco anos</h2>
+  <p>Quem tem R$ 1 hoje pode aplicá-lo — à Selic de <strong>14,25% a.a.</strong>, ele vira R$ 1,95 em cinco anos. Receber o mesmo R$ 1 só daqui a cinco anos custa, portanto, quase metade do valor.</p>
+  <p>Investimentos longos comparam desembolsos <em>de hoje</em> com receitas <em>de daqui a anos</em>. Sem trazer tudo para a mesma data, a comparação é ilusória — e é exatamente isso que VPL e TIR fazem.</p>
+  <p class="note">É o custo de oportunidade da T4 esticado no tempo: a alternativa de aplicar o capital acompanha o projeto ano a ano, não só no ciclo.</p>
+</section>
+
+<!-- 6 · payback -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · payback</div>
+  <h2>Payback: quando o dinheiro volta</h2>
+  <p>O mais intuitivo dos três: quantos anos até os retornos acumulados igualarem o investimento inicial.</p>
+  <div class="formula">
+    <span class="label">Payback simples</span>
+    payback = investimento ÷ retorno anual<br>
+    pomar de 10 ha: 200.000 ÷ 40.000 = <b>5 anos</b>
+  </div>
+  <p><strong>Limitação:</strong> ignora que R$ 1 hoje vale mais que R$ 1 no ano 5 — e ignora tudo o que acontece depois do retorno. Serve como medida de risco no tempo: quanto mais longo, mais exposto a seca, preço e juro.</p>
+</section>
+
+<!-- 7 · VPL -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · valor presente líquido</div>
+  <h2>VPL: o projeto contra a renda fixa</h2>
+  <p>O <strong>VPL</strong> traz todos os fluxos do projeto — desembolsos e receitas, ano a ano — para o valor de hoje, descontados por uma taxa: normalmente a Selic ou o custo de oportunidade do capital.</p>
+  <table class="tbl">
+    <thead><tr><th>Resultado</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td><strong>VPL &gt; 0</strong></td><td>viável — gera valor acima da taxa de desconto</td></tr>
+      <tr><td><strong>VPL = 0</strong></td><td>empata com a alternativa de aplicar</td></tr>
+      <tr><td><strong>VPL &lt; 0</strong></td><td>destrói valor frente à renda fixa — não recomendado</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Com a Selic a 14,25%, a régua está alta: um projeto precisa render muito para vencer a aplicação — o juro alto trava investimento longo, no campo e fora dele.</p>
+</section>
+
+<!-- 8 · TIR -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · taxa interna de retorno</div>
+  <h2>TIR: o rendimento anual do projeto</h2>
+  <p>A <strong>TIR</strong> é a taxa de desconto que zera o VPL — na prática, o juro que o projeto "paga" sobre o capital investido. Compara-se direto com a Selic:</p>
+  <div class="formula">
+    <span class="label">Regra de decisão</span>
+    TIR &gt; Selic → <b>projeto viável</b><br>
+    TIR &lt; Selic → melhor aplicar em renda fixa
+  </div>
+  <div class="callout success">
+    <strong>Nota pedagógica</strong>
+    VPL e TIR se calculam em planilha (funções VPL e TIR do Excel/LibreOffice) — o simulador faz isso no passo 6. O trabalho do técnico não é a conta à mão: é montar o fluxo de caixa correto e interpretar o resultado.
+  </div>
+</section>
+
+<!-- 9 · perenes: formação -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · culturas perenes</div>
+  <h2>Perenes: anos de custo antes da receita</h2>
+  <p>Fruticultura e silvicultura têm uma fase que a lavoura anual não conhece: a <strong>formação</strong> — desembolso contínuo, receita nenhuma.</p>
+  <table class="tbl">
+    <thead><tr><th>Cultura</th><th>Primeira colheita</th><th>Plena produção</th></tr></thead>
+    <tbody>
+      <tr><td>Banana</td><td class="num">1 a 1,5 ano</td><td class="num">—</td></tr>
+      <tr><td>Maçã, pêssego</td><td class="num">2 a 3 anos</td><td class="num">—</td></tr>
+      <tr><td><strong>Uva</strong></td><td class="num">2 a 3 anos</td><td class="num">5 a 7 anos</td></tr>
+      <tr><td>Citros</td><td class="num">3 a 4 anos</td><td class="num">—</td></tr>
+      <tr><td>Eucalipto</td><td class="num">corte aos 6, 7 ou 15 anos</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+  <p class="note">O custo de implantação não é custo da safra: é investimento, amortizado ao longo dos anos de produção — como a depreciação da T4.</p>
+</section>
+
+<!-- 10 · erro clássico perenes -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o erro clássico em perenes</div>
+  <h2>Julgar o pomar pelo ano 2</h2>
+  <p>Na formação, o resultado anual é negativo <strong>por definição</strong>. Comparar o "lucro" do pomar no ano 2 com a soja do vizinho condena qualquer perene — e é análise errada.</p>
+  <ul class="bullets">
+    <li><strong>Fase de implantação</strong> (ano 0) — investimento inicial: mudas, preparo, sistema de condução.</li>
+    <li><strong>Fase de formação</strong> (anos 1 a N) — custo capitalizado: poda, adubação, tratos sem receita.</li>
+    <li><strong>Fase de produção</strong> (ano N em diante) — COE/COT anuais normais, como qualquer atividade.</li>
+  </ul>
+  <p class="note">A viabilidade só aparece olhando o projeto inteiro, ano a ano, com o valor do dinheiro no tempo — VPL, TIR e payback existem para isso.</p>
+</section>
+
+<!-- 11 · método viaja: pecuária unidades -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o método viaja · pecuária</div>
+  <h2>Do hectare à cabeça: só muda a unidade</h2>
+  <p>COE, COT, CT, margens, PE e fluxo de caixa valem no rebanho como na lavoura. O que muda são as unidades e os coeficientes técnicos:</p>
+  <div class="formula">
+    <span class="label">Unidade animal · padrão Embrapa</span>
+    1 UA = 450 kg de peso vivo · novilha de 250 kg = <b>0,56 UA</b><br>
+    taxa de lotação = UA ÷ ha do pasto
+  </div>
+  <div class="formula">
+    <span class="label">Ganho médio diário · eficiência do corte</span>
+    GMD 1,2 kg/dia × 90 dias = <b>108 kg</b> de ganho por animal
+  </div>
+  <p class="note">Superlotação degrada o pasto e derruba o GMD — o excesso de insumo com resposta negativa da T6, agora em kg de pasto por kg de boi.</p>
+</section>
+
+<!-- 12 · pecuária: kg como produto -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o método viaja · corte e leite</div>
+  <h2>O produto vira kg — ou litro</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Corte · o kg produzido</h3>
+      <ul class="bullets compact">
+        <li>custo por kg = CT ÷ kg produzidos no ciclo</li>
+        <li>PE de preço = COE ÷ kg → preço mínimo do kg</li>
+        <li>PE de GMD: o ganho diário mínimo que fecha a conta ao preço de mercado</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Leite · o litro</h3>
+      <ul class="bullets compact">
+        <li>custo por litro = CT ÷ litros do período (ref. Embrapa familiar: R$ 1,50–2,20/L)</li>
+        <li>concentrado:leite acima de 0,5 kg/L = alerta de eficiência</li>
+        <li>vaca seca gera custo sem receita — entra no custo médio do rebanho</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Mel, frango, suíno, peixe: muda a unidade e o indicador (conversão alimentar, kg/caixa) — a pergunta é sempre quanto custa a unidade e a que preço ela se paga.</p>
+</section>
+
+<!-- 13 · método viaja: AP -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o método viaja · precisão</div>
+  <h2>Tecnologia é decisão econômica</h2>
+  <p>Do ponto de vista do gestor, a pergunta nunca é "o que a tecnologia faz?" — é <strong>"quanto ela economiza ou ganha por safra?"</strong>. Respondida, a ferramenta de AP vira um investimento como outro qualquer:</p>
+  <table class="tbl">
+    <thead><tr><th>Ferramenta</th><th class="num">Custo (ref.)</th><th>Impacto econômico</th></tr></thead>
+    <tbody>
+      <tr><td>Piloto automático + RTK</td><td class="num">15–50 mil</td><td>elimina sobreposição: 5–8% em insumos e combustível</td></tr>
+      <tr><td>Taxa variável</td><td class="num">20–80 mil</td><td>10–20% em fertilizantes em lavoura heterogênea</td></tr>
+      <tr><td>Mapa de produtividade</td><td class="num">5–20 mil</td><td>zonas fracas identificadas para decisão por talhão</td></tr>
+      <tr><td>Drone</td><td class="num">10–80 mil</td><td>detecção precoce: 1–2 aplicações de fungicida a menos</td></tr>
+      <tr><td>Sensoriamento (Sentinel)</td><td class="num">grátis</td><td>NDVI subsidia defensivos e adubação foliar</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 14 · escala -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a variável escondida</div>
+  <h2>A escala decide antes da tecnologia</h2>
+  <p>A economia da AP é <em>percentual sobre a área</em>; o custo do equipamento é <em>fixo</em>. A mesma ferramenta que se paga em 2 anos numa propriedade de 500 ha pode nunca se pagar em 50 ha.</p>
+  <div class="formula">
+    <span class="label">A conta que decide</span>
+    ganho líquido/ano = economia (% × gasto da área) − depreciação<br>
+    payback = investimento ÷ ganho líquido
+  </div>
+  <p class="note">Vale para o trator, o resfriador e o drone tanto quanto para o piloto automático: antes de perguntar se a tecnologia funciona, pergunte em que escala ela funciona <strong>aqui</strong>.</p>
+</section>
+
+<!-- 15 · síntese do método -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · síntese</div>
+  <h2>Um método, quatro mundos</h2>
+  <table class="tbl">
+    <thead><tr><th>Objeto</th><th>Investimento</th><th>Retorno anual</th><th>Ferramenta</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Máquina</strong> (agricultura)</td><td>trator, colheitadeira</td><td>serviço terceirizado evitado</td><td>payback, TIR × Selic</td></tr>
+      <tr><td><strong>Pomar</strong> (fruticultura)</td><td>implantação + formação</td><td>produção plena após N anos</td><td>análise plurianual: VPL, TIR</td></tr>
+      <tr><td><strong>Rebanho</strong> (pecuária)</td><td>instalações, matrizes</td><td>kg ou litros produzidos</td><td>custo/kg, PE, payback das instalações</td></tr>
+      <tr><td><strong>Tecnologia</strong> (AP)</td><td>equipamento embarcado</td><td>economia de insumo por safra</td><td>ganho líquido, payback, escala</td></tr>
+    </tbody>
+  </table>
+  <p class="note">É o mesmo fluxo de caixa da T7, esticado em anos e descontado pelo tempo. Quem domina o método decide em qualquer um dos quatro — o ato 3 prova isso com números.</p>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 16 · caso 1 trator -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · agricultura · o trator da T4</div>
+  <h2>Comprar o trator ou pagar hora-máquina?</h2>
+  <p class="note">O trator 75 cv da T4: R$ 200.000, residual 20% no ano 10. Uso: 400 h/ano que hoje são terceirizadas a R$ 180/h. Custo operacional próprio ~R$ 90/h. Referência didática — atualizar em aula.</p>
+  <div class="cascade">
+    <div class="row"><span>terceirização evitada: 400 h × 180</span><span>+72.000/ano</span></div>
+    <div class="row minus"><span>operação própria: 400 h × 90</span><span>−36.000/ano</span></div>
+    <div class="row total"><span>fluxo de caixa anual</span><span>+36.000/ano</span></div>
+    <div class="row"><span>payback = 200.000 ÷ 36.000</span><span>5,6 anos</span></div>
+    <div class="row bad"><span>TIR (10 anos + residual 40.000) ≈ 13,8% × Selic 14,25%</span><span>VPL ≈ −3.500</span></div>
+  </div>
+  <p class="note"><strong>Veredito: empate técnico com a renda fixa.</strong> A decisão sai do não-monetário: disponibilidade na janela de plantio, filas do terceirizado, uso além das 400 h. Com 600 h/ano, a conta muda — refaçam.</p>
+</section>
+
+<!-- 17 · caso 2 vinhedo fluxo -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · fruticultura · vinhedo</div>
+  <h2>O vinhedo, ano a ano</h2>
+  <p class="note">2 ha de uva em espaldeira (mudas, postes e fios dimensionados na calculadora do site). Implantação R$ 120.000; formação −R$ 10.000/ano; primeira colheita no ano 3; plena produção +R$ 45.000/ano. Referência didática — atualizar em aula.</p>
+  <div class="cascade">
+    <div class="row minus"><span>ano 0 · implantação</span><span>−120.000</span></div>
+    <div class="row minus"><span>anos 1–2 · formação (acumulado no fundo do vale)</span><span>−140.000</span></div>
+    <div class="row"><span>ano 3 · primeira colheita parcial</span><span>+15.000</span></div>
+    <div class="row"><span>anos 4+ · plena produção</span><span>+45.000/ano</span></div>
+    <div class="row final"><span>acumulado vira positivo no ano 6</span><span>payback ≈ 6 anos</span></div>
+  </div>
+  <p class="note">Dois anos e meio pagando para trabalhar, seis até o dinheiro voltar — é isso que a linha de investimento com carência (T7) existe para financiar.</p>
+</section>
+
+<!-- 18 · caso 2 vinhedo veredito -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · fruticultura · o veredito</div>
+  <h2>Viável — mas só a análise plurianual enxerga</h2>
+  <div class="formula">
+    <span class="label">Avaliação em 15 anos · taxa de desconto = Selic 14,25%</span>
+    VPL ≈ <b>+R$ 42.600</b> · TIR ≈ <b>18,6% a.a.</b> &gt; Selic
+  </div>
+  <ul class="bullets">
+    <li><strong>No ano 2</strong>, o caixa acumulado está em −R$ 140.000 e o resultado anual é negativo: quem julga pelo ano abandona um bom projeto.</li>
+    <li><strong>No horizonte inteiro</strong>, o vinhedo rende 18,6% a.a. — vence a renda fixa com folga de 4 pontos.</li>
+    <li><strong>O risco mora no meio</strong>: granizo ou preço fraco nos anos 4–6 desloca o payback — o cenário pessimista da T6 vale dobrado em perenes.</li>
+  </ul>
+</section>
+
+<!-- 19 · caso 3 confinamento -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 3 · pecuária de corte</div>
+  <h2>Confinamento: o método em kg</h2>
+  <p class="note">Lote de 100 bois, 90 dias, GMD 1,2 kg/dia → 10.800 kg produzidos. CT R$ 101.000; COE R$ 88.000; venda a R$ 13,50/kg vivo. Valores ilustrativos do site — usar os da planilha do grupo.</p>
+  <div class="cascade">
+    <div class="row"><span>custo por kg = 101.000 ÷ 10.800</span><span>R$ 9,35/kg</span></div>
+    <div class="row total"><span>PE de preço = 88.000 ÷ 10.800</span><span>R$ 8,15/kg</span></div>
+    <div class="row final"><span>MS de preço = (13,50 − 8,15) ÷ 13,50</span><span>≈ 40%</span></div>
+  </div>
+  <p class="note">A mesma T6, em outra unidade. E o olhar da T7: o grosso do desembolso é a compra do boi magro no dia zero + ração diária por 90 dias — capital de giro alto e concentrado, embora o ciclo seja curto. O investimento aqui são as instalações; o lote é giro.</p>
+</section>
+
+<!-- 20 · caso 4 leite -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 4 · leite · a T5 revisitada</div>
+  <h2>Investir numa atividade com margem negativa?</h2>
+  <p class="note">O caso da T5: 30 vacas, 219.000 L/ano; por litro RL 2,40 · COE 2,05 · COT 2,45 → MB +0,35 · ML −0,05. Referência didática padrão Campo Futuro — atualizar em aula.</p>
+  <div class="cascade">
+    <div class="row"><span>resfriador a granel: investimento</span><span>30.000</span></div>
+    <div class="row"><span>fim do desconto de qualidade: +R$ 0,08/L × 219.000 L</span><span>+17.520/ano</span></div>
+    <div class="row final"><span>payback = 30.000 ÷ 17.520 · e a ML vai de −0,05 a +0,03/L</span><span>1,7 ano</span></div>
+  </div>
+  <ul class="bullets compact">
+    <li><strong>A ordem importa</strong> — investir primeiro no que move o custo ou o preço <em>por litro</em>; ampliar o rebanho com ML negativa multiplica o prejuízo por vaca.</li>
+    <li><strong>Estrutura do rebanho</strong> — vacas secas e novilhas na calculadora do site: quantos litros pagam o custo do rebanho inteiro, não só das vacas em lactação.</li>
+  </ul>
+</section>
+
+<!-- 21 · caso 5 AP -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 5 · precisão · a pergunta da T6</div>
+  <h2>Em quantos hectares a AP se paga?</h2>
+  <p class="note">Piloto automático: R$ 35.000, vida útil 8 anos (depreciação R$ 4.375/ano). Economia: 7% de sobreposição eliminada sobre o gasto de adubação da área.</p>
+  <table class="tbl">
+    <thead><tr><th></th><th class="num">500 ha</th><th class="num">50 ha</th></tr></thead>
+    <tbody>
+      <tr><td>Gasto com adubação (R$ 600/ha)</td><td class="num">300.000</td><td class="num">30.000</td></tr>
+      <tr><td>Economia de 7%</td><td class="num">21.000/ano</td><td class="num">2.100/ano</td></tr>
+      <tr><td>− depreciação</td><td class="num">4.375</td><td class="num">4.375</td></tr>
+      <tr><td><strong>Ganho líquido</strong></td><td class="num"><b>+16.625/ano</b></td><td class="num"><b>−2.275/ano</b></td></tr>
+      <tr><td><strong>Payback</strong></td><td class="num">2,1 anos</td><td class="num">nunca</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A resposta da pergunta armada na T6: <strong>depende da escala</strong> — neste exemplo, o equilíbrio fica em ~104 ha (onde 7% da adubação = depreciação). Alternativas abaixo disso: contratar o serviço, dividir o equipamento na cooperativa, ou NDVI gratuito.</p>
+</section>
+
+<!-- 22 · síntese dos casos -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · os cinco vereditos</div>
+  <h2>O mesmo método decidiu cinco mundos</h2>
+  <table class="tbl">
+    <thead><tr><th>Caso</th><th>Número decisivo</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Trator</strong></td><td class="num">TIR 13,8% × Selic 14,25%</td><td>empate — decide o não-monetário</td></tr>
+      <tr><td><strong>Vinhedo</strong></td><td class="num">TIR 18,6% · vale de −140 mil</td><td>viável, se o caixa aguentar a formação</td></tr>
+      <tr><td><strong>Confinamento</strong></td><td class="num">MS ≈ 40% no preço do kg</td><td>opera com folga — atenção ao giro</td></tr>
+      <tr><td><strong>Leite</strong></td><td class="num">payback 1,7 ano e ML de −0,05 a +0,03</td><td>investir no gargalo antes de crescer</td></tr>
+      <tr><td><strong>Piloto automático</strong></td><td class="num">se paga a partir de ~104 ha</td><td>a escala decide, não a tecnologia</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Agropecuária, zootecnia, fruticultura e precisão na mesma mesa — nenhum caso precisou de método novo. Essa é a tese do curso.</p>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 23 · passos 5 e 6 -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passos 5 e 6</div>
+  <h2>A avaliação plurianual no simulador</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passos 5–6 de 7</span><span>análise de investimento</span></div>
+    <div class="fields">
+      <div class="field"><label>Passo 5 · implantação (perenes)</label><span class="ph">cultura, investimento do ano 0, anos de formação</span></div>
+      <div class="field"><label>Depreciação da formação</label><span class="ph">flui automática para os custos fixos</span></div>
+      <div class="field"><label>Passo 6 · KPIs plurianuais</label><span class="ph">VPL · TIR · payback calculados na hora</span></div>
+      <div class="field"><label>Ciclo anual</label><span class="ph">o resultado do ciclo encerra a análise — passo 5 não aparece</span></div>
+    </div>
+  </div>
+  <p class="note">O passo 5 só existe para culturas perenes (fruta, erva-mate, madeira). Grupos de ciclo anual: o payback do principal investimento (máquina, instalação, tecnologia) se calcula à mão e vai nas observações.</p>
+</section>
+
+<!-- 24 · tarefa de saída -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · a entrega</div>
+  <h2>Tarefa de saída: o investimento avaliado</h2>
+  <ul class="bullets">
+    <li><strong>Projeto perene</strong> — passo 5 fechado (implantação + formação) e a leitura dos três KPIs do passo 6 registrada nas observações: o que dizem VPL, TIR e payback?</li>
+    <li><strong>Projeto de ciclo anual</strong> — o principal investimento do projeto (trator, instalação, equipamento de AP) com ganho líquido anual e payback calculados e registrados.</li>
+    <li><strong>Todos</strong> — o veredito em uma frase: investir, adiar ou terceirizar — e por quê.</li>
+  </ul>
+  <div class="callout">
+    <strong>Critério de qualidade</strong>
+    "A TIR deu 18%" não é análise. "TIR de 18,6% contra Selic de 14,25%, com o caixa aguentando o vale de −140 mil via linha de investimento com carência" — isso é análise.
+  </div>
+</section>
+
+<!-- 25 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Perenes: passo 5 fechado — implantação, formação e vida produtiva</li>
+    <li>Passo 6 lido: VPL, TIR e payback interpretados (não só copiados)</li>
+    <li>Ciclo anual: payback do principal investimento nas observações</li>
+    <li>Veredito registrado: investir, adiar ou terceirizar — com número</li>
+    <li>Linha de crédito do investimento coerente com o enquadramento da T7</li>
+  </ul>
+  <p class="note">Terminou antes? Rode o cenário pessimista da T6 sobre o investimento: o payback aguenta produção −20%?</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 26 · ponte -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>O método está completo — agora, o projeto</h2>
+  <p>Não há mais conceito novo: da S13 em diante é lapidação. O caminho até a defesa:</p>
+  <ul class="bullets">
+    <li><strong>S13 · laboratório</strong> — simulador aberto, passos 0 a 6 completos, dúvidas em sala.</li>
+    <li><strong>S14 · P2</strong> — a prova cobre os movimentos Medir e Decidir: margens, PE, cenários, crédito e investimento.</li>
+    <li><strong>S15 · defesa</strong> — o projeto inteiro diante da banca: cada premissa com fonte, cada prática com custo, cada decisão com número.</li>
+  </ul>
+  <ul class="bullets compact">
+    <li><strong>Revisar no site</strong> — Parte V completa (módulos A, B e C) + as três autoavaliações + calculadoras de rebanho e vinhedo.</li>
+    <li><strong>Trazer para a S13</strong> — o simulador preenchido até o passo 6, com o veredito de investimento registrado.</li>
+  </ul>
+</section>
+
+<!-- 27 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T8 · Investimento e módulos aplicados · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    <b>BCB</b> — Selic 14,25% a.a. (Copom, 17 jun 2026), taxa de desconto dos exemplos ·
+    <b>Casos didáticos</b> — trator 75 cv (T4: R$ 200.000, residual 20%, 10 anos), vinhedo em espaldeira (2 ha, implantação R$ 120.000), confinamento (100 bois, GMD 1,2, valores ilustrativos da Parte V.A do site), leite (T5, padrão Campo Futuro/CNA), piloto automático (R$ 35.000, economia 7%, Parte V.C do site) — todos referência didática, atualizar em aula ·
+    Coeficientes zootécnicos: UA e GMD conforme Embrapa (Parte V.A) ·
+    Fases das perenes e indicadores de investimento: Parte V.B ·
+    Metodologia de custos: Matsunaga et al. (1976, IEA) ·
+    Estrutura conceitual conforme material da disciplina (Parte V, módulos A–C do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-5.html#unidades">Parte V.A — pecuária</a> · <a href="parte-5.html#perenes">V.B — perenes e investimento</a> · <a href="parte-5.html#ap-decisao">V.C — agricultura de precisão</a> · <a href="parte-5.html#quizA">autoavaliações A</a>/<a href="parte-5.html#quizB">B</a>/<a href="parte-5.html#quizC">C</a> · <a href="rebanho.html">calculadora de rebanho</a> · <a href="vinhedo.html">calculadora de vinhedo</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T8 · Investimento</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T8 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
