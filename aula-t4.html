@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#B89233">
+<title>T4 — COE, COT e Custo Total · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aula teórica 4 — COE, COT e Custo Total; depreciação linear e remuneração dos fatores. Deck de projeção e estudo. Colégio Politécnico da UFSM, 2026/1.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --accent:var(--mustard);
+  --accent-text:#7A6020;
+  --accent-deep:#8A6D1F;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--terra)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--mustard-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* mapa do semestre */
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--mustard);border-color:var(--mustard)}
+.sem-cell.now b,.sem-cell.now{color:var(--mustard-ink)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+/* cascata de custos */
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+/* mockup simulador */
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* checklist */
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Gestão de custos e projetos agropecuários · 2026/1</div>
+  <div class="t-mark">
+    <div class="t-num">T4</div>
+    <div>
+      <div class="mv">Movimento 2 · <b>Medir</b></div>
+      <h1>COE, COT e <em>Custo Total</em></h1>
+    </div>
+  </div>
+  <p class="sub">Colégio Politécnico da UFSM · Técnico em Agropecuária · Técnico em Agricultura de Precisão</p>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
+  <h2>Fecha o movimento <em>Medir</em></h2>
+  <p>Última teórica antes da P1: hoje a lista de custos vira orçamento em três camadas. Na S7, o projeto inteiro é colocado à prova na prática.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S1</b>plano</div>
+    <div class="sem-cell m1"><b>S2</b>lab</div>
+    <div class="sem-cell m1"><b>S3</b>T1</div>
+    <div class="sem-cell m2"><b>S4</b>T2</div>
+    <div class="sem-cell m2"><b>S5</b>T3</div>
+    <div class="sem-cell m2 now"><b>S6</b>T4</div>
+    <div class="sem-cell m2"><b>S7</b>P1</div>
+    <div class="sem-cell m2"><b>S8</b>lab</div>
+    <div class="sem-cell m3"><b>S9</b>T5</div>
+    <div class="sem-cell m3"><b>S10</b>T6</div>
+    <div class="sem-cell m3"><b>S11</b>T7</div>
+    <div class="sem-cell m3"><b>S12</b>T8</div>
+    <div class="sem-cell m3"><b>S13</b>lab</div>
+    <div class="sem-cell m3"><b>S14</b>P2</div>
+    <div class="sem-cell m3"><b>S15</b>defesa</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o que já têm -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
+  <h2>A lista existe — falta virar orçamento</h2>
+  <ul class="bullets">
+    <li><strong>Receita fechada</strong> — RB → RL no passo 1, com preço pesquisado (T2).</li>
+    <li><strong>Custos listados e classificados</strong> — manejo descrito no passo 2, itens rascunhados no passo 3, cada um com sua origem no manejo (T3).</li>
+  </ul>
+  <p>Hoje a pergunta muda de "quais são os custos?" para <strong>"quanto custa, somado — e somado até onde?"</strong>. A resposta tem três camadas, e cada uma conta uma verdade diferente.</p>
+  <div class="callout success">
+    <strong>Hoje destrava</strong>
+    Os passos 3 e 4 completos: itens valorados, automáticos calculados, depreciação e remuneração dos fatores lançadas — COE → COT → CT fechados.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO ============ -->
+
+<!-- 4 · pergunta da aula -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
+  <h2>A receita paga as contas — <em>todas</em> elas?</h2>
+  <p class="lead">Depende de quais contas você enxerga. O boleto do adubo é visível; o desgaste do trator e o próprio salário do produtor, não.</p>
+  <p>Por isso o custo se calcula em <strong>três camadas progressivas</strong> — cada uma responde a uma pergunta gerencial diferente, do caixa do mês à decisão de investir.</p>
+</section>
+
+<!-- 5 · visão geral -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · a estrutura</div>
+  <h2>Três camadas, três perguntas</h2>
+  <div class="cascade">
+    <div class="row total"><span>COE — Custo Operacional Efetivo (o caixa)</span><span>paga as contas?</span></div>
+    <div class="row"><span>+ depreciação + pró-labore</span><span></span></div>
+    <div class="row total"><span>COT — Custo Operacional Total (a sustentabilidade)</span><span>repõe e remunera?</span></div>
+    <div class="row"><span>+ custo de oportunidade do capital e da terra</span><span></span></div>
+    <div class="row final"><span>CT — Custo Total (a decisão de investidor)</span><span>vale a pena?</span></div>
+  </div>
+  <p class="note">Metodologia Matsunaga et al. (IEA, 1976), adotada pelo Campo Futuro/CNA — o padrão desta disciplina. CONAB e CEPEA têm estruturas equivalentes.</p>
+</section>
+
+<!-- 6 · COE definição -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · camada 1</div>
+  <h2>COE: o dinheiro que sai da conta</h2>
+  <div class="formula">
+    <span class="label">Custo Operacional Efetivo</span>
+    COE = custos variáveis + custos fixos <b>que exigem desembolso</b>
+  </div>
+  <ul class="bullets">
+    <li>Insumos, combustível, mão de obra contratada, serviços, fretes, taxas — tudo que aparece no extrato.</li>
+    <li>Inclui fixos com desembolso: salário do permanente, manutenção, arrendamento pago.</li>
+  </ul>
+  <p class="note">Pergunta que o COE responde: <em>a receita da safra paga as contas do projeto?</em></p>
+</section>
+
+<!-- 7 · itens diretos e automáticos -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · como o COE é lançado</div>
+  <h2>Itens diretos e itens automáticos</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Diretos — linha por linha</h3>
+      <p>Lançados por coeficiente × preço, como na T3: 300 kg/ha de adubo × R$ 3,26/kg. São a maioria dos itens.</p>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Automáticos — % sobre a receita</h3>
+      <p>Calculados como percentual da RB: Funrural (1,63%), comercialização (1,0–2,0%), assistência técnica (2%), despesas administrativas (3%).</p>
+    </div>
+  </div>
+  <p>O simulador calcula os automáticos sozinho a partir do passo 1 — por isso a receita veio antes dos custos. <strong>Não os lance duas vezes.</strong></p>
+  <p class="note">Na planilha IRGA da T3, os automáticos apareciam como "de 3%", "(2%)" — agora vocês sabem por quê.</p>
+</section>
+
+<!-- 8 · leitura crítica COE -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · camada 1 · leitura</div>
+  <h2>Se a receita não cobre nem o COE</h2>
+  <p class="lead">RB &lt; COE significa que <em>cada saca vendida dá prejuízo em caixa</em> — a atividade não se sustenta nem no curto prazo.</p>
+  <ul class="bullets">
+    <li>Decisão: <strong>parar ou reformular já</strong>. Não há depreciação nem pró-labore que espere.</li>
+    <li>Lembrete da T3: o custo variável do arroz IRGA (R$ 67,40/sc) já superava o preço de referência (R$ 61,02/sc) — era essa conta que estava sendo feita.</li>
+  </ul>
+  <p class="note">Cobrir o COE é o primeiro degrau, não a linha de chegada: paga o caixa, mas ainda não o desgaste nem o trabalho do produtor.</p>
+</section>
+
+<!-- 9 · depreciação conceito -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o custo invisível</div>
+  <h2>Depreciação: o custo que não emite boleto</h2>
+  <p>É a <strong>perda de valor</strong> dos bens da propriedade ao longo do tempo — pelo uso, pelo desgaste natural, pela obsolescência tecnológica.</p>
+  <ul class="bullets">
+    <li>Tratores e colheitadeiras, galpões, sistemas de irrigação, matrizes — tudo se consome produzindo.</li>
+    <li>Mesmo sem boleto este mês, o equipamento <strong>está sendo gasto</strong> a cada hora de operação.</li>
+  </ul>
+  <div class="callout">
+    <strong>Impacto no lucro</strong>
+    Sem contabilizar a depreciação, o lucro fica superestimado — e não se guarda dinheiro para repor o bem quando ele acabar.
+  </div>
+</section>
+
+<!-- 10 · depreciação linear -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o cálculo</div>
+  <h2>Depreciação linear</h2>
+  <div class="formula">
+    <span class="label">Método linear — o mais utilizado</span>
+    depreciação anual = (valor do bem − valor residual) ÷ <b>vida útil</b>
+  </div>
+  <ul class="bullets">
+    <li><strong>Valor do bem</strong> — preço de compra (novo ou estado atual).</li>
+    <li><strong>Valor residual</strong> — o que ainda vale ao fim da vida útil (revenda, sucata).</li>
+    <li><strong>Vida útil</strong> — em anos ou em horas de uso; máquinas costumam usar as duas.</li>
+  </ul>
+  <p class="note">Dividir a depreciação anual pelas horas trabalhadas dá o custo por hora de máquina — a base do custo de cada operação mecanizada.</p>
+</section>
+
+<!-- 11 · COT -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · camada 2</div>
+  <h2>COT: paga, repõe e remunera</h2>
+  <div class="formula">
+    <span class="label">Custo Operacional Total</span>
+    COT = COE + depreciação + <b>pró-labore</b>
+  </div>
+  <p>Dois custos que não são desembolso imediato, mas garantem a <strong>saúde patrimonial de longo prazo</strong>: a reposição do que se desgasta e a remuneração do trabalho de gestão do produtor.</p>
+  <p class="note">Pergunta que o COT responde: <em>a receita paga os custos operacionais e ainda remunera o trabalho do produtor?</em> Cobrir o COT é o indicador mínimo de sustentabilidade.</p>
+</section>
+
+<!-- 12 · pró-labore / autoengano -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o segundo custo invisível</div>
+  <h2>O autoengano de trabalhar de graça</h2>
+  <p class="lead">O produtor que não lança o próprio salário está <em>subsidiando o projeto com trabalho não pago</em> — e chamando isso de lucro.</p>
+  <ul class="bullets">
+    <li>Teste simples: quanto custaria <strong>contratar alguém</strong> para fazer exatamente o que o produtor faz? Esse é o pró-labore.</li>
+    <li>Vale também para a família: os filhos que tiram leite todo dia são mão de obra — declarada no manejo, precisa reaparecer como custo (regra de ouro).</li>
+  </ul>
+  <div class="callout">
+    <strong>Consequência prática</strong>
+    Sem pró-labore na planilha, qualquer comparação com emprego assalariado ou arrendamento sai distorcida a favor do projeto.
+  </div>
+</section>
+
+<!-- 13 · CT -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · camada 3</div>
+  <h2>CT: a pergunta do investidor</h2>
+  <div class="formula">
+    <span class="label">Custo Total</span>
+    CT = COT + custo de oportunidade do capital + <b>custo de oportunidade da terra</b>
+  </div>
+  <p>A camada mais completa: além de operar, o projeto precisa <strong>render mais que a melhor alternativa</strong> disponível para os mesmos recursos.</p>
+  <p class="note">Pergunta que o CT responde: <em>o retorno supera a melhor alternativa — arrendar a terra, aplicar o capital?</em> A rentabilidade do projeto, neste curso, é sempre medida sobre o CT.</p>
+</section>
+
+<!-- 14 · custo de oportunidade -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · remuneração dos fatores</div>
+  <h2>Custo de oportunidade: o que você deixa de ganhar</h2>
+  <ul class="bullets">
+    <li><strong>Da terra própria</strong> — o arrendamento que ela renderia se não fosse usada no projeto. Referência prática: % do valor da terra ou sacas/ha da região (sindicatos rurais).</li>
+    <li><strong>Do capital</strong> — o rendimento que o dinheiro imobilizado em máquinas, animais e insumos teria numa aplicação financeira de referência.</li>
+  </ul>
+  <p>Não é dinheiro que sai — é dinheiro que <strong>deixa de entrar</strong> por se ter escolhido produzir. Na planilha IRGA da T3: "renda dos fatores", R$ 2.743/ha (17,4% do CT).</p>
+</section>
+
+<!-- 15 · a escadinha -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · síntese</div>
+  <h2>As quatro leituras da receita</h2>
+  <table class="tbl">
+    <thead><tr><th>Situação</th><th>O que significa</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><b>RB &lt; COE</b></td><td>Insustentável: perde caixa a cada saca. Parar ou reformular já.</td></tr>
+      <tr><td class="num">RB ≥ COE</td><td>Paga o caixa — mas ainda não o desgaste nem o trabalho do produtor.</td></tr>
+      <tr><td class="num">RB ≥ COT</td><td>Sustentabilidade mínima: paga custos, repõe patrimônio, remunera o gestor.</td></tr>
+      <tr><td class="num">RB ≥ CT</td><td>Viabilidade plena: gera riqueza acima da melhor alternativa.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A sequência de perguntas é sempre a mesma, para qualquer cultivo ou criação. Na T5, cada degrau vira uma margem com nome próprio.</p>
+</section>
+
+<!-- 16 · registro de campo -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · de onde vêm os números</div>
+  <h2>Sem registro, o orçamento é chute</h2>
+  <p>Todo o aparato de hoje depende de um insumo que nenhuma fórmula substitui: o <strong>dado real do campo</strong> — a função de controle do ciclo de gestão.</p>
+  <ul class="bullets">
+    <li>Histórico por talhão valida premissas, compara safras e alimenta a análise marginal (T6).</li>
+    <li>Bancos usam esses registros para <strong>avaliar risco e conceder crédito</strong> (T7).</li>
+    <li>Solução sem custo: Google Forms no celular → planilha automática → análise por talhão.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">O fluxo dos dados</span>
+    operação no campo → registro no celular → planilha → análise → <b>decisão</b>
+  </div>
+</section>
+
+<!-- ============ ATO 3 · EXEMPLO RS ============ -->
+
+<!-- 17 · o caso -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · trator 75 cv</div>
+  <h2>O trator da propriedade familiar</h2>
+  <p>O trator de <strong>75 cv</strong> é a máquina típica da propriedade familiar gaúcha — lavoura, pecuária de leite, fruticultura. Premissas do caso:</p>
+  <ul class="bullets">
+    <li><strong>Valor de compra</strong> — R$ 200.000 (mercado 2026: R$ 160–260 mil conforme marca e configuração).</li>
+    <li><strong>Valor residual</strong> — R$ 40.000 (20% após a vida útil).</li>
+    <li><strong>Vida útil</strong> — 10 anos ou 10.000 horas (1.000 h/ano de uso).</li>
+  </ul>
+  <p class="note">Premissas declaradas, como sempre: valor com cotação real da região, residual e vida útil justificados.</p>
+</section>
+
+<!-- 18 · depreciação anual e por hora -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o cálculo</div>
+  <h2>Quanto o trator "cobra" por ano — e por hora</h2>
+  <div class="formula">
+    <span class="label">Depreciação anual</span>
+    (R$ 200.000 − R$ 40.000) ÷ 10 anos = <b>R$ 16.000/ano</b>
+  </div>
+  <div class="formula">
+    <span class="label">Depreciação por hora</span>
+    R$ 160.000 ÷ 10.000 h = <b>R$ 16/hora</b>
+  </div>
+  <p>Cada hora de motor consome R$ 16 do patrimônio — antes do diesel, do operador e da manutenção. É a primeira parcela do custo-hora da máquina.</p>
+</section>
+
+<!-- 19 · efeito escala -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · custo fixo e escala</div>
+  <h2>O mesmo trator, três propriedades</h2>
+  <table class="tbl">
+    <thead><tr><th>Área atendida</th><th class="num">Depreciação/ha</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>40 ha</td><td class="num"><b>R$ 400</b></td><td>Máquina cara para a escala — avaliar serviços a vizinhos ou compra conjunta</td></tr>
+      <tr><td>80 ha</td><td class="num">R$ 200</td><td>Uso equilibrado para o porte</td></tr>
+      <tr><td>160 ha</td><td class="num">R$ 100</td><td>Custo fixo diluído — máquina bem aproveitada</td></tr>
+    </tbody>
+  </table>
+  <p>Os R$ 16.000/ano não mudam — é custo <strong>fixo</strong> (T3). O que muda é sobre quantos hectares ele se dilui. Máquina parada é depreciação sem produção.</p>
+</section>
+
+<!-- 20 · o autoengano completo -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · as três verdades</div>
+  <h2>O "lucro" que era prejuízo</h2>
+  <p>Propriedade de 80 ha com o trator do exemplo. O produtor comemora: sobraram <strong>R$ 40.000</strong> no caixa (RB − COE).</p>
+  <div class="cascade">
+    <div class="row total"><span>Sobra de caixa (RB − COE)</span><span>R$ 40.000</span></div>
+    <div class="row minus"><span>− depreciação do trator e benfeitorias</span><span>R$ 22.000</span></div>
+    <div class="row minus"><span>− pró-labore (12 × R$ 3.000)</span><span>R$ 36.000</span></div>
+    <div class="row final"><span>Resultado sobre o COT</span><span>− R$ 18.000</span></div>
+  </div>
+  <p class="note">Pagou as contas, mas consumiu patrimônio e trabalhou de graça — e ainda faltaria a remuneração da terra e do capital (CT). As três camadas contam três verdades diferentes sobre o mesmo ano.</p>
+</section>
+
+<!-- 21 · lições -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o que fica</div>
+  <h2>Três lições do caso</h2>
+  <ul class="bullets">
+    <li><strong>Depreciação se calcula em minutos</strong> — três números e uma divisão; não calculá-la é escolha, não dificuldade.</li>
+    <li><strong>Custo fixo pede escala</strong> — a pergunta "quantos hectares essa máquina atende?" vale para cada bem do inventário.</li>
+    <li><strong>Sobra de caixa não é lucro</strong> — só o resultado sobre o COT (e depois sobre o CT) diz se a atividade se sustenta.</li>
+  </ul>
+  <div class="callout success">
+    <strong>Para o projeto de vocês</strong>
+    Cada máquina e benfeitoria declarada no manejo precisa de: valor, residual, vida útil — e a depreciação lançada no passo 4.
+  </div>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 22 · passo 3 completo -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 3 · COE completo</div>
+  <h2>Tarefa de saída — parte 1</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 3 de 7</span><span>custos do ciclo</span></div>
+    <div class="fields">
+      <div class="field"><label>Itens diretos</label><span class="ph">coeficiente × preço, item por item (da lista da T3)</span></div>
+      <div class="field"><label>Automáticos (%)</label><span class="ph">Funrural, comercialização — calculados sobre o passo 1</span></div>
+      <div class="field"><label>Mão de obra</label><span class="ph">permanente e temporária — a declarada no manejo</span></div>
+      <div class="field"><label>COE</label><span class="ph">somado automaticamente pelo simulador</span></div>
+    </div>
+  </div>
+  <p class="note">Confiram item a item contra o manejo do passo 2: prática sem custo ou custo sem prática é linha errada.</p>
+</section>
+
+<!-- 23 · passo 4 -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · passo 4 · COT e CT</div>
+  <h2>Tarefa de saída — parte 2</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passo 4 de 7</span><span>depreciação e fatores</span></div>
+    <div class="fields">
+      <div class="field"><label>Bens depreciáveis</label><span class="ph">máquina/benfeitoria: valor, residual, vida útil</span></div>
+      <div class="field"><label>Pró-labore</label><span class="ph">quanto custaria contratar quem faz a gestão</span></div>
+      <div class="field"><label>Oportunidade da terra</label><span class="ph">arrendamento de referência da região</span></div>
+      <div class="field"><label>Oportunidade do capital</label><span class="ph">taxa de referência sobre o capital imobilizado</span></div>
+    </div>
+  </div>
+  <p class="note">O simulador fecha COE → COT → CT na hora. Os três valores do projeto de vocês nascem hoje.</p>
+</section>
+
+<!-- 24 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Itens diretos valorados (coeficiente × preço) no passo 3</li>
+    <li>Automáticos (%) conferidos — sem lançamento em duplicidade</li>
+    <li>Depreciação lançada para cada máquina e benfeitoria do manejo</li>
+    <li>Pró-labore e oportunidade da terra e do capital no passo 4</li>
+    <li>COE → COT → CT fechados e anotados</li>
+  </ul>
+  <p class="note">Terminou antes? Compare o CT/unidade do projeto com a RL/unidade do passo 1 — e guarde a reação para a T5.</p>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 25 · próxima etapa -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>P1 na S7 — depois, as margens</h2>
+  <p>Na próxima semana, a <strong>P1</strong>: o projeto com receita e custos fechados é a base da avaliação. Na T5 (S9), os números de hoje ganham interpretação: <strong>MB, ML e lucro</strong> — o que cada margem diz para o curto, médio e longo prazo.</p>
+  <ul class="bullets">
+    <li><strong>Revisar no site</strong> — Parte II, blocos II.4 (COE, COT e CT) e II.5 (registro) + <strong>autoavaliação do bloco em casa</strong>.</li>
+    <li><strong>Chegar na P1 com</strong> — passos 0 a 4 completos no simulador; premissas com fonte e data.</li>
+  </ul>
+  <div class="formula">
+    <span class="label">A conta que a T5 vai fazer</span>
+    RL − COE = MB · RL − COT = ML · RL − CT = <b>lucro</b>
+  </div>
+</section>
+
+<!-- 26 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">T4 · COE, COT e Custo Total · 2026/1</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">
+    Metodologia de custos: <b>Matsunaga et al. (1976, IEA)</b>, conforme adoção do <b>Projeto Campo Futuro — CNA/SENAR</b>; estruturas equivalentes: CONAB e CEPEA ·
+    <b>IRGA</b> — Custo de Produção do Arroz Irrigado do RS 2025/26 (referências de depreciação e renda dos fatores citadas da T3) ·
+    Preço de mercado do trator 75 cv: levantamento em portais de máquinas agrícolas, jul 2026 (faixa R$ 160–260 mil — atualizar com cotação local) ·
+    Função de controle: Kay et al. (2014) ·
+    Estrutura conceitual conforme material da disciplina (Parte II, blocos II.4 e II.5 do site).
+  </p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude, Anthropic, 2026) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="parte-2.html#coe-cot-ct">Parte II.4 — COE, COT e CT</a> · <a href="parte-2.html#registro">Parte II.5 — Registro e controle</a> · <a href="parte-2.html#quiz">autoavaliação da Parte II</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T4 · COE, COT e Custo Total</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T4 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
