@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<title>Roteiro das aulas · acesso da turma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --mustard:#B89233;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+.wrap{max-width:680px;margin:0 auto;padding:0 22px 60px}
+
+.mast{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.mast img{height:34px;width:auto;display:block}
+.mast .disc{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone-light)}
+
+.head{padding:22px 0 18px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:10px}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;line-height:1.15;letter-spacing:-0.01em;margin-bottom:8px;font-variation-settings:'opsz' 144}
+.head p{font-size:14px;color:var(--ink-soft);max-width:56ch;line-height:1.55}
+
+.list{padding:4px 0}
+.row{display:grid;grid-template-columns:44px 4px 1fr auto;align-items:start;gap:0 14px;padding:16px 0;border-bottom:1px solid var(--rule-soft)}
+.row:last-child{border-bottom:none}
+.week{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--stone);padding-top:3px}
+.accent{align-self:stretch;width:4px;border-radius:2px}
+.accent.mov1{background:var(--olive)}
+.accent.mov2{background:var(--mustard)}
+.accent.mov3{background:var(--terra)}
+.main{min-width:0}
+.title{font-size:15px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:5px}
+.title .tn{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--stone);margin-right:8px;font-size:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;color:var(--stone)}
+.meta span{display:flex;align-items:center;gap:5px}
+.meta span::before{content:"·"}
+.meta span:first-child::before{content:none}
+.actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-top:2px}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.04em;text-decoration:none;color:var(--paper);background:var(--ink);padding:8px 13px;white-space:nowrap;transition:background .15s}
+.btn:hover{background:var(--terra)}
+.btn-extra{font-size:11px;color:var(--stone);text-decoration:none;white-space:nowrap}
+.btn-extra:hover{color:var(--terra);text-decoration:underline}
+.pend{opacity:0.55}
+.pend .title{color:var(--ink-soft)}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone-light);border:1px solid var(--rule);padding:7px 12px;white-space:nowrap}
+
+.foot{padding:20px 0 0}
+.foot p{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.02em;color:var(--stone-light);line-height:1.6}
+.foot a{color:var(--stone)}
+
+@media (max-width:480px){
+  .row{grid-template-columns:36px 4px 1fr}
+  .actions{grid-column:1/-1;flex-direction:row;justify-content:flex-end;margin-top:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="mast">
+    <img src="logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <span class="disc">acesso da turma · não listado no menu do site</span>
+  </div>
+
+  <header class="head">
+    <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+    <h1>Roteiro das aulas</h1>
+    <p>Os 8 encontros teóricos do semestre, na ordem da semana letiva. Cada linha abre o deck para projeção; a apostila de estudo (impressão) está dentro do próprio deck. Conteúdo de estudo completo em <a href="index.html" style="color:var(--olive)">Partes I–VI</a>; vídeos complementares em <a href="aulas.html" style="color:var(--olive)">Vídeos</a>.</p>
+  </header>
+
+  <div class="list">
+
+    <div class="row">
+      <div class="week">S3</div>
+      <div class="accent mov1"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T1</span>A propriedade como empresa + SWOT</div>
+        <div class="meta"><span>Parte I completa</span><span>Simulador · passo 0</span></div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="aula-t1.html">abrir deck &rarr;</a>
+        <a class="btn-extra" href="aula-t1-animacao/">+ versão narrada</a>
+      </div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S4</div>
+      <div class="accent mov2"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T2</span>Receita: da bruta à líquida</div>
+        <div class="meta"><span>Parte III bl.1 + Parte IV bl.3</span><span>Simulador · passo 1</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S5</div>
+      <div class="accent mov2"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T3</span>Do manejo técnico ao custo</div>
+        <div class="meta"><span>Parte II bl.1 + bl.3</span><span>Simulador · passos 2–3</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S6</div>
+      <div class="accent mov2"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T4</span>COE, COT e Custo Total</div>
+        <div class="meta"><span>Parte II bl.4–5</span><span>Simulador · passos 3–4</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S9</div>
+      <div class="accent mov3"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T5</span>Margens e indicadores</div>
+        <div class="meta"><span>Parte III bl.1</span><span>Simulador · passo 6</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S10</div>
+      <div class="accent mov3"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T6</span>Equilíbrio, análise marginal e cenários</div>
+        <div class="meta"><span>Parte III bl.2–5</span><span>Simulador · passo 6 (cenários)</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S11</div>
+      <div class="accent mov3"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T7</span>Crédito rural e fluxo de caixa</div>
+        <div class="meta"><span>Parte IV bl.1–2 + credito.html</span><span>Simulador · passo 0 (crédito)</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+    <div class="row pend">
+      <div class="week">S12</div>
+      <div class="accent mov3"></div>
+      <div class="main">
+        <div class="title"><span class="tn">T8</span>Módulos aplicados + investimento <span style="font-weight:400">(2 variantes)</span></div>
+        <div class="meta"><span>Parte V + vinhedo.html</span><span>Simulador · passos 5–6</span></div>
+      </div>
+      <div class="actions"><span class="tag">em breve</span></div>
+    </div>
+
+  </div>
+
+  <footer class="foot">
+    <p>Prof. Róberson Macedo de Oliveira · Colégio Politécnico da UFSM · 2026 · <a href="index.html">voltar ao guia de estudo</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>
