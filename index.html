@@ -35,6 +35,11 @@ body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-s
 
 /* ===== TOPO: banner + barra com logo ===== */
 .header-banner{display:block;width:100%;height:auto;border-bottom:3px solid var(--olive)}
+.hero-wrap{position:relative}
+.hero-hotspot{position:absolute;left:0;top:0;width:20%;height:100%;cursor:pointer;outline:none;
+  -webkit-tap-highlight-color:transparent}
+.hero-hotspot:hover,.hero-hotspot:focus-visible{box-shadow:inset 0 0 0 1px rgba(250,247,240,.55);
+  background:radial-gradient(ellipse at 35% 45%,rgba(250,247,240,.14),transparent 70%)}
 .header-bar{display:flex;align-items:center;gap:18px;padding:18px 22px;background:var(--olive-deep);color:var(--paper)}
 .header-logo-chip{flex-shrink:0;background:var(--paper);padding:9px 13px;border-radius:3px;display:flex;align-items:center}
 .header-logo{height:44px;width:auto;display:block}
@@ -131,7 +136,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 </head>
 <body>
 
-<img class="header-banner" src="baixados.png" alt="Banner — Gestão de Custos e Projetos Agropecuários">
+<div class="hero-wrap">
+  <img class="header-banner" src="baixados.png" alt="Banner — Gestão de Custos e Projetos Agropecuários">
+  <a class="hero-hotspot" href="fruticultura/index.html" aria-label="Vivências em Fruticultura I" title="Vivências em Fruticultura I"></a>
+</div>
 <div class="header-bar">
   <div class="header-logo-chip">
     <a href="https://www.ufsm.br/unidades-universitarias/politecnico" target="_blank" rel="noopener">
@@ -763,7 +771,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 <footer>
   <strong>Sobre este material</strong>
   <p style="margin-bottom:6px">Guia de estudo para consulta rápida — o contexto de vários exemplos é discutido em sala de aula, com exercícios e materiais específicos.</p>
-  <p style="margin-bottom:14px">Este material atende às disciplinas: Gestão de Custos e Projetos Agropecuários (Técnico em Agricultura), Administração Rural e Projetos Zootécnicos (Técnico em Zootecnia), Gestão de Custos e Projetos em Agricultura de Precisão (Técnico em Agricultura de Precisão) e Gestão de Custos na Agricultura (Técnico em Agricultura) — todas do Eixo Tecnológico Recursos Naturais do Colégio Politécnico da UFSM.</p>
+  <p style="margin-bottom:14px">Este material atende à disciplina Gestão de Custos e Projetos, ministrada nos cursos técnicos em Agropecuária, Agricultura, Zootecnia, Agricultura de Precisão e Fruticultura — todos do Eixo Tecnológico Recursos Naturais do Colégio Politécnico da UFSM.</p>
   <strong>Referência básica</strong>
   <p style="margin-bottom:14px">KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <em>Gestão de propriedades rurais</em>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener" style="color:var(--olive);text-decoration:underline">Minha Biblioteca</a>. Acesso em: 29 maio 2026.</p>
   <strong id="ia">Declaração de uso de Inteligência Artificial</strong>

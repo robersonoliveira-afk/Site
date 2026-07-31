@@ -15,6 +15,11 @@ Site estático (HTML/CSS/JS puro), publicado via GitHub Pages.
 O logo do Colégio está embutido (inline) no `index.html`; o arquivo `.svg` na pasta
 é opcional (mantido apenas como fonte editável do logo).
 
+- `docs/` — briefings e roteiro de aulas (não fazem parte do site publicado)
+- `fruticultura/` — aulas de "Vivências em Fruticultura I" (outra disciplina), hospedadas
+  no mesmo domínio mas sem link no menu, fora do `sitemap.xml` e bloqueadas no
+  `robots.txt`. Acesso só por URL direta, repassada aos alunos dessa turma.
+
 ## Como atualizar
 1. Editar o arquivo no VS Code.
 2. Source Control → escrever a mensagem → Commit.

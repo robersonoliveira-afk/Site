@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 2 — Sistemas: tipos, componentes e limites | Vivências em Fruticultura I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FFFFFF; --papel2:#FAFAF8; --papel3:#EDEDEB;
+  --tinta:#26221C; --tinta2:#544C40; --tinta3:#8A8378;
+  --oliva:#2A7E57; --oliva-cl:#EBF4F0;
+  --terra:#CC4F33; --terra-cl:#F5E8E5;
+  --mostarda:#B2B234; --mostarda-cl:#F5F5E6;
+  --linha:#DDD3C2;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.slide{display:none;min-height:100vh;padding:5vh 7vw 12vh;flex-direction:column;justify-content:center;max-width:1180px;margin:0 auto}
+.slide.on{display:flex}
+body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
+.kicker.oliva{color:var(--oliva)} .kicker.mostarda{color:var(--mostarda)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
+h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p+p{margin-top:.9rem}
+.lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
+strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
+.capa{background:var(--papel2)}
+.capa .logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:2.2rem}
+.capa .logos img{height:46px;width:auto;display:block}
+.capa .logos img:last-child{height:64px}
+.capa .disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+.capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
+.capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
+.regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
+ul.bullets{list-style:none;margin-top:.4rem}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
+ul.bullets li strong{color:var(--tinta)}
+ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
+.card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
+.card p{font-size:.98rem;line-height:1.5}
+.card.oliva{background:var(--oliva-cl);border-color:#CAE2D7}
+.card.terra{background:var(--terra-cl);border-color:#E7CCC6}
+.card.mostarda{background:var(--mostarda-cl);border-color:#E7E7C5}
+.quadro{border-left:3px solid var(--oliva);padding:.3rem 0 .3rem 1.6rem;margin:1.6rem 0}
+.quadro p{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:1.38;color:var(--tinta);font-weight:400}
+.quadro .fonte{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-top:.9rem;letter-spacing:.03em}
+.destaque{background:var(--mostarda-cl);border:1px solid #E7E7C5;border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.6rem}
+.destaque p{color:var(--tinta)}
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.95rem}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.75rem .8rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500}
+.pergunta{background:var(--tinta);color:var(--papel);border-radius:3px;padding:2rem 2.2rem;margin-top:1.4rem}
+.pergunta .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mostarda);margin-bottom:.9rem}
+.pergunta p{color:#EFE8DC;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:48ch}
+.barra{position:fixed;left:0;right:0;bottom:0;height:46px;background:var(--papel);border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;padding:0 7vw;font-family:var(--mono);font-size:.72rem;color:var(--tinta3);z-index:20}
+.barra .mid{display:flex;gap:1.2rem;align-items:center}
+.barra button{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--linha);color:var(--tinta2);padding:.28rem .7rem;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.barra button:hover{background:var(--papel3)}
+.prog{position:fixed;left:0;bottom:46px;height:2px;background:var(--terra);z-index:21;transition:width .18s ease}
+body.lista .barra,body.lista .prog{display:none}
+.ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
+.tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
+/* ciclos de retroalimentacao */
+.ciclo{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin-top:1rem}
+.ciclo .et{background:var(--terra-cl);border:1px solid #E7CCC6;border-radius:3px;padding:.65rem .8rem;
+  font-size:.88rem;color:var(--tinta);line-height:1.32;flex:1 1 130px;min-width:118px}
+.ciclo .seta{font-family:var(--mono);color:var(--terra);font-size:1rem;flex:0 0 auto}
+.ciclo.equil .et{background:var(--oliva-cl);border-color:#CAE2D7}
+.ciclo.equil .seta{color:var(--oliva)}
+.ciclo-volta{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--terra);margin-top:.7rem;display:flex;align-items:center;gap:.45rem}
+.ciclo-volta.equil{color:var(--oliva)}
+@media(max-width:820px){.ciclo .seta{transform:rotate(90deg);width:100%;text-align:center}}
+
+/* diagrama UPA */
+.upa{border:2px solid var(--oliva);border-radius:4px;padding:1.6rem;background:var(--oliva-cl);margin-top:1.2rem;position:relative}
+.upa .rot{position:absolute;top:-.7rem;left:1.2rem;background:var(--papel);padding:0 .6rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oliva)}
+.upa .fam{background:var(--tinta);color:var(--papel);text-align:center;padding:.7rem;border-radius:3px;font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.sub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+@media(max-width:820px){.sub-grid{grid-template-columns:1fr 1fr}}
+.sub-grid div{background:#fff;border:1px solid #CAE2D7;border-radius:3px;padding:.8rem .7rem;text-align:center;font-size:.88rem;color:var(--tinta2);line-height:1.35}
+.sub-grid div b{display:block;font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.3rem}
+.fluxo{display:flex;justify-content:space-between;gap:1rem;margin-top:1rem;font-family:var(--mono);font-size:.75rem;color:var(--tinta3)}
+@media(max-width:820px){.fluxo{flex-direction:column;gap:.4rem}}
+@media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
+</style>
+</head>
+<body>
+
+<!-- 01 -->
+<section class="slide capa on">
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM · 65 anos">
+    <img src="assets/logos/tecnico-fruticultura.svg" alt="Técnico em Fruticultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
+  <h1>Sistemas: definição, tipos e componentes de um sistema de produção</h1>
+  <div class="sub">Unidade 1 · Aula 2 de 4 — Aprendendo a desenhar a unidade de produção que você escolheu</div>
+  <div class="regua"></div>
+  <div class="assin">
+    Vivências em Fruticultura I<br>
+    Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira
+  </div>
+</section>
+
+<!-- 02 retomada -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Retomada</div>
+  <h2>Onde paramos</h2>
+  <p class="lead">Na aula passada, o pomar dos Scherer não respondeu à recomendação técnica porque a recomendação tratava de uma parte, e o problema estava nas relações entre as partes.</p>
+  <p style="margin-top:1.4rem">Três palavras ficaram de tarefa: <strong>elementos, interação e objetivo</strong>. Hoje elas ganham endereço.</p>
+  <div class="destaque">
+    <p>A pergunta de hoje é operacional: <strong>como se desenha um sistema de produção?</strong> Ao final da aula você terá o diagrama da unidade que escolheu.</p>
+  </div>
+</section>
+
+<!-- 03 roteiro -->
+<section class="slide">
+  <div class="kicker">Roteiro de hoje</div>
+  <h2>Três tempos</h2>
+  <div class="g3">
+    <div class="card oliva"><h3>Anatomia de um sistema</h3><p>Fronteira, entradas, saídas, componentes, fluxos e retroalimentação.</p></div>
+    <div class="card terra"><h3>A UPA como sistema</h3><p>Sistema de produção, de cultivo, de criação e de transformação. Desenho ao vivo de um caso real do RS.</p></div>
+    <div class="card mostarda"><h3>Tipos de UPA</h3><p>Por que não existe um modelo único, e o que isso exige do técnico.</p></div>
+  </div>
+  <p style="margin-top:1.8rem"><em>Leitura de apoio:</em> MIGUEL, L. A. <em>A abordagem sistêmica da unidade de produção agrícola</em> — Figura 1 e Quadro 1.</p>
+</section>
+
+<!-- 04 estrutura -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>Todo sistema tem três elementos estruturais</h2>
+  <div class="g3">
+    <div class="card"><div class="n">Estrutura · 1</div><h3>Elementos constitutivos</h3><p>Podem ser identificados, contados e classificados. Mais ou menos homogêneos, conforme as suas características.</p></div>
+    <div class="card"><div class="n">Estrutura · 2</div><h3>Redes e canais</h3><p>Conduzem matéria, energia ou informação de um ponto a outro do sistema.</p></div>
+    <div class="card"><div class="n">Estrutura · 3</div><h3>Reservatórios</h3><p>Onde se estocam materiais, energia, produtos, informação, capital. Sem eles o sistema trava ou descontrola.</p></div>
+  </div>
+  <p style="margin-top:1.6rem"><strong>No pomar:</strong> os elementos são as plantas, o solo, os implementos, as pessoas. As redes são a irrigação, os carreadores, o telefone do produtor. Os reservatórios são o açude, o galpão, a matéria orgânica do solo e o caixa da família.</p>
+</section>
+
+<!-- 05 funcional -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>E cinco aspectos funcionais</h2>
+  <table>
+    <tr><th style="width:22%">Aspecto</th><th style="width:38%">Definição</th><th>Na unidade de produção frutícola</th></tr>
+    <tr><td>Fluxos</td><td>Materiais, produtos, energia e informações que circulam nas redes</td><td>Água, insumos, fruta colhida, dinheiro, assistência técnica</td></tr>
+    <tr><td>Centros de decisão</td><td>Recebem informações e as transformam em ações</td><td>Raramente uma pessoa só: quem decide sobre o pomar pode não ser quem decide sobre a horta ou sobre o caixa</td></tr>
+    <tr><td>Canais de retroação</td><td>Informam o tomador de decisão sobre o que acontece a montante e a jusante</td><td>Preço pago na última safra, resultado da poda anterior, reclamação do comprador</td></tr>
+    <tr><td>Prazos</td><td>Definem o momento de realização das operações</td><td>Janela de poda, ciclo da cultura, prazo de pagamento do comprador</td></tr>
+    <tr><td>Entradas e saídas</td><td>Materializam as trocas com o entorno</td><td>Mudas, adubo, crédito, mão de obra / fruta, esterco, trabalho fora da propriedade</td></tr>
+  </table>
+  <p style="margin-top:1.2rem"><em>Durand (1990), em Miguel, Mazoyer e Roudart.</em></p>
+</section>
+
+<!-- 06 fronteira -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · O conceito mais subestimado</div>
+  <h2>A fronteira é uma decisão sua</h2>
+  <p class="lead">A fronteira do sistema estabelece os limites da autonomia interna, define quais interações são consideradas internas e qual é a relação do conjunto com o ambiente.</p>
+  <div class="g2" style="margin-top:1.6rem">
+    <div class="card oliva">
+      <div class="n">Entradas controláveis</div>
+      <p>Aquelas sobre as quais o agricultor decide: variedade, densidade de plantio, adubação, época de poda, contratação de mão de obra, canal de venda.</p>
+    </div>
+    <div class="card terra">
+      <div class="n">Entradas não controláveis</div>
+      <p>Aquelas que o agricultor sofre: chuva, granizo, geada, preço da fruta, política de crédito, pressão de pragas vinda do pomar vizinho.</p>
+    </div>
+  </div>
+  <div class="pergunta">
+    <p>Na unidade que você escolheu, o que está dentro da fronteira e o que está fora? A resposta muda conforme a pergunta que você faz?</p>
+  </div>
+</section>
+
+<!-- 06b centro de decisao -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · O centro de decisão</div>
+  <h2>Quem decide o quê</h2>
+  <p class="lead">Tratar "a família" como um decisor único é o atalho mais comum e o que mais estraga diagnóstico. Dentro da mesma casa há decisões separadas, com prioridades diferentes.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card">
+      <div class="n">O que costuma se dividir</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Quem escolhe o que se planta e quando se poda</li>
+        <li>Quem cuida da horta, do processamento e dos animais menores</li>
+        <li>Quem controla o caixa e negocia o preço</li>
+        <li>Quem decide sobre investimento de longo prazo</li>
+      </ul>
+    </div>
+    <div class="card mostarda">
+      <div class="n">Por que isso muda o diagnóstico</div>
+      <p>Uma recomendação dirigida a quem não decide sobre aquilo não é executada. E atividades conduzidas por quem não controla o caixa tendem a ficar sem investimento, mesmo quando são as mais rentáveis por hora de trabalho.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>A regra de campo é <strong>observar, não presumir</strong>. Há padrões frequentes de divisão por gênero e por geração, mas eles variam de propriedade para propriedade. Pergunte quem decide cada coisa em vez de supor que sabe.</p>
+  </div>
+</section>
+
+<!-- 07 upa definicao -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Tempo 2</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:24ch">A unidade de produção agrícola como sistema</h1>
+  <div class="regua"></div>
+  <div class="quadro" style="border-color:var(--terra)">
+    <p>“A UPA pode ser concebida como um sistema composto de um conjunto de elementos em interação — sistemas de cultivo e/ou criação e/ou transformação —, influenciado pelos objetivos do agricultor e de sua família, aberto e em interação com o meio externo, econômico, físico e humano.”</p>
+    <div class="fonte">Lovois de Andrade Miguel</div>
+  </div>
+</section>
+
+<!-- 08 diagrama -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O desenho de base</div>
+  <h2>A figura que você vai reproduzir</h2>
+  <div class="fluxo"><span>← entradas: insumos, crédito, mão de obra, informação técnica, renda de fora da propriedade</span></div>
+  <div class="upa">
+    <span class="rot">Unidade de produção agrícola · fronteira</span>
+    <div class="fam">Agricultor e família — centro de decisão e objetivos</div>
+    <div class="sub-grid">
+      <div><b>Sistema de cultivo 1</b>Pomar</div>
+      <div><b>Sistema de cultivo 2</b>Horta</div>
+      <div><b>Sistema de criação</b>Gado leiteiro</div>
+      <div><b>Transformação</b>Suco, geleia, doce</div>
+    </div>
+    <p style="text-align:center;margin-top:1rem;font-size:.9rem;color:var(--oliva)">Sistema de produção = a combinação de tudo isso dentro dos limites autorizados pelos fatores de produção disponíveis</p>
+  </div>
+  <div class="fluxo"><span style="margin-left:auto">saídas: fruta, leite, produtos processados, autoconsumo →</span></div>
+  <p style="margin-top:1.2rem"><em>Adaptado da Figura 1 de Miguel.</em></p>
+</section>
+
+<!-- 09 tres conceitos -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Vocabulário técnico</div>
+  <h2>Três conceitos que não se confundem</h2>
+  <div style="margin-top:.4rem">
+    <div class="card" style="margin-bottom:1rem">
+      <div class="n">Escala maior</div>
+      <h3>Sistema de produção</h3>
+      <p>A combinação dos sistemas de cultivo e de criação adotados <strong>dentro dos limites autorizados pelos fatores de produção</strong> de que a UPA dispõe: força de trabalho, conhecimento técnico, superfície agrícola, equipamentos, capital. Inclui as atividades de transformação e conservação feitas na propriedade.</p>
+    </div>
+    <div class="card" style="margin-bottom:1rem">
+      <div class="n">Escala da parcela</div>
+      <h3>Sistema de cultivo</h3>
+      <p>A descrição dos cultivos realizados <strong>em uma parcela</strong>, segundo uma ordem de sucessão conhecida e recorrente. Definido pelos tipos de cultivo, pela ordem de sucessão e pelo <strong>itinerário técnico</strong> de cada um.</p>
+    </div>
+    <div class="card">
+      <div class="n">Escala do rebanho</div>
+      <h3>Sistema de criação</h3>
+      <p>O conjunto de animais e as práticas de manejo aplicadas a eles, com a mesma lógica de descrição.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.4rem"><strong>A expressão-chave é "limites autorizados".</strong> O sistema de produção não é o que seria tecnicamente ideal: é o que os fatores disponíveis permitem.</p>
+</section>
+
+<!-- 10 caso -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Desenho ao vivo</div>
+  <h2>Caso: uma UPA familiar do planalto gaúcho</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="n">Fatores de produção</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>28 hectares, sendo 9 de mata e banhado</li>
+        <li>Duas unidades de trabalho familiar em tempo integral, mais uma parcial</li>
+        <li>Trator antigo, ordenhadeira, pulverizador; sem câmara fria</li>
+        <li>Crédito acessado pelo Pronaf</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="n">Atividades</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>4 ha de pomar de maçã em espaldeira</li>
+        <li>0,5 ha de horta com venda em feira</li>
+        <li>12 vacas em lactação, entrega para laticínio</li>
+        <li>Milho e aveia para silagem e cobertura</li>
+        <li>Produção de doces e geleias no verão</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pergunta">
+    <p>Desenhe essa UPA. Onde está a fronteira? Quantos subsistemas existem? Quais são os fluxos entre eles?</p>
+  </div>
+</section>
+
+<!-- 11 interacoes -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O que o desenho revela</div>
+  <h2>As interações que não aparecem na planilha</h2>
+  <table>
+    <tr><th style="width:30%">Interação</th><th>O que significa na prática</th></tr>
+    <tr><td>Leite → pomar</td><td>O esterco do rebanho aduba o pomar. Sem as vacas, o custo de fertilização sobe.</td></tr>
+    <tr><td>Pomar → leite</td><td>A colheita da maçã concentra trabalho em março e abril, justamente quando a silagem precisa ser feita.</td></tr>
+    <tr><td>Horta → caixa</td><td>A feira semanal cobre as despesas correntes e permite esperar o pagamento do laticínio.</td></tr>
+    <tr><td>Pomar → transformação</td><td>A fruta de descarte, que não atinge o padrão comercial, vira geleia. Sem o pomar não há matéria-prima; sem a transformação a perda é total.</td></tr>
+    <tr><td>Mata e banhado → tudo</td><td>Reserva legal e APP. Não produzem receita, mas definem a área efetivamente disponível e a conformidade ambiental.</td></tr>
+  </table>
+  <div class="destaque">
+    <p>Nenhuma dessas interações é visível se você analisar o pomar isoladamente. Todas mudam o que é uma boa recomendação técnica.</p>
+  </div>
+</section>
+
+<!-- 11b retroalimentacao -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O mecanismo central</div>
+  <h2>Interação com volta: retroalimentação</h2>
+  <p class="lead">Até aqui as setas iam num sentido só. Mas quando o efeito de uma interação volta e altera a sua própria causa, o sistema passa a se governar por conta própria. Existem dois tipos, e eles fazem coisas opostas.</p>
+
+  <h3 style="margin-top:1.8rem">Ciclo de reforço — cada volta amplifica</h3>
+  <div class="ciclo">
+    <div class="et">Pomar envelhecido</div>
+    <span class="seta">→</span>
+    <div class="et">Receita baixa e irregular</div>
+    <span class="seta">→</span>
+    <div class="et">Sem caixa para renovar</div>
+  </div>
+  <div class="ciclo-volta"><span>↺</span><span>e o pomar envelhece mais um ano</span></div>
+
+  <h3 style="margin-top:1.8rem">Ciclo de equilíbrio — cada volta freia</h3>
+  <div class="ciclo equil">
+    <div class="et">Fruta de descarte aumenta</div>
+    <span class="seta">→</span>
+    <div class="et">Vira geleia na cozinha</div>
+    <span class="seta">→</span>
+    <div class="et">Perda cai e entra alguma receita</div>
+  </div>
+  <div class="ciclo-volta equil"><span>↺</span><span>o sistema absorve a variação sem mudar de estado</span></div>
+
+  <div class="destaque">
+    <p>Diagnóstico prático: <strong>ciclo de reforço explica por que o problema piora sozinho</strong>; <strong>ciclo de equilíbrio explica por que a propriedade resiste</strong> — e às vezes por que ela resiste também à sua recomendação. Nas duas situações, mexer numa parte isolada não altera o ciclo.</p>
+  </div>
+</section>
+
+<!-- 11c choque externo -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Quando o choque vem de fora</div>
+  <h2>O clima não é um incidente. É um componente</h2>
+  <p class="lead">Granizo, geada tardia, estiagem e enchente não são exceções a serem descontadas da análise. Para a fruticultura gaúcha dos últimos anos, são parte da estrutura de decisão de qualquer UPA.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card terra">
+      <div class="n">O que o sistema faz com o choque</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li><strong>Absorve</strong> — tem folga suficiente e volta ao normal</li>
+        <li><strong>Adapta</strong> — muda arranjo, atividade ou canal e segue funcionando</li>
+        <li><strong>Rompe</strong> — perde a capacidade de se reproduzir e o ciclo de reforço se instala</li>
+      </ul>
+    </div>
+    <div class="card oliva">
+      <div class="n">O que dá folga ao sistema</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Diversificação de atividades e de canais de venda</li>
+        <li>Reserva de caixa e renda que não depende da safra</li>
+        <li>Proteção física: tela antigranizo, quebra-vento, irrigação</li>
+        <li>Proteção financeira: seguro agrícola, Proagro, crédito de custeio acessível</li>
+      </ul>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Repare que quase tudo da coluna da direita <strong>vem de fora da porteira</strong> — do segmento a montante da cadeia. É o primeiro sinal de que a fronteira que desenhamos hoje não basta: é o assunto da aula 3.</p>
+  </div>
+  <p style="margin-top:1.3rem"><strong>Consequência para o aconselhamento:</strong> a diversificação que parece falta de especialização técnica costuma ser a única gestão de risco disponível a quem não tem seguro. Antes de sugerir que a família se concentre no pomar, verifique o que ela está usando como colchão.</p>
+</section>
+
+<!-- 12 postulados -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Fechando o bloco</div>
+  <h2>Quatro postulados para estudar uma UPA</h2>
+  <ol class="num">
+    <li>A UPA <strong>é um sistema</strong> e deve necessariamente ser descrita em tais termos.</li>
+    <li>São as <strong>decisões dos agentes</strong> — a família ou atores externos — que fazem a UPA evoluir de um estado a outro.</li>
+    <li>O agricultor e a família têm <strong>influência determinante</strong> sobre a estrutura e o funcionamento da UPA.</li>
+    <li>Conhecer as possibilidades de evolução da UPA exige <strong>analisar a sua história e trajetória</strong>.</li>
+  </ol>
+  <p style="margin-top:1.4rem"><em>Miguel, a partir de Cochet (2011), INCRA/FAO (1999) e Lima et al. (1995).</em></p>
+</section>
+
+<!-- 13 tipos -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Não existe uma UPA. Existem tipos de UPA</h2>
+  <table>
+    <tr><th style="width:19%">O que observar</th><th>Familiar</th><th>Familiar pluriativa</th><th>Patronal</th><th>Empresarial</th></tr>
+    <tr><td>Quem trabalha</td><td>A própria família, em tempo integral</td><td>A família, em tempo parcial — parte dela trabalha fora</td><td>Família na gestão, com contratados permanentes</td><td>Trabalho contratado e gerência profissional</td></tr>
+    <tr><td>De onde vem a renda</td><td>Quase toda da produção</td><td>Da produção e de salário, aposentadoria ou benefício</td><td>Da produção</td><td>Da produção, com acesso a capital externo</td></tr>
+    <tr><td>Objetivo principal</td><td>Reproduzir a família e manter o patrimônio</td><td>Compor renda e manter o vínculo com a terra</td><td>Rentabilidade, decidida dentro da família</td><td>Retorno sobre o capital investido</td></tr>
+    <tr><td>Especialização</td><td>Baixa a média: várias atividades</td><td>Baixa: a produção é uma fonte entre outras</td><td>Média a alta</td><td>Alta, muitas vezes um produto só</td></tr>
+    <tr><td>Postura diante do risco</td><td>Evita perder o que tem; diversifica</td><td>Menos exposta, porque a renda de fora amortece a safra ruim — e por isso mesmo investe menos no pomar</td><td>Calcula e assume risco parcial</td><td>Assume risco: tem escala, seguro e capital de giro</td></tr>
+    <tr><td>Relação com o mercado</td><td>Vende o excedente e consome parte</td><td>Usa canais de baixa exigência, que caibam no tempo disponível</td><td>Vende toda a produção</td><td>Contratos, integração, exportação</td></tr>
+  </table>
+  <p style="margin-top:1.2rem"><strong>O caso da aula 1 é do segundo tipo.</strong> Os Scherer têm um filho assalariado na cidade e a aposentadoria rural no horizonte. Isso explica, sem nenhuma referência a erro técnico, por que a poda atrasa e por que não se investe num pomar que só retorna em cinco anos.</p>
+  <p style="margin-top:1.2rem"><em>Adaptado de Alencar e Moura Filho (1988) e de Miguel, com a inclusão do tipo pluriativo a partir de Schneider (2003).</em></p>
+</section>
+
+<!-- 14 alerta -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3 · Um alerta histórico</div>
+  <h2>O erro que a extensão rural já cometeu</h2>
+  <p>Nas décadas de 1960 e 1970, a abordagem dominante reconhecia essencialmente dois tipos: a empresa rural e o latifúndio extensivo a ser modernizado. Toda UPA era medida contra o primeiro, e as unidades que não eram geridas assim eram julgadas ineficientes e, portanto, inadequadas.</p>
+  <p style="margin-top:1.2rem">Estudos concluíram que as formas de produção não empresariais eram inviáveis e tenderiam a desaparecer a curto e médio prazo. Programas públicos foram desenhados com o objetivo único de qualificar agricultores para adotar métodos empresariais de gestão.</p>
+  <div class="destaque">
+    <p>Cinco décadas depois, a agricultura familiar segue existindo e respondendo por parte relevante da produção de alimentos. O diagnóstico não errou nos números: errou na <strong>premissa de que havia um só tipo de UPA</strong>. A pluriatividade, hoje central em boa parte das propriedades gaúchas, era invisível para aquele diagnóstico.</p>
+  </div>
+  <p style="margin-top:1.2rem"><em>Miguel, a partir de Alencar e Moura Filho (1988) e Hoffmann et al. (1984).</em></p>
+</section>
+
+<!-- 15 ambiente -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>A UPA não opera sozinha</h2>
+  <p class="lead">O espaço externo influencia e afeta a UPA em grau variável, tanto no nível micro — a localidade, a região — quanto no macro — o estado, o país, o mercado internacional.</p>
+  <div class="g4" style="margin-top:1.6rem">
+    <div class="card"><div class="n">Ecológico</div><p>Clima, relevo, solo, disponibilidade de água</p></div>
+    <div class="card"><div class="n">Técnico</div><p>Assistência disponível, cultivares adaptadas, infraestrutura</p></div>
+    <div class="card"><div class="n">Social e cultural</div><p>Origem étnica, tradição produtiva, redes de vizinhança, associativismo</p></div>
+    <div class="card"><div class="n">Político e econômico</div><p>Crédito, preços, políticas públicas, mercados institucionais</p></div>
+  </div>
+  <p style="margin-top:1.6rem"><strong>Consequência metodológica:</strong> a análise regional é etapa preliminar indispensável ao estudo de uma UPA. Você não pode entender a propriedade sem entender o território dela. É o tema da aula 3.</p>
+</section>
+
+<!-- 16 tarefa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Ponte para a vivência</div>
+  <h2>Micro-entregável desta aula</h2>
+  <p class="lead">Desenhe o diagrama da unidade de produção que você escolheu.</p>
+  <p style="margin-top:1.4rem">Pode ser feito à mão e fotografado. Deve conter:</p>
+  <ul class="bullets" style="margin-top:1rem">
+    <li>A fronteira da UPA, claramente traçada</li>
+    <li>Todos os subsistemas: de cultivo, de criação e de transformação — inclusive os que não são fruticultura</li>
+    <li>O centro de decisão, indicando <strong>quem decide o quê</strong>, e não apenas quem é o titular</li>
+    <li>Pelo menos três entradas e três saídas — incluindo, se houver, a renda que vem de fora da propriedade</li>
+    <li>Pelo menos duas interações entre subsistemas, com seta e legenda</li>
+    <li><strong>Um ciclo de retroalimentação</strong>, de reforço ou de equilíbrio, com as setas fechando a volta</li>
+  </ul>
+  <div class="destaque">
+    <p>Junto ao desenho, responda em um parágrafo: <strong>qual interação você não tinha percebido antes de desenhar?</strong> E em mais um: o ciclo que você identificou está agravando ou segurando a situação da propriedade?</p>
+  </div>
+</section>
+
+<!-- 17 proxima -->
+<section class="slide">
+  <div class="kicker">Próxima aula</div>
+  <h2>Aula 3 — Sistemas agroalimentares e cadeias produtivas</h2>
+  <p class="lead">Vamos subir dois níveis na escala: da porteira para fora. Onde a sua fruta vai parar, quem define o preço, e por que o técnico precisa entender a cadeia para aconselhar sobre o pomar.</p>
+  <p style="margin-top:1.6rem"><strong>Traga:</strong> a resposta para uma pergunta simples sobre a sua UPA — <em>para onde vai a fruta depois que sai da propriedade?</em> Se você não souber, pergunte ao produtor antes da aula.</p>
+</section>
+
+<!-- 18 referencias -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar</h2>
+  <div style="margin-top:1rem">
+    <p class="ref">ALENCAR, E.; MOURA FILHO, J. A. Unidades de produção agrícola e administração rural. <em>Informe Agropecuário</em>, Belo Horizonte, n. 157, p. 25-29, 1988.</p>
+    <p class="ref">COCHET, H. <em>L'agriculture comparée.</em> Paris: Éditions Quae, 2011.</p>
+    <p class="ref">DUFUMIER, M. <em>Projetos de desenvolvimento agrícola: manual para especialistas.</em> Salvador: EDUFBA, 2007.</p>
+    <p class="ref">INCRA/FAO. <em>Análise diagnóstico de sistemas agrários: guia metodológico.</em> Brasília: INCRA, 1999.</p>
+    <p class="ref">LIMA, A. P. et al. <em>Administração da unidade de produção familiar: modalidade de trabalho com agricultores.</em> Ijuí: Editora da UNIJUÍ, 1995.</p>
+    <p class="ref">MIGUEL, L. A. A abordagem sistêmica da unidade de produção agrícola. Porto Alegre: UFRGS/PGDR.</p>
+    <p class="ref">MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
+    <p class="ref">PINHEIRO, S. L. G. O enfoque sistêmico e o desenvolvimento rural sustentável.</p>
+    <p class="ref">SCHNEIDER, S. <em>A pluriatividade na agricultura familiar.</em> Porto Alegre: Editora da UFRGS, 2003.</p>
+    <p class="ref">SEBILLOTTE, M. Sistema de cultivo e sistema de produção: conceitos operacionais em agronomia, 1994. Citado por MIGUEL, L. A.</p>
+    <p class="ref">WAGNER, S. A. et al. (Org.). <em>Gestão e planejamento de unidades de produção agrícola.</em> Porto Alegre: Editora da UFRGS, 2010.</p>
+    <p class="ref">WALKER, B.; SALT, D. <em>Resilience thinking: sustaining ecosystems and people in a changing world.</em> Washington: Island Press, 2006.</p>
+  </div>
+  <p style="margin-top:1.8rem" class="tempo">Declaração de uso de IA: material elaborado com apoio de inteligência artificial; conteúdo e referências revisados pelos professores responsáveis.</p>
+</section>
+
+<div class="prog" id="prog"></div>
+<div class="barra">
+  <span>Unidade 1 · Aula 2 — Sistemas e componentes</span>
+  <span class="mid">
+    <button onclick="ir(-1)">← anterior</button>
+    <span id="cont">1 / 21</span>
+    <button onclick="ir(1)">próximo →</button>
+    <button onclick="document.body.classList.toggle('lista')">modo lista</button>
+  </span>
+  <span>Vivências em Fruticultura I</span>
+</div>
+
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+function mostra(n){sl[i].classList.remove('on');i=Math.max(0,Math.min(sl.length-1,n));sl[i].classList.add('on');
+  document.getElementById('cont').textContent=(i+1)+' / '+sl.length;
+  document.getElementById('prog').style.width=((i+1)/sl.length*100)+'%';window.scrollTo(0,0);}
+function ir(d){mostra(i+d)}
+document.addEventListener('keydown',e=>{
+  if(document.body.classList.contains('lista'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();ir(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();ir(-1)}
+  if(e.key==='Home')mostra(0); if(e.key==='End')mostra(sl.length-1);
+  if(e.key==='l'||e.key==='L')document.body.classList.toggle('lista');
+});
+mostra(0);
+</script>
+</body>
+</html>

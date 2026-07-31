@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /README.md
 Disallow: /AGENTS.md
 Disallow: /CLAUDE.md
+Disallow: /fruticultura/
 
 Sitemap: https://robersonoliveira-afk.github.io/Site/sitemap.xml

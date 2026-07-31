@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 3 — Sistemas agroalimentares e cadeias produtivas | Vivências em Fruticultura I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FFFFFF; --papel2:#FAFAF8; --papel3:#EDEDEB;
+  --tinta:#26221C; --tinta2:#544C40; --tinta3:#8A8378;
+  --oliva:#2A7E57; --oliva-cl:#EBF4F0;
+  --terra:#CC4F33; --terra-cl:#F5E8E5;
+  --mostarda:#B2B234; --mostarda-cl:#F5F5E6;
+  --linha:#DDD3C2;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.slide{display:none;min-height:100vh;padding:5vh 7vw 12vh;flex-direction:column;justify-content:center;max-width:1180px;margin:0 auto}
+.slide.on{display:flex}
+body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
+.kicker.oliva{color:var(--oliva)} .kicker.mostarda{color:var(--mostarda)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
+h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p+p{margin-top:.9rem}
+.lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
+strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
+.capa{background:var(--papel2)}
+.capa .logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:2.2rem}
+.capa .logos img{height:46px;width:auto;display:block}
+.capa .logos img:last-child{height:64px}
+.capa .disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+.capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
+.capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
+.regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
+ul.bullets{list-style:none;margin-top:.4rem}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
+ul.bullets li strong{color:var(--tinta)}
+ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
+.card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
+.card p{font-size:.98rem;line-height:1.5}
+.card.oliva{background:var(--oliva-cl);border-color:#CAE2D7}
+.card.terra{background:var(--terra-cl);border-color:#E7CCC6}
+.card.mostarda{background:var(--mostarda-cl);border-color:#E7E7C5}
+.quadro{border-left:3px solid var(--oliva);padding:.3rem 0 .3rem 1.6rem;margin:1.6rem 0}
+.quadro p{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:1.38;color:var(--tinta);font-weight:400}
+.quadro .fonte{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-top:.9rem;letter-spacing:.03em}
+.destaque{background:var(--mostarda-cl);border:1px solid #E7E7C5;border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.6rem}
+.destaque p{color:var(--tinta)}
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.95rem}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.75rem .8rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500}
+.pergunta{background:var(--tinta);color:var(--papel);border-radius:3px;padding:2rem 2.2rem;margin-top:1.4rem}
+.pergunta .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mostarda);margin-bottom:.9rem}
+.pergunta p{color:#EFE8DC;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:48ch}
+.barra{position:fixed;left:0;right:0;bottom:0;height:46px;background:var(--papel);border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;padding:0 7vw;font-family:var(--mono);font-size:.72rem;color:var(--tinta3);z-index:20}
+.barra .mid{display:flex;gap:1.2rem;align-items:center}
+.barra button{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--linha);color:var(--tinta2);padding:.28rem .7rem;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.barra button:hover{background:var(--papel3)}
+.prog{position:fixed;left:0;bottom:46px;height:2px;background:var(--terra);z-index:21;transition:width .18s ease}
+body.lista .barra,body.lista .prog{display:none}
+.ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
+.tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
+/* cadeia horizontal */
+.cadeia{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:1.4rem;border:1px solid var(--linha);border-radius:3px;overflow:hidden}
+@media(max-width:820px){.cadeia{grid-template-columns:1fr}}
+.cadeia .seg{padding:1.4rem 1.3rem;background:#fff;border-right:1px solid var(--linha)}
+.cadeia .seg:last-child{border-right:none}
+.cadeia .seg.a{background:var(--oliva-cl)} .cadeia .seg.b{background:var(--mostarda-cl)} .cadeia .seg.c{background:var(--terra-cl)}
+.cadeia .seg h3{font-size:1.05rem}
+.cadeia .seg .n{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.5rem}
+.cadeia .seg ul{list-style:none;margin-top:.6rem}
+.cadeia .seg li{font-size:.9rem;color:var(--tinta2);line-height:1.4;padding:.22rem 0;border-bottom:1px dotted rgba(0,0,0,.08)}
+/* numeros */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.4rem}
+@media(max-width:820px){.nums{grid-template-columns:1fr 1fr}}
+.num-box{border-top:3px solid var(--terra);padding-top:.9rem}
+.num-box .v{font-family:var(--serif);font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:600;line-height:1;color:var(--tinta)}
+.num-box .l{font-size:.88rem;color:var(--tinta2);margin-top:.5rem;line-height:1.4}
+.num-box.oliva{border-color:var(--oliva)} .num-box.mostarda{border-color:var(--mostarda)}
+@media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
+</style>
+</head>
+<body>
+
+<!-- 01 -->
+<section class="slide capa on">
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM · 65 anos">
+    <img src="assets/logos/tecnico-fruticultura.svg" alt="Técnico em Fruticultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
+  <h1>Sistemas agroalimentares e cadeias produtivas</h1>
+  <div class="sub">Unidade 1 · Aula 3 de 4 — Da porteira para fora: quem define o preço da sua fruta</div>
+  <div class="regua"></div>
+  <div class="assin">
+    Vivências em Fruticultura I<br>
+    Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira
+  </div>
+</section>
+
+<!-- 02 retomada -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Retomada</div>
+  <h2>Subindo dois níveis na escala</h2>
+  <p class="lead">Na aula 2 desenhamos a UPA e paramos na fronteira da propriedade. Mas dissemos que a análise regional é etapa preliminar indispensável — e ficou uma dívida.</p>
+  <p style="margin-top:1.4rem">Hoje pagamos essa dívida. A pergunta é simples e desconfortável: <strong>a decisão sobre o que plantar no pomar é mesmo do produtor?</strong></p>
+  <div class="pergunta">
+    <p>Você perguntou ao produtor para onde vai a fruta. O que ele respondeu?</p>
+  </div>
+</section>
+
+<!-- 03 roteiro -->
+<section class="slide">
+  <div class="kicker">Roteiro de hoje</div>
+  <h2>Três tempos</h2>
+  <div class="g3">
+    <div class="card oliva"><h3>Vocabulário da cadeia</h3><p>Montante, dentro da porteira, jusante. Cadeia produtiva e sistema agroalimentar não são sinônimos.</p></div>
+    <div class="card terra"><h3>Três arranjos gaúchos</h3><p>Uva na Serra, maçã nos Campos de Cima da Serra e a cadeia curta da Região Central. Mesma lógica, soluções opostas.</p></div>
+    <div class="card mostarda"><h3>Onde o técnico atua</h3><p>O que muda no aconselhamento quando você enxerga a cadeia inteira, e onde buscar dados.</p></div>
+  </div>
+</section>
+
+<!-- 04 tres elos -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>Os três segmentos de uma cadeia produtiva</h2>
+  <div class="cadeia">
+    <div class="seg a">
+      <div class="n">Antes da porteira</div>
+      <h3>Montante</h3>
+      <ul>
+        <li>Viveiros e mudas</li>
+        <li>Fertilizantes e defensivos</li>
+        <li>Máquinas e implementos</li>
+        <li>Crédito rural e seguro</li>
+        <li>Assistência técnica</li>
+        <li>Pesquisa e melhoramento</li>
+      </ul>
+    </div>
+    <div class="seg b">
+      <div class="n">Dentro da porteira</div>
+      <h3>Produção</h3>
+      <ul>
+        <li>A UPA que você desenhou</li>
+        <li>Manejo do pomar</li>
+        <li>Colheita</li>
+        <li>Classificação e embalagem</li>
+        <li>Armazenagem</li>
+      </ul>
+    </div>
+    <div class="seg c">
+      <div class="n">Depois da porteira</div>
+      <h3>Jusante</h3>
+      <ul>
+        <li>Cooperativas e packing houses</li>
+        <li>Agroindústria</li>
+        <li>Atacado e Ceasa</li>
+        <li>Varejo e feiras</li>
+        <li>Mercado institucional</li>
+        <li>Exportação</li>
+        <li>Consumidor</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:1.4rem"><strong>Regra prática:</strong> o poder de definir preço raramente está no meio. Está onde há menos atores e mais concentração.</p>
+</section>
+
+<!-- 04b montante -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · O elo que se costuma esquecer</div>
+  <h2>Antes da porteira também se define preço</h2>
+  <p class="lead">Falar de cadeia costuma virar sinônimo de falar de quem compra. Mas em fruticultura o montante define boa parte do resultado antes de a primeira fruta existir.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card oliva">
+      <div class="n">Onde o montante decide</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li><strong>Muda e porta-enxerto.</strong> Viveiro certificado, cultivar disponível e sanidade determinam o pomar pelos próximos vinte anos. Uma escolha, um efeito de duas décadas</li>
+        <li><strong>Insumos.</strong> Fertilizante e defensivo são em boa parte importados e cotados em dólar: o custo entra na propriedade sem que ninguém ali possa negociá-lo</li>
+        <li><strong>Investimento de proteção.</strong> Tela antigranizo e irrigação custam por hectare mais do que muitas famílias movimentam por ano</li>
+        <li><strong>Crédito e seguro.</strong> Definem o que é possível plantar, não só o que é possível pagar. Sem custeio e sem Proagro, o horizonte de decisão encurta para uma safra</li>
+      </ul>
+    </div>
+    <div class="card terra">
+      <div class="n">Como medir poder num elo</div>
+      <p>Conte os atores dos dois lados da negociação. Quinze mil famílias produtoras diante de algumas dezenas de vinícolas e indústrias de suco; centenas de produtores de maçã diante de poucos fornecedores de muda certificada.</p>
+      <p style="margin-top:.8rem"><strong>Onde há muitos de um lado e poucos do outro, o preço se forma do lado dos poucos.</strong> Vale a montante e a jusante — é a mesma assimetria, em direções opostas.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Guarde isso para a Unidade 2: o Bloco E do seu roteiro de campo vai pedir a origem das mudas e o acesso a crédito, seguro e assistência técnica. São perguntas de montante, e a resposta explica escolhas que a olhos de fora pareceriam falta de técnica.</p>
+  </div>
+</section>
+
+<!-- 05 cadeia x sistema -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Distinção conceitual</div>
+  <h2>Cadeia produtiva não é o mesmo que sistema agroalimentar</h2>
+  <div class="g2">
+    <div class="card oliva">
+      <div class="n">Cadeia produtiva</div>
+      <h3>Um recorte de produto</h3>
+      <p>Segue um produto específico — a uva, a maçã, a bergamota — da origem ao consumo. É linear, sequencial e útil para analisar margens, gargalos e coordenação.</p>
+      <p style="margin-top:.7rem"><em>Pergunta típica: onde se perde valor nesta cadeia?</em></p>
+    </div>
+    <div class="card terra">
+      <div class="n">Sistema agroalimentar</div>
+      <h3>Um recorte de território e sociedade</h3>
+      <p>Abrange todos os produtos, atores, instituições e relações que produzem, distribuem e consomem alimentos em determinado espaço. Inclui saúde, cultura alimentar, resíduos, políticas públicas e ambiente.</p>
+      <p style="margin-top:.7rem"><em>Pergunta típica: este arranjo alimenta bem as pessoas daqui?</em></p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>O Polifruti é, na prática, um exercício de sistema agroalimentar: reúne produtores, estudantes, pesquisadores e consumidores em torno de fruticultura, saúde e equidade — não em torno de uma commodity só.</p>
+  </div>
+</section>
+
+<!-- 05b deriva -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Por que a distinção importa</div>
+  <h2>Um problema que nenhuma cadeia isolada enxerga</h2>
+  <p class="lead">A deriva de herbicidas hormonais é o deslocamento não intencional do produto para fora da área de aplicação — pelo vento ou por volatilização. Mesmo em doses mínimas, deforma folhas, derruba flores e frutos, reduz a qualidade da colheita e, quando se repete, mata plantas e mudas.</p>
+  <p style="margin-top:1.3rem">Repare na natureza do problema: <strong>a causa está numa cadeia e o dano está em outra.</strong> Quem aplica está na cadeia da soja, do arroz ou do milho. Quem perde está na fruticultura. Nenhuma análise de cadeia produtiva, feita isoladamente, captura isso.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card oliva">
+      <div class="n">A pesquisa no seu colégio</div>
+      <p><em>Deriva de herbicidas hormonais e seus impactos na fruticultura do Rio Grande do Sul na percepção dos atingidos</em> — GIPAG, Colégio Politécnico da UFSM. Ouviu <strong>395 fruticultores de 144 municípios</strong>, em 12 regionais da Emater/RS-Ascar, entre setembro de 2025 e fevereiro de 2026.</p>
+    </div>
+    <div class="card">
+      <div class="n">Rigor e limite</div>
+      <p>Aprovada pelo Comitê de Ética em Pesquisa da UFSM, com termo de consentimento e anonimato. A amostragem é <strong>por conveniência</strong>, não probabilística: os resultados não se generalizam estatisticamente para todos os fruticultores do estado.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Guarde essa ressalva metodológica. Ela é exatamente o tipo de honestidade que se espera da sua sistematização: dizer o que os dados mostram <strong>e</strong> até onde eles alcançam.</p>
+  </div>
+</section>
+
+<!-- 06 caso uva capa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Tempo 2 · Caso A</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:22ch">A cadeia da uva na Serra Gaúcha</h1>
+  <div class="regua"></div>
+  <p class="lead" style="max-width:58ch">Bento Gonçalves, Caxias do Sul, Flores da Cunha, Garibaldi. Minifúndios de origem italiana, mão de obra familiar, alta densidade de cooperativas e vinícolas.</p>
+</section>
+
+<!-- 07 uva numeros -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Caso A</div>
+  <h2>A dimensão do arranjo</h2>
+  <div class="nums">
+    <div class="num-box"><div class="v">957 mil t</div><div class="l">Safra gaúcha de uva em 2025, contra 703 mil t em 2024 (IBGE)</div></div>
+    <div class="num-box oliva"><div class="v">~15 mil</div><div class="l">Famílias envolvidas na vitivinicultura no RS</div></div>
+    <div class="num-box mostarda"><div class="v">~48 mil ha</div><div class="l">Área cultivada com videira no estado</div></div>
+    <div class="num-box"><div class="v">~92%</div><div class="l">Da uva colhida no RS segue para industrialização</div></div>
+  </div>
+  <p style="margin-top:1.8rem">A Serra Gaúcha responde por mais da metade da produção nacional de uva, e concentra cerca de 36,6 mil dos 42,4 mil hectares de parreiral destinado à indústria no estado. O Valor Bruto da Produção da atividade foi estimado em cerca de R$ 2,29 bilhões.</p>
+</section>
+
+<!-- 08 uva estrutura -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Caso A</div>
+  <h2>O detalhe que organiza tudo</h2>
+  <p class="lead">Se 92% da uva vai para a indústria, o produtor da Serra não vende fruta. Ele vende matéria-prima.</p>
+  <ul class="bullets" style="margin-top:1.4rem">
+    <li><strong>O preço não se forma na gôndola.</strong> Forma-se na negociação anual entre entidades de produtores e a indústria, com mediação frequente do poder público.</li>
+    <li><strong>A qualidade é medida em grau Brix</strong>, não em aparência. Isso muda completamente o manejo: o objetivo é açúcar, não calibre.</li>
+    <li><strong>A cooperativa é elo e é comprador ao mesmo tempo.</strong> O associado é fornecedor e dono — uma ambiguidade produtiva e conflituosa.</li>
+    <li><strong>O produto final tem marca e denominação de origem.</strong> Parte do valor gerado na cadeia é apropriada por um ativo intangível que o produtor de uva não controla.</li>
+  </ul>
+  <div class="pergunta">
+    <p>Um produtor de uva da Serra melhora o seu resultado aumentando a produtividade do parreiral? Em que condições isso é verdade e em que condições é falso?</p>
+  </div>
+</section>
+
+<!-- 09 caso maca capa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Tempo 2 · Caso B</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:24ch">A cadeia da maçã nos Campos de Cima da Serra</h1>
+  <div class="regua"></div>
+  <p class="lead" style="max-width:58ch">Vacaria, Muitos Capões, Bom Jesus, Monte Alegre dos Campos. Grandes áreas, empresas verticalizadas, tecnologia intensiva e mercado de fruta fresca.</p>
+</section>
+
+<!-- 10 maca numeros -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Caso B</div>
+  <h2>A dimensão do arranjo</h2>
+  <div class="nums">
+    <div class="num-box"><div class="v">~45%</div><div class="l">Da maçã brasileira é colhida no RS. O estado alterna com Santa Catarina a liderança nacional conforme a safra</div></div>
+    <div class="num-box oliva"><div class="v">88%</div><div class="l">Da produção gaúcha se concentra nos Campos de Cima da Serra</div></div>
+    <div class="num-box mostarda"><div class="v">~7,2 mil ha</div><div class="l">Área de pomar em Vacaria, o maior município produtor do país — de um total estadual de 14,8 mil ha</div></div>
+    <div class="num-box"><div class="v">439</div><div class="l">Produtores de maçã no estado, dos quais apenas 60 em Vacaria — poucos, mas em grandes áreas</div></div>
+  </div>
+  <p style="margin-top:1.8rem">Compare com a uva: aproximadamente <strong>15 mil famílias</strong> na vitivinicultura contra <strong>439 produtores</strong> na maçã. Duas fruticulturas de peso econômico semelhante e estruturas sociais opostas.</p>
+</section>
+
+<!-- 11 comparacao -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O núcleo da aula</div>
+  <h2>Duas cadeias, duas lógicas</h2>
+  <table>
+    <tr><th style="width:19%">Dimensão</th><th>Uva · Serra Gaúcha</th><th>Maçã · Campos de Cima da Serra</th><th>Cadeia curta · Região Central</th></tr>
+    <tr><td>Tipo de UPA predominante</td><td>Familiar, minifúndio</td><td>Empresarial, grandes áreas</td><td>Familiar diversificada, muitas vezes pluriativa</td></tr>
+    <tr><td>Número de produtores</td><td>Milhares</td><td>Centenas</td><td>Muitos, dispersos e pouco organizados</td></tr>
+    <tr><td>Destino principal</td><td>Industrialização — vinho, suco, espumante</td><td>Fruta fresca, mercado interno e exportação</td><td>Consumidor final: feira, entrega, mercado institucional</td></tr>
+    <tr><td>Critério de qualidade</td><td>Teor de açúcar e sanidade</td><td>Calibre, cor, firmeza, ausência de defeito</td><td>Frescor, confiança pessoal e regularidade da oferta</td></tr>
+    <tr><td>Onde o valor se concentra</td><td>Na marca e na denominação de origem</td><td>Na logística: frigorificação, classificação, escala</td><td>Fica em boa parte com o produtor — que paga com o próprio trabalho comercial</td></tr>
+    <tr><td>Barreira de entrada</td><td>Baixa em terra, alta em conhecimento e tradição</td><td>Altíssima em capital: pomar, tela antigranizo, câmara fria</td><td>Baixa em capital, alta em tempo, formalização e constância</td></tr>
+    <tr><td>Risco climático crítico</td><td>Chuva na colheita, granizo</td><td>Granizo, falta de frio hibernal</td><td>Qualquer evento que quebre a regularidade da oferta</td></tr>
+    <tr><td>Papel da cooperativa</td><td>Central: processa e comercializa</td><td>Secundário: a empresa faz tudo internamente</td><td>Variável: quando existe, organiza logística e acesso a compras públicas</td></tr>
+  </table>
+</section>
+
+<!-- 11b caso C capa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Tempo 2 · Caso C</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:24ch">A cadeia curta na Região Central</h1>
+  <div class="regua"></div>
+  <p class="lead" style="max-width:58ch">Santa Maria, Agudo, Santiago, Vale do Jaguari. Agricultura familiar diversificada, hortifrutigranjeiros, feiras livres — e a cadeia mais curta possível: da propriedade direto ao consumidor.</p>
+  <p style="margin-top:1.2rem" class="tempo">Caso documentado pelo GIPAG, grupo de pesquisa do próprio Colégio Politécnico da UFSM.</p>
+</section>
+
+<!-- 11c paradoxo -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Caso C</div>
+  <h2>O paradoxo que abre a questão</h2>
+  <p class="lead">A Região Central do Rio Grande do Sul produz frutas, legumes e verduras — e mesmo assim é abastecida majoritariamente de fora.</p>
+  <p style="margin-top:1.3rem">O GIPAG dedicou um trabalho inteiro a essa pergunta: <em>Origens e razões do desabastecimento alimentar de frutas, legumes e verduras da Região Central do Rio Grande do Sul</em>. A resposta não é falta de aptidão agrícola.</p>
+  <ul class="bullets" style="margin-top:1.3rem">
+    <li><strong>Logística e relevo.</strong> O grupo mediu como a declividade e as impedâncias geomorfométricas limitam o escoamento em arranjos locais de produção e consumo</li>
+    <li><strong>Escala.</strong> O varejo compra volume padronizado e constante; o produtor familiar entrega pouco e sazonal</li>
+    <li><strong>Canais.</strong> A diversidade de canais existe, mas o produtor precisa escolher — e cada escolha exige competências diferentes</li>
+    <li><strong>Formalização.</strong> Exigências de inspeção municipal e rotulagem barram o produto processado artesanalmente</li>
+  </ul>
+  <div class="pergunta">
+    <p>Por que é mais fácil comprar maçã de Vacaria em Santa Maria do que bergamota do município vizinho?</p>
+  </div>
+</section>
+
+<!-- 11d polifeira -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Caso C</div>
+  <h2>A Polifeira do Agricultor como resposta</h2>
+  <p>Uma feira livre dentro da UFSM, mantida pelo Colégio Politécnico, que virou objeto de pesquisa continuada. Vejam a variedade de perguntas que uma cadeia curta permite investigar:</p>
+  <div class="g3" style="margin-top:1.3rem">
+    <div class="card oliva">
+      <div class="n">Dimensão econômica</div>
+      <p>Importância econômica da feira para os produtores; oferta e comportamento da comercialização de citros; fatores de escolha entre canais do mercado de proximidade.</p>
+    </div>
+    <div class="card mostarda">
+      <div class="n">Dimensão do produto</div>
+      <p>Aspectos sensoriais de alimentos processados artesanalmente; rotulagem nutricional; monitoramento de resíduos de agrotóxicos; transição para sistemas mais sustentáveis.</p>
+    </div>
+    <div class="card terra">
+      <div class="n">Dimensão social e ambiental</div>
+      <p>Perfil do consumidor; comunicação e redes sociais na feira; resíduos sólidos gerados; gestão e educação ambiental nas propriedades participantes.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem"><strong>A feira não é o único caminho curto.</strong> As compras públicas — PNAE na alimentação escolar e programas estaduais de aquisição — garantem preço e volume combinados antes da colheita, o que resolve justamente o problema da imprevisibilidade. Em troca exigem formalização, DAP e capacidade de entregar no calendário do comprador. É o tipo de acesso em que o trabalho de um técnico muda o resultado de uma família em uma safra.</p>
+  <div class="destaque">
+    <p>Nenhuma dessas perguntas faz sentido na cadeia da maçã de exportação, e todas fazem sentido aqui. <strong>O arranjo da cadeia define quais problemas existem</strong> — e, portanto, o que o técnico precisa saber.</p>
+  </div>
+</section>
+
+<!-- 12 leitura -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Interpretação</div>
+  <h2>O que a comparação ensina</h2>
+  <ol class="num">
+    <li><strong>A estrutura da cadeia condiciona o manejo da UPA.</strong> Não é o agrônomo que decide o objetivo do pomar: é o comprador, através do critério de qualidade que ele paga.</li>
+    <li><strong>Verticalização e coordenação são respostas ao risco.</strong> Quando a fruta é perecível e o mercado é exigente, quem tem capital internaliza os elos. Quem não tem, se associa — ou entrega para atravessador.</li>
+    <li><strong>O elo mais fraco é o que não pode estocar.</strong> A fruta na planta tem prazo; o comprador com câmara fria, não. Aí está a assimetria de poder.</li>
+    <li><strong>A cadeia curta recoloca a margem com o produtor</strong> — e transfere a ele o trabalho comercial. Na feira ele ganha o preço do varejo e paga com o próprio sábado, com a exigência de rotulagem e com a obrigação de ter produto todo mês.</li>
+    <li><strong>Cada arranjo cria os seus próprios problemas.</strong> Nenhum é a solução: a Serra tem o problema da marca que não controla, Vacaria o do capital de entrada, a Região Central o da escala e da logística.</li>
+  </ol>
+</section>
+
+<!-- 12b citros -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Aplicando o quadro</div>
+  <h2>E a cadeia dos Scherer?</h2>
+  <p class="lead">Voltemos ao pomar de bergamota do Vale do Caí. Agora dá para responder o que ficou em aberto na aula 1: por que aquela família vende para atravessador, mesmo sabendo que ele paga menos.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card terra">
+      <div class="n">O que a estrutura da cadeia oferece a ela</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Indústria de processamento praticamente ausente no estado — a bergamota gaúcha vive do mercado de fruta fresca</li>
+        <li>Concorrência direta com a citricultura paulista, com escala e logística incomparáveis</li>
+        <li>Cooperativismo citrícola frágil na região, ao contrário do que se vê na uva</li>
+        <li>Fruta perecível, sem câmara fria na propriedade: quem pode esperar é o comprador</li>
+      </ul>
+    </div>
+    <div class="card oliva">
+      <div class="n">Por que a escolha é coerente</div>
+      <p>O atravessador paga menos e leva tudo, inclusive a fruta fora de padrão, e paga no ato. Nesse arranjo, quem não tem estoque, escala nem caixa compra previsibilidade com desconto no preço.</p>
+      <p style="margin-top:.8rem">Não é desinformação nem acomodação. É a melhor decisão disponível <strong>dentro da cadeia que existe</strong> — e mudá-la exige mexer na cadeia, não no produtor.</p>
+    </div>
+  </div>
+  <div class="pergunta">
+    <p>Se o problema está na estrutura da cadeia, o que sobra para um técnico fazer numa propriedade só?</p>
+  </div>
+</section>
+
+<!-- 13 atores -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Quem você precisa conhecer no RS</h2>
+  <div class="g4">
+    <div class="card"><div class="n">Extensão</div><p><strong>Emater/RS-Ascar</strong> — assistência técnica, dados municipais de fruticultura, ligação com políticas públicas</p></div>
+    <div class="card"><div class="n">Pesquisa</div><p><strong>Embrapa Uva e Vinho</strong>, <strong>Embrapa Clima Temperado</strong>, universidades e institutos federais</p></div>
+    <div class="card"><div class="n">Preços e mercado</div><p><strong>Cepea/Esalq</strong>, <strong>Conab</strong>, <strong>Ceasa/RS</strong> — séries de preço e boletins de conjuntura</p></div>
+    <div class="card"><div class="n">Representação e crédito</div><p><strong>Cooperativas locais</strong>, sindicatos de trabalhadores rurais, <strong>Fetag</strong> e <strong>Fetraf</strong>, <strong>Farsul</strong>, associações de produtores e as <strong>cooperativas de crédito</strong>, que financiam parte relevante da agricultura familiar no estado</p></div>
+  </div>
+  <div class="destaque">
+    <p>Todos esses atores publicam dados abertos. Na sua sistematização, uma afirmação sustentada em fonte vale mais do que três impressões pessoais — e é isso que qualifica sua contribuição ao Polifruti.</p>
+  </div>
+</section>
+
+<!-- 13b gipag -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3 · Dados da sua própria região</div>
+  <h2>O GIPAG, aqui no Politécnico</h2>
+  <p class="lead">Grupo Interdisciplinar de Pesquisas Agroalimentares Georreferenciadas, coordenado pelo Prof. Gustavo Pinto da Silva no Colégio Politécnico da UFSM. Boa parte do que existe de dado sistematizado sobre a fruticultura da Região Central saiu dali — e está aberto.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card oliva">
+      <div class="n">Para consultar</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li><strong>Atlas — Georreferenciamento da fruticultura e olericultura da Região Central do RS.</strong> Download livre. Comece por aqui se a sua UPA fica na região</li>
+        <li><strong>Painel da deriva de herbicidas.</strong> Consulta por regional da Emater, por cultura frutícola e por município</li>
+        <li><strong>Painel da dinâmica dos mercados agroalimentares no RS.</strong> Dados de 286 propriedades em 12 cidades</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="n">Para ler</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li><strong>Do campo para os mercados</strong> — panorama da cadeia agroalimentar de hortifrutigranjeiros da Região Central</li>
+        <li>Anais da <strong>JAI-UFSM</strong>, com dezenas de trabalhos sobre feiras, canais de comercialização e fruticultura regional</li>
+      </ul>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Duas vantagens práticas: os dados são <strong>da sua região</strong>, não médias nacionais; e os pesquisadores estão <strong>no mesmo colégio que você</strong> — o que os torna convidados plausíveis para o Polifruti.</p>
+  </div>
+</section>
+
+<!-- 14 tecnico -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>O que muda no seu aconselhamento</h2>
+  <div class="g2">
+    <div class="card terra">
+      <div class="n">Recomendação sem visão de cadeia</div>
+      <p>“Aumente a produtividade do pomar.”</p>
+      <p style="margin-top:.8rem"><em>Risco: mais fruta num mercado que já não absorve, com preço em queda na safra e nenhum ganho de renda.</em></p>
+    </div>
+    <div class="card oliva">
+      <div class="n">Recomendação com visão de cadeia</div>
+      <p>“Vamos mapear juntos para onde vai a sua fruta, quem define o preço em cada canal e em que época ele remunera. Talvez o ganho esteja menos em produzir mais e mais em deslocar a colheita, classificar melhor ou mudar de canal — e essa é uma decisão que só a senhora e o senhor podem tomar.”</p>
+    </div>
+  </div>
+  <p style="margin-top:1.8rem">O técnico que só domina o dentro da porteira ajuda a melhorar o pomar. O que enxerga a cadeia ajuda a melhorar a renda — que é o que o produtor pediu. Em nenhum dos dois casos é ele quem decide.</p>
+</section>
+
+<!-- 15 tarefa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Ponte para a vivência</div>
+  <h2>Micro-entregável desta aula</h2>
+  <p class="lead">Mapeie a jusante da unidade de produção que você escolheu.</p>
+  <p style="margin-top:1.4rem">Poste no fórum:</p>
+  <ul class="bullets" style="margin-top:1rem">
+    <li>Todos os canais por onde a produção sai da propriedade, com a proporção aproximada de cada um</li>
+    <li>Quem define o preço em cada canal, e como</li>
+    <li>Qual o critério de qualidade cobrado em cada canal</li>
+    <li>Um dado oficial sobre a cultura principal daquela UPA — do IBGE, da Emater, do Cepea ou da Conab — com a fonte indicada</li>
+  </ul>
+  <div class="destaque">
+    <p>Este mapa é o que vai diferenciar a sua sistematização de um relato de visita — e é essa diferença que qualifica sua contribuição ao Polifruti. Relato descreve o que se viu; sistematização explica por que aquilo acontece daquele jeito.</p>
+  </div>
+</section>
+
+<!-- 16 proxima -->
+<section class="slide">
+  <div class="kicker">Próxima aula</div>
+  <h2>Aula 4 — Metodologias sistêmicas aplicadas a situações-problema</h2>
+  <p class="lead">A última aula da unidade é a mais prática. Vamos transformar tudo o que vimos em método: como fazer um diagnóstico, quais ferramentas usar em campo e como identificar o problema que será o eixo da sua vivência.</p>
+  <p style="margin-top:1.6rem"><strong>Você sai da aula 4 com:</strong> o roteiro de campo pronto para a Unidade 2.</p>
+  <p style="margin-top:.8rem"><strong>Leitura prévia:</strong> PINHEIRO, S. L. G. <em>O enfoque sistêmico e o desenvolvimento rural sustentável</em> — seções sobre hard-systems e soft-systems.</p>
+</section>
+
+<!-- 17 referencias -->
+<section class="slide">
+  <div class="kicker">Referências e fontes de dados</div>
+  <h2>Para aprofundar</h2>
+  <div style="margin-top:1rem">
+    <p class="ref">CONAB. Boletins da Companhia Nacional de Abastecimento. Disponível em: conab.gov.br</p>
+    <p class="ref">CEPEA/ESALQ-USP. Indicadores de preços e Hortifruti Brasil. Disponível em: cepea.esalq.usp.br</p>
+    <p class="ref">EMATER/RS-ASCAR. Dados da fruticultura no Rio Grande do Sul. Disponível em: emater.tche.br</p>
+    <p class="ref">DUTRA, E. G.; SILVA, G. P. da; ZEN, H. D. Origens e razões do desabastecimento alimentar de frutas, legumes e verduras da Região Central do Rio Grande do Sul. In: 55º Congresso da SOBER, 2017.</p>
+    <p class="ref">GARCIA FILHO, D. P. <em>Guia metodológico: diagnóstico dos sistemas agrários.</em> Brasília: INCRA/FAO, 1999.</p>
+    <p class="ref">GIPAG. <em>Atlas — Georreferenciamento da fruticultura e olericultura da Região Central do Rio Grande do Sul.</em> Santa Maria: UFSM, Colégio Politécnico. Disponível em: ufsm.br/grupos/gipag/publicacoes</p>
+    <p class="ref">GIPAG. <em>Deriva de herbicidas hormonais e seus impactos na fruticultura do Rio Grande do Sul na percepção dos atingidos.</em> Santa Maria: UFSM, Colégio Politécnico, 2025-2026. Parecer CEP-UFSM nº 7.769.310; CAAE 90692725.0.0000.5346. Painel de dados disponível em: ufsm.br/grupos/gipag/publicacoes</p>
+    <p class="ref">GIPAG. <em>Do campo para os mercados.</em> Santa Maria: Editora UFSM, 2021.</p>
+    <p class="ref">MENEZES DIAS, J.; SILVA, G. P. da; LICHTNOW, D. A diversidade de canais de comercialização para frutas e hortaliças na Região Central do Rio Grande do Sul. In: 34ª Jornada Acadêmica Integrada, UFSM, 2019.</p>
+    <p class="ref">PEDROSO, M. A. P.; SILVA, G. P. da; BRANDÃO, J. B.; LICHTNOW, D. Análise da importância econômica de uma feira livre: o caso da Polifeira do Agricultor – UFSM. In: 58º Congresso da SOBER, 2020.</p>
+    <p class="ref">SCHNEIDER, S. (Coord.). <em>A dinâmica dos mercados agroalimentares no Rio Grande do Sul: mapeamento e análise socioeconômica.</em> FAPERGS, Edital 02/2017 Pesquisador Gaúcho.</p>
+    <p class="ref">SILVA, R. V. da; MIOLA, A. C. Impedâncias logísticas e geomorfométricas em arranjos locais de produção e consumo de frutas e hortaliças na Região Central do Rio Grande do Sul. In: 31ª Jornada Acadêmica Integrada, UFSM, 2016.</p>
+    <p class="ref">IBGE. Produção Agrícola Municipal (PAM) e Levantamento Sistemático da Produção Agrícola (LSPA). Disponível em: sidra.ibge.gov.br</p>
+    <p class="ref">MAZOYER, M.; ROUDART, L. <em>História das agriculturas no mundo: do neolítico à crise contemporânea.</em> São Paulo: Editora UNESP; Brasília: NEAD, 2010.</p>
+    <p class="ref">PINHEIRO, S. L. G. O enfoque sistêmico e o desenvolvimento rural sustentável.</p>
+    <p class="ref">SECRETARIA DA AGRICULTURA, PECUÁRIA E DESENVOLVIMENTO RURAL DO RS. Boletins de safra. Disponível em: agricultura.rs.gov.br</p>
+  </div>
+  <p style="margin-top:1.6rem" class="tempo">Declaração de uso de IA: material elaborado com apoio de inteligência artificial; conteúdo e referências revisados pelos professores responsáveis.</p>
+</section>
+
+<div class="prog" id="prog"></div>
+<div class="barra">
+  <span>Unidade 1 · Aula 3 — Cadeias produtivas</span>
+  <span class="mid">
+    <button onclick="ir(-1)">← anterior</button>
+    <span id="cont">1 / 24</span>
+    <button onclick="ir(1)">próximo →</button>
+    <button onclick="document.body.classList.toggle('lista')">modo lista</button>
+  </span>
+  <span>Vivências em Fruticultura I</span>
+</div>
+
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+function mostra(n){sl[i].classList.remove('on');i=Math.max(0,Math.min(sl.length-1,n));sl[i].classList.add('on');
+  document.getElementById('cont').textContent=(i+1)+' / '+sl.length;
+  document.getElementById('prog').style.width=((i+1)/sl.length*100)+'%';window.scrollTo(0,0);}
+function ir(d){mostra(i+d)}
+document.addEventListener('keydown',e=>{
+  if(document.body.classList.contains('lista'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();ir(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();ir(-1)}
+  if(e.key==='Home')mostra(0); if(e.key==='End')mostra(sl.length-1);
+  if(e.key==='l'||e.key==='L')document.body.classList.toggle('lista');
+});
+mostra(0);
+</script>
+</body>
+</html>

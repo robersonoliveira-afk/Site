@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 1 — Origens do pensamento sistêmico | Vivências em Fruticultura I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FFFFFF; --papel2:#FAFAF8; --papel3:#EDEDEB;
+  --tinta:#26221C; --tinta2:#544C40; --tinta3:#8A8378;
+  --oliva:#2A7E57; --oliva-cl:#EBF4F0;
+  --terra:#CC4F33; --terra-cl:#F5E8E5;
+  --mostarda:#B2B234; --mostarda-cl:#F5F5E6;
+  --linha:#DDD3C2;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+
+.slide{
+  display:none; min-height:100vh; padding:5vh 7vw 12vh;
+  flex-direction:column; justify-content:center;
+  max-width:1180px; margin:0 auto;
+}
+.slide.on{display:flex}
+body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
+
+/* tipografia */
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
+.kicker.oliva{color:var(--oliva)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
+h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p+p{margin-top:.9rem}
+.lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
+strong{font-weight:600;color:var(--tinta)}
+em{font-style:italic}
+a{color:var(--terra)}
+
+/* capa */
+.capa{background:var(--papel2)}
+.capa .logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:2.2rem}
+.capa .logos img{height:46px;width:auto;display:block}
+.capa .logos img:last-child{height:64px}
+.capa .disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+.capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
+.capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
+.regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
+
+/* listas */
+ul.bullets{list-style:none;margin-top:.4rem}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
+ul.bullets li strong{color:var(--tinta)}
+
+ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
+
+/* grades */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem;margin-top:1rem}
+@media(max-width:820px){.g2,.g3,.g5{grid-template-columns:1fr}}
+
+.card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
+.card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
+.card p{font-size:.98rem;line-height:1.5}
+.card.oliva{background:var(--oliva-cl);border-color:#CAE2D7}
+.card.terra{background:var(--terra-cl);border-color:#E7CCC6}
+.card.mostarda{background:var(--mostarda-cl);border-color:#E7E7C5}
+
+.quadro{border-left:3px solid var(--oliva);padding:.3rem 0 .3rem 1.6rem;margin:1.6rem 0}
+.quadro p{font-family:var(--serif);font-size:clamp(1.15rem,1.9vw,1.55rem);line-height:1.35;color:var(--tinta);font-weight:400}
+.quadro .fonte{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-top:.9rem;letter-spacing:.03em}
+
+.destaque{background:var(--mostarda-cl);border:1px solid #E7E7C5;border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.6rem}
+.destaque p{color:var(--tinta)}
+
+.foto{margin-top:.4rem}
+.foto img{width:100%;border:1px solid var(--linha);border-radius:3px;display:block;object-fit:cover}
+
+.video-wrap{position:relative;display:block;width:100%;max-width:640px;aspect-ratio:16/9;margin-top:1.6rem;border-radius:3px;overflow:hidden;border:1px solid var(--linha);background:#000}
+.video-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+.video-wrap::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;line-height:60px;text-align:center;padding-left:4px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:1.3rem}
+.video-cta{font-family:var(--mono);font-size:.78rem;color:var(--terra);margin-top:.6rem}
+.foto .legenda{font-family:var(--mono);font-size:.76rem;color:var(--tinta3);margin-top:.7rem;line-height:1.5}
+
+/* tabela */
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.97rem}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .9rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.85rem .9rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500;width:26%}
+
+/* escada de niveis */
+.escada{margin-top:1.4rem}
+.escada .deg{display:flex;align-items:center;gap:1rem;padding:.55rem 0;border-bottom:1px dotted var(--linha)}
+.escada .deg span:first-child{font-family:var(--mono);font-size:.75rem;color:var(--tinta3);width:2.5rem}
+.escada .deg span:last-child{font-size:1.02rem;color:var(--tinta2)}
+.escada .deg.foco{background:var(--mostarda-cl);margin:0 -1rem;padding:.55rem 1rem}
+.escada .deg.foco span:last-child{color:var(--tinta);font-weight:600}
+
+/* pergunta para a turma */
+.pergunta{background:var(--tinta);color:var(--papel);border-radius:3px;padding:2rem 2.2rem;margin-top:1.4rem}
+.pergunta .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mostarda);margin-bottom:.9rem}
+.pergunta p{color:#EFE8DC;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:48ch}
+
+/* ciclo de retroalimentacao */
+.ciclo{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:1.3rem}
+.ciclo .et{background:var(--terra-cl);border:1px solid #E7CCC6;border-radius:3px;padding:.75rem .9rem;
+  font-size:.92rem;color:var(--tinta);line-height:1.35;flex:1 1 145px;min-width:130px}
+.ciclo .seta{font-family:var(--mono);color:var(--terra);font-size:1.05rem;flex:0 0 auto}
+.ciclo-volta{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--terra);margin-top:.9rem;display:flex;align-items:center;gap:.5rem}
+@media(max-width:820px){.ciclo .seta{transform:rotate(90deg);width:100%;text-align:center}}
+
+/* barra inferior */
+.barra{position:fixed;left:0;right:0;bottom:0;height:46px;background:var(--papel);border-top:1px solid var(--linha);
+  display:flex;align-items:center;justify-content:space-between;padding:0 7vw;font-family:var(--mono);font-size:.72rem;color:var(--tinta3);z-index:20}
+.barra .mid{display:flex;gap:1.2rem;align-items:center}
+.barra button{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--linha);color:var(--tinta2);
+  padding:.28rem .7rem;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.barra button:hover{background:var(--papel3)}
+.prog{position:fixed;left:0;bottom:46px;height:2px;background:var(--terra);z-index:21;transition:width .18s ease}
+body.lista .barra,body.lista .prog{display:none}
+
+.ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
+
+.tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
+
+@media print{
+  .barra,.prog{display:none}
+  .slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}
+}
+</style>
+</head>
+<body>
+
+<!-- 01 capa -->
+<section class="slide capa on">
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM · 65 anos">
+    <img src="assets/logos/tecnico-fruticultura.svg" alt="Técnico em Fruticultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
+  <h1>Origens do pensamento sistêmico e os princípios da abordagem</h1>
+  <div class="sub">Unidade 1 · Aula 1 de 4 — Por que a recomendação técnica isolada não resolve o problema do pomar</div>
+  <div class="regua"></div>
+  <div class="assin">
+    Vivências em Fruticultura I<br>
+    Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira
+  </div>
+</section>
+
+<!-- 02 onde estamos -->
+<section class="slide">
+  <div class="kicker">Unidade 1 · A abordagem sistêmica na fruticultura</div>
+  <h2>Onde esta aula se encaixa</h2>
+  <table>
+    <tr><td><strong>Aula 1</strong></td><td><strong>Origens do pensamento sistêmico e os princípios da abordagem</strong> — por que precisamos de outro modo de olhar</td></tr>
+    <tr><td>Aula 2</td><td>Sistemas: definição, tipos e componentes de um sistema de produção</td></tr>
+    <tr><td>Aula 3</td><td>Sistemas agroalimentares e cadeias produtivas</td></tr>
+    <tr><td>Aula 4</td><td>Metodologias sistêmicas aplicadas a situações-problema</td></tr>
+  </table>
+  <div class="destaque">
+    <p>Ao final das quatro aulas você terá escolhido a unidade de produção que vai acompanhar, desenhado o seu funcionamento e identificado o problema que será o eixo da sua vivência e da sua contribuição ao Polifruti.</p>
+  </div>
+</section>
+
+<!-- 02b video objetivo -->
+<section class="slide">
+  <div class="kicker">Antes de começar</div>
+  <h2>Vivências em Fruticultura I — o objetivo, em vídeo</h2>
+  <p class="lead">Uma apresentação da disciplina antes de entrarmos na primeira aula.</p>
+  <a class="video-wrap" href="https://www.youtube.com/watch?v=2gHW_sJkEIM" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Vivências em Fruticultura I - Objetivo">
+    <img src="https://i.ytimg.com/vi/2gHW_sJkEIM/hqdefault.jpg" alt="Vivências em Fruticultura I - Objetivo" loading="lazy">
+  </a>
+  <p class="video-cta">▶ Assistir no YouTube ↗</p>
+</section>
+
+<!-- 03 roteiro -->
+<section class="slide">
+  <div class="kicker">Roteiro de hoje</div>
+  <h2>Três tempos</h2>
+  <div class="g3">
+    <div class="card oliva">
+      
+      <h3>De onde vem o nosso jeito de pensar</h3>
+      <p>Descartes, a ciência analítica e os limites que ela encontrou no século XX.</p>
+    </div>
+    <div class="card terra">
+      
+      <h3>O pomar que não respondeu</h3>
+      <p>Um caso do Vale do Caí analisado ao vivo, primeiro pelo olhar fragmentado, depois pelo olhar sistêmico.</p>
+    </div>
+    <div class="card mostarda">
+      
+      <h3>O que muda na sua prática</h3>
+      <p>Os cinco pressupostos da abordagem sistêmica e a tarefa que abre a sua vivência.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 abertura -->
+<section class="slide">
+  <div class="kicker">Tempo 1 · Abertura</div>
+  <h2>Comecemos por uma cena conhecida</h2>
+  <div class="g2">
+    <div>
+      <p class="lead">Um fruticultor relata queda de produtividade no pomar. Chega o técnico, avalia a cultura, identifica deficiência nutricional e recomenda a correção da adubação.</p>
+      <p style="margin-top:1.4rem">A recomendação está tecnicamente correta. Um ano depois, nada mudou.</p>
+    </div>
+    <div class="foto">
+      <img src="assets/imagens/Figura-5-Sintoma-de-deficiencia-de-magnesio-em-folhas-de-citros-A-clorose-internerval.webp" alt="Folhas de citros com clorose internerval, sintoma de deficiência nutricional">
+      <div class="legenda">Sintoma de deficiência nutricional em citros.</div>
+    </div>
+  </div>
+  <div class="pergunta">
+
+    <p>Se o diagnóstico estava certo, por que a solução não funcionou?</p>
+  </div>
+</section>
+
+<!-- 05 descartes -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>O método que aprendemos sem perceber</h2>
+  <p>Desde o século XVII o pensamento ocidental se organiza sobre uma concepção de ciência chamada <strong>analítica</strong> ou <strong>cartesiana</strong>. René Descartes a sintetizou no <em>Discurso do Método</em> (1637) em quatro princípios:</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card"><div class="n">Princípio 1</div><h3>Evidência</h3><p>Aceitar como verdadeiro apenas aquilo que é comprovadamente verdadeiro.</p></div>
+    <div class="card"><div class="n">Princípio 2</div><h3>Redução</h3><p>Dividir as dificuldades em partes mais simples.</p></div>
+    <div class="card"><div class="n">Princípio 3</div><h3>Causalidade</h3><p>Estudar um problema pela parte de mais fácil solução.</p></div>
+    <div class="card"><div class="n">Princípio 4</div><h3>Exaustão</h3><p>Estudar os desdobramentos de um problema até esgotá-los.</p></div>
+  </div>
+  <p style="margin-top:1.4rem"><em>Fonte: Miguel, Mazoyer e Roudart, a partir de Capra (1982).</em></p>
+</section>
+
+<!-- 06 o que entregou -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>Isso não é um erro. É uma escolha com custo</h2>
+  <div class="g2">
+    <div class="card oliva">
+      <div class="n">O que essa concepção entregou</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>As grandes descobertas científicas modernas</li>
+        <li>O melhoramento genético e as cultivares que você maneja</li>
+        <li>Defensivos, fertilizantes, mecanização</li>
+        <li>A própria organização das disciplinas que você cursa</li>
+      </ul>
+    </div>
+    <div class="card terra">
+      <div class="n">O que ela deixa de fora</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Fenômenos complexos: clima, ecossistemas, seres vivos</li>
+        <li>As relações entre as partes, e não só as partes</li>
+        <li>Os objetivos de quem decide na propriedade</li>
+        <li>A história e a trajetória daquela unidade de produção</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem">A abordagem sistêmica <strong>não substitui</strong> a disciplinar. Como observa Pinheiro, a disciplinaridade é pré-requisito da multidisciplinaridade. O problema é usar só uma delas quando o problema pede as duas.</p>
+</section>
+
+<!-- 07 limites do metodo -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>A virada do século XX</h2>
+  <p class="lead">Por muito tempo, avançar na ciência foi sinônimo de dividir: encontrar a menor peça, o tijolo a partir do qual tudo o mais poderia ser explicado.</p>
+  <p style="margin-top:1.4rem">Foi assim que se chegou à molécula, ao átomo, à partícula. Mas quanto mais fundo se cavou, mais organização e mais interação se encontrou — e não a peça simples que se procurava.</p>
+  <div class="destaque">
+    <p>O próprio método de dividir para entender revelou o seu limite: dividir demais faz perder de vista <strong>como as partes se relacionam</strong>. E é a relação, não a peça isolada, que explica o comportamento do conjunto.</p>
+  </div>
+  <p style="margin-top:1.6rem"><em>Leituras da unidade:</em> PINHEIRO, S. L. G. <em>O enfoque sistêmico e o desenvolvimento rural sustentável: uma oportunidade de mudança da abordagem hard-systems para experiências com soft-systems.</em> · MIGUEL, L. A.; MAZOYER, M.; ROUDART, L. Abordagem sistêmica e sistemas agrários. In: MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
+</section>
+
+<!-- 08 sistema origem -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>Uma palavra antiga para uma ideia nova</h2>
+  <p class="lead">Sistema vem do grego <em>synhistanay</em>: colocar junto.</p>
+  <p style="margin-top:1.4rem">A partir da <strong>Teoria Geral de Sistemas</strong> de Ludwig von Bertalanffy, o pensamento sistêmico se espalhou por áreas muito distintas — física, biologia, comunicação, cibernética, psicologia, linguística, medicina e, mais tarde, a agricultura.</p>
+  <ul class="bullets" style="margin-top:1.2rem">
+    <li><strong>Bertalanffy</strong> (biólogo) — teoria geral de sistemas</li>
+    <li><strong>Shannon e Weaver</strong> (engenheiros) — teoria da informação</li>
+    <li><strong>Prigogine</strong> (físico) — estruturas dissipativas, complexidade e caos</li>
+    <li><strong>Bateson</strong> (antropólogo) — epistemologia dos sistemas e retroalimentação</li>
+    <li><strong>Maturana</strong> (biólogo) — biologia do conhecer e autopoiese</li>
+  </ul>
+  <p style="margin-top:1.3rem">Os nomes acima são a geração fundadora, dos anos 1940 aos 1970. O campo continuou: hoje se fala de <strong>resiliência</strong> — a capacidade de um sistema absorver choques sem perder a sua identidade — e de <strong>sistemas socioecológicos</strong>, que tratam pessoas e natureza como um sistema só, e não como dois. São as ideias que voltam quando o assunto é seca, enchente e adaptação.</p>
+
+</section>
+
+<!-- 08b video abordagem sistemica -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>A abordagem sistêmica na agricultura, em vídeo</h2>
+  <p class="lead">Antes de aplicar a ideia de sistema ao caso do pomar, um resumo de como ela chega até a agricultura.</p>
+  <a class="video-wrap" href="https://www.youtube.com/watch?v=Dvy7n_HMbWQ" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Abordagem Sistêmica na Agricultura">
+    <img src="https://i.ytimg.com/vi/Dvy7n_HMbWQ/hqdefault.jpg" alt="Abordagem Sistêmica na Agricultura" loading="lazy">
+  </a>
+  <p class="video-cta">▶ Assistir no YouTube ↗</p>
+</section>
+
+<!-- 09 caso abertura -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Tempo 2</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:22ch">O pomar de bergamota que não respondeu</h1>
+  <div class="regua"></div>
+  <p class="lead" style="max-width:58ch">Vale do Caí, principal região citrícola do Rio Grande do Sul. Municípios como Montenegro, São Sebastião do Caí, Harmonia e Bom Princípio, com predomínio de agricultura familiar e pomares tradicionais de bergamota e laranja.</p>
+ 
+</section>
+
+<!-- 10 caso dados -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O caso</div>
+  <h2>A propriedade da família Scherer</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="n">O que se vê na visita</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>12 hectares, sendo 6 de pomar de bergamota Montenegrina</li>
+        <li>Pomar com mais de 25 anos, plantas altas, entrelinhas fechadas</li>
+        <li>Também há horta comercial, algumas vacas de leite e milho para silagem</li>
+        <li>Casal com 58 e 55 anos; o filho trabalha na cidade</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="n">O que o produtor relata</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>“A bergamota já foi melhor. Hoje rende pouco”</li>
+        <li>Fruta pequena, com alternância forte entre safras</li>
+        <li>Poda feita “quando dá tempo”, geralmente atrasada</li>
+        <li>Vende para atravessador; preço definido na hora da entrega</li>
+        <li>“Teve o granizo, e depois dois anos de seca. A gente não recuperou”</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pergunta">
+   
+    <p>Antes de qualquer análise: qual seria a sua primeira recomendação técnica?</p>
+  </div>
+</section>
+
+<!-- 11 olhar fragmentado -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Primeira leitura</div>
+  <h2>O olhar fragmentado, e o que ele produz</h2>
+  <table>
+    <tr><th>Quem olha</th><th>O que vê</th><th>O que recomenda</th></tr>
+    <tr><td>Especialista em nutrição</td><td>Análise foliar deficiente</td><td>Corrigir a adubação</td></tr>
+    <tr><td>Especialista em fitossanidade</td><td>Presença de mosca-das-frutas</td><td>Programa de monitoramento e controle</td></tr>
+    <tr><td>Especialista em manejo</td><td>Pomar adensado, sem poda</td><td>Poda de renovação e raleio de plantas</td></tr>
+    <tr><td>Especialista em mercado</td><td>Venda dependente de atravessador</td><td>Buscar canal direto ou cooperativa</td></tr>
+  </table>
+  <p style="margin-top:1.6rem">Cada recomendação está <strong>correta em si</strong>. Somadas, elas exigem simultaneamente mais capital, mais mão de obra e mais tempo de gestão — exatamente os três fatores que a família não tem. Nenhuma será executada.</p>
+  <p style="margin-top:1rem"><em>Pinheiro descreve exatamente esse impasse: o agricultor recebe orientações desenvolvidas em ambientes controlados, muitas vezes divergentes entre si, e que realocam recursos disputados por outros subsistemas.</em></p>
+</section>
+
+<!-- 12 olhar sistemico -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Segunda leitura</div>
+  <h2>O olhar sistêmico: o que estava fora do enquadramento</h2>
+  <ul class="bullets">
+    <li><strong>Trabalho.</strong> A poda atrasa porque coincide com o pico da horta, que gera receita semanal. O pomar rende uma vez por ano; a horta paga o mês.</li>
+    <li><strong>Sucessão e renda de fora.</strong> O filho trabalha na cidade e não vai assumir. O salário dele e a aposentadoria rural, já no horizonte do casal, são hoje as entradas mais previsíveis da propriedade — mais previsíveis que a bergamota. Investir num pomar que só retorna em cinco anos não faz sentido para quem se planeja para a aposentadoria.</li>
+    <li><strong>Clima.</strong> Granizo e estiagem entraram na conta. Depois de safras perdidas, o produtor não descapitaliza o caixa em algo que o tempo pode levar embora. Não é falta de técnica: é gestão de risco por quem não tem seguro.</li>
+    <li><strong>Poder na cadeia.</strong> O atravessador paga menos, mas paga na hora e leva tudo, inclusive a fruta fora de padrão. A cooperativa paga melhor, classifica e atrasa. Para quem tem pouco caixa, previsibilidade vale mais que preço — e essa escolha não é só gosto do produtor: é o que a estrutura da cadeia oferece a ele. Voltamos a isso na aula 3.</li>
+    <li><strong>Trajetória.</strong> O pomar foi plantado quando havia três pessoas a mais trabalhando na propriedade. O sistema não está degradado: ele está dimensionado para uma família que não existe mais.</li>
+  </ul>
+  <div class="destaque">
+    <p>A queda de produtividade não é a doença. É o <strong>sintoma</strong> de um sistema de produção que perdeu o ajuste entre os seus componentes e os objetivos de quem o conduz.</p>
+  </div>
+</section>
+
+<!-- 12b retroalimentacao -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · A armadilha</div>
+  <h2>O círculo que se fecha sozinho</h2>
+  <p class="lead">Repare que as causas do problema também são efeitos dele. O sistema alimenta a si mesmo.</p>
+  <div class="ciclo">
+    <div class="et">Pomar envelhecido e adensado</div>
+    <span class="seta">→</span>
+    <div class="et">Fruta pequena, alternância entre safras</div>
+    <span class="seta">→</span>
+    <div class="et">Receita baixa e imprevisível</div>
+    <span class="seta">→</span>
+    <div class="et">Sem caixa para poda, renovação e mão de obra</div>
+  </div>
+  <div class="ciclo-volta"><span>↺</span><span>e o pomar envelhece mais um ano</span></div>
+  <p style="margin-top:1.6rem">Isso é <strong>retroalimentação</strong>: a saída do sistema volta como entrada e reforça o estado em que ele já está. Quando o efeito é esse, cada volta do ciclo agrava o problema — e o tempo passa a trabalhar contra a família.</p>
+  <div class="destaque">
+    <p>Consequência prática: não existe recomendação técnica isolada capaz de romper um ciclo. É preciso identificar <strong>onde o círculo pode ser cortado</strong> com os recursos que a família realmente tem. Na aula 2 damos nome e desenho a esse mecanismo.</p>
+  </div>
+</section>
+
+<!-- 13 racionalidade -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O ponto decisivo</div>
+  <h2>O agricultor não está errado</h2>
+  <div class="quadro">
+    <p>“Os agricultores, como todos os indivíduos, têm comportamento racional, e verifica-se uma notável coerência entre os objetivos que eles buscam alcançar e os meios por eles operacionalizados.”</p>
+    <div class="fonte">Brossier (1987), citado por Miguel</div>
+  </div>
+  <p>Há coerência nos atos do agricultor <strong>mesmo quando</strong> as suas ações não estão em consonância com a recomendação técnica ou com a busca da eficiência produtiva.</p>
+  <div class="pergunta">
+    
+    <p>Se a decisão do produtor é coerente com os objetivos dele, o que exatamente o técnico tem a oferecer?</p>
+  </div>
+  <p style="margin-top:1.4rem">Guarde essa pergunta: ela não se responde hoje — é o objeto da aula 4. Mas a direção já dá para adiantar. O técnico deixa de ser quem traz a solução certa e passa a ser quem <strong>ajuda a família a enxergar o próprio sistema</strong> e a decidir onde mexer primeiro, dentro do que ela tem.</p>
+</section>
+
+<!-- 14 pressupostos -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Os cinco pressupostos da abordagem sistêmica</h2>
+  <div class="g5">
+    <div class="card"><div class="n">01</div><h3>Interação</h3><p>A ação entre elementos é recíproca. Não é só A sobre B: é A sobre B e B sobre A.</p></div>
+    <div class="card"><div class="n">02</div><h3>Complexidade</h3><p>Não confundir com complicação. Depende da quantidade de elementos e dos tipos de relação entre eles.</p></div>
+    <div class="card"><div class="n">03</div><h3>Totalidade</h3><p>O conjunto não pode ser compreendido apenas pelas partes isoladas.</p></div>
+    <div class="card"><div class="n">04</div><h3>Hierarquia</h3><p>Há escalas de abrangência. Subindo na escala, os sistemas ficam mais complexos.</p></div>
+    <div class="card"><div class="n">05</div><h3>Organização</h3><p>Tem um lado estrutural (o arranjo) e um lado funcional (o que faz o sistema operar).</p></div>
+  </div>
+  <p style="margin-top:1.6rem"><em>Durand (1990), sistematizado por Miguel, Mazoyer e Roudart.</em></p>
+</section>
+
+<!-- 15 definicoes -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Três definições que vamos usar no semestre</h2>
+  <div class="quadro">
+    <p>“Um complexo de <strong>elementos</strong> em <strong>interação</strong>.”</p>
+    <div class="fonte">Bertalanffy, 1976</div>
+  </div>
+  <div class="quadro">
+    <p>“Um objeto complexo, de estrutura global, formado por <strong>componentes</strong> distintos e em <strong>interação</strong> mútua e dinâmica, ligados entre si por certo número de relações e organizados em função de um <strong>objetivo</strong>.”</p>
+    <div class="fonte">Rosnay, 1975</div>
+  </div>
+  <div class="quadro">
+    <p>“Certo número de <strong>componentes</strong> que <strong>interagem</strong>, que operam conjuntamente para alcançar um <strong>propósito</strong> comum, e capaz de reagir como um todo aos estímulos externos.”</p>
+    <div class="fonte">Spedding, citado por Mettrick, 1994</div>
+  </div>
+
+</section>
+
+<!-- 16 morin todo -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Como o Consórcio Muda o Comportamento das Plantas</h2>
+  <div class="quadro" style="border-color:var(--terra)">
+    <p>“O todo é superior ao todo, o todo é inferior ao todo.”</p>
+    <div class="fonte">Morin, 1977, p. 122</div>
+  </div>
+  <p><strong>Superior:</strong> o pomar consorciado produz efeitos que nenhuma planta isolada produziria — sombreamento, ciclagem, quebra-vento, refúgio de inimigos naturais.</p>
+  <p><strong>Inferior:</strong> o mesmo pomar impõe restrições a cada planta que ela não teria sozinha — competição por luz, água e nutrientes, dificuldade de mecanização.</p>
+  <p style="margin-top:1.2rem">O comportamento do conjunto é <strong>diferente</strong> da soma dos comportamentos das partes. Nem melhor, nem pior: diferente.</p>
+</section>
+
+<!-- 17 escala -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Em que escala você vai trabalhar</h2>
+  <p>Todo sistema está contido em outro maior e contém outros menores. Definir a escala é a primeira decisão metodológica de qualquer diagnóstico.</p>
+  <div class="escada">
+    <div class="deg"><span>+</span><span>Planeta</span></div>
+    <div class="deg"><span></span><span>País</span></div>
+    <div class="deg"><span></span><span>Região — o Vale do Caí, a Serra Gaúcha, a Campanha</span></div>
+    <div class="deg foco"><span>▸</span><span>Unidade de produção agrícola — a escala da sua vivência</span></div>
+    <div class="deg"><span></span><span>Lavouras e rebanhos — o pomar, a horta, o rebanho leiteiro</span></div>
+    <div class="deg"><span></span><span>Plantas e animais</span></div>
+    <div class="deg"><span>−</span><span>Células</span></div>
+  </div>
+ 
+</section>
+
+<!-- 18 fechamento -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3 · Fechamento</div>
+  <h2>O que muda na sua prática de técnico</h2>
+  <ol class="num">
+    <li>Antes de recomendar, <strong>entender o funcionamento</strong>. O que parece erro técnico costuma ser ajuste a uma restrição que você ainda não enxergou.</li>
+    <li>Perguntar pelos <strong>objetivos da família</strong>, não só pelos indicadores da cultura. Eles definem o que é uma boa solução.</li>
+    <li>Reconstituir a <strong>trajetória</strong>. A UPA de hoje é resultado de decisões passadas que ainda operam.</li>
+    <li>Verificar se a recomendação <strong>cabe</strong> nos fatores de produção disponíveis: terra, trabalho e capital.</li>
+    <li>Assumir que a sua recomendação <strong>desloca recursos</strong> de outro subsistema. Sempre.</li>
+  </ol>
+</section>
+
+<!-- 19 tarefa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Ponte para a vivência</div>
+  <h2>Micro-entregável desta aula</h2>
+  <p class="lead">Escolha a unidade de produção que você vai acompanhar ao longo da disciplina.</p>
+  <p style="margin-top:1.4rem">Poste no fórum, em até uma página:</p>
+  <ul class="bullets" style="margin-top:1rem">
+    <li>Município e localidade</li>
+    <li>Quem conduz a propriedade e qual a composição da família</li>
+    <li>Quais atividades existem ali, incluindo as que não são fruticultura</li>
+    <li>Por que você escolheu essa unidade</li>
+    <li>Uma pergunta que você ainda não sabe responder sobre ela</li>
+  </ul>
+  <div class="destaque">
+    <p>Esta escolha é definitiva. Ela será a base do seu vídeo da Unidade 2 e da sua contribuição ao Polifruti. Escolha uma unidade a que você tenha acesso real e recorrente.</p>
+  </div>
+</section>
+
+<!-- 20 proxima -->
+<section class="slide">
+  <div class="kicker">Próxima aula</div>
+  <h2>Aula 2 — Sistemas: tipos, componentes e limites</h2>
+  <p class="lead">Vamos descer da teoria geral para a unidade de produção agrícola e aprender a desenhá-la: subsistemas de cultivo, de criação e de transformação, entradas, saídas, fronteiras e retroalimentação.</p>
+</section>
+
+<!-- 21 referencias -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar</h2>
+  <div style="margin-top:1rem">
+    <p class="ref">BERTALANFFY, L. von. <em>Teoria geral dos sistemas.</em> Petrópolis: Vozes, 1976.</p>
+    <p class="ref">BROSSIER, J. Système et système de production: note sur ces concepts. <em>Cahiers des Sciences Humaines</em>, Paris, v. 23, n. 3-4, p. 377-390, 1987.</p>
+    <p class="ref">CAPRA, F. <em>O ponto de mutação.</em> São Paulo: Cultrix, 1982.</p>
+    <p class="ref">CHURCHMAN, C. W. <em>Introdução à teoria dos sistemas.</em> 2. ed. Petrópolis: Vozes, 1972.</p>
+    <p class="ref">MIGUEL, L. A. A abordagem sistêmica da unidade de produção agrícola. Porto Alegre: UFRGS/PGDR.</p>
+    <p class="ref">MIGUEL, L. A.; MAZOYER, M.; ROUDART, L. Abordagem sistêmica e sistemas agrários. In: MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
+    <p class="ref">MORIN, E. <em>O método 1: a natureza da natureza.</em> Porto Alegre: Sulina, 1977.</p>
+    <p class="ref">PINHEIRO, S. L. G. O enfoque sistêmico e o desenvolvimento rural sustentável: uma oportunidade de mudança da abordagem hard-systems para experiências com soft-systems.</p>
+    <p class="ref">ROSNAY, J. de. <em>Le macroscope: vers une vision globale.</em> Paris: Seuil, 1975.</p>
+    <p class="ref">SCHNEIDER, S. <em>A pluriatividade na agricultura familiar.</em> Porto Alegre: Editora da UFRGS, 2003.</p>
+    <p class="ref">WAGNER, S. A.; GIASSON, E.; MIGUEL, L. A.; MACHADO, J. A. D. (Org.). <em>Gestão e planejamento de unidades de produção agrícola.</em> Porto Alegre: Editora da UFRGS, 2010.</p>
+    <p class="ref">WALKER, B.; SALT, D. <em>Resilience thinking: sustaining ecosystems and people in a changing world.</em> Washington: Island Press, 2006.</p>
+  </div>
+  <p style="margin-top:1.8rem" class="tempo">Declaração de uso de IA: material elaborado com apoio de inteligência artificial; conteúdo e referências revisados pelos professores responsáveis.</p>
+</section>
+
+<div class="prog" id="prog"></div>
+<div class="barra">
+  <span>Unidade 1 · Aula 1 — Pensamento sistêmico</span>
+  <span class="mid">
+    <button onclick="ir(-1)">← anterior</button>
+    <span id="cont">1 / 24</span>
+    <button onclick="ir(1)">próximo →</button>
+    <button onclick="document.body.classList.toggle('lista')">modo lista</button>
+  </span>
+  <span>Vivências em Fruticultura I</span>
+</div>
+
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+function mostra(n){sl[i].classList.remove('on');i=Math.max(0,Math.min(sl.length-1,n));sl[i].classList.add('on');
+  document.getElementById('cont').textContent=(i+1)+' / '+sl.length;
+  document.getElementById('prog').style.width=((i+1)/sl.length*100)+'%';window.scrollTo(0,0);}
+function ir(d){mostra(i+d)}
+document.addEventListener('keydown',e=>{
+  if(document.body.classList.contains('lista'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();ir(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();ir(-1)}
+  if(e.key==='Home')mostra(0); if(e.key==='End')mostra(sl.length-1);
+  if(e.key==='l'||e.key==='L')document.body.classList.toggle('lista');
+});
+mostra(0);
+</script>
+</body>
+</html>

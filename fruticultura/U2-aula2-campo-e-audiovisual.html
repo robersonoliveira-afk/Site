@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>U2 · Aula 2 — A campo: diagnóstico e registro audiovisual | Vivências em Fruticultura I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FFFFFF; --papel2:#FAFAF8; --papel3:#EDEDEB;
+  --tinta:#26221C; --tinta2:#544C40; --tinta3:#8A8378;
+  --oliva:#2A7E57; --oliva-cl:#EBF4F0;
+  --terra:#CC4F33; --terra-cl:#F5E8E5;
+  --mostarda:#B2B234; --mostarda-cl:#F5F5E6;
+  --linha:#DDD3C2;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.slide{display:none;min-height:100vh;padding:5vh 7vw 12vh;flex-direction:column;justify-content:center;max-width:1180px;margin:0 auto}
+.slide.on{display:flex}
+body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
+.kicker.oliva{color:var(--oliva)} .kicker.mostarda{color:var(--mostarda)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
+h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p+p{margin-top:.9rem}
+.lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
+strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
+.capa{background:var(--papel2)}
+.capa .logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:2.2rem}
+.capa .logos img{height:46px;width:auto;display:block}
+.capa .logos img:last-child{height:64px}
+.capa .disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+.capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
+.capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
+.regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
+ul.bullets{list-style:none;margin-top:.4rem}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
+ul.bullets li strong{color:var(--tinta)}
+ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.video-wrap{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:3px;overflow:hidden;border:1px solid var(--linha);background:#000}
+.video-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+.video-wrap::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;line-height:52px;text-align:center;padding-left:3px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:1.1rem}
+.video-cta{font-family:var(--mono);font-size:.74rem;color:var(--terra)}
+.card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
+.card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
+.card p{font-size:.98rem;line-height:1.5}
+.card.oliva{background:var(--oliva-cl);border-color:#CAE2D7}
+.card.terra{background:var(--terra-cl);border-color:#E7CCC6}
+.card.mostarda{background:var(--mostarda-cl);border-color:#E7E7C5}
+.quadro{border-left:3px solid var(--oliva);padding:.3rem 0 .3rem 1.6rem;margin:1.6rem 0}
+.quadro p{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:1.38;color:var(--tinta);font-weight:400}
+.quadro .fonte{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-top:.9rem;letter-spacing:.03em}
+.destaque{background:var(--mostarda-cl);border:1px solid #E7E7C5;border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.6rem}
+.destaque p{color:var(--tinta)}
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.95rem}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.75rem .8rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500}
+.pergunta{background:var(--tinta);color:var(--papel);border-radius:3px;padding:2rem 2.2rem;margin-top:1.4rem}
+.pergunta .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mostarda);margin-bottom:.9rem}
+.pergunta p{color:#EFE8DC;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:48ch}
+.barra{position:fixed;left:0;right:0;bottom:0;height:46px;background:var(--papel);border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;padding:0 7vw;font-family:var(--mono);font-size:.72rem;color:var(--tinta3);z-index:20}
+.barra .mid{display:flex;gap:1.2rem;align-items:center}
+.barra button{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--linha);color:var(--tinta2);padding:.28rem .7rem;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.barra button:hover{background:var(--papel3)}
+.prog{position:fixed;left:0;bottom:46px;height:2px;background:var(--terra);z-index:21;transition:width .18s ease}
+body.lista .barra,body.lista .prog{display:none}
+.ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
+.tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
+/* roteiro do video */
+.rot-video{margin-top:1.2rem;border:1px solid var(--linha);border-radius:3px;overflow:hidden}
+.rv{display:grid;grid-template-columns:6.5rem 1fr;border-bottom:1px solid var(--linha)}
+.rv:last-child{border-bottom:none}
+@media(max-width:820px){.rv{grid-template-columns:1fr}}
+.rv .t{background:var(--papel3);padding:.85rem .8rem;font-family:var(--mono);font-size:.78rem;color:var(--tinta2);border-right:1px solid var(--linha);display:flex;align-items:center}
+.rv .c{padding:.85rem 1.1rem;background:#fff}
+.rv .c h3{font-size:1rem;margin-bottom:.25rem}
+.rv .c p{font-size:.92rem;line-height:1.45;max-width:none}
+.rv:nth-child(1) .t{background:var(--oliva-cl)}
+.rv:nth-child(3) .t{background:var(--mostarda-cl)}
+.rv:nth-child(4) .t{background:var(--terra-cl)}
+/* checklist */
+.check{margin-top:1rem}
+.check li{list-style:none;position:relative;padding:.42rem 0 .42rem 1.9rem;font-size:1rem;color:var(--tinta2);line-height:1.45;border-bottom:1px dotted var(--linha)}
+.check li::before{content:"";position:absolute;left:0;top:.62em;width:12px;height:12px;border:1.5px solid var(--tinta3);border-radius:2px}
+.check li strong{color:var(--tinta)}
+/* bloco codigo/modelo */
+.modelo{background:#fff;border:1px solid var(--linha);border-left:3px solid var(--oliva);border-radius:3px;padding:1.2rem 1.4rem;margin-top:1rem;font-family:var(--mono);font-size:.85rem;line-height:1.65;color:var(--tinta2);white-space:pre-wrap}
+.modelo .lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:.5rem}
+@media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
+</style>
+</head>
+<body>
+
+<!-- 01 capa -->
+<section class="slide capa on">
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM · 65 anos">
+    <img src="assets/logos/tecnico-fruticultura.svg" alt="Técnico em Fruticultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
+  <h1>A campo: diagnóstico e registro audiovisual</h1>
+  <div class="sub">Unidade 2 · Aula 2 de 2 — A aula mais operacional do semestre. Você sai daqui com o roteiro ajustado e o vídeo planejado minuto a minuto</div>
+  <div class="regua"></div>
+  <div class="assin">
+    Vivências em Fruticultura I<br>
+    Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira
+  </div>
+</section>
+
+<!-- 02 retomada -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.4</div>
+  <h2>A vivência em estabelecimentos de produção frutícola</h2>
+  <p class="lead">A vivência em fruticultura é oportunidade de aprendizado técnico e comportamental ao mesmo tempo — e ganha densidade quando a propriedade opera com princípios agroecológicos, porque aí o manejo integrado dos recursos fica visível.</p>
+  <div class="quadro">
+    <p>É através da vivência no campo que se desenvolvem habilidades de manejo, se aprendem técnicas de produção sustentável e se enfrentam desafios reais.</p>
+    <div class="fonte">A partir de Caporal e Costabeber, 2004</div>
+  </div>
+  <p><strong>Um cuidado:</strong> nem toda propriedade que você visitar será agroecológica, e isso não a torna menos interessante. O que interessa é entender <em>por que</em> aquela família maneja daquele jeito — a Unidade 1 inteira foi sobre isso.</p>
+</section>
+
+<!-- 03 roteiro -->
+<section class="slide">
+  <div class="kicker">Roteiro de hoje</div>
+  <h2>Três tempos</h2>
+  <div class="g3">
+    <div class="card oliva"><h3>O diagnóstico na prática</h3><p>Ajuste do roteiro de campo e o que fazer quando a realidade não coopera com o instrumento.</p></div>
+    <div class="card terra"><h3>O audiovisual</h3><p>A proposta completa, o roteiro minuto a minuto, a técnica de gravação e os direitos de imagem.</p></div>
+    <div class="card mostarda"><h3>Postagem e debate</h3><p>YouTube, fórum e o compromisso de interagir com os vídeos dos outros grupos.</p></div>
+  </div>
+</section>
+
+<!-- 04 diagnostico -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.5</div>
+  <h2>O diagnóstico exige visão sistêmica</h2>
+  <p>Você já tem o instrumento: os seis blocos do roteiro de campo montado na aula 4 da Unidade 1. Hoje não vamos refazê-lo — vamos ajustá-lo. O roteiro vale para a <strong>sua</strong> visita, e cada integrante do grupo faz a sua; a coluna de ajuste abaixo pensa no vídeo, e por isso se aplica com mais rigor à visita que o grupo escolheu gravar.</p>
+  <table>
+    <tr><th style="width:14%">Bloco</th><th style="width:34%">O que cobre</th><th>Ajuste típico</th></tr>
+    <tr><td>A</td><td>Antes da visita</td><td>Some o levantamento de dados oficiais do município para citar no vídeo</td></tr>
+    <tr><td>B</td><td>Leitura da paisagem</td><td>Marque agora os pontos que valem imagem, não só anotação</td></tr>
+    <tr><td>C</td><td>Família e trajetória</td><td>Descubra quem decide o quê antes de decidir quem fala. Quem se apresenta como dono não é necessariamente quem conduz o pomar — observar, não presumir</td></tr>
+    <tr><td>D</td><td>Sistema de produção</td><td>Priorize o itinerário técnico da cultura que será o foco do audiovisual</td></tr>
+    <tr><td>E</td><td>Inserção na cadeia</td><td>Duas perguntas, uma para cada lado. A jusante: para onde vai a fruta e quem define o preço. A montante: de onde vêm as mudas, o crédito e o seguro, e quem define essas condições</td></tr>
+    <tr><td>F</td><td>Problematização</td><td>Guarde para o final da visita, quando já houver confiança</td></tr>
+  </table>
+  <p style="margin-top:1.4rem"><em>Capra e Luisi lembram que a abordagem sistêmica é o que permite reconhecer a interdependência dos componentes. O roteiro não é um formulário: é uma forma de não perder as conexões de vista enquanto se conversa.</em></p>
+  <p style="margin-top:.9rem">Um exemplo de que olhar antes de presumir rende tema: um dos eixos do IV Polifruti — o protagonismo feminino na fruticultura — nasceu de estudantes que notaram, nas visitas, mulheres conduzindo pomar, processamento e venda sem aparecer em registro técnico nenhum.</p>
+</section>
+
+<!-- 05 quando nao coopera -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Realidade</div>
+  <h2>Quando o campo não coopera</h2>
+  <div class="g2">
+    <div class="card terra">
+      <div class="n">O que costuma dar errado</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Chove no dia combinado, ou o ano está seco e o pomar está feio</li>
+        <li>Quem decide não está — só o filho, ou só a esposa</li>
+        <li>A conversa desanda para outro assunto e não volta</li>
+        <li>O produtor responde tudo em uma frase</li>
+        <li>Você percebe que a propriedade não é o que imaginava</li>
+      </ul>
+    </div>
+    <div class="card oliva">
+      <div class="n">O que fazer</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Remarque se precisar, mas grave o que der. Chuva, estiagem e pomar feio não são estorvo: são o clima operando dentro do sistema, que é o que a Unidade 1 mandou olhar</li>
+        <li>Registre quem falou. A visão parcial é um dado, desde que identificada</li>
+        <li>Deixe desandar um pouco. É aí que sai o que ninguém perguntou</li>
+        <li>Peça exemplo: "me conta uma vez em que isso aconteceu"</li>
+        <li>Mude o eixo, não a propriedade. O problema real quase nunca é o previsto</li>
+      </ul>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Registre também o que deu errado. Na Unidade 3 isso vira material: a sistematização inclui a reflexão sobre o próprio processo, não só sobre o objeto.</p>
+  </div>
+</section>
+
+<!-- 05b ciclos e clima -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.5</div>
+  <h2>O que perguntar sobre ciclos e sobre clima</h2>
+  <p>Duas coisas que a Unidade 1 ensinou e que só aparecem se você perguntar: os ciclos de retroalimentação, que explicam por que a propriedade melhora ou se degrada aparentemente sozinha, e o clima, que é componente estrutural do sistema e não acidente do ano.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card oliva">
+      <div class="n">Ciclos de retroalimentação</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>O que aqui foi melhorando ano a ano, e o que puxou essa melhora — reforço</li>
+        <li>O que trava sempre no mesmo ponto, mesmo com esforço — equilíbrio</li>
+        <li>Alguma decisão boa que criou um problema novo depois</li>
+        <li>Onde entra dinheiro que volta para o pomar, e onde entra dinheiro que sai da propriedade</li>
+      </ul>
+    </div>
+    <div class="card terra">
+      <div class="n">Clima e risco</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Qual foi o último ano ruim, o que aconteceu e o que a família fez</li>
+        <li>O que a propriedade tem para <strong>absorver</strong> — reserva de caixa, outras rendas, diversificação</li>
+        <li>O que ela mudou para <strong>adaptar</strong> — cultivar, época, tela antigranizo, irrigação, cobertura de solo</li>
+        <li>O que faria a família <strong>romper</strong>: arrancar o pomar, arrendar, sair da atividade</li>
+        <li>Tem seguro ou Proagro? Se não tem, por quê</li>
+      </ul>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Tela antigranizo, quebra-vento, açude, cobertura de solo e caderno de anotação de chuva são respostas ao risco que estão <strong>à vista</strong> — e rendem imagem. Se aparecerem, filme e pergunte de que ano são: a data quase sempre é a data de um prejuízo.</p>
+  </div>
+</section>
+
+<!-- 06 audiovisual capa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Tempo 2</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch">O audiovisual</h1>
+  <div class="regua"></div>
+  <p class="lead" style="max-width:58ch">A construção de um audiovisual sobre uma unidade de produção que tenha a fruticultura entre suas estratégias de reprodução social. Trabalho <strong>em grupo</strong>.</p>
+  <p style="margin-top:1.2rem">O objetivo é duplo: apresentar rapidamente a realidade visitada e <strong>validar uma experiência rural que se propõe inovadora</strong> no âmbito da fruticultura no sul do Brasil.</p>
+  <p style="margin-top:1.2rem">Uma distinção que evita confusão com a leitura do Moodle: este é um <strong>relatório de vivências em vídeo</strong>, não um vídeo de sistematização. A Balem grava o vídeo <em>depois</em> de sistematizar, porque no caso dela o filme divulga uma interpretação já feita. Aqui o vídeo vem antes: ele é o registro que a sua sistematização vai interpretar na Unidade 3. Filme pensando nisso — o que você não registrar agora não estará disponível depois.</p>
+</section>
+
+<!-- 06b exemplos de turmas anteriores -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Antes de gravar o seu</div>
+  <h2>O que turmas anteriores produziram</h2>
+  <p class="lead">Três exemplos reais de vivências em vídeo, feitos por estudantes do curso.</p>
+  <div class="g3" style="margin-top:1.4rem">
+    <div>
+      <a class="video-wrap" href="https://www.youtube.com/watch?v=A9i1RxNXjNg" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Sítio Olho d'água/Jari">
+        <img src="https://i.ytimg.com/vi/A9i1RxNXjNg/hqdefault.jpg" alt="Vivências em Fruticultura I - Sítio Olho d'água/Jari" loading="lazy">
+      </a>
+      <p class="video-cta" style="margin-top:.5rem">▶ Assistir no YouTube ↗</p>
+      <p style="margin-top:.3rem"><strong>Sítio Olho d'Água</strong> — Tanise Porto</p>
+    </div>
+    <div>
+      <a class="video-wrap" href="https://www.youtube.com/watch?v=XRtLhy-can0" target="_blank" rel="noopener" aria-label="Assistir no YouTube: propriedade de Gilmar Peripolli">
+        <img src="https://i.ytimg.com/vi/XRtLhy-can0/hqdefault.jpg" alt="Vivências em Fruticultura I - propriedade de Gilmar Peripolli" loading="lazy">
+      </a>
+      <p class="video-cta" style="margin-top:.5rem">▶ Assistir no YouTube ↗</p>
+      <p style="margin-top:.3rem"><strong>Propriedade de Gilmar Peripolli</strong> — Guilherme Zanon Peripolli</p>
+    </div>
+    <div>
+      <a class="video-wrap" href="https://www.youtube.com/watch?v=9tHslrhqp1Y" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Produção de Pitaya">
+        <img src="https://i.ytimg.com/vi/9tHslrhqp1Y/hqdefault.jpg" alt="Vivências em Fruticultura I - Produção de Pitaya" loading="lazy">
+      </a>
+      <p class="video-cta" style="margin-top:.5rem">▶ Assistir no YouTube ↗</p>
+      <p style="margin-top:.3rem"><strong>Produção de Pitaya</strong> — Dionatan Albanio Guimarães</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 o que precisa aparecer -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · A especificação</div>
+  <h2>O que obrigatoriamente aparece no vídeo</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="n">Apresentação</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Estudantes do grupo</li>
+        <li>Disciplina e curso</li>
+        <li>Instituição — Colégio Politécnico da UFSM</li>
+        <li>Professores</li>
+      </ul>
+    </div>
+    <div class="card oliva">
+      <div class="n">A propriedade</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Localização: município e localidade</li>
+        <li>Atividades principais desenvolvidas</li>
+        <li>Partes da propriedade, com foco na fruticultura</li>
+        <li>Por que é importante vivenciar essa experiência, nesta propriedade</li>
+      </ul>
+    </div>
+  </div>
+  <div class="destaque">
+    <p><strong>Duração: de 4 a 7 minutos.</strong> Não é faixa com tolerância — é a faixa. Edite e poste no YouTube, público ou não listado. Depois poste o link no fórum.</p>
+  </div>
+  <p style="margin-top:1.2rem"><strong>Regra de ouro:</strong> pense que você está apresentando essa propriedade para alguém que não conhece <em>nada</em> sobre o local. Se você precisou explicar isso a alguém, precisa estar no vídeo.</p>
+</section>
+
+<!-- 08 roteiro minuto a minuto -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Estrutura sugerida</div>
+  <h2>Um roteiro de seis minutos</h2>
+  <div class="rot-video">
+    <div class="rv">
+      <div class="t">0:00 – 0:40</div>
+      <div class="c"><h3>Abertura</h3><p>Quem somos, disciplina, curso, instituição, professores. Onde estamos, dito enquanto se vê a propriedade. Curto e direto — ninguém desiste de um vídeo por causa do meio, desiste por causa do começo.</p></div>
+    </div>
+    <div class="rv">
+      <div class="t">0:40 – 1:30</div>
+      <div class="c"><h3>A propriedade em contexto</h3><p>Município e localidade, quem conduz, há quanto tempo, quais são todas as atividades. Aqui cabe um dado oficial da região: área plantada, posição do município na cultura.</p></div>
+    </div>
+    <div class="rv">
+      <div class="t">1:30 – 3:30</div>
+      <div class="c"><h3>A fruticultura em foco</h3><p>O núcleo do vídeo. Percorra o pomar mostrando: cultivar, condução, idade, espaçamento, manejo, o que chama atenção. Mostre também o que não é bonito — o problema é conteúdo.</p></div>
+    </div>
+    <div class="rv">
+      <div class="t">3:30 – 4:40</div>
+      <div class="c"><h3>A voz de quem produz</h3><p>Se a família autorizar, esta é a parte mais forte do vídeo. Uma pergunta aberta e silêncio. Se não autorizar, narre o que ouviu, deixando claro que é fala do produtor.</p></div>
+    </div>
+    <div class="rv">
+      <div class="t">4:40 – 5:40</div>
+      <div class="c"><h3>Potencialidades e limites</h3><p>O que há de inovador ou instrutivo ali. Não precisa ser tecnologia: pode ser um arranjo de trabalho, um canal de venda que devolve mais ao produtor, uma forma de conviver com o risco climático, uma solução de baixo custo, uma decisão de sucessão. <strong>E o que trava.</strong> A leitura do Moodle cobra os dois: um vídeo que só mostra potencialidade é propaganda, não registro.</p></div>
+    </div>
+    <div class="rv">
+      <div class="t">5:40 – 6:00</div>
+      <div class="c"><h3>Fecho</h3><p>Agradecimento à família e uma frase de síntese. Créditos com os nomes de todos os integrantes.</p></div>
+    </div>
+  </div>
+  <p style="margin-top:1.4rem">Este roteiro fecha em 6:00, no meio da faixa de 4 a 7 minutos. Há folga nas duas pontas: se a voz da família render, estenda o bloco 3:30 – 4:40; se a propriedade for pequena, comprima o 1:30 – 3:30 sem culpa.</p>
+</section>
+
+<!-- 09 tecnica -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Técnica</div>
+  <h2>Cinco coisas que separam um vídeo assistível de um abandonado</h2>
+  <div class="g2">
+    <div class="card mostarda">
+      <div class="n">Prioridade 1</div>
+      <h3>Áudio</h3>
+      <p>Importa mais que a imagem. Ninguém abandona um vídeo tremido, mas todo mundo abandona um que não dá para ouvir. Grave perto da pessoa, de costas para o vento, longe de motor e trator ligado. Fone com microfone resolve quase tudo.</p>
+    </div>
+    <div class="card">
+      <div class="n">Prioridade 2</div>
+      <h3>Luz</h3>
+      <p>Filme com o sol às suas costas, nunca de frente. Meio da manhã e fim da tarde são melhores que meio-dia. Dentro do galpão, posicione a pessoa perto da porta.</p>
+    </div>
+    <div class="card">
+      <div class="n">Prioridade 3</div>
+      <h3>Estabilidade e enquadramento</h3>
+      <p>Celular na horizontal, sempre. Apoie os cotovelos no corpo. Prefira planos parados de 8 a 10 segundos a panorâmicas varrendo o pomar.</p>
+    </div>
+    <div class="card">
+      <div class="n">Prioridade 4</div>
+      <h3>Gravar mais do que precisa</h3>
+      <p>Para 6 minutos de vídeo, grave 30 ou 40. Imagens de apoio — fruta, folha, mão trabalhando, ferramenta, paisagem — salvam a edição.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p><strong>Prioridade 5 — edição.</strong> Corte tudo o que não acrescenta. Legenda ajuda quem assiste sem som, que é a maioria. Editor sugerido: <strong>CapCut</strong>, gratuito e disponível para celular.</p>
+  </div>
+</section>
+
+<!-- 10 direitos de imagem -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Ética e direitos</div>
+  <h2>Direitos de imagem</h2>
+  <p class="lead">Esta é uma questão delicada e a orientação da disciplina é clara: a presença da família no vídeo é <strong>opcional</strong>.</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card oliva">
+      <div class="n">Se a família aceitar</div>
+      <p>É muito bom para todos. A propriedade ganha voz própria, o vídeo ganha força e a experiência fica registrada como ela é. Peça a autorização de forma explícita, antes de gravar, explicando que o vídeo ficará no YouTube.</p>
+    </div>
+    <div class="card terra">
+      <div class="n">Se a família preferir não aparecer</div>
+      <p>Respeite sem insistir. O vídeo funciona igual: mostre a propriedade, narre o que ouviu, use imagens de mãos trabalhando, ferramentas, pomar. A preservação é flexível e legítima.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Combine <strong>antes</strong> da gravação, não depois — e combine mais do que a imagem:</p>
+    <ul class="bullets" style="margin-top:.8rem">
+      <li>O que é <strong>dito</strong> não é o que pode ser <strong>mostrado</strong>. Preço recebido, dívida, arrendamento, venda informal e uso de agrotóxico podem ser informação valiosa para você e problema para a família num vídeo público. Pergunte, anote, e não publique sem autorização específica</li>
+      <li>Quem aparece pode <strong>mudar de ideia</strong> depois de assistir. Mostre o vídeo à família antes de postar e aceite o corte que ela pedir</li>
+      <li>Empregado, vizinho e criança que entram no quadro também não autorizaram nada</li>
+      <li>"Não listado" não é privado: qualquer pessoa com o link assiste, e o link circula</li>
+    </ul>
+  </div>
+  <p style="margin-top:1.4rem" class="tempo">Isto é atividade de ensino, não pesquisa, e por isso não passa por Comitê de Ética. A exigência, porém, é maior: a pesquisa anonimiza o que publica, e o seu vídeo nomeia a propriedade e o município.</p>
+</section>
+
+<!-- 11 postagem youtube -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Postagem no YouTube</h2>
+  <div class="modelo"><span class="lbl">Título</span>Vivências em Fruticultura I – [nome da propriedade e/ou foco da atividade na fruticultura]</div>
+  <div class="modelo"><span class="lbl">Descrição sugerida</span>A atividade é uma proposta de ensino e aprendizagem da disciplina de Vivências em Fruticultura I (EaD) do Curso Técnico em Fruticultura, ministrada pelos professores Ezequiel Redin e Róberson Macedo de Oliveira no Departamento de Ensino do Colégio Politécnico da Universidade Federal de Santa Maria (UFSM), RS, Brasil.
+
+Integrantes: [nome e sobrenome de cada acadêmico]
+
+#vivências #fruticultura #politécnico #ufsm #santamaria #rural #extensão #prática</div>
+  <p style="margin-top:1.4rem"><strong>Visibilidade:</strong> público ou não listado, à escolha do grupo. Não use "privado" — o professor e os colegas não conseguirão assistir.</p>
+</section>
+
+<!-- 12 forum -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>O fórum não é depósito de link</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="n">A postagem</div>
+      <p><strong>Apenas um integrante</strong> posta o link, com o nome de todos do grupo. Junto do link, escreva um parágrafo apresentando a propriedade e o que o grupo destacaria.</p>
+    </div>
+    <div class="card oliva">
+      <div class="n">A interação</div>
+      <p><strong>Todos os integrantes</strong> precisam comentar os vídeos de outros grupos. Não é formalidade: é a única forma de a turma conhecer realidades diferentes da sua.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem">Um bom comentário não é "parabéns, ficou ótimo". É:</p>
+  <ul class="bullets" style="margin-top:.9rem">
+    <li>Uma <strong>semelhança</strong> ou um <strong>contraste</strong> com a propriedade que o seu grupo visitou</li>
+    <li>Uma <strong>pergunta</strong> sobre algo que ficou sem resposta no vídeo</li>
+    <li>Uma leitura <strong>sistêmica</strong>: que interação entre subsistemas você percebeu que talvez o grupo não tenha destacado</li>
+  </ul>
+  <div class="destaque">
+    <p>Este debate é a matéria-prima dos eixos temáticos do Polifruti. Os problemas que aparecerem repetidos nos vídeos de vários grupos são justamente os que valem virar tema do evento.</p>
+  </div>
+</section>
+
+<!-- 13 checklist -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Antes de postar</div>
+  <h2>Checklist do grupo</h2>
+  <ul class="check">
+    <li>A família <strong>autorizou</strong> o que aparece no vídeo, e isso foi combinado antes de gravar</li>
+    <li>A família <strong>assistiu ao vídeo</strong> antes da postagem e concordou com o que ficou</li>
+    <li>Nada que foi dito em confiança — preço, dívida, venda informal — entrou no vídeo sem autorização específica</li>
+    <li>Aparecem: estudantes, disciplina, curso, instituição e <strong>professores</strong></li>
+    <li>Aparecem: <strong>município e localidade</strong> da propriedade</li>
+    <li>Aparecem: as <strong>atividades principais</strong> desenvolvidas na unidade de produção</li>
+    <li>Está respondido: <strong>por que vale vivenciar essa experiência nesta propriedade</strong></li>
+    <li>O vídeo mostra <strong>potencialidades e limites</strong>, não só o que funciona bem</li>
+    <li>A <strong>fruticultura é o foco</strong>, e partes da propriedade são efetivamente mostradas</li>
+    <li>A duração está <strong>entre 4 e 7 minutos</strong></li>
+    <li>O <strong>áudio é compreensível</strong> do início ao fim, ouvido em celular sem fone</li>
+    <li>Alguém <strong>de fora do grupo</strong> assistiu e entendeu tudo sem explicação adicional</li>
+    <li>Título e descrição no YouTube seguem o padrão, com <strong>todos os integrantes</strong> nomeados</li>
+    <li>A visibilidade está como <strong>público ou não listado</strong>, nunca privado</li>
+    <li>O link foi postado no fórum <strong>por um integrante, com o nome de todos</strong></li>
+  </ul>
+</section>
+
+<!-- 14 fecho unidade -->
+<section class="slide">
+  <div class="kicker">Fechamento da Unidade 2</div>
+  <h2>O que muda depois da vivência</h2>
+  <p class="lead">Você entrou na Unidade 2 com um método e sai dela com uma experiência. São coisas diferentes, e a segunda não substitui a primeira — ela a testa.</p>
+  <ol class="num" style="margin-top:1.2rem">
+    <li>Você viu que a propriedade real <strong>não é o caso do livro</strong>, e que a diferença entre as duas é onde mora a sua profissão.</li>
+    <li>Você conversou com quem decide e descobriu a <strong>coerência</strong> por trás de práticas que pareciam erradas de fora.</li>
+    <li>Você trabalhou em grupo com prazo real e público real — as habilidades suaves deixaram de ser tópico de programa.</li>
+    <li>Você tem material bruto: anotações, imagens, falas. <strong>Ainda não é conhecimento.</strong></li>
+  </ol>
+  <div class="destaque">
+    <p>Na Unidade 3, esse material bruto passa pelos cinco tempos da sistematização e vira algo que outras pessoas podem usar. É a etapa 3 do ciclo de Kolb: conceituação.</p>
+  </div>
+</section>
+
+<!-- 15 referencias -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar</h2>
+  <div style="margin-top:1rem">
+    <p class="ref">CAPORAL, F. R.; COSTABEBER, J. A. <em>Agroecologia: alguns conceitos e princípios.</em> Brasília: MDA/SAF/DATER-IICA, 2004.</p>
+    <p class="ref">CAPRA, F.; LUISI, P. L. <em>A visão sistêmica da vida.</em> São Paulo: Cultrix, 2014.</p>
+    <p class="ref">FREIRE, P. <em>Extensão ou comunicação?</em> Rio de Janeiro: Paz e Terra, 2014.</p>
+    <p class="ref">GARCIA FILHO, D. P. <em>Guia metodológico: diagnóstico dos sistemas agrários.</em> Brasília: INCRA/FAO, 1999.</p>
+    <p class="ref">KOLB, D. A. <em>Experiential learning.</em> Englewood Cliffs: Prentice Hall, 1984.</p>
+    <p class="ref">Exemplos de audiovisual das ofertas anteriores, disponíveis no Moodle: Sítio Olho d'Água/Jari; propriedade de Gilmar Peripolli; produção de pitaya.</p>
+  </div>
+  <p style="margin-top:1.8rem" class="tempo">A estrutura de roteiro em blocos de tempo e as orientações técnicas de gravação são sugestões de apoio; a especificação oficial da atividade é a que consta no Moodle da disciplina.</p>
+  <p style="margin-top:.9rem" class="tempo">Declaração de uso de IA: material elaborado com apoio de inteligência artificial; conteúdo e referências revisados pelos professores responsáveis.</p>
+</section>
+
+<div class="prog" id="prog"></div>
+<div class="barra">
+  <span>Unidade 2 · Aula 2 — A campo e o audiovisual</span>
+  <span class="mid">
+    <button onclick="ir(-1)">← anterior</button>
+    <span id="cont">1 / 17</span>
+    <button onclick="ir(1)">próximo →</button>
+    <button onclick="document.body.classList.toggle('lista')">modo lista</button>
+  </span>
+  <span>Vivências em Fruticultura I</span>
+</div>
+
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+function mostra(n){sl[i].classList.remove('on');i=Math.max(0,Math.min(sl.length-1,n));sl[i].classList.add('on');
+  document.getElementById('cont').textContent=(i+1)+' / '+sl.length;
+  document.getElementById('prog').style.width=((i+1)/sl.length*100)+'%';window.scrollTo(0,0);}
+function ir(d){mostra(i+d)}
+document.addEventListener('keydown',e=>{
+  if(document.body.classList.contains('lista'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();ir(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();ir(-1)}
+  if(e.key==='Home')mostra(0); if(e.key==='End')mostra(sl.length-1);
+  if(e.key==='l'||e.key==='L')document.body.classList.toggle('lista');
+});
+mostra(0);
+</script>
+</body>
+</html>

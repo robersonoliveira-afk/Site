@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>U2 · Aula 1 — A vivência como fonte de conhecimento | Vivências em Fruticultura I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FFFFFF; --papel2:#FAFAF8; --papel3:#EDEDEB;
+  --tinta:#26221C; --tinta2:#544C40; --tinta3:#8A8378;
+  --oliva:#2A7E57; --oliva-cl:#EBF4F0;
+  --terra:#CC4F33; --terra-cl:#F5E8E5;
+  --mostarda:#B2B234; --mostarda-cl:#F5F5E6;
+  --linha:#DDD3C2;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.slide{display:none;min-height:100vh;padding:5vh 7vw 12vh;flex-direction:column;justify-content:center;max-width:1180px;margin:0 auto}
+.slide.on{display:flex}
+body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
+.kicker.oliva{color:var(--oliva)} .kicker.mostarda{color:var(--mostarda)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
+h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p+p{margin-top:.9rem}
+.lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
+strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
+.capa{background:var(--papel2)}
+.capa .logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:2.2rem}
+.capa .logos img{height:46px;width:auto;display:block}
+.capa .logos img:last-child{height:64px}
+.capa .disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+.capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
+.capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
+.regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
+ul.bullets{list-style:none;margin-top:.4rem}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
+ul.bullets li strong{color:var(--tinta)}
+ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem;margin-top:1rem}
+@media(max-width:820px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
+.card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
+.card p{font-size:.98rem;line-height:1.5}
+.card.oliva{background:var(--oliva-cl);border-color:#CAE2D7}
+.card.terra{background:var(--terra-cl);border-color:#E7CCC6}
+.card.mostarda{background:var(--mostarda-cl);border-color:#E7E7C5}
+.quadro{border-left:3px solid var(--oliva);padding:.3rem 0 .3rem 1.6rem;margin:1.6rem 0}
+.quadro p{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:1.38;color:var(--tinta);font-weight:400}
+.quadro .fonte{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-top:.9rem;letter-spacing:.03em}
+.destaque{background:var(--mostarda-cl);border:1px solid #E7E7C5;border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.6rem}
+.destaque p{color:var(--tinta)}
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.95rem}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.75rem .8rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500}
+.pergunta{background:var(--tinta);color:var(--papel);border-radius:3px;padding:2rem 2.2rem;margin-top:1.4rem}
+.pergunta .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mostarda);margin-bottom:.9rem}
+.pergunta p{color:#EFE8DC;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:48ch}
+.barra{position:fixed;left:0;right:0;bottom:0;height:46px;background:var(--papel);border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;padding:0 7vw;font-family:var(--mono);font-size:.72rem;color:var(--tinta3);z-index:20}
+.barra .mid{display:flex;gap:1.2rem;align-items:center}
+.barra button{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--linha);color:var(--tinta2);padding:.28rem .7rem;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.barra button:hover{background:var(--papel3)}
+.prog{position:fixed;left:0;bottom:46px;height:2px;background:var(--terra);z-index:21;transition:width .18s ease}
+body.lista .barra,body.lista .prog{display:none}
+.ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
+.tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
+/* ciclo de kolb */
+.kolb{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:1.3rem}
+@media(max-width:820px){.kolb{grid-template-columns:1fr 1fr}}
+.kolb .k{border:1px solid var(--linha);border-radius:3px;padding:1.1rem 1rem;background:#fff;position:relative}
+.kolb .k .num{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--terra);margin-bottom:.4rem}
+.kolb .k h3{font-size:.98rem;margin-bottom:.4rem;line-height:1.25}
+.kolb .k p{font-size:.86rem;line-height:1.42;max-width:none}
+.kolb .k .onde{margin-top:.7rem;padding-top:.7rem;border-top:1px dotted var(--linha);font-family:var(--mono);font-size:.68rem;color:var(--oliva);letter-spacing:.04em;line-height:1.4}
+.kolb .k:nth-child(1){background:var(--oliva-cl);border-color:#CAE2D7}
+.kolb .k:nth-child(2){background:var(--mostarda-cl);border-color:#E7E7C5}
+.kolb .k:nth-child(3){background:var(--terra-cl);border-color:#E7CCC6}
+.kolb .k:nth-child(4){background:var(--papel3);border-color:var(--linha)}
+/* saberes */
+.dois{display:grid;grid-template-columns:1fr auto 1fr;gap:1.2rem;align-items:center;margin-top:1.4rem}
+@media(max-width:820px){.dois{grid-template-columns:1fr}}
+.dois .vs{font-family:var(--serif);font-size:1.3rem;color:var(--tinta3)}
+/* escala de progressao */
+.prog-nivel{display:flex;gap:.4rem;margin-top:1.3rem}
+@media(max-width:820px){.prog-nivel{flex-direction:column}}
+.prog-nivel .pn{flex:1;padding:1rem .9rem;border-radius:3px;border:1px solid var(--linha);background:#fff}
+.prog-nivel .pn .r{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.35rem}
+.prog-nivel .pn h3{font-size:.95rem;margin-bottom:.3rem}
+.prog-nivel .pn p{font-size:.85rem;line-height:1.4;max-width:none}
+.prog-nivel .pn:nth-child(1){background:var(--papel3)}
+.prog-nivel .pn:nth-child(2){background:var(--mostarda-cl);border-color:#E7E7C5}
+.prog-nivel .pn:nth-child(3){background:var(--terra-cl);border-color:#E7CCC6}
+.prog-nivel .pn:nth-child(4){background:var(--oliva-cl);border-color:#CAE2D7}
+@media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
+</style>
+</head>
+<body>
+
+<!-- 01 capa -->
+<section class="slide capa on">
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM · 65 anos">
+    <img src="assets/logos/tecnico-fruticultura.svg" alt="Técnico em Fruticultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
+  <h1>A vivência como fonte de conhecimento</h1>
+  <div class="sub">Unidade 2 · Aula 1 de 2 — Por que a experiência ensina o que nenhuma aula ensina, e o que você precisa levar para o campo além do roteiro</div>
+  <div class="regua"></div>
+  <div class="assin">
+    Vivências em Fruticultura I<br>
+    Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira
+  </div>
+</section>
+
+<!-- 02 a virada -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Retomada e virada</div>
+  <h2>A Unidade 1 acabou. A disciplina muda de natureza</h2>
+  <table>
+    <tr><td style="width:22%">Unidade 1</td><td>Você aprendeu a <strong>olhar</strong>. Conceitos, vocabulário, método. Tudo sobre casos que não eram seus.</td></tr>
+    <tr><td><strong>Unidade 2</strong></td><td><strong>Você vai viver.</strong> A propriedade é real, as pessoas são reais, os problemas são delas. Você é visitante, não avaliador.</td></tr>
+    <tr><td>Unidade 3</td><td>Você vai <strong>interpretar</strong> o que viveu e comunicar a outras pessoas.</td></tr>
+  </table>
+  <div class="destaque">
+    <p>A partir daqui, o conteúdo da disciplina passa a ser <strong>o que você mesmo produz</strong>. Nós não temos como saber o que você vai encontrar — e é exatamente esse o ponto.</p>
+  </div>
+</section>
+
+<!-- 03 roteiro -->
+<section class="slide">
+  <div class="kicker">Roteiro de hoje</div>
+  <h2>Três tempos</h2>
+  <div class="g3">
+    <div class="card oliva"><h3>Como a experiência se torna conhecimento</h3><p>O ciclo de aprendizagem experiencial de Kolb e o mapa do seu próprio percurso na disciplina.</p></div>
+    <div class="card terra"><h3>Dois saberes, um encontro</h3><p>A valorização dos saberes em Freire e a construção do conhecimento do técnico. Com um caso para discutir.</p></div>
+    <div class="card mostarda"><h3>As habilidades suaves</h3><p>O que a disciplina vai cobrar de você além do conhecimento técnico — e formação dos grupos de trabalho.</p></div>
+  </div>
+  <p style="margin-top:1.8rem"><em>Conteúdos do programa: 2.1 A vivência prática e a valorização dos saberes · 2.2 A construção do conhecimento do técnico · 2.3 As competências profissionais e as habilidades suaves.</em></p>
+</section>
+
+<!-- 04 kolb -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.1</div>
+  <h2>Experiência não é o mesmo que aprendizado</h2>
+  <div class="quadro">
+    <p>“O aprendizado experiencial é o processo pelo qual o conhecimento é criado através da transformação da experiência.”</p>
+    <div class="fonte">David Kolb, 1984</div>
+  </div>
+  <p>A palavra decisiva é <strong>transformação</strong>. Muita gente passa trinta anos num pomar e não acumula trinta anos de aprendizado — acumula um ano repetido trinta vezes. A experiência só vira conhecimento quando passa por um ciclo.</p>
+  <div class="kolb">
+    <div class="k">
+      <div class="num">Etapa 1</div>
+      <h3>Experiência concreta</h3>
+      <p>Estar lá, fazer, ver, ouvir, sentir. Sem mediação.</p>
+      <div class="onde">Sua visita à propriedade</div>
+    </div>
+    <div class="k">
+      <div class="num">Etapa 2</div>
+      <h3>Observação reflexiva</h3>
+      <p>Olhar para trás e perguntar: o que exatamente aconteceu ali?</p>
+      <div class="onde">Suas anotações e o vídeo</div>
+    </div>
+    <div class="k">
+      <div class="num">Etapa 3</div>
+      <h3>Conceituação abstrata</h3>
+      <p>Explicar o que se viu com conceitos, encontrar o padrão, formular a regra.</p>
+      <div class="onde">Seu registro, na Unidade 3</div>
+    </div>
+    <div class="k">
+      <div class="num">Etapa 4</div>
+      <h3>Experimentação ativa</h3>
+      <p>Testar a conclusão numa situação nova, e recomeçar o ciclo.</p>
+      <div class="onde">Sua prática como técnico</div>
+    </div>
+  </div>
+  <p style="margin-top:1.4rem"><strong>Repare:</strong> esse ciclo é o desenho desta disciplina. Hoje você está no limiar da etapa 1 — a visita ainda não aconteceu. É por isso que a preparação da próxima aula importa: quem entra na propriedade sem instrumento sai com lembrança, não com dado.</p>
+</section>
+
+<!-- 05 o que so o campo ensina -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · 2.1</div>
+  <h2>O que só o campo ensina</h2>
+  <p>Todo conteúdo técnico do seu curso está disponível em livro. Então por que sair de casa?</p>
+  <div class="g2" style="margin-top:1.5rem">
+    <div class="card">
+      <div class="n">O livro entrega</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>A recomendação correta</li>
+        <li>O padrão, a média, o caso típico</li>
+        <li>A sequência ideal de operações</li>
+        <li>Certeza</li>
+      </ul>
+    </div>
+    <div class="card oliva">
+      <div class="n">O campo entrega</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Por que a recomendação correta não foi seguida</li>
+        <li>A exceção, o desvio, o improviso que funcionou</li>
+        <li>A ordem real, atropelada por chuva, doença e falta de gente</li>
+        <li>Ambiguidade — e a necessidade de decidir mesmo assim</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem">Não é que um seja melhor. É que <strong>o técnico trabalha no segundo</strong>. A propriedade nunca é o caso típico do livro, e a sua profissão consiste justamente em traduzir de um para o outro.</p>
+</section>
+
+<!-- 06 freire -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · 2.1</div>
+  <h2>A valorização dos saberes</h2>
+  <div class="quadro">
+    <p>O aprendizado deve considerar o contexto de vida dos educandos, incorporando seus saberes e experiências. É pela prática que se reflete e se questiona a própria realidade, numa relação dialética entre teoria e prática.</p>
+    <div class="fonte">A partir de Paulo Freire, 1970</div>
+  </div>
+  <div class="dois">
+    <div class="card mostarda">
+      <div class="n">Saber técnico-científico</div>
+      <p>Sistematizado, generalizável, validado experimentalmente, transmissível por escrito. É o que você traz.</p>
+    </div>
+    <div class="vs">encontro</div>
+    <div class="card terra">
+      <div class="n">Saber empírico e local</div>
+      <p>Construído na observação repetida de <em>um</em> lugar, transmitido oralmente, ajustado ao microclima e à história daquela família. É o que o produtor tem.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>O saber local não é técnica atrasada esperando ser corrigida. Frequentemente é uma <strong>adaptação fina a condições que a pesquisa não estudou</strong> — porque a pesquisa trabalha com média, e o produtor trabalha com aquele talhão.</p>
+  </div>
+</section>
+
+<!-- 07 caso -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Caso para discutir</div>
+  <h2>A prática "errada" que funciona</h2>
+  <p class="lead">Volte ao pomar da família Scherer, no Vale do Caí, que abriu a Unidade 1. Você observa que ali não se faz o raleio recomendado. Pergunta por que. A resposta:</p>
+  <div class="quadro" style="border-color:var(--terra)">
+    <p>“Já fiz. A fruta fica maior, mas o atravessador não paga mais por fruta grande. E no ano seguinte a planta descansa e eu perco a safra. Prefiro fruta miúda todo ano do que fruta grande em ano alternado.”</p>
+    <div class="fonte">Caso Scherer, apresentado na Unidade 1 · fala reconstruída para fins didáticos</div>
+  </div>
+  <div class="pergunta">
+    <p>Ele está errado? O que você responderia? Na aula 3 da Unidade 1 você viu por que essa família vende ao atravessador e o que ela perde nisso. Sabendo disso, muda a sua resposta?</p>
+  </div>
+</section>
+
+<!-- 08 construcao conhecimento -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · 2.2</div>
+  <h2>A construção do conhecimento do técnico</h2>
+  <p>Não se passa de iniciante a especialista lendo. A progressão exige <strong>prática intensiva e diversificada</strong> — e cada nível vê coisas que o anterior não via.</p>
+  <div class="prog-nivel">
+    <div class="pn">
+      <div class="r">Nível 1</div>
+      <h3>Iniciante</h3>
+      <p>Segue a regra. Precisa que alguém diga o que fazer. Não distingue o relevante do acessório.</p>
+    </div>
+    <div class="pn">
+      <div class="r">Nível 2</div>
+      <h3>Competente</h3>
+      <p>Aplica a regra ao contexto. Percebe que a mesma recomendação não serve para toda propriedade.</p>
+    </div>
+    <div class="pn">
+      <div class="r">Nível 3</div>
+      <h3>Proficiente</h3>
+      <p>Lê a situação como um todo. Nota o que está fora do lugar antes de conseguir explicar por quê.</p>
+    </div>
+    <div class="pn">
+      <div class="r">Nível 4</div>
+      <h3>Especialista</h3>
+      <p>Reconhece o padrão de imediato, mas consegue voltar e explicar o raciocínio quando é preciso ensinar.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Sua vivência serve para atravessar do nível 1 para o 2 — de "sei a recomendação" para "sei quando ela se aplica". É um salto pequeno na escala e enorme na profissão.</p>
+  </div>
+</section>
+
+<!-- 09 postura -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Como se comporta um visitante</div>
+  <h2>Você vai entrar na casa de alguém</h2>
+  <p>Isso não é detalhe de etiqueta. É condição para a experiência produzir conhecimento: uma família que se sente julgada não mostra o que realmente faz.</p>
+  <div class="g2" style="margin-top:1.4rem">
+    <div class="card terra">
+      <div class="n">Fecha portas</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Corrigir o produtor durante a visita</li>
+        <li>Comparar com "o certo" em voz alta</li>
+        <li>Chegar em horário conveniente para você</li>
+        <li>Filmar antes de pedir</li>
+        <li>Falar mais do que ouvir</li>
+      </ul>
+    </div>
+    <div class="card oliva">
+      <div class="n">Abre portas</div>
+      <ul class="bullets" style="margin-top:.4rem">
+        <li>Perguntar como e por quê, não se faz ou não faz</li>
+        <li>Reconhecer em voz alta o que está bem feito</li>
+        <li>Aceitar o café e conversar antes de trabalhar</li>
+        <li>Explicar o propósito da vivência e pedir autorização</li>
+        <li>Voltar depois com o resultado nas mãos</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem"><em>Retome o Bloco A do roteiro de campo que você montou na aula 4 da Unidade 1: combinar horário respeitando a rotina da propriedade e pedir autorização de imagem e áudio já estavam lá.</em></p>
+</section>
+
+<!-- 10 soft skills -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3 · 2.3</div>
+  <h2>As habilidades suaves</h2>
+  <p>No mercado de trabalho, o conhecimento técnico é condição de entrada — não diferencial. O que diferencia são as competências que o programa desta disciplina chama de "suaves".</p>
+  <div class="g5">
+    <div class="card"><div class="n">01</div><h3>Comunicação</h3><p>Explicar algo técnico para quem não é técnico, sem simplificar até o erro.</p></div>
+    <div class="card"><div class="n">02</div><h3>Interpessoais</h3><p>Construir confiança rápido, com pessoas muito diferentes de você.</p></div>
+    <div class="card"><div class="n">03</div><h3>Trabalho em equipe</h3><p>Depender de outros e ser confiável para eles, com prazo real.</p></div>
+    <div class="card"><div class="n">04</div><h3>Liderança</h3><p>Assumir responsabilidade sem ter autoridade formal sobre ninguém.</p></div>
+    <div class="card"><div class="n">05</div><h3>Resolução de problemas</h3><p>Decidir com informação incompleta, sob restrição de tempo e recurso.</p></div>
+  </div>
+  <div class="quadro" style="margin-top:1.6rem">
+    <p>A inteligência emocional é uma das bases para desenvolver essas competências, porque permite compreender e gerenciar as próprias emoções, facilitando a interação interpessoal.</p>
+    <div class="fonte">A partir de Daniel Goleman, 1995</div>
+  </div>
+</section>
+
+<!-- 11 onde testadas -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Onde cada uma será posta à prova</h2>
+  <table>
+    <tr><th style="width:26%">Habilidade</th><th>Momento em que a disciplina cobra</th></tr>
+    <tr><td>Comunicação</td><td>A entrevista com o fruticultor; a narração do vídeo para quem não conhece o local; a sua atuação no Polifruti</td></tr>
+    <tr><td>Interpessoais</td><td>A primeira visita, quando você é um estranho pedindo acesso à propriedade e à vida de uma família</td></tr>
+    <tr><td>Trabalho em equipe</td><td>O audiovisual é em grupo, com nota coletiva. O registro da Unidade 3 é individual ou em dupla — o trabalho em equipe pleno volta na organização do eixo, no Polifruti</td></tr>
+    <tr><td>Liderança</td><td>A organização do evento: convidar palestrante, mediar painel, cobrar colega sem chefiar ninguém</td></tr>
+    <tr><td>Resolução de problemas</td><td>O dia em que chover na data da visita, o produtor cancelar, o áudio sair inaudível ou o convidado desistir na véspera</td></tr>
+  </table>
+  <div class="destaque">
+    <p>Nenhuma dessas se aprende ouvindo sobre elas. Por isso a disciplina tem esta forma: <strong>ela cria as situações em que elas são necessárias.</strong></p>
+  </div>
+</section>
+
+<!-- 12 tarefa -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Ponte para a vivência</div>
+  <h2>Micro-entregável desta aula</h2>
+  <p class="lead">Forme o grupo do audiovisual e feche um acordo de trabalho.</p>
+  <p style="margin-top:1.4rem"><strong>Antes, a regra da disciplina:</strong> cada estudante visita a <em>sua</em> unidade de produção, a que escolheu na Unidade 1, com o seu roteiro de campo e o seu eixo. O audiovisual é um só por grupo e trata de <em>uma</em> dessas propriedades — quem grava é o estudante daquela visita, e o grupo responde pelo roteiro, pela edição e pela postagem. As outras vivências não se perdem: cada uma sustenta o registro individual da Unidade 3 e um eixo temático para o Polifruti.</p>
+  <p style="margin-top:1.2rem">Poste no fórum, em uma página:</p>
+  <ul class="bullets" style="margin-top:1rem">
+    <li><strong>Integrantes</strong> do grupo, com nome completo, município e a propriedade que cada um vai visitar</li>
+    <li><strong>Qual dessas propriedades vira vídeo</strong> — e por quê</li>
+    <li><strong>Quem faz o quê:</strong> quem grava (o estudante daquela propriedade), quem monta o roteiro, quem edita, quem posta e quem coordena os prazos</li>
+    <li><strong>Como o grupo vai se comunicar</strong> e com que frequência</li>
+    <li><strong>Datas prováveis</strong> das visitas de cada integrante, com destaque para a da visita que será gravada</li>
+  </ul>
+  <div class="destaque">
+    <p>Sejam concretos na divisão. Em curso a distância, com gente em municípios diferentes, o combinado vago é a principal causa de trabalho entregue na véspera e nota abaixo do que o grupo poderia ter.</p>
+  </div>
+</section>
+
+<!-- 13 proxima -->
+<section class="slide">
+  <div class="kicker">Próxima aula</div>
+  <h2>U2 · Aula 2 — A campo: diagnóstico e registro audiovisual</h2>
+  <p class="lead">A aula mais operacional do semestre. Vamos ajustar o roteiro de campo para a realidade da sua propriedade e detalhar a produção do audiovisual: estrutura, tempos, gravação, direitos de imagem e postagem.</p>
+  <p style="margin-top:1.6rem"><strong>Traga:</strong> o grupo formado, as datas das visitas de cada integrante e a definição de qual delas será gravada.</p>
+  <p style="margin-top:.8rem"><strong>Assista antes:</strong> os três exemplos de audiovisual disponíveis no Moodle — Sítio Olho d'Água/Jari, propriedade de Gilmar Peripolli e produção de pitaya. Anote, de cada um, uma coisa que funcionou e uma que você faria diferente.</p>
+</section>
+
+<!-- 14 referencias -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar</h2>
+  <div style="margin-top:1rem">
+    <p class="ref">CAPORAL, F. R.; COSTABEBER, J. A. <em>Agroecologia: alguns conceitos e princípios.</em> Brasília: MDA/SAF/DATER-IICA, 2004.</p>
+    <p class="ref">CAPRA, F.; LUISI, P. L. <em>A visão sistêmica da vida: uma concepção unificada e suas implicações filosóficas, políticas, sociais e econômicas.</em> São Paulo: Cultrix, 2014.</p>
+    <p class="ref">FREIRE, P. <em>Pedagogia do oprimido.</em> Rio de Janeiro: Paz e Terra, 1970.</p>
+    <p class="ref">FREIRE, P. <em>Extensão ou comunicação?</em> Rio de Janeiro: Paz e Terra, 2014.</p>
+    <p class="ref">GOLEMAN, D. <em>Inteligência emocional: a teoria revolucionária que define o que é ser inteligente.</em> Rio de Janeiro: Objetiva, 2001. Edição original: 1995.</p>
+    <p class="ref">KOLB, D. A. <em>Experiential learning: experience as the source of learning and development.</em> Englewood Cliffs: Prentice Hall, 1984.</p>
+    <p class="ref">WAGNER, S. A. et al. (Org.). <em>Gestão e planejamento de unidades de produção agrícola.</em> Porto Alegre: Editora da UFRGS, 2010.</p>
+  </div>
+  <p style="margin-top:1.8rem" class="tempo">A escala de progressão iniciante–competente–proficiente–especialista é uma síntese didática de modelos de aquisição de competência profissional, apresentada aqui em versão simplificada para fins de aula.</p>
+  <p style="margin-top:.9rem" class="tempo">Declaração de uso de IA: material elaborado com apoio de inteligência artificial; conteúdo e referências revisados pelos professores responsáveis.</p>
+</section>
+
+<div class="prog" id="prog"></div>
+<div class="barra">
+  <span>Unidade 2 · Aula 1 — A vivência como fonte de conhecimento</span>
+  <span class="mid">
+    <button onclick="ir(-1)">← anterior</button>
+    <span id="cont">1 / 14</span>
+    <button onclick="ir(1)">próximo →</button>
+    <button onclick="document.body.classList.toggle('lista')">modo lista</button>
+  </span>
+  <span>Vivências em Fruticultura I</span>
+</div>
+
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+function mostra(n){sl[i].classList.remove('on');i=Math.max(0,Math.min(sl.length-1,n));sl[i].classList.add('on');
+  document.getElementById('cont').textContent=(i+1)+' / '+sl.length;
+  document.getElementById('prog').style.width=((i+1)/sl.length*100)+'%';window.scrollTo(0,0);}
+function ir(d){mostra(i+d)}
+document.addEventListener('keydown',e=>{
+  if(document.body.classList.contains('lista'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();ir(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();ir(-1)}
+  if(e.key==='Home')mostra(0); if(e.key==='End')mostra(sl.length-1);
+  if(e.key==='l'||e.key==='L')document.body.classList.toggle('lista');
+});
+mostra(0);
+</script>
+</body>
+</html>
