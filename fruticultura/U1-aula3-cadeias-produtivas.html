@@ -42,6 +42,14 @@ strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
 .capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
 .capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
 .regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.fonte-card{display:flex;align-items:center;gap:1rem;background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1rem 1.3rem;margin-top:1.3rem}
+.fonte-card img{height:40px;width:auto;flex:0 0 auto;border-radius:3px}
+.fonte-card img.round{height:48px;width:48px;object-fit:cover;border-radius:50%}
+.fonte-card p{font-size:.92rem;margin:0}
+.fonte-card a{color:var(--terra);font-weight:600}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.2rem}
+.galeria img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;border:1px solid var(--linha);display:block}
+@media(max-width:820px){.galeria{grid-template-columns:1fr}}
 .assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
 ul.bullets{list-style:none;margin-top:.4rem}
 ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
@@ -375,6 +383,14 @@ body.lista .barra,body.lista .prog{display:none}
       <p>Perfil do consumidor; comunicação e redes sociais na feira; resíduos sólidos gerados; gestão e educação ambiental nas propriedades participantes.</p>
     </div>
   </div>
+  <div class="galeria">
+    <img src="assets/imagens/polifeira-1.jpg" alt="Barracas da Polifeira do Agricultor na UFSM, com produtores vendendo hortaliças">
+    <img src="assets/imagens/polifeira-2.jpg" alt="Barraca da Polifeira do Agricultor com frutas e verduras à venda">
+  </div>
+  <div class="fonte-card">
+    <img class="round" src="assets/logos/polifeira.jpg" alt="Logo da Polifeira do Agricultor UFSM">
+    <p>Toda semana, no campus da UFSM. Siga <a href="https://www.instagram.com/polifeira/" target="_blank" rel="noopener">@polifeira</a> para ver produtores, produtos e datas.</p>
+  </div>
   <p style="margin-top:1.6rem"><strong>A feira não é o único caminho curto.</strong> As compras públicas — PNAE na alimentação escolar e programas estaduais de aquisição — garantem preço e volume combinados antes da colheita, o que resolve justamente o problema da imprevisibilidade. Em troca exigem formalização, DAP e capacidade de entregar no calendário do comprador. É o tipo de acesso em que o trabalho de um técnico muda o resultado de uma família em uma safra.</p>
   <div class="destaque">
     <p>Nenhuma dessas perguntas faz sentido na cadeia da maçã de exportação, e todas fazem sentido aqui. <strong>O arranjo da cadeia define quais problemas existem</strong> — e, portanto, o que o técnico precisa saber.</p>
@@ -440,6 +456,10 @@ body.lista .barra,body.lista .prog{display:none}
   <div class="kicker mostarda">Tempo 3 · Dados da sua própria região</div>
   <h2>O GIPAG, aqui no Politécnico</h2>
   <p class="lead">Grupo Interdisciplinar de Pesquisas Agroalimentares Georreferenciadas, coordenado pelo Prof. Gustavo Pinto da Silva no Colégio Politécnico da UFSM. Boa parte do que existe de dado sistematizado sobre a fruticultura da Região Central saiu dali — e está aberto.</p>
+  <div class="fonte-card">
+    <img src="assets/logos/gipag.png" alt="Logo do GIPAG — Grupo Interdisciplinar de Pesquisas Agroalimentares Georreferenciadas">
+    <p>Publicações, atlas e painéis de dados em <a href="https://www.ufsm.br/grupos/gipag" target="_blank" rel="noopener">ufsm.br/grupos/gipag</a>.</p>
+  </div>
   <div class="g2" style="margin-top:1.5rem">
     <div class="card oliva">
       <div class="n">Para consultar</div>
