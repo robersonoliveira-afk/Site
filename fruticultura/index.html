@@ -28,6 +28,19 @@ main{max-width:760px;margin:0 auto;padding:8vh 7vw 10vh}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.4vw,3rem);line-height:1.1;letter-spacing:-.02em;margin:1.2rem 0}
 .sub{font-size:1.05rem;color:var(--tinta2);max-width:56ch;margin-bottom:2.4rem}
 .unidade{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin:2.2rem 0 .8rem}
+.plano{background:#fff;border:1px solid var(--linha);border-radius:4px;padding:1.6rem 1.8rem;margin-bottom:2.6rem}
+.plano h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:1.1rem}
+.plano dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem;margin-bottom:1.3rem}
+.plano dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta3);white-space:nowrap;padding-top:.15rem}
+.plano dd{font-size:.98rem;color:var(--tinta2);line-height:1.5}
+.plano p{font-size:.98rem;color:var(--tinta2);line-height:1.55;margin-bottom:.9rem;max-width:60ch}
+.plano p:last-child{margin-bottom:0}
+.plano strong{color:var(--tinta);font-weight:600}
+.plano table{border-collapse:collapse;width:100%;margin-top:.4rem;font-size:.92rem}
+.plano th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.5rem .6rem;border-bottom:2px solid var(--linha)}
+.plano td{padding:.6rem .6rem;border-bottom:1px solid var(--linha);color:var(--tinta2)}
+.plano td.pct{color:var(--tinta);font-weight:600;text-align:right;white-space:nowrap}
+.aberto{color:var(--terra);font-style:italic}
 ul{list-style:none}
 li{border-bottom:1px solid var(--linha)}
 li a{display:block;padding:1rem 0;color:var(--tinta);text-decoration:none;font-size:1.05rem}
@@ -45,6 +58,25 @@ footer{margin-top:3rem;font-family:var(--mono);font-size:.75rem;color:var(--tint
   <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
   <h1>Vivências em Fruticultura I</h1>
   <div class="sub">Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira</div>
+
+  <div class="plano">
+    <h2>Plano de ensino</h2>
+    <dl>
+      <dt>Curso</dt><dd>Técnico em Fruticultura — EaD · Turma 21</dd>
+      <dt>Carga horária</dt><dd>50h EaD + 10h presencial</dd>
+      <dt>Período</dt><dd>03/08 a 10/10/2026 — aulas às segundas-feiras</dd>
+      <dt>Formato</dt><dd>Encontros predominantemente assíncronos (material no site, fóruns no Moodle e vivências práticas). Algumas segundas-feiras terão encontro síncrono — os docentes avisam com antecedência quando houver.</dd>
+      <dt>Primeira aula</dt><dd><strong>Síncrona, amanhã</strong> — apresentação do plano de ensino, da disciplina e dos métodos de trabalho e de avaliação.</dd>
+      <dt>IV Polifruti</dt><dd>Evento de encerramento, com compartilhamento das vivências da turma. <span class="aberto">Data a definir — será avisada oportunamente.</span></dd>
+    </dl>
+    <table>
+      <tr><th>Avaliação</th><th></th></tr>
+      <tr><td>Relato das vivências realizadas, registrado em vídeo (fórum do Moodle)</td><td class="pct">40%</td></tr>
+      <tr><td>Prova teórica</td><td class="pct">20%</td></tr>
+      <tr><td>Organização e apresentação no IV Polifruti</td><td class="pct">40%</td></tr>
+    </table>
+    <p>Datas de prova e demais detalhes serão combinados ao longo do semestre; este plano cobre apenas a estrutura geral da disciplina.</p>
+  </div>
 
   <div class="unidade">Unidade 1 · Pensamento sistêmico</div>
   <ul>
