@@ -23,7 +23,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased}
 body{overflow-x:hidden}
-.slide{display:none;min-height:100vh;padding:5vh 7vw 12vh;flex-direction:column;justify-content:center;max-width:1180px;margin:0 auto}
+.slide{display:none;height:100vh;padding:5vh 7vw 12vh;flex-direction:column;justify-content:safe center;overflow-y:auto;max-width:1180px;margin:0 auto}
 .slide.on{display:flex}
 body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
 .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
@@ -171,7 +171,6 @@ body.lista .barra,body.lista .prog{display:none}
     <tr><td>Prazos</td><td>Definem o momento de realização das operações</td><td>Janela de poda, ciclo da cultura, prazo de pagamento do comprador</td></tr>
     <tr><td>Entradas e saídas</td><td>Materializam as trocas com o entorno</td><td>Mudas, adubo, crédito, mão de obra / fruta, esterco, trabalho fora da propriedade</td></tr>
   </table>
-  <p style="margin-top:1.2rem"><em>Durand (1990), em Miguel, Mazoyer e Roudart.</em></p>
 </section>
 
 <!-- 06 fronteira -->
@@ -392,7 +391,6 @@ body.lista .barra,body.lista .prog{display:none}
     <li>O agricultor e a família têm <strong>influência determinante</strong> sobre a estrutura e o funcionamento da UPA.</li>
     <li>Conhecer as possibilidades de evolução da UPA exige <strong>analisar a sua história e trajetória</strong>.</li>
   </ol>
-  <p style="margin-top:1.4rem"><em>Miguel, a partir de Cochet (2011), INCRA/FAO (1999) e Lima et al. (1995).</em></p>
 </section>
 
 <!-- 13 tipos -->
@@ -409,7 +407,6 @@ body.lista .barra,body.lista .prog{display:none}
     <tr><td>Relação com o mercado</td><td>Vende o excedente e consome parte</td><td>Usa canais de baixa exigência, que caibam no tempo disponível</td><td>Vende toda a produção</td><td>Contratos, integração, exportação</td></tr>
   </table>
   <p style="margin-top:1.2rem"><strong>O caso da aula 1 é do segundo tipo.</strong> Os Scherer têm um filho assalariado na cidade e a aposentadoria rural no horizonte. Isso explica, sem nenhuma referência a erro técnico, por que a poda atrasa e por que não se investe num pomar que só retorna em cinco anos.</p>
-  <p style="margin-top:1.2rem"><em>Adaptado de Alencar e Moura Filho (1988) e de Miguel, com a inclusão do tipo pluriativo a partir de Schneider (2003).</em></p>
 </section>
 
 <!-- 14 alerta -->
@@ -421,7 +418,6 @@ body.lista .barra,body.lista .prog{display:none}
   <div class="destaque">
     <p>Cinco décadas depois, a agricultura familiar segue existindo e respondendo por parte relevante da produção de alimentos. O diagnóstico não errou nos números: errou na <strong>premissa de que havia um só tipo de UPA</strong>. A pluriatividade, hoje central em boa parte das propriedades gaúchas, era invisível para aquele diagnóstico.</p>
   </div>
-  <p style="margin-top:1.2rem"><em>Miguel, a partir de Alencar e Moura Filho (1988) e Hoffmann et al. (1984).</em></p>
 </section>
 
 <!-- 15 ambiente -->
@@ -471,11 +467,13 @@ body.lista .barra,body.lista .prog{display:none}
     <p class="ref">ALENCAR, E.; MOURA FILHO, J. A. Unidades de produção agrícola e administração rural. <em>Informe Agropecuário</em>, Belo Horizonte, n. 157, p. 25-29, 1988.</p>
     <p class="ref">COCHET, H. <em>L'agriculture comparée.</em> Paris: Éditions Quae, 2011.</p>
     <p class="ref">DUFUMIER, M. <em>Projetos de desenvolvimento agrícola: manual para especialistas.</em> Salvador: EDUFBA, 2007.</p>
+    <p class="ref">DURAND, D. <em>La systémique.</em> Paris: PUF, 1990.</p>
+    <p class="ref">HOFFMANN, R. et al. <em>Administração da empresa agrícola.</em> São Paulo: Pioneira, 1984.</p>
     <p class="ref">INCRA/FAO. <em>Análise diagnóstico de sistemas agrários: guia metodológico.</em> Brasília: INCRA, 1999.</p>
     <p class="ref">LIMA, A. P. et al. <em>Administração da unidade de produção familiar: modalidade de trabalho com agricultores.</em> Ijuí: Editora da UNIJUÍ, 1995.</p>
     <p class="ref">MIGUEL, L. A. A abordagem sistêmica da unidade de produção agrícola. Porto Alegre: UFRGS/PGDR.</p>
-    <p class="ref">MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
-    <p class="ref">PINHEIRO, S. L. G. O enfoque sistêmico e o desenvolvimento rural sustentável.</p>
+    <p class="ref">MIGUEL, L. A.; MAZOYER, M.; ROUDART, L. Abordagem sistêmica e sistemas agrários. In: MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
+    <p class="ref">PINHEIRO, S. L. G. O enfoque sistêmico e o desenvolvimento rural sustentável: uma oportunidade de mudança da abordagem hard-systems para experiências com soft-systems.</p>
     <p class="ref">SCHNEIDER, S. <em>A pluriatividade na agricultura familiar.</em> Porto Alegre: Editora da UFRGS, 2003.</p>
     <p class="ref">SEBILLOTTE, M. Sistema de cultivo e sistema de produção: conceitos operacionais em agronomia, 1994. Citado por MIGUEL, L. A.</p>
     <p class="ref">WAGNER, S. A. et al. (Org.). <em>Gestão e planejamento de unidades de produção agrícola.</em> Porto Alegre: Editora da UFRGS, 2010.</p>
