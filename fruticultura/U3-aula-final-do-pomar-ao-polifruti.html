@@ -81,14 +81,6 @@ td:first-child{color:var(--tinta);font-weight:500}
 body.lista .barra,body.lista .prog{display:none}
 .ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
 .tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
-.linha-tempo{margin-top:1.4rem;border-left:2px solid var(--linha);padding-left:0}
-.lt{position:relative;padding:0 0 1.5rem 1.8rem}
-.lt:last-child{padding-bottom:0}
-.lt::before{content:"";position:absolute;left:-7px;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--mostarda);border:2px solid var(--papel)}
-.lt.atual::before{background:var(--terra);width:14px;height:14px;left:-8px}
-.lt .ed{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:.25rem}
-.lt h3{font-size:1.05rem;margin-bottom:.25rem}
-.lt p{font-size:.95rem;line-height:1.5;max-width:70ch}
 .arco{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:1.4rem}
 @media(max-width:820px){.arco{grid-template-columns:1fr 1fr}}
 .arco .et{padding:1.1rem 1rem;border-radius:3px;border:1px solid var(--linha);background:#fff;position:relative}
@@ -112,8 +104,6 @@ body.lista .barra,body.lista .prog{display:none}
 .foto img{width:100%;height:auto;display:block;border-radius:3px;border:1px solid var(--linha)}
 .foto figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--tinta3);margin-top:.6rem}
 .foto-slot{aspect-ratio:3/2;border:2px dashed var(--terra);border-radius:3px;background:var(--terra-cl);display:flex;align-items:center;justify-content:center;text-align:center;padding:1.4rem;font-family:var(--mono);font-size:.78rem;line-height:1.55;color:var(--terra)}
-.lt-slot{aspect-ratio:1/1;border:2px dashed var(--terra);border-radius:3px;background:var(--terra-cl);display:flex;align-items:center;justify-content:center;text-align:center;padding:.8rem;margin-bottom:.8rem;font-family:var(--mono);font-size:.7rem;line-height:1.45;color:var(--terra)}
-.lt img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;border:1px solid var(--linha);margin-bottom:.8rem;display:block}
 .retrato-slot{width:92px;height:92px;border:2px dashed var(--terra);border-radius:3px;background:var(--terra-cl);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--mono);font-size:.62rem;line-height:1.3;color:var(--terra);margin-bottom:.9rem}
 .retrato img{width:92px;height:92px;object-fit:cover;border-radius:3px;border:1px solid var(--linha);margin-bottom:.9rem;display:block}
 /* links das noticias na linha do tempo */
@@ -171,12 +161,21 @@ body.lista .barra,body.lista .prog{display:none}
       <p style="margin-top:.7rem"><em>É a lógica do Polifruti: produtores, estudantes e pesquisadores na mesma sala, nenhum como plateia do outro.</em></p>
     </div>
   </div>
-  <p style="margin-top:1.6rem">Uma ressalva necessária: na papelada da UFSM, o Polifruti é um <strong>projeto de extensão registrado</strong>, com vigência até 2029 — e esta disciplina se apoia nele. Freire não recusa a atividade, recusa a ideia de que conhecimento se estende de quem tem para quem não tem. A palavra ficou; o que mudou foi o sentido do trânsito.</p>
-  <figure class="foto">
-    <!-- FOTO 01 -->
-    <div class="foto-slot">FOTO 01 — roda de conversa na propriedade: o fruticultor falando, estudantes ouvindo</div>
-    <figcaption>Vivência em propriedade frutícola. Substituir edição e ano.</figcaption>
-  </figure>
+</section>
+
+<!-- 03b freire ressalva -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>A palavra ficou; o sentido mudou</h2>
+  <p class="lead">Uma ressalva necessária: na papelada da UFSM, o Polifruti é um <strong>projeto de extensão registrado</strong>, com vigência até 2029 — e esta disciplina se apoia nele.</p>
+  <div class="g2" style="align-items:center;margin-top:1.4rem">
+    <p>Freire não recusa a atividade, recusa a ideia de que conhecimento se estende de quem tem para quem não tem. A palavra ficou; o que mudou foi o sentido do trânsito.</p>
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 01 -->
+      <div class="foto-slot">FOTO 01 — roda de conversa na propriedade: o fruticultor falando, estudantes ouvindo</div>
+      <figcaption>Vivência em propriedade frutícola. Substituir edição e ano.</figcaption>
+    </figure>
+  </div>
   <div class="pergunta">
     <p>Na sua vivência, quem ensinou e quem aprendeu? O que você vai devolver ao produtor que abriu a porteira — e quando?</p>
   </div>
@@ -202,66 +201,115 @@ body.lista .barra,body.lista .prog{display:none}
     <li><strong>O público é externo:</strong> agricultores, cooperativas, empresas, pesquisadores, comunidade — cada edição reuniu mais de cem inscritos, mais gente do que o curso matricula num ano inteiro</li>
     <li><strong>As inscrições são gratuitas e há emissão de certificado.</strong> É um evento de verdade, não um exercício</li>
   </ul>
-  <figure class="foto">
-    <!-- FOTO 02 -->
-    <div class="foto-slot">FOTO 02 — estudante mediando o painel, com convidados externos sentados à mesa</div>
-    <figcaption>Mediação estudantil. Substituir edição e ano.</figcaption>
-  </figure>
-  <div class="destaque">
-    <p>A consequência disso é desconfortável e proposital: <strong>se você não fizer, não acontece.</strong> Não há professor de reserva assumindo a sua parte.</p>
+</section>
+
+<!-- 05b definicao consequencia -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O que é</div>
+  <h2>Se você não fizer, não acontece</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 02 -->
+      <div class="foto-slot">FOTO 02 — estudante mediando o painel, com convidados externos sentados à mesa</div>
+      <figcaption>Mediação estudantil. Substituir edição e ano.</figcaption>
+    </figure>
+    <div class="destaque" style="margin-top:0">
+      <p>A consequência disso é desconfortável e proposital: <strong>se você não fizer, não acontece.</strong> Não há professor de reserva assumindo a sua parte.</p>
+    </div>
   </div>
 </section>
 
-<!-- 06 linha do tempo -->
+<!-- 06a linha do tempo I -->
 <section class="slide">
-  <div class="kicker">Tempo 2 · A história</div>
-  <h2>Quatro edições construídas por quem veio antes</h2>
-  <div class="linha-tempo">
-    <div class="lt">
-      <div class="ed">I Polifruti · 13 de janeiro de 2023</div>
-      <!-- FOTO 03 --><div class="lt-slot">FOTO 03<br>I Polifruti</div>
-      <h3>A primeira turma inventou o formato</h3>
-      <p>Cinco eixos: canais e mercados, cooperativismo, irrigação, manejo de solo e coleta e análise foliar. Não havia modelo a seguir — o roteiro de campo e a mediação estudantil dos painéis nasceram aqui e ficaram.</p>
+  <div class="kicker">Tempo 2 · A história · I Polifruti</div>
+  <h2>A primeira turma inventou o formato</h2>
+  <p class="lead">Quatro edições construídas por quem veio antes — a primeira, em 13 de janeiro de 2023, sem modelo a seguir.</p>
+  <div class="g2" style="align-items:center;margin-top:1.2rem">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 03 -->
+      <div class="foto-slot">FOTO 03 — I Polifruti</div>
+      <figcaption>I Polifruti · 13 de janeiro de 2023.</figcaption>
+    </figure>
+    <div>
+      <p>Cinco eixos: canais e mercados, cooperativismo, irrigação, manejo de solo e coleta e análise foliar. O roteiro de campo e a mediação estudantil dos painéis nasceram aqui e ficaram.</p>
       <div class="lt-links">
         <a href="https://ufsm.br/r-1-60859" target="_blank" rel="noopener">Notícia e programação completa</a>
       </div>
     </div>
-    <div class="lt">
-      <div class="ed">II Polifruti · 16 de dezembro de 2023</div>
-      <!-- FOTO 04 --><div class="lt-slot">FOTO 04<br>II Polifruti</div>
-      <h3>A pauta passa a ser recortada por cultura e por risco</h3>
+  </div>
+</section>
+
+<!-- 06b linha do tempo II -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · A história · II Polifruti</div>
+  <h2>A pauta passa a ser recortada por cultura e por risco</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 04 -->
+      <div class="foto-slot">FOTO 04 — II Polifruti</div>
+      <figcaption>II Polifruti · 16 de dezembro de 2023.</figcaption>
+    </figure>
+    <div>
       <p>Instabilidade climática, videiras e vinícolas, morango e nogueira-pecã. É a edição em que o método é nomeado: diagnóstico rápido e participativo nas propriedades.</p>
       <div class="lt-links">
         <a href="https://ufsm.br/r-1-64777" target="_blank" rel="noopener">Notícia da 2ª edição</a>
       </div>
     </div>
-    <div class="lt">
-      <div class="ed">III Polifruti · 14 de dezembro de 2024</div>
-      <!-- FOTO 05 --><div class="lt-slot">FOTO 05<br>III Polifruti</div>
-      <h3>Articulação explícita com os ODS</h3>
+  </div>
+</section>
+
+<!-- 06c linha do tempo III -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · A história · III Polifruti</div>
+  <h2>Articulação explícita com os ODS</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 05 -->
+      <div class="foto-slot">FOTO 05 — III Polifruti</div>
+      <figcaption>III Polifruti · 14 de dezembro de 2024.</figcaption>
+    </figure>
+    <div>
       <p>Novos usos e mercados da oliveira, abelhas sem ferrão como polinizadores, agentes biológicos, processamento e agregação de valor. Foi também a edição que criou a memória da série, chamando ao palco as turmas anteriores.</p>
       <div class="lt-links">
         <a href="https://ufsm.br/r-582-419" target="_blank" rel="noopener">Chamada, com a grade horária</a><br>
         <a href="https://ufsm.br/r-582-450" target="_blank" rel="noopener">Cobertura depois do evento</a> <span>— a única edição com os dois registros</span>
       </div>
     </div>
-    <div class="lt atual">
-      <div class="ed">IV Polifruti · 25 de outubro de 2025</div>
-      <!-- FOTO 06 --><div class="lt-slot">FOTO 06<br>IV Polifruti</div>
-      <h3>Consolidação como referência no Sul do Brasil</h3>
+  </div>
+</section>
+
+<!-- 06d linha do tempo IV -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · A história · IV Polifruti</div>
+  <h2>Consolidação como referência no Sul do Brasil</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 06 -->
+      <div class="foto-slot">FOTO 06 — IV Polifruti</div>
+      <figcaption>IV Polifruti · 25 de outubro de 2025.</figcaption>
+    </figure>
+    <div>
       <p>Auditório do Colégio Politécnico, das 7h15 às 12h30. Três eixos definidos pelos estudantes, painel de debates e três grupos de trabalho simultâneos — menos temas, mais profundidade.</p>
       <div class="lt-links">
         <a href="https://ufsm.br/r-1-71052" target="_blank" rel="noopener">Notícia e programação completa</a>
       </div>
     </div>
   </div>
-  <p style="margin-top:1.4rem"><em>No III Polifruti, os integrantes das duas primeiras edições foram chamados ao palco e aplaudidos pela história construída. A próxima edição é a sua.</em></p>
-  <figure class="foto">
-    <!-- FOTO 07 -->
-    <div class="foto-slot">FOTO 07 — integrantes do I e do II Polifruti sendo aplaudidos no palco durante o III</div>
-    <figcaption>III Polifruti, dezembro de 2024.</figcaption>
-  </figure>
-  <p style="margin-top:1.4rem">Abra qualquer um desses links. Cada edição foi noticiada pelo portal da UFSM com programação, fotografias e os nomes de quem organizou — e as chamadas do III e do IV trazem a grade horária inteira, que é exatamente o tipo de documento que a sua turma vai precisar produzir. A próxima notícia é sobre vocês.</p>
+</section>
+
+<!-- 06e linha do tempo fechamento -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · A história</div>
+  <h2>A próxima notícia é sobre vocês</h2>
+  <div class="g2" style="align-items:center">
+    <p class="lead"><em>No III Polifruti, os integrantes das duas primeiras edições foram chamados ao palco e aplaudidos pela história construída.</em></p>
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 07 -->
+      <div class="foto-slot">FOTO 07 — integrantes do I e do II Polifruti aplaudidos no palco durante o III</div>
+      <figcaption>III Polifruti, dezembro de 2024.</figcaption>
+    </figure>
+  </div>
+  <p style="margin-top:1.4rem">Abra qualquer um desses links. Cada edição foi noticiada pelo portal da UFSM com programação, fotografias e os nomes de quem organizou — e as chamadas do III e do IV trazem a grade horária inteira, o tipo de documento que a sua turma vai precisar produzir.</p>
 </section>
 
 <!-- 06b trajetoria das pautas -->
@@ -319,7 +367,33 @@ body.lista .barra,body.lista .prog{display:none}
   <div class="destaque">
     <p>Repare no mecanismo: <strong>vivência gera problema, problema vira eixo, eixo vira programação.</strong> É a abordagem sistêmica operando na organização de um evento.</p>
   </div>
-  <p style="margin-top:1.4rem">A Balem, na leitura do Moodle, agrupa as experiências de desenvolvimento rural em onze eixos: meio ambiente, produção agroecológica, inovação e adaptação tecnológica, reprodução social das famílias, sucessão familiar e juventude rural, lazer e turismo, organização social, alternativas de produção, construção de mercados alternativos, educação no campo e agregação de valor. Não é uma lista fechada nem obrigatória — o seu eixo pode ser outro. Serve para mostrar que o eixo 1 do IV Polifruti é reprodução social, o eixo 2 é construção de mercados e o eixo 3 é agregação de valor. Nenhum deles foi improvisado.</p>
+</section>
+
+<!-- 07b onze eixos balem -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Como os temas nascem</div>
+  <h2>Onze eixos possíveis, segundo Balem</h2>
+  <p>A leitura do Moodle agrupa as experiências de desenvolvimento rural em onze eixos. Não é uma lista fechada nem obrigatória — o seu eixo pode ser outro.</p>
+  <div class="g2" style="margin-top:1.2rem">
+    <ul class="bullets">
+      <li>Meio ambiente</li>
+      <li>Produção agroecológica</li>
+      <li>Inovação e adaptação tecnológica</li>
+      <li>Reprodução social das famílias</li>
+      <li>Sucessão familiar e juventude rural</li>
+      <li>Lazer e turismo</li>
+    </ul>
+    <ul class="bullets">
+      <li>Organização social</li>
+      <li>Alternativas de produção</li>
+      <li>Construção de mercados alternativos</li>
+      <li>Educação no campo</li>
+      <li>Agregação de valor</li>
+    </ul>
+  </div>
+  <div class="destaque">
+    <p>O eixo 1 do IV Polifruti é <strong>reprodução social</strong>, o eixo 2 é <strong>construção de mercados</strong> e o eixo 3 é <strong>agregação de valor</strong>. Nenhum deles foi improvisado.</p>
+  </div>
 </section>
 
 <!-- 08 por que existe -->
@@ -348,11 +422,20 @@ body.lista .barra,body.lista .prog{display:none}
       <p>O Polifruti articula-se aos Objetivos de Desenvolvimento Sustentável e à ideia de um sistema alimentar ambientalmente justo, equitativo e atento à saúde. O evento é a forma de tomar posição sobre isso.</p>
     </div>
   </div>
-  <figure class="foto">
-    <!-- FOTO 08 -->
-    <div class="foto-slot">FOTO 08 — bicicleta adaptada para processamento de frutas, tecnologia social nascida no III Polifruti</div>
-    <figcaption>Razão 1 em objeto: o que o evento produziu continuou existindo depois dele.</figcaption>
-  </figure>
+</section>
+
+<!-- 08b razao em objeto -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Por que existe</div>
+  <h2>Uma razão em forma de objeto</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 08 -->
+      <div class="foto-slot">FOTO 08 — bicicleta adaptada para processamento de frutas, tecnologia social nascida no III Polifruti</div>
+      <figcaption>Bicicleta adaptada para processamento de frutas, III Polifruti.</figcaption>
+    </figure>
+    <p>O que o evento produziu continuou existindo depois dele — a Razão 1 (conhecimento que não circula não existe), em objeto.</p>
+  </div>
 </section>
 
 <!-- 09 ODS -->
@@ -385,7 +468,7 @@ body.lista .barra,body.lista .prog{display:none}
   <p style="margin-top:1.6rem">Nenhum desses temas é decorativo. Todos vieram de problemas reais observados em propriedades — e todos podem ser lidos com as ferramentas da Unidade 1: são questões de interação entre subsistemas e de posição na cadeia.</p>
 </section>
 
-<!-- 10 o que os estudantes fazem -->
+<!-- 10a o que os estudantes fazem -->
 <section class="slide">
   <div class="kicker">Tempo 2 · O trabalho real</div>
   <h2>O que os estudantes fazem de fato</h2>
@@ -395,22 +478,39 @@ body.lista .barra,body.lista .prog{display:none}
     <tr><td>Programação</td><td>Desenhar a grade, definir formatos — palestra, painel, grupo de trabalho — e distribuir o tempo</td></tr>
     <tr><td>Convidados</td><td>Identificar, convidar e acompanhar palestrantes e debatedores; alinhar expectativas e recolher material</td></tr>
     <tr><td>Divulgação e inscrições</td><td>Peças de comunicação, redes sociais, formulário, contato com Emater, cooperativas, sindicatos e escolas</td></tr>
+  </table>
+</section>
+
+<!-- 10b o que os estudantes fazem cont -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O trabalho real</div>
+  <h2>O que os estudantes fazem de fato — continuação</h2>
+  <table>
+    <tr><th style="width:26%">Frente</th><th>O que envolve</th></tr>
     <tr><td>Mediação</td><td>Conduzir os painéis: apresentar convidados, controlar tempo, formular perguntas, encadear falas</td></tr>
     <tr><td>Apresentação</td><td>Comunicar, para um público externo, o eixo temático construído a partir das vivências e sistematizações da turma</td></tr>
     <tr><td>Logística e registro</td><td>Credenciamento, espaço, coffee break, certificados, fotografia e registro do que foi produzido</td></tr>
-    <tr><td>Devolução ao campo</td><td>Levar de volta às propriedades visitadas o que o evento produziu sobre o problema que elas apontaram — em prazo e formato definidos pela turma. Nenhuma das quatro edições anteriores fez isso: é a frente nova desta</td></tr>
+    <tr><td>Devolução ao campo</td><td>Levar de volta às propriedades visitadas o que o evento produziu sobre o problema que elas apontaram. Nenhuma das quatro edições anteriores fez isso: é a frente nova desta</td></tr>
   </table>
-  <figure class="foto">
-    <!-- FOTO 09 -->
-    <div class="foto-slot">FOTO 09 — bastidor: credenciamento, montagem, coffee break ou equipe de organização trabalhando</div>
-    <figcaption>O trabalho que não aparece na programação. Substituir edição e ano.</figcaption>
-  </figure>
-  <div class="destaque">
-    <p>Como a turma vai se dividir nessas frentes é decisão a construir <strong>com vocês</strong>, e não uma distribuição pronta. É a pauta imediata da próxima aula síncrona.</p>
+</section>
+
+<!-- 10c bastidor -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · O trabalho real</div>
+  <h2>O trabalho que não aparece na programação</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 09 -->
+      <div class="foto-slot">FOTO 09 — bastidor: credenciamento, montagem, coffee break ou equipe de organização trabalhando</div>
+      <figcaption>Bastidores de uma edição do Polifruti. Substituir edição e ano.</figcaption>
+    </figure>
+    <div class="destaque" style="margin-top:0">
+      <p>Como a turma vai se dividir nessas frentes é decisão a construir <strong>com vocês</strong>, e não uma distribuição pronta. É a pauta imediata da próxima aula síncrona.</p>
+    </div>
   </div>
 </section>
 
-<!-- 11 depoimento -->
+<!-- 11a depoimento jair -->
 <section class="slide">
   <div class="kicker">Tempo 2 · Quem já passou por isso</div>
   <h2>Do outro lado da cortina</h2>
@@ -422,7 +522,13 @@ body.lista .barra,body.lista .prog{display:none}
     <p>“Participar do Polifruti é excelente para agregar conhecimentos e socializar experiências. Estar no palco, do outro lado da cortina, contribuindo com os colegas para a realização desse espetáculo é algo indescritível.”</p>
     <div class="fonte">Jair Demutti, estudante e organizador do III Polifruti</div>
   </div>
-  <div class="retrato" style="margin-top:2rem">
+</section>
+
+<!-- 11b depoimento margareth -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Quem já passou por isso</div>
+  <h2>Do outro lado da cortina</h2>
+  <div class="retrato">
     <!-- FOTO 11 -->
     <div class="retrato-slot">FOTO 11<br>Margareth</div>
   </div>
@@ -463,18 +569,27 @@ body.lista .barra,body.lista .prog{display:none}
   <p style="margin-top:1.8rem">Cada etapa consumiu o produto da anterior. Não havia atalho: sem vivência não haveria o que interpretar, e sem essa interpretação o seu eixo não teria com que qualificar a contribuição ao Polifruti. É o ciclo de Kolb da primeira aula da Unidade 2 se fechando — o evento é a etapa 4, a experimentação ativa, e a sua prática como técnico recomeça o ciclo.</p>
 </section>
 
-<!-- 13 amarracao conteudos -->
+<!-- 13a amarracao conteudos -->
 <section class="slide">
   <div class="kicker mostarda">Tempo 3 · A amarração ponto a ponto</div>
   <h2>Onde cada conteúdo do programa desembocou</h2>
   <table>
     <tr><th style="width:30%">Conteúdo</th><th>O que ele entrega ao Polifruti</th></tr>
-    <tr><td>1.1 e 1.2 Pensamento sistêmico e sistemas de produção</td><td>A capacidade de descrever uma propriedade sem reduzi-la a uma cultura: subsistemas, retroalimentação, pluriatividade e o clima como risco estrutural. É o que dá densidade à sua apresentação — e o que sustenta um eixo sobre convivência com estiagem e granizo, questão que o RS não resolveu</td></tr>
-    <tr><td>1.3 Sistemas agroalimentares e cadeias</td><td>O contexto que transforma um relato local em problema de interesse coletivo: quem define o preço a jusante e quem define as condições a montante — mudas, crédito, seguro. É o critério para um eixo temático ser bom</td></tr>
-    <tr><td>1.4 Metodologias sistêmicas</td><td>O problema central bem formulado, que é o núcleo do que você vai registrar e interpretar — com a ressalva da árvore de problemas: onde há ciclo de retroalimentação, causa e efeito trocam de lugar e a árvore engana</td></tr>
+    <tr><td>1.1 e 1.2 Pensamento sistêmico e sistemas de produção</td><td>A capacidade de descrever uma propriedade sem reduzi-la a uma cultura: subsistemas, retroalimentação, pluriatividade e o clima como risco estrutural</td></tr>
+    <tr><td>1.3 Sistemas agroalimentares e cadeias</td><td>O contexto que transforma um relato local em problema de interesse coletivo: quem define o preço a jusante e as condições a montante</td></tr>
+    <tr><td>1.4 Metodologias sistêmicas</td><td>O problema central bem formulado — com a ressalva da árvore de problemas: onde há ciclo de retroalimentação, causa e efeito trocam de lugar</td></tr>
     <tr><td>2.1 e 2.2 Vivência prática e construção do conhecimento do técnico</td><td>A matéria-prima: a experiência vivida, com registro</td></tr>
+  </table>
+</section>
+
+<!-- 13b amarracao conteudos cont -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3 · A amarração ponto a ponto</div>
+  <h2>Onde cada conteúdo do programa desembocou — continuação</h2>
+  <table>
+    <tr><th style="width:30%">Conteúdo</th><th>O que ele entrega ao Polifruti</th></tr>
     <tr><td>2.3 Habilidades suaves</td><td>Exatamente o que o evento exige: comunicar, trabalhar em equipe, liderar, resolver problema sob pressão</td></tr>
-    <tr><td>2.4 e 2.5 Vivência e diagnóstico</td><td>Os dados e as observações que sustentam suas afirmações — os da <em>sua</em> visita, mesmo que o vídeo do grupo tenha sido gravado em outra propriedade</td></tr>
+    <tr><td>2.4 e 2.5 Vivência e diagnóstico</td><td>Os dados e observações que sustentam suas afirmações — os da <em>sua</em> visita, mesmo que o vídeo do grupo tenha sido gravado em outra propriedade</td></tr>
     <tr><td>3.1 Organização de informações para comunicar</td><td>O registro organizado da vivência, que o seu eixo vai usar para montar o material de apresentação</td></tr>
     <tr><td>3.2 Expressão oral e postura</td><td>A apresentação e a mediação dos painéis, diante de público externo</td></tr>
   </table>
@@ -505,7 +620,7 @@ body.lista .barra,body.lista .prog{display:none}
   <p style="margin-top:.9rem" class="tempo">Os percentuais e as datas de cada avaliação constam no plano de ensino da oferta vigente.</p>
 </section>
 
-<!-- 15 tarefa -->
+<!-- 15a tarefa -->
 <section class="slide" style="background:var(--papel2)">
   <div class="kicker">Ponte para o evento</div>
   <h2>Entregável desta aula</h2>
@@ -516,6 +631,14 @@ body.lista .barra,body.lista .prog{display:none}
     <li>Em um parágrafo: qual problema real, observado na sua vivência, dá origem a esse eixo</li>
     <li>Quem, na sua região, teria algo a dizer sobre ele — produtor, técnica da Emater, cooperativa, pesquisador</li>
     <li>Por que esse tema interessa a alguém além de você</li>
+  </ul>
+</section>
+
+<!-- 15b tarefa cont -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Ponte para o evento</div>
+  <h2>Entregável desta aula — continuação</h2>
+  <ul class="bullets" style="margin-top:1rem">
     <li>A qual <strong>Objetivo de Desenvolvimento Sustentável</strong> ele se conecta, e por quê — uma linha, sem enfeite</li>
     <li>Em qual formato ele funcionaria melhor: palestra, painel de debate ou grupo de trabalho</li>
     <li><strong>O convite:</strong> quem da propriedade que você visitou será chamado ao evento, e quem faz esse convite</li>
@@ -526,7 +649,7 @@ body.lista .barra,body.lista .prog{display:none}
   </div>
 </section>
 
-<!-- 16 fecho -->
+<!-- 16a fecho -->
 <section class="slide">
   <div class="kicker">Fechamento da disciplina</div>
   <h2>Antes de um pomar, existem pessoas</h2>
@@ -536,15 +659,23 @@ body.lista .barra,body.lista .prog{display:none}
     <p>O Polifruti é laboratório vivo onde os frutos não nascem só das árvores, mas do conhecimento que brota com cada prática.</p>
     <div class="fonte">Apresentação da Unidade 3 desta disciplina</div>
   </div>
-  <figure class="foto">
-    <!-- FOTO 12 -->
-    <div class="foto-slot">FOTO 12 — foto de grupo do encerramento, com produtores junto dos estudantes</div>
-    <figcaption>Encerramento. Substituir edição e ano.</figcaption>
-  </figure>
-  <p style="margin-top:1.4rem"><strong>Próxima etapa:</strong> definição dos eixos, formação das frentes de trabalho e construção da programação. A partir daqui, quem conduz é a turma.</p>
 </section>
 
-<!-- 17 referencias -->
+<!-- 16b fecho encerramento -->
+<section class="slide">
+  <div class="kicker">Fechamento da disciplina</div>
+  <h2>A partir daqui, quem conduz é a turma</h2>
+  <div class="g2" style="align-items:center">
+    <figure class="foto" style="margin-top:0">
+      <!-- FOTO 12 -->
+      <div class="foto-slot">FOTO 12 — foto de grupo do encerramento, com produtores junto dos estudantes</div>
+      <figcaption>Encerramento. Substituir edição e ano.</figcaption>
+    </figure>
+    <p><strong>Próxima etapa:</strong> definição dos eixos, formação das frentes de trabalho e construção da programação.</p>
+  </div>
+</section>
+
+<!-- 17a referencias -->
 <section class="slide">
   <div class="kicker">Referências e fontes</div>
   <h2>Para aprofundar</h2>
@@ -554,6 +685,14 @@ body.lista .barra,body.lista .prog{display:none}
     <p class="ref">FREIRE, P. <em>Extensão ou comunicação?</em> Rio de Janeiro: Paz e Terra, 2014.</p>
     <p class="ref">GOLEMAN, D. <em>Inteligência emocional.</em> Rio de Janeiro: Objetiva, 2001.</p>
     <p class="ref">HOLLIDAY, O. J. <em>Para sistematizar experiências.</em> 2. ed. Brasília: MMA/IEB, 2006.</p>
+  </div>
+</section>
+
+<!-- 17b referencias cont -->
+<section class="slide">
+  <div class="kicker">Referências e fontes</div>
+  <h2>Para aprofundar — continuação</h2>
+  <div style="margin-top:1rem">
     <p class="ref">ONU. <em>Objetivos de Desenvolvimento Sustentável.</em> Disponível em: brasil.un.org/pt-br/sdgs</p>
     <p class="ref">REDIN, E. III Polifruti destaca práticas inovadoras e a formação diferenciada no Curso Técnico em Fruticultura EAD. Santa Maria: UFSM, 20 dez. 2024.</p>
     <p class="ref">UFSM. IV Polifruti acontece em 25 de outubro e destaca protagonismo dos estudantes do Técnico em Fruticultura do Colégio Politécnico da UFSM. Santa Maria, 15 set. 2025.</p>
@@ -568,7 +707,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 3 · Aula final — Do pomar ao Polifruti</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 18</span>
+    <span id="cont">1 / 33</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>
