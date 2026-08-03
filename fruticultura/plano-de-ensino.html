@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Plano de Ensino | Vivências em Fruticultura I</title>
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/plano-de-ensino.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FFFFFF; --papel2:#FAFAF8; --papel3:#EDEDEB;
+  --tinta:#26221C; --tinta2:#544C40; --tinta3:#8A8378;
+  --oliva:#2A7E57; --oliva-cl:#EBF4F0;
+  --terra:#CC4F33; --terra-cl:#F5E8E5;
+  --mostarda:#B2B234; --mostarda-cl:#F5F5E6;
+  --linha:#DDD3C2;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+
+.slide{
+  display:none; height:100vh; padding:5vh 7vw 12vh;
+  flex-direction:column; justify-content:safe center; overflow-y:auto;
+  max-width:1180px; margin:0 auto;
+}
+.slide.on{display:flex}
+body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px solid var(--linha);page-break-after:always}
+
+/* tipografia */
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem}
+.kicker.oliva{color:var(--oliva)}
+.kicker.mostarda{color:var(--mostarda)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
+h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
+p+p{margin-top:.9rem}
+.lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
+strong{font-weight:600;color:var(--tinta)}
+em{font-style:italic}
+a{color:var(--terra)}
+
+/* capa */
+.capa{background:var(--papel2)}
+.capa .logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:2.2rem}
+.capa .logos img{height:46px;width:auto;display:block}
+.capa .logos img:last-child{height:64px}
+.capa .disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+.capa h1{margin:1.6rem 0 1.2rem;max-width:20ch}
+.capa .sub{font-size:1.15rem;color:var(--tinta2);max-width:56ch}
+.regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
+.assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
+
+/* listas */
+ul.bullets{list-style:none;margin-top:.4rem}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
+ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
+ul.bullets li strong{color:var(--tinta)}
+
+ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
+ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
+
+/* grades */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:.6rem}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
+.card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3)}
+.card p{font-size:.98rem;line-height:1.5}
+.card.oliva{background:var(--oliva-cl);border-color:#CAE2D7}
+.card.terra{background:var(--terra-cl);border-color:#E7CCC6}
+.card.mostarda{background:var(--mostarda-cl);border-color:#E7E7C5}
+.card.destaca{border-color:var(--terra);box-shadow:0 0 0 1px var(--terra)}
+.card .pct{font-family:var(--serif);font-size:2.6rem;font-weight:600;color:var(--terra);line-height:1;margin-bottom:.5rem}
+
+.quadro{border-left:3px solid var(--oliva);padding:.3rem 0 .3rem 1.6rem;margin:1.6rem 0}
+.quadro p{font-family:var(--serif);font-size:clamp(1.15rem,1.9vw,1.55rem);line-height:1.35;color:var(--tinta);font-weight:400}
+.quadro .fonte{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-top:.9rem;letter-spacing:.03em}
+
+.destaque{background:var(--mostarda-cl);border:1px solid #E7E7C5;border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.6rem}
+.destaque p{color:var(--tinta)}
+
+.foto{margin-top:.4rem}
+.foto img{width:100%;border:1px solid var(--linha);border-radius:3px;display:block;object-fit:cover}
+.foto .legenda{font-family:var(--mono);font-size:.76rem;color:var(--tinta3);margin-top:.7rem;line-height:1.5}
+.grade-edicoes img{aspect-ratio:4/3;object-fit:cover}
+
+.video-wrap{position:relative;display:block;width:100%;max-width:640px;aspect-ratio:16/9;margin-top:1.6rem;border-radius:3px;overflow:hidden;border:1px solid var(--linha);background:#000}
+.video-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+.video-wrap::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;line-height:60px;text-align:center;padding-left:4px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:1.3rem}
+.video-cta{font-family:var(--mono);font-size:.78rem;color:var(--terra);margin-top:.6rem}
+
+/* tabela */
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.97rem}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .9rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.85rem .9rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500}
+td.pct{color:var(--tinta);font-weight:600;text-align:right;white-space:nowrap}
+.aberto{color:var(--terra);font-style:italic}
+
+/* pergunta / links */
+.pergunta{background:var(--tinta);color:var(--papel);border-radius:3px;padding:2rem 2.2rem;margin-top:1.4rem}
+.pergunta p{color:#EFE8DC;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:52ch}
+
+.links{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.4rem}
+.links a{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--tinta);text-decoration:none;background:var(--papel3);border:1px solid var(--linha);border-radius:2px;padding:.6rem 1rem}
+.links a:hover{border-color:var(--terra);color:var(--terra)}
+
+/* barra inferior */
+.barra{position:fixed;left:0;right:0;bottom:0;height:46px;background:var(--papel);border-top:1px solid var(--linha);
+  display:flex;align-items:center;justify-content:space-between;padding:0 7vw;font-family:var(--mono);font-size:.72rem;color:var(--tinta3);z-index:20}
+.barra .mid{display:flex;gap:1.2rem;align-items:center}
+.barra button{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--linha);color:var(--tinta2);
+  padding:.28rem .7rem;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.barra button:hover{background:var(--papel3)}
+.prog{position:fixed;left:0;bottom:46px;height:2px;background:var(--terra);z-index:21;transition:width .18s ease}
+body.lista .barra,body.lista .prog{display:none}
+
+.ref{font-size:.9rem;line-height:1.55;color:var(--tinta2);margin-bottom:.7rem;padding-left:1.6rem;text-indent:-1.6rem;max-width:76ch}
+.tempo{font-family:var(--mono);font-size:.72rem;color:var(--tinta3);letter-spacing:.08em}
+
+@media print{
+  .barra,.prog{display:none}
+  .slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}
+}
+</style>
+</head>
+<body>
+
+<!-- 01 capa -->
+<section class="slide capa on">
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM · 65 anos">
+    <img src="assets/logos/tecnico-fruticultura.svg" alt="Técnico em Fruticultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM · Técnico em Fruticultura EaD · CPFRU060</div>
+  <h1>Plano de Ensino</h1>
+  <div class="sub">Vivências em Fruticultura I — Turma 21</div>
+  <div class="regua"></div>
+  <div class="assin">
+    Prof. Ezequiel Redin · Prof. Róberson Macedo de Oliveira<br>
+    03/08 a 17/12/2026 — aulas às segundas-feiras
+  </div>
+</section>
+
+<!-- 02 video objetivo -->
+<section class="slide">
+  <div class="kicker">Antes de começar</div>
+  <h2>Vivências em Fruticultura I — o objetivo, em vídeo</h2>
+  <p class="lead">Um resumo do que esta disciplina propõe, antes de entrarmos nos detalhes do plano de ensino.</p>
+  <a class="video-wrap" href="https://www.youtube.com/watch?v=2gHW_sJkEIM" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Vivências em Fruticultura I - Objetivo">
+    <img src="https://i.ytimg.com/vi/2gHW_sJkEIM/hqdefault.jpg" alt="Vivências em Fruticultura I - Objetivo" loading="lazy">
+  </a>
+  <p class="video-cta">▶ Assistir no YouTube ↗</p>
+</section>
+
+<!-- 03 dados gerais -->
+<section class="slide">
+  <div class="kicker">Dados gerais</div>
+  <h2>A disciplina, em números</h2>
+  <table>
+    <tr><td>Curso</td><td>Técnico em Fruticultura — EaD · Turma 21</td></tr>
+    <tr><td>Carga horária</td><td>50h EaD + 10h presencial</td></tr>
+    <tr><td>Período</td><td>03/08 a 17/12/2026 — aulas às segundas-feiras</td></tr>
+    <tr><td>Formato</td><td>Encontros predominantemente assíncronos (material no site, fóruns no Moodle e vivências práticas). Algumas segundas-feiras terão encontro síncrono, avisado com antecedência.</td></tr>
+  </table>
+</section>
+
+<!-- 04 como funciona -->
+<section class="slide">
+  <div class="kicker oliva">Como funciona</div>
+  <h2>Duas frentes que se completam</h2>
+  <div class="g2">
+    <div class="card oliva">
+      <div class="n">Teoria</div>
+      <h3>No Moodle</h3>
+      <p>Textos, fóruns e videoaulas — acompanhados no seu ritmo, com prazos avisados com antecedência.</p>
+    </div>
+    <div class="card terra">
+      <div class="n">Prática</div>
+      <h3>No campo</h3>
+      <p>Você escolhe uma unidade de produção, vive a experiência, sistematiza o problema observado e leva o resultado para debate.</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>As duas frentes convergem no mesmo ponto: a organização do <strong>V Polifruti</strong>, evento de encerramento da disciplina.</p>
+  </div>
+</section>
+
+<!-- 05 estrategias -->
+<section class="slide">
+  <div class="kicker oliva">Estratégias de ensino</div>
+  <h2>Com o que vamos trabalhar</h2>
+  <ul class="bullets">
+    <li>Textos do professor</li>
+    <li>Artigos científicos</li>
+    <li>Livros digitais</li>
+    <li>Videoaulas</li>
+    <li>Casos práticos em vídeo</li>
+  </ul>
+</section>
+
+<!-- 06 estrutura -->
+<section class="slide">
+  <div class="kicker mostarda">Estrutura da disciplina</div>
+  <h2>Três unidades</h2>
+  <div class="g3">
+    <div class="card oliva">
+      <div class="n">Unidade 1 · 4 aulas</div>
+      <h3>Pensamento sistêmico</h3>
+      <p>Origens do pensamento sistêmico, sistemas e componentes, cadeias produtivas e metodologias sistêmicas em situações-problema.</p>
+    </div>
+    <div class="card terra">
+      <div class="n">Unidade 2 · 2 aulas</div>
+      <h3>Vivência e saberes</h3>
+      <p>A vivência como fonte de conhecimento, diagnóstico e registro audiovisual a campo.</p>
+    </div>
+    <div class="card mostarda">
+      <div class="n">Unidade 3 · Encerramento</div>
+      <h3>Do pomar ao Polifruti</h3>
+      <p>Sistematização da vivência e organização da participação no V Polifruti.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 avaliacao -->
+<section class="slide">
+  <div class="kicker">Avaliação</div>
+  <h2>Como a nota é composta</h2>
+  <div class="g4">
+    <div class="card destaca">
+      <div class="pct">5%</div>
+      <p>Ficha da unidade de produção escolhida <span class="n" style="display:block;margin-top:.3rem">Aula 1</span></p>
+    </div>
+    <div class="card destaca">
+      <div class="pct">15%</div>
+      <p>Diagnóstico consolidado da UPA <span class="n" style="display:block;margin-top:.3rem">Aula 4</span></p>
+    </div>
+    <div class="card destaca">
+      <div class="pct">40%</div>
+      <p>Vídeo da vivência <span class="n" style="display:block;margin-top:.3rem">Fórum + YouTube</span></p>
+    </div>
+    <div class="card destaca">
+      <div class="pct">40%</div>
+      <p>Organização e apresentação no V Polifruti</p>
+    </div>
+  </div>
+  <div class="destaque">
+    <p>Sem prova teórica! A avaliação acompanha a vivência, não uma prova de conteúdo.</p>
+  </div>
+</section>
+
+<!-- 08 cronograma -->
+<section class="slide">
+  <div class="kicker">Cronograma de entregas</div>
+  <h2>O que entregar, e onde</h2>
+  <table>
+    <tr><th>Aula</th><th>Entrega</th><th>Onde</th></tr>
+    <tr><td>1</td><td>Ficha da UPA escolhida</td><td>Fórum</td></tr>
+    <tr><td>4</td><td>Diagnóstico consolidado — respostas em texto (aula 2) + mapeamento a jusante (aula 3) + trio efeito/causa/fala (aula 4)</td><td>Fórum</td></tr>
+    <tr><td>U2.2</td><td>Vídeo da vivência (4–7 min)</td><td>Fórum + YouTube</td></tr>
+    <tr><td>Final</td><td>Proposta de eixo temático + participação no Polifruti</td><td>Fórum / evento</td></tr>
+  </table>
+  <p style="margin-top:1.4rem" class="tempo">Os prazos serão avisados com antecedência.</p>
+</section>
+
+<!-- 09 polifruti -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Para onde tudo converge</div>
+  <div class="g2" style="align-items:center">
+    <div>
+      <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:16ch">V Polifruti</h1>
+      <div class="regua"></div>
+      <p class="lead" style="max-width:52ch">O evento de encerramento da disciplina, com compartilhamento das vivências de toda a turma — produtores, estudantes e pesquisadores na mesma roda.</p>
+      <p style="margin-top:1.2rem"><span class="aberto">Data a definir — será avisada oportunamente.</span></p>
+    </div>
+    <div class="foto">
+      <img src="assets/imagens/polifruti-cartaz-professores.jpg" alt="Professores Ezequiel Redin e Róberson Macedo de Oliveira junto ao cartaz de boas-vindas do Polifruti" loading="lazy">
+      <div class="legenda">Profs. Ezequiel Redin e Róberson Macedo de Oliveira no Polifruti.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 primeira aula -->
+<section class="slide">
+  <div class="kicker terra">Primeira aula</div>
+  <h2>Síncrona, 03/08</h2>
+  <div class="pergunta">
+    <p>Apresentação do plano de ensino, da disciplina e dos métodos de trabalho e de avaliação — o encontro que estamos tendo agora.</p>
+  </div>
+  <p style="margin-top:1.6rem">A partir daqui, o curso segue predominantemente assíncrono. Você já sai desta aula sabendo o que vem a seguir: escolher a unidade de produção que vai acompanhar.</p>
+</section>
+
+<!-- 11 acesso ao material -->
+<section class="slide">
+  <div class="kicker">Onde encontrar tudo isso</div>
+  <h2>O material completo fica no site da disciplina</h2>
+  <p class="lead">Este plano de ensino em slides é um resumo para apresentação. A versão completa, com todos os detalhes, e as aulas de cada unidade, estão sempre disponíveis.</p>
+  <div class="links">
+    <a href="index.html">↩ Página inicial — todas as aulas</a>
+    <a href="index.html#ia">Sobre o uso de IA neste material</a>
+  </div>
+</section>
+
+<!-- 11b quatro edicoes -->
+<section class="slide">
+  <div class="kicker">A história em fotos</div>
+  <h2>Quatro edições, uma trajetória</h2>
+  <div class="g2 grade-edicoes">
+    <div class="foto">
+      <img src="assets/imagens/polifruti-edicao-1.jpg" alt="Grupo de participantes do I Polifruti" loading="lazy">
+      <div class="legenda">I Polifruti · 13 de janeiro de 2023</div>
+    </div>
+    <div class="foto">
+      <img src="assets/imagens/polifruti-edicao-2.jpg" alt="Grupo de participantes do II Polifruti" loading="lazy">
+      <div class="legenda">II Polifruti · 16 de dezembro de 2023</div>
+    </div>
+    <div class="foto">
+      <img src="assets/imagens/polifruti-edicao-3.jpg" alt="Grupo de participantes do III Polifruti" loading="lazy">
+      <div class="legenda">III Polifruti · 14 de dezembro de 2024</div>
+    </div>
+    <div class="foto">
+      <img src="assets/imagens/polifruti-edicao-4.jpg" alt="Grupo de participantes do IV Polifruti" loading="lazy">
+      <div class="legenda">IV Polifruti · 25 de outubro de 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 fechamento -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Vamos começar</div>
+  <h2>Aula 1 — Origens do pensamento sistêmico</h2>
+  <p class="lead">Por que a recomendação técnica isolada não resolve o problema do pomar.</p>
+  <div class="links">
+    <a href="U1-aula1-pensamento-sistemico.html">Ir para a Aula 1 →</a>
+  </div>
+</section>
+
+<!-- 13 referencias -->
+<section class="slide">
+  <div class="kicker">Créditos</div>
+  <h2>Sobre este material</h2>
+  <p style="max-width:80ch">Este plano de ensino resume a estrutura, os critérios de avaliação e o cronograma da disciplina Vivências em Fruticultura I, organizados a partir da experiência de quatro semestres anteriores.</p>
+  <p style="margin-top:1.8rem" class="tempo">Material organizado com apoio de inteligência artificial (Claude, Anthropic), a partir da experiência de quatro semestres da disciplina. <a href="index.html#ia" style="color:var(--terra);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</section>
+
+<div class="prog" id="prog"></div>
+<div class="barra">
+  <span>Plano de Ensino</span>
+  <span class="mid">
+    <button onclick="ir(-1)">← anterior</button>
+    <span id="cont">1 / 14</span>
+    <button onclick="ir(1)">próximo →</button>
+    <button onclick="document.body.classList.toggle('lista')">modo lista</button>
+  </span>
+  <span>Vivências em Fruticultura I</span>
+</div>
+
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+function mostra(n){sl[i].classList.remove('on');i=Math.max(0,Math.min(sl.length-1,n));sl[i].classList.add('on');
+  document.getElementById('cont').textContent=(i+1)+' / '+sl.length;
+  document.getElementById('prog').style.width=((i+1)/sl.length*100)+'%';window.scrollTo(0,0);}
+function ir(d){mostra(i+d)}
+document.addEventListener('keydown',e=>{
+  if(document.body.classList.contains('lista'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();ir(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();ir(-1)}
+  if(e.key==='Home')mostra(0); if(e.key==='End')mostra(sl.length-1);
+  if(e.key==='l'||e.key==='L')document.body.classList.toggle('lista');
+});
+mostra(0);
+</script>
+</body>
+</html>
