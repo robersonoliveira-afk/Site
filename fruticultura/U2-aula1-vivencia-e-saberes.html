@@ -56,6 +56,10 @@ ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
 .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem;margin-top:1rem}
 @media(max-width:820px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
+.video-wrap{position:relative;display:block;width:100%;max-width:640px;aspect-ratio:16/9;border-radius:3px;overflow:hidden;border:1px solid var(--linha);background:#000}
+.video-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+.video-wrap::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;line-height:52px;text-align:center;padding-left:3px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:1.1rem}
+.video-cta{font-family:var(--mono);font-size:.74rem;color:var(--terra)}
 .card{background:#fff;border:1px solid var(--linha);border-radius:3px;padding:1.4rem 1.5rem}
 .card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
 .card p{font-size:.98rem;line-height:1.5}
@@ -154,6 +158,17 @@ body.lista .barra,body.lista .prog{display:none}
     <div class="card mostarda"><h3>As habilidades suaves</h3><p>O que a disciplina vai cobrar de você além do conhecimento técnico — e formação dos grupos de trabalho.</p></div>
   </div>
   <p style="margin-top:1.8rem"><em>Conteúdos do programa: 2.1 A vivência prática e a valorização dos saberes · 2.2 A construção do conhecimento do técnico · 2.3 As competências profissionais e as habilidades suaves.</em></p>
+</section>
+
+<!-- 03b video motivacional -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.1</div>
+  <h2>Por que vivência, e não só teoria</h2>
+  <p class="lead">Experiências práticas que preparam para o mundo profissional.</p>
+  <a class="video-wrap" href="https://www.youtube.com/watch?v=obw09Ze9L3M" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Vivências em Fruticultura são experiências práticas para o mundo profissional">
+    <img src="https://i.ytimg.com/vi/obw09Ze9L3M/hqdefault.jpg" alt="Vivências em Fruticultura são experiências práticas para o mundo profissional" loading="lazy">
+  </a>
+  <p class="video-cta">▶ Assistir no YouTube ↗</p>
 </section>
 
 <!-- 04 kolb -->
@@ -412,7 +427,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 2 · Aula 1 — A vivência como fonte de conhecimento</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 15</span>
+    <span id="cont">1 / 16</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>
