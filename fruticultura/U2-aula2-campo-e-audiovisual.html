@@ -31,7 +31,7 @@ body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
 h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
-p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
 p+p{margin-top:.9rem}
 .lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
 strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
@@ -45,11 +45,11 @@ strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
 .regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
 .assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
 ul.bullets{list-style:none;margin-top:.4rem}
-ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
 ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
 ul.bullets li strong{color:var(--tinta)}
 ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
-ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
 ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
@@ -163,8 +163,14 @@ body.lista .barra,body.lista .prog{display:none}
     <tr><td>E</td><td>Inserção na cadeia</td><td>Duas perguntas, uma para cada lado. A jusante: para onde vai a fruta e quem define o preço. A montante: de onde vêm as mudas, o crédito e o seguro, e quem define essas condições</td></tr>
     <tr><td>F</td><td>Problematização</td><td>Guarde para o final da visita, quando já houver confiança</td></tr>
   </table>
-  <p style="margin-top:1.4rem"><em>O roteiro não é um formulário: é uma forma de não perder de vista as conexões entre as partes enquanto se conversa.</em></p>
-  <p style="margin-top:.9rem">Exemplo de que olhar antes de presumir rende tema: o eixo do protagonismo feminino no IV Polifruti nasceu de estudantes que notaram, nas visitas, mulheres conduzindo pomar e venda sem aparecer em registro técnico nenhum.</p>
+</section>
+
+<!-- 04b diagnostico exemplo -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.5</div>
+  <h2>Olhar antes de presumir rende tema</h2>
+  <p class="lead"><em>O roteiro não é um formulário: é uma forma de não perder de vista as conexões entre as partes enquanto se conversa.</em></p>
+  <p style="margin-top:1.2rem">Exemplo: o eixo do protagonismo feminino no IV Polifruti nasceu de estudantes que notaram, nas visitas, mulheres conduzindo pomar e venda sem aparecer em registro técnico nenhum.</p>
 </section>
 
 <!-- 05 quando nao coopera -->
@@ -193,8 +199,14 @@ body.lista .barra,body.lista .prog{display:none}
       </ul>
     </div>
   </div>
-  <div class="destaque">
-    <p>Registre também o que deu errado. Na Unidade 3 isso vira material: a sistematização inclui a reflexão sobre o próprio processo, não só sobre o objeto.</p>
+</section>
+
+<!-- 05c campo nao coopera destaque -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · Realidade</div>
+  <h2>Registre também o que deu errado</h2>
+  <div class="destaque" style="margin-top:0">
+    <p>Na Unidade 3 isso vira material: a sistematização inclui a reflexão sobre o próprio processo, não só sobre o objeto.</p>
   </div>
 </section>
 
@@ -203,26 +215,30 @@ body.lista .barra,body.lista .prog{display:none}
   <div class="kicker oliva">Tempo 1 · 2.5</div>
   <h2>O que perguntar sobre ciclos e sobre clima</h2>
   <p>Duas coisas da Unidade 1 que só aparecem se você perguntar: os ciclos de retroalimentação, que explicam a melhora ou a degradação "sozinha" da propriedade, e o clima, componente estrutural do sistema — não acidente do ano.</p>
-  <div class="g2" style="margin-top:1.5rem">
-    <div class="card oliva">
-      <div class="n">Ciclos de retroalimentação</div>
-      <ul class="bullets" style="margin-top:.4rem">
-        <li>O que aqui foi melhorando ano a ano, e o que puxou essa melhora — reforço</li>
-        <li>O que trava sempre no mesmo ponto, mesmo com esforço — equilíbrio</li>
-        <li>Alguma decisão boa que criou um problema novo depois</li>
-        <li>Onde entra dinheiro que volta para o pomar, e onde entra dinheiro que sai da propriedade</li>
-      </ul>
-    </div>
-    <div class="card terra">
-      <div class="n">Clima e risco</div>
-      <ul class="bullets" style="margin-top:.4rem">
-        <li>Qual foi o último ano ruim, o que aconteceu e o que a família fez</li>
-        <li>O que a propriedade tem para <strong>absorver</strong> — reserva de caixa, outras rendas, diversificação</li>
-        <li>O que ela mudou para <strong>adaptar</strong> — cultivar, época, tela antigranizo, irrigação, cobertura de solo</li>
-        <li>O que faria a família <strong>romper</strong>: arrancar o pomar, arrendar, sair da atividade</li>
-        <li>Tem seguro ou Proagro? Se não tem, por quê</li>
-      </ul>
-    </div>
+  <div class="card oliva" style="margin-top:1.5rem">
+    <div class="n">Ciclos de retroalimentação</div>
+    <ul class="bullets" style="margin-top:.4rem">
+      <li>O que aqui foi melhorando ano a ano, e o que puxou essa melhora — reforço</li>
+      <li>O que trava sempre no mesmo ponto, mesmo com esforço — equilíbrio</li>
+      <li>Alguma decisão boa que criou um problema novo depois</li>
+      <li>Onde entra dinheiro que volta para o pomar, e onde entra dinheiro que sai da propriedade</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 05d clima e risco -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1 · 2.5</div>
+  <h2>O que perguntar sobre clima e risco</h2>
+  <div class="card terra">
+    <div class="n">Clima e risco</div>
+    <ul class="bullets" style="margin-top:.4rem">
+      <li>Qual foi o último ano ruim, o que aconteceu e o que a família fez</li>
+      <li>O que a propriedade tem para <strong>absorver</strong> — reserva de caixa, outras rendas, diversificação</li>
+      <li>O que ela mudou para <strong>adaptar</strong> — cultivar, época, tela antigranizo, irrigação, cobertura de solo</li>
+      <li>O que faria a família <strong>romper</strong>: arrancar o pomar, arrendar, sair da atividade</li>
+      <li>Tem seguro ou Proagro? Se não tem, por quê</li>
+    </ul>
   </div>
   <div class="destaque">
     <p>Tela antigranizo, quebra-vento, açude, cobertura de solo e caderno de anotação de chuva são respostas ao risco que estão <strong>à vista</strong> — e rendem imagem. Se aparecerem, filme e pergunte de que ano são: a data quase sempre é a data de um prejuízo.</p>
@@ -340,13 +356,21 @@ body.lista .barra,body.lista .prog{display:none}
     <div class="card mostarda">
       <div class="n">Prioridade 1</div>
       <h3>Áudio</h3>
-      <p>Importa mais que a imagem. Ninguém abandona um vídeo tremido, mas todo mundo abandona um que não dá para ouvir. Grave perto da pessoa, de costas para o vento, longe de motor e trator ligado. Fone com microfone resolve quase tudo.</p>
+      <p>Importa mais que a imagem. Ninguém abandona um vídeo tremido, mas todo mundo abandona um que não dá para ouvir. Grave perto da pessoa, de costas para o vento. Fone com microfone resolve quase tudo.</p>
     </div>
     <div class="card">
       <div class="n">Prioridade 2</div>
       <h3>Luz</h3>
-      <p>Filme com o sol às suas costas, nunca de frente. Meio da manhã e fim da tarde são melhores que meio-dia. Dentro do galpão, posicione a pessoa perto da porta.</p>
+      <p>Filme com o sol às suas costas, nunca de frente. Meio da manhã e fim da tarde são melhores que meio-dia.</p>
     </div>
+  </div>
+</section>
+
+<!-- 09b tecnica cont -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Técnica</div>
+  <h2>Mais duas prioridades, e a edição</h2>
+  <div class="g2">
     <div class="card">
       <div class="n">Prioridade 3</div>
       <h3>Estabilidade e enquadramento</h3>
@@ -355,7 +379,7 @@ body.lista .barra,body.lista .prog{display:none}
     <div class="card">
       <div class="n">Prioridade 4</div>
       <h3>Gravar mais do que precisa</h3>
-      <p>Para 6 minutos de vídeo, grave 30 ou 40. Imagens de apoio — fruta, folha, mão trabalhando, ferramenta, paisagem — salvam a edição.</p>
+      <p>Para 6 minutos de vídeo, grave 30 ou 40. Imagens de apoio — fruta, folha, mão trabalhando, ferramenta — salvam a edição.</p>
     </div>
   </div>
   <div class="destaque">
@@ -378,8 +402,14 @@ body.lista .barra,body.lista .prog{display:none}
       <p>Respeite sem insistir. O vídeo funciona igual: mostre a propriedade, narre o que ouviu, use imagens de mãos trabalhando, ferramentas, pomar. A preservação é flexível e legítima.</p>
     </div>
   </div>
-  <div class="destaque">
-    <p>Combine <strong>antes</strong> da gravação, não depois — e combine mais do que a imagem:</p>
+</section>
+
+<!-- 10b direitos de imagem combinado -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Ética e direitos</div>
+  <h2>Combine antes da gravação, não depois</h2>
+  <div class="destaque" style="margin-top:0">
+    <p>E combine mais do que a imagem:</p>
     <ul class="bullets" style="margin-top:.8rem">
       <li>O que é <strong>dito</strong> não é o que pode ser <strong>mostrado</strong>. Preço, dívida, arrendamento e uso de agrotóxico podem ser informação valiosa para você e problema para a família num vídeo público — não publique sem autorização específica</li>
       <li>Quem aparece pode <strong>mudar de ideia</strong> depois de assistir. Mostre o vídeo à família antes de postar e aceite o corte pedido</li>
@@ -442,6 +472,14 @@ Integrantes: [nome e sobrenome de cada acadêmico]
     <li>Está respondido: <strong>por que vale vivenciar essa experiência nesta propriedade</strong></li>
     <li>O vídeo mostra <strong>potencialidades e limites</strong>, não só o que funciona bem</li>
     <li>A <strong>fruticultura é o foco</strong>, e partes da propriedade são efetivamente mostradas</li>
+  </ul>
+</section>
+
+<!-- 13b checklist cont -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Antes de postar</div>
+  <h2>Checklist do grupo — continuação</h2>
+  <ul class="check">
     <li>A duração está <strong>entre 4 e 7 minutos</strong></li>
     <li>O <strong>áudio é compreensível</strong> do início ao fim, ouvido em celular sem fone</li>
     <li>Alguém <strong>de fora do grupo</strong> assistiu e entendeu tudo sem explicação adicional</li>
@@ -488,7 +526,7 @@ Integrantes: [nome e sobrenome de cada acadêmico]
   <span>Unidade 2 · Aula 2 — A campo e o audiovisual</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 17</span>
+    <span id="cont">1 / 23</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>

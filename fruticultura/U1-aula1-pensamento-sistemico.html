@@ -38,7 +38,7 @@ body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
 h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
-p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
 p+p{margin-top:.9rem}
 .lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
 strong{font-weight:600;color:var(--tinta)}
@@ -58,12 +58,12 @@ a{color:var(--terra)}
 
 /* listas */
 ul.bullets{list-style:none;margin-top:.4rem}
-ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
 ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
 ul.bullets li strong{color:var(--tinta)}
 
 ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
-ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
 ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
 
 /* grades */
@@ -566,7 +566,7 @@ body.lista .barra,body.lista .prog{display:none}
   <p class="lead">Vamos descer da teoria geral para a unidade de produção agrícola e aprender a desenhá-la: subsistemas de cultivo, de criação e de transformação, entradas, saídas, fronteiras e retroalimentação.</p>
 </section>
 
-<!-- 21 referencias -->
+<!-- 21a referencias -->
 <section class="slide">
   <div class="kicker">Referências</div>
   <h2>Para aprofundar</h2>
@@ -579,6 +579,14 @@ body.lista .barra,body.lista .prog{display:none}
     <p class="ref">BERTALANFFY, L. von. <em>Teoria geral dos sistemas.</em> Petrópolis: Vozes, 1976.</p>
     <p class="ref">BROSSIER, J. Système et système de production: note sur ces concepts. <em>Cahiers des Sciences Humaines</em>, Paris, v. 23, n. 3-4, p. 377-390, 1987.</p>
     <p class="ref">CAPRA, F. <em>O ponto de mutação.</em> São Paulo: Cultrix, 1982.</p>
+  </div>
+</section>
+
+<!-- 21b referencias cont -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar — continuação</h2>
+  <div style="margin-top:1rem">
     <p class="ref">CHURCHMAN, C. W. <em>Introdução à teoria dos sistemas.</em> 2. ed. Petrópolis: Vozes, 1972.</p>
     <p class="ref">DURAND, D. <em>La systémique.</em> Paris: PUF, 1990.</p>
     <p class="ref">MIGUEL, L. A. A abordagem sistêmica da unidade de produção agrícola. Porto Alegre: UFRGS/PGDR.</p>
@@ -596,7 +604,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 1 · Aula 1 — Pensamento sistêmico</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 24</span>
+    <span id="cont">1 / 25</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>

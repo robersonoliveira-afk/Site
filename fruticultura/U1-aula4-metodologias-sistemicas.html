@@ -31,7 +31,7 @@ body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
 h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
-p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
 p+p{margin-top:.9rem}
 .lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
 strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
@@ -45,11 +45,11 @@ strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
 .regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
 .assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
 ul.bullets{list-style:none;margin-top:.4rem}
-ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
 ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
 ul.bullets li strong{color:var(--tinta)}
 ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
-ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
 ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
@@ -429,7 +429,7 @@ body.lista .barra,body.lista .prog{display:none}
   </div>
 </section>
 
-<!-- 17 referencias -->
+<!-- 17a referencias -->
 <section class="slide">
   <div class="kicker">Referências</div>
   <h2>Para aprofundar</h2>
@@ -439,6 +439,14 @@ body.lista .barra,body.lista .prog{display:none}
     <p class="ref">FREIRE, P. <em>Extensão ou comunicação?</em> Rio de Janeiro: Paz e Terra, 2014.</p>
     <p class="ref">GARCIA FILHO, D. P. <em>Guia metodológico: diagnóstico dos sistemas agrários.</em> Brasília: INCRA/FAO, 1999. Projeto de Cooperação Técnica INCRA/FAO.</p>
     <p class="ref">MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
+  </div>
+</section>
+
+<!-- 17b referencias cont -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar — continuação</h2>
+  <div style="margin-top:1rem">
     <p class="ref">PINHEIRO, S. L. G. O enfoque sistêmico e o desenvolvimento rural sustentável: uma oportunidade de mudança da abordagem hard-systems para experiências com soft-systems.</p>
     <p class="ref">SCHNEIDER, S. <em>A pluriatividade na agricultura familiar.</em> Porto Alegre: Editora da UFRGS, 2003.</p>
     <p class="ref">SILVA, G. P.; VENDRUSCOLO, R. <em>Experiências inovadoras em extensão rural na agricultura familiar.</em> São Vicente do Sul: IFFarroupilha, 2012.</p>
@@ -452,7 +460,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 1 · Aula 4 — Metodologias sistêmicas</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 17</span>
+    <span id="cont">1 / 18</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>

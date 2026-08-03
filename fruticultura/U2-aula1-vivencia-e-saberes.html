@@ -31,7 +31,7 @@ body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
 h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
-p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
 p+p{margin-top:.9rem}
 .lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
 strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
@@ -45,11 +45,11 @@ strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
 .regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
 .assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
 ul.bullets{list-style:none;margin-top:.4rem}
-ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
 ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
 ul.bullets li strong{color:var(--tinta)}
 ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
-ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
 ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
@@ -191,7 +191,7 @@ body.lista .barra,body.lista .prog{display:none}
       <div class="onde">Sua prática como técnico</div>
     </div>
   </div>
-  <p style="margin-top:1.4rem"><strong>Repare:</strong> esse ciclo é o desenho desta disciplina. Hoje você está no limiar da etapa 1 — a visita ainda não aconteceu. É por isso que a preparação da próxima aula importa: quem entra na propriedade sem instrumento sai com lembrança, não com dado.</p>
+  <p style="margin-top:1.4rem"><strong>Repare:</strong> esse ciclo é o desenho desta disciplina. Hoje você está no limiar da etapa 1 — quem entra na propriedade sem instrumento sai com lembrança, não com dado.</p>
 </section>
 
 <!-- 05 o que so o campo ensina -->
@@ -370,8 +370,14 @@ body.lista .barra,body.lista .prog{display:none}
     <li><strong>Quem faz o quê:</strong> quem grava (o estudante daquela propriedade), quem monta o roteiro, quem edita, quem posta e quem coordena os prazos</li>
     <li><strong>Datas prováveis</strong> das visitas de cada integrante, com destaque para a da visita que será gravada</li>
   </ul>
-  <div class="destaque">
-    <p>Sejam concretos na divisão. Em curso a distância, com gente em municípios diferentes, o combinado vago é a principal causa de trabalho entregue na véspera e nota abaixo do que o grupo poderia ter. Esta organização não tem nota própria — mas aparece direto na nota do vídeo.</p>
+</section>
+
+<!-- 12b tarefa destaque -->
+<section class="slide" style="background:var(--papel2)">
+  <div class="kicker">Ponte para a vivência</div>
+  <h2>Sejam concretos na divisão</h2>
+  <div class="destaque" style="margin-top:0">
+    <p>Em curso a distância, com gente em municípios diferentes, o combinado vago é a principal causa de trabalho entregue na véspera e nota abaixo do que o grupo poderia ter. Esta organização não tem nota própria — mas aparece direto na nota do vídeo.</p>
   </div>
 </section>
 
@@ -406,7 +412,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 2 · Aula 1 — A vivência como fonte de conhecimento</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 14</span>
+    <span id="cont">1 / 15</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>

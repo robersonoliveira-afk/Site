@@ -31,7 +31,7 @@ body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
 h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
-p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
 p+p{margin-top:.9rem}
 .lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
 strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
@@ -45,11 +45,11 @@ strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
 .regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
 .assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
 ul.bullets{list-style:none;margin-top:.4rem}
-ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
 ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
 ul.bullets li strong{color:var(--tinta)}
 ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
-ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
 ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
@@ -176,6 +176,12 @@ body.lista .barra,body.lista .prog{display:none}
       <figcaption>Vivência em propriedade frutícola. Substituir edição e ano.</figcaption>
     </figure>
   </div>
+</section>
+
+<!-- 03c freire pergunta -->
+<section class="slide">
+  <div class="kicker oliva">Tempo 1</div>
+  <h2>Quem ensinou e quem aprendeu?</h2>
   <div class="pergunta">
     <p>Na sua vivência, quem ensinou e quem aprendeu? O que você vai devolver ao produtor que abriu a porteira — e quando?</p>
   </div>
@@ -316,22 +322,22 @@ body.lista .barra,body.lista .prog{display:none}
 <section class="slide">
   <div class="kicker">Tempo 2 · Para onde a pauta caminhou</div>
   <h2>Quatro edições, quatro modos de olhar</h2>
-  <p style="max-width:80ch">Nenhuma turma sabia o que a anterior tinha feito quando escolheu os seus eixos. Mesmo assim, o conjunto desenha uma direção — e ela diz mais sobre o amadurecimento do olhar do que sobre a moda do setor.</p>
-  <div class="g2" style="margin-top:1.4rem">
+  <p style="max-width:80ch">Nenhuma turma sabia o que a anterior tinha feito quando escolheu os seus eixos. O conjunto, ainda assim, desenha uma direção.</p>
+  <div class="g4" style="margin-top:1.4rem">
     <div class="card oliva">
       <div class="n">I · 2023</div>
       <h3>Insumo</h3>
-      <p>Irrigação, solo, análise foliar. Problemas que se resolvem comprando alguma coisa. A pauta ainda estava próxima do que a oferta de mercado já dizia.</p>
+      <p>Irrigação, solo, análise foliar. A pauta ainda estava próxima do que a oferta de mercado já dizia.</p>
     </div>
     <div class="card mostarda">
       <div class="n">II · 2023</div>
       <h3>Cultura e risco</h3>
-      <p>Uva, morango, pecã, instabilidade climática. O recorte passa a ser a espécie e a ameaça que pesa sobre ela.</p>
+      <p>Uva, morango, pecã, instabilidade climática. O recorte passa a ser a espécie e a ameaça sobre ela.</p>
     </div>
     <div class="card terra">
       <div class="n">III · 2024</div>
       <h3>Sistema</h3>
-      <p>Polinizadores, agentes biológicos, agregação de valor. Problemas que exigem manejar interações, não adquirir produtos.</p>
+      <p>Polinizadores, agentes biológicos, agregação de valor. Exige manejar interações, não adquirir produtos.</p>
     </div>
     <div class="card">
       <div class="n">IV · 2025</div>
@@ -340,7 +346,7 @@ body.lista .barra,body.lista .prog{display:none}
     </div>
   </div>
   <div class="destaque">
-    <p>De <strong>insumo</strong> a <strong>cultura</strong>, de cultura a <strong>sistema</strong>, de sistema a <strong>sujeito</strong>. É exatamente o percurso da Unidade 1 — só que feito por quatro turmas, uma de cada vez, sem combinar.</p>
+    <p>De <strong>insumo</strong> a <strong>cultura</strong>, de cultura a <strong>sistema</strong>, de sistema a <strong>sujeito</strong> — o percurso da Unidade 1, feito por quatro turmas, sem combinar.</p>
   </div>
 </section>
 
@@ -359,6 +365,12 @@ body.lista .barra,body.lista .prog{display:none}
     <h3>Comunidade que Sustenta a Agricultura: fortalece quem planta, nutre quem consome</h3>
     <p>Surgiu do problema visto na Unidade 1: a assimetria de poder na jusante da cadeia. A CSA é uma resposta organizativa a ela.</p>
   </div>
+</section>
+
+<!-- 07a2 eixo 3 -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Como os temas nascem</div>
+  <h2>O terceiro eixo, e o mecanismo por trás dos três</h2>
   <div class="eixo">
     <div class="r">Eixo 3</div>
     <h3>Da implantação ao processamento de frutas de um pomar doméstico</h3>
@@ -707,7 +719,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 3 · Aula final — Do pomar ao Polifruti</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 33</span>
+    <span id="cont">1 / 35</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>

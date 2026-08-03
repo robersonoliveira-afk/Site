@@ -31,7 +31,7 @@ body.lista .slide{display:flex;min-height:auto;padding:6vh 7vw;border-bottom:1px
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.02em}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.14;letter-spacing:-.015em;margin-bottom:1.6rem}
 h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:.5rem}
-p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:62ch}
+p{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.62;color:var(--tinta2);max-width:80ch}
 p+p{margin-top:.9rem}
 .lead{font-size:clamp(1.12rem,1.7vw,1.4rem);color:var(--tinta);line-height:1.5}
 strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
@@ -45,11 +45,11 @@ strong{font-weight:600;color:var(--tinta)} em{font-style:italic}
 .regua{width:64px;height:4px;background:var(--terra);margin:2.4rem 0}
 .assin{font-family:var(--mono);font-size:.8rem;color:var(--tinta3);line-height:1.9}
 ul.bullets{list-style:none;margin-top:.4rem}
-ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:64ch}
+ul.bullets li{position:relative;padding-left:1.5rem;margin-bottom:.85rem;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.55;color:var(--tinta2);max-width:80ch}
 ul.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--mostarda);border-radius:50%}
 ul.bullets li strong{color:var(--tinta)}
 ol.num{list-style:none;counter-reset:n;margin-top:.6rem}
-ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:62ch}
+ol.num li{counter-increment:n;position:relative;padding-left:2.6rem;margin-bottom:1rem;font-size:1.05rem;line-height:1.55;color:var(--tinta2);max-width:80ch}
 ol.num li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:.15em;font-family:var(--mono);font-size:.82rem;color:var(--terra)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:.6rem}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.6rem}
@@ -256,16 +256,16 @@ body.lista .barra,body.lista .prog{display:none}
 <section class="slide">
   <div class="kicker">Tempo 2 · Vocabulário técnico</div>
   <h2>Três conceitos que não se confundem</h2>
-  <div style="margin-top:.4rem">
-    <div class="card" style="margin-bottom:1rem">
+  <div class="g3">
+    <div class="card">
       <div class="n">Escala maior</div>
       <h3>Sistema de produção</h3>
-      <p>A combinação dos sistemas de cultivo e de criação adotados <strong>dentro dos limites autorizados pelos fatores de produção</strong> de que a UPA dispõe: força de trabalho, conhecimento técnico, superfície agrícola, equipamentos, capital. Inclui as atividades de transformação e conservação feitas na propriedade.</p>
+      <p>A combinação dos sistemas de cultivo e de criação adotados <strong>dentro dos limites autorizados pelos fatores de produção</strong> — trabalho, conhecimento técnico, terra, equipamentos, capital.</p>
     </div>
-    <div class="card" style="margin-bottom:1rem">
+    <div class="card">
       <div class="n">Escala da parcela</div>
       <h3>Sistema de cultivo</h3>
-      <p>A descrição dos cultivos realizados <strong>em uma parcela</strong>, segundo uma ordem de sucessão conhecida e recorrente. Definido pelos tipos de cultivo, pela ordem de sucessão e pelo <strong>itinerário técnico</strong> de cada um.</p>
+      <p>A descrição dos cultivos realizados <strong>em uma parcela</strong>, segundo uma ordem de sucessão conhecida. Definida pelos tipos de cultivo e pelo <strong>itinerário técnico</strong> de cada um.</p>
     </div>
     <div class="card">
       <div class="n">Escala do rebanho</div>
@@ -331,7 +331,7 @@ body.lista .barra,body.lista .prog{display:none}
 <section class="slide">
   <div class="kicker">Tempo 2 · O mecanismo central</div>
   <h2>Interação com volta: retroalimentação</h2>
-  <p class="lead">Até aqui as setas iam num sentido só. Mas quando o efeito de uma interação volta e altera a sua própria causa, o sistema passa a se governar por conta própria. Existem dois tipos, e eles fazem coisas opostas.</p>
+  <p class="lead">Até aqui as setas iam num sentido só. Quando o efeito de uma interação volta e altera sua causa, o sistema passa a se governar por conta própria — em dois tipos opostos.</p>
 
   <h3 style="margin-top:1.8rem">Ciclo de reforço — cada volta amplifica</h3>
   <div class="ciclo">
@@ -382,10 +382,16 @@ body.lista .barra,body.lista .prog{display:none}
       </ul>
     </div>
   </div>
-  <div class="destaque">
-    <p>Repare que quase tudo da coluna da direita <strong>vem de fora da porteira</strong> — do segmento a montante da cadeia. É o primeiro sinal de que a fronteira que desenhamos hoje não basta: é o assunto da aula 3.</p>
+</section>
+
+<!-- 11d choque externo cont -->
+<section class="slide">
+  <div class="kicker">Tempo 2 · Quando o choque vem de fora</div>
+  <h2>Consequência para o aconselhamento</h2>
+  <div class="destaque" style="margin-top:0">
+    <p>Repare que quase tudo o que dá folga ao sistema <strong>vem de fora da porteira</strong> — do segmento a montante da cadeia. É o primeiro sinal de que a fronteira que desenhamos hoje não basta: é o assunto da aula 3.</p>
   </div>
-  <p style="margin-top:1.3rem"><strong>Consequência para o aconselhamento:</strong> a diversificação que parece falta de especialização técnica costuma ser a única gestão de risco disponível a quem não tem seguro. Antes de sugerir que a família se concentre no pomar, verifique o que ela está usando como colchão.</p>
+  <p style="margin-top:1.3rem">A diversificação que parece falta de especialização técnica costuma ser a única gestão de risco disponível a quem não tem seguro. Antes de sugerir que a família se concentre no pomar, verifique o que ela está usando como colchão.</p>
 </section>
 
 <!-- 12 postulados -->
@@ -400,20 +406,35 @@ body.lista .barra,body.lista .prog{display:none}
   </ol>
 </section>
 
-<!-- 13 tipos -->
+<!-- 13a tipos familiar -->
 <section class="slide">
   <div class="kicker mostarda">Tempo 3</div>
   <h2>Não existe uma UPA. Existem tipos de UPA</h2>
   <table>
-    <tr><th style="width:19%">O que observar</th><th>Familiar</th><th>Familiar pluriativa</th><th>Patronal</th><th>Empresarial</th></tr>
-    <tr><td>Quem trabalha</td><td>A própria família, em tempo integral</td><td>A família, em tempo parcial — parte dela trabalha fora</td><td>Família na gestão, com contratados permanentes</td><td>Trabalho contratado e gerência profissional</td></tr>
-    <tr><td>De onde vem a renda</td><td>Quase toda da produção</td><td>Da produção e de salário, aposentadoria ou benefício</td><td>Da produção</td><td>Da produção, com acesso a capital externo</td></tr>
-    <tr><td>Objetivo principal</td><td>Reproduzir a família e manter o patrimônio</td><td>Compor renda e manter o vínculo com a terra</td><td>Rentabilidade, decidida dentro da família</td><td>Retorno sobre o capital investido</td></tr>
-    <tr><td>Especialização</td><td>Baixa a média: várias atividades</td><td>Baixa: a produção é uma fonte entre outras</td><td>Média a alta</td><td>Alta, muitas vezes um produto só</td></tr>
-    <tr><td>Postura diante do risco</td><td>Evita perder o que tem; diversifica</td><td>Menos exposta, porque a renda de fora amortece a safra ruim — e por isso mesmo investe menos no pomar</td><td>Calcula e assume risco parcial</td><td>Assume risco: tem escala, seguro e capital de giro</td></tr>
-    <tr><td>Relação com o mercado</td><td>Vende o excedente e consome parte</td><td>Usa canais de baixa exigência, que caibam no tempo disponível</td><td>Vende toda a produção</td><td>Contratos, integração, exportação</td></tr>
+    <tr><th style="width:22%">O que observar</th><th>Familiar</th><th>Familiar pluriativa</th></tr>
+    <tr><td>Quem trabalha</td><td>A própria família, em tempo integral</td><td>A família, em tempo parcial — parte dela trabalha fora</td></tr>
+    <tr><td>De onde vem a renda</td><td>Quase toda da produção</td><td>Da produção e de salário, aposentadoria ou benefício</td></tr>
+    <tr><td>Objetivo principal</td><td>Reproduzir a família e manter o patrimônio</td><td>Compor renda e manter o vínculo com a terra</td></tr>
+    <tr><td>Especialização</td><td>Baixa a média: várias atividades</td><td>Baixa: a produção é uma fonte entre outras</td></tr>
+    <tr><td>Postura diante do risco</td><td>Evita perder o que tem; diversifica</td><td>Menos exposta, porque a renda de fora amortece a safra ruim — e por isso investe menos no pomar</td></tr>
+    <tr><td>Relação com o mercado</td><td>Vende o excedente e consome parte</td><td>Usa canais de baixa exigência, que caibam no tempo disponível</td></tr>
   </table>
-  <p style="margin-top:1.2rem"><strong>O caso da aula 1 é do segundo tipo.</strong> Os Scherer têm um filho assalariado na cidade e a aposentadoria rural no horizonte. Isso explica, sem nenhuma referência a erro técnico, por que a poda atrasa e por que não se investe num pomar que só retorna em cinco anos.</p>
+  <p style="margin-top:1.2rem"><strong>O caso da aula 1 é do segundo tipo.</strong> Os Scherer têm um filho assalariado na cidade e a aposentadoria rural no horizonte — por isso a poda atrasa e não se investe num pomar que só retorna em cinco anos.</p>
+</section>
+
+<!-- 13b tipos patronal -->
+<section class="slide">
+  <div class="kicker mostarda">Tempo 3</div>
+  <h2>Não existe uma UPA. Existem tipos de UPA — continuação</h2>
+  <table>
+    <tr><th style="width:22%">O que observar</th><th>Patronal</th><th>Empresarial</th></tr>
+    <tr><td>Quem trabalha</td><td>Família na gestão, com contratados permanentes</td><td>Trabalho contratado e gerência profissional</td></tr>
+    <tr><td>De onde vem a renda</td><td>Da produção</td><td>Da produção, com acesso a capital externo</td></tr>
+    <tr><td>Objetivo principal</td><td>Rentabilidade, decidida dentro da família</td><td>Retorno sobre o capital investido</td></tr>
+    <tr><td>Especialização</td><td>Média a alta</td><td>Alta, muitas vezes um produto só</td></tr>
+    <tr><td>Postura diante do risco</td><td>Calcula e assume risco parcial</td><td>Assume risco: tem escala, seguro e capital de giro</td></tr>
+    <tr><td>Relação com o mercado</td><td>Vende toda a produção</td><td>Contratos, integração, exportação</td></tr>
+  </table>
 </section>
 
 <!-- 14 alerta -->
@@ -466,7 +487,7 @@ body.lista .barra,body.lista .prog{display:none}
   <p style="margin-top:1.6rem"><strong>Traga:</strong> a resposta para uma pergunta simples sobre a sua UPA — <em>para onde vai a fruta depois que sai da propriedade?</em> Se você não souber, pergunte ao produtor antes da aula.</p>
 </section>
 
-<!-- 18 referencias -->
+<!-- 18a referencias -->
 <section class="slide">
   <div class="kicker">Referências</div>
   <h2>Para aprofundar</h2>
@@ -477,6 +498,14 @@ body.lista .barra,body.lista .prog{display:none}
     <p class="ref">DURAND, D. <em>La systémique.</em> Paris: PUF, 1990.</p>
     <p class="ref">HOFFMANN, R. et al. <em>Administração da empresa agrícola.</em> São Paulo: Pioneira, 1984.</p>
     <p class="ref">INCRA/FAO. <em>Análise diagnóstico de sistemas agrários: guia metodológico.</em> Brasília: INCRA, 1999.</p>
+  </div>
+</section>
+
+<!-- 18b referencias cont -->
+<section class="slide">
+  <div class="kicker">Referências</div>
+  <h2>Para aprofundar — continuação</h2>
+  <div style="margin-top:1rem">
     <p class="ref">LIMA, A. P. et al. <em>Administração da unidade de produção familiar: modalidade de trabalho com agricultores.</em> Ijuí: Editora da UNIJUÍ, 1995.</p>
     <p class="ref">MIGUEL, L. A. A abordagem sistêmica da unidade de produção agrícola. Porto Alegre: UFRGS/PGDR.</p>
     <p class="ref">MIGUEL, L. A.; MAZOYER, M.; ROUDART, L. Abordagem sistêmica e sistemas agrários. In: MIGUEL, L. A. (Org.). <em>Dinâmica e diferenciação de sistemas agrários.</em> Porto Alegre: Editora da UFRGS, 2009.</p>
@@ -494,7 +523,7 @@ body.lista .barra,body.lista .prog{display:none}
   <span>Unidade 1 · Aula 2 — Sistemas e componentes</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 21</span>
+    <span id="cont">1 / 24</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>
