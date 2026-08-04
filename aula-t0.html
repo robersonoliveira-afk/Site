@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3D4A2A">
+<title>T0 — Do post ao hectare</title>
+<meta name="description" content="Aula de abertura — Do post ao hectare, a aula do ovo. Pensamento sistêmico a partir de um caso real de preço de alimento. Deck de projeção e estudo. Colégio Politécnico da UFSM.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --accent:var(--olive);
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--terra)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:64ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+/* colofão */
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--olive-deep)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.cover .cred{margin-top:3vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:clamp(34px,6vh,54px);width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* ciclo */
+.cycle{display:flex;gap:0.8vw;align-items:center;margin:2vh 0;flex-wrap:wrap}
+.cycle .step{border:1px solid var(--rule);background:#fff;padding:1.2vh 1.2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--ink)}
+.cycle .arr{color:var(--stone-light);font-size:var(--fs-body)}
+.cycle .loop{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono)}
+
+/* números grandes lado a lado */
+.stats2{display:flex;gap:2.5vw;margin:2.4vh 0;flex-wrap:wrap}
+.stats2 .stat{border:1px solid var(--rule);background:#fff;padding:1.8vh 1.8vw;min-width:170px}
+.stats2 .stat .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(30px,4.6vw,58px);color:var(--terra);line-height:1}
+.stats2 .stat .lbl{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh;max-width:16ch;line-height:1.4}
+
+/* mockup de post */
+.post{border:1px solid var(--rule);background:#fff;padding:1.8vh 1.8vw;max-width:56ch;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.post .ph{display:flex;align-items:center;gap:0.8vw;margin-bottom:1.4vh}
+.post .av{width:2.3em;height:2.3em;border-radius:50%;background:var(--olive);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:var(--fs-small);flex-shrink:0}
+.post .handle{font-weight:600;color:var(--ink);font-size:var(--fs-small);display:block}
+.post .date{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);display:block;margin-top:2px}
+.post .cap{font-size:var(--fs-small);color:var(--ink-soft);line-height:1.55}
+.post .eng{display:flex;gap:2.4vw;margin-top:1.6vh;padding-top:1.4vh;border-top:1px solid var(--rule-soft)}
+.post .eng .n{font-family:'IBM Plex Mono',monospace;color:var(--terra);font-size:var(--fs-body);font-weight:600;display:block}
+.post .eng .l{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);text-transform:uppercase;letter-spacing:0.06em}
+
+/* barra de proporção */
+.propbar{margin:2.4vh 0;max-width:66vw}
+.propbar .track{position:relative;height:5.2vh;border:1px solid var(--rule);background:#fff}
+.propbar .fill{position:absolute;top:0;left:0;bottom:0;background:var(--terra);display:flex;align-items:center;padding-left:1vw}
+.propbar .fill span{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--paper);font-size:var(--fs-small)}
+.propbar .cap{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1vh;gap:1vw}
+
+/* slot de foto — a preencher pelo professor */
+.foto-slot{margin:2.2vh 0;max-width:64ch;border:1.5px dashed var(--stone-light);background:var(--paper-warm);padding:4vh 2.4vw;text-align:center}
+.foto-slot .lbl{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--stone)}
+.foto-slot .hint2{font-family:'IBM Plex Mono',monospace;font-size:clamp(11px,1.15vw,16px);color:var(--stone-light);margin-top:1.2vh;line-height:1.6;max-width:52ch;margin-left:auto;margin-right:auto}
+.slide.foto-cheia .foto-slot{max-width:80vw;padding:6vh 3vw}
+
+/* foto real */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.slide.foto-cheia{justify-content:center;align-items:center}
+.slide.foto-cheia .foto{max-width:88vw;margin:0}
+.slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
+.slide.foto-cheia .foto figcaption{text-align:center}
+
+/* chips de camada */
+.chip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.04em;padding:0.4vh 0.9vw;border-radius:2px;white-space:nowrap}
+.chip.montante{background:#E4EAD2;color:var(--olive-deep)}
+.chip.jusante{background:#EFE6CC;color:#7A6020}
+.chip.ambiente{background:var(--rule-soft);color:var(--stone)}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--olive-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent)}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ABERTURA ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Aula de abertura · deck de projeção e estudo</div>
+  <div class="t-mark">
+    <div class="t-num">T0</div>
+    <div>
+      <div class="mv">Movimento 1 · <b>Entender</b></div>
+      <h1>Do post ao hectare</h1>
+    </div>
+  </div>
+  <div class="sub">a aula do ovo · aula dialogada, presencial, em três tempos</div>
+  <div class="cred">
+    <img src="logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span>Técnico em Agropecuária · Técnico em Agricultura de Precisão</span></div>
+  </div>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- ============ TEMPO 1 · O PÂNICO ============ -->
+
+<!-- 2 · o post, os números -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · o pânico · fevereiro de 2025</div>
+  <h2>17,5 mil curtidas. 922 comentários.</h2>
+  <div class="post">
+    <div class="ph">
+      <div class="av">FB</div>
+      <div>
+        <span class="handle">@forbesbr</span>
+        <span class="date">20 de fevereiro de 2025</span>
+      </div>
+    </div>
+    <p class="cap">"...alta demanda pela proteína, elevados custos de produção e ondas de calor..." — sobre a crise do preço do ovo.</p>
+    <div class="eng">
+      <div><span class="n">17,5 mil</span><span class="l">curtidas</span></div>
+      <div><span class="n">922</span><span class="l">comentários</span></div>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Pergunta de abertura — a da aula inteira</strong>
+    Dos 922 que comentaram, quantos entendem de produção, de mercado, de custo? E quantos de nós já comentamos algo parecido sobre o preço de um alimento?
+  </div>
+</section>
+
+<!-- 2b · FOTO — print do post real -->
+<section class="slide foto-cheia" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a imagem, na tela</div>
+  <figure class="foto">
+    <img src="ovos.png" alt="Post do Instagram de @forbesbr (Forbes Agro), 20 de fevereiro de 2025, sobre o preço dos ovos, com 17,5 mil curtidas e 922 comentários" loading="lazy">
+    <figcaption>@forbesbr · 20 de fevereiro de 2025 · 17,5 mil curtidas · 922 comentários</figcaption>
+  </figure>
+</section>
+
+<!-- 3 · releitura da legenda -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a legenda, relida devagar</div>
+  <h2>Estava tudo escrito ali</h2>
+  <table class="tbl">
+    <thead><tr><th>Trecho da legenda</th><th>Camada da cadeia</th></tr></thead>
+    <tbody>
+      <tr><td>"alta demanda pela proteína"</td><td><span class="chip jusante">jusante — consumo</span></td></tr>
+      <tr><td>"elevados custos de produção"</td><td><span class="chip montante">montante — milho, soja, ração</span></td></tr>
+      <tr><td>"ondas de calor"</td><td><span class="chip ambiente">ambiente — atravessa as duas</span></td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>O post diagnosticou as três camadas em quatro linhas</strong>
+    Se estava tudo escrito ali, por que a discussão não foi sobre isso?
+  </div>
+  <p class="note">Aposta a confrontar em aula: os 922 comentários discutem só a gôndola. O problema não foi ausência de informação — foi ausência de leitura sistêmica.</p>
+</section>
+
+<!-- 4 · duas crises -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · o contexto que quase ninguém puxou</div>
+  <h2>Duas crises, mesmo ano, causas diferentes</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>EUA</h3>
+      <p>Surtos de gripe aviária (H5N1, depois H7N9) derrubam o plantel de poedeiras — mais de <strong>166 milhões</strong> de aves abatidas desde 2022. Dúzia: US$ 0,80 (2019) → pico de US$ 4,95 a 6,00 (início de 2025). USDA projetou alta de <strong>41%</strong> no ano.</p>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Brasil</h3>
+      <p>O país <strong>não</strong> registrou gripe aviária em aves comerciais. Mesmo assim, a caixa de 30 dz de ovos vermelhos foi de R$ 171 para R$ 258 em Belo Horizonte entre janeiro e fevereiro de 2025 (Cepea/Esalq-USP). Causa: a <strong>ração encareceu porque o milho encareceu</strong>, com a área de milho verão na menor da série histórica da Conab (desde 1976/77).</p>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>O ponto</strong>
+    Duas crises de ovo, no mesmo ano, com causas completamente diferentes. Um post genérico sobre "crise do ovo" borra essa diferença. A cadeia produtiva não.
+  </div>
+</section>
+
+<!-- 5 · gracyanne -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · Gracyanne entra</div>
+  <h2>40 ovos por dia</h2>
+  <p class="lead">A fala é do BBB25 — e ela é a única pessoa desta história inteira que fez uma conta. Multiplicou, em vídeo: 40 ovos × 7 dias × 15 semanas = <strong>4.200 ovos</strong> no BBB25.</p>
+  <p class="note">40 ovos/dia é uma afirmação de dieta extrema que circulou sem verificação nenhuma — mais um elo não conferido da mesma cadeia de boatos. Serve como âncora de cálculo, não como modelo nutricional.</p>
+  <div class="callout">
+    <strong>Onde ela parou</strong>
+    Ela parou na primeira camada. E se a gente não parar aqui?
+  </div>
+</section>
+
+<!-- 5b · FOTO — Gracyanne -->
+<section class="slide foto-cheia" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a imagem</div>
+  <div class="foto-slot">
+    <span class="lbl">espaço para foto</span>
+    <p class="hint2">Foto de Gracyanne Barbosa com os ovos, no BBB25, ou print do vídeo em que ela faz a própria conta. Fonte sugerida: CNN (13 jan. 2025) ou perfil oficial. Ver guia de edição no topo deste arquivo.</p>
+  </div>
+</section>
+
+<!-- 6 · continuando a conta -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · continuando a conta dela</div>
+  <h2>Da dieta ao hectare</h2>
+  <table class="tbl">
+    <thead><tr><th>Camada</th><th>Cálculo</th><th class="num">Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>Ela parou aqui</td><td>40 × 7 × 15</td><td class="num">4.200 ovos</td></tr>
+      <tr><td>Ano inteiro</td><td>40 × 365</td><td class="num"><b>14.600 ovos</b></td></tr>
+      <tr><td>Equivalente humano</td><td>÷ 288 ovos/hab/ano (ABPA, 2025)</td><td class="num"><b>51 brasileiros</b></td></tr>
+      <tr><td>Plantel necessário</td><td>÷ 308 ovos/ave/ano (Hisex White, ciclo 100 sem)</td><td class="num"><b>47 poedeiras</b></td></tr>
+      <tr><td>Ração</td><td>1.217 dz × 1,50 kg/dz</td><td class="num">1,83 t/ano</td></tr>
+      <tr><td>Milho (63% da ração)</td><td>1.150 kg ÷ 5,98 t/ha</td><td class="num">1.920 m²</td></tr>
+      <tr><td>Soja em grão (30% farelo)</td><td>702 kg ÷ 2,97 t/ha</td><td class="num">2.360 m²</td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="2">Terra</td><td class="num">≈ 4.300 m²</td></tr></tfoot>
+  </table>
+  <p class="note">Coeficiente de conversão: Hisex White, ciclo de 100 semanas — 1,50 kg de ração por dúzia (não confundir com ovos/ave <em>no ciclo inteiro</em>, que precisam ser anualizados). Produtividade RS 2024/25 é estimativa Conab anterior à estiagem daquela safra — ordem de grandeza, não número fechado. A escolha da linhagem muda o resultado — ver Tempo 2.</p>
+</section>
+
+<!-- 7 · imagem de fechamento: campo de futebol -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a imagem de fechamento</div>
+  <h2>60% de um campo de futebol</h2>
+  <p>Um campo de futebol oficial tem 7.140 m² (105 × 68). A dieta de uma pessoa que comesse 40 ovos por dia ocupa isso, todo ano:</p>
+  <div class="propbar">
+    <div class="track"><div class="fill" style="width:60%"><span>60%</span></div></div>
+    <div class="cap"><span>campo de futebol oficial · 7.140 m²</span><span>dieta de 1 pessoa/ano · ≈ 4.300 m²</span></div>
+  </div>
+  <p class="lead">Uma dieta. Um ano. Mais da metade de um campo de futebol.</p>
+</section>
+
+<!-- 7b · FOTO — escala em campo -->
+<section class="slide foto-cheia" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a imagem, em campo</div>
+  <div class="foto-slot">
+    <span class="lbl">espaço para foto</span>
+    <p class="hint2">Foto aérea de lavoura de milho ou soja (ou um campo de futebol, para reforçar a escala visual do slide anterior). Pode ser foto própria de uma área da região. Ver guia de edição no topo deste arquivo.</p>
+  </div>
+</section>
+
+<!-- 8 · tendência -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a tendência que ninguém chamou de tendência</div>
+  <h2>Consumo per capita de ovos no Brasil</h2>
+  <table class="tbl">
+    <thead><tr><th>Ano</th><th class="num">Ovos/hab/ano</th></tr></thead>
+    <tbody>
+      <tr><td>2015</td><td class="num">191</td></tr>
+      <tr><td>2024</td><td class="num">269</td></tr>
+      <tr><td>2025</td><td class="num"><b>288</b></td></tr>
+      <tr><td>2026 (projeção)</td><td class="num">301</td></tr>
+      <tr><td>2027 (projeção)</td><td class="num">312</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Fonte: ABPA.</p>
+  <div class="callout">
+    <strong>O ponto</strong>
+    "Crise do ovo" trata como evento o que é tendência. Gripe aviária e onda de calor são choques — a cadeia absorve. A subida de 191 para 288 em dez anos é estrutura — e estrutura exige área nova, não absorção.
+  </div>
+</section>
+
+<!-- 9 · escala e fechamento tempo 1 -->
+<section class="slide" data-act="Tempo 1">
+  <div class="eyebrow"><b>Tempo 1</b> · a conta de escala</div>
+  <h2>≈ 81 mil hectares a mais</h2>
+  <div class="formula">
+    <span class="label">De 2025 para 2026</span>
+    +13 ovos/hab projetados × ≈213 milhões de habitantes = <b>2,8 bilhões de ovos a mais</b><br>
+    traduzindo em lavoura → <b>≈ 81 mil ha adicionais</b> de milho e soja — cerca de <b>11%</b> de toda a área de milho do RS
+  </div>
+  <p class="lead">Em fevereiro de 2025, isso tudo parecia insustentável.</p>
+</section>
+
+<!-- ============ TEMPO 2 · A RESSACA ============ -->
+
+<!-- 10 · manchete 18 meses depois -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · a ressaca · agosto de 2026</div>
+  <h2>Dezoito meses depois</h2>
+  <p>Cepea, levantamento de julho de 2026: <strong>o preço dos ovos ficou no menor patamar real para o mês desde 2019.</strong> Queda de mais de 15% frente a junho e de até 18% frente a julho do ano anterior. Causa: consumo enfraquecido somado a produção elevada.</p>
+  <table class="tbl">
+    <thead><tr><th>Praça · 30/07/2026</th><th class="num">R$ / caixa 30 dz</th></tr></thead>
+    <tbody>
+      <tr><td>Bastos (FOB)</td><td class="num">123,03</td></tr>
+      <tr><td>Santa Maria de Jetibá (FOB)</td><td class="num">127,33</td></tr>
+      <tr><td>Grande São Paulo (CIF)</td><td class="num">129,36</td></tr>
+      <tr><td>Grande Belo Horizonte (CIF)</td><td class="num">130,00</td></tr>
+      <tr><td>Recife (CIF)</td><td class="num">136,92</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>O ponto</strong>Os 922 comentários envelheceram em dezoito meses.</div>
+</section>
+
+<!-- 11 · prova local -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · a prova local</div>
+  <h2>30 ovos por R$ 12,47</h2>
+  <p>Promoção em mercado de Santa Maria — observação pontual do professor, com data conferida na etiqueta.</p>
+  <div class="formula">
+    <span class="label">Conta rápida com a turma</span>
+    30 ovos = 2,5 dúzias → <b>R$ 4,99</b> por dúzia no varejo<br>
+    Cepea atacado (branco): R$ 123 a 137 a caixa de 30 dz → <b>R$ 4,10 a 4,56</b> por dúzia
+  </div>
+  <div class="callout">
+    <strong>Pergunta</strong>
+    O varejo está trabalhando com menos de R$ 1 por dúzia de diferença sobre o atacado. E o produtor — está cobrindo o custo?
+  </div>
+</section>
+
+<!-- 11b · FOTO — etiqueta da promoção -->
+<section class="slide foto-cheia" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · a imagem, no mercado</div>
+  <div class="foto-slot">
+    <span class="lbl">espaço para foto</span>
+    <p class="hint2">Foto da etiqueta da promoção — mercado de Santa Maria, com a data visível. Registro pontual do professor: vale tirar a foto assim que encontrar a promoção de novo, para ter a prova em mãos. Ver guia de edição no topo deste arquivo.</p>
+  </div>
+</section>
+
+<!-- 12 · série do milho — slide central -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · o slide central da aula</div>
+  <h2>A série do milho, e a data do post</h2>
+  <table class="tbl">
+    <thead><tr><th>Mês</th><th class="num">Milho R$/kg</th><th class="num">Soja R$/kg</th></tr></thead>
+    <tbody>
+      <tr><td><strong>fev/2025 — data do post</strong></td><td class="num">1,1158</td><td class="num">2,0563</td></tr>
+      <tr><td><strong>mar/2025 — pico</strong></td><td class="num"><b>1,1333</b></td><td class="num"><b>2,1042</b></td></tr>
+      <tr><td>mai/2026 — vale</td><td class="num">0,9333</td><td class="num">1,8868</td></tr>
+      <tr><td>jun/2026</td><td class="num">0,9653</td><td class="num">1,9028</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Série CONAB completa: 30 meses, preço recebido pelo produtor no RS (banco de dados do professor).</p>
+  <div class="callout">
+    <strong>O ponto</strong>
+    O post caiu praticamente em cima do pico do milho, numa série de trinta meses. A informação correta estava disponível e datada. Os 922 comentários discutiram outra coisa.
+  </div>
+</section>
+
+<!-- 13 · custo dos grãos por dúzia -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · o custo dos grãos por dúzia</div>
+  <h2>O que a ração custava, mês a mês</h2>
+  <table class="tbl">
+    <thead><tr><th></th><th class="num">fev/2025</th><th class="num">mar/2025</th><th class="num">jun/2026</th></tr></thead>
+    <tbody>
+      <tr><td>Milho (0,945 kg)</td><td class="num">R$ 1,05</td><td class="num">R$ 1,07</td><td class="num">R$ 0,91</td></tr>
+      <tr><td>Soja em grão equiv. (0,577 kg)</td><td class="num">R$ 1,19</td><td class="num">R$ 1,21</td><td class="num">R$ 1,10</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total grãos</td><td class="num">R$ 2,24</td><td class="num">R$ 2,28</td><td class="num">R$ 2,01</td></tr></tfoot>
+  </table>
+  <p class="note">Queda do pico (mar/2025) até jun/2026: −12,0% nominal. Coeficiente: 1,50 kg de ração/dúzia (Hisex White, ciclo 100 sem) — 63% milho, farelo de soja aproximado por soja em grão × rendimento de esmagamento (78%). Ordem de grandeza, não número fechado.</p>
+</section>
+
+<!-- 14 · custo total e conclusão -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · do grão ao custo total</div>
+  <h2>Margem apertada, não prejuízo</h2>
+  <p>Somando o restante da ração (núcleo, calcário, óleo), fabricação e frete, o custo alimentar fica em torno de R$ 2,45 a 2,80/dz. Dividindo por 0,675 (a ração representa 65% a 70% do custo total de produção do ovo — Embrapa), o custo total fica em torno de:</p>
+  <div class="formula">
+    <b>R$ 3,58 a 4,15</b> por dúzia — custo total estimado<br>
+    <b>R$ 4,10 a 4,56</b> por dúzia — Cepea atacado, jul/2026
+  </div>
+  <div class="callout success">
+    <strong>Conclusão a construir com a turma</strong>
+    As duas pontas caíram juntas: o insumo desceu com o produto. O produtor não foi esmagado; está operando numa faixa estreita — e com linhagem de alto desempenho, ainda um pouco mais confortável. Isso é relação de troca — e é o coração desta disciplina.
+  </div>
+</section>
+
+<!-- 14b · de qual granja estamos falando -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · a aula dentro da aula</div>
+  <h2>De qual granja estamos falando?</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Embrapa · mínimo viável</h3>
+      <p><strong>264 ovos/ave/ano</strong> (22 dz) — referência de viabilidade econômica mínima, mais próxima do desempenho de sistemas caipira e cage-free.</p>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Hisex White · comercial, ciclo 100 sem</h3>
+      <p><strong>308 ovos/ave/ano</strong> · 1,50 kg de ração/dúzia — linhagem de alto desempenho, usada em toda a conta desta aula.</p>
+    </div>
+  </div>
+  <div class="formula">
+    <span class="label">Mesma dieta, plantel necessário</span>
+    Com Embrapa (264): <b>55 poedeiras</b> · Com Hisex White (308): <b>47 poedeiras</b> — 17% de diferença, mesmo consumo humano
+  </div>
+  <div class="callout">
+    <strong>A incoerência a explicitar</strong>
+    Usamos o coeficiente da linhagem comercial de ponta na conta toda — e no Tempo 3 vamos discutir cage-free e caipira, sistemas com desempenho mais próximo do Embrapa que do Hisex White. Trocar de parâmetro no meio do caminho sem avisar é exatamente o tipo de atalho que este curso não permite. De qual granja estamos falando, exatamente?
+  </div>
+</section>
+
+<!-- 15 · o ciclo -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · o ciclo, que é o conteúdo real</div>
+  <h2>Preço alto convida expansão</h2>
+  <div class="cycle">
+    <span class="step">preço alto · 2025</span><span class="arr">→</span>
+    <span class="step">produtor expande plantel</span><span class="arr">→</span>
+    <span class="step">oferta cresce</span><span class="arr">→</span>
+    <span class="step">preço desaba · 2026</span><span class="loop">⟲ quem expandiu vende barato</span>
+  </div>
+  <p>Nos últimos dez anos a produção nacional cresceu <strong>58%</strong> e o consumo <strong>51%</strong>, chegando ao recorde de <strong>62,3 bilhões</strong> de unidades em 2025 — <strong>98,6%</strong> do volume ficando no mercado interno.</p>
+  <div class="callout">
+    <strong>O ponto</strong>
+    Aquela expansão de área que calculamos no Tempo 1 como hipótese já aconteceu. E é justamente por isso que o preço caiu.
+  </div>
+</section>
+
+<!-- 16 · choque, tendência, ciclo -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · três fenômenos, três velocidades</div>
+  <h2>Choque, tendência e ciclo não são a mesma coisa</h2>
+  <ul class="bullets">
+    <li><strong>Choque</strong> — gripe aviária, onda de calor. Súbito, reversível.</li>
+    <li><strong>Tendência</strong> — consumo per capita de 191 para 288. Lento, estrutural.</li>
+    <li><strong>Ciclo</strong> — preço alto puxa investimento que derruba o preço. Recorrente, previsível.</li>
+  </ul>
+  <p class="note">Os 922 comentários trataram os três como a mesma coisa.</p>
+</section>
+
+<!-- 17 · nota metodológica -->
+<section class="slide" data-act="Tempo 2">
+  <div class="eyebrow"><b>Tempo 2</b> · o erro que um técnico comete a vida inteira</div>
+  <h2>Real ou nominal?</h2>
+  <p>O Cepea falou em menor patamar <strong>real</strong> desde 2019 — série deflacionada. A série de milho e soja do slide anterior é <strong>nominal</strong>.</p>
+  <div class="callout">
+    <strong>Regra</strong>
+    Não se compara preço de hoje com preço de 2019 sem deflacionar.
+  </div>
+  <p class="note">Com IPCA no meio, a queda real dos grãos é maior que os 12% nominais — o que reforça o argumento, não o derruba. Exercício em aula: deflacionar dois pontos da série e ver o que muda.</p>
+</section>
+
+<!-- ============ TEMPO 3 · O QUE NINGUÉM COMENTA ============ -->
+
+<!-- 18 · a pergunta que não apareceu -->
+<section class="slide" data-act="Tempo 3">
+  <div class="eyebrow"><b>Tempo 3</b> · o que ninguém está comentando</div>
+  <h2>Em que sistema esses ovos foram produzidos?</h2>
+  <p class="lead">A legenda do post não menciona. Os comentários não mencionam. A promoção do mercado de Santa Maria não menciona.</p>
+</section>
+
+<!-- 19 · cage-free -->
+<section class="slide" data-act="Tempo 3">
+  <div class="eyebrow"><b>Tempo 3</b> · cage-free: o número</div>
+  <h2>160 compromissos, 1,5% de prateleira</h2>
+  <p>Terceira edição do Observatório do Ovo (Alianima, 2026): apesar da safra recorde de 62,25 bilhões de ovos em 2025, os sistemas livres de gaiolas representam até 1,5% do mercado varejista brasileiro.</p>
+  <div class="stats2">
+    <div class="stat"><span class="num">1,5%</span><span class="lbl">cage-free no Brasil</span></div>
+    <div class="stat"><span class="num">78%</span><span class="lbl">cage-free no Reino Unido</span></div>
+    <div class="stat"><span class="num">160+</span><span class="lbl">empresas com compromisso público de transição</span></div>
+  </div>
+  <div class="callout"><strong>Pergunta</strong>Onde a cadeia trava?</div>
+</section>
+
+<!-- 19b · FOTO — cage-free -->
+<section class="slide foto-cheia" data-act="Tempo 3">
+  <div class="eyebrow"><b>Tempo 3</b> · a imagem</div>
+  <div class="foto-slot">
+    <span class="lbl">espaço para foto</span>
+    <p class="hint2">Foto comparando sistema em gaiola × sistema livre (cage-free), ou foto de um galinheiro cage-free. Fonte sugerida: Observatório do Ovo (Alianima) ou AVAL. Ver guia de edição no topo deste arquivo.</p>
+  </div>
+</section>
+
+<!-- 20 · o mesmo erro de novo -->
+<section class="slide" data-act="Tempo 3">
+  <div class="eyebrow"><b>Tempo 3</b> · o mesmo erro, de novo</div>
+  <h2>A cor da casca não é o sistema</h2>
+  <p>Segundo a AVAL, muita gente associa ovo de casca marrom ao sistema caipira, quando a cor depende apenas da raça da galinha. O que muda é o sistema de produção, não a casca.</p>
+  <p>Essa confusão favorece fraudes e prejudica quem cumpre integralmente as normas técnicas desenvolvidas pela AVAL junto à ABNT.</p>
+  <div class="callout">
+    <strong>O ponto</strong>
+    É exatamente o mesmo tipo de afirmação dos 922 comentários. Plausível, repetida, errada — e agora com consequência econômica sobre quem produz direito.
+  </div>
+</section>
+
+<!-- 21 · a colisão -->
+<section class="slide" data-act="Tempo 3">
+  <div class="eyebrow"><b>Tempo 3</b> · a colisão</div>
+  <h2>Quem investe na transição agora?</h2>
+  <p>Cage-free custa mais para produzir. E estamos num momento em que o preço do ovo está no menor patamar real desde 2019 e o produtor mal cobre o custo.</p>
+  <p class="lead">Não há resposta pronta. A turma precisa segurar duas coisas verdadeiras ao mesmo tempo: a demanda social por bem-estar animal é real, e a viabilidade econômica dela depende de um preço que hoje não existe.</p>
+  <p class="note">E tem mais: lembra do Tempo 2? Essas galinhas rendem menos ovos que a Hisex White usada na nossa conta. O custo real da transição é ainda maior do que os números deste slide sugerem. Isso é gestão de custos de verdade.</p>
+</section>
+
+<!-- 22 · volta ao começo -->
+<section class="slide" data-act="Tempo 3">
+  <div class="eyebrow"><b>Tempo 3</b> · volta ao começo</div>
+  <h2>O comentário leva quinze segundos</h2>
+  <p>Para responder bem à postagem do início da aula, precisamos de: três anos de série de preços, coeficiente de conversão alimentar, produtividade de duas culturas, dados de consumo per capita, cotação de atacado e varejo, e um relatório sobre sistemas de produção.</p>
+  <div class="callout">
+    <strong>Pergunta que fica</strong>
+    Quantos posts nós comentamos por dia sem abrir essa cadeia?
+  </div>
+</section>
+
+<!-- ============ FECHAMENTO ============ -->
+
+<!-- 23 · ponte -->
+<section class="slide" data-act="Fechamento">
+  <div class="eyebrow"><b>Fechamento</b> · o que vem</div>
+  <h2>T1 — A propriedade como empresa + SWOT</h2>
+  <p>Hoje olhamos a cadeia de fora — de um post a um hectare. Na próxima aula entramos dentro da porteira: o que é uma propriedade rural, dentro de que sistema ela opera, e como diagnosticá-la antes de mexer em qualquer número.</p>
+  <p class="note"><a href="aula-t1.html">Ir para T1 →</a> · <a href="roteiro.html">Roteiro completo das aulas</a></p>
+</section>
+
+<!-- 24 · colofão -->
+<section class="slide colophon" data-act="Fechamento">
+  <div class="eyebrow">T0 · Do post ao hectare</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src"><b>Fontes:</b> post @forbesbr (20 fev. 2025); Cepea/Esalq-USP; CONAB, série de preços recebidos pelo produtor no RS (banco de dados do professor); ABPA (2025–2026); Observatório do Ovo, 3ª ed. (Alianima, 2026); AVAL; USDA; CNN, sobre Gracyanne Barbosa no BBB25 (13 jan. 2025).</p>
+  <p class="src">Os dados de preço, consumo e produção foram verificados a fundo. Alguns coeficientes técnicos — produtividade do RS 2024/25, composição da ração, rendimento de esmagamento da soja, população brasileira — são pontos médios de referência, tratados em aula como ordem de grandeza, não como número fechado. O coeficiente de conversão alimentar (Hisex White, 1,50 kg/dz no ciclo de 100 semanas) foi revisado após a primeira versão do roteiro, que usara por engano a produção de ovos/ave <em>do ciclo inteiro</em> como se fosse anual — daí o slide "de qual granja estamos falando?" no Tempo 2.</p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira — Colégio Politécnico da UFSM — com apoio de inteligência artificial (Claude Sonnet 5, Anthropic) na estruturação do roteiro e no levantamento e verificação em busca dos dados de mercado, coeficientes técnicos e fontes. A seleção final dos dados, a interpretação pedagógica e as decisões de ensino são de responsabilidade do docente.</p>
+  <p class="note">Material de estudo: <a href="index.html">Partes I–VI</a> · <a href="roteiro.html">roteiro das aulas</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">T0 · Do post ao hectare</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='T0 · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  // hash inicial
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  // teclado
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  // clique/toque: metade direita avança, esquerda volta
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  // swipe
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
