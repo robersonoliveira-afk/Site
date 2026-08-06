@@ -66,6 +66,7 @@ ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs
 ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent);font-weight:600}
 ul.bullets li strong{color:var(--ink);font-weight:600}
 ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+ul.bullets.tight li{padding-top:0.35vh;padding-bottom:0.35vh}
 
 .formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
 .formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:0.8vh}
@@ -73,6 +74,15 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .formula .alt{color:var(--stone);font-weight:400}
 
 .callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout.wide{max-width:none}
+.slide p.wide{max-width:none}
+.foto.small img{max-height:44vh}
+.foto.tiny img{max-height:30vh}
+.foto.medium img{max-height:58vh}
+.formula.compact{font-size:clamp(12px,1.3vw,19px);line-height:1.35;padding:1.2vh 1.6vw}
+.cols2.asym{grid-template-columns:3fr 2fr}
+.foto.side{max-width:100%;margin:0}
+.foto.side img{max-height:56vh;width:100%;object-fit:contain}
 .callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
 .callout.success{background:var(--success-bg);border-left-color:var(--olive)}
 .callout.success strong{color:var(--olive)}
@@ -87,7 +97,7 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
 .tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
 .tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
-.tbl.compact td,.tbl.compact th{padding-top:0.65vh;padding-bottom:0.65vh}
+.tbl.compact td,.tbl.compact th{padding-top:0.45vh;padding-bottom:0.45vh}
 .tbl td.num b{color:var(--terra)}
 .tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
 
@@ -120,6 +130,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 /* números grandes lado a lado */
 .stats2{display:flex;gap:2.5vw;margin:2.4vh 0;flex-wrap:wrap}
 .stats2 .stat{border:1px solid var(--rule);background:#fff;padding:1.8vh 1.8vw;min-width:170px}
+.stats2.compact{margin:1.4vh 0;gap:1.5vw}
+.stats2.compact .stat{padding:1vh 1.4vw;min-width:150px}
+.stats2.compact .stat .num{font-size:clamp(22px,3.2vw,36px)}
 .stats2 .stat .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(30px,4.6vw,58px);color:var(--terra);line-height:1}
 .stats2 .stat .lbl{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh;max-width:16ch;line-height:1.4}
 
@@ -291,14 +304,14 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 1">
   <div class="eyebrow"><b>Tempo 1</b> · a crise americana</div>
   <h2>EUA: a crise que não passa</h2>
-  <div class="stats2">
+  <div class="stats2 compact">
     <div class="stat"><span class="num">US$ 6,23</span><span class="lbl">dúzia, recorde em março de 2025 (quase o dobro de mar/2024)</span></div>
     <div class="stat"><span class="num">≈40 mi</span><span class="lbl">aves mortas só no 1º trimestre de 2025 (maior número desde 2015)</span></div>
     <div class="stat"><span class="num">165 mi+</span><span class="lbl">aves mortas desde 2022, por gripe aviária</span></div>
   </div>
-  <div class="callout">
+  <div class="callout wide">
     <strong>O governo prometeu controlar, e não controlou</strong>
-    O governo Trump anunciou um plano de cinco pontos contra a alta, inclusive importar até 100 milhões de ovos da Itália e de outros produtores europeus. A secretária de Agricultura disse que o consumidor "não vai sentir aumento significativo" com as tarifas; economistas questionaram a conta.
+    Trump anunciou um plano de cinco pontos contra a alta, inclusive importar até 100 milhões de ovos da Europa. A secretária de Agricultura disse que o consumidor "não vai sentir aumento significativo" com as tarifas; economistas questionaram a conta.
   </div>
   <svg class="flag-corner" viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" aria-label="Bandeira dos EUA">
     <rect width="19" height="10" fill="#B22234"/>
@@ -327,26 +340,26 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 1">
   <div class="eyebrow"><b>Tempo 1</b> · quem ganhou com a crise americana</div>
   <h2>Quem lucrou com a crise</h2>
-  <p class="lead">Em junho de 2026, o Departamento de Justiça dos EUA processou três granjas por coordenar, entre junho de 2022 e março de 2025, a inflação artificial das cotações diárias da Urner Barry Publications — a referência de preço usada por supermercados e restaurantes em todo o país.</p>
-  <div class="stats2">
-    <div class="stat"><span class="num">3</span><span class="lbl">granjas: Cal-Maine, Versova e Hickman's Egg Ranch</span></div>
-    <div class="stat"><span class="num">53 mi</span><span class="lbl">ovos doados a bancos de alimentos, no acordo com a Justiça</span></div>
-    <div class="stat"><span class="num">US$ 3,3 mi</span><span class="lbl">pagos aos estados que investigaram o caso</span></div>
+  <p>Em jun/2026, o DOJ dos EUA processou três granjas por inflar, entre 2022 e 2025, a cotação de referência (Urner Barry) usada por supermercados e restaurantes no país.</p>
+  <div class="stats2 compact">
+    <div class="stat"><span class="num">3</span><span class="lbl">granjas: Cal-Maine, Versova, Hickman's</span></div>
+    <div class="stat"><span class="num">53 mi</span><span class="lbl">ovos doados a bancos de alimentos</span></div>
+    <div class="stat"><span class="num">US$ 3,3 mi</span><span class="lbl">pagos aos estados no acordo</span></div>
   </div>
   <div class="callout">
     <strong>Cal-Maine Foods</strong>
-    A maior produtora de ovos dos EUA triplicou o lucro no trimestre da alta, e seus donos lucraram US$ 320 milhões com a venda, no auge dos preços, segundo o Financial Times. A mesma crise que aparece como choque de oferta na conta de custos também move dinheiro entre elos da cadeia — às vezes por manipulação de mercado.
+    Triplicou o lucro no trimestre, e seus donos lucraram US$ 320 milhões vendendo ações no auge (Financial Times). Mesma crise, custo pra uns, lucro pra outros — às vezes por manipulação de mercado.
   </div>
 </section>
 
 <!-- 4b3 · FOTO — manchete do lucro -->
 <section class="slide foto-cheia" data-act="Tempo 1">
   <div class="eyebrow"><b>Tempo 1</b> · a manchete</div>
-  <figure class="foto">
+  <figure class="foto tiny">
     <img src="Aulas/LucroEUA.png" alt="Manchete da Folha de S.Paulo/Financial Times: Donos da maior produtora de ovos dos EUA lucraram US$ 320 mi com venda após alta de preços; Justiça afirma que disparada de preços resultou de manipulação de mercado pela Cal-Maine e outras rivais" loading="lazy">
     <figcaption>Folha de S.Paulo / Financial Times</figcaption>
   </figure>
-  <p class="note">Virada: em novembro de 2025, a Hickman's — uma das três granjas do processo, quase dizimada pela gripe aviária — foi comprada por ≈US$ 300 milhões pela Mantiqueira, maior fabricante de ovos da América Latina, controlada pela JBS, hoje a maior processadora de proteína animal do mundo.</p>
+  <p class="note">Virada: em nov/2025, a Hickman's foi comprada por ≈US$ 300 mi pela Mantiqueira (JBS) — hoje a maior processadora de proteína animal do mundo.</p>
   <svg class="flag-corner" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg" aria-label="Bandeira do Brasil">
     <rect width="20" height="14" fill="#009739"/>
     <polygon points="10,1.3 18.5,7 10,12.7 1.5,7" fill="#FEDD00"/>
@@ -462,11 +475,11 @@ a{color:var(--accent)}
 <!-- 5c · FOTO — Graciana, a marca -->
 <section class="slide foto-cheia" data-act="Tempo 1">
   <div class="eyebrow"><b>Tempo 1</b> · a exposição virou negócio</div>
-  <figure class="foto">
+  <figure class="foto tiny">
     <img src="graclana.png" alt="Propaganda da marca de ovos Graciana, parceria entre Gracyanne Barbosa e a Iana Ovos" loading="lazy">
-    <figcaption>Ela levou a fama a sério: hoje tem marca própria de ovos, a Graciana, em parceria com a Iana Ovos</figcaption>
+    <figcaption>a fama virou marca própria, a Graciana, com a Iana Ovos</figcaption>
   </figure>
-  <p class="note">Iana Ovos é marca da Granja Faria, do grupo Global Eggs — do catarinense Ricardo Faria, o "Rei do Ovo". Em março de 2025, a Global Eggs comprou a americana Hillandale Farms por US$ 1,1 bilhão: um segundo grupo brasileiro que entrou no mercado dos EUA durante a mesma crise, ao lado da JBS/Mantiqueira.</p>
+  <p class="note">Iana Ovos é da Granja Faria (Global Eggs), de Ricardo Faria, o "Rei do Ovo" — que comprou a Hillandale Farms (EUA) por US$ 1,1 bi em mar/2025.</p>
 </section>
 
 <!-- 6 · continuando a conta -->
@@ -486,7 +499,7 @@ a{color:var(--accent)}
     </tbody>
     <tfoot><tr><td colspan="2">Terra</td><td class="num">≈ 4.000 m²</td></tr></tfoot>
   </table>
-  <p class="note">Coeficiente: Hisex White, gaiola, 18–100 sem. (guia oficial Hendrix Genetics: 484 ovos e FCR 2,03 kg ração/kg ovo ao final do ciclo → 1,50 kg ração/dz; anualizado sobre as 82 semanas produtivas → 308 ovos/ave/ano). Produtividade RS 2025/26: Conab, safra recorde sem estiagem. A linhagem muda o resultado (Tempo 2).</p>
+  <p class="note wide">Coeficiente: Hisex White (1,50 kg ração/dz, 308 ovos/ave/ano). Produtividade: Conab RS 2025/26.</p>
 </section>
 
 <!-- 7 · imagem de fechamento: campo de futebol -->
@@ -504,7 +517,7 @@ a{color:var(--accent)}
 <!-- 7b · FOTO — escala em campo -->
 <section class="slide foto-cheia" data-act="Tempo 1">
   <div class="eyebrow"><b>Tempo 1</b> · escala da área</div>
-  <figure class="foto">
+  <figure class="foto medium">
     <img src="Aulas/Gemini_Generated_Image_ameiqzameiqzamei.png" alt="Campo de futebol oficial visto de cima, com a área de produção correspondente à dieta de 40 ovos por dia de Gracyanne Barbosa demarcada ao lado, ≈4.000 m²" loading="lazy">
     <figcaption>4.000 m² ≈ 56% de um campo de futebol oficial</figcaption>
   </figure>
@@ -514,23 +527,22 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 1">
   <div class="eyebrow"><b>Tempo 1</b> · os elos antes da lavoura</div>
   <h2>E antes do milho?</h2>
-  <p>A conta parou no milho e na soja porque são o maior custo. Não porque são o começo.</p>
-  <ul class="bullets compact">
-    <li><strong>Genética</strong>: a poedeira não é "uma galinha". É uma linhagem melhorada por décadas, de poucas multinacionais (Hendrix Genetics, Hy-Line International, Lohmann/EW Group). A base genética do plantel brasileiro é importada.</li>
-    <li><strong>Semente e fertilizante do milho</strong>: outra relação de troca, antes mesmo da colheita.</li>
-    <li><strong>Núcleo vitamínico-mineral, calcário, aminoácidos sintéticos</strong>: os ~12% da ração que não são grão, com preço em dólar.</li>
-    <li><strong>Sanidade</strong>: o Brasil não teve gripe aviária em ave comercial. Não foi sorte: foi biosseguridade. Um custo que não aparece na dúzia, mas que é a razão de o produtor brasileiro ter podido exportar durante a crise americana.</li>
-    <li><strong>Embalagem, energia, frete</strong>: a cartela tem cadeia própria; o galpão climatizado consome energia (e aí a "onda de calor" da legenda original volta a aparecer).</li>
-  </ul>
-</section>
-
-<!-- 7d · FOTO — a cadeia antes do milho -->
-<section class="slide foto-cheia" data-act="Tempo 1">
-  <div class="eyebrow"><b>Tempo 1</b> · genética, insumos, biosseguridade</div>
-  <figure class="foto">
-    <img src="Aulas/Gemini_Generated_Image_tthrh8tthrh8tthr.png" alt="Ilustração da cadeia produtiva do ovo antes da lavoura: melhoramento genético em laboratório, mistura de núcleo vitamínico-mineral, plantio mecanizado de milho, barreiras de biosseguridade no acesso ao galpão, aviário climatizado com energia solar, empacotamento e transporte dos ovos" loading="lazy">
-    <figcaption>os elos que não aparecem na dúzia</figcaption>
-  </figure>
+  <div class="cols2 asym">
+    <div>
+      <p>A conta parou no milho e na soja porque são o maior custo. Não porque são o começo.</p>
+      <ul class="bullets compact tight">
+        <li><strong>Genética</strong>: linhagem melhorada por décadas, de poucas multinacionais (Hendrix, Hy-Line, Lohmann). A base genética do plantel brasileiro é importada.</li>
+        <li><strong>Semente e fertilizante do milho</strong>: outra relação de troca, antes da colheita.</li>
+        <li><strong>Núcleo vitamínico-mineral, calcário, aminoácidos</strong>: ~12% da ração que não é grão, com preço em dólar.</li>
+        <li><strong>Sanidade</strong>: sem gripe aviária em ave comercial no Brasil. Não foi sorte, foi biosseguridade — por isso o produtor pôde exportar na crise americana.</li>
+        <li><strong>Embalagem, energia, frete</strong>: a cartela tem cadeia própria; o galpão climatizado consome energia (e aí a "onda de calor" da legenda original volta a aparecer).</li>
+      </ul>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/Gemini_Generated_Image_tthrh8tthrh8tthr.png" alt="Ilustração da cadeia produtiva do ovo antes da lavoura: melhoramento genético em laboratório, mistura de núcleo vitamínico-mineral, plantio mecanizado de milho, barreiras de biosseguridade no acesso ao galpão, aviário climatizado com energia solar, empacotamento e transporte dos ovos" loading="lazy">
+      <figcaption>os elos que não aparecem na dúzia</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- 8 · tendência -->
@@ -647,8 +659,8 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 2">
   <div class="eyebrow"><b>Tempo 2</b> · a ressaca · agosto de 2026</div>
   <h2>Dezoito meses depois</h2>
-  <p>Cepea, levantamento de julho de 2026: <strong>o preço dos ovos ficou no menor patamar real para o mês desde 2019.</strong> Queda de mais de 15% frente a junho e de até 18% frente a julho do ano anterior. Causa: consumo enfraquecido somado a produção elevada.</p>
-  <table class="tbl">
+  <p>Cepea, jul/2026: <strong>o preço dos ovos ficou no menor patamar real para o mês desde 2019.</strong> Queda de mais de 15% frente a junho, até 18% frente a jul/2025. Causa: consumo fraco somado a produção elevada.</p>
+  <table class="tbl compact">
     <thead><tr><th>Praça · 30/07/2026</th><th class="num">R$ / caixa 30 dz</th></tr></thead>
     <tbody>
       <tr><td>Bastos (FOB)</td><td class="num">123,03</td></tr>
@@ -704,19 +716,19 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 2">
   <div class="eyebrow"><b>Tempo 2</b> · antes de olhar o preço</div>
   <h2>Quando falamos "milho", falamos de quê?</h2>
-  <table class="tbl">
+  <table class="tbl compact">
     <thead><tr><th>Destino</th><th>Cultivar/manejo</th><th>Tem cotação pública?</th></tr></thead>
     <tbody>
-      <tr><td>Grão para ração</td><td>híbridos de alta produtividade de grão</td><td><b>sim</b>: Cepea, Conab</td></tr>
-      <tr><td>Silagem</td><td>híbridos com mais digestibilidade de fibra e massa verde</td><td><b>não</b>: mercado local</td></tr>
+      <tr><td>Grão para ração</td><td>híbridos de alta produtividade</td><td><b>sim</b>: Cepea, Conab</td></tr>
+      <tr><td>Silagem</td><td>híbridos com mais fibra e massa verde</td><td><b>não</b>: mercado local</td></tr>
       <tr><td>Milho verde/doce</td><td>cultivares próprias</td><td>mercado local, hortifrúti</td></tr>
       <tr><td>Pipoca</td><td>cultivares específicas</td><td>nicho, contrato</td></tr>
       <tr><td>Amido, glicose, etanol</td><td>grão comum</td><td>indústria, contrato</td></tr>
     </tbody>
   </table>
-  <div class="callout">
+  <div class="callout wide">
     <strong>A decisão é irreversível dentro da safra</strong>
-    Cultivar e manejo se escolhem na compra da semente, e não se desfazem depois de plantado. Quem planta silagem troca liquidez por autossuficiência: sem cotação pública, sem estoque de anos.
+    Cultivar e manejo se escolhem na compra da semente e não se desfazem depois. Quem planta silagem troca liquidez por autossuficiência: sem cotação pública, sem estoque.
   </div>
 </section>
 
@@ -794,15 +806,15 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 2">
   <div class="eyebrow"><b>Tempo 2</b> · os coprodutos da soja</div>
   <h2>A soja não produz um produto. Produz dois.</h2>
-  <div class="stats2">
+  <div class="stats2 compact">
     <div class="stat"><span class="num">≈77%</span><span class="lbl">vira farelo: a proteína da ração do seu ovo</span></div>
     <div class="stat"><span class="num">≈20%</span><span class="lbl">vira óleo: alimentação humana e biodiesel</span></div>
   </div>
   <div class="callout">
     <strong>Fevereiro de 2025. O mesmo mês do post.</strong>
-    O cronograma legal previa a mistura B15 do diesel já em março de 2025. O CNPE segurou em B14 por causa da inflação de alimentos, e o ovo era parte daquela inflação. Uma decisão sobre diesel, em Brasília, foi adiada porque a comida estava cara.
+    O cronograma legal previa mistura B15 do diesel em março de 2025. O CNPE segurou em B14 por causa da inflação de alimentos — o ovo era parte dela. Uma decisão sobre diesel, em Brasília, foi adiada porque a comida estava cara.
   </div>
-  <p class="note">Rendimento de esmagamento: Abiove, 2025 (58,7 Mt esmagadas → 45,1 Mt farelo, 11,7 Mt óleo). Relação biodiesel → preço do farelo: mecanismo bem estabelecido no setor, magnitude para o Brasil não quantificada.</p>
+  <p class="note">Esmagamento (Abiove, 2025): 58,7 Mt → 45,1 Mt farelo, 11,7 Mt óleo. Biodiesel → preço do farelo: mecanismo estabelecido, magnitude no Brasil não quantificada.</p>
 </section>
 
 <!-- 13b-foto · farelo e óleo, lado a lado -->
@@ -818,7 +830,7 @@ a{color:var(--accent)}
 <section class="slide" data-act="Tempo 2">
   <div class="eyebrow"><b>Tempo 2</b> · o ciclo fecha sobre si mesmo</div>
   <h2>Quem definiu o preço do seu ovo em 2025?</h2>
-  <div class="formula">
+  <div class="formula compact">
     <span class="label">Em parte, um conselho de política energética</span>
     ovo caro → inflação de alimentos → CNPE segura o B15 <span class="alt">(fev/2025)</span><br>
     ↓<br>
@@ -1062,33 +1074,12 @@ a{color:var(--accent)}
   <p class="note"><a href="aula-t1.html">Ir para T1 →</a> · <a href="roteiro.html">Roteiro completo das aulas</a></p>
 </section>
 
-<!-- 24 · colofão -->
+<!-- 24 · referências -->
 <section class="slide colophon" data-act="Fechamento">
   <div class="eyebrow">T0 · Do post ao hectare</div>
-  <h2>Fontes e créditos</h2>
-  <p class="src"><b>Fontes:</b> post @forbesbr (20 fev. 2025); Cepea/Esalq-USP; CONAB, série de preços recebidos pelo produtor no RS (banco de dados do professor); ABPA (2025–2026); Observatório do Ovo, 3ª ed. (Alianima, 2026); AVAL; USDA; CNN Brasil, sobre exportações de ovos em 2025; Bloomberg Línea, sobre a crise do preço do ovo nos EUA (mar. 2025); CNN, sobre Gracyanne Barbosa no BBB25 (13 jan. 2025); Beltrame Supermercados (Santa Maria), etiquetas de promoção fotografadas pelo professor em out. 2024, ago. 2025 e jul. 2026; ComexStat/MDIC, série de exportação de ovos (ver dados/exportacao-ovos-comexstat.json); Abiove, projeções do complexo soja 2025 (rendimento de esmagamento); CNPE/MME, cronograma de mistura do biodiesel (B14/B15); Tabela TACO, composição nutricional do ovo; Hendrix Genetics e Hy-Line International, genética de poedeiras comerciais; HLPE. <em>Food losses and waste in the context of sustainable food systems.</em> Roma: FAO, 2014; Grisa, C. et al. (org.). <em>Sistemas alimentares e territórios no Brasil.</em> Porto Alegre: Ed. da UFRGS, 2022; mapa do sistema alimentar, Nourish Life.</p>
-</section>
-
-<!-- 24b · colofão: metodologia e créditos -->
-<section class="slide colophon" data-act="Fechamento">
-  <div class="eyebrow">T0 · Do post ao hectare</div>
-  <h2>Metodologia e créditos</h2>
-  <p class="src"><b>Nota metodológica.</b> Preços, consumo e produção vêm das fontes citadas. Os coeficientes técnicos (produtividade do RS na safra 2024/25, composição da ração, rendimento de esmagamento da soja, população brasileira) são valores médios de referência e devem ser lidos como ordem de grandeza. O coeficiente de conversão alimentar adotado é o da linhagem Hisex White, 1,50 kg de ração por dúzia no ciclo de 100 semanas. A relação entre a mistura de biodiesel e o preço do farelo de soja, tratada no Tempo 2, é apresentada como mecanismo de mercado: a direção do efeito é reconhecida no setor, a magnitude não foi quantificada em estudo específico para o Brasil.</p>
-  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude Sonnet 5, Anthropic) na estruturação do roteiro e no levantamento e verificação dos dados de mercado, coeficientes técnicos e fontes. A seleção final dos dados, a interpretação pedagógica e as decisões de ensino são de responsabilidade do docente.</p>
-  <p class="note">Material de estudo: <a href="index.html">Partes I–VI</a> · <a href="roteiro.html">roteiro das aulas</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
-</section>
-
-<!-- 24c · colofão: crédito das imagens de banco livre -->
-<section class="slide colophon" data-act="Fechamento">
-  <div class="eyebrow">T0 · Do post ao hectare</div>
-  <h2>Imagens de banco livre</h2>
-  <p class="src">Além das fotos do professor, três imagens desta aula vêm de bancos de licença livre, via Wikimedia Commons. Autoria e licença:</p>
-  <ul class="bullets compact">
-    <li><strong>Colheita de milho em grão</strong>: USDA, domínio público.</li>
-    <li><strong>Colheita de milho para silagem</strong>: BeardedDummy, <em>Maisernte in Niedersgegen</em>, CC BY 2.0 DE.</li>
-    <li><strong>Grão, farelo e óleo de soja</strong>: United Soybean Board, CC BY 2.0.</li>
-  </ul>
-  <p class="note">Mapa de sistemas alimentares (Tempo 3): Nourish Life. Licença de uso fora de sala de aula não conferida.</p>
+  <h2>Referências</h2>
+  <p class="src">Post @forbesbr · Cepea/Esalq-USP · Conab · ABPA · Observatório do Ovo (Alianima) · USDA · CNN Brasil · Bloomberg Línea · Beltrame Supermercados (Santa Maria) · ComexStat/MDIC · Abiove · CNPE/MME · Tabela TACO · Hendrix Genetics/Hy-Line · Departamento de Justiça dos EUA · Financial Times · BrazilJournal · HLPE (FAO, 2014) · Grisa et al. (Ed. UFRGS, 2022) · mapa Nourish Life. Fotos de banco livre (Wikimedia Commons): USDA, BeardedDummy e United Soybean Board — domínio público / CC BY 2.0, crédito completo na legenda de cada slide.</p>
+  <p class="note">Material elaborado pelo Prof. Róberson Macedo de Oliveira (Colégio Politécnico da UFSM), com apoio de IA (Claude Sonnet 5, Anthropic) no levantamento e verificação de dados; seleção final, interpretação e decisões de ensino são do docente. <a href="aula-t1.html">Ir para T1 →</a> · <a href="roteiro.html">Roteiro completo</a></p>
 </section>
 
 </main>
