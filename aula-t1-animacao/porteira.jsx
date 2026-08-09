@@ -252,10 +252,10 @@ function Controla(props) {
       <SceneBody p={p}>
         <Kicker text={s.kicker} />
         {Bar({ y: 168, pct: 59, d: 0.12, color: tw.A, label: 'SOB DECISÃO HUMANA', note: 'manejo 31% + genética 27%' })}
-        {Bar({ y: 300, pct: 41, d: 0.26, color: C.gray, label: 'AMBIENTE — SÓ MONITORAR', note: 'clima entre anos · N do solo' })}
+        {Bar({ y: 300, pct: 41, d: 0.26, color: C.gray, label: 'AMBIENTE: SÓ MONITORAR', note: 'clima entre anos · N do solo' })}
         <div style={{ position: 'absolute', left: trackX, top: 404, fontFamily: SERIF, fontSize: 15,
           fontStyle: 'italic', color: C.sub, opacity: ap(p, 0.5) }}>
-          Decomposição da dose econômica ótima de N no milho — Baum et al., 2024 (EUA). Princípio, não receita.
+          Decomposição da dose econômica ótima de N no milho, Baum et al., 2024 (EUA). Princípio, não receita.
         </div>
         <Caption text={s.caption} />
       </SceneBody>
@@ -276,7 +276,7 @@ function Quad(props) {
           fontStyle: muted ? 'italic' : 'normal', color: muted ? C.sub : C.ink,
           marginTop: i === 0 ? 10 : 6, lineHeight: 1.25,
           opacity: ap(p, delay + i * 0.07), transform: `translateY(${(1 - ap(p, delay + i * 0.07)) * 10}px)` }}>
-          {muted ? it : `— ${it}`}
+          {muted ? it : `› ${it}`}
         </div>
       ))}
     </div>

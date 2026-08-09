@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#3D4A2A">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍇</text></svg>">
-<title>Planejador de Vinhedo — Espaldeira · Gestão de Custos Agropecuários</title>
-<meta name="description" content="Calculadora de implantação de vinhedo em espaldeira — informe as dimensões do talhão e obtenha mudas, postes, rabichos e fios para o orçamento.">
+<title>Planejador de Vinhedo: Espaldeira · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Calculadora de implantação de vinhedo em espaldeira: informe as dimensões do talhão e obtenha mudas, postes, rabichos e fios para o orçamento.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/vinhedo.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,6 +155,7 @@ svg.diagrama{width:100%;height:auto;display:block}
     <a href="rebanho.html">Rebanho</a>
     <a href="vinhedo.html" class="current">Vinhedo</a>
     <a href="credito.html">Crédito rural</a>
+    <a href="quiz-geral.html">Quiz</a>
   </div>
 </nav>
 
@@ -162,8 +163,8 @@ svg.diagrama{width:100%;height:auto;display:block}
 <a href="parte-5.html" class="back-link">&#8592; voltar ao módulo V</a>
 
 <header class="masthead">
-  <div class="eyebrow">Zootecnia · Fruticultura · Implantação</div>
-  <h1 class="title">Planejador de vinhedo — espaldeira</h1>
+  <div class="eyebrow">Fruticultura · Viticultura · Implantação</div>
+  <h1 class="title">Planejador de vinhedo: espaldeira</h1>
   <p class="subtitle">Informe as dimensões do talhão e os parâmetros de plantio. A calculadora gera as quantidades de <strong>mudas, postes, rabichos, tutores e fios</strong> para o orçamento de implantação.</p>
 </header>
 
@@ -189,7 +190,7 @@ svg.diagrama{width:100%;height:auto;display:block}
 
       <div class="panel-section">Espaçamento</div>
       <div class="field-sm">
-        <label for="el">Entrelinhas — distância entre fileiras (m)</label>
+        <label for="el">Entrelinhas: distância entre fileiras (m)</label>
         <div class="range-wrap">
           <input type="range" id="el" min="1.5" max="3.0" step="0.1" value="2.0">
           <span class="range-val" id="el-val">2,0 m</span>
@@ -197,9 +198,9 @@ svg.diagrama{width:100%;height:auto;display:block}
         <div class="hint-sm">Referência: 2,0–2,5 m (espaldeira Serra Gaúcha / Campanha)</div>
       </div>
       <div class="field-sm">
-        <label for="ep">Entre plantas — espaçamento na linha (m)</label>
+        <label for="ep">Entre plantas: espaçamento na linha (m)</label>
         <div class="range-wrap">
-          <input type="range" id="ep" min="0.8" max="3.0" step="0.1" value="1.5">
+          <input type="range" id="ep" min="0.5" max="3.0" step="0.1" value="1.5">
           <span class="range-val" id="ep-val">1,5 m</span>
         </div>
         <div class="hint-sm">Referência: 1,5–2,0 m conforme cultivar e fertilidade</div>
@@ -228,9 +229,9 @@ svg.diagrama{width:100%;height:auto;display:block}
 
     <div class="ref-box">
       <strong>Referência técnica</strong><br>
-      Embrapa Uva e Vinho / UFRGS — <em>Implantação e manejo de vinhedos de base ecológica</em>. Parâmetros para 1 ha em espaldeira:<br>
+      Embrapa Uva e Vinho / UFRGS: <em>Implantação e manejo de vinhedos de base ecológica</em>. Parâmetros para 1 ha em espaldeira:<br>
       <span class="mono">2,0 × 1,5 m · postes 5,0 m · 7 fios</span><br>
-      Postes externos: 102 · Rabichos: 102 · Postes internos: 969 · Tutores: 3.333 · Fios: ~36.000 m
+      Postes externos: 102 · Rabichos: 102 · Postes internos: 969 · Tutores: 3.417 · Fios: ~36.000 m
     </div>
   </div>
 
@@ -331,8 +332,8 @@ function calcular(){
       </div>
       <div class="kpi">
         <div class="kpi-val">${fmt(densidade)}</div>
-        <div class="kpi-label">Plantas / ha</div>
-        <div class="kpi-ref">espaçamento ${el.toFixed(1).replace('.',',')} × ${ep.toFixed(1).replace('.',',')} m</div>
+        <div class="kpi-label">Plantas / ha (teórica)</div>
+        <div class="kpi-ref">real no talhão: ${fmt(Math.round(total_plantas/area_ha))}/ha</div>
       </div>
     </div>
 
@@ -383,7 +384,7 @@ function calcular(){
           <tr><td colspan="4" class="sep">Referência de carga</td></tr>
           <tr>
             <td colspan="2">Gemas/ha estimadas <span style="font-size:11px;color:var(--stone-light)">(2 varas × 3 gemas/vara × plantas/ha)</span></td>
-            <td colspan="2" style="text-align:right;color:${gemaOk?'var(--olive-mid)':'var(--terra)'}"><strong>${fmt(gemas_ha)}</strong> <span style="font-size:11px">${gemaOk?'✓ faixa ideal (65–80 mil/ha)':'⚠ '+gemaWarn+' — meta: 65–80 mil/ha'}</span></td>
+            <td colspan="2" style="text-align:right;color:${gemaOk?'var(--olive-mid)':'var(--terra)'}"><strong>${fmt(gemas_ha)}</strong> <span style="font-size:11px">${gemaOk?'✓ faixa ideal (65–80 mil/ha)':'⚠ '+gemaWarn+', meta: 65–80 mil/ha'}</span></td>
           </tr>
         </tbody>
       </table>
@@ -397,10 +398,10 @@ function calcular(){
   rfDiv.innerHTML = `
     <div class="reflexao">
       <div class="reflexao-titulo">Da estrutura ao orçamento de implantação</div>
-      <p>Cada linha da tabela acima é um <strong>item do custeio de implantação</strong> — o que no simulador de projeto corresponde ao passo 5. Multiplicar a quantidade pelo preço unitário é o que transforma o planejamento técnico em projeto econômico.</p>
+      <p>Cada linha da tabela acima é um <strong>item do custeio de implantação</strong>, o que no simulador de projeto corresponde ao passo 5. Multiplicar a quantidade pelo preço unitário é o que transforma o planejamento técnico em projeto econômico.</p>
       <div class="ref-grid">
         <div class="ref-item"><b>${fmt(total_plantas)} mudas</b>Custo por muda × total = maior item da implantação</div>
-        <div class="ref-item"><b>${fmt(postes_ext + postes_int)} postes</b>Externos + internos — preço varia por material (pedra, concreto, madeira tratada)</div>
+        <div class="ref-item"><b>${fmt(postes_ext + postes_int)} postes</b>Externos + internos: preço varia por material (pedra, concreto, madeira tratada)</div>
         <div class="ref-item"><b>${fmt(rabichos)} rabichos</b>Escoras de ancoragem nas cabeceiras</div>
         <div class="ref-item"><b>${fmt(fios_m)} m de fio</b>Considerar arame liso galvanizado + grampos + tensores</div>
       </div>

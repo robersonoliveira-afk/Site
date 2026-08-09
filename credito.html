@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crédito rural RS — custeio e investimento</title>
-<meta name="description" content="Painel interativo de crédito rural no Rio Grande do Sul — custeio e investimento por município (2013–2026). Dados do Banco Central do Brasil.">
+<title>Crédito rural RS: custeio e investimento</title>
+<meta name="description" content="Painel interativo de crédito rural no Rio Grande do Sul, custeio e investimento por município (2013–2026). Dados do Banco Central do Brasil.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/credito.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,9 +140,9 @@
 
 <a href="index.html" class="back-link no-print">&#8592; voltar ao índice</a>
 <header>
-  <h1>Crédito rural — Rio Grande do Sul</h1>
+  <h1>Crédito rural: Rio Grande do Sul</h1>
   <div class="sub">Custeio e investimento · 2013–2026 · 496 municípios</div>
-  <div class="src"><a href="https://dadosabertos.bcb.gov.br/dataset/matrizdadoscreditorural" target="_blank" rel="noopener">Fonte: Matriz de Dados do Crédito Rural (MDCR) — Portal de Dados Abertos do Banco Central do Brasil</a></div>
+  <div class="src"><a href="https://dadosabertos.bcb.gov.br/dataset/matrizdadoscreditorural" target="_blank" rel="noopener">Fonte: Matriz de Dados do Crédito Rural (MDCR), Portal de Dados Abertos do Banco Central do Brasil</a></div>
 </header>
 
 <div id="filters">
@@ -198,7 +198,7 @@
     <div class="cards" id="cards-overview"></div>
     <div class="chart-row"><div class="chart-box full"><h3 id="t-temporal">Evolução por ano (R$)</h3><div class="chart-wrap" style="height:280px"><canvas id="chart-temporal"></canvas></div></div></div>
     <div class="chart-row">
-      <div class="chart-box"><h3>Por produto — período selecionado</h3><div class="chart-wrap" style="height:340px"><canvas id="chart-produtos"></canvas></div></div>
+      <div class="chart-box"><h3>Por produto: período selecionado</h3><div class="chart-wrap" style="height:340px"><canvas id="chart-produtos"></canvas></div></div>
       <div class="chart-box"><h3>Participação por produto (%)</h3><div class="chart-wrap" style="height:340px"><canvas id="chart-pizza"></canvas></div></div>
     </div>
   </div>
@@ -266,7 +266,7 @@
 </div>
 
 <footer>
-  Dados: Matriz de Dados do Crédito Rural (MDCR), Banco Central do Brasil. Área financiada disponível apenas no custeio (ausente em 18% dos contratos — R$/ha calculado sobre a base com área informada).
+  Dados: Matriz de Dados do Crédito Rural (MDCR), Banco Central do Brasil. Área financiada disponível apenas no custeio (ausente em 18% dos contratos; R$/ha calculado sobre a base com área informada).
   <div class="ia">Material de apoio didático. Processamento e visualização de dados elaborados com assistência de inteligência artificial (Claude, Anthropic), sob curadoria e revisão do docente.</div>
 </footer>
 
@@ -299,7 +299,7 @@ let MUNICIPIOS=[], PRODMETA={}, PRODUTOS=[], GEOJSON=null;
 let leafletMap=null, geoLayer=null, charts={}, prodOrderCache={}, mmRef={}, selectedMun=null;
 const ANOS=[2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
 const PERIODO='2013–2026';
-const CORES=['#3D4A2A','#A8552E','#B89233','#6B7B47','#C97B4A','#8A6D3B','#586440','#D49A52','#7A4A2C','#9DA86B','#A88A4E','#4F5B33','#C0703F','#857C6A','#B5A36A'];
+const CORES=['#3D4A2A','#A8552E','#B89233','#6B7B47','#C97B4A','#8A6D3B','#586440','#D49A52','#7A4A2C','#9DA86B','#A88A4E','#4F5B33','#C0703F','#857C6A','#B5A36A','#5E7A8C','#7D6B91','#6F8F5B'];
 const ramp=[[239,232,214],[184,146,51],[168,85,46],[61,74,42]];
 
 function fmtR(v){if(v>=1e9)return 'R$ '+(v/1e9).toFixed(2).replace('.',',')+' bi';if(v>=1e6)return 'R$ '+(v/1e6).toFixed(1).replace('.',',')+' mi';if(v>=1e3)return 'R$ '+(v/1e3).toFixed(0)+' mil';return 'R$ '+v.toFixed(0);}
@@ -400,7 +400,7 @@ function renderVisao(){
 
   const labels=prods.map(p=>plabel(p));
   const vals=prods.map(p=>{let v=0;muns.forEach(m=>{if(f.ano===0)ANOS.forEach(y=>v+=pe(m,p,y).cust);else v+=pe(m,p,f.ano).cust;});return v;});
-  const sorted=labels.map((l,i)=>({l,v:vals[i],c:CORES[i%CORES.length]})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,18);
+  const sorted=labels.map((l,i)=>({l,v:vals[i]})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,CORES.length).map((x,i)=>({...x,c:CORES[i%CORES.length]}));
   destroyChart('chart-produtos');
   charts['chart-produtos']=new Chart(document.getElementById('chart-produtos'),{type:'bar',data:{labels:sorted.map(x=>x.l),datasets:[{data:sorted.map(x=>x.v),backgroundColor:sorted.map(x=>x.c+'cc'),borderColor:sorted.map(x=>x.c),borderWidth:1,borderRadius:4}]},options:{...chartOpts(),indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmtRFull(c.raw)}}}}});
   const tot=sorted.reduce((a,b)=>a+b.v,0);
@@ -414,7 +414,7 @@ function renderMapa(){
   const munsF=getMunsFiltrados(f);const codsF=new Set(munsF.map(m=>m.cod));
   const vals={};MUNICIPIOS.forEach(m=>{const{cust,area}=getCustMun(m,prods,f.ano);vals[m.cod]=metrica==='cust'?cust:area;});
   const vArr=munsF.map(m=>vals[m.cod]||0).filter(v=>v>0);const vMax=Math.max(...(vArr.length?vArr:[1]))||1;const vMid=vMax/2;
-  document.getElementById('leg-title').textContent='Intensidade — '+(metrica==='cust'?LBL():'área');
+  document.getElementById('leg-title').textContent='Intensidade: '+(metrica==='cust'?LBL():'área');
   document.getElementById('leg-min').textContent=metrica==='cust'?'R$ 0':'0 ha';
   document.getElementById('leg-mid').textContent=metrica==='cust'?fmtR(vMid):fmtNum(vMid)+' ha';
   document.getElementById('leg-max').textContent=metrica==='cust'?fmtR(vMax):fmtNum(vMax)+' ha';
@@ -460,7 +460,7 @@ function renderMunicipal(){if(munListenerSet)return;munListenerSet=true;
   const input=document.getElementById('mun-search');const sug=document.getElementById('mun-sugestoes');
   input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();if(q.length<2){sug.innerHTML='';return;}
     const munsF=getMunsFiltrados(getFilters());const ms=munsF.filter(m=>m.nome.toLowerCase().includes(q)).slice(0,8);
-    sug.innerHTML=ms.length?`<div style="background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;position:absolute;z-index:100;width:420px;max-width:100%;box-shadow:var(--shadow)">${ms.map(m=>`<div class="sug-item" data-cod="${m.cod}" style="padding:9px 14px;cursor:pointer;font-size:.85rem;border-bottom:1px solid var(--border)">${m.nome} <span style="color:var(--muted);font-size:.74rem">— ${m.corede}</span></div>`).join('')}</div>`:'';
+    sug.innerHTML=ms.length?`<div style="background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;position:absolute;z-index:100;width:420px;max-width:100%;box-shadow:var(--shadow)">${ms.map(m=>`<div class="sug-item" data-cod="${m.cod}" style="padding:9px 14px;cursor:pointer;font-size:.85rem;border-bottom:1px solid var(--border)">${m.nome} <span style="color:var(--muted);font-size:.74rem">: ${m.corede}</span></div>`).join('')}</div>`:'';
     sug.querySelectorAll('.sug-item').forEach(el=>{el.addEventListener('mouseenter',()=>el.style.background='var(--surface2)');el.addEventListener('mouseleave',()=>el.style.background='');el.addEventListener('click',()=>{selectMunicipio(parseInt(el.dataset.cod));sug.innerHTML='';});});});
 }
 function selectMunicipio(cod){
@@ -475,13 +475,14 @@ function selectMunicipio(cod){
       <div class="chart-box full"><h3>Evolução por ano</h3><div class="chart-wrap" style="height:240px"><canvas id="chart-mun-temporal"></canvas></div></div>
       <div class="chart-box"><h3>Por produto</h3><div class="chart-wrap" style="height:260px"><canvas id="chart-mun-prod"></canvas></div></div>
       <div class="chart-box"><h3>Detalhamento por produto</h3><div style="overflow-y:auto;max-height:280px"><table class="data-table"><thead><tr><th>Produto</th><th>Atividade</th><th class="num">${LBL()}</th><th class="num area-only">Área (ha)</th><th style="min-width:80px">Particip.</th></tr></thead><tbody>
-        ${pdata.map(pd=>`<tr><td>${pd.label}</td><td><span style="color:${pd.atividade==='Agrícola'?'var(--oliva)':pd.atividade==='Pecuário'?'var(--terra)':'var(--mostarda)'};font-size:.75rem">${pd.atividade}</span></td><td class="num">${fmtRFull(pd.cust)}</td><td class="num area-only">${pd.area>0?fmtNum(pd.area):'—'}</td><td><div class="bar-cell"><div class="mini-bar" style="width:${Math.round(pd.cust/mx*80)}px"></div><span style="font-size:.72rem;color:var(--muted)">${(pd.cust/tc*100).toFixed(1)}%</span></div></td></tr>`).join('')}
+        ${pdata.map(pd=>`<tr><td>${pd.label}</td><td><span style="color:${pd.atividade==='Agrícola'?'var(--oliva)':pd.atividade==='Pecuário'?'var(--terra)':'var(--mostarda)'};font-size:.75rem">${pd.atividade}</span></td><td class="num">${fmtRFull(pd.cust)}</td><td class="num area-only">${pd.area>0?fmtNum(pd.area):'-'}</td><td><div class="bar-cell"><div class="mini-bar" style="width:${Math.round(pd.cust/mx*80)}px"></div><span style="font-size:.72rem;color:var(--muted)">${(pd.cust/tc*100).toFixed(1)}%</span></div></td></tr>`).join('')}
       </tbody></table></div></div></div>`;
   const dsT=pdata.slice(0,6).map((pd,i)=>({label:pd.label,data:ANOS.map(y=>pe(m,pd.key,y).cust),backgroundColor:CORES[i%CORES.length]+'bb',borderColor:CORES[i%CORES.length],borderWidth:1,borderRadius:3}));
   destroyChart('chart-mun-temporal');
   charts['chart-mun-temporal']=new Chart(document.getElementById('chart-mun-temporal'),{type:'bar',data:{labels:ANOS,datasets:dsT},options:{...chartOpts(),plugins:{legend:{labels:{color:'#857C6A',font:{family:'IBM Plex Sans',size:10},padding:8,boxWidth:12}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmtR(c.raw)}`}}},scales:{x:{stacked:true,ticks:{color:'#857C6A',font:{size:10}},grid:{color:'#DCD3BE'}},y:{stacked:true,ticks:{color:'#857C6A',font:{size:10},callback:v=>fmtR(v)},grid:{color:'#DCD3BE'}}}}});
   destroyChart('chart-mun-prod');
-  charts['chart-mun-prod']=new Chart(document.getElementById('chart-mun-prod'),{type:'doughnut',data:{labels:pdata.map(x=>x.label),datasets:[{data:pdata.map(x=>x.cust),backgroundColor:pdata.map((_,i)=>CORES[i%CORES.length]+'dd'),borderColor:'#FBF7EC',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#857C6A',font:{family:'IBM Plex Sans',size:10},padding:8,boxWidth:12}},tooltip:{callbacks:{label:c=>`${c.label}: ${fmtR(c.raw)}`}}}}});
+  const pdataTop=pdata.length>CORES.length?pdata.slice(0,CORES.length-1).concat([{label:'Outros',cust:pdata.slice(CORES.length-1).reduce((a,x)=>a+x.cust,0)}]):pdata;
+  charts['chart-mun-prod']=new Chart(document.getElementById('chart-mun-prod'),{type:'doughnut',data:{labels:pdataTop.map(x=>x.label),datasets:[{data:pdataTop.map(x=>x.cust),backgroundColor:pdataTop.map((_,i)=>CORES[i%CORES.length]+'dd'),borderColor:'#FBF7EC',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#857C6A',font:{family:'IBM Plex Sans',size:10},padding:8,boxWidth:12}},tooltip:{callbacks:{label:c=>`${c.label}: ${fmtR(c.raw)}`}}}}});
 }
 
 // ===== UTILS =====
@@ -490,8 +491,8 @@ function chartOpts(){return{responsive:true,maintainAspectRatio:false,plugins:{l
 
 // ===== COMPARATIVO =====
 function calcPainel(pk,ano,nivel){const grupos={};MUNICIPIOS.forEach(m=>{const k=nivel==='bioma'?m.bioma:nivel==='corede'?m.corede:nivel==='municipio'?m.nome.replace(' (RS)',''):m.emater;if(!grupos[k])grupos[k]={cust:0,area:0,muns:0};let c=0,a=0;if(ano===0)ANOS.forEach(y=>{const e=pe(m,pk,y);c+=e.cust;a+=e.area;});else{const e=pe(m,pk,ano);c=e.cust;a=e.area;}grupos[k].cust+=c;grupos[k].area+=a;if(c>0)grupos[k].muns++;});const rows=Object.entries(grupos).map(([k,v])=>({reg:k,...v})).sort((a,b)=>b.cust-a.cust);return{rows,totalCust:rows.reduce((s,r)=>s+r.cust,0),totalArea:rows.reduce((s,r)=>s+r.area,0),totalMuns:rows.reduce((s,r)=>s+r.muns,0)};}
-function renderCmpCards(id,d,cor){const ch=d.totalArea>0?d.totalCust/d.totalArea:0;document.getElementById(id).innerHTML=`<div class="card" style="border-left:3px solid ${cor}"><div class="label">${LBL()} total</div><div class="value" style="font-size:1.2rem;color:${cor}">${fmtR(d.totalCust)}</div></div><div class="card area-only"><div class="label">Área total</div><div class="value" style="font-size:1.2rem">${fmtNum(d.totalArea)} ha</div></div><div class="card"><div class="label">Municípios ativos</div><div class="value" style="font-size:1.2rem">${d.totalMuns}</div></div><div class="card area-only"><div class="label">R$ / ha</div><div class="value" style="font-size:1.2rem">${d.totalArea>0?fmtR(ch):'—'}</div></div>`;}
-function renderCmpTabela(id,d){document.querySelector('#'+id+' tbody').innerHTML=d.rows.filter(r=>r.cust>0).map(r=>{const pct=d.totalCust>0?(r.cust/d.totalCust*100).toFixed(1):'0.0';const ch=r.area>0?fmtR(r.cust/r.area):'—';return `<tr><td>${r.reg}</td><td class="num">${fmtRFull(r.cust)}</td><td class="num">${pct}%</td><td class="num area-only">${r.area>0?fmtNum(r.area):'—'}</td><td class="num area-only">${ch}</td><td class="num">${r.muns}</td></tr>`;}).join('');}
+function renderCmpCards(id,d,cor){const ch=d.totalArea>0?d.totalCust/d.totalArea:0;document.getElementById(id).innerHTML=`<div class="card" style="border-left:3px solid ${cor}"><div class="label">${LBL()} total</div><div class="value" style="font-size:1.2rem;color:${cor}">${fmtR(d.totalCust)}</div></div><div class="card area-only"><div class="label">Área total</div><div class="value" style="font-size:1.2rem">${fmtNum(d.totalArea)} ha</div></div><div class="card"><div class="label">Municípios ativos</div><div class="value" style="font-size:1.2rem">${d.totalMuns}</div></div><div class="card area-only"><div class="label">R$ / ha</div><div class="value" style="font-size:1.2rem">${d.totalArea>0?fmtR(ch):'-'}</div></div>`;}
+function renderCmpTabela(id,d){document.querySelector('#'+id+' tbody').innerHTML=d.rows.filter(r=>r.cust>0).map(r=>{const pct=d.totalCust>0?(r.cust/d.totalCust*100).toFixed(1):'0.0';const ch=r.area>0?fmtR(r.cust/r.area):'-';return `<tr><td>${r.reg}</td><td class="num">${fmtRFull(r.cust)}</td><td class="num">${pct}%</td><td class="num area-only">${r.area>0?fmtNum(r.area):'-'}</td><td class="num area-only">${ch}</td><td class="num">${r.muns}</td></tr>`;}).join('');}
 function renderComparativo(){
   const pa=document.getElementById('cmp-prod-a').value,pb=document.getElementById('cmp-prod-b').value;
   const aa=parseInt(document.getElementById('cmp-ano-a').value)||0,ab=parseInt(document.getElementById('cmp-ano-b').value)||0;
@@ -500,8 +501,8 @@ function renderComparativo(){
   const da=calcPainel(pa,aa,na),db=calcPainel(pb,ab,nb);
   renderCmpCards('cmp-cards-a',da,'#3D4A2A');renderCmpCards('cmp-cards-b',db,'#A8552E');
   renderCmpTabela('cmp-table-a',da);renderCmpTabela('cmp-table-b',db);
-  document.getElementById('cmp-table-title-a').textContent=`Painel A — ${la} (${ala})`;
-  document.getElementById('cmp-table-title-b').textContent=`Painel B — ${lb} (${alb})`;
+  document.getElementById('cmp-table-title-a').textContent=`Painel A: ${la} (${ala})`;
+  document.getElementById('cmp-table-title-b').textContent=`Painel B: ${lb} (${alb})`;
   const ra=Object.fromEntries(da.rows.map(r=>[r.reg,r.cust])),rb=Object.fromEntries(db.rows.map(r=>[r.reg,r.cust]));
   const todas=[...new Set([...da.rows.map(r=>r.reg),...db.rows.map(r=>r.reg)])];
   const srt=todas.map(r=>({r,va:ra[r]||0,vb:rb[r]||0})).sort((a,b)=>(b.va+b.vb)-(a.va+a.vb)).slice(0,20);

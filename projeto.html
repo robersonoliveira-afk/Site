@@ -21,7 +21,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simulador de Projeto Agropecuário · Gestão de Custos Agropecuários</title>
-<meta name="description" content="Simulador de projeto agropecuário — preencha em 8 etapas e gere o projeto final com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
+<meta name="description" content="Simulador de projeto agropecuário: preencha em 8 etapas e gere o projeto final com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/projeto.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -292,7 +292,7 @@
       <h2><span class="n">0</span>Identificação do projeto</h2>
       <div class="grid2">
         <div class="field"><label for="id-projeto">Título do projeto</label>
-          <input type="text" id="id-projeto" placeholder="ex.: Soja em São Gabriel/RS — análise de viabilidade"></div>
+          <input type="text" id="id-projeto" placeholder="ex.: Soja em São Gabriel/RS: análise de viabilidade"></div>
         <div class="field"><label for="id-produtor">Produtor</label>
           <input type="text" id="id-produtor" placeholder="nome ou identificação"></div>
         <div class="field"><label for="id-unidade">Unidade de produção</label>
@@ -321,8 +321,8 @@
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-fiscal">?</button>
           </label>
           <select id="fiscal">
-            <option value="PF">Pessoa Física — Funrural 1,63%</option>
-            <option value="PJ">Pessoa Jurídica — Funrural 2,23%</option>
+            <option value="PF">Pessoa Física (Funrural 1,63%)</option>
+            <option value="PJ">Pessoa Jurídica (Funrural 2,23%)</option>
           </select>
           <div class="ajuda-box" id="aj-fiscal" hidden>
             <p>PF ou PJ define a alíquota de Funrural sobre a receita bruta (PF 1,63%, PJ 2,23%; LC 224/2025). Quem recolhe pela folha não é afetado.</p>
@@ -352,7 +352,7 @@
               <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-finalidade">?</button>
             </label>
             <select id="cred-finalidade">
-              <option value="">—</option><option>Custeio</option><option>Investimento</option>
+              <option value="">Selecione</option><option>Custeio</option><option>Investimento</option>
               <option>Comercialização</option><option>Industrialização</option>
             </select>
             <div class="ajuda-box" id="aj-finalidade" hidden>
@@ -365,7 +365,7 @@
               <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-enq">?</button>
             </label>
             <select id="cred-enq">
-              <option value="">—</option><option>Pronaf</option><option>Pronamp</option><option>Demais produtores</option>
+              <option value="">Selecione</option><option>Pronaf</option><option>Pronamp</option><option>Demais produtores</option>
             </select>
             <div class="ajuda-box" id="aj-enq" hidden>
               <p>Pronaf, Pronamp ou demais produtores define a linha e a taxa do Plano Safra. Aqui é só rótulo; os juros você informa no passo de custeio.</p>
@@ -408,11 +408,11 @@
       </div>
     </div>
     <p class="note">Vai tomar crédito? Antes de avançar, leia
-      <a href="parte-4.html#credito" target="_blank" rel="noopener">crédito rural</a> — programas, taxas e documentos.</p>
+      <a href="parte-4.html#credito" target="_blank" rel="noopener">crédito rural</a>: programas, taxas e documentos.</p>
 
     <div class="card">
       <h2><span class="n">3</span>Diagnóstico estratégico (SWOT)</h2>
-      <p class="swot-intro">Antes de projetar qualquer número, tire uma "fotografia" da situação atual da sua propriedade. <b>Forças e Fraquezas</b> são internas — você controla. <b>Oportunidades e Ameaças</b> são externas — você monitora. Seja honesto: um bom diagnóstico evita surpresas no projeto.</p>
+      <p class="swot-intro">Antes de projetar qualquer número, tire uma "fotografia" da situação atual da sua propriedade. <b>Forças e Fraquezas</b> são internas: você controla. <b>Oportunidades e Ameaças</b> são externas: você monitora. Seja honesto: um bom diagnóstico evita surpresas no projeto.</p>
       <div class="swot-grid">
         <div class="swot-q sq-f">
           <div class="swot-qh">Forças <span class="swot-sub">interno · favorável</span></div>
@@ -431,7 +431,7 @@
           <textarea id="swot-ameacas" placeholder="Quais riscos externos podem prejudicar o projeto?"></textarea>
         </div>
       </div>
-      <p class="note" style="margin-top:10px">Campos opcionais — mas o diagnóstico aparece no relatório final. Veja mais em <a href="parte-1.html#diagnostico" target="_blank" rel="noopener">Parte 1 — diagnóstico estratégico</a>.</p>
+      <p class="note" style="margin-top:10px">Campos opcionais, mas o diagnóstico aparece no relatório final. Veja mais em <a href="parte-1.html#diagnostico" target="_blank" rel="noopener">Parte 1: diagnóstico estratégico</a>.</p>
     </div>
   </section>
 
@@ -445,7 +445,7 @@
         </label>
         <input type="text" id="produto" placeholder="ex.: soja, leite tipo B, uva niágara">
         <div class="ajuda-box" id="aj-producao" hidden>
-          <p>Aqui se forma a receita: área × produtividade × preço. Use as unidades certas — elas mudam conforme a atividade, e um erro de unidade distorce o projeto inteiro.</p>
+          <p>Aqui se forma a receita: área × produtividade × preço. Use as unidades certas: elas mudam conforme a atividade, e um erro de unidade distorce o projeto inteiro.</p>
           <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
         </div>
       </div>
@@ -477,7 +477,7 @@
       </div>
       <p class="hint" id="hint-trio"></p>
       <p class="note">Verifique a cotação na cooperativa, sindicato rural ou EMATER da sua região antes de fixar o preço.
-        Preços semanais de referência: <a href="https://www.emater.tche.br/site/info-agro/precos_semanais.php" target="_blank" rel="noopener">EMATER-RS — Preços Semanais</a>.</p>
+        Preços semanais de referência: <a href="https://www.emater.tche.br/site/info-agro/precos_semanais.php" target="_blank" rel="noopener">EMATER-RS: Preços Semanais</a>.</p>
     </div>
 
     <div class="card">
@@ -489,7 +489,7 @@
           </label>
           <input type="text" id="sec-desc" placeholder="descarte, subprodutos, esterco...">
           <div class="ajuda-box" id="aj-outras" hidden>
-            <p>Só se houver receita adicional da própria atividade — ex.: animais de descarte e esterco na pecuária, subprodutos. Se não houver, deixe em branco.</p>
+            <p>Só se houver receita adicional da própria atividade (ex.: animais de descarte e esterco na pecuária, subprodutos). Se não houver, deixe em branco.</p>
             <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
@@ -508,14 +508,14 @@
           </label>
           <input type="number" id="comerc" min="0" step="any" placeholder="ex.: 3">
           <div class="ajuda-box" id="aj-deducoes" hidden>
-            <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE) — isso é o passo seguinte.</p>
+            <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE): isso é o passo seguinte.</p>
             <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
         <div class="field"><label>Funrural (automático, conforme PF/PJ)</label>
           <input type="text" id="funrural-pct" readonly></div>
       </div>
-      <p class="note">Comercialização e Funrural são deduções da receita — não entram no
+      <p class="note">Comercialização e Funrural são deduções da receita, não entram no
       COE (custeio). O custeio é o passo seguinte.</p>
     </div>
 
@@ -562,11 +562,11 @@
   <!-- ===== PASSO 3 — custeio (COE) ===== -->
   <section data-step="3">
     <div class="pareto">
-      <h3>A regra dos poucos que pesam — lei de Pareto</h3>
+      <h3>A regra dos poucos que pesam: lei de Pareto</h3>
       <p>No fim do século XIX, o economista italiano Vilfredo Pareto notou que cerca de
       80% da terra na Itália estava com uns 20% das pessoas. A proporção reaparece em
       quase tudo: poucas causas respondem pela maior parte do efeito. No orçamento é
-      igual — um punhado de itens concentra quase todo o desembolso.</p>
+      igual, um punhado de itens concentra quase todo o desembolso.</p>
       <p id="pareto-ex"></p>
       <p class="sintese">Em resumo: precisão onde há dinheiro, paciência onde há centavos.
       <span id="pareto-fim"></span></p>
@@ -669,12 +669,12 @@
         <div class="field"><label for="outros">Outros fixos (R$)</label>
           <input type="number" id="outros" min="0" step="any" placeholder="0"></div>
       </div>
-      <p class="note">Remuneração dos fatores é custo de oportunidade — opcional. Em geral
+      <p class="note">Remuneração dos fatores é custo de oportunidade (opcional). Em geral
       basta a mais perceptível; não precisa somar as duas.</p>
       <div class="grid2" style="margin-top:6px">
-        <div class="field"><label for="taxa-cap">Remuneração do capital — taxa (% a.a.)</label>
+        <div class="field"><label for="taxa-cap">Remuneração do capital: taxa (% a.a.)</label>
           <input type="number" id="taxa-cap" min="0" step="any" placeholder="ex.: 6 (poupança)"></div>
-        <div class="field"><label for="arrend">Remuneração da terra — arrendamento (R$/ha)</label>
+        <div class="field"><label for="arrend">Remuneração da terra: arrendamento (R$/ha)</label>
           <input type="number" id="arrend" min="0" step="any" placeholder="0"></div>
       </div>
       <div class="field"><label for="area">Área para arrendamento (ha)</label>
@@ -779,6 +779,7 @@
       </h2>
       <div class="ajuda-box" id="aj-viab" hidden>
         <p>VPL, TIR e payback medem se o investimento perene compensa ao longo do tempo.</p>
+        <p>O fluxo de caixa da fase produtiva já desconta a remuneração do capital e da terra, quando informadas no passo 4. Se a taxa de desconto usada aqui for a mesma taxa de remuneração do capital, o custo de capital está sendo contado duas vezes: uma no fluxo, outra no desconto. Para evitar isso, use como taxa de desconto uma referência independente do custo de oportunidade já lançado no passo 4, como a taxa de captação do crédito ou a Selic.</p>
         <a href="parte-5.html#ap-viabilidade" target="_blank" rel="noopener">ver no site →</a>
       </div>
       <div class="grid2">
@@ -789,9 +790,9 @@
       </div>
       <p class="note" id="dica-form"></p>
       <div class="kpis">
-        <div class="kpi"><div class="k">VPL</div><div class="v" id="k-vpl">—</div><div class="h" id="h-vpl"></div></div>
-        <div class="kpi"><div class="k">TIR</div><div class="v" id="k-tir">—</div><div class="h" id="h-tir"></div></div>
-        <div class="kpi"><div class="k">Payback</div><div class="v" id="k-pay">—</div><div class="h" id="h-pay"></div></div>
+        <div class="kpi"><div class="k">VPL</div><div class="v" id="k-vpl">-</div><div class="h" id="h-vpl"></div></div>
+        <div class="kpi"><div class="k">TIR</div><div class="v" id="k-tir">-</div><div class="h" id="h-tir"></div></div>
+        <div class="kpi"><div class="k">Payback</div><div class="v" id="k-pay">-</div><div class="h" id="h-pay"></div></div>
       </div>
       <table class="fluxo">
         <thead><tr><th>Ano</th><th>Fase</th><th>Fluxo</th><th>Descontado</th><th>Acum.</th></tr></thead>
@@ -856,11 +857,11 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
 const TEMPLATES = {
   // ── LAVOURA ANUAL ────────────────────────────────────────────────────────
   graos:       {nome:"🌾 Grãos e cereais (soja, milho, arroz, trigo)", un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"sc/ha",                 unPreco:"R$/sc",      sec:"palha, grão 2ª categoria",       familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
-  fumo:        {nome:"🍂 Fumo (tabaco)",                               un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"@/ha",                  unPreco:"R$/@",       sec:"—",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
-  horta:       {nome:"🥦 Horta / olericultura (alface, tomate...)",    un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"—",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  fumo:        {nome:"🍂 Fumo (tabaco)",                               un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"@/ha",                  unPreco:"R$/@",       sec:"",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  horta:       {nome:"🥦 Horta / olericultura (alface, tomate...)",    un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
   // ── LAVOURA PERENE ───────────────────────────────────────────────────────
   fruta:       {nome:"🍎 Fruticultura (uva, maçã, pêssego, citros...)",un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"2ª categoria, lenha/resíduo",    familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
-  ervamate:    {nome:"🌿 Erva-mate",                                   un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"—",                              familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
+  ervamate:    {nome:"🌿 Erva-mate",                                   un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"",                              familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
   madeira:     {nome:"🌳 Silvicultura / reflorestamento",              un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"m³/ha",                 unPreco:"R$/m³",      sec:"lenha, resíduo",                 familia:"lavoura", modo:"H", grupo:"Lavoura perene", perene:true},
   // ── CRIAÇÃO ──────────────────────────────────────────────────────────────
   corte:       {nome:"🐄 Corte / confinamento",                        un:"cabeça",  lblQtd:"Cabeças (giro)",     lblProd:"Peso de venda", unProd:"kg PV/cab",             unPreco:"R$/kg vivo", sec:"esterco",                        familia:"criacao", modo:"D", grupo:"Criação", giro:true},
@@ -871,7 +872,7 @@ const TEMPLATES = {
   aves_corte:  {nome:"🐔 Aves de corte (frango, peru)",                un:"cabeça",  lblQtd:"Cabeças alojadas",   lblProd:"Peso de abate", unProd:"kg/cab",                unPreco:"R$/kg",      sec:"cama / esterco",                 familia:"criacao", modo:"D", grupo:"Criação", giro:true},
   aves_postura:{nome:"🥚 Galinhas poedeiras",                          un:"matriz",  lblQtd:"Matrizes (galinhas)",lblProd:"Produção",      unProd:"dúzias/matriz/ano",     unPreco:"R$/dúzia",   sec:"esterco / descarte",             familia:"postura", modo:"G", grupo:"Criação"},
   apicultura:  {nome:"🍯 Apicultura",                                  un:"colmeia", lblQtd:"Colmeias",           lblProd:"Produção",      unProd:"kg mel/colmeia/ano",    unPreco:"R$/kg",      sec:"própolis, cera, pólen, enxames", familia:"apicultura", modo:"F", grupo:"Criação"},
-  tilapia:     {nome:"🐟 Tilápia",                                     un:"tanque",  lblQtd:"Tanques",            lblProd:"Produção",      unProd:"kg/tanque",             unPreco:"R$/kg",      sec:"—",                              familia:"criacao", modo:"D", grupo:"Criação", giro:true},
+  tilapia:     {nome:"🐟 Tilápia",                                     un:"tanque",  lblQtd:"Tanques",            lblProd:"Produção",      unProd:"kg/tanque",             unPreco:"R$/kg",      sec:"",                              familia:"criacao", modo:"D", grupo:"Criação", giro:true},
   // ── OUTRA ────────────────────────────────────────────────────────────────
   outra:       {nome:"Outra",                                         un:"unidade", lblQtd:"Unidades",           lblProd:"Produtividade", unProd:"un.",                   unPreco:"R$/un.",     sec:"livre",                          familia:"outra",   modo:"E", grupo:"Outra"},
 };
@@ -879,7 +880,7 @@ const TEMPLATES = {
 const ehPerene = k => !!(TEMPLATES[k] && TEMPLATES[k].perene);
 
 const FUNRURAL = {PF:0.0163, PJ:0.0223}; // LC 224/2025 (vigência abril/2026)
-const MESES = ["—","jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const MESES = ["-","jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
 
 // MODOS de manejo (passo 2) — campos + custos que o manejo justifica no COE
 const MODOS = {
@@ -895,7 +896,7 @@ const MODOS = {
     {id:"ap_inset",label:"Aplicações de inseticida (nº)",tipo:"num"},
     {id:"irrigacao",label:"Irrigação",tipo:"select",opcoes:["Não","Sim"]},
   ]},
-  B:{titulo:"Lavoura perene",custos:["Mudas/insumos","Fertilizantes","Agrotóxicos","Mão de obra (tratos)","Operações/mecanização"],destino:"Implantação (mudas, preparo, formação até produzir) entra no passo 5, no ano 0 — não aqui.",campos:[
+  B:{titulo:"Lavoura perene",custos:["Mudas/insumos","Fertilizantes","Agrotóxicos","Mão de obra (tratos)","Operações/mecanização"],destino:"Implantação (mudas, preparo, formação até produzir) entra no passo 5, no ano 0, não aqui.",campos:[
     {id:"especie",label:"Espécie / cultivar / porta-enxerto",tipo:"text",ph:"ex.: laranja sobre limão-cravo"},
     {id:"espacamento",label:"Espaçamento",tipo:"text",ph:"ex.: 6 × 4 m"},
     {id:"plantas_ha",label:"Plantas por ha",tipo:"num"},
@@ -906,7 +907,7 @@ const MODOS = {
     {id:"fitossan",label:"Tratamentos fitossanitários (nº)",tipo:"num"},
     {id:"irrigacao",label:"Irrigação",tipo:"select",opcoes:["Não","Sim"]},
   ]},
-  C:{titulo:"Criação de plantel",custos:["Alimentação","Sanidade","Mão de obra","Pastagem/insumos"],destino:"O plantel é capital que deprecia (reprodutores, matrizes, colmeias, pomar) — a depreciação entra no passo 4.",campos:[
+  C:{titulo:"Criação de plantel",custos:["Alimentação","Sanidade","Mão de obra","Pastagem/insumos"],destino:"O plantel é capital que deprecia (reprodutores, matrizes, colmeias, pomar): a depreciação entra no passo 4.",campos:[
     {id:"composicao",label:"Composição do plantel",tipo:"text",ph:"ex.: 40 matrizes, 1 reprodutor, 10 de reposição"},
     {id:"sist_alim",label:"Sistema alimentar",tipo:"select",opcoes:["Pasto nativo","Pasto cultivado","Semi-confinado","Confinado"]},
     {id:"lotacao",label:"Lotação",tipo:"text",ph:"ex.: 0,8 UA/ha"},
@@ -927,7 +928,7 @@ const MODOS = {
   E:{titulo:"Outra atividade",custos:["Insumos","Mão de obra","Operações"],destino:"",campos:[
     {id:"descricao",label:"Descrição do manejo",tipo:"text",ph:"descreva livremente o ciclo e as práticas"},
   ]},
-  G:{titulo:"Avicultura de postura",custos:["Ração e suplementos","Sanidade","Energia e aquecimento","Mão de obra"],destino:"Aviário, gaiolas, bebedouros, comedouros e demais bens duráveis entram como depreciação no passo 4. As aves poedeiras são capital (plantel) — também depreciam, não são giro.",campos:[
+  G:{titulo:"Avicultura de postura",custos:["Ração e suplementos","Sanidade","Energia e aquecimento","Mão de obra"],destino:"Aviário, gaiolas, bebedouros, comedouros e demais bens duráveis entram como depreciação no passo 4. As aves poedeiras são capital (plantel), também depreciam, não são giro.",campos:[
     {id:"sistema",label:"Sistema de criação",tipo:"select",opcoes:["Gaiola convencional","Gaiola enriquecida","Piso com cama","Livre pastejo (caipira)"]},
     {id:"densidade",label:"Densidade (aves/m²)",tipo:"num"},
     {id:"racao",label:"Ração / dieta",tipo:"text",ph:"ex.: ração postura 16% PB, milho + soja farelado"},
@@ -936,8 +937,8 @@ const MODOS = {
     {id:"sanidade",label:"Sanidade",tipo:"text",ph:"ex.: vacinas Newcastle, Gumboro, bronquite; controle de Salmonella"},
     {id:"reposicao",label:"Reposição de aves",tipo:"text",ph:"ex.: lote a cada 12 meses, pintas de 1 dia"},
   ]},
-  H:{titulo:"Silvicultura",custos:["Mudas e insumos de implantação","Fertilizantes","Operações/mecanização","Mão de obra"],destino:"Benfeitorias, máquinas e implementos entram como depreciação no passo 4. O povoamento em crescimento é capital — não entra como custeio anual.",campos:[
-    {id:"especie",label:"Espécie / clone / procedência",tipo:"text",ph:"ex.: Eucalyptus urograndis — clone H13, Pinus taeda"},
+  H:{titulo:"Silvicultura",custos:["Mudas e insumos de implantação","Fertilizantes","Operações/mecanização","Mão de obra"],destino:"Benfeitorias, máquinas e implementos entram como depreciação no passo 4. O povoamento em crescimento é capital, não entra como custeio anual.",campos:[
+    {id:"especie",label:"Espécie / clone / procedência",tipo:"text",ph:"ex.: Eucalyptus urograndis, clone H13, Pinus taeda"},
     {id:"espacamento",label:"Espaçamento de plantio",tipo:"text",ph:"ex.: 3 × 2 m (1.667 árvores/ha)"},
     {id:"plantas_ha",label:"Plantas por ha",tipo:"num"},
     {id:"ano_impl",label:"Ano de implantação",tipo:"num",ph:"ex.: 2022"},
@@ -953,7 +954,7 @@ const MODOS = {
     {id:"sistema",label:"Sistema de manejo",tipo:"select",opcoes:["Fixo","Migratório (transumância)"]},
     {id:"revisoes",label:"Revisões por ano (nº)",tipo:"num"},
     {id:"sanidade",label:"Sanidade",tipo:"text",ph:"ex.: varroatose (ácido oxálico), nosemose, traça-da-cera"},
-    {id:"mel_unifloral",label:"Mel unifloral?",tipo:"select",opcoes:["Não — mel silvestre","Sim — registrar florada de origem"]},
+    {id:"mel_unifloral",label:"Mel unifloral?",tipo:"select",opcoes:["Não (mel silvestre)","Sim (registrar florada de origem)"]},
   ]},
 };
 
@@ -966,20 +967,20 @@ const CATEGORIAS = {
   outra:      ["Insumos","Mão de obra","Operações","Outros"],
 };
 const PARETO = {
-  lavoura:{ex:"Numa lavoura, fertilizante e agrotóxicos mandam no custeio — esses você precisa ter. A graxa do trator entra na conta, mas não decide o resultado; pode ficar para depois.",fim:"Fertilizante você precisa ter; graxa pode esperar."},
-  criacao:    {ex:"Numa criação, a alimentação — ração, sal mineral, pastagem — é quase sempre o maior custo. Essa você precisa ter; os itens miúdos podem ficar para depois.",fim:"A alimentação você precisa ter; o resto pode esperar."},
-  apicultura: {ex:"Na apicultura, os maiores custos são a mão de obra de manejo e revisão, embalagens e materiais. A sanidade (controle de varroa, nosemose) é custo fixo de toda safra — não pode ficar de fora.",fim:"Mão de obra e sanidade você precisa ter; materiais menores podem esperar."},
+  lavoura:{ex:"Numa lavoura, fertilizante e agrotóxicos mandam no custeio: esses você precisa ter. A graxa do trator entra na conta, mas não decide o resultado; pode ficar para depois.",fim:"Fertilizante você precisa ter; graxa pode esperar."},
+  criacao:    {ex:"Numa criação, a alimentação (ração, sal mineral, pastagem) é quase sempre o maior custo. Essa você precisa ter; os itens miúdos podem ficar para depois.",fim:"A alimentação você precisa ter; o resto pode esperar."},
+  apicultura: {ex:"Na apicultura, os maiores custos são a mão de obra de manejo e revisão, embalagens e materiais. A sanidade (controle de varroa, nosemose) é custo fixo de toda safra, não pode ficar de fora.",fim:"Mão de obra e sanidade você precisa ter; materiais menores podem esperar."},
   postura:    {ex:"Na avicultura de postura, a ração representa 60–70% do custo operacional. Sem ela o número não fecha. Energia, sanidade e mão de obra vêm logo depois.",fim:"A ração você precisa ter; embalagens e materiais miúdos podem esperar."},
   outra:      {ex:"Comece pelos itens que mais pesam no seu custo. Os miúdos podem ficar para depois, se faltar dado.",fim:"O que pesa, você precisa ter; o miúdo pode esperar."},
 };
 const DEP_HINT = {
-  A:"Máquinas, implementos, benfeitorias e silos. A lavoura anual em si não deprecia — ela é custeio no passo 3.",
+  A:"Máquinas, implementos, benfeitorias e silos. A lavoura anual em si não deprecia: ela é custeio no passo 3.",
   B:"A depreciação da formação (pomar/plantio perene) é calculada automaticamente a partir do passo de implantação. Aqui, acrescente apenas máquinas, implementos e benfeitorias além da formação.",
   C:"Inclua as matrizes e os reprodutores (aquisição, descarte como residual, vida útil reprodutiva), além de máquinas e benfeitorias.",
-  D:"Máquinas, instalações e equipamentos. O animal de giro não deprecia — ele é custeio no passo 3.",
+  D:"Máquinas, instalações e equipamentos. O animal de giro não deprecia: ele é custeio no passo 3.",
   E:"Bens duráveis usados na atividade: máquinas, equipamentos, benfeitorias.",
-  F:"Caixas/colmeias (Langstroth ou outros modelos), centrífuga, decantador, melgueiras, extractores e benfeitorias do apiário. As colmeias e o plantel são capital fixo — entram aqui como depreciação, não como custeio.",
-  G:"Aviário, gaiolas ou boxes, bebedouros, comedouros, ventilação e demais equipamentos. As aves poedeiras são plantel (capital) — depreciam ao longo do ciclo produtivo; não entram como custeio.",
+  F:"Caixas/colmeias (Langstroth ou outros modelos), centrífuga, decantador, melgueiras, extractores e benfeitorias do apiário. As colmeias e o plantel são capital fixo: entram aqui como depreciação, não como custeio.",
+  G:"Aviário, gaiolas ou boxes, bebedouros, comedouros, ventilação e demais equipamentos. As aves poedeiras são plantel (capital), depreciam ao longo do ciclo produtivo; não entram como custeio.",
   H:"A depreciação do investimento florestal (plantio) é calculada automaticamente a partir do passo de implantação. Aqui, acrescente apenas máquinas e implementos florestais (motosserra, skidder, forwarder) além do plantio.",
 };
 
@@ -1204,7 +1205,7 @@ function aplicarTemplate(forcarUnidades=false){
   if(forcarUnidades||!el('un-prod').value) el('un-prod').value=t.unProd;
   if(forcarUnidades||!el('un-preco').value)el('un-preco').value=t.unPreco;
   el('hint-trio').textContent=t.lblQtd.toLowerCase()+' × '+(el('un-prod').value||t.unProd)+' × '+(el('un-preco').value||t.unPreco)+' = receita';
-  el('hint-sec').textContent=t.sec==='—'?'':'típico: '+t.sec;
+  el('hint-sec').textContent=t.sec===''?'':'típico: '+t.sec;
   // passo 2 — modo + coerência + campos
   el('modo-hint').textContent='Modo de manejo: '+m.titulo.toLowerCase()+'.';
   el('liga-itens').innerHTML=m.custos.map(c=>'<li>'+esc(c)+'</li>').join('');
@@ -1370,7 +1371,7 @@ function pintar(E,D){
   });
   const autoBox=el('dep-formacao-auto');
   if(D.depFormacao>0){
-    el('dep-auto-desc').textContent='Depreciação da formação (automática — '+Math.round(numv(E.p5.vida))+' anos)';
+    el('dep-auto-desc').textContent='Depreciação da formação (automática, '+Math.round(numv(E.p5.vida))+' anos)';
     el('dep-auto-val').textContent=brl(D.depFormacao);
     autoBox.style.display='';
   }else{ autoBox.style.display='none'; }
@@ -1393,7 +1394,7 @@ function pintar(E,D){
   el('r5-total').textContent=brl(D.investimento);
   const depAnual=vida5>0?D.investimento/vida5:0;
   el('liga4').innerHTML=vida5>0?
-    'Depreciação da formação calculada automaticamente: <b>'+brl(depAnual)+'/ano</b> ('+brl(D.investimento)+' ÷ '+vida5+' anos). Ela entra automaticamente no próximo passo (custos fixos) — não precisa lançar o pomar como bem depreciável.':
+    'Depreciação da formação calculada automaticamente: <b>'+brl(depAnual)+'/ano</b> ('+brl(D.investimento)+' ÷ '+vida5+' anos). Ela entra automaticamente no próximo passo (custos fixos), não precisa lançar o pomar como bem depreciável.':
     'Informe a vida útil produtiva para calcular a depreciação anual, que será incorporada automaticamente aos custos fixos.';
   const tl=el('timeline');tl.innerHTML='';
   const s0=document.createElement('div');s0.className='seg impl';s0.textContent='ano 0';tl.appendChild(s0);
@@ -1406,7 +1407,7 @@ function pintar(E,D){
   el('r6-fix').textContent=brl(Math.max(0,D.cot-D.coe)); el('r6-fat').textContent=brl(Math.max(0,D.ct-D.cot));
   const setSign=(id,v)=>{const e=el(id);e.textContent=brl(v);e.className='v '+(v>=0?'pos':'neg');};
   setSign('r6-mb',mb); setSign('r6-ml',ml); setSign('r6-res',res);
-  el('r6-unid').textContent=D.n>0?('por unidade — COE '+brl(D.coe/D.n)+' · COT '+brl(D.cot/D.n)+' · CT '+brl(D.ct/D.n)+' / '+un):'';
+  el('r6-unid').textContent=D.n>0?('por unidade: COE '+brl(D.coe/D.n)+' · COT '+brl(D.cot/D.n)+' · CT '+brl(D.ct/D.n)+' / '+un):'';
   if(D.rl>0){
     const ms=(D.rl-D.ct)/D.rl, qEq=D.ct/(D.rl/(D.n>0?D.n:1));
     let txt='Ponto de equilíbrio (CT): receita de <b>'+brl(D.ct)+'</b>';
@@ -1420,10 +1421,18 @@ function pintar(E,D){
   const isPerene=ehPerene(E.template);
   el('perene-on').style.display=isPerene?'':'none';
   el('perene-off').style.display=isPerene?'none':'';
-  if(ehPerene) pintarPerene(E,D);
+  if(isPerene) pintarPerene(E,D);
 }
 
 function pintarPerene(E,D){
+  if(numv(E.p5.vida)<=0){
+    ['k-vpl','k-tir','k-pay'].forEach(id=>{const e=el(id);e.textContent='n/d';e.className='v';});
+    ['h-vpl','h-tir','h-pay'].forEach(id=>el(id).textContent='informe a vida útil');
+    el('fluxo-body').innerHTML='';
+    el('leitura-perene').textContent='Informe a vida útil produtiva (passo 5) para calcular VPL, TIR e payback.';
+    el('dica-form').textContent='';
+    return;
+  }
   const taxa=numv(E.p6.taxaDesconto);
   const cf=numv(E.p6.custoFormacao);
   const ctCaixa=D.ct-D.depFormacao;
@@ -1460,13 +1469,13 @@ function pintarCoerencia(E,D){
   if(modo==='A'||modo==='B'){
     const aplica=(numv(c.ap_herb)+numv(c.ap_fung)+numv(c.ap_inset)+numv(c.fitossan))>0;
     if(aplica && !tem('agrotóxico','agrotoxico','herbic','fungic','inset','fitossan'))
-      pend.push('descreveu aplicações no manejo — confirme um item de agrotóxicos no COE.');
+      pend.push('descreveu aplicações no manejo: confirme um item de agrotóxicos no COE.');
     if((c.adub_base||c.adub_cob||c.adub_perene) && !tem('fertiliz','adub','npk','ureia'))
-      pend.push('descreveu adubação — confirme um item de fertilizantes no COE.');
+      pend.push('descreveu adubação: confirme um item de fertilizantes no COE.');
   }
   if(modo==='C'||modo==='D'){
     if(!tem('aliment','ração','racao','sal mineral','pasto','volumoso'))
-      pend.push('criação sem item de alimentação no COE — em geral é o maior custo.');
+      pend.push('criação sem item de alimentação no COE, em geral é o maior custo.');
     if(modo==='D' && c.categoria && !tem('aquisi','animal','magro','leitão','leitao','alevino'))
       pend.push('giro: a compra do animal magro entra como custeio no COE.');
   }
@@ -1607,7 +1616,7 @@ function estadoCanonico(E,D){
       unidProd:E.p1.unProd||t.unProd, preco:numv(E.p1.preco),
       rb:D.rb, funruralAliq:(D.fAliq*100).toLocaleString('pt-BR',{minimumFractionDigits:2}),
       funruralValor:D.fVal, comerc:D.comerc, rl:D.rl},
-    passo2:{modo:t.modo+' — '+m.titulo.toLowerCase(), observacoes:E.p2.observacoes},
+    passo2:{modo:t.modo+': '+m.titulo.toLowerCase(), observacoes:E.p2.observacoes},
     passo3:{itens:E.p3.itens
       .filter(it=>(it.desc||it.cat) && (numv(it.qtd)*numv(it.preco))>0)
       .map(it=>({item:it.desc||it.cat, valor:numv(it.qtd)*numv(it.preco)*D.n})), coe:D.coe},
@@ -1633,7 +1642,7 @@ function montarDossie(C){
 
   const linComerc=num(p1.comerc)>0?'<tr><td>(−) Comercialização</td><td class="v">'+brl(p1.comerc)+'</td></tr>':'';
   const b1='<div class="bloco"><h2><span class="n">1</span>Produção e receita</h2><table class="tab">'+
-    '<tr><td>'+esc(p1.produto||'Produto')+' — '+esc(p1.produtividade||'')+' '+esc(p1.unidProd||'')+' × '+num(n).toLocaleString('pt-BR')+' '+un+' · preço '+brl(p1.preco)+'</td><td class="v"></td></tr>'+
+    '<tr><td>'+esc(p1.produto||'Produto')+': '+esc(p1.produtividade||'')+' '+esc(p1.unidProd||'')+' × '+num(n).toLocaleString('pt-BR')+' '+un+' · preço '+brl(p1.preco)+'</td><td class="v"></td></tr>'+
     '<tr><td>Receita bruta (RB)</td><td class="v">'+brl(p1.rb)+'</td></tr>'+linComerc+
     '<tr><td>(−) Funrural '+(p1.funruralAliq?('· '+p1.funruralAliq+'%'):'')+'</td><td class="v">'+brl(p1.funruralValor)+'</td></tr>'+
     '<tr class="sub"><td>Receita líquida (RL)</td><td class="v">'+brl(rl)+'</td></tr></table></div>';
@@ -1643,13 +1652,13 @@ function montarDossie(C){
     (p2.observacoes?'<div class="obs">'+esc(p2.observacoes)+'</div>':'')+'</div>':'';
 
   const linhasItens=(p3.itens||[]).map(it=>'<tr><td>'+esc(it.item)+'</td><td class="v">'+brl(it.valor)+'</td></tr>').join('');
-  const b3='<div class="bloco"><h2><span class="n">3</span>Custeio — COE</h2>'+
+  const b3='<div class="bloco"><h2><span class="n">3</span>Custeio: COE</h2>'+
     '<p class="leg">Custo operacional efetivo: o que sai do bolso na safra ou no ciclo.</p>'+
     '<table class="tab">'+linhasItens+'<tr class="sub"><td>COE total</td><td class="v">'+brl(coe)+'</td></tr></table></div>';
 
   const linDepForm=num(p4.depFormacao)>0?
     '<tr><td>(+) Dep. formação (automática)</td><td class="v">'+brl(p4.depFormacao)+'</td></tr>':'';
-  const b4='<div class="bloco"><h2><span class="n">4</span>Estrutura de custos — COE → COT → CT</h2>'+
+  const b4='<div class="bloco"><h2><span class="n">4</span>Estrutura de custos: COE → COT → CT</h2>'+
     '<p class="leg">Metodologia CNA/Campo Futuro. Remuneração dos fatores é custo de oportunidade.</p><table class="tab">'+
     '<tr><td>COE</td><td class="v">'+brl(coe)+'</td></tr>'+
     (num(p4.depreciacao)>0?'<tr><td>(+) Depreciação (bens)</td><td class="v">'+brl(p4.depreciacao)+'</td></tr>':'')+
@@ -1706,29 +1715,29 @@ function montarDossie(C){
     '<span>data: <b>'+esc(hoje)+'</b></span></div></div>';
 
   const rodape='<div class="rodape">'+
-    '<p class="ia">Material de apoio elaborado com assistência de IA (Claude, Anthropic). Responsabilidade técnica: prof. Róberson Macedo de Oliveira — '+
+    '<p class="ia">Material de apoio elaborado com assistência de IA (Claude, Anthropic). Responsabilidade técnica: prof. Róberson Macedo de Oliveira, '+
     '<a href="https://robersonoliveira-afk.github.io/Site/" target="_blank" rel="noopener">robersonoliveira-afk.github.io/Site</a>.</p>'+
-    '<p>Metodologia de custos: CNA/Campo Futuro (Matsunaga) — COE → COT → CT.</p>'+
+    '<p>Metodologia de custos: CNA/Campo Futuro (Matsunaga). COE → COT → CT.</p>'+
     '<p>Números ilustrativos; conferir com fontes oficiais (CONAB, EMATER-RS, CEPEA, MCR/Bacen) antes de decidir.</p></div>';
 
   const cr=C.credito||{};
   const bCred=cr.usa==='sim'?'<div class="bloco"><h2><span class="n">·</span>Crédito</h2><table class="tab">'+
     '<tr><td>Modalidade</td><td class="v">'+esc(C.modalidade||'')+'</td></tr>'+
-    '<tr><td>Finalidade</td><td class="v">'+esc(cr.finalidade||'—')+'</td></tr>'+
-    '<tr><td>Enquadramento</td><td class="v">'+esc(cr.enquadramento||'—')+'</td></tr>'+
-    '<tr><td>Módulos fiscais</td><td class="v">'+esc(cr.modulos||'—')+'</td></tr>'+
+    '<tr><td>Finalidade</td><td class="v">'+esc(cr.finalidade||'não informado')+'</td></tr>'+
+    '<tr><td>Enquadramento</td><td class="v">'+esc(cr.enquadramento||'não informado')+'</td></tr>'+
+    '<tr><td>Módulos fiscais</td><td class="v">'+esc(cr.modulos||'não informado')+'</td></tr>'+
     '<tr><td>Documentos</td><td class="v">'+(cr.docs==='sim'?'organizados':'pendentes')+'</td></tr>'+
-    '<tr><td>Localização</td><td class="v">'+esc(cr.local||'—')+'</td></tr>'+
+    '<tr><td>Localização</td><td class="v">'+esc(cr.local||'não informado')+'</td></tr>'+
     '</table></div>':'';
 
   const sw=C.swot||{};
   const swotTemDados=sw.forcas||sw.fraquezas||sw.oportunidades||sw.ameacas;
   const bSwot=swotTemDados?'<div class="bloco"><h2><span class="n">·</span>Diagnóstico estratégico (SWOT)</h2>'+
     '<div class="swot-doc">'+
-    '<div class="swot-dc sq-f"><b>Forças</b><p>'+esc(sw.forcas||'—')+'</p></div>'+
-    '<div class="swot-dc sq-fr"><b>Fraquezas</b><p>'+esc(sw.fraquezas||'—')+'</p></div>'+
-    '<div class="swot-dc sq-o"><b>Oportunidades</b><p>'+esc(sw.oportunidades||'—')+'</p></div>'+
-    '<div class="swot-dc sq-a"><b>Ameaças</b><p>'+esc(sw.ameacas||'—')+'</p></div>'+
+    '<div class="swot-dc sq-f"><b>Forças</b><p>'+esc(sw.forcas||'não informado')+'</p></div>'+
+    '<div class="swot-dc sq-fr"><b>Fraquezas</b><p>'+esc(sw.fraquezas||'não informado')+'</p></div>'+
+    '<div class="swot-dc sq-o"><b>Oportunidades</b><p>'+esc(sw.oportunidades||'não informado')+'</p></div>'+
+    '<div class="swot-dc sq-a"><b>Ameaças</b><p>'+esc(sw.ameacas||'não informado')+'</p></div>'+
     '</div></div>':'';
 
   el('dossie').innerHTML=head+bCred+bSwot+b1+b2+b3+b4+b5+bViz+b6+rodape;
@@ -1738,15 +1747,15 @@ function montarDossie(C){
 // EXEMPLO — São Gabriel / soja (PF → Funrural 1,63%), no formato ESTADO interno
 // ===========================================================================
 const EXEMPLO = {
-  identificacao:{projeto:"Soja em São Gabriel/RS — análise de viabilidade",
+  identificacao:{projeto:"Soja em São Gabriel/RS: análise de viabilidade",
     produtor:"Produtor exemplo (PF)", unidade:"Lavoura de soja", municipio:"São Gabriel/RS", data:""},
   template:"graos", fiscal:"PF",
   p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"115", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:""},
-  p2:{campos:{sistema:"Plantio direto (cobertura de inverno: azevém ou aveia-preta)", cultivar:"Variedade precoce — ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
-    observacoes:"Antes de semear, analise o solo e corrija o pH para 6,0–6,5 com calcário. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo — em R1 (floração), R3 (início de grão) e R5 (enchimento de grão) — alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
+  p2:{campos:{sistema:"Plantio direto (cobertura de inverno: azevém ou aveia-preta)", cultivar:"Variedade precoce, ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
+    observacoes:"Antes de semear, analise o solo e corrija o pH para 6,0–6,5 com calcário. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo, em R1 (floração), R3 (início de grão) e R5 (enchimento de grão), alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
   p3:{itens:[
-    {desc:"Fertilizantes — NPK base + ureia cobertura", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"2000"},
-    {desc:"Defensivos — herbicidas, 3× fungicidas e inseticidas", cat:"Agrotóxicos", un:"ha", qtd:"1", preco:"1350"},
+    {desc:"Fertilizantes: NPK base + ureia cobertura", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"2000"},
+    {desc:"Defensivos: herbicidas, 3× fungicidas e inseticidas", cat:"Agrotóxicos", un:"ha", qtd:"1", preco:"1350"},
     {desc:"Sementes (variedade precoce + TSI)", cat:"Sementes/mudas", un:"ha", qtd:"1", preco:"680"},
     {desc:"Operações e combustível", cat:"Operações/mecanização", un:"ha", qtd:"1", preco:"580"},
     {desc:"Frete, secagem e outros", cat:"Outros", un:"ha", qtd:"1", preco:"390"},
@@ -1763,25 +1772,25 @@ const EXEMPLO = {
 // Investimento total: R$ 104.000 | COE: R$ 15.000/ano | RB: 18.000 kg × R$ 4,00
 // ===========================================================================
 const EXEMPLO_UVA = {
-  identificacao:{projeto:"Implantação de 1 ha de Uva BRS Magna — Campanha Gaúcha/RS",
+  identificacao:{projeto:"Implantação de 1 ha de Uva BRS Magna: Campanha Gaúcha/RS",
     produtor:"Produtor exemplo (PF)", unidade:"Vinhedo BRS Magna", municipio:"Campanha Gaúcha/RS", data:""},
   template:"fruta", fiscal:"PF",
   p1:{produto:"Uva BRS Magna", qtd:"1", unQtd:"ha", prod:"18000", unProd:"kg/ha", preco:"4", unPreco:"R$/kg", secDesc:"", secValor:"", comerc:""},
   p2:{campos:{especie:"BRS Magna / raiz própria", espacamento:"2,8 × 1,8 m", plantas_ha:"2083", ano_impl:"2024", fase:"Produção", podas:"2", adub_perene:"NPK parcelado + calcário conforme laudo foliar", fitossan:"10", irrigacao:"Sim"},
-    observacoes:"Poda de inverno (jul/ago) — operação mais crítica: selecione 1–2 varas por planta com 6–8 gemas, limitando a 8–10 cachos por planta para atingir 18 t/ha com qualidade ≥ 16° Brix; aplique pasta bordalesa nos cortes. Adubação de cobertura (set/out): fracione N e K conforme laudo foliar. Manejo verde (set–dez): realize desbrotas, esladronamentos e amarrações para aeração do dossel — reduz doenças e melhora qualidade. Tratamentos fitossanitários: 8–10 pulverizações por ciclo priorizando míldio (Plasmopara viticola), oídio e podridões — alterne grupos químicos a cada aplicação. Irrigação por gotejamento: forneça 2–4 mm/dia no pegamento das flores e no enchimento de bagas; suspenda 10–15 dias antes da colheita para concentrar açúcares. Raleie cachos se a carga estiver excessiva. Colheita (jan/fev): colha manualmente quando atingir ≥ 16° Brix; use caixas de 12 kg limpas e colha nas horas frescas do dia para preservar qualidade."},
+    observacoes:"Poda de inverno (jul/ago), operação mais crítica: selecione 1–2 varas por planta com 6–8 gemas, limitando a 8–10 cachos por planta para atingir 18 t/ha com qualidade ≥ 16° Brix; aplique pasta bordalesa nos cortes. Adubação de cobertura (set/out): fracione N e K conforme laudo foliar. Manejo verde (set–dez): realize desbrotas, esladronamentos e amarrações para aeração do dossel, reduz doenças e melhora qualidade. Tratamentos fitossanitários: 8–10 pulverizações por ciclo priorizando míldio (Plasmopara viticola), oídio e podridões, alterne grupos químicos a cada aplicação. Irrigação por gotejamento: forneça 2–4 mm/dia no pegamento das flores e no enchimento de bagas; suspenda 10–15 dias antes da colheita para concentrar açúcares. Raleie cachos se a carga estiver excessiva. Colheita (jan/fev): colha manualmente quando atingir ≥ 16° Brix; use caixas de 12 kg limpas e colha nas horas frescas do dia para preservar qualidade."},
   p3:{itens:[
-    {desc:"Mão de obra — manejo, poda e colheita", cat:"Mão de obra (tratos)", un:"ha", qtd:"1", preco:"10650"},
-    {desc:"Insumos — adubação e tratamentos fitossanitários", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"4050"},
+    {desc:"Mão de obra: manejo, poda e colheita", cat:"Mão de obra (tratos)", un:"ha", qtd:"1", preco:"10650"},
+    {desc:"Insumos: adubação e tratamentos fitossanitários", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"4050"},
     {desc:"Energia elétrica (irrigação por gotejamento)", cat:"Energia/água", un:"ha", qtd:"1", preco:"300"},
   ], seguro:"", ater:"", juros:""},
-  p4:{bens:[{desc:"Estrutura do vinhedo — postes, arames, irrigação, mudas (implantação total)", aq:"104000", res:"0", vida:"15"}],
+  p4:{bens:[{desc:"Estrutura do vinhedo: postes, arames, irrigação, mudas (implantação total)", aq:"104000", res:"0", vida:"15"}],
     prolabore:"18000", outros:"2400", taxaCapital:"", arrendamento:"2000", area:"1"},
   p5:{cultura:"uva",
     itens:[
-      {desc:"Estrutura — postes (595 un.) e arames (28 rolos)", un:"ha", qtd:"1", preco:"49525"},
-      {desc:"Sistema de irrigação — mangueiras e gotejadores", un:"ha", qtd:"1", preco:"5200"},
+      {desc:"Estrutura: postes (595 un.) e arames (28 rolos)", un:"ha", qtd:"1", preco:"49525"},
+      {desc:"Sistema de irrigação: mangueiras e gotejadores", un:"ha", qtd:"1", preco:"5200"},
       {desc:"Mudas BRS Magna (2.083 un.) + tela espaldeira", un:"ha", qtd:"1", preco:"33379"},
-      {desc:"Insumos de base — calcário, MAP, KCl, ureia", un:"ha", qtd:"1", preco:"2299"},
+      {desc:"Insumos de base: calcário, MAP, KCl, ureia", un:"ha", qtd:"1", preco:"2299"},
       {desc:"Mão de obra de implantação (15% dos materiais)", un:"ha", qtd:"1", preco:"13560"},
     ],
     area:"1", form:"2", vida:"15"},
@@ -1794,26 +1803,26 @@ const EXEMPLO_UVA = {
 // RB: 50 cab. × 320 kg × R$ 9,50 = R$ 152.000 | COE: R$ 83.900 | Dep: R$ 20.500
 // ===========================================================================
 const EXEMPLO_BOVINOS = {
-  identificacao:{projeto:"Recria de bovinos de corte — terneiras Braford (50 cabeças)",
-    produtor:"João Silva (PF)", unidade:"Pecuária de corte — recria", municipio:"Santa Maria/RS", data:""},
+  identificacao:{projeto:"Recria de bovinos de corte: terneiras Braford (50 cabeças)",
+    produtor:"João Silva (PF)", unidade:"Pecuária de corte (recria)", municipio:"Santa Maria/RS", data:""},
   template:"corte", fiscal:"PF",
   p1:{produto:"Novilhas Braford para entoure", qtd:"50", unQtd:"cab.", prod:"320", unProd:"kg PV/cab", preco:"9.5", unPreco:"R$/kg vivo", secDesc:"", secValor:"", comerc:""},
   p2:{campos:{categoria:"Terneiras Braford (desmamadas, 8 meses)", peso_entrada:"160", gmd:"0.44", dias:"365", ciclos_ano:"1", conversao:"", dieta:"Campo nativo (30 ha) + sal mineral específico para recria à vontade", mortalidade:"2"},
-    observacoes:"Aquisição (mar): selecione terneiras Braford bem cruzadas, ≥ 150 kg, com calendário vacinal atualizado e já desmamadas — prefira animais da região, mais adaptados ao carrapato e ao campo nativo. Adaptação (primeiros 15 dias): mantenha-as em pastagem próxima às instalações e observe saúde, apetite e comportamento antes de soltar no campo definitivo. Pastagem e lotação: ajuste a carga animal conforme a disponibilidade de forragem — a meta é GMD ≥ 0,44 kg/dia para levar de 160 kg a 320 kg em 12 meses (1,67 cab./ha em 30 ha). Forneça sal mineral específico para recria à vontade durante todo o ano; é o insumo com maior custo-benefício nessa categoria. Calendário sanitário: vermífugo (mai/jun), parasiticida injetável (set), pour-on 30 dias depois (out), carrapaticida (jan, fev e abr). Pesagem trimestral: pese a cada 90 dias para checar o desempenho; animais muito abaixo da curva reduzem a rentabilidade e devem ser avaliados. Um mês antes da venda: faça avaliação reprodutiva de todas as novilhas — as inaptas encaminhe para engorda e abate. Comercialize no outono (abr/mai) aproveitando a demanda do entoure e os melhores preços sazonais."},
+    observacoes:"Aquisição (mar): selecione terneiras Braford bem cruzadas, ≥ 150 kg, com calendário vacinal atualizado e já desmamadas, prefira animais da região, mais adaptados ao carrapato e ao campo nativo. Adaptação (primeiros 15 dias): mantenha-as em pastagem próxima às instalações e observe saúde, apetite e comportamento antes de soltar no campo definitivo. Pastagem e lotação: ajuste a carga animal conforme a disponibilidade de forragem, a meta é GMD ≥ 0,44 kg/dia para levar de 160 kg a 320 kg em 12 meses (1,67 cab./ha em 30 ha). Forneça sal mineral específico para recria à vontade durante todo o ano; é o insumo com maior custo-benefício nessa categoria. Calendário sanitário: vermífugo (mai/jun), parasiticida injetável (set), pour-on 30 dias depois (out), carrapaticida (jan, fev e abr). Pesagem trimestral: pese a cada 90 dias para checar o desempenho; animais muito abaixo da curva reduzem a rentabilidade e devem ser avaliados. Um mês antes da venda: faça avaliação reprodutiva de todas as novilhas, as inaptas encaminhe para engorda e abate. Comercialize no outono (abr/mai) aproveitando a demanda do entoure e os melhores preços sazonais."},
   p3:{itens:[
     {desc:"Aquisição de terneira Braford (160 kg, 8 meses)", cat:"Aquisição de animais (giro)", un:"cab.", qtd:"1", preco:"1364.8"},
-    {desc:"Transporte externo — compra e venda", cat:"Outros", un:"cab.", qtd:"1", preco:"16"},
+    {desc:"Transporte externo: compra e venda", cat:"Outros", un:"cab.", qtd:"1", preco:"16"},
     {desc:"Vermífugo e parasiticida", cat:"Sanidade", un:"cab.", qtd:"1", preco:"3.2"},
     {desc:"Sal mineral para recria", cat:"Alimentação", un:"cab.", qtd:"1", preco:"88"},
-    {desc:"Vacinas — calendário sanitário", cat:"Sanidade", un:"cab.", qtd:"1", preco:"10"},
+    {desc:"Vacinas: calendário sanitário", cat:"Sanidade", un:"cab.", qtd:"1", preco:"10"},
     {desc:"Carrapaticida e mosquicida (3 aplicações)", cat:"Sanidade", un:"cab.", qtd:"1", preco:"18"},
     {desc:"Medicamentos e outros produtos veterinários", cat:"Sanidade", un:"cab.", qtd:"1", preco:"6"},
     {desc:"Outros insumos variáveis", cat:"Outros", un:"cab.", qtd:"1", preco:"12"},
-    {desc:"Mão de obra — manejo e trato", cat:"Mão de obra", un:"cab.", qtd:"1", preco:"60"},
+    {desc:"Mão de obra: manejo e trato", cat:"Mão de obra", un:"cab.", qtd:"1", preco:"60"},
     {desc:"Serviços gerais", cat:"Mão de obra", un:"cab.", qtd:"1", preco:"10"},
     {desc:"Manutenção de máquinas e benfeitorias", cat:"Outros", un:"cab.", qtd:"1", preco:"10"},
     {desc:"Despesas administrativas", cat:"Outros", un:"cab.", qtd:"1", preco:"10"},
-    {desc:"Assistência técnica (2% — PRONAF)", cat:"Outros", un:"cab.", qtd:"1", preco:"20"},
+    {desc:"Assistência técnica (2%, PRONAF)", cat:"Outros", un:"cab.", qtd:"1", preco:"20"},
     {desc:"Custos financeiros (PRONAF 5% a.a.)", cat:"Outros", un:"cab.", qtd:"1", preco:"50"},
   ], seguro:"", ater:"", juros:""},
   p4:{bens:[
@@ -1891,7 +1900,7 @@ function toggleCredito(){
 
 const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
-  if(e.target.id==='template'){ aplicarTemplate(true); renderSteps(); }
+  if(e.target.id==='template'){ aplicarTemplate(true); if(!passosAtivos().includes(passoAtual)) irPara(0); else renderSteps(); }
   if(e.target.id==='usa-credito') toggleCredito();
   recalc();
 });

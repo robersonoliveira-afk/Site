@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#A8552E">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
 <title>Aulas em vídeo · Gestão de Custos Agropecuários</title>
-<meta name="description" content="Aulas em vídeo de Gestão de Custos e Projetos Agropecuários — Colégio Politécnico da UFSM. Assista por parte ou por assunto.">
+<meta name="description" content="Aulas em vídeo de Gestão de Custos e Projetos Agropecuários, Colégio Politécnico da UFSM. Assista por parte ou por assunto.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/aulas.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -286,7 +286,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <h1 class="title">Aulas em <em>vídeo</em></h1>
     </div>
   </div>
-  <p class="subtitle">Você já sabe produzir. Aqui você aprende a calcular se está ganhando dinheiro com isso. Vídeos curtos (3 a 5 min), conceito mais exemplo com números reais do RS — soja, arroz, videira, Hereford, Angus, leite, integrados.</p>
+  <p class="subtitle">Você já sabe produzir. Aqui você aprende a calcular se está ganhando dinheiro com isso. Vídeos curtos (3 a 5 min), conceito mais exemplo com números reais do RS: soja, arroz, videira, Hereford, Angus, leite, integrados.</p>
   <div class="meta">
     <span>6 séries</span>
     <span>12 vídeos</span>
@@ -304,7 +304,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
 <footer>
   <strong>Sobre as aulas em vídeo</strong>
-  <p style="margin-bottom:14px">Complemento em vídeo da disciplina, com identidade gaúcha — exemplos da Campanha, Serra, Planalto, Missões e Fronteira Oeste. Referências regionais: IRGA, EMATER/RS, CQFS-RS/SC, CONAB, EMBRAPA e cooperativas. Base: apostila Gestão de Custos e Projetos Agropecuários.</p>
+  <p style="margin-bottom:14px">Complemento em vídeo da disciplina, com identidade gaúcha: exemplos da Campanha, Serra, Planalto, Missões e Fronteira Oeste. Referências regionais: IRGA, EMATER/RS, CQFS-RS/SC, CONAB, EMBRAPA e cooperativas. Base: apostila Gestão de Custos e Projetos Agropecuários.</p>
   <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
 </footer>
 
@@ -327,7 +327,7 @@ const VIDEOS = [
   { s:1, mov:1, nome:"Parte 1 · Fundamentos de Gestão Agropecuária", videos:[
     { n:"1", t:"Por que trabalhar 12 meses no campo pode não sobrar lucro?",
       foco:"A diferença prática entre resultado de caixa e lucro econômico. Introdução aos três custos invisíveis (pró-labore, depreciação e custo de oportunidade), ilustrados através de um cenário prático de produção de soja.",
-      url:"https://www.youtube.com/embed/v7UmQ8v7_Eo", embed:true },
+      url:"https://www.youtube.com/embed/v7UmQ8v7_Eo", embed:true, comeceAqui:true },
     { n:"2", t:"Classificação de Custos: O Desafio na Pecuária de Leite",
       foco:"Desmistificação de Custos Fixos vs. Variáveis e Diretos vs. Indiretos. Como separar na prática o custo do concentrado (variável/direto) da manutenção estrutural da sala de ordenha (fixo/indireto).",
       url:"" }
@@ -404,7 +404,7 @@ VIDEOS.forEach(serie => {
     const focoId = `foco-${serie.s}-${idx}`;
 
     const status = embed
-      ? `<span class="vstatus live-now">no ar</span>`
+      ? (v.comeceAqui ? `<span class="vstatus live-now">comece aqui</span>` : `<span class="vstatus live-now">no ar</span>`)
       : live
       ? `<a class="vstatus go" href="${esc(v.url)}" target="_blank" rel="noopener">assistir &rarr;</a>`
       : `<span class="vstatus soon">em breve</span>`;
