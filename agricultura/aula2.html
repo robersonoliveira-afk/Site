@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="../chart.umd.min.js"></script>
 <style>
 :root{
   --papel:#F4F0E6;
@@ -90,6 +91,7 @@ ul.tight li{font-size:14.5px;gap:6px}
 
 /* fotos */
 .foto-split{display:flex;gap:30px;align-items:center;flex:1;min-height:0}
+.foto-split.inversa{flex-direction:row-reverse}
 .foto-split .img{flex:0 0 440px}
 .foto-split .img img{width:100%;height:auto;max-height:430px;object-fit:contain;border:1px solid var(--linha);box-shadow:0 2px 14px rgba(43,39,35,.14);display:block;background:#fff}
 .foto-split .legenda{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.03em;color:var(--tinta2);margin-top:8px;line-height:1.5}
@@ -137,13 +139,16 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 .tempo .picto{width:24px;height:24px;flex:0 0 auto;color:var(--terra);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* ciclo de retroalimentação */
-.ciclo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
-.ciclo .et{border:1px solid var(--linha);background:#fff;padding:14px 16px;font-size:16px;color:var(--tinta);line-height:1.4;flex:1 1 180px;min-width:150px}
-.ciclo .seta{font-family:"IBM Plex Mono",monospace;color:var(--terra);font-size:20px;flex:0 0 auto}
-.ciclo.equil .et{background:var(--oliva-claro);border-color:#CBD3BB}
-.ciclo.equil .seta{color:var(--oliva)}
 .ciclo-volta{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--terra);margin-top:10px;display:flex;align-items:center;gap:7px}
 .ciclo-volta.equil{color:var(--oliva)}
+.ciclo-svg{display:block;width:100%;max-width:800px;margin:6px auto 0}
+.ciclo-svg .cx{fill:#fff;stroke:var(--linha)}
+.ciclo-svg .ct{font-family:"IBM Plex Sans",sans-serif;font-size:15px;fill:var(--tinta)}
+.ciclo-svg .cl{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.ciclo-svg.ref .cx{fill:var(--terra-claro);stroke:#E0C4B2}
+.ciclo-svg.ref .cl{fill:var(--terra)}
+.ciclo-svg.eq .cx{fill:var(--oliva-claro);stroke:#CBD3BB}
+.ciclo-svg.eq .cl{fill:var(--oliva)}
 
 /* diagrama UPA simples */
 .upa-flow{display:flex;align-items:stretch;gap:14px;margin-top:4px}
@@ -170,6 +175,36 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 /* diagrama tres eixos, mesma propriedade */
 .eixos-svg{display:block;width:480px;max-width:100%;margin:2px auto 0}
 
+/* etiqueta de preco */
+.etiqueta-preco{display:flex;flex-direction:column;gap:3px;background:var(--mostarda-claro);border:2px solid var(--mostarda);border-radius:6px;padding:16px 24px;position:relative}
+.etiqueta-preco::before{content:"";position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:var(--papel);border:2px solid var(--mostarda)}
+.etiqueta-preco .marca{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7A5A10}
+.etiqueta-preco .valor{font-family:"Fraunces",Georgia,serif;font-size:36px;font-weight:700;color:var(--tinta);line-height:1.1;white-space:nowrap}
+.etiqueta-preco .unid{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#7A5A10}
+
+/* diagrama montante producao jusante */
+.cadeia-flow{display:flex;align-items:stretch;gap:0;margin-top:4px}
+.cadeia-flow .card{flex:1}
+.cadeia-porteira{flex:0 0 76px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.cadeia-porteira .seta{font-family:"IBM Plex Mono",monospace;color:var(--terra);font-size:22px}
+.cadeia-porteira .porteira-lbl{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);text-align:center}
+
+/* diagrama de poder num elo */
+.poder-diagrama{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:6px}
+.poder-lado{display:flex;flex-direction:column;align-items:center;gap:10px}
+.poder-lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2)}
+.poder-pontos{display:flex;flex-wrap:wrap;gap:5px;max-width:170px;justify-content:center}
+.poder-pt{width:11px;height:11px;border-radius:50%;background:var(--oliva)}
+.poder-pt.grande{width:26px;height:26px;background:var(--terra)}
+.poder-seta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--terra);text-align:center;line-height:1.4;max-width:120px}
+
+/* selos com emoji, icones das cadeias */
+.ic-badge{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;font-size:21px;line-height:1;flex:0 0 auto;margin-bottom:2px}
+.ic-badge.oliva{background:var(--oliva-claro);border:2px solid var(--oliva)}
+.ic-badge.mostarda{background:var(--mostarda-claro);border:2px solid var(--mostarda)}
+.ic-badge.terra{background:var(--terra-claro);border:2px solid var(--terra)}
+.ic-badge.sm{width:30px;height:30px;font-size:15px}
+
 /* chips eixo */
 .chip{border:1px solid var(--linha);background:var(--papel2);padding:7px 12px;font-size:14px;display:inline-block}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -178,6 +213,10 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 .rodape{display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px;padding-top:11px;border-top:1px solid var(--linha);font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2)}
 
 /* navegação */
+#tempos{position:fixed;bottom:16px;left:18px;display:flex;gap:7px;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2);z-index:20}
+#tempos .seg{width:32px;height:3px;background:var(--linha)}
+#tempos .seg.on{background:var(--terra)}
+@media print{#tempos{display:none}}
 #nav{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--tinta2);z-index:20}
 #nav button{font:inherit;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);padding:5px 11px;cursor:pointer}
 #nav button:hover{background:var(--papel2)}
@@ -212,7 +251,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   <div class="head">
     <span class="kicker">Antes de começar</span>
     <h2>Três tempos, uma noite só</h2>
-    <p class="sub">Esta é a aula que mais determina a qualidade do que vocês vão enxergar em campo.</p>
+    <p class="sub">Olhar sistêmico, propriedade como sistema e posição na cadeia, aplicados a um caso e depois ao papel pardo.</p>
   </div>
   <div class="body">
     <div class="cols c3">
@@ -232,11 +271,12 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 3 o post -->
+<!-- 3 o post e a releitura -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, o gancho. Fevereiro de 2025</span>
     <h2>17,5 mil curtidas. 922 comentários.</h2>
+    <p class="sub">Estava tudo escrito ali, nas mesmas quatro linhas.</p>
   </div>
   <div class="foto-split">
     <div class="img">
@@ -244,43 +284,27 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
       <div class="legenda">@forbesbr, 20 de fevereiro de 2025</div>
     </div>
     <div class="txt">
-      <div class="quote">
-        "Os consumidores brasileiros têm se deparado com caixas de ovos custando muito mais que o normal nas prateleiras dos supermercados. Isso é um reflexo direto da alta demanda pela proteína e também dos elevados custos de produção no setor, além das recentes ondas de calor e outros problemas que prejudicam a oferta."
+      <div class="quote">"Os consumidores brasileiros têm se deparado com caixas de ovos custando muito mais que o normal nas prateleiras dos supermercados. Isso é um reflexo direto da alta demanda pela proteína e também dos elevados custos de produção no setor, além das recentes ondas de calor e outros problemas que prejudicam a oferta."</div>
+      <div>
+        <div class="mapa-linha">
+          <span class="trecho">"alta demanda pela proteína"</span>
+          <span class="camada jusante">jusante, consumo</span>
+        </div>
+        <div class="mapa-linha">
+          <span class="trecho">"elevados custos de produção"</span>
+          <span class="camada montante">montante, milho, soja, ração</span>
+        </div>
+        <div class="mapa-linha">
+          <span class="trecho">"ondas de calor"</span>
+          <span class="camada ambiente">ambiente, atravessa as duas</span>
+        </div>
       </div>
-      <div class="nota terra">
-        <strong>Pergunta de abertura</strong>
-        Dos 922 que comentaram, quantos entendem de produção, de mercado, de custo? E quantos de nós já comentamos algo parecido sobre o preço de um alimento?
-      </div>
+      <div class="nota terra">O post diagnosticou as três camadas de um sistema alimentar em quatro linhas. Dos 922 que comentaram, quantos leram assim? O problema não é falta de informação. É falta de leitura sistêmica.</div>
     </div>
   </div>
 </section>
 
-<!-- 4 releitura -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Tempo 1, releitura</span>
-    <h2>Estava tudo escrito ali</h2>
-  </div>
-  <div class="body">
-    <div>
-      <div class="mapa-linha">
-        <span class="trecho">"alta demanda pela proteína"</span>
-        <span class="camada jusante">jusante, consumo</span>
-      </div>
-      <div class="mapa-linha">
-        <span class="trecho">"elevados custos de produção"</span>
-        <span class="camada montante">montante, milho, soja, ração</span>
-      </div>
-      <div class="mapa-linha">
-        <span class="trecho">"ondas de calor"</span>
-        <span class="camada ambiente">ambiente, atravessa as duas</span>
-      </div>
-    </div>
-    <div class="nota">O post diagnosticou as três camadas de um sistema alimentar em quatro linhas. Se estava tudo escrito ali, por que a discussão não foi sobre isso? O problema não é falta de informação. É falta de leitura sistêmica.</div>
-  </div>
-</section>
-
-<!-- 5 duas crises -->
+<!-- 4 duas crises -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, o contexto que ninguém puxou</span>
@@ -294,7 +318,8 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     <div class="txt">
       <div class="card">
         <span class="tag">Estados Unidos</span>
-        <p>Gripe aviária derruba o plantel de poedeiras: mais de <strong>166 milhões</strong> de aves abatidas desde 2022. A dúzia sai de US$ 0,80 em 2019 para um recorde de US$ 6,23 em março de 2025.</p>
+        <p>Gripe aviária derruba o plantel de poedeiras. No varejo americano, a dúzia de ovos grandes classe A chega a <strong>US$ 6,23</strong> em março de 2025, recorde da série.</p>
+        <p class="small" style="margin-top:2px">Preço médio ao consumidor, BLS, série APU0000708111.</p>
       </div>
       <div class="card oliva">
         <span class="tag">Brasil</span>
@@ -304,7 +329,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 6 quem lucrou -->
+<!-- 5 quem lucrou -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, quem lucrou com a crise americana</span>
@@ -316,23 +341,23 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
       <div class="legenda">Folha de S.Paulo, via Financial Times</div>
     </div>
     <div class="txt">
-      <p>Em 2026, o Departamento de Justiça dos Estados Unidos processou três granjas (Cal-Maine, Versova e Hickman's) por inflar, entre 2022 e 2025, a cotação de referência usada por supermercados e restaurantes no país.</p>
+      <p>Em junho de 2026, o Departamento de Justiça dos Estados Unidos e 17 procuradorias estaduais entraram com ação civil contra Cal-Maine, Versova e Hickman's por coordenarem lances, entre junho de 2022 e março de 2025, para inflar a cotação diária de ovos da Urner Barry, referência de preço nos contratos de atacado do país. As empresas negam a conduta e fecharam acordo no mesmo dia.</p>
       <div class="stats">
-        <div class="stat"><span class="v">US$ 320 mi</span><span class="l">lucro dos donos da Cal-Maine com venda de ações no auge da crise</span></div>
-        <div class="stat oliva"><span class="v">US$ 3,3 mi</span><span class="l">pagos aos estados americanos no acordo judicial</span></div>
+        <div class="stat"><span class="v">US$ 320 mi</span><span class="l">obtidos pela família fundadora da Cal-Maine ao vender sua participação, em abril de 2025</span></div>
+        <div class="stat oliva"><span class="v">US$ 3,3 mi</span><span class="l">pagos aos estados no acordo, mais doação de cerca de 53 milhões de ovos a bancos de alimentos</span></div>
       </div>
-      <p class="small">Em novembro de 2025, a Hickman's foi comprada por cerca de US$ 300 milhões pela Mantiqueira, do grupo JBS.</p>
+      <p class="small">A venda da participação ocorreu dias depois de a empresa informar ao mercado que havia recebido intimação civil do Departamento de Justiça. A Hickman's foi adquirida em novembro de 2025 pela Mantiqueira USA, joint venture entre a família Pinto, da Mantiqueira Alimentos, e a JBS. Valor não divulgado.</p>
     </div>
   </div>
 </section>
 
-<!-- 7 brasil racao -->
+<!-- 6 brasil racao -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, a crise brasileira</span>
     <h2>Sem gripe aviária, e mesmo assim mais caro</h2>
   </div>
-  <div class="foto-split">
+  <div class="foto-split inversa">
     <div class="img">
       <img src="assets/imagens/aula2-milho.jpg" alt="Colheitadeira colhendo milho seco em grão e descarregando em caminhão graneleiro">
       <div class="legenda">Colheita de milho para grão</div>
@@ -345,23 +370,85 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 8 brasil exportou -->
+<!-- 7 brasil exportou -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, o comprador novo</span>
     <h2>O produtor teve para onde vender melhor</h2>
   </div>
   <div class="body">
-    <div class="stats">
-      <div class="stat terra"><span class="v">+185%</span><span class="l">na exportação brasileira de ovos entre 2024 e 2025</span></div>
-      <div class="stat"><span class="v">≈ 17,75 mil t</span><span class="l">exportadas aos Estados Unidos em 2025, partindo de quase zero em 2024</span></div>
+    <div style="display:flex;gap:30px;align-items:center;flex:1;min-height:0">
+      <div style="flex:1;min-width:0;height:330px;position:relative">
+        <canvas id="chartExportAula2" role="img" aria-label="Gráfico de linha: exportação mensal de ovos do Brasil, total e para os Estados Unidos, janeiro de 2024 a junho de 2026"></canvas>
+      </div>
+      <div style="flex:0 0 300px;display:flex;flex-direction:column;gap:14px">
+        <div class="stats" style="margin-top:0">
+          <div class="stat terra"><span class="v">+185%</span><span class="l">na exportação brasileira de ovos entre 2024 e 2025</span></div>
+          <div class="stat"><span class="v">≈ 17,75 mil t</span><span class="l">exportadas aos Estados Unidos em 2025, partindo de quase zero em 2024</span></div>
+        </div>
+        <div class="nota">A crise americana puxou demanda direta por ovo brasileiro. Parte do ovo que iria para a gôndola nacional seguiu para o porto, mais um fator de alta em cima do milho.</div>
+      </div>
     </div>
-    <div class="nota">A crise americana não ficou só no preço do milho lá fora. Ela puxou demanda direta por ovo brasileiro. Parte do ovo que iria para a gôndola nacional seguiu para o porto, mais um fator de alta em cima do milho.</div>
-    <p class="small">O movimento perdeu força depois das tarifas dos Estados Unidos, em agosto de 2025, quando parte do volume foi redirecionada para outros destinos.</p>
+    <p class="small">NCM 0407.21.00, ovos de mesa, ComexStat/MDIC. O movimento perdeu força depois das tarifas dos Estados Unidos, em agosto de 2025, quando parte do volume foi redirecionada para outros destinos.</p>
   </div>
+  <script>
+  (function(){
+    var sec = document.currentScript.closest('section');
+    var canvas = sec.querySelector('#chartExportAula2');
+    var dados = [
+      {"month":"2024-01","total_kg":1425933,"us_kg":0},{"month":"2024-02","total_kg":1030415,"us_kg":0},
+      {"month":"2024-03","total_kg":381441,"us_kg":0},{"month":"2024-04","total_kg":681748,"us_kg":0},
+      {"month":"2024-05","total_kg":665471,"us_kg":629},{"month":"2024-06","total_kg":701774,"us_kg":219},
+      {"month":"2024-07","total_kg":777859,"us_kg":351},{"month":"2024-08","total_kg":895605,"us_kg":40},
+      {"month":"2024-09","total_kg":987971,"us_kg":0},{"month":"2024-10","total_kg":1112291,"us_kg":0},
+      {"month":"2024-11","total_kg":676936,"us_kg":0},{"month":"2024-12","total_kg":1221059,"us_kg":15552},
+      {"month":"2025-01","total_kg":1640138,"us_kg":0},{"month":"2025-02","total_kg":1363900,"us_kg":22791},
+      {"month":"2025-03","total_kg":3161495,"us_kg":1841759},{"month":"2025-04","total_kg":3307665,"us_kg":2501786},
+      {"month":"2025-05","total_kg":4665828,"us_kg":4125817},{"month":"2025-06","total_kg":5579923,"us_kg":5286231},
+      {"month":"2025-07","total_kg":4403312,"us_kg":3714429},{"month":"2025-08","total_kg":971665,"us_kg":258635},
+      {"month":"2025-09","total_kg":1237002,"us_kg":0},{"month":"2025-10","total_kg":1188732,"us_kg":742},
+      {"month":"2025-11","total_kg":1146761,"us_kg":170},{"month":"2025-12","total_kg":1444163,"us_kg":503},
+      {"month":"2026-01","total_kg":2247438,"us_kg":978},{"month":"2026-02","total_kg":1919499,"us_kg":0},
+      {"month":"2026-03","total_kg":1040800,"us_kg":1080},{"month":"2026-04","total_kg":1592914,"us_kg":59},
+      {"month":"2026-05","total_kg":1332117,"us_kg":0},{"month":"2026-06","total_kg":1963833,"us_kg":0}
+    ];
+    var chart=null;
+    function init(){
+      if(chart||typeof Chart==='undefined')return;
+      var mono="'IBM Plex Mono',monospace";
+      chart=new Chart(canvas.getContext('2d'),{
+        type:'line',
+        data:{
+          labels:dados.map(function(d){return d.month}),
+          datasets:[
+            {label:'Total exportado (t)',data:dados.map(function(d){return +(d.total_kg/1000).toFixed(1)}),borderColor:'#3D4A2A',backgroundColor:'rgba(61,74,42,0.12)',fill:true,tension:0.25,pointRadius:2,borderWidth:2},
+            {label:'Exportado para os EUA (t)',data:dados.map(function(d){return +(d.us_kg/1000).toFixed(1)}),borderColor:'#A8552E',backgroundColor:'rgba(168,85,46,0.18)',fill:true,tension:0.25,pointRadius:2,borderWidth:2}
+          ]
+        },
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          interaction:{mode:'index',intersect:false},
+          plugins:{legend:{position:'bottom',labels:{font:{family:mono,size:11},color:'#3A3833'}}},
+          scales:{
+            x:{ticks:{font:{family:mono,size:9},color:'#5C544A',maxRotation:60,minRotation:60},grid:{color:'#E8E3D3'}},
+            y:{title:{display:true,text:'toneladas/mês',font:{family:mono,size:10},color:'#5C544A'},ticks:{font:{family:mono,size:9},color:'#5C544A'},grid:{color:'#E8E3D3'}}
+          }
+        }
+      });
+    }
+    setTimeout(function(){
+      if(!chart && typeof Chart==='undefined'){
+        canvas.insertAdjacentHTML('afterend','<p class="small" style="position:absolute;inset:0;display:flex;align-items:center">A exportação brasileira de ovos aos Estados Unidos sai de praticamente zero em 2024 para cerca de 17,75 mil t em 2025, concentradas entre março e julho.</p>');
+      }
+    },1500);
+    var mo=new MutationObserver(function(){if(sec.classList.contains('on'))init()});
+    mo.observe(sec,{attributes:true,attributeFilter:['class']});
+    if(sec.classList.contains('on'))init();
+  })();
+  </script>
 </section>
 
-<!-- 9 gracyanne -->
+<!-- 8 gracyanne -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, um cálculo que virou piada</span>
@@ -380,30 +467,36 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 10 dieta ao hectare -->
+<!-- 9 dieta ao hectare -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, a conta um nível abaixo</span>
     <h2>Da dieta ao hectare</h2>
   </div>
-  <div class="body">
-    <table class="tbl">
-      <thead><tr><th>Camada</th><th>Cálculo</th><th class="num">Resultado</th></tr></thead>
-      <tbody>
-        <tr><td>Ano inteiro</td><td>40 × 365</td><td class="num">14.600 ovos</td></tr>
-        <tr><td>Equivalente humano</td><td>÷ 288 ovos/hab/ano (ABPA, 2025)</td><td class="num">51 brasileiros</td></tr>
-        <tr><td>Plantel necessário</td><td>÷ 250 ovos/ave/ano civil</td><td class="num">58 poedeiras</td></tr>
-        <tr><td>Ração</td><td>1.217 dz × 1,50 kg/dz</td><td class="num">1,83 t/ano</td></tr>
-        <tr><td>Milho, 63% da ração</td><td>1.150 kg ÷ 6,61 t/ha</td><td class="num">1.740 m²</td></tr>
-        <tr><td>Soja em grão, 30% do farelo</td><td>711 kg ÷ 3,13 t/ha</td><td class="num">2.270 m²</td></tr>
-      </tbody>
-      <tfoot><tr><td colspan="2">Terra necessária</td><td class="num">≈ 4.000 m², cerca de 56% de um campo de futebol oficial</td></tr></tfoot>
-    </table>
-    <p class="small">Coeficiente de postura: linhagem Hisex White, 250 ovos por ave por ano civil. Produtividade de milho e soja: Conab, Rio Grande do Sul, safra 2025 e 2026.</p>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-campo-futebol-ovos.jpg" alt="Campo de futebol oficial visto de cima, com a área de produção correspondente à dieta de 40 ovos por dia demarcada ao lado, aproximadamente 4.000 metros quadrados">
+      <div class="legenda">≈ 4.000 m², 56% de um campo de futebol oficial</div>
+    </div>
+    <div class="txt">
+      <table class="tbl">
+        <thead><tr><th>Camada</th><th>Cálculo</th><th class="num">Resultado</th></tr></thead>
+        <tbody>
+          <tr><td>Ano inteiro</td><td>40 × 365</td><td class="num">14.600 ovos</td></tr>
+          <tr><td>Equivalente humano</td><td>÷ 288 ovos/hab/ano (ABPA, 2025)</td><td class="num">51 brasileiros</td></tr>
+          <tr><td>Plantel necessário</td><td>÷ 250 ovos/ave/ano civil</td><td class="num">58 poedeiras</td></tr>
+          <tr><td>Ração</td><td>1.217 dz × 1,50 kg/dz</td><td class="num">1,83 t/ano</td></tr>
+          <tr><td>Milho, 63% da ração</td><td>1.150 kg ÷ 6,61 t/ha</td><td class="num">1.740 m²</td></tr>
+          <tr><td>Soja em grão</td><td>farelo, 30% da ração, em equivalente grão; 711 kg ÷ 3,13 t/ha</td><td class="num">2.270 m²</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Terra necessária</td><td class="num">≈ 4.000 m²</td></tr></tfoot>
+      </table>
+      <p class="small">Coeficiente de postura: linhagem Hisex White, 250 ovos por ave por ano civil. Produtividade de milho e soja: Conab, Rio Grande do Sul, safra 2025 e 2026. Rendimento de esmagamento da soja: Abiove.</p>
+    </div>
   </div>
 </section>
 
-<!-- 11 antes do milho -->
+<!-- 10 antes do milho -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, os elos antes da lavoura</span>
@@ -418,7 +511,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
       <p style="margin-top:0">A conta parou no milho e na soja porque são o maior custo. Não porque são o começo.</p>
       <ul class="tight">
         <li><strong>Genética</strong>, linhagem melhorada por décadas, de poucas multinacionais. A base genética do plantel brasileiro é importada.</li>
-        <li><strong>Núcleo vitamínico e mineral</strong>, cerca de 12% da ração que não é grão, com preço em dólar.</li>
+        <li><strong>Núcleo vitamínico e mineral</strong>, a fração da ração que não é milho nem farelo, com preço em dólar.</li>
         <li><strong>Sanidade</strong>, sem gripe aviária em ave comercial no Brasil por biosseguridade, não por sorte. Foi o que permitiu exportar na crise americana.</li>
         <li><strong>Embalagem, energia, frete</strong>, cada um com cadeia própria.</li>
       </ul>
@@ -426,20 +519,31 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 12 fechamento do gancho -->
+<!-- 11 fechamento do gancho -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 1, a virada</span>
     <h2>O que muda quando você olha o sistema</h2>
   </div>
   <div class="body">
-    <div class="nota oliva">O preço de um alimento nunca nasce numa causa só. Nasce no cruzamento entre o que acontece antes da porteira, como ração, genética e clima, dentro da porteira, como manejo, escala e decisão da família, e depois da porteira, como quem compra, para onde vai e o que o comprador paga.</div>
-    <p>Dezoito meses depois desse post, em julho de 2026, o Cepea registrou o preço do ovo no menor patamar real para o mês desde 2019. A mesma cadeia que empurrou o preço para cima também o trouxe de volta para baixo, quando a oferta se ajustou. É o tipo de movimento que vocês vão aprender a nomear ainda hoje.</p>
-    <p class="small">Caso completo, com dados, gráficos e fontes, disponível em: <a href="../aula-t0.html" target="_blank" rel="noopener">aula-t0.html, Do post ao hectare</a>. Material de apoio, não obrigatório para esta disciplina.</p>
+    <div style="display:flex;gap:34px;align-items:center;flex:1;min-height:0">
+      <div style="flex:1;display:flex;flex-direction:column;gap:16px">
+        <div class="nota oliva">O preço de um alimento nunca nasce numa causa só. Nasce no cruzamento entre o que acontece antes da porteira, como ração, genética e clima, dentro da porteira, como manejo, escala e decisão da família, e depois da porteira, como quem compra, para onde vai e o que o comprador paga.</div>
+        <p>Dezoito meses depois desse post, em julho de 2026, o Cepea registrou o preço do ovo no menor patamar real para o mês desde 2019. A mesma cadeia que empurrou o preço para cima também o trouxe de volta para baixo, quando a oferta se ajustou. É o tipo de movimento que vocês vão aprender a nomear ainda hoje.</p>
+      </div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:10px">
+        <div class="etiqueta-preco">
+          <span class="marca">Cepea, atacado, ovo vermelho</span>
+          <span class="valor">R$ 4,10 a 4,56</span>
+          <span class="unid">por dúzia, julho de 2026</span>
+        </div>
+        <span class="small" style="text-align:center;max-width:180px">Menor patamar real para o mês desde 2019</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- 13 sistema alimentar -->
+<!-- 12 sistema alimentar -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -458,13 +562,13 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 14 homem sociedade producao -->
+<!-- 13 homem sociedade producao -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>O homem, a sociedade e a produção de alimentos</h2>
   </div>
-  <div class="foto-split">
+  <div class="foto-split inversa">
     <div class="img">
       <img src="assets/imagens/aula2-familia-agricultura.jpg" alt="Helena Maria da Hora Xavier separa goiabas da própria propriedade para fazer polpa, agricultura familiar em Conceição do Coité, Bahia">
       <div class="legenda">Foto: Sergio Amaral/MDS, Wikimedia Commons, CC BY-SA 2.0</div>
@@ -481,7 +585,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 15 cinco pressupostos -->
+<!-- 14 cinco pressupostos -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -530,7 +634,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 16 aplicando ao ovo -->
+<!-- 15 aplicando ao ovo -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria aplicada</span>
@@ -558,7 +662,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 17 UPA como sistema -->
+<!-- 16 UPA como sistema -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -588,7 +692,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 18 fronteira -->
+<!-- 17 fronteira -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, o conceito mais subestimado</span>
@@ -612,7 +716,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 19 entradas controlaveis -->
+<!-- 18 entradas controlaveis -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -629,11 +733,11 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
         <p>Aquelas que o agricultor sofre: chuva, granizo, geada, preço do produto, política de crédito, pressão sanitária vinda de fora da propriedade.</p>
       </div>
     </div>
-    <div class="nota">Na propriedade que vocês vão visitar, o que está dentro da fronteira e o que está fora? A resposta muda conforme a pergunta que vocês fazem.</div>
+    <div class="nota">A fronteira entre as duas colunas se move. Cooperativa, contrato de entrega e escolha do momento de venda deslocam parte do preço para a coluna da esquerda, sem mudar nada na lavoura. É aí que a gestão entra.</div>
   </div>
 </section>
 
-<!-- 20 quem decide -->
+<!-- 19 quem decide -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -659,7 +763,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 21 ciclo reforco -->
+<!-- 20 ciclo reforco -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -668,19 +772,27 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
   <div class="body">
     <h3 style="font-size:16px;color:var(--terra)">Ciclo de reforço, cada volta amplifica</h3>
-    <div class="ciclo">
-      <div class="et">Lavoura ou pomar envelhecido</div>
-      <span class="seta">→</span>
-      <div class="et">Receita baixa e irregular</div>
-      <span class="seta">→</span>
-      <div class="et">Sem caixa para renovar</div>
-    </div>
-    <div class="ciclo-volta"><span>↺</span><span>e o problema piora sozinho, ano após ano</span></div>
+    <svg class="ciclo-svg ref" viewBox="0 0 860 216" role="img" aria-label="Ciclo de reforço fechado: lavoura ou pomar envelhecido leva a receita baixa e irregular, que leva a falta de caixa para renovar, que volta ao ponto de partida e agrava o envelhecimento">
+      <defs><marker id="pt-ref" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A8552E"/></marker></defs>
+      <rect class="cx" x="10" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="130" y="53" text-anchor="middle">Lavoura ou pomar</text>
+      <text class="ct" x="130" y="76" text-anchor="middle">envelhecido</text>
+      <rect class="cx" x="310" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="430" y="53" text-anchor="middle">Receita baixa</text>
+      <text class="ct" x="430" y="76" text-anchor="middle">e irregular</text>
+      <rect class="cx" x="610" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="730" y="53" text-anchor="middle">Sem caixa</text>
+      <text class="ct" x="730" y="76" text-anchor="middle">para renovar</text>
+      <path d="M256 60H304" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
+      <path d="M556 60H604" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
+      <path d="M730 104V170H130V110" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
+      <text class="cl" x="430" y="200" text-anchor="middle">cada volta agrava a anterior</text>
+    </svg>
     <div class="nota terra">O mesmo mecanismo apareceu na crise do ovo: plantel menor eleva o preço, o preço alto atrai mais demanda por importação de ovo brasileiro, e a pressão sobre a ração local aumenta ainda mais.</div>
   </div>
 </section>
 
-<!-- 22 ciclo equilibrio -->
+<!-- 21 ciclo equilibrio -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -689,19 +801,27 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
   <div class="body">
     <h3 style="font-size:16px;color:var(--oliva)">Ciclo de equilíbrio, cada volta freia</h3>
-    <div class="ciclo equil">
-      <div class="et">Produto fora do padrão comercial aumenta</div>
-      <span class="seta">→</span>
-      <div class="et">Vira processamento caseiro</div>
-      <span class="seta">→</span>
-      <div class="et">Perda cai, entra alguma receita</div>
-    </div>
-    <div class="ciclo-volta equil"><span>↺</span><span>o sistema absorve a variação sem mudar de estado</span></div>
+    <svg class="ciclo-svg eq" viewBox="0 0 860 216" role="img" aria-label="Ciclo de equilíbrio fechado: aumento de produto fora do padrão comercial leva a processamento caseiro, que reduz a perda e gera receita, o que devolve o sistema ao ponto de partida">
+      <defs><marker id="pt-eq" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D4A2A"/></marker></defs>
+      <rect class="cx" x="10" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="130" y="53" text-anchor="middle">Produto fora do padrão</text>
+      <text class="ct" x="130" y="76" text-anchor="middle">comercial aumenta</text>
+      <rect class="cx" x="310" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="430" y="53" text-anchor="middle">Vira processamento</text>
+      <text class="ct" x="430" y="76" text-anchor="middle">caseiro</text>
+      <rect class="cx" x="610" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="730" y="53" text-anchor="middle">Perda cai, entra</text>
+      <text class="ct" x="730" y="76" text-anchor="middle">alguma receita</text>
+      <path d="M256 60H304" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
+      <path d="M556 60H604" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
+      <path d="M730 104V170H130V110" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
+      <text class="cl" x="430" y="200" text-anchor="middle">cada volta freia a anterior</text>
+    </svg>
     <div class="nota oliva">Foi um ciclo de equilíbrio que trouxe o preço do ovo de volta para baixo, dezoito meses depois do post: a oferta reagiu ao preço alto, e o preço caiu.</div>
   </div>
 </section>
 
-<!-- 23 tres eixos -->
+<!-- 22 tres eixos -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -709,19 +829,18 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     <p class="sub">É o que vocês vão usar em toda saída de campo: a mesma propriedade, lida por três entradas diferentes.</p>
   </div>
   <div class="body">
-    <svg class="eixos-svg" viewBox="0 0 900 340" role="img" aria-label="Diagrama com três eixos, produtivo, social e comercialização, convergindo sobre a mesma propriedade no centro">
-      <line x1="450" y1="170" x2="450" y2="55" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
-      <line x1="450" y1="170" x2="160" y2="270" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
-      <line x1="450" y1="170" x2="740" y2="270" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
-      <circle cx="450" cy="55" r="46" fill="var(--oliva-claro)" stroke="var(--oliva)" stroke-width="2"/>
-      <text x="450" y="59" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#3F5233">Produtivo</text>
-      <circle cx="160" cy="270" r="48" fill="var(--terra-claro)" stroke="var(--terra)" stroke-width="2"/>
-      <text x="160" y="274" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#7C3D1E">Social</text>
-      <circle cx="740" cy="270" r="58" fill="var(--mostarda-claro)" stroke="var(--mostarda)" stroke-width="2"/>
-      <text x="740" y="274" text-anchor="middle" font-family="IBM Plex Sans" font-size="11.5" font-weight="600" fill="#7A5A10">Comercialização</text>
-      <circle cx="450" cy="170" r="62" fill="var(--papel2)" stroke="var(--tinta)" stroke-width="2"/>
-      <text x="450" y="166" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" letter-spacing=".04em" fill="var(--tinta2)">A</text>
-      <text x="450" y="182" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--tinta)">propriedade</text>
+    <svg class="eixos-svg" viewBox="0 0 900 400" role="img" aria-label="Diagrama com três eixos, produtivo, social e comercialização, convergindo sobre a mesma propriedade no centro">
+      <line x1="450" y1="200" x2="450" y2="78" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
+      <line x1="450" y1="200" x2="150" y2="310" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
+      <line x1="450" y1="200" x2="750" y2="310" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
+      <circle cx="450" cy="78" r="44" fill="var(--oliva-claro)" stroke="var(--oliva)" stroke-width="2"/>
+      <text x="450" y="24" text-anchor="middle" font-family="IBM Plex Sans" font-size="19" font-weight="600" fill="#3F5233">Produtivo</text>
+      <circle cx="150" cy="310" r="44" fill="var(--terra-claro)" stroke="var(--terra)" stroke-width="2"/>
+      <text x="150" y="382" text-anchor="middle" font-family="IBM Plex Sans" font-size="19" font-weight="600" fill="#7C3D1E">Social</text>
+      <circle cx="750" cy="310" r="44" fill="var(--mostarda-claro)" stroke="var(--mostarda)" stroke-width="2"/>
+      <text x="750" y="382" text-anchor="middle" font-family="IBM Plex Sans" font-size="19" font-weight="600" fill="#7A5A10">Comercialização</text>
+      <circle cx="450" cy="200" r="58" fill="var(--papel2)" stroke="var(--tinta)" stroke-width="2"/>
+      <text x="450" y="207" text-anchor="middle" font-family="IBM Plex Sans" font-size="17" font-weight="600" fill="var(--tinta)">A propriedade</text>
     </svg>
     <div class="cols c3">
       <div class="card oliva">
@@ -743,15 +862,16 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 24 tres segmentos -->
+<!-- 23 tres segmentos -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>Montante, produção e jusante</h2>
   </div>
   <div class="body">
-    <div class="cols c3">
-      <div class="card">
+    <div class="cadeia-flow">
+      <div class="card oliva">
+        <span class="ic-badge oliva" role="img" aria-label="Muda, semente">🌱</span>
         <span class="camada montante" style="margin-bottom:2px">Antes da porteira</span>
         <h3>Montante</h3>
         <ul class="tight">
@@ -760,7 +880,12 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
           <li>Assistência técnica</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="cadeia-porteira">
+        <span class="seta">→</span>
+        <span class="porteira-lbl">porteira, entra</span>
+      </div>
+      <div class="card mostarda">
+        <span class="ic-badge mostarda" role="img" aria-label="Trator">🚜</span>
         <span class="camada producao" style="margin-bottom:2px">Dentro da porteira</span>
         <h3>Produção</h3>
         <ul class="tight">
@@ -769,7 +894,12 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
           <li>Classificação e armazenagem</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="cadeia-porteira">
+        <span class="seta">→</span>
+        <span class="porteira-lbl">porteira, sai</span>
+      </div>
+      <div class="card terra">
+        <span class="ic-badge terra" role="img" aria-label="Mercado, consumidor">🛒</span>
         <span class="camada jusante" style="margin-bottom:2px">Depois da porteira</span>
         <h3>Jusante</h3>
         <ul class="tight">
@@ -782,7 +912,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 25 poder num elo -->
+<!-- 24 poder num elo -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -790,38 +920,36 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
   <div class="body">
     <p class="sub" style="margin-top:0">Conte os atores dos dois lados de uma negociação. Onde há muitos de um lado e poucos do outro, o preço se forma do lado dos poucos.</p>
-    <div class="nota">Foi exatamente isso que o processo do Departamento de Justiça americano apurou: poucas granjas concentravam poder suficiente para inflar a cotação de referência usada por toda a cadeia. A regra vale a montante e a jusante, em qualquer produto.</div>
-  </div>
-</section>
-
-<!-- 26 cadeias longas e curtas -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Tempo 2, teoria</span>
-    <h2>Nem toda cadeia tem o mesmo tamanho</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card">
-        <span class="tag">Cadeia longa</span>
-        <h3>Commodities de exportação</h3>
-        <p>Muitos elos entre produtor e consumidor final. Preço formado longe da propriedade, em bolsa ou negociação entre grandes atores. Escala compensa a distância do preço.</p>
+    <div class="poder-diagrama">
+      <div class="poder-lado">
+        <span class="poder-lbl">Muitos produtores</span>
+        <div class="poder-pontos">
+          <span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span>
+          <span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span>
+          <span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span><span class="poder-pt"></span>
+        </div>
       </div>
-      <div class="card oliva">
-        <span class="tag">Cadeia curta</span>
-        <h3>Feira, venda direta, cooperativa local</h3>
-        <p>Poucos elos, às vezes nenhum, entre produtor e consumidor. O produtor fica com mais margem, mas paga com o próprio trabalho comercial: entregar, formalizar, manter regularidade.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <span class="ic-badge mostarda" role="img" aria-label="Preço">💰</span>
+        <span class="poder-seta">o preço se forma aqui →</span>
+      </div>
+      <div class="poder-lado">
+        <span class="poder-lbl">Poucos compradores</span>
+        <div class="poder-pontos">
+          <span class="poder-pt grande"></span><span class="poder-pt grande"></span><span class="poder-pt grande"></span>
+        </div>
       </div>
     </div>
-    <div class="nota">Cadeias longas e curtas convivem no Rio Grande do Sul, muitas vezes na mesma região, para produtos diferentes. Não existe uma melhor que a outra. Existem trocas diferentes.</div>
+    <div class="nota">Foi isso que o processo do Departamento de Justiça americano apurou: poucas granjas concentravam poder suficiente para mover a cotação de referência de toda a cadeia. A regra vale a montante e a jusante. No leite gaúcho, milhares de produtores entregam a um número pequeno de indústrias e cooperativas em cada região; no vinho, a mesma pergunta muda de resposta conforme o produtor entrega uva à cantina ou vende a garrafa na propriedade.</div>
   </div>
 </section>
 
-<!-- 27 exemplo RS -->
+<!-- 25 cadeias longas e curtas, com fotos RS -->
 <section class="slide">
   <div class="head">
-    <span class="kicker">Tempo 2, exemplo gaúcho</span>
-    <h2>Duas cadeias do Rio Grande do Sul, lado a lado</h2>
+    <span class="kicker">Tempo 2, teoria e exemplo gaúcho</span>
+    <h2>Nem toda cadeia tem o mesmo tamanho</h2>
+    <p class="sub">Cadeia longa: muitos elos, preço formado longe da propriedade, escala compensa a distância. Cadeia curta: poucos elos, mais margem, mais trabalho comercial. Duas cadeias do Rio Grande do Sul, lado a lado.</p>
   </div>
   <div class="body">
     <div class="fotos-par">
@@ -834,15 +962,16 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
         <figcaption><strong>Polifeira do Agricultor, cadeia curta.</strong> Feira semanal no campus da UFSM, em Santa Maria, com venda direta do produtor ao consumidor.</figcaption>
       </figure>
     </div>
+    <div class="nota">Cadeias longas e curtas convivem no Rio Grande do Sul, muitas vezes na mesma região, para produtos diferentes. Não existe uma melhor que a outra. Existem trocas diferentes.</div>
   </div>
 </section>
 
-<!-- 28 preparacao cadeia uva -->
+<!-- 26 preparacao cadeia uva -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, preparação da saída</span>
-    <h2>A cadeia da uva entra aqui de propósito</h2>
-    <p class="sub">É o contexto das duas propriedades que a turma vai visitar.</p>
+    <h2>A cadeia da uva no Rio Grande do Sul</h2>
+    <p class="sub">Dois arranjos da mesma cadeia. O das visitas é o segundo.</p>
   </div>
   <div class="foto-split">
     <div class="img">
@@ -863,10 +992,10 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 29 atividade -->
+<!-- 27 atividade -->
 <section class="slide">
   <div class="head">
-    <span class="kicker">Tempo 3, prática. Papel pardo e canetões</span>
+    <span class="kicker">Tempo 3</span>
     <h2>Uma propriedade, dois olhares, um cartaz só</h2>
   </div>
   <div class="body">
@@ -886,7 +1015,42 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 30 fechamento -->
+<!-- 28 exemplo de cartaz -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 3, exemplo</span>
+    <h2>Uma propriedade mista, grãos no verão e boi no inverno</h2>
+    <p class="sub">Grãos no verão, boi no inverno, horta, ovos e leite para casa. O mesmo desenho que vocês vão fazer: entradas, subsistemas, saídas, e a posição na cadeia.</p>
+  </div>
+  <div class="body">
+    <div class="upa-flow">
+      <div class="lado">
+        <span class="ic-badge oliva sm" role="img" aria-label="Insumo">🌱</span>
+        <span class="camada montante" style="align-self:flex-start">Montante</span>
+        <p>Sementes de milho, soja e pastagem de inverno, bezerros e garrotes para engorda, adubo, calcário, crédito rural (Pronaf)</p>
+      </div>
+      <div class="upa-box">
+        <span class="rot">Propriedade mista, fronteira</span>
+        <div class="fam">Família, centro de decisão</div>
+        <div class="upa-sub">
+          <div><b>🌽 Verão</b>Lavoura de milho e soja</div>
+          <div><b>🐄 Inverno</b>Pastagem e engorda de bovinos</div>
+          <div><b>🥬 Horta</b>Hortaliças, autoconsumo</div>
+          <div><b>🥚 Aves</b>Ovos, autoconsumo</div>
+          <div><b>🥛 Vaca leiteira</b>Leite, autoconsumo</div>
+        </div>
+      </div>
+      <div class="lado">
+        <span class="ic-badge terra sm" role="img" aria-label="Mercado">🛒</span>
+        <span class="camada jusante" style="align-self:flex-start">Jusante</span>
+        <p>Grãos para cooperativa, boi gordo para frigorífico ou leilão. Horta, ovos e leite ficam na família, não entram na cadeia comercial.</p>
+      </div>
+    </div>
+    <div class="ciclo-volta equil"><span>↺</span><span>esterco dos bovinos e das aves vira adubo da lavoura e da pastagem, fecha o ciclo dentro da fronteira</span></div>
+  </div>
+</section>
+
+<!-- 29 fechamento -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Hoje você sai sabendo</span>
@@ -920,9 +1084,10 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 
 <div id="zona-esq" aria-hidden="true"></div>
 <div id="zona-dir" aria-hidden="true"></div>
+<div id="tempos" aria-hidden="true"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span id="tempo-lbl"></span></div>
 <div id="nav">
   <button id="ant" aria-label="Slide anterior">←</button>
-  <span id="cont" class="mono">1 / 30</span>
+  <span id="cont" class="mono">1 / 29</span>
   <button id="prox" aria-label="Próximo slide">→</button>
 </div>
 
@@ -930,11 +1095,16 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 (function(){
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var i = 0, palco = document.getElementById('palco'), cont = document.getElementById('cont');
+  var segs = Array.prototype.slice.call(document.querySelectorAll('#tempos .seg'));
+  var tlbl = document.getElementById('tempo-lbl');
 
   function mostra(n){
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
     cont.textContent = (i + 1) + ' / ' + slides.length;
+    var t = (i >= 2 && i <= 10) ? 1 : ((i >= 11 && i <= 25) ? 2 : ((i >= 26 && i <= 27) ? 3 : 0));
+    segs.forEach(function(s, k){ s.classList.toggle('on', t > 0 && k < t); });
+    tlbl.textContent = t ? 'tempo ' + t : '';
     if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
   }
   function escala(){
