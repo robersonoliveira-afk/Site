@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aula 2, abordagem sistêmica, sistemas alimentares e cadeias produtivas, 2026/2</title>
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/agricultura/aula2.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#F4F0E6;
+  --papel2:#EDE7D8;
+  --papel3:#E4DCC8;
+  --tinta:#2B2723;
+  --tinta2:#5C544A;
+  --oliva:#3D4A2A;
+  --oliva-claro:#E2E6D6;
+  --terra:#A8552E;
+  --terra-claro:#F0DFD4;
+  --mostarda:#B89233;
+  --mostarda-claro:#F2E7CB;
+  --linha:#D6CCB6;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--papel3);color:var(--tinta);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+#palco{width:1280px;height:720px;transform-origin:center center;position:relative}
+
+.slide{
+  position:absolute;inset:0;background:var(--papel);
+  padding:52px 72px 56px;display:none;flex-direction:column;
+  box-shadow:0 2px 22px rgba(43,39,35,.14);
+}
+.slide.on{display:flex}
+
+/* tipografia */
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.08;margin:0}
+h1{font-size:50px;letter-spacing:-.015em}
+h2{font-size:34px;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600;line-height:1.25}
+p{margin:0;font-size:17px;line-height:1.5;color:var(--tinta)}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+.rule{height:3px;width:64px;background:var(--tinta);margin:14px 0 0}
+.head{margin-bottom:20px}
+.head h2{margin-top:6px}
+.sub{color:var(--tinta2);font-size:16px;margin-top:10px;max-width:78ch}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:0}
+.body.top{justify-content:flex-start}
+.small{font-size:14px;color:var(--tinta2);line-height:1.5}
+.mono{font-family:"IBM Plex Mono",monospace}
+em{font-style:normal;color:var(--terra);font-weight:500}
+strong{font-weight:600}
+a{color:var(--terra)}
+
+/* nota destacada */
+.nota{border-left:3px solid var(--mostarda);background:var(--mostarda-claro);padding:14px 18px;font-size:15px;line-height:1.5}
+.nota.oliva{border-color:var(--oliva);background:var(--oliva-claro)}
+.nota.terra{border-color:var(--terra);background:var(--terra-claro)}
+.nota strong{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2);margin-bottom:5px;font-weight:500}
+
+/* citação / post */
+.quote{border:1px solid var(--linha);background:#fff;padding:16px 20px;font-size:16px;line-height:1.5;max-width:74ch}
+.quote .fonte{display:block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--tinta2);margin-top:9px}
+
+/* colunas e cartões */
+.cols{display:grid;gap:16px}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.c5{grid-template-columns:repeat(5,1fr)}
+.card{border:1px solid var(--linha);background:var(--papel2);padding:16px 18px;display:flex;flex-direction:column;gap:7px}
+.card .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta2)}
+.card p{font-size:14.5px;line-height:1.48}
+.card.terra{background:var(--terra-claro);border-color:#E0C4B2}
+.card.oliva{background:var(--oliva-claro);border-color:#CBD3BB}
+.card.mostarda{background:var(--mostarda-claro);border-color:#E3D3A8}
+
+/* listas */
+ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+ul li{position:relative;padding-left:18px;font-size:15.5px;line-height:1.45}
+ul li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:2px;background:var(--terra)}
+ul.tight li{font-size:14.5px;gap:6px}
+
+/* fotos */
+.foto-split{display:flex;gap:30px;align-items:center;flex:1;min-height:0}
+.foto-split .img{flex:0 0 440px}
+.foto-split .img img{width:100%;height:auto;max-height:430px;object-fit:contain;border:1px solid var(--linha);box-shadow:0 2px 14px rgba(43,39,35,.14);display:block;background:#fff}
+.foto-split .legenda{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.03em;color:var(--tinta2);margin-top:8px;line-height:1.5}
+.foto-split .txt{flex:1;display:flex;flex-direction:column;gap:12px}
+.fotos-par{display:flex;gap:24px;flex:1}
+.fotos-par figure{flex:1;margin:0;display:flex;flex-direction:column}
+.fotos-par img{width:100%;height:260px;object-fit:cover;border:1px solid var(--linha);display:block}
+.fotos-par figcaption{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--tinta2);margin-top:8px;line-height:1.4}
+
+/* camadas da cadeia */
+.camadas{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
+.camada{display:inline-flex;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em;padding:5px 10px;border-radius:2px;white-space:nowrap}
+.camada.montante{background:var(--oliva-claro);color:#3F5233}
+.camada.producao{background:var(--mostarda-claro);color:#7A5A10}
+.camada.jusante{background:var(--terra-claro);color:#7C3D1E}
+.camada.ambiente{background:var(--papel3);color:var(--tinta2)}
+
+/* mapeamento post -> camadas */
+.mapa-linha{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border-bottom:1px solid var(--linha);padding:9px 0}
+.mapa-linha:first-child{padding-top:0}
+.mapa-linha .trecho{font-size:15.5px;font-style:italic;color:var(--tinta)}
+
+/* estatísticas */
+.stats{display:flex;gap:20px;flex-wrap:wrap;margin-top:4px}
+.stat{border-top:3px solid var(--terra);padding-top:8px;flex:1 1 145px}
+.stat .v{font-family:"Fraunces",Georgia,serif;font-size:28px;font-weight:600;line-height:1;color:var(--tinta)}
+.stat .l{font-size:12px;color:var(--tinta2);margin-top:5px;line-height:1.35}
+.stat.oliva{border-color:var(--oliva)}
+.stat.mostarda{border-color:var(--mostarda)}
+
+/* tabela simples */
+table.tbl{border-collapse:collapse;width:100%;font-size:14px}
+table.tbl th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);text-align:left;padding:6px 10px;border-bottom:2px solid var(--linha)}
+table.tbl td{padding:8px 10px;border-bottom:1px solid var(--linha);color:var(--tinta2)}
+table.tbl td:first-child{color:var(--tinta);font-weight:500}
+table.tbl td.num{text-align:right;font-family:"IBM Plex Mono",monospace;color:var(--tinta)}
+table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tinta);border-top:2px solid var(--oliva)}
+
+/* pressupostos / tempos */
+.tempos{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.tempo{border-top:2px solid var(--tinta);padding-top:11px;display:flex;flex-direction:column;gap:5px}
+.tempo .n{font-family:"Fraunces",Georgia,serif;font-size:26px;line-height:1;color:var(--terra)}
+.tempo p{font-size:12.5px;line-height:1.38;color:var(--tinta2)}
+
+/* ciclo de retroalimentação */
+.ciclo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
+.ciclo .et{border:1px solid var(--linha);background:#fff;padding:14px 16px;font-size:16px;color:var(--tinta);line-height:1.4;flex:1 1 180px;min-width:150px}
+.ciclo .seta{font-family:"IBM Plex Mono",monospace;color:var(--terra);font-size:20px;flex:0 0 auto}
+.ciclo.equil .et{background:var(--oliva-claro);border-color:#CBD3BB}
+.ciclo.equil .seta{color:var(--oliva)}
+.ciclo-volta{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--terra);margin-top:10px;display:flex;align-items:center;gap:7px}
+.ciclo-volta.equil{color:var(--oliva)}
+
+/* diagrama UPA simples */
+.upa-flow{display:flex;align-items:stretch;gap:14px;margin-top:4px}
+.upa-flow .lado{flex:0 0 165px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.upa-flow .lado .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2)}
+.upa-flow .lado p{font-size:13px;line-height:1.4;color:var(--tinta2)}
+.upa-box{flex:1;border:2px solid var(--oliva);background:var(--oliva-claro);border-radius:4px;padding:16px 18px;position:relative}
+.upa-box .rot{position:absolute;top:-10px;left:16px;background:var(--papel);padding:0 8px;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--oliva)}
+.upa-box .fam{background:var(--tinta);color:var(--papel);text-align:center;padding:9px;border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.upa-sub{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.upa-sub div{background:#fff;border:1px solid #CBD3BB;border-radius:3px;padding:8px 8px;text-align:center;font-size:12px;color:var(--tinta2);line-height:1.3}
+.upa-sub div b{display:block;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta2);margin-bottom:3px}
+
+/* chips eixo */
+.chip{border:1px solid var(--linha);background:var(--papel2);padding:7px 12px;font-size:14px;display:inline-block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* rodapé */
+.rodape{display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px;padding-top:11px;border-top:1px solid var(--linha);font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2)}
+
+/* navegação */
+#nav{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--tinta2);z-index:20}
+#nav button{font:inherit;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);padding:5px 11px;cursor:pointer}
+#nav button:hover{background:var(--papel2)}
+#nav button:focus-visible,.slide a:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+#zona-esq,#zona-dir{position:fixed;top:0;bottom:0;width:12%;z-index:10;cursor:pointer}
+#zona-esq{left:0}#zona-dir{right:0}
+@media print{body{display:block;overflow:visible}#palco{width:auto;height:auto;transform:none!important}.slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;page-break-after:always}#nav,#zona-esq,#zona-dir{display:none}}
+</style>
+</head>
+<body>
+
+<div id="palco">
+
+<!-- 1 capa -->
+<section class="slide on">
+  <div class="body">
+    <div>
+      <span class="kicker">CPSEA101 · Técnico em Agricultura · Aula 2 de 14 · 12/08</span>
+      <h1>Abordagem sistêmica, sistemas alimentares e cadeias produtivas</h1>
+      <div class="rule"></div>
+    </div>
+    <p style="font-family:'Fraunces',Georgia,serif;font-size:21px;line-height:1.4;color:var(--oliva);max-width:46ch;margin-top:14px">Duas coisas escondidas na mesma legenda: o sistema que você vai aprender a desenhar, e a cadeia que decide o preço dele.</p>
+    <div class="cols c3" style="margin-top:8px">
+      <div class="card"><span class="tag">Docentes</span><h3 style="font-size:15px">Róberson e Ezequiel</h3></div>
+      <div class="card"><span class="tag">Formato</span><h3 style="font-size:15px">Presencial, 19h às 22h</h3></div>
+      <div class="card"><span class="tag">Entrega</span><h3 style="font-size:15px">Nenhuma. Cartaz construído em aula</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 roteiro -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Antes de começar</span>
+    <h2>Três tempos, uma noite só</h2>
+    <p class="sub">Esta é a aula que mais determina a qualidade do que vocês vão enxergar em campo. Por isso ocupa a noite inteira, com os dois docentes.</p>
+  </div>
+  <div class="body">
+    <div class="cols c3">
+      <div class="card terra">
+        <span class="tag">≈ 60 min</span>
+        <h3>O gancho</h3>
+        <p>Um post, 922 comentários, e as camadas de um sistema alimentar que já estavam escritas nele.</p>
+      </div>
+      <div class="card oliva">
+        <span class="tag">≈ 90 min</span>
+        <h3>A teoria</h3>
+        <p>Os pressupostos do olhar sistêmico, a propriedade como sistema, e os três segmentos de qualquer cadeia.</p>
+      </div>
+      <div class="card mostarda">
+        <span class="tag">≈ 30 min</span>
+        <h3>O papel pardo</h3>
+        <p>Em grupo: desenhar uma propriedade e posicioná-la na cadeia, no mesmo cartaz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 o post -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, o gancho. Fevereiro de 2025</span>
+    <h2>17,5 mil curtidas. 922 comentários.</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-post-ovo.png" alt="Post do Instagram de @forbesbr perguntando o que está acontecendo com o preço dos ovos, com 17,5 mil curtidas e 922 comentários, 20 de fevereiro de 2025">
+      <div class="legenda">@forbesbr, 20 de fevereiro de 2025</div>
+    </div>
+    <div class="txt">
+      <div class="quote">
+        "Os consumidores brasileiros têm se deparado com caixas de ovos custando muito mais que o normal nas prateleiras dos supermercados. Isso é um reflexo direto da alta demanda pela proteína e também dos elevados custos de produção no setor, além das recentes ondas de calor e outros problemas que prejudicam a oferta."
+      </div>
+      <div class="nota terra">
+        <strong>Pergunta de abertura</strong>
+        Dos 922 que comentaram, quantos entendem de produção, de mercado, de custo? E quantos de nós já comentamos algo parecido sobre o preço de um alimento?
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 releitura -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, releitura</span>
+    <h2>Estava tudo escrito ali</h2>
+  </div>
+  <div class="body">
+    <div>
+      <div class="mapa-linha">
+        <span class="trecho">"alta demanda pela proteína"</span>
+        <span class="camada jusante">jusante, consumo</span>
+      </div>
+      <div class="mapa-linha">
+        <span class="trecho">"elevados custos de produção"</span>
+        <span class="camada montante">montante, milho, soja, ração</span>
+      </div>
+      <div class="mapa-linha">
+        <span class="trecho">"ondas de calor"</span>
+        <span class="camada ambiente">ambiente, atravessa as duas</span>
+      </div>
+    </div>
+    <div class="nota">O post diagnosticou as três camadas de um sistema alimentar em quatro linhas. Se estava tudo escrito ali, por que a discussão não foi sobre isso? O problema não é falta de informação. É falta de leitura sistêmica.</div>
+  </div>
+</section>
+
+<!-- 5 duas crises -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, o contexto que ninguém puxou</span>
+    <h2>Duas crises, mesmo ano, causas diferentes</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-crise-eua.png" alt="Publicação do SBT News sobre o preço do ovo disparando nos Estados Unidos, com prateleiras vazias e limite de compra por pessoa, fevereiro de 2025">
+      <div class="legenda">SBT News, 11 de fevereiro de 2025</div>
+    </div>
+    <div class="txt">
+      <div class="card">
+        <span class="tag">Estados Unidos</span>
+        <p>Gripe aviária derruba o plantel de poedeiras: mais de <strong>166 milhões</strong> de aves abatidas desde 2022. A dúzia sai de US$ 0,80 em 2019 para um recorde de US$ 6,23 em março de 2025.</p>
+      </div>
+      <div class="card oliva">
+        <span class="tag">Brasil</span>
+        <p>O país <strong>não</strong> registrou gripe aviária em aves comerciais. Mesmo assim o ovo encareceu, porque a ração ficou mais cara: o milho subiu, com a área plantada na menor da série histórica da Conab.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 quem lucrou -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, quem lucrou com a crise americana</span>
+    <h2>Mesma crise, custo para uns, lucro para outros</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-lucro-eua.png" alt="Manchete da Folha de S.Paulo, via Financial Times: donos da maior produtora de ovos dos EUA lucraram 320 milhões de dólares com venda de ações após alta de preços; Justiça afirma que a disparada resultou de manipulação de mercado pela Cal-Maine e outras rivais">
+      <div class="legenda">Folha de S.Paulo, via Financial Times</div>
+    </div>
+    <div class="txt">
+      <p>Em 2026, o Departamento de Justiça dos Estados Unidos processou três granjas (Cal-Maine, Versova e Hickman's) por inflar, entre 2022 e 2025, a cotação de referência usada por supermercados e restaurantes no país.</p>
+      <div class="stats">
+        <div class="stat"><span class="v">US$ 320 mi</span><span class="l">lucro dos donos da Cal-Maine com venda de ações no auge da crise</span></div>
+        <div class="stat oliva"><span class="v">US$ 3,3 mi</span><span class="l">pagos aos estados americanos no acordo judicial</span></div>
+      </div>
+      <p class="small">Em novembro de 2025, a Hickman's foi comprada por cerca de US$ 300 milhões pela Mantiqueira, do grupo JBS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 brasil racao -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, a crise brasileira</span>
+    <h2>Sem gripe aviária, e mesmo assim mais caro</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-milho.jpg" alt="Colheitadeira colhendo milho seco em grão e descarregando em caminhão graneleiro">
+      <div class="legenda">Colheita de milho para grão</div>
+    </div>
+    <div class="txt">
+      <p>A alta brasileira nasceu na ração, não no aviário. O milho encareceu, com a área de milho verão na menor da série histórica da Conab, desde 1976 e 1977.</p>
+      <div class="nota oliva">Caixa de 30 dúzias de ovos vermelhos foi de R$ 171 para R$ 258 em Belo Horizonte, entre janeiro e fevereiro de 2025, segundo o Cepea, da Esalq/USP.</div>
+      <p class="small">A ração é o maior custo de produção de ovos, e o milho é a maior fração da ração. Quando o milho sobe, o ovo sobe, mesmo sem nenhum problema sanitário no aviário.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 brasil exportou -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, o comprador novo</span>
+    <h2>O produtor teve para onde vender melhor</h2>
+  </div>
+  <div class="body">
+    <div class="stats">
+      <div class="stat terra"><span class="v">+185%</span><span class="l">na exportação brasileira de ovos entre 2024 e 2025</span></div>
+      <div class="stat"><span class="v">≈ 17,75 mil t</span><span class="l">exportadas aos Estados Unidos em 2025, partindo de quase zero em 2024</span></div>
+    </div>
+    <div class="nota">A crise americana não ficou só no preço do milho lá fora. Ela puxou demanda direta por ovo brasileiro. Parte do ovo que iria para a gôndola nacional seguiu para o porto, mais um fator de alta em cima do milho.</div>
+    <p class="small">O movimento perdeu força depois das tarifas dos Estados Unidos, em agosto de 2025, quando parte do volume foi redirecionada para outros destinos.</p>
+  </div>
+</section>
+
+<!-- 9 gracyanne -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, um cálculo que virou piada</span>
+    <h2>40 ovos por dia</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-gracyanne.jpg" alt="Gracyanne Barbosa reagindo ao preço dos ovos num mercado, e posando com bandejas de ovos em outra publicação">
+      <div class="legenda">Gracyanne Barbosa e os ovos, antes e depois de virar assunto</div>
+    </div>
+    <div class="txt">
+      <p class="sub" style="margin-top:0">No BBB25, a atriz e fisiculturista Gracyanne Barbosa foi a única pessoa desta história inteira que fez uma conta em vídeo, calculando quantos ovos precisaria levar para casa se ficasse confinada por três meses.</p>
+      <div class="quote">"40 ovos por dia, vezes 7 dias na semana, vezes 15 semanas." <span class="fonte">Chegando a 4.200 ovos, em vídeo publicado nas redes durante o BBB25, janeiro de 2025</span></div>
+      <p class="small">40 ovos por dia é uma afirmação de dieta extrema que circulou sem verificação nenhuma. Serve aqui como âncora de cálculo, não como modelo nutricional. Ela parou na primeira camada. E se a gente não parar aqui?</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 dieta ao hectare -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, a conta um nível abaixo</span>
+    <h2>Da dieta ao hectare</h2>
+  </div>
+  <div class="body">
+    <table class="tbl">
+      <thead><tr><th>Camada</th><th>Cálculo</th><th class="num">Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Ano inteiro</td><td>40 × 365</td><td class="num">14.600 ovos</td></tr>
+        <tr><td>Equivalente humano</td><td>÷ 288 ovos/hab/ano (ABPA, 2025)</td><td class="num">51 brasileiros</td></tr>
+        <tr><td>Plantel necessário</td><td>÷ 250 ovos/ave/ano civil</td><td class="num">58 poedeiras</td></tr>
+        <tr><td>Ração</td><td>1.217 dz × 1,50 kg/dz</td><td class="num">1,83 t/ano</td></tr>
+        <tr><td>Milho, 63% da ração</td><td>1.150 kg ÷ 6,61 t/ha</td><td class="num">1.740 m²</td></tr>
+        <tr><td>Soja em grão, 30% do farelo</td><td>711 kg ÷ 3,13 t/ha</td><td class="num">2.270 m²</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">Terra necessária</td><td class="num">≈ 4.000 m², cerca de 56% de um campo de futebol oficial</td></tr></tfoot>
+    </table>
+    <p class="small">Coeficiente de postura: linhagem Hisex White, 250 ovos por ave por ano civil. Produtividade de milho e soja: Conab, Rio Grande do Sul, safra 2025 e 2026.</p>
+  </div>
+</section>
+
+<!-- 11 antes do milho -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, os elos antes da lavoura</span>
+    <h2>E antes do milho?</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-cadeia-ilustracao.jpg" alt="Ilustração da cadeia produtiva do ovo antes da lavoura: melhoramento genético em laboratório, mistura de núcleo vitamínico mineral, plantio mecanizado de milho, biosseguridade no acesso ao galpão, aviário climatizado e empacotamento dos ovos">
+      <div class="legenda">Os elos que não aparecem na dúzia</div>
+    </div>
+    <div class="txt">
+      <p style="margin-top:0">A conta parou no milho e na soja porque são o maior custo. Não porque são o começo.</p>
+      <ul class="tight">
+        <li><strong>Genética</strong>, linhagem melhorada por décadas, de poucas multinacionais. A base genética do plantel brasileiro é importada.</li>
+        <li><strong>Núcleo vitamínico e mineral</strong>, cerca de 12% da ração que não é grão, com preço em dólar.</li>
+        <li><strong>Sanidade</strong>, sem gripe aviária em ave comercial no Brasil por biosseguridade, não por sorte. Foi o que permitiu exportar na crise americana.</li>
+        <li><strong>Embalagem, energia, frete</strong>, cada um com cadeia própria.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 12 fechamento do gancho -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, a virada</span>
+    <h2>O que muda quando você olha o sistema</h2>
+  </div>
+  <div class="body">
+    <div class="nota oliva">O preço de um alimento nunca nasce numa causa só. Nasce no cruzamento entre o que acontece antes da porteira, como ração, genética e clima, dentro da porteira, como manejo, escala e decisão da família, e depois da porteira, como quem compra, para onde vai e o que o comprador paga.</div>
+    <p>Dezoito meses depois desse post, em julho de 2026, o Cepea registrou o preço do ovo no menor patamar real para o mês desde 2019. A mesma cadeia que empurrou o preço para cima também o trouxe de volta para baixo, quando a oferta se ajustou. É o tipo de movimento que vocês vão aprender a nomear ainda hoje.</p>
+    <p class="small">Caso completo, com dados, gráficos e fontes, disponível em: <a href="../aula-t0.html" target="_blank" rel="noopener">aula-t0.html, Do post ao hectare</a>. Material de apoio, não obrigatório para esta disciplina.</p>
+  </div>
+</section>
+
+<!-- 13 sistema alimentar -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>O que é um sistema alimentar</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-sistema-alimentar.jpg" alt="Diagrama circular de um sistema alimentar, com os sistemas biológico, econômico, de saúde, político e social organizados ao redor de um núcleo de produção agrícola e consumo, conectados por entradas e saídas">
+      <div class="legenda">Adaptado de Food System Map, Nourish</div>
+    </div>
+    <div class="txt">
+      <p style="margin-top:0">Um sistema alimentar reúne tudo que produz, transforma, distribui e consome alimentos numa sociedade, junto com o ambiente, a economia, a política e a saúde que atravessam esse processo.</p>
+      <p>O caso do ovo mostrou isso na prática: genética e clima do lado biológico, custo e exportação do lado econômico, hábito alimentar do lado social, tudo entrelaçado numa única caixa de ovos no mercado.</p>
+      <p class="small">A cadeia produtiva de um único produto, que veremos daqui a pouco, é um recorte dentro desse sistema maior.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 14 homem sociedade producao -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>O homem, a sociedade e a produção de alimentos</h2>
+  </div>
+  <div class="body">
+    <p>Produzir alimento nunca foi só uma técnica. Desde as primeiras roças, a forma de produzir organiza quem trabalha, quem decide, quem come e quem sobra fora da mesa.</p>
+    <div class="cols c3">
+      <div class="card">
+        <span class="tag">Escala do indivíduo</span>
+        <p>O que cada família planta, cria e consome, e o que sobra para vender.</p>
+      </div>
+      <div class="card oliva">
+        <span class="tag">Escala da região</span>
+        <p>Como um território se especializa, e o que isso cria de dependência entre regiões.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">Escala do país</span>
+        <p>Política agrícola, comércio exterior, segurança alimentar como questão de estado.</p>
+      </div>
+    </div>
+    <div class="nota">Toda sistematização de experiência que vocês vão fazer neste semestre está, em algum grau, contando essa relação entre uma família e a produção de alimentos, numa escala pequena e concreta.</div>
+  </div>
+</section>
+
+<!-- 15 cinco pressupostos -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Os cinco pressupostos do olhar sistêmico</h2>
+    <p class="sub">Trocar o olhar de lavoura isolada pelo olhar de sistema começa aqui.</p>
+  </div>
+  <div class="body">
+    <div class="tempos">
+      <div class="tempo"><span class="n">1</span><h3 style="font-size:15px">Interação</h3><p>A ação entre elementos é recíproca. Não é só A sobre B. É A sobre B e B sobre A.</p></div>
+      <div class="tempo"><span class="n">2</span><h3 style="font-size:15px">Complexidade</h3><p>Não é complicação. Depende da quantidade de elementos e dos tipos de relação entre eles.</p></div>
+      <div class="tempo"><span class="n">3</span><h3 style="font-size:15px">Totalidade</h3><p>O conjunto não se explica só pelas partes isoladas.</p></div>
+      <div class="tempo"><span class="n">4</span><h3 style="font-size:15px">Hierarquia</h3><p>Há escalas de abrangência. Subindo na escala, os sistemas ficam mais complexos.</p></div>
+      <div class="tempo"><span class="n">5</span><h3 style="font-size:15px">Organização</h3><p>Um lado estrutural, o arranjo, e um lado funcional, o que faz o sistema operar.</p></div>
+    </div>
+    <div class="nota">Há coerência nos atos do agricultor mesmo quando eles contrariam a recomendação técnica. Encontrar essa coerência, e não julgá-la, é a postura que a disciplina exige.</div>
+  </div>
+</section>
+
+<!-- 16 aplicando ao ovo -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria aplicada</span>
+    <h2>Os cinco pressupostos, no caso do ovo</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card">
+        <span class="tag">Interação</span>
+        <p>O preço do milho afeta o preço do ovo, e a demanda por ovo afeta a demanda por milho. A relação anda nos dois sentidos.</p>
+      </div>
+      <div class="card oliva">
+        <span class="tag">Hierarquia</span>
+        <p>A escala do galpão, a escala do país e a escala do mercado internacional são sistemas diferentes, um dentro do outro.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">Totalidade</span>
+        <p>Nenhuma explicação isolada, gripe aviária ou clima ou dólar, dá conta sozinha do preço final.</p>
+      </div>
+      <div class="card mostarda">
+        <span class="tag">Complexidade e organização</span>
+        <p>Muitos elementos, poucos concentrando poder de decisão: é isso que organiza quem ganha e quem perde numa crise de preço.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 UPA como sistema -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>A propriedade é um sistema, não uma soma de lavouras</h2>
+  </div>
+  <div class="body">
+    <div class="upa-flow">
+      <div class="lado">
+        <span class="lbl">entradas</span>
+        <p>Insumos, crédito, mão de obra, informação técnica, renda de fora</p>
+      </div>
+      <div class="upa-box">
+        <span class="rot">Unidade de produção, fronteira</span>
+        <div class="fam">Família, centro de decisão e objetivos</div>
+        <div class="upa-sub">
+          <div><b>Cultivo</b>Lavoura ou horta</div>
+          <div><b>Criação</b>Gado, aves</div>
+          <div><b>Transformação</b>Processamento</div>
+        </div>
+      </div>
+      <div class="lado">
+        <span class="lbl">saídas</span>
+        <p>Produto, autoconsumo, o que sobra depois de tudo isso</p>
+      </div>
+    </div>
+    <div class="nota">A propriedade não é a soma das suas lavouras. É a rede de relações entre elas, decidida por quem mora e trabalha ali.</div>
+  </div>
+</section>
+
+<!-- 18 fronteira -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, o conceito mais subestimado</span>
+    <h2>A fronteira é uma decisão de quem analisa</h2>
+  </div>
+  <div class="body">
+    <p class="sub" style="margin-top:0">A fronteira do sistema estabelece os limites da autonomia interna, define quais interações são consideradas internas e qual é a relação do conjunto com o ambiente.</p>
+    <div class="nota terra">A resposta muda conforme a pergunta que você faz. Se a pergunta é sobre renda familiar, o emprego de um filho na cidade está dentro da fronteira. Se a pergunta é só sobre manejo do solo, provavelmente não está.</div>
+  </div>
+</section>
+
+<!-- 19 entradas controlaveis -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>O que o agricultor decide, e o que ele sofre</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card oliva">
+        <span class="tag">Entradas controláveis</span>
+        <p>Aquelas sobre as quais o agricultor decide: variedade, densidade de plantio, adubação, época de manejo, contratação de mão de obra, canal de venda.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">Entradas não controláveis</span>
+        <p>Aquelas que o agricultor sofre: chuva, granizo, geada, preço do produto, política de crédito, pressão sanitária vinda de fora da propriedade.</p>
+      </div>
+    </div>
+    <div class="nota">Na propriedade que vocês vão visitar, o que está dentro da fronteira e o que está fora? A resposta muda conforme a pergunta que vocês fazem.</div>
+  </div>
+</section>
+
+<!-- 20 quem decide -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Quem decide o quê</h2>
+  </div>
+  <div class="body">
+    <p class="sub" style="margin-top:0">Tratar a família como um decisor único é o atalho mais comum, e o que mais estraga um diagnóstico. Dentro da mesma casa há decisões separadas, com prioridades diferentes.</p>
+    <div class="cols c2">
+      <div class="card">
+        <span class="tag">O que costuma se dividir</span>
+        <ul class="tight">
+          <li>Quem escolhe o que se planta e quando se maneja</li>
+          <li>Quem cuida da horta e dos animais menores</li>
+          <li>Quem controla o caixa e negocia o preço</li>
+          <li>Quem decide sobre investimento de longo prazo</li>
+        </ul>
+      </div>
+      <div class="card mostarda">
+        <span class="tag">Por que isso importa</span>
+        <p>Recomendação dirigida a quem não decide não é executada. A regra de campo é observar, não presumir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 ciclo reforco -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Quando o efeito volta e vira causa</h2>
+    <p class="sub">Retroalimentação: a saída de um sistema volta como entrada. Existe em dois sentidos opostos. O primeiro amplifica.</p>
+  </div>
+  <div class="body">
+    <h3 style="font-size:16px;color:var(--terra)">Ciclo de reforço, cada volta amplifica</h3>
+    <div class="ciclo">
+      <div class="et">Lavoura ou pomar envelhecido</div>
+      <span class="seta">→</span>
+      <div class="et">Receita baixa e irregular</div>
+      <span class="seta">→</span>
+      <div class="et">Sem caixa para renovar</div>
+    </div>
+    <div class="ciclo-volta"><span>↺</span><span>e o problema piora sozinho, ano após ano</span></div>
+    <div class="nota terra">O mesmo mecanismo apareceu na crise do ovo: plantel menor eleva o preço, o preço alto atrai mais demanda por importação de ovo brasileiro, e a pressão sobre a ração local aumenta ainda mais.</div>
+  </div>
+</section>
+
+<!-- 22 ciclo equilibrio -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Quando o sistema se corrige sozinho</h2>
+    <p class="sub">O segundo sentido da retroalimentação freia, em vez de amplificar.</p>
+  </div>
+  <div class="body">
+    <h3 style="font-size:16px;color:var(--oliva)">Ciclo de equilíbrio, cada volta freia</h3>
+    <div class="ciclo equil">
+      <div class="et">Produto fora do padrão comercial aumenta</div>
+      <span class="seta">→</span>
+      <div class="et">Vira processamento caseiro</div>
+      <span class="seta">→</span>
+      <div class="et">Perda cai, entra alguma receita</div>
+    </div>
+    <div class="ciclo-volta equil"><span>↺</span><span>o sistema absorve a variação sem mudar de estado</span></div>
+    <div class="nota oliva">Foi um ciclo de equilíbrio que trouxe o preço do ovo de volta para baixo, dezoito meses depois do post: a oferta reagiu ao preço alto, e o preço caiu.</div>
+  </div>
+</section>
+
+<!-- 23 tres eixos -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Três eixos para ler o mesmo sistema</h2>
+    <p class="sub">É o que vocês vão usar em toda saída de campo: a mesma propriedade, lida por três entradas diferentes.</p>
+  </div>
+  <div class="body">
+    <div class="cols c3">
+      <div class="card oliva">
+        <span class="tag">Produtivo</span>
+        <h3>O que e como se produz</h3>
+        <p>Sistema de cultivo, de criação, itinerário técnico, manejo, escala.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">Social</span>
+        <h3>Quem decide e quem trabalha</h3>
+        <p>Composição da família, sucessão, divisão do trabalho, quem controla o caixa.</p>
+      </div>
+      <div class="card mostarda">
+        <span class="tag">Comercialização</span>
+        <h3>Para onde vai e quem paga</h3>
+        <p>Canais de venda, formação de preço, poder de negociação em cada um.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 24 tres segmentos -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Montante, produção e jusante</h2>
+  </div>
+  <div class="body">
+    <div class="cols c3">
+      <div class="card">
+        <span class="camada montante" style="margin-bottom:2px">Antes da porteira</span>
+        <h3>Montante</h3>
+        <ul class="tight">
+          <li>Mudas, sementes, insumos</li>
+          <li>Crédito rural e seguro</li>
+          <li>Assistência técnica</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="camada producao" style="margin-bottom:2px">Dentro da porteira</span>
+        <h3>Produção</h3>
+        <ul class="tight">
+          <li>A unidade de produção</li>
+          <li>Manejo e colheita</li>
+          <li>Classificação e armazenagem</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="camada jusante" style="margin-bottom:2px">Depois da porteira</span>
+        <h3>Jusante</h3>
+        <ul class="tight">
+          <li>Cooperativas, atravessador</li>
+          <li>Atacado, varejo, feira</li>
+          <li>Consumidor final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 25 poder num elo -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Como medir poder num elo da cadeia</h2>
+  </div>
+  <div class="body">
+    <p class="sub" style="margin-top:0">Conte os atores dos dois lados de uma negociação. Onde há muitos de um lado e poucos do outro, o preço se forma do lado dos poucos.</p>
+    <div class="nota">Foi exatamente isso que o processo do Departamento de Justiça americano apurou: poucas granjas concentravam poder suficiente para inflar a cotação de referência usada por toda a cadeia. A regra vale a montante e a jusante, em qualquer produto.</div>
+  </div>
+</section>
+
+<!-- 26 cadeias longas e curtas -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Nem toda cadeia tem o mesmo tamanho</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card">
+        <span class="tag">Cadeia longa</span>
+        <h3>Commodities de exportação</h3>
+        <p>Muitos elos entre produtor e consumidor final. Preço formado longe da propriedade, em bolsa ou negociação entre grandes atores. Escala compensa a distância do preço.</p>
+      </div>
+      <div class="card oliva">
+        <span class="tag">Cadeia curta</span>
+        <h3>Feira, venda direta, cooperativa local</h3>
+        <p>Poucos elos, às vezes nenhum, entre produtor e consumidor. O produtor fica com mais margem, mas paga com o próprio trabalho comercial: entregar, formalizar, manter regularidade.</p>
+      </div>
+    </div>
+    <div class="nota">Cadeias longas e curtas convivem no Rio Grande do Sul, muitas vezes na mesma região, para produtos diferentes. Não existe uma melhor que a outra. Existem trocas diferentes.</div>
+  </div>
+</section>
+
+<!-- 27 exemplo RS -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, exemplo gaúcho</span>
+    <h2>Duas cadeias do Rio Grande do Sul, lado a lado</h2>
+  </div>
+  <div class="body">
+    <div class="fotos-par">
+      <figure>
+        <img src="assets/imagens/aula2-soja.jpg" alt="Soja em grão, farelo e óleo, os principais produtos derivados do processamento industrial da soja">
+        <figcaption><strong>Soja, cadeia longa.</strong> Do produtor ao porto, passando por tradings, com preço formado na bolsa de Chicago e no dólar, longe da propriedade.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/imagens/aula2-polifeira.jpg" alt="Barracas da Polifeira do Agricultor no campus da UFSM em Santa Maria, com produtores vendendo diretamente aos consumidores">
+        <figcaption><strong>Polifeira do Agricultor, cadeia curta.</strong> Feira semanal no campus da UFSM, em Santa Maria, com venda direta do produtor ao consumidor.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 28 preparacao cadeia uva -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, preparação da saída</span>
+    <h2>A cadeia da uva entra aqui de propósito</h2>
+    <p class="sub">É o contexto das duas propriedades que a turma vai visitar.</p>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card">
+        <span class="tag">Serra Gaúcha</span>
+        <p>Arranjo consolidado: cooperativas, vinícolas de escala, denominação de origem. Muitos produtores, indústria estruturada.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">Região Central</span>
+        <p>Outra escala, outro público: vitivinicultura menor, venda mais direta, turismo rural como parte da renda.</p>
+      </div>
+    </div>
+    <div class="nota">Levem essa pergunta para as duas visitas: onde está o montante e o jusante desta propriedade, e quem, nessa cadeia, define o preço do que ela produz?</div>
+  </div>
+</section>
+
+<!-- 29 atividade -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 3, prática. Papel pardo e canetões</span>
+    <h2>Uma propriedade, dois olhares, um cartaz só</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card oliva">
+        <span class="tag">1, o sistema por dentro</span>
+        <h3>Desenhem o fluxograma</h3>
+        <p>Uma propriedade familiar da região: entradas, subsistemas de cultivo, criação e transformação, saídas, fluxos internos. Depois, identifiquem no próprio desenho um ciclo de reforço e um de equilíbrio.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">2, o sistema por fora</span>
+        <h3>Posicionem na cadeia</h3>
+        <p>No mesmo cartaz: o que entra a montante, o que sai a jusante, e quem, nessa cadeia, define o preço do que essa propriedade produz.</p>
+      </div>
+    </div>
+    <div class="nota">Os cartazes ficam na parede para socialização ao final. É o ensaio do que vocês vão fazer na propriedade real.</div>
+  </div>
+</section>
+
+<!-- 30 fechamento -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Hoje você sai sabendo</span>
+    <h2>Do post ao papel pardo</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card">
+        <span class="tag">O que você aprendeu</span>
+        <ul class="tight">
+          <li>Ler um sistema pelos cinco pressupostos, e não como uma soma de partes</li>
+          <li>Desenhar uma propriedade com fronteira, subsistemas, entradas e saídas</li>
+          <li>Reconhecer um ciclo de reforço e um de equilíbrio</li>
+          <li>Situar qualquer propriedade nos três segmentos de uma cadeia</li>
+        </ul>
+      </div>
+      <div class="card oliva">
+        <span class="tag">Próxima aula, 19/08</span>
+        <h3>O processo de sistematização</h3>
+        <p>Os cinco tempos de Jara Holliday e a escolha do eixo de leitura, o que vocês vão levar para a primeira saída de campo, em 02/09.</p>
+      </div>
+    </div>
+    <div class="rodape">
+      <span>Colégio Politécnico da UFSM, Técnico em Agricultura, CPSEA101, 2026/2</span>
+      <span>Material elaborado com auxílio de inteligência artificial, sob revisão e responsabilidade dos docentes</span>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="zona-esq" aria-hidden="true"></div>
+<div id="zona-dir" aria-hidden="true"></div>
+<div id="nav">
+  <button id="ant" aria-label="Slide anterior">←</button>
+  <span id="cont" class="mono">1 / 30</span>
+  <button id="prox" aria-label="Próximo slide">→</button>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0, palco = document.getElementById('palco'), cont = document.getElementById('cont');
+
+  function mostra(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    cont.textContent = (i + 1) + ' / ' + slides.length;
+    if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
+  }
+  function escala(){
+    var e = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+    palco.style.transform = 'scale(' + e + ')';
+  }
+  document.addEventListener('keydown', function(ev){
+    var k = ev.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { ev.preventDefault(); mostra(i + 1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { ev.preventDefault(); mostra(i - 1); }
+    else if (k === 'Home') mostra(0);
+    else if (k === 'End') mostra(slides.length - 1);
+    else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  document.getElementById('prox').onclick = function(){ mostra(i + 1); };
+  document.getElementById('ant').onclick = function(){ mostra(i - 1); };
+  document.getElementById('zona-dir').onclick = function(){ mostra(i + 1); };
+  document.getElementById('zona-esq').onclick = function(){ mostra(i - 1); };
+  window.addEventListener('resize', escala);
+  escala();
+  var h = parseInt((location.hash || '').replace('#', ''), 10);
+  mostra(isNaN(h) ? 0 : h - 1);
+})();
+</script>
+</body>
+</html>

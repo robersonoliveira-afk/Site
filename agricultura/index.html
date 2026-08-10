@@ -3,771 +3,133 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistematização de Experiências em Agricultura, aulas</title>
 <meta name="robots" content="noindex, nofollow">
-<title>Aula 1 — Sistematização de experiências em agricultura — 2026/2</title>
-<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/agricultura/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --papel:#F4F0E6;
-  --papel2:#EDE7D8;
-  --papel3:#E4DCC8;
-  --tinta:#2B2723;
-  --tinta2:#5C544A;
-  --oliva:#3D4A2A;
-  --oliva-claro:#E2E6D6;
-  --terra:#A8552E;
-  --terra-claro:#F0DFD4;
-  --mostarda:#B89233;
-  --mostarda-claro:#F2E7CB;
+  --papel:#F4F0E6; --papel2:#EDE7D8; --papel3:#E4DCC8;
+  --tinta:#2B2723; --tinta2:#5C544A; --tinta3:#8A8378;
+  --oliva:#3D4A2A; --oliva-cl:#E2E6D6;
+  --terra:#A8552E; --terra-cl:#F0DFD4;
+  --mostarda:#B89233; --mostarda-cl:#F2E7CB;
   --linha:#D6CCB6;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;background:var(--papel3);color:var(--tinta);
-  font-family:"IBM Plex Sans",system-ui,sans-serif;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-#palco{width:1280px;height:720px;transform-origin:center center;position:relative}
-
-.slide{
-  position:absolute;inset:0;background:var(--papel);
-  padding:58px 72px 62px;display:none;flex-direction:column;
-  box-shadow:0 2px 22px rgba(43,39,35,.14);
-}
-.slide.on{display:flex}
-
-/* tipografia */
-h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.08;margin:0}
-h1{font-size:56px;letter-spacing:-.015em}
-h2{font-size:38px;letter-spacing:-.01em}
-h3{font-size:19px;font-weight:600;line-height:1.25}
-p{margin:0;font-size:18px;line-height:1.55;color:var(--tinta)}
-.kicker{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
-.rule{height:3px;width:64px;background:var(--tinta);margin:16px 0 0}
-.head{margin-bottom:30px}
-.head h2{margin-top:8px}
-.sub{color:var(--tinta2);font-size:17px;margin-top:12px;max-width:78ch}
-.body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px}
-.body.top{justify-content:flex-start}
-.small{font-size:15px;color:var(--tinta2);line-height:1.5}
-.mono{font-family:"IBM Plex Mono",monospace}
-em{font-style:normal;color:var(--terra);font-weight:500}
-strong{font-weight:600}
-a{color:var(--terra)}
-
-/* nota destacada */
-.nota{border-left:3px solid var(--mostarda);background:var(--mostarda-claro);padding:15px 20px;font-size:16px;line-height:1.5}
-.nota.oliva{border-color:var(--oliva);background:var(--oliva-claro)}
-
-/* colunas e cartões */
-.cols{display:grid;gap:20px}
-.c2{grid-template-columns:1fr 1fr}
-.c3{grid-template-columns:repeat(3,1fr)}
-.card{border:1px solid var(--linha);background:var(--papel2);padding:20px 22px;display:flex;flex-direction:column;gap:9px}
-.card .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta2)}
-.card p{font-size:16px;line-height:1.5}
-.card-foto{width:calc(100% + 44px);margin:-20px -22px 0;height:130px;object-fit:cover;display:block}
-.card.terra{background:var(--terra-claro);border-color:#E0C4B2}
-.card.oliva{background:var(--oliva-claro);border-color:#CBD3BB}
-
-/* listas */
-ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
-ul li{position:relative;padding-left:20px;font-size:17px;line-height:1.5}
-ul li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:2px;background:var(--terra)}
-ul.tight li{font-size:16px;gap:8px}
-
-/* capa */
-.capa{justify-content:space-between}
-.capa-visual{position:absolute;top:42px;right:72px;display:flex;flex-direction:column;align-items:center;gap:30px}
-.capa-logos{display:flex;align-items:center;gap:28px}
-.capa-logos img{display:block}
-.capa-logos .logo-poli{height:96px}
-.capa-logos .logo-curso{height:124px}
-.capa-head{max-width:720px}
-.capa .titulo{max-width:34ch}
-.capa .frase-row{display:flex;align-items:center;gap:36px}
-.capa .frase{font-family:"Fraunces",Georgia,serif;font-size:24px;line-height:1.35;max-width:46ch;color:var(--oliva)}
-.capa-foto{flex:0 0 300px;width:300px;height:376px}
-.capa-foto img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 22%;border:1px solid var(--linha);box-shadow:0 2px 14px rgba(43,39,35,.18)}
-.assin{display:flex;gap:44px;border-top:2px solid var(--tinta);padding-top:16px}
-.assin div span{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta2);margin-bottom:4px}
-.assin div strong{font-weight:500;font-size:16px}
-
-/* cinco tempos */
-.tempos{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.tempo{border-top:2px solid var(--tinta);padding-top:14px;display:flex;flex-direction:column;gap:8px}
-.tempo-foto{width:100%;height:84px;object-fit:cover;display:block;border:1px solid var(--linha)}
-.tempo .n{font-family:"Fraunces",Georgia,serif;font-size:34px;line-height:1;color:var(--terra)}
-.tempo p{font-size:14.5px;line-height:1.45;color:var(--tinta2)}
-
-/* mapa do semestre */
-.mapa{display:grid;grid-template-columns:5fr 6fr 4fr;gap:16px}
-.parte{border-top:2px solid var(--tinta);padding-top:12px;display:flex;flex-direction:column;gap:10px}
-.parte .cap{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)}
-.parte h3{font-size:17px}
-.semanas{display:flex;flex-direction:column;gap:5px}
-.sem{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:baseline;font-size:13.5px;line-height:1.35;padding:4px 6px;border-bottom:1px solid var(--linha)}
-.sem .d{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--tinta2)}
-.sem.campo{background:var(--oliva-claro)}
-.sem.ead{background:var(--mostarda-claro)}
-.sem.nota-sem{color:var(--tinta2);font-style:italic}
-.legenda{display:flex;gap:18px;font-size:13px;color:var(--tinta2);margin-top:4px}
-.legenda span{display:flex;align-items:center;gap:7px}
-.sw{width:12px;height:12px;border:1px solid var(--linha);display:inline-block}
-.sw.o{background:var(--oliva-claro)}
-.sw.m{background:var(--mostarda-claro)}
-.sw.p{background:var(--papel)}
-
-/* chips de eixos */
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{border:1px solid var(--linha);background:var(--papel2);padding:8px 14px 8px 11px;font-size:15px;display:flex;align-items:center;gap:9px}
-.chip-ico{width:17px;height:17px;flex:0 0 17px;stroke:var(--terra);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-
-/* avaliação */
-.aval{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.aval .peso{font-family:"Fraunces",Georgia,serif;font-size:40px;line-height:1;color:var(--oliva)}
-.barra{height:6px;background:var(--papel3);display:flex;margin-top:6px}
-.barra i{display:block;height:100%}
-.barra .b1{width:30%;background:var(--oliva)}
-.barra .b2{width:30%;background:var(--terra)}
-.barra .b3{width:40%;background:var(--mostarda)}
-
-/* banner de exemplo */
-.banner-showcase{flex:1;display:flex;align-items:center;justify-content:center;gap:44px}
-.banner-frame{display:block;flex:0 0 auto}
-.banner-frame img{display:block;height:420px;width:auto;border:1px solid var(--linha);box-shadow:0 4px 24px rgba(43,39,35,.22)}
-.banner-info{display:flex;flex-direction:column;gap:9px;max-width:30ch}
-.banner-info .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta2)}
-.banner-info h3{font-size:28px}
-.banner-info p{font-size:16px;color:var(--tinta2)}
-
-/* vídeos (miniatura com play) */
-.video-wrap{position:relative;display:block;aspect-ratio:16/9;border:1px solid var(--linha);overflow:hidden;background:#000}
-.video-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
-.video-wrap::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;line-height:52px;text-align:center;padding-left:3px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:1.1rem}
-.video-card{display:flex;flex-direction:column;gap:6px}
-.video-card .video-wrap{margin-top:4px}
-.video-titulo{font-size:15px;font-weight:500;line-height:1.35;color:var(--tinta)}
-.video-autor{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--tinta2)}
-.video-cta{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--terra);margin-top:2px}
-
-/* rodapé */
-.rodape{display:flex;justify-content:space-between;align-items:flex-end;margin-top:26px;padding-top:12px;border-top:1px solid var(--linha);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2)}
-
-/* navegação */
-#nav{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--tinta2);z-index:20}
-#nav button{font:inherit;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);padding:5px 11px;cursor:pointer}
-#nav button:hover{background:var(--papel2)}
-#nav button:focus-visible,.slide a:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
-#zona-esq,#zona-dir{position:fixed;top:0;bottom:0;width:12%;z-index:10;cursor:pointer}
-#zona-esq{left:0}#zona-dir{right:0}
-@media print{body{display:block;overflow:visible}#palco{width:auto;height:auto;transform:none!important}.slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;page-break-after:always}#nav,#zona-esq,#zona-dir{display:none}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--papel2);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+main{max-width:760px;margin:0 auto;padding:8vh 7vw 10vh}
+.logos{display:flex;align-items:center;gap:1.8rem;margin-bottom:1.6rem}
+.logos img{height:46px;width:auto;display:block}
+.logos img:last-child{height:60px}
+.disc{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.4vw,3rem);line-height:1.1;letter-spacing:-.02em;margin:1.2rem 0}
+.sub{font-size:1.05rem;color:var(--tinta2);max-width:56ch;margin-bottom:2.4rem}
+.parte-lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin:2.2rem 0 .8rem}
+.plano{background:#fff;border:1px solid var(--linha);border-radius:4px;padding:1.6rem 1.8rem;margin-bottom:2.6rem}
+.plano h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:1.1rem}
+.plano dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem;margin-bottom:1.3rem}
+.plano dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta3);white-space:nowrap;padding-top:.15rem}
+.plano dd{font-size:.98rem;color:var(--tinta2);line-height:1.5}
+.plano p{font-size:.98rem;color:var(--tinta2);line-height:1.55;margin-bottom:.9rem;max-width:60ch}
+.plano p:last-child{margin-bottom:0}
+.plano strong{color:var(--tinta);font-weight:600}
+.plano table{border-collapse:collapse;width:100%;margin-top:.4rem;font-size:.92rem}
+.plano th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.5rem .6rem;border-bottom:2px solid var(--linha)}
+.plano td{padding:.6rem .6rem;border-bottom:1px solid var(--linha);color:var(--tinta2);vertical-align:top}
+.plano td.pct{color:var(--tinta);font-weight:600;text-align:right;white-space:nowrap}
+.plano tr.pausa td{color:var(--tinta3);font-style:italic}
+ul{list-style:none}
+li{border-bottom:1px solid var(--linha)}
+li a{display:block;padding:1rem 0;color:var(--tinta);text-decoration:none;font-size:1.05rem}
+li a:hover{color:var(--terra)}
+li a .n{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-right:.8rem}
+li .indisponivel{display:block;padding:1rem 0;color:var(--tinta3);font-size:1.05rem}
+li .indisponivel .n{font-family:var(--mono);font-size:.78rem;color:var(--tinta3);margin-right:.8rem}
+li .indisponivel .em-breve{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta3);margin-left:.6rem}
+footer{margin-top:3rem;font-family:var(--mono);font-size:.75rem;color:var(--tinta3);line-height:1.7}
 </style>
 </head>
 <body>
+<main>
+  <div class="logos">
+    <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico da UFSM, 65 anos">
+    <img src="assets/logos/tecnico-agricultura.svg" alt="Técnico em Agricultura">
+  </div>
+  <div class="disc">Colégio Politécnico da UFSM, Técnico em Agricultura, CPSEA101</div>
+  <h1>Sistematização de Experiências em Agricultura</h1>
+  <div class="sub">Prof. Róberson M. de Oliveira, Prof. Ezequiel Redin, 2026, segundo semestre</div>
 
-<div id="palco">
+  <div class="plano">
+    <h2>Plano da disciplina</h2>
+    <dl>
+      <dt>Carga horária</dt><dd>60h</dd>
+      <dt>Semanas</dt><dd>14, sendo 2 a distância</dd>
+      <dt>Encontros</dt><dd>Quartas-feiras</dd>
+      <dt>Método</dt><dd>Um projeto único, encadeado do primeiro ao último encontro, organizado pelos cinco tempos de Oscar Jara Holliday: viver a experiência, formular as perguntas iniciais, recuperar o processo vivido, fazer a reflexão de fundo e chegar aos pontos de chegada.</dd>
+    </dl>
+    <table>
+      <tr><th>Avaliação</th><th></th></tr>
+      <tr><td>Comprovação da vivência, aula 11</td><td class="pct">30%</td></tr>
+      <tr><td>Relatório da sistematização, aula 13</td><td class="pct">30%</td></tr>
+      <tr><td>Socialização, aula 14</td><td class="pct">40%</td></tr>
+    </table>
+    <table style="margin-top:1.6rem">
+      <tr><th>Nº</th><th>Data</th><th>Aula</th></tr>
+      <tr><td>1</td><td>05/08</td><td>Abertura e contrato didático</td></tr>
+      <tr><td>2</td><td>12/08</td><td>Abordagem sistêmica, sistemas alimentares e cadeias produtivas</td></tr>
+      <tr><td>3</td><td>19/08</td><td>O processo de sistematização</td></tr>
+      <tr><td>4</td><td>26/08</td><td>Ferramentas para o levantamento de informações</td></tr>
+      <tr><td>5</td><td>02/09</td><td>Visita à Vinícola Velho Amâncio</td></tr>
+      <tr><td>6</td><td>09/09</td><td>Sistematização de hortas escolares</td></tr>
+      <tr><td>7</td><td>16/09</td><td>Preparação da vivência</td></tr>
+      <tr><td>8</td><td>23/09</td><td>Visita ao Ita dos Parreirais, Itaara</td></tr>
+      <tr><td>9</td><td>30/09</td><td>Vivência do grupo</td></tr>
+      <tr><td>10</td><td>07/10</td><td>Organização do material e edição</td></tr>
+      <tr><td>11</td><td>14/10</td><td>Comprovação da vivência e reflexão de fundo</td></tr>
+      <tr><td>12</td><td>21/10</td><td>Sistematização e juventude rural</td></tr>
+      <tr class="pausa"><td>·</td><td>28/10</td><td>Dia do Servidor Público, sem aula</td></tr>
+      <tr><td>13</td><td>04/11</td><td>Redação, produto e comunicação</td></tr>
+      <tr class="pausa"><td>·</td><td>11/11</td><td>Semana da JAI, sem aula</td></tr>
+      <tr><td>14</td><td>18/11</td><td>Apresentação final e socialização</td></tr>
+      <tr class="pausa"><td>·</td><td>02/12</td><td>Exame da disciplina</td></tr>
+    </table>
+  </div>
 
-<!-- 1 -->
-<section class="slide on">
-  <div class="body capa">
-    <div class="capa-head">
-      <span class="kicker">CPSEA101 · Técnico em Agricultura · 2026, segundo semestre</span>
-      <h1 class="titulo">Sistematização de experiências<br>em agricultura</h1>
-      <div class="rule"></div>
-    </div>
-    <div class="frase-row">
-      <p class="frase">A disciplina é um projeto único,<br>encadeado do primeiro ao último encontro.</p>
-    </div>
-    <div class="assin">
-      <div><span>Docentes</span><strong>Róberson M. de Oliveira · Ezequiel Redin</strong></div>
-      <div><span>Carga horária</span><strong>60h · 15 semanas, duas a distância</strong></div>
-      <div><span>Encontros</span><strong>Quartas-feiras</strong></div>
-    </div>
-  </div>
-  <div class="capa-visual">
-    <div class="capa-logos">
-      <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico UFSM" class="logo-poli">
-      <img src="assets/logos/tecnico-agricultura.svg" alt="Técnico em Agricultura" class="logo-curso">
-    </div>
-    <div class="capa-foto">
-      <img src="assets/imagens/equipe-tecnico-agricultura.jpg" alt="Docentes e estudantes do Técnico em Agricultura em evento do curso">
-    </div>
-  </div>
-</section>
+  <div class="parte-lbl">Parte 1, bases para sistematização</div>
+  <ul>
+    <li><a href="aula1.html"><span class="n">01</span>Abertura e contrato didático</a></li>
+    <li><a href="aula2.html"><span class="n">02</span>Abordagem sistêmica, sistemas alimentares e cadeias produtivas</a></li>
+    <li><span class="indisponivel"><span class="n">03</span>O processo de sistematização<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">04</span>Ferramentas para o levantamento de informações<span class="em-breve">Em breve</span></span></li>
+  </ul>
 
-<!-- 2 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Começando pelo fim</span>
-    <h2>25 de novembro (data provável)</h2>
-    <p class="sub">Seu grupo apresenta a sistematização de uma experiência agrícola vivida, sustenta a interpretação diante da turma e entrega o produto final. Tudo o que vem antes existe para tornar isso possível.</p>
-  </div>
-  <div class="body">
-    <div class="cols c3">
-      <div class="card oliva">
-        <img class="card-foto" src="assets/imagens/10-campo.jpg" alt="" loading="lazy">
-        <span class="tag">Você vai a campo</span>
-        <h3>Uma experiência vivida</h3>
-        <p>Até três idas a campo, com registro próprio: caderno, fotografia, entrevista, filmagem.</p>
-      </div>
-      <div class="card terra">
-        <img class="card-foto" src="assets/imagens/10-interpreta.jpg" alt="" loading="lazy">
-        <span class="tag">Você interpreta</span>
-        <h3>Por que aconteceu assim</h3>
-        <p>Reconstruir o processo e explicar o que encontrou, com evidência do próprio material.</p>
-      </div>
-      <div class="card">
-        <img class="card-foto" src="assets/imagens/10-comunica.jpg" alt="" loading="lazy">
-        <span class="tag">Você comunica</span>
-        <h3>Um produto que circula</h3>
-        <p>Banner, cartilha, boletim, vídeo ou podcast — apresentado à banca e devolvido ao produtor (se possível).</p>
-      </div>
-    </div>
-    <div class="nota">Não é a última aula que decide a nota. São três entregas, distribuídas ao longo do semestre, e um conjunto de registros de processo que servem para o trabalho não chegar quebrado em novembro.</div>
-  </div>
-</section>
+  <div class="parte-lbl">Parte 2, viver a experiência</div>
+  <ul>
+    <li><span class="indisponivel"><span class="n">05</span>Visita à Vinícola Velho Amâncio<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">06</span>Sistematização de hortas escolares<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">07</span>Preparação da vivência<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">08</span>Visita ao Ita dos Parreirais, Itaara<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">09</span>Vivência do grupo<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">10</span>Organização do material e edição<span class="em-breve">Em breve</span></span></li>
+  </ul>
 
-<!-- 2b -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Produto de turmas anteriores · 1 de 2</span>
-    <h2>Exemplos de vídeo de vivência</h2>
-    <p class="sub">O registro de campo que seu grupo vai produzir depois da própria vivência, feito por quem cursou a disciplina antes de vocês.</p>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="video-card">
-        <span class="tag">Exemplo 1</span>
-        <a class="video-wrap" href="https://youtu.be/mEjz9lWGubQ" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Sistematização de Experiências em Agricultura — Teste de envelhecimento acelerado, de Denielle Linhares">
-          <img src="https://i.ytimg.com/vi/mEjz9lWGubQ/hqdefault.jpg" alt="" loading="lazy">
-        </a>
-        <p class="video-titulo">Sistematização de Experiências em Agricultura — Teste de envelhecimento acelerado</p>
-        <p class="video-autor">Denielle Linhares</p>
-        <p class="video-cta">▶ Assistir no YouTube ↗</p>
-      </div>
-      <div class="video-card">
-        <span class="tag">Exemplo 2</span>
-        <a class="video-wrap" href="https://youtu.be/64irbfXOlS8" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Sistematização de Experiências em Agricultura — Coleta de solo: prática e aprendizado na agricultura, de Ana Paula Menezes">
-          <img src="https://i.ytimg.com/vi/64irbfXOlS8/hqdefault.jpg" alt="" loading="lazy">
-        </a>
-        <p class="video-titulo">Sistematização de Experiências em Agricultura — Coleta de solo: prática e aprendizado na agricultura</p>
-        <p class="video-autor">Ana Paula Menezes</p>
-        <p class="video-cta">▶ Assistir no YouTube ↗</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="parte-lbl">Parte 3, construção do conhecimento e socialização</div>
+  <ul>
+    <li><span class="indisponivel"><span class="n">11</span>Comprovação da vivência e reflexão de fundo<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">12</span>Sistematização e juventude rural<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">13</span>Redação, produto e comunicação<span class="em-breve">Em breve</span></span></li>
+    <li><span class="indisponivel"><span class="n">14</span>Apresentação final e socialização<span class="em-breve">Em breve</span></span></li>
+  </ul>
 
-<!-- 2c -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Produto de turmas anteriores · 2 de 2</span>
-    <h2>Exemplos de vídeo de vivência</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="video-card">
-        <span class="tag">Exemplo 3</span>
-        <a class="video-wrap" href="https://www.youtube.com/watch?v=KhGmjH7sToY" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Sistematização de Experiência na Pecuária — O pastoreio rotativo para melhoramento do campo nativo, de Daniel Balin">
-          <img src="https://i.ytimg.com/vi/KhGmjH7sToY/hqdefault.jpg" alt="" loading="lazy">
-        </a>
-        <p class="video-titulo">Sistematização de Experiência na Pecuária — O pastoreio rotativo para melhoramento do campo nativo</p>
-        <p class="video-autor">Daniel Balin</p>
-        <p class="video-cta">▶ Assistir no YouTube ↗</p>
-      </div>
-      <div class="video-card">
-        <span class="tag">Exemplo 4</span>
-        <a class="video-wrap" href="https://www.youtube.com/watch?v=e05IYUXoB88" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Sistematização de Experiência — Produção de hortaliças, de Ivan James Neves Picada F.">
-          <img src="https://i.ytimg.com/vi/e05IYUXoB88/hqdefault.jpg" alt="" loading="lazy">
-        </a>
-        <p class="video-titulo">Sistematização de Experiência — Produção de hortaliças</p>
-        <p class="video-autor">Ivan James Neves Picada F.</p>
-        <p class="video-cta">▶ Assistir no YouTube ↗</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <footer>
+    <p>Material elaborado com auxílio de inteligência artificial, sob revisão e responsabilidade dos docentes.</p>
+  </footer>
 
-<!-- 3 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">O que estamos fazendo aqui</span>
-    <h2>Sistematizar não é relatar</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card oliva">
-        <span class="tag">Sistematização é</span>
-        <ul class="tight">
-          <li>Produzir conhecimento a partir de uma prática vivida</li>
-          <li>Reconstruir o processo: o que aconteceu, em que ordem, por decisão de quem</li>
-          <li>Interpretar criticamente por que aconteceu do jeito que aconteceu</li>
-          <li>Devolver o aprendizado a quem viveu a experiência</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="tag">Não é</span>
-        <ul class="tight">
-          <li><strong>Relatório de visita</strong> — descreve o que viu e para aí</li>
-          <li><strong>Pesquisa</strong> — parte de uma hipótese, não da vivência</li>
-          <li><strong>Diagnóstico</strong> — vai atrás de um problema para resolver</li>
-          <li><strong>Propaganda</strong> — mostra só o que deu certo</li>
-        </ul>
-      </div>
-    </div>
-    <div class="nota">Há coerência nos atos do agricultor mesmo quando eles contrariam a recomendação técnica. Encontrar essa coerência, e não julgá-la, é a postura que a disciplina exige.</div>
-  </div>
-</section>
-
-<!-- 4 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">O método · Jara Holliday, 2006</span>
-    <h2>Os cinco tempos</h2>
-    <p class="sub">O semestre inteiro está organizado nesta sequência. Em qualquer aula, você sabe em que tempo o trabalho está.</p>
-  </div>
-  <div class="body">
-    <div class="tempos">
-      <div class="tempo"><img class="tempo-foto" src="assets/imagens/11-thumb.jpg" alt="" loading="lazy"><span class="n">1</span><h3>Viver a experiência</h3><p>O ponto de partida. Sem vivência registrada não há o que sistematizar.</p></div>
-      <div class="tempo"><img class="tempo-foto" src="assets/imagens/22-thumb.jpg" alt="" loading="lazy"><span class="n">2</span><h3>As perguntas iniciais</h3><p>Para que sistematizar, que experiência delimitar, que eixo escolher, com que fontes.</p></div>
-      <div class="tempo"><img class="tempo-foto" src="assets/imagens/33-thumb.jpg" alt="" loading="lazy"><span class="n">3</span><h3>Recuperar o processo</h3><p>Reconstruir a história e ordenar a informação coletada por eixo e por período.</p></div>
-      <div class="tempo"><img class="tempo-foto" src="assets/imagens/44-thumb.jpg" alt="" loading="lazy"><span class="n">4</span><h3>A reflexão de fundo</h3><p>Analisar, sintetizar, identificar tensões. É aqui que se explica o porquê.</p></div>
-      <div class="tempo"><img class="tempo-foto" src="assets/imagens/55-thumb.jpg" alt="" loading="lazy"><span class="n">5</span><h3>Os pontos de chegada</h3><p>Formular conclusões e comunicá-las — inclusive a quem viveu a experiência.</p></div>
-    </div>
-    <div class="nota oliva">Os tempos não são etapas de um formulário. Voltar atrás é comum: o eixo escolhido muda depois do campo, e a leitura muda depois da segunda visita.</div>
-  </div>
-</section>
-
-<!-- 4b -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Material de apoio</span>
-    <h2>Vídeos sobre o método</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="video-card">
-        <span class="tag">Sistematização de experiências</span>
-        <a class="video-wrap" href="https://www.youtube.com/watch?v=DOxGFRPPjdI" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Como escolher as melhores experiências para sistematização na extensão rural?, de O Extensionista">
-          <img src="https://i.ytimg.com/vi/DOxGFRPPjdI/hqdefault.jpg" alt="" loading="lazy">
-        </a>
-        <p class="video-titulo">Como escolher as melhores experiências para sistematização na extensão rural?</p>
-        <p class="video-autor">O Extensionista</p>
-        <p class="video-cta">▶ Assistir no YouTube ↗</p>
-      </div>
-      <div class="video-card">
-        <span class="tag">Eixos de sistematização</span>
-        <a class="video-wrap" href="https://www.youtube.com/watch?v=zXBtG6PmNuA" target="_blank" rel="noopener" aria-label="Assistir no YouTube: Você conhece os eixos da sistematização de experiências?, de O Extensionista">
-          <img src="https://i.ytimg.com/vi/zXBtG6PmNuA/hqdefault.jpg" alt="" loading="lazy">
-        </a>
-        <p class="video-titulo">Você conhece os eixos da sistematização de experiências?</p>
-        <p class="video-autor">O Extensionista</p>
-        <p class="video-cta">▶ Assistir no YouTube ↗</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Mapa do semestre</span>
-    <h2>Quinze semanas, três partes</h2>
-  </div>
-  <div class="body top">
-    <div class="mapa">
-      <div class="parte">
-        <span class="cap">Parte 1 · 05/08 a 02/09</span>
-        <h3>Bases para sistematizar</h3>
-        <div class="semanas">
-          <div class="sem"><span class="d">05/08</span><span>Abertura e contrato didático</span></div>
-          <div class="sem"><span class="d">12/08</span><span>Sistemas alimentares e cadeias produtivas</span></div>
-          <div class="sem"><span class="d">19/08</span><span>Abordagem sistêmica e sistemas agrários</span></div>
-          <div class="sem"><span class="d">26/08</span><span>O processo de sistematização</span></div>
-          <div class="sem"><span class="d">02/09</span><span>Ferramentas para o levantamento de informações</span></div>
-        </div>
-      </div>
-      <div class="parte">
-        <span class="cap">Parte 2 · 09/09 a 14/10</span>
-        <h3>Viver a experiência</h3>
-        <div class="semanas">
-          <div class="sem campo"><span class="d">09/09</span><span>Visita à Vinícola Velho Amâncio</span></div>
-          <div class="sem"><span class="d">16/09</span><span>Sistematização de hortas escolares</span></div>
-          <div class="sem ead"><span class="d">23/09</span><span>Preparação da vivência</span></div>
-          <div class="sem campo"><span class="d">30/09</span><span>Visita ao Ita dos Parreirais, Itaara</span></div>
-          <div class="sem ead"><span class="d">07/10</span><span>Vivência do grupo</span></div>
-          <div class="sem"><span class="d">14/10</span><span>Organização do material e edição</span></div>
-        </div>
-      </div>
-      <div class="parte">
-        <span class="cap">Parte 3 · 21/10 a 25/11</span>
-        <h3>Interpretar e comunicar</h3>
-        <div class="semanas">
-          <div class="sem"><span class="d">21/10</span><span>Comprovação da vivência e reflexão de fundo</span></div>
-          <div class="sem nota-sem"><span class="d">28/10</span><span>Dia do servidor público, sem aula</span></div>
-          <div class="sem"><span class="d">04/11</span><span>Sistematização e juventude rural</span></div>
-          <div class="sem nota-sem"><span class="d">11/11</span><span>Semana da JAI, sem aula</span></div>
-          <div class="sem"><span class="d">18/11</span><span>Redação, produto e comunicação</span></div>
-          <div class="sem"><span class="d">25/11</span><span>Apresentação final e socialização</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="legenda">
-      <span><i class="sw p"></i> Presencial</span>
-      <span><i class="sw o"></i> Saída de campo</span>
-      <span><i class="sw m"></i> A distância</span>
-      <span>Exame: 02/12</span>
-    </div>
-  </div>
-</section>
-
-<!-- 6 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Parte 1 · 05/08 a 02/09 · tempos 1 e 2</span>
-    <h2>Cinco encontros para construir o olhar</h2>
-    <p class="sub">Esta parte não é teoria por precaução. Quem chega a campo sem saber o que está procurando registra pouco, e depois não tem material para interpretar.</p>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card">
-        <span class="tag">O que acontece</span>
-        <ul class="tight">
-          <li>A agricultura dentro de um sistema alimentar, a montante e a jusante</li>
-          <li>A propriedade como sistema, e seus três eixos: produtivo, social e de comercialização</li>
-          <li>Os cinco tempos e a escolha do eixo de leitura</li>
-          <li>Roteiro de campo, entrevista e oficina de audiovisual</li>
-        </ul>
-      </div>
-      <div class="card oliva">
-        <span class="tag">O que você sai sabendo</span>
-        <ul class="tight">
-          <li>Situar qualquer propriedade dentro de uma cadeia</li>
-          <li>Desenhar o fluxograma de uma unidade de produção</li>
-          <li>Distinguir sistematização de relatório, pesquisa e diagnóstico</li>
-          <li>Conduzir uma entrevista com perguntas abertas</li>
-        </ul>
-      </div>
-    </div>
-    <div class="nota">Em 02/09 seu grupo sai da aula com o roteiro de campo pronto. A primeira saída é na semana seguinte.</div>
-  </div>
-</section>
-
-<!-- 7 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Parte 2 · 09/09 a 14/10 · tempos 1 e 3</span>
-    <h2>No máximo três idas a campo</h2>
-    <p class="sub">Todo o trabalho de campo se concentra aqui. Duas saídas com a turma inteira vêm antes da vivência do grupo, para você chegar à sua propriedade com repertório.</p>
-  </div>
-  <div class="body">
-    <div class="cols c3">
-      <div class="card oliva">
-        <span class="tag">09/09 · com a turma</span>
-        <h3>Vinícola Velho Amâncio</h3>
-        <p>Primeira experiência coletiva. Registrar amplo: o grupo chega com dois ou três eixos em estudo, não com um escolhido.</p>
-      </div>
-      <div class="card oliva">
-        <span class="tag">30/09 · com a turma</span>
-        <h3>Ita dos Parreirais, Itaara</h3>
-        <p>Visita dirigida. Agora você entra na propriedade sabendo o que foi procurar. A comparação entre as duas vira análise.</p>
-      </div>
-      <div class="card terra">
-        <span class="tag">07/10 · do grupo</span>
-        <h3>Vivência própria</h3>
-        <p>Propriedade escolhida pelo grupo, sem professor. Semana a distância, porque a data é combinada com a família.</p>
-      </div>
-    </div>
-    <div class="nota">Antes de qualquer registro: termo de consentimento e autorização de uso de imagem assinados por quem recebe a visita. Menores de idade precisam de autorização dos responsáveis para o deslocamento.</div>
-  </div>
-</section>
-
-<!-- 8 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">A pergunta que aparece hoje</span>
-    <h2>“E se eu não tenho propriedade para visitar?”</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card oliva">
-        <span class="tag">O que muda</span>
-        <p>Você sistematiza as duas visitas coletivas. Elas acontecem cedo e sob o mesmo roteiro exatamente por isso. Com dois casos registrados sob um mesmo eixo, o material é equivalente ao de quem conduziu vivência própria.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Suas semanas a distância</span>
-        <ul class="tight">
-          <li>Retorno individual a uma das propriedades</li>
-          <li>Entrevista complementar, presencial ou a distância</li>
-          <li>Fontes documentais e dados oficiais do município</li>
-          <li>Aprofundamento do eixo escolhido</li>
-        </ul>
-      </div>
-    </div>
-    <div class="nota">Muda a fonte, não a exigência: eixo definido, registro próprio, interpretação crítica e produto entregue.</div>
-  </div>
-</section>
-
-<!-- 9 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Parte 3 · 21/10 a 25/11 · tempos 4 e 5</span>
-    <h2>Da descrição para a interpretação</h2>
-    <p class="sub">É o passo que distingue uma sistematização de um relatório de visita — e o que a maioria dos trabalhos pula.</p>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card">
-        <span class="tag">21/10 · reflexão de fundo</span>
-        <p>Comprovação da vivência e interpretação crítica. Distinguir o que o produtor diz, o que ele faz e o que o grupo observou — e entender por que as três coisas às vezes não coincidem.</p>
-      </div>
-      <div class="card">
-        <span class="tag">04/11 · caso demonstrado</span>
-        <p>Sistematização e juventude rural: alguém percorre por inteiro a interpretação que a turma acabou de tentar pela primeira vez.</p>
-      </div>
-      <div class="card">
-        <span class="tag">18/11 · redação e produto</span>
-        <p>Escrita assistida no laboratório, montagem do material e da apresentação.</p>
-      </div>
-      <div class="card oliva">
-        <span class="tag">25/11 · socialização</span>
-        <p>Apresentação para turma e devolutiva a cada propriedade visitada (se possível).</p>
-      </div>
-    </div>
-    <div class="nota">O produto final é avaliado junto com a apresentação. A devolutiva à propriedade é parte do trabalho, mas não é avaliada.</div>  </div>
-</section>
-
-<!-- 10 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">A decisão mais importante do trabalho</span>
-    <h2>O eixo de leitura</h2>
-    <p class="sub">O eixo é o recorte com que você lê a experiência. Duas propriedades iguais, lidas por eixos diferentes, produzem sistematizações diferentes — e as duas podem estar certas.</p>
-  </div>
-  <div class="body">
-    <div class="chips">
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 16C4 9 8 4 16 4C16 11 12 16 4 16Z"/><path d="M4 16C7 13 10 10 14 7"/></svg>Meio ambiente</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 17V9"/><path d="M10 9C10 5.5 6.5 4 4 4C4 7.5 6.5 9 10 9Z"/><path d="M10 9C10 6 13 4.5 16 4.5C16 7.5 13 9 10 9Z"/></svg>Produção agroecológica ou orgânica</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3C7.2 3 5 5.2 5 8C5 10 6 11 7 12C7.6 12.5 8 13.2 8 14H12C12 13.2 12.4 12.5 13 12C14 11 15 10 15 8C15 5.2 12.8 3 10 3Z"/><path d="M8 16H12"/><path d="M8.6 18H11.4"/></svg>Inovação e adaptação tecnológica</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 5L16 15"/><path d="M4 15L16 5"/><path d="M12 5H16V9"/><path d="M12 15H16V11"/></svg>Alternativas de produção</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4.5 10C4.5 6.4 7.4 3.5 11 3.5C13 3.5 14.8 4.4 16 5.9"/><path d="M16 3V6H13"/><path d="M15.5 10C15.5 13.6 12.6 16.5 9 16.5C7 16.5 5.2 15.6 4 14.1"/><path d="M4 17V14H7"/></svg>Sucessão e juventude rural</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="3.2"/><path d="M10 2.5V4.5"/><path d="M10 15.5V17.5"/><path d="M17.5 10H15.5"/><path d="M4.5 10H2.5"/><path d="M15.3 4.7L13.9 6.1"/><path d="M6.1 13.9L4.7 15.3"/><path d="M15.3 15.3L13.9 13.9"/><path d="M6.1 6.1L4.7 4.7"/></svg>Lazer e turismo rural</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="2"/><circle cx="14" cy="6" r="2"/><circle cx="10" cy="15" r="2"/><path d="M7.7 7.3L9.4 13.2"/><path d="M12.3 7.3L10.6 13.2"/><path d="M8 6H12"/></svg>Organização social</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4.5 7.5H15.5L14.3 16C14.2 16.6 13.7 17 13.1 17H6.9C6.3 17 5.8 16.6 5.7 16L4.5 7.5Z"/><path d="M7 7.5V6A3 3 0 0 1 13 6V7.5"/></svg>Construção de mercados</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 5.3C8.4 4.2 6 3.8 4 4.2V15C6 14.6 8.4 15 10 16.1C11.6 15 14 14.6 16 15V4.2C14 3.8 11.6 4.2 10 5.3Z"/><path d="M10 5.3V16.1"/></svg>Educação do campo</span>
-      <span class="chip"><svg class="chip-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3.5L16.5 7.3L10 11.1L3.5 7.3L10 3.5Z"/><path d="M3.5 11.6L10 15.4L16.5 11.6"/></svg>Agregação de valor</span>
-    </div>
-    <div class="cols c2">
-      <div class="card terra">
-        <span class="tag">Ponto de atenção</span>
-        <p>O eixo não é um problema a resolver. Confundir os dois produz um diagnóstico com aparência de sistematização — o erro mais comum do trabalho.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Quando se escolhe</span>
-        <p>Não hoje. Cada grupo leva dois ou três eixos em estudo para a primeira saída e fecha a escolha em 16/09. Quem chega à propriedade com o recorte fechado deixa de ver o que não estava procurando.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 11 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Avaliação</span>
-    <h2>Três entregas, uma por parte</h2>
-  </div>
-  <div class="body">
-    <div class="aval">
-      <div class="card">
-        <span class="tag">21/10</span>
-        <span class="peso">30%</span>
-        <div class="barra"><i class="b1"></i></div>
-        <h3>Comprovação da vivência</h3>
-        <p>Vídeo publicado no fórum e apresentado em aula. Avalia se o grupo esteve em campo, o que escolheu registrar e se mostrou potencialidades e limites.</p>
-      </div>
-      <div class="card">
-        <span class="tag">18/11</span>
-        <span class="peso">30%</span>
-        <div class="barra"><i class="b2"></i></div>
-        <h3>Relatório da sistematização</h3>
-        <p>Texto seguindo os cinco tempos. Avalia a reconstrução do processo vivido e a consistência da interpretação diante das evidências.</p>
-      </div>
-      <div class="card">
-        <span class="tag">25/11</span>
-        <span class="peso">40%</span>
-        <div class="barra"><i class="b3"></i></div>
-        <h3>Socialização</h3>
-        <p>Produto e apresentação avaliados juntos, mais o comprovante de devolutiva à propriedade. São a mesma entrega: o material que circula e a conversa que ele sustenta.</p>
-      </div>
-    </div>
-    <div class="cols c2">
-      <div class="nota">Registros de processo, sem nota: roteiro de campo, plano de sistematização, visita agendada, diário de campo e vídeo. Servem para acompanhar o trabalho e resolver em setembro o que seria problema em novembro.</div>
-      <div class="nota oliva">Bônus de 2 pontos na média final para quem tiver resumo aprovado e apresentar trabalho vinculado às práticas da disciplina na Jornada Acadêmica Integrada. Prazos conforme edital (acompanhar no Moodle).</div>
-    </div>
-  </div>
-</section>
-
-<!-- 12 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">O produto final</span>
-    <h2>Escolha pelo público, não pela facilidade</h2>
-    <p class="sub">O grupo define o formato até 14/10. Os critérios de avaliação são os mesmos para todos.</p>
-  </div>
-  <div class="body">
-    <div class="cols c3">
-      <div class="card"><span class="tag">Formato acadêmico</span><h3>Banner técnico</h3><p>Apto a mostras e à Jornada Acadêmica Integrada.</p></div>
-      <div class="card"><span class="tag">Comunidade</span><h3>Cartilha</h3><p>Material curto e ilustrado, entregue impresso ao produtor.</p></div>
-      <div class="card"><span class="tag">Técnico</span><h3>Boletim de campo</h3><p>Duas páginas sobre uma prática replicável.</p></div>
-      <div class="card"><span class="tag">Audiovisual</span><h3>Vídeo documental</h3><p>Peça editada, distinta do vídeo de comprovação da vivência.</p></div>
-      <div class="card"><span class="tag">Áudio</span><h3>Podcast</h3><p>Episódio com o produtor como entrevistado.</p></div>
-      <div class="card oliva"><span class="tag">Proposta</span><h3>Outro formato</h3><p>Mediante aprovação, com justificativa de público e de circulação.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 12b -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">O produto final · exemplo de turma anterior</span>
-    <h2>A pergunta que decide o formato</h2>
-    <p class="sub">Quem precisa ver isso, e onde essa pessoa está?</p>
-  </div>
-  <div class="body">
-    <div class="banner-showcase">
-      <a class="banner-frame" href="assets/exemplos/tanandra-carol-praticas-sustentaveis-inverno.pdf" target="_blank" rel="noopener" aria-label="Ver PDF: banner de Tanandra e Carol — Práticas sustentáveis de inverno">
-        <img src="assets/imagens/banner.png" alt="Banner técnico: Tanandra e Carol — Práticas sustentáveis de inverno">
-      </a>
-      <div class="banner-info">
-        <span class="tag">Turma anterior</span>
-        <h3>Tanandra e Carol</h3>
-        <p>Práticas sustentáveis de inverno</p>
-        <p class="video-cta">Ver PDF completo ↗</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 13 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Combinados</span>
-    <h2>Como vamos trabalhar</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card">
-        <span class="tag">Campo e presença</span>
-        <ul class="tight">
-          <li>As saídas de campo são atividade de aula, não opcional</li>
-          <li>A agenda da visita é a da propriedade, não a do grupo</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="tag">Registro e ética</span>
-        <ul class="tight">
-          <li>Consentimento e autorização de imagem antes de gravar ou fotografar</li>
-          <li>Caderno de campo preenchido na propriedade, não depois</li>
-          <li>Respeito à propriedade, às pessoas e à cultura local</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="tag">Prazos e canais</span>
-        <ul class="tight">
-          <li>Postagens no fórum do Moodle, com prazo em cada tarefa</li>
-          <li>Materiais de leitura e cronograma atualizado no Moodle</li>
-          <li>Contato por e-mail e pelo grupo de WhatsApp da disciplina</li>
-        </ul>
-      </div>
-      <div class="card mostarda-card">
-        <span class="tag">Uso de inteligência artificial</span>
-        <ul class="tight">
-          <li>Permitido como apoio, com declaração do que foi feito com auxílio de IA</li>
-          <li>O que a IA não pode fazer: ir a campo, ouvir o produtor e interpretar por você</li>
-          <li>Dado inventado ou fala atribuída sem registro invalida a entrega</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 14 -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Hoje · 05/08</span>
-    <h2>Duas coisas antes de sair da aula</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card terra">
-        <span class="tag">Primeiro</span>
-        <h3>Escreva uma experiência que você conhece de perto</h3>
-        <p>Poucas linhas sobre uma experiência agrícola da sua família, da sua comunidade ou de um estágio. O que é, quem conduz, o que ela tem de particular.</p>
-        <p class="small">Será a primeira sistematização do semestre, e vai servir de referência para o que vem depois.</p>
-      </div>
-      <div class="card oliva">
-        <span class="tag">Depois</span>
-        <h3>Até a próxima aula, formem o grupo e registrem no Moodle</h3>
-        <p>O grupo vai junto até 25 de novembro: campo, vídeo, relatório e apresentação. Escolha considerando quem tem disponibilidade para sair a campo em dia combinado com a família.</p>
-        <p class="small">Próxima aula, 12/08: sistemas alimentares e cadeias produtivas.</p>
-      </div>
-    </div>
-    <div class="rodape">
-      <span>Colégio Politécnico da UFSM · Técnico em Agricultura · CPSEA101 · 2026/2</span>
-      <span>Material elaborado com auxílio de inteligência artificial, sob revisão e responsabilidade dos docentes</span>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<div id="zona-esq" aria-hidden="true"></div>
-<div id="zona-dir" aria-hidden="true"></div>
-<div id="nav">
-  <button id="ant" aria-label="Slide anterior">←</button>
-  <span id="cont" class="mono">1 / 17</span>
-  <button id="prox" aria-label="Próximo slide">→</button>
-</div>
-
-<style>.card.mostarda-card{background:var(--mostarda-claro);border-color:#E3D3A8}</style>
-
-<script>
-(function(){
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var i = 0, palco = document.getElementById('palco'), cont = document.getElementById('cont');
-
-  function mostra(n){
-    i = Math.max(0, Math.min(slides.length - 1, n));
-    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
-    cont.textContent = (i + 1) + ' / ' + slides.length;
-    if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
-  }
-  function escala(){
-    var e = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
-    palco.style.transform = 'scale(' + e + ')';
-  }
-  document.addEventListener('keydown', function(ev){
-    var k = ev.key;
-    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { ev.preventDefault(); mostra(i + 1); }
-    else if (k === 'ArrowLeft' || k === 'PageUp') { ev.preventDefault(); mostra(i - 1); }
-    else if (k === 'Home') mostra(0);
-    else if (k === 'End') mostra(slides.length - 1);
-    else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
-  });
-  document.getElementById('prox').onclick = function(){ mostra(i + 1); };
-  document.getElementById('ant').onclick = function(){ mostra(i - 1); };
-  document.getElementById('zona-dir').onclick = function(){ mostra(i + 1); };
-  document.getElementById('zona-esq').onclick = function(){ mostra(i - 1); };
-  window.addEventListener('resize', escala);
-  escala();
-  var h = parseInt((location.hash || '').replace('#', ''), 10);
-  mostra(isNaN(h) ? 0 : h - 1);
-})();
-</script>
+</main>
 </body>
 </html>
