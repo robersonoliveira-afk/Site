@@ -157,6 +157,19 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 .upa-sub div{background:#fff;border:1px solid #CBD3BB;border-radius:3px;padding:8px 8px;text-align:center;font-size:12px;color:var(--tinta2);line-height:1.3}
 .upa-sub div b{display:block;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta2);margin-bottom:3px}
 
+/* diagrama fronteira do sistema */
+.fronteira-diagrama{margin:4px auto 0;max-width:760px;width:100%}
+.fronteira-fora{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;margin-bottom:-16px}
+.fronteira-caixa{position:relative;border:2px dashed var(--terra);border-radius:10px;padding:28px 20px 20px;background:var(--papel2);display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.fronteira-caixa .rot-f{position:absolute;top:-11px;left:18px;background:var(--papel);padding:0 8px;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--terra)}
+.chip-f{border:1px solid var(--linha);background:#fff;padding:8px 14px;font-size:13.5px;border-radius:3px;white-space:nowrap;color:var(--tinta)}
+.chip-f.fora{background:var(--papel3);color:var(--tinta2)}
+.chip-f.dentro{background:var(--oliva-claro);color:#3F5233;border-color:#CBD3BB}
+.chip-f.ambigua{background:var(--mostarda-claro);color:#7A5A10;border:1.5px dashed var(--mostarda)}
+
+/* diagrama tres eixos, mesma propriedade */
+.eixos-svg{display:block;width:480px;max-width:100%;margin:2px auto 0}
+
 /* chips eixo */
 .chip{border:1px solid var(--linha);background:var(--papel2);padding:7px 12px;font-size:14px;display:inline-block}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -187,10 +200,9 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
       <div class="rule"></div>
     </div>
     <p style="font-family:'Fraunces',Georgia,serif;font-size:21px;line-height:1.4;color:var(--oliva);max-width:46ch;margin-top:14px">Duas coisas escondidas na mesma legenda: o sistema que você vai aprender a desenhar, e a cadeia que decide o preço dele.</p>
-    <div class="cols c3" style="margin-top:8px">
-      <div class="card"><span class="tag">Docentes</span><h3 style="font-size:15px">Róberson e Ezequiel</h3></div>
-      <div class="card"><span class="tag">Formato</span><h3 style="font-size:15px">Presencial, 19h às 22h</h3></div>
-      <div class="card"><span class="tag">Entrega</span><h3 style="font-size:15px">Nenhuma. Cartaz construído em aula</h3></div>
+    <div class="card" style="margin-top:8px;max-width:220px">
+      <span class="tag">Docentes</span>
+      <h3 style="font-size:15px">Róberson e Ezequiel</h3>
     </div>
   </div>
 </section>
@@ -200,22 +212,19 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   <div class="head">
     <span class="kicker">Antes de começar</span>
     <h2>Três tempos, uma noite só</h2>
-    <p class="sub">Esta é a aula que mais determina a qualidade do que vocês vão enxergar em campo. Por isso ocupa a noite inteira, com os dois docentes.</p>
+    <p class="sub">Esta é a aula que mais determina a qualidade do que vocês vão enxergar em campo.</p>
   </div>
   <div class="body">
     <div class="cols c3">
       <div class="card terra">
-        <span class="tag">≈ 60 min</span>
         <h3>O gancho</h3>
         <p>Um post, 922 comentários, e as camadas de um sistema alimentar que já estavam escritas nele.</p>
       </div>
       <div class="card oliva">
-        <span class="tag">≈ 90 min</span>
         <h3>A teoria</h3>
         <p>Os pressupostos do olhar sistêmico, a propriedade como sistema, e os três segmentos de qualquer cadeia.</p>
       </div>
       <div class="card mostarda">
-        <span class="tag">≈ 30 min</span>
         <h3>O papel pardo</h3>
         <p>Em grupo: desenhar uma propriedade e posicioná-la na cadeia, no mesmo cartaz.</p>
       </div>
@@ -455,23 +464,20 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     <span class="kicker">Tempo 2, teoria</span>
     <h2>O homem, a sociedade e a produção de alimentos</h2>
   </div>
-  <div class="body">
-    <p>Produzir alimento nunca foi só uma técnica. Desde as primeiras roças, a forma de produzir organiza quem trabalha, quem decide, quem come e quem sobra fora da mesa.</p>
-    <div class="cols c3">
-      <div class="card">
-        <span class="tag">Escala do indivíduo</span>
-        <p>O que cada família planta, cria e consome, e o que sobra para vender.</p>
-      </div>
-      <div class="card oliva">
-        <span class="tag">Escala da região</span>
-        <p>Como um território se especializa, e o que isso cria de dependência entre regiões.</p>
-      </div>
-      <div class="card terra">
-        <span class="tag">Escala do país</span>
-        <p>Política agrícola, comércio exterior, segurança alimentar como questão de estado.</p>
-      </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-familia-agricultura.jpg" alt="Helena Maria da Hora Xavier separa goiabas da própria propriedade para fazer polpa, agricultura familiar em Conceição do Coité, Bahia">
+      <div class="legenda">Foto: Sergio Amaral/MDS, Wikimedia Commons, CC BY-SA 2.0</div>
     </div>
-    <div class="nota">Toda sistematização de experiência que vocês vão fazer neste semestre está, em algum grau, contando essa relação entre uma família e a produção de alimentos, numa escala pequena e concreta.</div>
+    <div class="txt">
+      <p style="margin-top:0">Produzir alimento nunca foi só uma técnica. Desde as primeiras roças, a forma de produzir organiza quem trabalha, quem decide, quem come e quem sobra fora da mesa.</p>
+      <ul class="tight">
+        <li><strong>Escala do indivíduo</strong>, o que cada família planta, cria e consome, e o que sobra para vender.</li>
+        <li><strong>Escala da região</strong>, como um território se especializa, e o que isso cria de dependência entre regiões.</li>
+        <li><strong>Escala do país</strong>, política agrícola, comércio exterior, segurança alimentar como questão de estado.</li>
+      </ul>
+      <div class="nota">Toda sistematização de experiência que vocês vão fazer neste semestre está, em algum grau, contando essa relação entre uma família e a produção de alimentos, numa escala pequena e concreta.</div>
+    </div>
   </div>
 </section>
 
@@ -590,6 +596,18 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
   <div class="body">
     <p class="sub" style="margin-top:0">A fronteira do sistema estabelece os limites da autonomia interna, define quais interações são consideradas internas e qual é a relação do conjunto com o ambiente.</p>
+    <div class="fronteira-diagrama">
+      <div class="fronteira-fora">
+        <div class="chip-f fora">Clima, chuva, geada</div>
+        <div class="chip-f fora">Preço do produto no mercado</div>
+      </div>
+      <div class="fronteira-caixa">
+        <span class="rot-f">Fronteira do sistema</span>
+        <div class="chip-f dentro">Manejo do solo</div>
+        <div class="chip-f dentro">Mão de obra da família</div>
+        <div class="chip-f ambigua">Emprego do filho na cidade</div>
+      </div>
+    </div>
     <div class="nota terra">A resposta muda conforme a pergunta que você faz. Se a pergunta é sobre renda familiar, o emprego de um filho na cidade está dentro da fronteira. Se a pergunta é só sobre manejo do solo, provavelmente não está.</div>
   </div>
 </section>
@@ -691,6 +709,20 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     <p class="sub">É o que vocês vão usar em toda saída de campo: a mesma propriedade, lida por três entradas diferentes.</p>
   </div>
   <div class="body">
+    <svg class="eixos-svg" viewBox="0 0 900 340" role="img" aria-label="Diagrama com três eixos, produtivo, social e comercialização, convergindo sobre a mesma propriedade no centro">
+      <line x1="450" y1="170" x2="450" y2="55" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
+      <line x1="450" y1="170" x2="160" y2="270" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
+      <line x1="450" y1="170" x2="740" y2="270" stroke="var(--tinta2)" stroke-opacity=".35" stroke-width="2.5"/>
+      <circle cx="450" cy="55" r="46" fill="var(--oliva-claro)" stroke="var(--oliva)" stroke-width="2"/>
+      <text x="450" y="59" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#3F5233">Produtivo</text>
+      <circle cx="160" cy="270" r="48" fill="var(--terra-claro)" stroke="var(--terra)" stroke-width="2"/>
+      <text x="160" y="274" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#7C3D1E">Social</text>
+      <circle cx="740" cy="270" r="58" fill="var(--mostarda-claro)" stroke="var(--mostarda)" stroke-width="2"/>
+      <text x="740" y="274" text-anchor="middle" font-family="IBM Plex Sans" font-size="11.5" font-weight="600" fill="#7A5A10">Comercialização</text>
+      <circle cx="450" cy="170" r="62" fill="var(--papel2)" stroke="var(--tinta)" stroke-width="2"/>
+      <text x="450" y="166" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" letter-spacing=".04em" fill="var(--tinta2)">A</text>
+      <text x="450" y="182" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--tinta)">propriedade</text>
+    </svg>
     <div class="cols c3">
       <div class="card oliva">
         <span class="tag">Produtivo</span>
@@ -812,9 +844,13 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     <h2>A cadeia da uva entra aqui de propósito</h2>
     <p class="sub">É o contexto das duas propriedades que a turma vai visitar.</p>
   </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card">
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-vinhedo-serra-gaucha.jpg" alt="Vinhedo em parreiral no Vale dos Vinhedos, Bento Gonçalves, Serra Gaúcha">
+      <div class="legenda">Foto: Stella Segatti, Vale dos Vinhedos, Wikimedia Commons, CC BY-SA 4.0</div>
+    </div>
+    <div class="txt">
+      <div class="card" style="margin-top:0">
         <span class="tag">Serra Gaúcha</span>
         <p>Arranjo consolidado: cooperativas, vinícolas de escala, denominação de origem. Muitos produtores, indústria estruturada.</p>
       </div>
@@ -822,8 +858,8 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
         <span class="tag">Região Central</span>
         <p>Outra escala, outro público: vitivinicultura menor, venda mais direta, turismo rural como parte da renda.</p>
       </div>
+      <div class="nota">Levem essa pergunta para as duas visitas: onde está o montante e o jusante desta propriedade, e quem, nessa cadeia, define o preço do que ela produz?</div>
     </div>
-    <div class="nota">Levem essa pergunta para as duas visitas: onde está o montante e o jusante desta propriedade, e quem, nessa cadeia, define o preço do que ela produz?</div>
   </div>
 </section>
 
