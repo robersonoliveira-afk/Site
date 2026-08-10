@@ -133,6 +133,8 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 .tempo{border-top:2px solid var(--tinta);padding-top:11px;display:flex;flex-direction:column;gap:5px}
 .tempo .n{font-family:"Fraunces",Georgia,serif;font-size:26px;line-height:1;color:var(--terra)}
 .tempo p{font-size:12.5px;line-height:1.38;color:var(--tinta2)}
+.tempo .picto-row{display:flex;align-items:center;gap:8px;margin-bottom:1px}
+.tempo .picto{width:24px;height:24px;flex:0 0 auto;color:var(--terra);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* ciclo de retroalimentação */
 .ciclo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
@@ -482,11 +484,41 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
   <div class="body">
     <div class="tempos">
-      <div class="tempo"><span class="n">1</span><h3 style="font-size:15px">Interação</h3><p>A ação entre elementos é recíproca. Não é só A sobre B. É A sobre B e B sobre A.</p></div>
-      <div class="tempo"><span class="n">2</span><h3 style="font-size:15px">Complexidade</h3><p>Não é complicação. Depende da quantidade de elementos e dos tipos de relação entre eles.</p></div>
-      <div class="tempo"><span class="n">3</span><h3 style="font-size:15px">Totalidade</h3><p>O conjunto não se explica só pelas partes isoladas.</p></div>
-      <div class="tempo"><span class="n">4</span><h3 style="font-size:15px">Hierarquia</h3><p>Há escalas de abrangência. Subindo na escala, os sistemas ficam mais complexos.</p></div>
-      <div class="tempo"><span class="n">5</span><h3 style="font-size:15px">Organização</h3><p>Um lado estrutural, o arranjo, e um lado funcional, o que faz o sistema operar.</p></div>
+      <div class="tempo">
+        <div class="picto-row">
+          <svg class="picto" viewBox="0 0 24 24"><path d="M4 8h13M13 4l4 4-4 4"/><path d="M20 16H7M11 20l-4-4 4-4"/></svg>
+          <span class="n">1</span>
+        </div>
+        <h3 style="font-size:15px">Interação</h3><p>A ação entre elementos é recíproca. Não é só A sobre B. É A sobre B e B sobre A.</p>
+      </div>
+      <div class="tempo">
+        <div class="picto-row">
+          <svg class="picto" viewBox="0 0 24 24"><circle cx="6" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="12" cy="15" r="1.6"/><path d="M6 18L12 15M18 18L12 15M12 6L12 15"/></svg>
+          <span class="n">2</span>
+        </div>
+        <h3 style="font-size:15px">Complexidade</h3><p>Não é complicação. Depende da quantidade de elementos e dos tipos de relação entre eles.</p>
+      </div>
+      <div class="tempo">
+        <div class="picto-row">
+          <svg class="picto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r="1.3" fill="currentColor" stroke="none"/></svg>
+          <span class="n">3</span>
+        </div>
+        <h3 style="font-size:15px">Totalidade</h3><p>O conjunto não se explica só pelas partes isoladas.</p>
+      </div>
+      <div class="tempo">
+        <div class="picto-row">
+          <svg class="picto" viewBox="0 0 24 24"><path d="M12 3l4 4H8l4-4z"/><path d="M6 11h12"/><path d="M4 15h16"/><path d="M2 19h20"/></svg>
+          <span class="n">4</span>
+        </div>
+        <h3 style="font-size:15px">Hierarquia</h3><p>Há escalas de abrangência. Subindo na escala, os sistemas ficam mais complexos.</p>
+      </div>
+      <div class="tempo">
+        <div class="picto-row">
+          <svg class="picto" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3" y="15" width="6" height="4" rx="1"/><rect x="15" y="15" width="6" height="4" rx="1"/><path d="M12 7v4M12 11H6v4M12 11h6v4"/></svg>
+          <span class="n">5</span>
+        </div>
+        <h3 style="font-size:15px">Organização</h3><p>Um lado estrutural, o arranjo, e um lado funcional, o que faz o sistema operar.</p>
+      </div>
     </div>
     <div class="nota">Há coerência nos atos do agricultor mesmo quando eles contrariam a recomendação técnica. Encontrar essa coerência, e não julgá-la, é a postura que a disciplina exige.</div>
   </div>
