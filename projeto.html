@@ -301,7 +301,27 @@
           <input type="text" id="id-municipio" placeholder="ex.: Santa Maria/RS"></div>
         <div class="field"><label for="id-data">Data</label>
           <input type="text" id="id-data" placeholder="dd/mm/aaaa (em branco = hoje)"></div>
+        <div class="field">
+          <label class="lbl-aj" for="id-area-total">Área total da propriedade (ha)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-area-total">?</button>
+          </label>
+          <input type="number" id="id-area-total" min="0" step="any" placeholder="ex.: 80">
+          <div class="ajuda-box" id="aj-area-total" hidden>
+            <p>Área total do imóvel rural, não a área do talhão da atividade avaliada (essa é informada no passo 1). Usada só para calcular os módulos fiscais.</p>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl-aj" for="id-modulo-fiscal">Módulo fiscal do município (ha)
+            <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-modulo-fiscal">?</button>
+          </label>
+          <input type="number" id="id-modulo-fiscal" min="0" step="any" placeholder="ex.: 20">
+          <div class="ajuda-box" id="aj-modulo-fiscal" hidden>
+            <p>Varia por município (definido pelo INCRA). Consulte pelo nome do município e informe aqui em hectares: o simulador calcula os módulos fiscais automaticamente e preenche o campo no passo Crédito.</p>
+            <a href="https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/modulo-fiscal" target="_blank" rel="noopener">consultar no INCRA →</a>
+          </div>
+        </div>
       </div>
+      <p class="hint" id="hint-modulos-fiscais"></p>
     </div>
     <div class="card">
       <h2><span class="n">1</span>Atividade e enquadramento</h2>
@@ -1043,6 +1063,7 @@ function coletarTudo(){
   E.identificacao = {
     projeto:el('id-projeto').value, produtor:el('id-produtor').value,
     unidade:el('id-unidade').value, municipio:el('id-municipio').value, data:el('id-data').value,
+    areaTotal:el('id-area-total').value, moduloFiscal:el('id-modulo-fiscal').value,
   };
   E.swot = {
     forcas:el('swot-forcas').value, fraquezas:el('swot-fraquezas').value,
@@ -1082,8 +1103,14 @@ function coletarTudo(){
 // --- cálculo central: do ESTADO derivam todos os números ---
 function derivar(E){
   const n = numv(E.p1.qtd);
-  const rb = numv(E.p1.qtd)*numv(E.p1.prod)*numv(E.p1.preco) + numv(E.p1.secValor);
-  const principal = numv(E.p1.qtd)*numv(E.p1.prod)*numv(E.p1.preco);
+  // giro (modo D: corte, suínos, aves de corte, tilápia): ciclos/ano multiplicam a receita,
+  // mortalidade reduz a quantidade efetivamente vendida (custo já é lançado sobre a qtd alojada)
+  const tGiro = !!(TEMPLATES[E.template] && TEMPLATES[E.template].giro);
+  const ciclosAno = tGiro ? (numv(E.p2.campos.ciclos_ano)||1) : 1;
+  const mortalidade = tGiro ? (numv(E.p2.campos.mortalidade)/100) : 0;
+  const qtdEfetiva = n*(1-mortalidade);
+  const principal = qtdEfetiva*numv(E.p1.prod)*numv(E.p1.preco)*ciclosAno;
+  const rb = principal + numv(E.p1.secValor);
   const sec = numv(E.p1.secValor);
   const fAliq = FUNRURAL[E.fiscal];
   const fVal  = rb*fAliq;
@@ -1293,6 +1320,7 @@ function aplicarEstado(E){
   const id=E.identificacao||{};
   el('id-projeto').value=id.projeto||''; el('id-produtor').value=id.produtor||'';
   el('id-unidade').value=id.unidade||''; el('id-municipio').value=id.municipio||''; el('id-data').value=id.data||'';
+  el('id-area-total').value=id.areaTotal||''; el('id-modulo-fiscal').value=id.moduloFiscal||'';
   const sw=E.swot||{};
   el('swot-forcas').value=sw.forcas||''; el('swot-fraquezas').value=sw.fraquezas||'';
   el('swot-oportunidades').value=sw.oportunidades||''; el('swot-ameacas').value=sw.ameacas||'';
@@ -1435,7 +1463,7 @@ function pintarPerene(E,D){
   }
   const taxa=numv(E.p6.taxaDesconto);
   const cf=numv(E.p6.custoFormacao);
-  const ctCaixa=D.ct-D.depFormacao;
+  const ctCaixa=D.ct-D.dep; // exclui TODA depreciação (bens + formação): não é desembolso de caixa
   const {f,fases,form,vida}=montarFluxos(numv(E.p5.form),numv(E.p5.vida),D.investimento,cf,D.rl,ctCaixa);
   el('dica-form').textContent=ctCaixa>0?
     ('referência: manutenção sem receita plena, em geral 30–50% do custo em caixa ('+brl(ctCaixa*0.3)+'–'+brl(ctCaixa*0.5)+').'):
@@ -1687,7 +1715,7 @@ function montarDossie(C){
   let b6='';
   if(ehPerene(C.template)&&p5){
     const taxa=num(p5.taxaDesconto);
-    const ctCaixa=ct-num(p4.depFormacao||0);
+    const ctCaixa=ct-num(p4.depreciacao||0)-num(p4.depFormacao||0); // exclui TODA depreciação (bens + formação)
     const {f,fases,form,vida}=montarFluxos(num(p5.formacao),num(p5.vidaUtil),num(p5.investimento),num(p5.custoFormacao),rl,ctCaixa);
     const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
     let acc=0,linhas='';const rot={impl:'ano 0',form:'formação',prod:'produção'};
@@ -1783,7 +1811,7 @@ const EXEMPLO_UVA = {
     {desc:"Insumos: adubação e tratamentos fitossanitários", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"4050"},
     {desc:"Energia elétrica (irrigação por gotejamento)", cat:"Energia/água", un:"ha", qtd:"1", preco:"300"},
   ], seguro:"", ater:"", juros:""},
-  p4:{bens:[{desc:"Estrutura do vinhedo: postes, arames, irrigação, mudas (implantação total)", aq:"104000", res:"0", vida:"15"}],
+  p4:{bens:[],
     prolabore:"18000", outros:"2400", taxaCapital:"", arrendamento:"2000", area:"1"},
   p5:{cultura:"uva",
     itens:[
@@ -1874,7 +1902,23 @@ function vizinho(dir){
 // ===========================================================================
 // RECALC — ciclo central
 // ===========================================================================
+// área total ÷ módulo fiscal do município = nº de módulos fiscais (preenche cred-mf automaticamente)
+function atualizarModulosFiscais(){
+  const areaTotal=numv(el('id-area-total').value), moduloHa=numv(el('id-modulo-fiscal').value);
+  const hint=el('hint-modulos-fiscais');
+  if(areaTotal>0 && moduloHa>0){
+    const n=areaTotal/moduloHa;
+    el('cred-mf').value=n.toFixed(2);
+    hint.innerHTML='≈ <b>'+n.toLocaleString('pt-BR',{maximumFractionDigits:2})+'</b> módulos fiscais ('+
+      areaTotal.toLocaleString('pt-BR')+' ha ÷ '+moduloHa.toLocaleString('pt-BR')+' ha por módulo). '+
+      'Preenchido automaticamente em "Módulos fiscais" (passo Crédito); edite lá se precisar ajustar.';
+  }else{
+    hint.textContent='';
+  }
+}
+
 function recalc(){
+  atualizarModulosFiscais();
   const E=coletarTudo();
   const D=derivar(E);
   pintar(E,D);
@@ -1902,6 +1946,15 @@ const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
   if(e.target.id==='template'){ aplicarTemplate(true); if(!passosAtivos().includes(passoAtual)) irPara(0); else renderSteps(); }
   if(e.target.id==='usa-credito') toggleCredito();
+  // área é o mesmo talhão em qualquer passo (receita, remuneração da terra, implantação):
+  // mantém qtd (passo1), area (passo4) e area5 (passo5) sincronizados para templates em "ha"
+  if(['qtd','area','area5'].includes(e.target.id)){
+    const t=TEMPLATES[el('template').value];
+    if(t && t.un==='ha'){
+      const v=e.target.value;
+      ['qtd','area','area5'].forEach(id=>{ if(id!==e.target.id) el(id).value=v; });
+    }
+  }
   recalc();
 });
 el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
