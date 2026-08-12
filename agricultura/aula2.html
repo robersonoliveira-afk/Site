@@ -253,6 +253,22 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 .poder-pt.grande{width:26px;height:26px;background:var(--terra)}
 .poder-seta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--terra);text-align:center;line-height:1.4;max-width:120px}
 
+/* pirâmide de concentração do sistema alimentar */
+.piramide-flow{display:flex;align-items:center;gap:34px;margin-top:6px}
+.piramide{flex:0 0 300px;display:flex;flex-direction:column}
+.piramide-nivel{display:flex;align-items:center;justify-content:center;text-align:center;padding:4px 6px;font-family:"IBM Plex Sans",sans-serif;font-weight:600;line-height:1.2}
+.piramide-nivel.n1{clip-path:polygon(34% 0,66% 0,74% 100%,26% 100%);background:var(--tinta);color:var(--papel);height:52px;font-size:11.5px}
+.piramide-nivel.n2{clip-path:polygon(26% 0,74% 0,84% 100%,16% 100%);background:var(--terra);color:#fff;height:58px;font-size:12px}
+.piramide-nivel.n3{clip-path:polygon(16% 0,84% 0,94% 100%,6% 100%);background:var(--mostarda-claro);color:#7A5A10;height:64px;font-size:12.5px}
+.piramide-nivel.n4{clip-path:polygon(6% 0,94% 0,100% 100%,0 100%);background:var(--oliva-claro);color:#3F5233;height:70px;font-size:13px}
+.piramide-legenda{flex:1;display:flex;flex-direction:column;gap:14px}
+.piramide-item{display:flex;align-items:baseline;gap:12px}
+.piramide-item .v{font-family:"Fraunces",Georgia,serif;font-size:26px;font-weight:600;color:var(--tinta);flex:0 0 auto;min-width:74px}
+.piramide-item .l{font-size:14px;line-height:1.4;color:var(--tinta2)}
+.card.tinta{background:var(--tinta);border-color:var(--tinta)}
+.card.tinta .tag{color:var(--papel3)}
+.card.tinta p{color:var(--papel)}
+
 /* selos com emoji, icones das cadeias */
 .ic-badge{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;font-size:21px;line-height:1;flex:0 0 auto;margin-bottom:2px}
 .ic-badge.oliva{background:var(--oliva-claro);border:2px solid var(--oliva)}
@@ -860,112 +876,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 18 entradas controlaveis -->
-<section class="slide zoom">
-  <div class="head">
-    <span class="kicker">Tempo 2, teoria</span>
-    <h2>O que o agricultor decide, e o que ele sofre</h2>
-  </div>
-  <div class="body">
-    <div class="cols c2">
-      <div class="card oliva">
-        <span class="tag">Entradas controláveis</span>
-        <p>Aquelas sobre as quais o agricultor decide: variedade, densidade de plantio, adubação, época de manejo, contratação de mão de obra, canal de venda.</p>
-      </div>
-      <div class="card terra">
-        <span class="tag">Entradas não controláveis</span>
-        <p>Aquelas que o agricultor sofre: chuva, granizo, geada, preço do produto, política de crédito, pressão sanitária vinda de fora da propriedade.</p>
-      </div>
-    </div>
-    <div class="nota">A fronteira entre as duas colunas se move. Cooperativa, contrato de entrega e escolha do momento de venda deslocam parte do preço para a coluna da esquerda, sem mudar nada na lavoura. É aí que a gestão entra.</div>
-  </div>
-</section>
-
-<!-- 19 quem decide -->
-<section class="slide zoom">
-  <div class="head">
-    <span class="kicker">Tempo 2, teoria</span>
-    <h2>Quem decide o quê</h2>
-  </div>
-  <div class="body">
-    <p class="sub" style="margin-top:0">Tratar a família como um decisor único é o atalho mais comum, e o que mais estraga um diagnóstico. Dentro da mesma casa há decisões separadas, com prioridades diferentes.</p>
-    <div class="cols c2">
-      <div class="card">
-        <span class="tag">O que costuma se dividir</span>
-        <ul class="tight">
-          <li>Quem escolhe o que se planta e quando se maneja</li>
-          <li>Quem cuida da horta e dos animais menores</li>
-          <li>Quem controla o caixa e negocia o preço</li>
-          <li>Quem decide sobre investimento de longo prazo</li>
-        </ul>
-      </div>
-      <div class="card mostarda">
-        <span class="tag">Por que isso importa</span>
-        <p>Recomendação dirigida a quem não decide não é executada. A regra de campo é observar, não presumir.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 20 ciclo reforco -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Tempo 2, teoria</span>
-    <h2>Quando o efeito volta e vira causa</h2>
-    <p class="sub">Retroalimentação: a saída de um sistema volta como entrada. Existe em dois sentidos opostos. O primeiro amplifica.</p>
-  </div>
-  <div class="body">
-    <h3 style="font-size:16px;color:var(--terra)">Ciclo de reforço, cada volta amplifica</h3>
-    <svg class="ciclo-svg ref" viewBox="0 0 860 216" role="img" aria-label="Ciclo de reforço fechado: lavoura ou pomar envelhecido leva a receita baixa e irregular, que leva a falta de caixa para renovar, que volta ao ponto de partida e agrava o envelhecimento">
-      <defs><marker id="pt-ref" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A8552E"/></marker></defs>
-      <rect class="cx" x="10" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
-      <text class="ct" x="130" y="53" text-anchor="middle">Lavoura ou pomar</text>
-      <text class="ct" x="130" y="76" text-anchor="middle">envelhecido</text>
-      <rect class="cx" x="310" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
-      <text class="ct" x="430" y="53" text-anchor="middle">Receita baixa</text>
-      <text class="ct" x="430" y="76" text-anchor="middle">e irregular</text>
-      <rect class="cx" x="610" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
-      <text class="ct" x="730" y="53" text-anchor="middle">Sem caixa</text>
-      <text class="ct" x="730" y="76" text-anchor="middle">para renovar</text>
-      <path d="M256 60H304" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
-      <path d="M556 60H604" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
-      <path d="M730 104V170H130V110" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
-      <text class="cl" x="430" y="200" text-anchor="middle">cada volta agrava a anterior</text>
-    </svg>
-    <div class="nota terra">O mesmo mecanismo apareceu na crise do ovo: plantel menor eleva o preço, o preço alto atrai mais demanda por importação de ovo brasileiro, e a pressão sobre a ração local aumenta ainda mais.</div>
-  </div>
-</section>
-
-<!-- 21 ciclo equilibrio -->
-<section class="slide">
-  <div class="head">
-    <span class="kicker">Tempo 2, teoria</span>
-    <h2>Quando o sistema se corrige sozinho</h2>
-    <p class="sub">O segundo sentido da retroalimentação freia, em vez de amplificar.</p>
-  </div>
-  <div class="body">
-    <h3 style="font-size:16px;color:var(--oliva)">Ciclo de equilíbrio, cada volta freia</h3>
-    <svg class="ciclo-svg eq" viewBox="0 0 860 216" role="img" aria-label="Ciclo de equilíbrio fechado: aumento de produto fora do padrão comercial leva a processamento caseiro, que reduz a perda e gera receita, o que devolve o sistema ao ponto de partida">
-      <defs><marker id="pt-eq" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D4A2A"/></marker></defs>
-      <rect class="cx" x="10" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
-      <text class="ct" x="130" y="53" text-anchor="middle">Produto fora do padrão</text>
-      <text class="ct" x="130" y="76" text-anchor="middle">comercial aumenta</text>
-      <rect class="cx" x="310" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
-      <text class="ct" x="430" y="53" text-anchor="middle">Vira processamento</text>
-      <text class="ct" x="430" y="76" text-anchor="middle">caseiro</text>
-      <rect class="cx" x="610" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
-      <text class="ct" x="730" y="53" text-anchor="middle">Perda cai, entra</text>
-      <text class="ct" x="730" y="76" text-anchor="middle">alguma receita</text>
-      <path d="M256 60H304" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
-      <path d="M556 60H604" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
-      <path d="M730 104V170H130V110" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
-      <text class="cl" x="430" y="200" text-anchor="middle">cada volta freia a anterior</text>
-    </svg>
-    <div class="nota oliva">Foi um ciclo de equilíbrio que trouxe o preço do ovo de volta para baixo, dezoito meses depois do post: a oferta reagiu ao preço alto, e o preço caiu.</div>
-  </div>
-</section>
-
-<!-- 22 tres eixos -->
+<!-- 18 tres eixos -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
@@ -1003,6 +914,111 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
         <p>Canais de venda, formação de preço, poder de negociação em cada um.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 19 entradas controlaveis -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>O que o agricultor decide, e o que ele sofre</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card oliva">
+        <span class="tag">Entradas controláveis</span>
+        <p>Aquelas sobre as quais o agricultor decide: variedade, densidade de plantio, adubação, época de manejo, contratação de mão de obra, canal de venda.</p>
+      </div>
+      <div class="card terra">
+        <span class="tag">Entradas não controláveis</span>
+        <p>Aquelas que o agricultor sofre: chuva, granizo, geada, preço do produto, política de crédito, pressão sanitária vinda de fora da propriedade.</p>
+      </div>
+    </div>
+    <div class="nota">A fronteira entre as duas colunas se move. Cooperativa, contrato de entrega e escolha do momento de venda deslocam parte do preço para a coluna da esquerda, sem mudar nada na lavoura. É aí que a gestão entra.</div>
+  </div>
+</section>
+
+<!-- 20 quem decide -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Quem decide o quê</h2>
+  </div>
+  <div class="body">
+    <p class="sub" style="margin-top:0">Tratar a família como um decisor único é o atalho mais comum, e o que mais estraga um diagnóstico. Dentro da mesma casa há decisões separadas, com prioridades diferentes.</p>
+    <div class="cols c2">
+      <div class="card">
+        <span class="tag">O que costuma se dividir</span>
+        <ul class="tight">
+          <li>Quem escolhe o que se planta e quando se maneja</li>
+          <li>Quem cuida da horta e dos animais menores</li>
+          <li>Quem controla o caixa e negocia o preço</li>
+          <li>Quem decide sobre investimento de longo prazo</li>
+        </ul>
+      </div>
+      <div class="card mostarda">
+        <span class="tag">Por que isso importa</span>
+        <p>Recomendação dirigida a quem não decide não é executada. A regra de campo é observar, não presumir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 ciclo reforco -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Quando o efeito volta e vira causa</h2>
+    <p class="sub">Retroalimentação: a saída de um sistema volta como entrada. Existe em dois sentidos opostos. O primeiro amplifica.</p>
+  </div>
+  <div class="body">
+    <h3 style="font-size:16px;color:var(--terra)">Ciclo de reforço, cada volta amplifica</h3>
+    <svg class="ciclo-svg ref" viewBox="0 0 860 216" role="img" aria-label="Ciclo de reforço fechado: lavoura ou pomar envelhecido leva a receita baixa e irregular, que leva a falta de caixa para renovar, que volta ao ponto de partida e agrava o envelhecimento">
+      <defs><marker id="pt-ref" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A8552E"/></marker></defs>
+      <rect class="cx" x="10" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="130" y="53" text-anchor="middle">Lavoura ou pomar</text>
+      <text class="ct" x="130" y="76" text-anchor="middle">envelhecido</text>
+      <rect class="cx" x="310" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="430" y="53" text-anchor="middle">Receita baixa</text>
+      <text class="ct" x="430" y="76" text-anchor="middle">e irregular</text>
+      <rect class="cx" x="610" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="730" y="53" text-anchor="middle">Sem caixa</text>
+      <text class="ct" x="730" y="76" text-anchor="middle">para renovar</text>
+      <path d="M256 60H304" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
+      <path d="M556 60H604" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
+      <path d="M730 104V170H130V110" stroke="#A8552E" stroke-width="2" fill="none" marker-end="url(#pt-ref)"/>
+      <text class="cl" x="430" y="200" text-anchor="middle">cada volta agrava a anterior</text>
+    </svg>
+    <div class="nota terra">O mesmo mecanismo apareceu na crise do ovo: plantel menor eleva o preço, o preço alto atrai mais demanda por importação de ovo brasileiro, e a pressão sobre a ração local aumenta ainda mais.</div>
+  </div>
+</section>
+
+<!-- 22 ciclo equilibrio -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Quando o sistema se corrige sozinho</h2>
+    <p class="sub">O segundo sentido da retroalimentação freia, em vez de amplificar.</p>
+  </div>
+  <div class="body">
+    <h3 style="font-size:16px;color:var(--oliva)">Ciclo de equilíbrio, cada volta freia</h3>
+    <svg class="ciclo-svg eq" viewBox="0 0 860 216" role="img" aria-label="Ciclo de equilíbrio fechado: aumento de produto fora do padrão comercial leva a processamento caseiro, que reduz a perda e gera receita, o que devolve o sistema ao ponto de partida">
+      <defs><marker id="pt-eq" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D4A2A"/></marker></defs>
+      <rect class="cx" x="10" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="130" y="53" text-anchor="middle">Produto fora do padrão</text>
+      <text class="ct" x="130" y="76" text-anchor="middle">comercial aumenta</text>
+      <rect class="cx" x="310" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="430" y="53" text-anchor="middle">Vira processamento</text>
+      <text class="ct" x="430" y="76" text-anchor="middle">caseiro</text>
+      <rect class="cx" x="610" y="16" width="240" height="88" rx="4" stroke-width="1.5"/>
+      <text class="ct" x="730" y="53" text-anchor="middle">Perda cai, entra</text>
+      <text class="ct" x="730" y="76" text-anchor="middle">alguma receita</text>
+      <path d="M256 60H304" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
+      <path d="M556 60H604" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
+      <path d="M730 104V170H130V110" stroke="#3D4A2A" stroke-width="2" fill="none" marker-end="url(#pt-eq)"/>
+      <text class="cl" x="430" y="200" text-anchor="middle">cada volta freia a anterior</text>
+    </svg>
+    <div class="nota oliva">Foi um ciclo de equilíbrio que trouxe o preço do ovo de volta para baixo, dezoito meses depois do post: a oferta reagiu ao preço alto, e o preço caiu.</div>
   </div>
 </section>
 
@@ -1088,7 +1104,82 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 25 cadeias longas e curtas, com fotos RS -->
+<!-- 25 piramide de concentracao -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Da lavoura ao mercado, quem concentra o poder</h2>
+    <p class="sub">O mesmo princípio do slide anterior, agora em escala global: poucos elos concentram poder sobre uma base ampla e dispersa de produtores.</p>
+  </div>
+  <div class="body">
+    <div class="piramide-flow">
+      <div class="piramide">
+        <div class="piramide-nivel n1">Capital financeiro</div>
+        <div class="piramide-nivel n2">Sementes e agrotóxicos</div>
+        <div class="piramide-nivel n3">Trading de commodities</div>
+        <div class="piramide-nivel n4">Produção agrícola</div>
+      </div>
+      <div class="piramide-legenda">
+        <div class="piramide-item"><span class="v">3</span><span class="l">gestoras de fundos no topo, com participação em quase todas as camadas abaixo</span></div>
+        <div class="piramide-item"><span class="v">4</span><span class="l">empresas dominam sementes e agrotóxicos</span></div>
+        <div class="piramide-item"><span class="v">10</span><span class="l">tradings concentram o comércio mundial de grãos</span></div>
+        <div class="piramide-item"><span class="v">570 mi</span><span class="l">propriedades agrícolas formam a base do sistema, no mundo inteiro</span></div>
+      </div>
+    </div>
+    <div class="nota">Cada camada tem seus próprios donos. Mas os mesmos dois ou três nomes de capital financeiro aparecem como acionistas relevantes em praticamente todas elas, dos insumos ao supermercado. Os próximos dois slides mostram os números por trás de cada camada.</div>
+    <p class="small">Fontes: ETC Group e GRAIN, Top 10 Agribusiness Giants (2025); O Joio e o Trigo (2024); Lowder, Skoet e Raney, World Development (2016).</p>
+  </div>
+</section>
+
+<!-- 26 empresas por elo -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 2, teoria</span>
+    <h2>Poucas empresas em cada elo, da semente ao porto</h2>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div class="card terra">
+        <span class="tag">Sementes</span>
+        <p>Bayer, Corteva, Syngenta e BASF controlam 56% do mercado global de sementes comerciais.</p>
+      </div>
+      <div class="card mostarda">
+        <span class="tag">Agrotóxicos</span>
+        <p>As mesmas quatro empresas controlam 61% do mercado mundial de agrotóxicos e pesticidas.</p>
+      </div>
+      <div class="card oliva">
+        <span class="tag">Trading de grãos</span>
+        <p>Cargill lidera o comércio mundial de grãos, seguida pela estatal chinesa Cofco.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Concentração</span>
+        <p>As dez maiores tradings de commodities agrícolas somaram mais de US$ 500 bilhões em receita em 2020.</p>
+      </div>
+    </div>
+    <div class="nota terra">Do outro lado do balcão, um agricultor negocia sozinho o preço da semente e do frete. Do lado de cá, quatro a dez empresas decidem esse preço.</div>
+    <p class="small">Fontes: ETC Group e GRAIN, Top 10 Agribusiness Giants (2025); Wetter, Chowdhry e Daño, ETC Group, Food Barons 2022, via Rural21 (2023).</p>
+  </div>
+</section>
+
+<!-- 27 financeirizacao -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 2, o gancho revisitado</span>
+    <h2>Por trás das marcas, os mesmos acionistas</h2>
+    <p class="sub" style="margin-top:0">BlackRock, Vanguard e State Street Global Advisors, os três maiores gestores de fundos do mundo, aparecem como acionistas relevantes em quase todo o sistema alimentar.</p>
+  </div>
+  <div class="body">
+    <div class="stats">
+      <div class="stat"><span class="v">21 de 31</span><span class="l">maiores corporações do sistema alimentar têm uma das três gestoras entre suas acionistas relevantes</span></div>
+      <div class="stat oliva"><span class="v">16 de 31</span><span class="l">têm as três gestoras juntas como maior bloco acionário, entre elas Coca-Cola, PepsiCo, Tyson Foods, Bunge, Nestlé, JBS e Ambev</span></div>
+      <div class="stat mostarda"><span class="v">88%</span><span class="l">das empresas do S&amp;P 500 também têm o mesmo trio como maior acionista combinado, fora do agro</span></div>
+    </div>
+    <div class="nota terra">É o mesmo mecanismo do processo movido pelo Departamento de Justiça dos Estados Unidos contra a Cal-Maine, no caso do ovo: poder concentrado o bastante para mover a cotação de referência de uma cadeia inteira. Aqui, esse poder atravessa quase todo o sistema alimentar ao mesmo tempo.</div>
+    <p class="small">Fontes: João Peres, O Joio e o Trigo, mar. 2024, com base em relatórios financeiros e Yahoo Finance; Fichtner, Heemskerk e Garcia-Bernardo, Business and Politics, 2017.</p>
+  </div>
+</section>
+
+<!-- 28 cadeias longas e curtas, com fotos RS -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, teoria e exemplo gaúcho</span>
@@ -1110,7 +1201,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 26 preparacao cadeia uva -->
+<!-- 29 preparacao cadeia uva -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 2, preparação da saída</span>
@@ -1136,7 +1227,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 27 atividade -->
+<!-- 30 atividade -->
 <section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 3</span>
@@ -1158,7 +1249,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 28 exemplo de cartaz -->
+<!-- 31 exemplo de cartaz -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo 3, exemplo</span>
@@ -1193,7 +1284,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
   </div>
 </section>
 
-<!-- 29 fechamento -->
+<!-- 32 fechamento -->
 <section class="slide zoom">
   <div class="head">
     <span class="kicker">Hoje você sai sabendo</span>
@@ -1230,7 +1321,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 <div id="tempos" aria-hidden="true"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span id="tempo-lbl"></span></div>
 <div id="nav">
   <button id="ant" aria-label="Slide anterior">←</button>
-  <span id="cont" class="mono">1 / 33</span>
+  <span id="cont" class="mono">1 / 36</span>
   <button id="prox" aria-label="Próximo slide">→</button>
 </div>
 
@@ -1245,7 +1336,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
     cont.textContent = (i + 1) + ' / ' + slides.length;
-    var t = (i >= 2 && i <= 14) ? 1 : ((i >= 15 && i <= 29) ? 2 : ((i >= 30 && i <= 31) ? 3 : 0));
+    var t = (i >= 2 && i <= 14) ? 1 : ((i >= 15 && i <= 32) ? 2 : ((i >= 33 && i <= 34) ? 3 : 0));
     segs.forEach(function(s, k){ s.classList.toggle('on', t > 0 && k < t); });
     tlbl.textContent = t ? 'tempo ' + t : '';
     if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
