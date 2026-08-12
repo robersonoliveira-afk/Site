@@ -75,7 +75,7 @@ a{color:var(--terra)}
 .capa-logos{display:flex;align-items:center;gap:20px;margin-top:16px}
 .capa-logos img{display:block}
 .capa-logos .logo-poli{height:64px}
-.capa-logos .logo-curso{height:84px}
+.capa-logos .logo-curso{height:94px}
 .c2{grid-template-columns:1fr 1fr}
 .c3{grid-template-columns:repeat(3,1fr)}
 .c4{grid-template-columns:repeat(4,1fr)}
@@ -86,6 +86,57 @@ a{color:var(--terra)}
 .card.terra{background:var(--terra-claro);border-color:#E0C4B2}
 .card.oliva{background:var(--oliva-claro);border-color:#CBD3BB}
 .card.mostarda{background:var(--mostarda-claro);border-color:#E3D3A8}
+
+/* slides com espaço sobrando: tipografia maior */
+.slide.zoom h1{font-size:58px}
+.slide.zoom h2{font-size:40px}
+.slide.zoom .sub{font-size:19px;max-width:82ch}
+.slide.zoom .body{gap:22px}
+.slide.zoom .body p{font-size:20px;line-height:1.6}
+.slide.zoom .card{padding:22px 24px;gap:9px}
+.slide.zoom .card h3{font-size:21px}
+.slide.zoom .card p{font-size:17px;line-height:1.55}
+.slide.zoom .nota{font-size:18px;line-height:1.55;padding:20px 24px}
+.slide.zoom .nota strong{font-size:11px}
+.slide.zoom ul li{font-size:18px;line-height:1.5}
+.slide.zoom .cols{gap:22px}
+.slide.zoom .tempos{gap:16px}
+.slide.zoom .tempo{padding-top:15px;gap:8px}
+.slide.zoom .tempo h3{font-size:19px!important}
+.slide.zoom .tempo p{font-size:14.5px;line-height:1.42}
+.slide.zoom .tempo .n{font-size:32px}
+.slide.zoom .tempo .picto{width:30px;height:30px}
+.slide.zoom .upa-flow{gap:20px}
+.slide.zoom .upa-flow .lado{flex-basis:190px;gap:9px}
+.slide.zoom .upa-flow .lado p{font-size:16px;line-height:1.45}
+.slide.zoom .upa-box{padding:22px 24px}
+.slide.zoom .upa-box .fam{font-size:15px;padding:13px}
+.slide.zoom .upa-sub{gap:12px}
+.slide.zoom .upa-sub div{padding:14px 10px;font-size:14.5px}
+.slide.zoom .upa-sub div b{font-size:11px}
+.slide.zoom .fronteira-diagrama{max-width:880px}
+.slide.zoom .chip-f{font-size:16px;padding:10px 17px}
+.slide.zoom .fronteira-caixa{padding:34px 24px 24px;gap:14px}
+.slide.zoom .fronteira-fora{gap:14px}
+.slide.zoom .cadeia-flow .card h3{font-size:23px}
+.slide.zoom .camada{font-size:12px;padding:6px 12px}
+.slide.zoom .ic-badge{width:52px;height:52px;font-size:26px}
+.slide.zoom .cadeia-porteira{flex-basis:90px}
+.slide.zoom .cadeia-porteira .seta{font-size:27px}
+.slide.zoom .cadeia-porteira .porteira-lbl{font-size:10.5px}
+.slide.zoom .cadeia-flow ul.tight li{font-size:15.5px}
+.slide.zoom .poder-diagrama{gap:34px;margin-top:14px}
+.slide.zoom .poder-lado{gap:14px}
+.slide.zoom .poder-lbl{font-size:13.5px}
+.slide.zoom .poder-pontos{max-width:210px;gap:7px}
+.slide.zoom .poder-pt{width:14px;height:14px}
+.slide.zoom .poder-pt.grande{width:32px;height:32px}
+.slide.zoom .poder-seta{font-size:15px;max-width:150px}
+.slide.zoom .foto-split .txt{gap:16px}
+.slide.zoom .foto-split .txt p{font-size:19px;line-height:1.55}
+.slide.zoom .foto-split .txt p.small{font-size:15.5px}
+.slide.zoom .quote{font-size:19px;padding:20px 24px}
+.slide.zoom .quote .fonte{font-size:13px}
 
 /* listas */
 ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
@@ -235,31 +286,31 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 <div id="palco">
 
 <!-- 1 capa -->
-<section class="slide on">
+<section class="slide on zoom">
   <div class="body">
     <div>
       <span class="kicker">CPSEA101 · Técnico em Agricultura · Aula 2 de 14 · 12/08</span>
       <h1>Abordagem sistêmica, sistemas alimentares e cadeias produtivas</h1>
       <div class="rule"></div>
     </div>
-    <p style="font-family:'Fraunces',Georgia,serif;font-size:21px;line-height:1.4;color:var(--oliva);max-width:46ch;margin-top:14px">Duas coisas escondidas na mesma legenda: o sistema que você vai aprender a desenhar, e a cadeia que decide o preço dele.</p>
-    <div class="card" style="margin-top:8px;max-width:220px">
+    <p style="font-family:'Fraunces',Georgia,serif;font-size:25px;line-height:1.4;color:var(--oliva);max-width:48ch;margin-top:18px">Duas coisas escondidas na mesma legenda: o sistema que você vai aprender a desenhar, e a cadeia que decide o preço dele.</p>
+    <div class="card" style="margin-top:12px;max-width:250px;padding:18px 20px">
       <span class="tag">Docentes</span>
-      <h3 style="font-size:15px">Róberson e Ezequiel</h3>
+      <h3 style="font-size:17px">Róberson e Ezequiel</h3>
     </div>
-    <div class="capa-logos">
-      <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico UFSM" class="logo-poli">
-      <img src="assets/logos/tecnico-agricultura.svg" alt="Técnico em Agricultura" class="logo-curso">
+    <div class="capa-logos" style="margin-top:22px;gap:26px">
+      <img src="assets/logos/politecnico-65-anos.svg" alt="Colégio Politécnico UFSM" class="logo-poli" style="height:76px">
+      <img src="assets/logos/tecnico-agricultura.svg" alt="Técnico em Agricultura" class="logo-curso" style="height:108px">
     </div>
   </div>
 </section>
 
 <!-- 2 roteiro -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Antes de começar</span>
     <h2>Três tempos, uma noite só</h2>
-    <p class="sub">Olhar sistêmico, propriedade como sistema e posição na cadeia, aplicados a um caso e depois ao papel pardo.</p>
+    <p class="sub">Olhar sistêmico, propriedade como sistema e posição na cadeia, aplicados a um caso e depois colocar no papel.</p>
   </div>
   <div class="body">
     <div class="cols c3">
@@ -272,9 +323,94 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
         <p>Os pressupostos do olhar sistêmico, a propriedade como sistema, e os três segmentos de qualquer cadeia.</p>
       </div>
       <div class="card mostarda">
-        <h3>O papel pardo</h3>
-        <p>Em grupo: desenhar uma propriedade e posicioná-la na cadeia, no mesmo cartaz.</p>
+        <h3>No papel</h3>
+        <p>Em grupo: desenhar uma propriedade e posicioná-la na cadeia, na mesma folha.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2b cafe alta -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, antes do ovo, outro alimento</span>
+    <h2>Café também bateu recorde em 2024</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-cafe-cerejas.jpg" alt="Ramo de cafeeiro com cerejas de café maduras, vermelhas, prontas para colheita">
+      <div class="legenda">Foto: Jonathan Wilkins, Wikimedia Commons, CC BY-SA 3.0</div>
+    </div>
+    <div class="txt">
+      <p>O café viveu sua própria disparada, no mesmo ano da crise do ovo. Em 2024, os preços bateram recorde atrás de recorde nas bolsas internacionais: o arábica subiu quase 80% em Nova York, e o robusta mais que dobrou em Londres.</p>
+      <div class="stats">
+        <div class="stat"><span class="v">R$ 970 → 2.000</span><span class="l">saca de 60 kg de arábica no Brasil, dez/2023 a dez/2024: maior preço real desde 1997 (CEPEA)</span></div>
+        <div class="stat oliva"><span class="v">R$ 740 → 1.800</span><span class="l">saca de 60 kg de robusta (conilon) no mesmo período</span></div>
+      </div>
+      <p class="small">A seca prolongada e o calor depois de abril prejudicaram o enchimento dos grãos no Brasil. No Vietnã, maior exportador mundial de robusta, a produção caiu 17,2% pela seca: os dois maiores fornecedores do mundo faltando ao mesmo tempo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2c cafe queda -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 1, antes do ovo, outro alimento</span>
+    <h2>E despencou: a maior queda desde o Plano Real</h2>
+  </div>
+  <div class="foto-split inversa">
+    <div class="img">
+      <img src="assets/imagens/aula2-cafe-graos-torrados.jpg" alt="Grãos de café torrados em close, sobre superfície de papel kraft">
+      <div class="legenda">Foto: Pen Waggener, Wikimedia Commons, CC BY 2.0</div>
+    </div>
+    <div class="txt">
+      <p>A alta não durou. Em fevereiro de 2026, o arábica fechou no menor patamar desde julho de 2025, queda de 14,3% só naquele mês. O motivo: a expectativa de uma safra recorde no Brasil em 2026/27, acima de 70 milhões de sacas.</p>
+      <div class="stats">
+        <div class="stat terra"><span class="v">-17,2%</span><span class="l">queda do café moído no varejo em 12 meses até julho de 2026 (IBGE/IPCA): a maior desde o início do Plano Real, em 1994</span></div>
+        <div class="stat"><span class="v">+82,2%</span><span class="l">tinha sido a alta acumulada em 12 meses até maio de 2025, no mesmo indicador</span></div>
+      </div>
+      <div class="nota">O Brasil é o maior produtor e exportador de café do mundo. Quando a safra brasileira vai bem, o preço internacional sente, e a cadeia inteira, do produtor ao consumidor, sente também.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2d azeite alta -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">Tempo 1, antes do ovo, outro alimento</span>
+    <h2>Azeite: quando a Espanha perde a azeitona, o mundo sente</h2>
+  </div>
+  <div class="foto-split">
+    <div class="img">
+      <img src="assets/imagens/aula2-azeite-colheita.jpg" alt="Mão usando um pente colhedor amarelo para colher azeitonas verdes e roxas direto do galho">
+      <div class="legenda">Foto: Lionel Aubert, Wikimedia Commons, CC BY-SA 4.0</div>
+    </div>
+    <div class="txt">
+      <p>O mesmo roteiro se repetiu com o azeite, só que a origem da crise foi ainda mais concentrada: a Espanha sozinha responde por cerca de 40% do azeite do mundo, e a seca bateu justamente lá.</p>
+      <div class="stats">
+        <div class="stat"><span class="v">1,5 mi t → 600 mil t</span><span class="l">produção de azeitona na Espanha, das safras 2021/22 para 2022/23: -60%, por seca extrema</span></div>
+        <div class="stat oliva"><span class="v">+112%</span><span class="l">alta no preço pago ao produtor espanhol no mesmo período; no varejo, o litro passou dos €10 na Espanha em 2023</span></div>
+      </div>
+      <p class="small">Quando a safra espanhola quebra, não sobra alternativa suficiente em Itália, Grécia ou Portugal para segurar o preço global. Foi o que aconteceu entre 2022 e 2024.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2e azeite risco -->
+<section class="slide zoom">
+  <div class="head">
+    <span class="kicker">Tempo 1, antes do ovo, outro alimento</span>
+    <h2>A trégua durou pouco: fogo na Europa outra vez</h2>
+  </div>
+  <div class="foto-split inversa">
+    <div class="img">
+      <img src="assets/imagens/aula2-azeite-oliveira-queimada.jpg" alt="Tronco de oliveira queimado por incêndio, visto de baixo para cima contra o céu">
+      <div class="legenda">Foto: Dkoukoul, Wikimedia Commons, CC BY-SA 4.0</div>
+    </div>
+    <div class="txt">
+      <p>A produção europeia se recuperou rápido: a Espanha colheu 850 mil toneladas em 2023/24 e entre 1,4 e 1,6 milhão em 2024/25, derrubando o preço. No Brasil, o litro recuou 17% nos supermercados em 12 meses. Mas o verão europeu de 2026 trouxe calor acima de 40°C e incêndios que atingiram olivais na Espanha, Grécia, Itália e Portugal.</p>
+      <div class="nota terra">A Comissão Europeia já revisou para baixo a produção de azeite da UE em 2025/26, com quebra de 18% só na Grécia. O mesmo padrão de 2022 pode se repetir: menos azeitona, preço em alta de novo.</div>
+      <p class="small">No Brasil, o Rio Grande do Sul é o maior produtor de azeite extravirgem do país, mas é um nicho premium: o país consome cerca de 100 milhões de litros por ano e produz menos de 1% disso. O preço na gôndola segue o mercado europeu, não a safra gaúcha.</p>
     </div>
   </div>
 </section>
@@ -327,7 +463,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
       <div class="card">
         <span class="tag">Estados Unidos</span>
         <p>Gripe aviária derruba o plantel de poedeiras. No varejo americano, a dúzia de ovos grandes classe A chega a <strong>US$ 6,23</strong> em março de 2025, recorde da série.</p>
-        <p class="small" style="margin-top:2px">Preço médio ao consumidor, BLS, série APU0000708111.</p>
+        <p class="small" style="margin-top:2px">Preço médio ao consumidor.</p>
       </div>
       <div class="card oliva">
         <span class="tag">Brasil</span>
@@ -360,7 +496,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 6 brasil racao -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 1, a crise brasileira</span>
     <h2>Sem gripe aviária, e mesmo assim mais caro</h2>
@@ -457,7 +593,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 8 gracyanne -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 1, um cálculo que virou piada</span>
     <h2>40 ovos por dia</h2>
@@ -528,7 +664,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 11 fechamento do gancho -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 1, a virada</span>
     <h2>O que muda quando você olha o sistema</h2>
@@ -594,7 +730,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 14 cinco pressupostos -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>Os cinco pressupostos do olhar sistêmico</h2>
@@ -643,7 +779,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 15 aplicando ao ovo -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria aplicada</span>
     <h2>Os cinco pressupostos, no caso do ovo</h2>
@@ -671,7 +807,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 16 UPA como sistema -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>A propriedade é um sistema, não uma soma de lavouras</h2>
@@ -701,7 +837,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 17 fronteira -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, o conceito mais subestimado</span>
     <h2>A fronteira é uma decisão de quem analisa</h2>
@@ -725,7 +861,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 18 entradas controlaveis -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>O que o agricultor decide, e o que ele sofre</h2>
@@ -746,7 +882,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 19 quem decide -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>Quem decide o quê</h2>
@@ -871,7 +1007,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 23 tres segmentos -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>Montante, produção e jusante</h2>
@@ -921,7 +1057,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 24 poder num elo -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 2, teoria</span>
     <h2>Como medir poder num elo da cadeia</h2>
@@ -1001,7 +1137,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 27 atividade -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Tempo 3</span>
     <h2>Uma propriedade, dois olhares, um cartaz só</h2>
@@ -1019,7 +1155,6 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
         <p>No mesmo cartaz: o que entra a montante, o que sai a jusante, e quem, nessa cadeia, define o preço do que essa propriedade produz.</p>
       </div>
     </div>
-    <div class="nota">Os cartazes ficam na parede para socialização ao final. É o ensaio do que vocês vão fazer na propriedade real.</div>
   </div>
 </section>
 
@@ -1059,10 +1194,10 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 </section>
 
 <!-- 29 fechamento -->
-<section class="slide">
+<section class="slide zoom">
   <div class="head">
     <span class="kicker">Hoje você sai sabendo</span>
-    <h2>Do post ao papel pardo</h2>
+    <h2>Do post ao papel</h2>
   </div>
   <div class="body">
     <div class="cols c2">
@@ -1095,7 +1230,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
 <div id="tempos" aria-hidden="true"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span id="tempo-lbl"></span></div>
 <div id="nav">
   <button id="ant" aria-label="Slide anterior">←</button>
-  <span id="cont" class="mono">1 / 29</span>
+  <span id="cont" class="mono">1 / 33</span>
   <button id="prox" aria-label="Próximo slide">→</button>
 </div>
 
@@ -1110,7 +1245,7 @@ table.tbl tfoot td{background:var(--oliva-claro);font-weight:600;color:var(--tin
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
     cont.textContent = (i + 1) + ' / ' + slides.length;
-    var t = (i >= 2 && i <= 10) ? 1 : ((i >= 11 && i <= 25) ? 2 : ((i >= 26 && i <= 27) ? 3 : 0));
+    var t = (i >= 2 && i <= 14) ? 1 : ((i >= 15 && i <= 29) ? 2 : ((i >= 30 && i <= 31) ? 3 : 0));
     segs.forEach(function(s, k){ s.classList.toggle('on', t > 0 && k < t); });
     tlbl.textContent = t ? 'tempo ' + t : '';
     if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
