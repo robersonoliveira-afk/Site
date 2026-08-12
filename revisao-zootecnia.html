@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<title>Revisão geral: Técnico em Zootecnia</title>
+<meta name="description" content="Revisão geral de Gestão de Custos e Projetos, com o rebanho leiteiro da região central como exemplo condutor, Técnico em Zootecnia. Deck de projeção e estudo. Colégio Politécnico da UFSM.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  RASCUNHO — não linkado no site. Guardado aqui só para o professor
+  avaliar antes de decidir se entra no roteiro.html.
+  Estrutura e CSS/JS idênticos ao aula-t8.html (mesmo motor de slides).
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --terra-ink:#3D1E0E;
+  --accent:var(--terra);
+  --accent-text:#8A4322;
+  --accent-deep:#93492A;
+  --fs-body:clamp(16px,1.75vw,28px);
+  --fs-small:clamp(13px,1.35vw,21px);
+  --fs-mono:clamp(11px,1.15vw,17px);
+  --fs-h2:clamp(26px,3.6vw,54px);
+  --fs-big:clamp(30px,4.6vw,70px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--olive)}
+.panel p,.panel li{font-size:var(--fs-small)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(50px,7.4vw,120px);font-weight:600;line-height:0.85;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
+.cover .mv b{color:var(--terra-ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.cover .cred{margin-top:3vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:clamp(34px,6vh,54px);width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
+.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
+.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
+.sem-cell.m1{border-top:4px solid var(--olive)}
+.sem-cell.m2{border-top:4px solid var(--mustard)}
+.sem-cell.m3{border-top:4px solid var(--terra)}
+.sem-cell.now{background:var(--terra);border-color:var(--terra)}
+.sem-cell.now b,.sem-cell.now{color:var(--paper)}
+.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:1em;height:1em;display:inline-block}
+.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
+
+.cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
+.cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
+.cascade .row.total{background:var(--paper-warm);border-left:4px solid var(--accent);font-weight:600}
+.cascade .row.final{background:var(--success-bg);border-left:4px solid var(--olive);font-weight:600}
+.cascade .row.bad{background:var(--critical-bg);border-left:4px solid var(--terra);font-weight:600}
+.cascade .row.minus{color:var(--terra)}
+.cascade .row span:last-child{white-space:nowrap}
+
+.mock{border:1px solid var(--rule);background:#fff;padding:2vh 1.6vw;max-width:70vw;box-shadow:0 3px 14px rgba(26,26,23,0.06)}
+.mock .mock-bar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);border-bottom:1px solid var(--rule-soft);padding-bottom:1vh;margin-bottom:1.5vh;display:flex;justify-content:space-between}
+.mock .mock-bar b{color:var(--accent-text)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.5vw}
+.field{display:flex;flex-direction:column;gap:0.4vh}
+.field label{font-size:var(--fs-mono);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone)}
+.field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
+.field span.ph{color:var(--stone-light);font-style:italic}
+
+ul.check{list-style:none;margin:1vh 0;max-width:60ch}
+ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
+ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.75em;height:0.75em;border:2px solid var(--accent-deep)}
+
+.colophon p{font-size:var(--fs-small);max-width:70ch}
+.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src b{color:var(--ink-soft)}
+
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .mock{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ATO 1 · ONDE ESTAMOS ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Revisão geral · Técnico em Zootecnia</div>
+  <div class="t-mark">
+    <div class="t-num">🐄</div>
+    <div>
+      <div class="mv">Da porteira à planilha · <b>o rebanho inteiro</b></div>
+      <h1>Por que a margem <em>engana</em>?</h1>
+    </div>
+  </div>
+  <p class="sub">Revisão do semestre com um único fio condutor: um rebanho leiteiro de 30 vacas na região central, do diagnóstico à decisão de investir.</p>
+  <div class="cred">
+    <img src="logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span>Colégio Politécnico da UFSM</span></div>
+  </div>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · mapa do semestre -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o semestre inteiro, de novo</div>
+  <h2>Oito aulas, <em>um</em> rebanho</h2>
+  <p>Cada T revisitada aqui já foi dada com casos de várias atividades. Nesta revisão, todas passam pelo mesmo rebanho leiteiro, para a Zootecnia ver o método inteiro aplicado à atividade central do curso.</p>
+  <div class="sem-map">
+    <div class="sem-cell m1"><b>S3</b>T1 SWOT</div>
+    <div class="sem-cell m2"><b>S4</b>T2 receita</div>
+    <div class="sem-cell m2"><b>S5</b>T3 custo</div>
+    <div class="sem-cell m2"><b>S6</b>T4 COE-CT</div>
+    <div class="sem-cell m3"><b>S9</b>T5 margens</div>
+    <div class="sem-cell m3"><b>S10</b>T6 PE</div>
+    <div class="sem-cell m3"><b>S11</b>T7 crédito</div>
+    <div class="sem-cell m3 now"><b>S12</b>T8 invest.</div>
+  </div>
+  <div class="legend">
+    <span><i class="c1"></i>Entender</span>
+    <span><i class="c2"></i>Medir</span>
+    <span><i class="c3"></i>Decidir</span>
+  </div>
+</section>
+
+<!-- 3 · o caso condutor -->
+<section class="slide" data-act="Onde estamos">
+  <div class="eyebrow"><b>Onde estamos</b> · o caso condutor</div>
+  <h2>30 vacas, 219.000 L/ano</h2>
+  <ul class="bullets">
+    <li><strong>Escala</strong>: 30 vacas em lactação, 600 L/dia, 219.000 L/ano.</li>
+    <li><strong>Estrutura do rebanho</strong>: vacas secas e novilhas de reposição diluem o custo total, mesmo sem produzir leite naquele momento.</li>
+    <li><strong>Contraponto</strong>: o confinamento de corte, como segundo exemplo de atividade zootécnica com lógica de kg produzido.</li>
+  </ul>
+  <div class="callout success">
+    <strong>O que esta revisão destrava</strong>
+    O mesmo rebanho atravessa SWOT, receita, custo, margens, ponto de equilíbrio, cenário, crédito e investimento: a costura completa que a defesa do projeto vai cobrar.
+  </div>
+</section>
+
+<!-- ============ ATO 2 · CONCEITO (REVISÃO) ============ -->
+
+<!-- 4 · T1 SWOT -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T1</b> · a propriedade como empresa</div>
+  <h2>Antes do litro, o diagnóstico</h2>
+  <p>Planejar antes de calcular: na pecuária leiteira isso significa entender a estrutura do rebanho (categorias, genética, manejo) antes de qualquer planilha.</p>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Interno</h3>
+      <ul class="bullets compact">
+        <li><strong>Forças</strong>: mão de obra familiar, cooperativa próxima para coleta</li>
+        <li><strong>Fraquezas</strong>: sem registro de custos, ordenha antiga</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Externo</h3>
+      <ul class="bullets compact">
+        <li><strong>Oportunidades</strong>: bonificação por qualidade do leite (CCS/CBT)</li>
+        <li><strong>Ameaças</strong>: preço volátil do leite, estiagens recorrentes</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">A fraqueza "sem registro de custos" volta como o problema central desta revisão: sem ele, ninguém enxerga a margem líquida negativa.</p>
+</section>
+
+<!-- 5 · T2 receita -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T2</b> · receita bruta e líquida</div>
+  <h2>219.000 litros, um preço por litro</h2>
+  <div class="formula">
+    <span class="label">Receita líquida · referência Campo Futuro/CNA</span>
+    RL = 219.000 L × R$ 2,40/L = <b>R$ 525.600</b>
+  </div>
+  <p class="note">Preço já líquido de bonificação/desconto de qualidade: a estrutura de preço do leite muda mês a mês; conferir com a cooperativa antes de fechar o projeto.</p>
+</section>
+
+<!-- 6 · T3 custo -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T3</b> · do manejo ao custo</div>
+  <h2>Da ordenha ao concentrado, cada item vira custo</h2>
+  <p>Regra de ouro: toda prática declarada precisa reaparecer como custo.</p>
+  <table class="tbl">
+    <thead><tr><th>Prática</th><th>Classificação</th></tr></thead>
+    <tbody>
+      <tr><td>Concentrado e suplementação</td><td>variável, direto</td></tr>
+      <tr><td>Sanidade e reprodução</td><td>variável, direto</td></tr>
+      <tr><td>Mão de obra da ordenha</td><td>fixo, direto</td></tr>
+      <tr><td>Manutenção da sala de ordenha</td><td>fixo, indireto</td></tr>
+      <tr><td>Depreciação de instalações e equipamentos</td><td>fixo, indireto</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Erro clássico: tratar o rebanho como número único. Vacas secas e novilhas geram custo sem produzir leite naquele momento; a calculadora de rebanho do site mostra o peso de cada categoria.</p>
+</section>
+
+<!-- 7 · T4 COE-COT-CT -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T4</b> · COE, COT e Custo Total</div>
+  <h2>Por litro, até o custo total</h2>
+  <div class="cascade">
+    <div class="row"><span>COE por litro</span><span>2,05</span></div>
+    <div class="row"><span>+ depreciação e pró-labore (estimado)</span><span>0,40</span></div>
+    <div class="row total"><span>COT por litro</span><span>2,45</span></div>
+    <div class="row"><span>+ oportunidade do capital e da terra</span><span>0,30</span></div>
+    <div class="row final"><span>CT por litro</span><span>2,75</span></div>
+  </div>
+  <p class="note">É a mesma cascata do trator (T4): as instalações e o rebanho reprodutor também depreciam, só que o produtor raramente calcula isso por litro.</p>
+</section>
+
+<!-- 8 · T5 margens -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T5</b> · margens e indicadores</div>
+  <h2>Margem bruta positiva, lucro negativo</h2>
+  <div class="cascade">
+    <div class="row total"><span>RL (219.000 L)</span><span>525.600</span></div>
+    <div class="row minus"><span>− COE (449.100)</span><span>MB = 76.500</span></div>
+    <div class="row minus"><span>− COT (536.550)</span><span>ML = −10.950</span></div>
+    <div class="row bad"><span>− CT (602.250)</span><span>LE = −76.650</span></div>
+  </div>
+  <div class="callout">
+    <strong>O alerta desta revisão</strong>
+    MB positiva engana quem só olha o caixa do mês. A propriedade está pagando para produzir leite quando se conta a depreciação e a remuneração do capital, e é isso que só o LE revela.
+  </div>
+</section>
+
+<!-- 9 · T6 PE + cenário -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T6</b> · ponto de equilíbrio e cenário</div>
+  <h2>Quantos litros faltam para o zero?</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3>Ponto de equilíbrio</h3>
+      <ul class="bullets compact">
+        <li>PE(COE) = 449.100 ÷ 2,40 ≈ <strong>187.125 L</strong></li>
+        <li>PE(CT) = 602.250 ÷ 2,40 ≈ <strong>250.938 L</strong></li>
+        <li>o rebanho produz 219.000 L, <strong>abaixo</strong> do PE(CT)</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Cenário para sair do vermelho</h3>
+      <ul class="bullets compact">
+        <li>aumentar produção por vaca (genética, nutrição)</li>
+        <li>ou reduzir COE (eficiência de concentrado)</li>
+        <li>ou investir no gargalo (resfriador, próximo slide)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Diferente da soja ou do vinhedo, aqui a margem de segurança já é negativa na safra de referência: o cenário não é "e se piorar", é "o que muda para melhorar".</p>
+</section>
+
+<!-- 10 · T7 crédito -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T7</b> · crédito rural e fluxo de caixa</div>
+  <h2>Custeio mensal, investimento no gargalo</h2>
+  <ul class="bullets">
+    <li><strong>Custeio pecuário (leite)</strong>: concentrado e sanidade, ciclo curto, mensal.</li>
+    <li><strong>Investimento (Pronaf/Pronamp)</strong>: resfriador a granel, mais indicado que aumentar o rebanho enquanto a ML for negativa.</li>
+  </ul>
+  <div class="callout success">
+    <strong>A ordem importa</strong>
+    Investir primeiro no que move o custo ou o preço por litro. Ampliar o rebanho com ML negativa multiplica o prejuízo por vaca: o crédito de investimento deve ir para o gargalo, não para a escala.
+  </div>
+</section>
+
+<!-- 11 · T8 investimento -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Revisão T8</b> · payback, VPL e TIR</div>
+  <h2>O resfriador tira a atividade do vermelho?</h2>
+  <div class="cascade">
+    <div class="row"><span>resfriador a granel: investimento</span><span>30.000</span></div>
+    <div class="row"><span>fim do desconto de qualidade: +R$ 0,08/L × 219.000 L</span><span>+17.520/ano</span></div>
+    <div class="row final"><span>payback = 30.000 ÷ 17.520</span><span>1,7 ano</span></div>
+  </div>
+  <p class="note">Com o resfriador, a ML sai de −0,05 para +0,03/L. Não resolve o LE sozinho, mas é o primeiro investimento certo: baixo capital, payback rápido, ataca o preço recebido por litro.</p>
+</section>
+
+<!-- ============ ATO 3 · SÍNTESE ============ -->
+
+<!-- 12 · síntese numérica -->
+<section class="slide" data-act="Síntese">
+  <div class="eyebrow"><b>Síntese</b> · o rebanho em um quadro</div>
+  <h2>Todos os números, lado a lado</h2>
+  <table class="tbl">
+    <thead><tr><th>Indicador</th><th class="num">Valor</th></tr></thead>
+    <tbody>
+      <tr><td>RL (219.000 L)</td><td class="num">525.600</td></tr>
+      <tr><td>COE · COT · CT (por litro)</td><td class="num">2,05 · 2,45 · 2,75</td></tr>
+      <tr><td>MB · ML · LE</td><td class="num">76.500 · −10.950 · −76.650</td></tr>
+      <tr><td>PE(COE) · PE(CT)</td><td class="num">187.125 L · 250.938 L</td></tr>
+      <tr><td>Produção atual × PE(CT)</td><td class="num">219.000 L &lt; 250.938 L</td></tr>
+      <tr><td>Resfriador: payback</td><td class="num">1,7 ano</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Nada aqui é conceito novo: é a mesma sequência de T1 a T8, sobre o mesmo rebanho, do primeiro ao último número.</p>
+</section>
+
+<!-- 13 · erros comuns -->
+<section class="slide" data-act="Síntese">
+  <div class="eyebrow"><b>Síntese</b> · erros que a banca vai cobrar</div>
+  <h2>Onde a pecuária leiteira mais tropeça</h2>
+  <ul class="bullets">
+    <li><strong>Tratar o rebanho como número único</strong>: vacas secas e novilhas têm custo diferente das vacas em lactação.</li>
+    <li><strong>Parar no MB</strong>: declarar "está dando lucro" olhando só o caixa do mês, sem depreciação e sem remunerar o capital.</li>
+    <li><strong>Investir em escala com ML negativa</strong>: mais vacas com prejuízo por vaca é mais prejuízo total.</li>
+    <li><strong>Não calcular o custo/litro de cada categoria</strong>: a calculadora de rebanho do site existe para isso.</li>
+  </ul>
+</section>
+
+<!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
+
+<!-- 14 · simulador -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · conferência final</div>
+  <h2>Os sete passos, revisitados para o leite</h2>
+  <div class="mock">
+    <div class="mock-bar"><span><b>Simulador de projetos</b> · passos 0–6</span><span>template: leite</span></div>
+    <div class="fields">
+      <div class="field"><label>Passo 0</label><span class="ph">identificação + SWOT + enquadramento de crédito</span></div>
+      <div class="field"><label>Passo 1</label><span class="ph">produção (litros), preço e RB → RL</span></div>
+      <div class="field"><label>Passos 2–4</label><span class="ph">manejo, classificação, COE → COT → CT</span></div>
+      <div class="field"><label>Passo 5</label><span class="ph">não se aplica (ciclo anual, sem implantação)</span></div>
+      <div class="field"><label>Passo 6</label><span class="ph">margens, PE, cenários e payback do investimento no gargalo</span></div>
+      <div class="field"><label>Passo 7</label><span class="ph">dossiê: o documento da defesa</span></div>
+    </div>
+  </div>
+  <p class="note">Ciclo anual: sem passo 5. O payback do principal investimento (resfriador, instalações) entra nas observações do passo 6.</p>
+</section>
+
+<!-- 15 · checklist -->
+<section class="slide" data-act="Simulador">
+  <div class="eyebrow"><b>Mão no simulador</b> · checklist antes da defesa</div>
+  <h2>Checklist de saída</h2>
+  <ul class="check">
+    <li>Estrutura do rebanho detalhada por categoria (calculadora de rebanho)</li>
+    <li>As três margens (MB, ML, LE) calculadas e comparadas entre si</li>
+    <li>Ponto de equilíbrio de produção e distância até ele registrados</li>
+    <li>Se ML ou LE negativos: investimento no gargalo identificado, não em escala</li>
+    <li>Linha de crédito coerente com o tipo de gasto (custeio × investimento)</li>
+    <li>Payback do investimento calculado e registrado nas observações</li>
+  </ul>
+</section>
+
+<!-- ============ ATO 5 · PONTE ============ -->
+
+<!-- 16 · ponte -->
+<section class="slide" data-act="Ponte">
+  <div class="eyebrow"><b>Ponte</b> · o que vem</div>
+  <h2>Da revisão à defesa</h2>
+  <ul class="bullets">
+    <li><strong>Laboratório de fechamento</strong>: simulador com os passos 0 a 6 completos, template de pecuária leiteira.</li>
+    <li><strong>Prova descritiva</strong>: cobre margens, equilíbrio, cenários, crédito e investimento com integração entre eles.</li>
+    <li><strong>Defesa do projeto</strong>: cada premissa do seu rebanho (produção, preço, estrutura) com fonte, cada prática com custo.</li>
+  </ul>
+  <ul class="bullets compact">
+    <li><strong>Revisar no site</strong>: Parte II (custos e estrutura do rebanho), Parte III (margens e PE), Parte V.A (pecuária) + calculadora <a href="rebanho.html">rebanho.html</a>.</li>
+  </ul>
+</section>
+
+<!-- 17 · colofão -->
+<section class="slide colophon" data-act="Colofão">
+  <div class="eyebrow">Revisão geral · Técnico em Zootecnia</div>
+  <h2>Fontes e créditos</h2>
+  <p class="src">Referência bibliográfica geral: KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <b>Gestão de propriedades rurais</b>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener">Minha Biblioteca</a>. Acesso em: 29 maio 2026. Referência de custo do leite: padrão Campo Futuro/CNA.</p>
+  <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Versão impressa deste deck = apostila (Ctrl+P).</p>
+</section>
+
+</main>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">Revisão Zootecnia</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='Zootecnia · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
