@@ -1894,6 +1894,8 @@ function irPara(p){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function vizinho(dir){
+  clearTimeout(saveTimer);
+  persistir(coletarTudo());
   const ativos=passosAtivos(), idx=ativos.indexOf(passoAtual);
   const novo=idx+dir;
   if(novo>=0&&novo<ativos.length) irPara(ativos[novo]);
