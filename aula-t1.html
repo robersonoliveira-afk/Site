@@ -76,6 +76,8 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout.success strong{color:var(--olive)}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.cols2.asym{grid-template-columns:3fr 2fr}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vw;align-items:start;max-width:100%}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--terra)}
@@ -153,9 +155,17 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .cycle .loop{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono)}
 
 /* foto */
+.foto3{display:flex;gap:1.8vw;justify-content:center;align-items:flex-start;max-width:90vw;margin:0}
+.foto3 figure{flex:1;max-width:21vw}
+.foto3 img{width:100%;max-height:52vh;object-fit:contain;display:block;border:1px solid var(--rule);margin:0 auto;background:#fff}
+.foto3 figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh;text-align:center;line-height:1.5}
 .foto{margin:2vh 0;max-width:70vw}
 .foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
 .foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.foto.side{max-width:100%;margin:0}
+.foto.side img{max-height:56vh;width:100%;object-fit:contain}
+.foto-stack{display:flex;flex-direction:column;gap:1.5vh}
+.foto-stack .foto.side img{max-height:26vh}
 .slide.foto-cheia{justify-content:center;align-items:center}
 .slide.foto-cheia .foto{max-width:88vw;margin:0}
 .slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
@@ -287,11 +297,17 @@ a{color:var(--accent)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · o que torna a atividade única · 1 de 2</div>
   <h2>Por que o campo não é fábrica</h2>
-  <ul class="bullets">
-    <li><strong>Sazonalidade</strong>: investimento e retorno em momentos distintos do ano; o caixa é naturalmente descontínuo.</li>
-    <li><strong>Dependência climática</strong>: chuva, seca, geada e granizo fogem ao controle e entram no planejamento de risco.</li>
-    <li><strong>Seres vivos e perecibilidade</strong>: animais adoecem, plantas sofrem pragas, o produto se deteriora rápido. Perdas e prazos que a indústria não enfrenta.</li>
-  </ul>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li><strong>Sazonalidade</strong>: investimento e retorno em momentos distintos do ano; o caixa é naturalmente descontínuo.</li>
+      <li><strong>Dependência climática</strong>: chuva, seca, geada e granizo fogem ao controle e entram no planejamento de risco.</li>
+      <li><strong>Seres vivos e perecibilidade</strong>: animais adoecem, plantas sofrem pragas, o produto se deteriora rápido. Perdas e prazos que a indústria não enfrenta.</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/milho-grao-colheita.jpg" alt="Colheitadeira colhendo milho seco em grão, descarregando em caminhão graneleiro" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>a janela estreita da safra · domínio público, USDA</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- 7 · o que torna única 2/2 -->
@@ -301,8 +317,13 @@ a{color:var(--accent)}
   <ul class="bullets">
     <li><strong>Tomador de preço</strong>: o produtor raramente define o preço do que vende (commodity) nem do que compra (insumo).</li>
     <li><strong>Dispersão e diversidade</strong>: produção espalhada no território e heterogênea, o que dificulta padronização e logística.</li>
-    <li><strong>Ciclos longos</strong>: na pecuária de cria: monta na primavera, terneiro vendido à desmama por volta de abril do ano seguinte. <strong>~17 meses</strong> entre a decisão e a receita.</li>
+    <li><strong>Ciclos longos</strong>: na pecuária de cria, decisão e receita não caem no mesmo ano.</li>
   </ul>
+  <div class="formula">
+    <span class="label">Pecuária de cria · o relógio do ciclo</span>
+    monta · primavera → gestação → parto → cria ao pé da mãe → <b>desmama · abril seguinte</b><br>
+    <b>~17 meses</b> entre a decisão (a monta) e a receita (venda do terneiro)
+  </div>
   <p class="note">Gerir, no campo, é em boa parte gerir risco.</p>
 </section>
 
@@ -350,7 +371,16 @@ a{color:var(--accent)}
   </div>
 </section>
 
-<!-- 11 · técnico como agente de gestão -->
+<!-- 11 · foto: quem decide é gente -->
+<section class="slide foto-cheia" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · quem decide é gente</div>
+  <figure class="foto">
+    <img src="Aulas/parreiral-bento-goncalves.jpg" alt="Produtor rural caminhando entre as fileiras de um parreiral em encosta, com o vale da Serra Gaúcha ao fundo" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>produtor no parreiral, Bento Gonçalves/RS · CC BY 3.0 BR, Daniel Isaia/Agência Brasil</figcaption>
+  </figure>
+</section>
+
+<!-- 12 · técnico como agente de gestão -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · o papel de vocês</div>
   <h2>O técnico como agente de gestão</h2>
@@ -364,15 +394,23 @@ a{color:var(--accent)}
   <p>A qualidade de uma decisão não se mede só pelo resultado. Uma estiagem estraga uma boa decisão. O bom gestor se distingue pelo <em>processo</em>: informação, registro e cenários, não intuição e otimismo (Kay et al., 2014).</p>
 </section>
 
-<!-- 12 · agronegócio -->
+<!-- 13 · agronegócio -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a propriedade por fora</div>
   <h2>A porteira não é o limite do negócio</h2>
-  <p>Em 1957, Davis e Goldberg (Harvard) cunharam o termo <strong>agronegócio</strong>: a soma das operações de insumos, da produção na fazenda e do processamento e distribuição dos produtos.</p>
-  <p class="lead">A tese central: <em>o mundo agrícola e o industrial não são economias separadas</em>, estão entrelaçados, e pensar um sem o outro leva a erro.</p>
+  <div class="cols2 asym">
+    <div>
+      <p>Em 1957, Davis e Goldberg (Harvard) cunharam o termo <strong>agronegócio</strong>: a soma das operações de insumos, da produção na fazenda e do processamento e distribuição dos produtos.</p>
+      <p class="lead">A tese central: <em>o mundo agrícola e o industrial não são economias separadas</em>, estão entrelaçados, e pensar um sem o outro leva a erro.</p>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/soja-farelo-oleo.jpg" alt="Grãos de soja com uma pá cheia de farelo de soja e um béquer com óleo de soja, lado a lado" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>grão, farelo e óleo de soja · CC BY 2.0, United Soybean Board</figcaption>
+    </figure>
+  </div>
 </section>
 
-<!-- 13 · três porteiras -->
+<!-- 14 · três porteiras -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · os três elos</div>
   <h2>As três porteiras</h2>
@@ -395,7 +433,7 @@ a{color:var(--accent)}
   <p>Na pecuária do Pampa: compra a montante (suplemento, sanidade, genética), produz dentro (cria, recria, engorda no campo nativo), entrega a jusante (frigorífico, desossa, varejo). Cada elo retém uma fatia do valor, e quase sempre a menor fica com quem produz.</p>
 </section>
 
-<!-- 14 · tomadora dos dois lados -->
+<!-- 15 · tomadora dos dois lados -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · por que isso importa para custos</div>
   <h2>Apertada entre dois preços</h2>
@@ -407,7 +445,7 @@ a{color:var(--accent)}
   </div>
 </section>
 
-<!-- 15 · o que controlamos -->
+<!-- 16 · o que controlamos -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · controlar × monitorar</div>
   <h2>Quanto está nas mãos do gestor?</h2>
@@ -424,7 +462,7 @@ a{color:var(--accent)}
   <p class="note">Princípio, não receita: o número vem do milho em clima dos EUA. O que fica: boa parte do resultado responde a escolhas, e separar o que se controla do que se monitora é exatamente o que a SWOT organiza.</p>
 </section>
 
-<!-- 16 · planejar antes de calcular -->
+<!-- 17 · planejar antes de calcular -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · planejamento do projeto</div>
   <h2>"Plantar e ver no que dá" é aposta</h2>
@@ -437,19 +475,28 @@ a{color:var(--accent)}
   </ul>
 </section>
 
-<!-- 17 · definição da atividade -->
+<!-- 18 · definição da atividade -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · primeiro passo do projeto</div>
   <h2>Definir a atividade: com embasamento</h2>
-  <ul class="bullets">
-    <li><strong>O quê</strong>: cultura ou sistema: soja, arroz, pecuária de corte, leite, fruticultura...</li>
-    <li><strong>Justificativa técnica</strong>: clima, solo, infraestrutura e mão de obra são adequados? O laudo confirma?</li>
-    <li><strong>Justificativa econômica</strong>: há mercado? Qual o histórico de preços? A margem compensa o risco?</li>
-  </ul>
+  <div class="cols3">
+    <div class="panel">
+      <h3>O quê</h3>
+      <p>Cultura ou sistema: soja, arroz, pecuária de corte, leite, fruticultura...</p>
+    </div>
+    <div class="panel">
+      <h3>Justificativa técnica</h3>
+      <p>Clima, solo, infraestrutura e mão de obra são adequados? O laudo confirma?</p>
+    </div>
+    <div class="panel">
+      <h3 class="alt">Justificativa econômica</h3>
+      <p>Há mercado? Qual o histórico de preços? A margem compensa o risco?</p>
+    </div>
+  </div>
   <p class="note">Por embasamento, não por tradição. "Sempre plantamos isso aqui" é ponto de partida para investigar, não resposta.</p>
 </section>
 
-<!-- 18 · escala e escopo -->
+<!-- 19 · escala e escopo -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · delimitar o projeto</div>
   <h2>Escala e escopo</h2>
@@ -466,7 +513,7 @@ a{color:var(--accent)}
   <p>Definir o escopo evita que custos "escondidos" apareçam depois e distorçam o resultado.</p>
 </section>
 
-<!-- 19 · premissas e coeficientes -->
+<!-- 20 · premissas e coeficientes -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a base do orçamento</div>
   <h2>Premissas e coeficientes técnicos</h2>
@@ -479,7 +526,7 @@ a{color:var(--accent)}
   <p>É a ponte entre o conhecimento agronômico e zootécnico, o "chão de fábrica", e a gestão econômica. Eficiência não é aplicar o máximo: é buscar o <em>ponto ótimo</em> de cada insumo.</p>
 </section>
 
-<!-- 20 · SWOT intro -->
+<!-- 21 · SWOT intro -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · diagnóstico estratégico</div>
   <h2>SWOT: a fotografia <em>antes</em> do número</h2>
@@ -497,7 +544,7 @@ a{color:var(--accent)}
   <p class="note">A mesma divisão do slide anterior: o que se controla × o que só se monitora.</p>
 </section>
 
-<!-- 21 · quatro quadrantes -->
+<!-- 22 · quatro quadrantes -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · os quatro quadrantes</div>
   <h2>A matriz</h2>
@@ -521,20 +568,32 @@ a{color:var(--accent)}
   </div>
 </section>
 
-<!-- 22 · perguntas por quadrante -->
+<!-- 23 · perguntas por quadrante -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · como investigar</div>
   <h2>Não basta listar, é preciso perguntar</h2>
-  <ul class="bullets compact">
-    <li><strong>Forças</strong>: o que faz sua propriedade competitiva em relação às vizinhas? Que ativos (terra, maquinário, genética) são difíceis de replicar?</li>
-    <li><strong>Fraquezas</strong>: o que está te freando? Há análise financeira ou o resultado é estimado? O que o extensionista aponta?</li>
-    <li><strong>Oportunidades</strong>: há cooperativa ou mercado institucional (PNAE, PAA) acessível? Linha de crédito ainda não utilizada?</li>
-    <li><strong>Ameaças</strong>: quais dívidas de curto prazo pesam? Alguma fraqueza vira risco sério se o preço cair?</li>
-  </ul>
+  <div class="swot">
+    <div class="swot-cell swot-f">
+      <h4>Forças</h4>
+      <p>O que faz sua propriedade competitiva em relação às vizinhas? Que ativos (terra, maquinário, genética) são difíceis de replicar?</p>
+    </div>
+    <div class="swot-cell swot-fr">
+      <h4>Fraquezas</h4>
+      <p>O que está te freando? Há análise financeira ou o resultado é estimado? O que o extensionista aponta?</p>
+    </div>
+    <div class="swot-cell swot-o">
+      <h4>Oportunidades</h4>
+      <p>Há cooperativa ou mercado institucional (PNAE, PAA) acessível? Linha de crédito ainda não utilizada?</p>
+    </div>
+    <div class="swot-cell swot-a">
+      <h4>Ameaças</h4>
+      <p>Quais dívidas de curto prazo pesam? Alguma fraqueza vira risco sério se o preço cair?</p>
+    </div>
+  </div>
   <p class="note">Adaptado de Zoller (2024), Ohio State University Extension.</p>
 </section>
 
-<!-- 23 · cruzar quadrantes -->
+<!-- 24 · cruzar quadrantes -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · da lista à ação</div>
   <h2>Cruzar não é só listar</h2>
@@ -553,20 +612,34 @@ a{color:var(--accent)}
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
 
-<!-- 24 · o caso -->
+<!-- 25 · o caso -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · vamos montar juntos</div>
   <h2>Leite na região de Santa Maria</h2>
-  <p>Propriedade-tipo da produção familiar de leite da região central do RS, perfil comum no atendimento da EMATER/RS:</p>
-  <ul class="bullets">
-    <li><strong>25 ha</strong>, terra própria da família, parte em pastagem perene degradada.</li>
-    <li><strong>35 vacas</strong> Holandês × Jersey, ordenha mecanizada antiga, ~450 L/dia.</li>
-    <li>Mão de obra do casal e um filho; leite entregue a uma cooperativa da região.</li>
-  </ul>
-  <p class="note">Os quadrantes a seguir são o ponto de partida, a turma completa no quadro.</p>
+  <div class="cols2 asym">
+    <div>
+      <p>Propriedade-tipo da produção familiar de leite da região central do RS, perfil comum no atendimento da EMATER/RS:</p>
+      <ul class="bullets compact">
+        <li><strong>25 ha</strong>, terra própria da família, parte em pastagem perene degradada.</li>
+        <li><strong>35 vacas</strong> Holandês × Jersey, ordenha mecanizada antiga, ~450 L/dia.</li>
+        <li>Mão de obra do casal e um filho; leite entregue a uma cooperativa da região.</li>
+      </ul>
+      <p class="note">Os quadrantes a seguir são o ponto de partida, a turma completa no quadro.</p>
+    </div>
+    <div class="foto-stack">
+      <figure class="foto side">
+        <img src="Aulas/gado-leiteiro-palmeira-pr.jpg" alt="Vacas holandesas pastando em piquete verde, com mata ao fundo" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>gado leiteiro a pasto, Palmeira/PR · CC BY-SA 3.0, Deyvid A. R. Setti</figcaption>
+      </figure>
+      <figure class="foto side">
+        <img src="Aulas/ordenha-balde-ao-pe.jpg" alt="Produtor ordenhando vaca com ordenhadeira mecânica de balde ao pé, dentro de estábulo simples" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>ordenha mecânica, balde ao pé · CC BY 3.0, Andrevruas</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
-<!-- 25 · interno -->
+<!-- 26 · interno -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · da porteira para dentro</div>
   <h2>Ambiente interno</h2>
@@ -592,7 +665,7 @@ a{color:var(--accent)}
   </div>
 </section>
 
-<!-- 26 · externo -->
+<!-- 27 · externo -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · da porteira para fora</div>
   <h2>Ambiente externo</h2>
@@ -618,7 +691,7 @@ a{color:var(--accent)}
   </div>
 </section>
 
-<!-- 27 · matriz completa -->
+<!-- 28 · matriz completa -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · a fotografia completa</div>
   <h2>A matriz montada</h2>
@@ -642,7 +715,7 @@ a{color:var(--accent)}
   </div>
 </section>
 
-<!-- 28 · cruzamentos → ações -->
+<!-- 29 · cruzamentos → ações -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · da fotografia à ação</div>
   <h2>Dois cruzamentos, duas ações</h2>
@@ -664,7 +737,7 @@ a{color:var(--accent)}
 
 <!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
 
-<!-- 29 · passo 0 identificação -->
+<!-- 30 · passo 0 identificação -->
 <section class="slide" data-act="Simulador">
   <div class="eyebrow"><b>Mão no simulador</b> · passo 0 · identificação</div>
   <h2>Tarefa de saída: parte 1</h2>
@@ -682,7 +755,7 @@ a{color:var(--accent)}
   <p class="note">A atividade escolhida pode mudar até a S5, mas a partir de hoje o projeto tem nome e endereço.</p>
 </section>
 
-<!-- 30 · passo 0 SWOT -->
+<!-- 31 · passo 0 SWOT -->
 <section class="slide" data-act="Simulador">
   <div class="eyebrow"><b>Mão no simulador</b> · passo 0 · SWOT interativa</div>
   <h2>Tarefa de saída: parte 2</h2>
@@ -694,7 +767,7 @@ a{color:var(--accent)}
   <p>Usem as perguntas de investigação vistas hoje, e discutam: o item é mesmo interno (controlável) ou externo (só monitorável)?</p>
 </section>
 
-<!-- 31 · checklist -->
+<!-- 32 · checklist -->
 <section class="slide" data-act="Simulador">
   <div class="eyebrow"><b>Mão no simulador</b> · antes de sair da sala</div>
   <h2>Checklist de saída</h2>
@@ -709,7 +782,7 @@ a{color:var(--accent)}
 
 <!-- ============ ATO 5 · PONTE ============ -->
 
-<!-- 32 · próxima aula -->
+<!-- 33 · próxima aula -->
 <section class="slide" data-act="Ponte">
   <div class="eyebrow"><b>Ponte</b> · o que vem</div>
   <h2>T2: Receita: da bruta à líquida</h2>
@@ -724,7 +797,7 @@ a{color:var(--accent)}
   </ul>
 </section>
 
-<!-- 33 · colofão -->
+<!-- 34 · colofão -->
 <section class="slide colophon" data-act="Colofão">
   <div class="eyebrow">T1 · A propriedade como empresa + SWOT</div>
   <h2>Fontes e créditos</h2>
