@@ -105,20 +105,6 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
 .hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
 
-/* mapa do semestre */
-.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
-.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
-.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
-.sem-cell.m1{border-top:4px solid var(--olive)}
-.sem-cell.m2{border-top:4px solid var(--mustard)}
-.sem-cell.m3{border-top:4px solid var(--terra)}
-.sem-cell.now{background:var(--terra);border-color:var(--terra)}
-.sem-cell.now b,.sem-cell.now{color:var(--paper)}
-.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
-.legend span{display:flex;align-items:center;gap:8px}
-.legend i{width:1em;height:1em;display:inline-block}
-.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
-
 /* cascata */
 .cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
 .cascade .row{display:flex;justify-content:space-between;gap:2vw;padding:1.1vh 1.2vw;border:1px solid var(--rule);background:#fff;align-items:baseline}
@@ -201,50 +187,6 @@ a{color:var(--accent-text)}
     <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span>Colégio Politécnico da UFSM</span></div>
   </div>
   <div class="hint">→ avançar · ← voltar</div>
-</section>
-
-<!-- 2 · mapa do semestre -->
-<section class="slide" data-act="Onde estamos">
-  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
-  <h2>Começa o movimento <em>Decidir</em></h2>
-  <p>Medir acabou na P1. Da S9 em diante, os números do projeto deixam de ser descrição e viram <strong>argumento para decisão</strong>, a começar pela pergunta mais direta: sobrou ou faltou?</p>
-  <div class="sem-map">
-    <div class="sem-cell m1"><b>S1</b>plano</div>
-    <div class="sem-cell m1"><b>S2</b>lab</div>
-    <div class="sem-cell m1"><b>S3</b>T1</div>
-    <div class="sem-cell m2"><b>S4</b>T2</div>
-    <div class="sem-cell m2"><b>S5</b>T3</div>
-    <div class="sem-cell m2"><b>S6</b>T4</div>
-    <div class="sem-cell m2"><b>S7</b>P1</div>
-    <div class="sem-cell m2"><b>S8</b>lab</div>
-    <div class="sem-cell m3 now"><b>S9</b>T5</div>
-    <div class="sem-cell m3"><b>S10</b>T6</div>
-    <div class="sem-cell m3"><b>S11</b>T7</div>
-    <div class="sem-cell m3"><b>S12</b>T8</div>
-    <div class="sem-cell m3"><b>S13</b>lab</div>
-    <div class="sem-cell m3"><b>S14</b>P2</div>
-    <div class="sem-cell m3"><b>S15</b>defesa</div>
-  </div>
-  <div class="legend">
-    <span><i class="c1"></i>Entender</span>
-    <span><i class="c2"></i>Medir</span>
-    <span><i class="c3"></i>Decidir</span>
-  </div>
-</section>
-
-<!-- 3 · o que já têm -->
-<section class="slide" data-act="Onde estamos">
-  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
-  <h2>O projeto inteiro está medido</h2>
-  <ul class="bullets">
-    <li><strong>A linha de cima</strong>: RB → RL, com preço defensável (T2).</li>
-    <li><strong>A linha de baixo</strong>: manejo → itens classificados (T3) → COE, COT e CT fechados (T4, conferidos na P1).</li>
-  </ul>
-  <p>Hoje as duas linhas se encontram. A subtração é trivial, <strong>a interpretação é que é a aula</strong>: a mesma sobra pode ser sinal de saúde ou de agonia lenta, dependendo da camada em que aparece.</p>
-  <div class="callout success">
-    <strong>Hoje destrava</strong>
-    O passo 6 do simulador: o resultado por nível: MB, ML, lucro econômico e os indicadores de viabilidade do projeto de vocês.
-  </div>
 </section>
 
 <!-- ============ ATO 2 · CONCEITO ============ -->

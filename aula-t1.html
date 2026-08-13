@@ -90,6 +90,27 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tbl td.num b{color:var(--terra)}
 .tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
 
+/* diagrama UPA: sistema de produção */
+.upa-flow{display:flex;align-items:stretch;gap:1.6vw;margin-top:1.5vh;max-width:82vw}
+.upa-flow .lado{flex:0 0 15vw;display:flex;flex-direction:column;justify-content:center;gap:0.8vh}
+.upa-flow .lado .camada{align-self:flex-start}
+.upa-flow .lado p{font-size:var(--fs-small);line-height:1.4;color:var(--ink-soft)}
+.upa-box{flex:1;border:2px solid var(--olive);background:var(--success-bg);border-radius:4px;padding:1.8vh 1.6vw;position:relative}
+.upa-box .rot{position:absolute;top:-1.1vh;left:1.2vw;background:var(--paper);padding:0 8px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--olive)}
+.upa-box .fam{background:var(--ink);color:var(--paper);text-align:center;padding:1vh 0;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.2vh}
+.upa-sub{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7vw}
+.upa-sub div{background:#fff;border:1px solid var(--rule);border-radius:3px;padding:0.9vh 0.6vw;text-align:center;font-size:var(--fs-mono);color:var(--ink-soft);line-height:1.3}
+.upa-sub div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:calc(var(--fs-mono) * 0.82);letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px}
+.camada{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.04em;padding:0.5vh 0.8vw;border-radius:2px;white-space:nowrap}
+.camada.montante{background:var(--success-bg);color:#3F5233}
+.camada.jusante{background:var(--critical-bg);color:#7C3D1E}
+.ic-badge{display:inline-flex;align-items:center;justify-content:center;width:2.6vw;height:2.6vw;border-radius:50%;font-size:1.3vw;line-height:1;flex:0 0 auto;margin-bottom:2px}
+.ic-badge.oliva{background:var(--success-bg);border:2px solid var(--olive)}
+.ic-badge.terra{background:var(--critical-bg);border:2px solid var(--terra)}
+.ic-badge.sm{width:1.9vw;height:1.9vw;font-size:0.95vw}
+.ciclo-volta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.05em;text-transform:uppercase;color:var(--terra);margin-top:1.4vh;display:flex;align-items:center;gap:8px}
+.ciclo-volta.equil{color:var(--olive)}
+
 /* SWOT */
 .swot{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.2vw;margin:1.5vh 0;max-width:78vw}
 .swot-cell{padding:1.4vh 1.2vw;border:1px solid var(--rule);font-size:var(--fs-small);line-height:1.4}
@@ -115,20 +136,6 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .cover .cred img{height:clamp(34px,6vh,54px);width:auto}
 .cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
 .hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
-
-/* mapa do semestre */
-.sem-map{display:grid;grid-template-columns:repeat(15,1fr);gap:0.4vw;margin:2vh 0 1vh;width:100%}
-.sem-cell{border:1px solid var(--rule);background:#fff;padding:1vh 0.3vw;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1vw,15px);color:var(--stone);line-height:1.3}
-.sem-cell b{display:block;font-size:clamp(11px,1.2vw,18px);color:var(--ink);font-weight:600}
-.sem-cell.m1{border-top:4px solid var(--olive)}
-.sem-cell.m2{border-top:4px solid var(--mustard)}
-.sem-cell.m3{border-top:4px solid var(--terra)}
-.sem-cell.now{background:var(--olive);border-color:var(--olive)}
-.sem-cell.now b,.sem-cell.now{color:var(--paper)}
-.legend{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1.5vh;flex-wrap:wrap}
-.legend span{display:flex;align-items:center;gap:8px}
-.legend i{width:1em;height:1em;display:inline-block}
-.legend .c1{background:var(--olive)}.legend .c2{background:var(--mustard)}.legend .c3{background:var(--terra)}
 
 /* três porteiras */
 .gates{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0.8vw;align-items:stretch;margin:2vh 0;width:100%}
@@ -227,50 +234,6 @@ a{color:var(--accent)}
   <div class="hint">→ avançar · ← voltar</div>
 </section>
 
-<!-- 2 · mapa do semestre -->
-<section class="slide" data-act="Onde estamos">
-  <div class="eyebrow"><b>Onde estamos</b> · mapa do semestre</div>
-  <h2>15 encontros, um projeto</h2>
-  <p>As aulas teóricas seguem a ordem dos passos do <strong>simulador</strong>: a cada teórica, o grupo avança um passo do projeto final.</p>
-  <div class="sem-map">
-    <div class="sem-cell m1"><b>S1</b>plano</div>
-    <div class="sem-cell m1"><b>S2</b>lab</div>
-    <div class="sem-cell m1 now"><b>S3</b>T1</div>
-    <div class="sem-cell m2"><b>S4</b>T2</div>
-    <div class="sem-cell m2"><b>S5</b>T3</div>
-    <div class="sem-cell m2"><b>S6</b>T4</div>
-    <div class="sem-cell m2"><b>S7</b>P1</div>
-    <div class="sem-cell m2"><b>S8</b>lab</div>
-    <div class="sem-cell m3"><b>S9</b>T5</div>
-    <div class="sem-cell m3"><b>S10</b>T6</div>
-    <div class="sem-cell m3"><b>S11</b>T7</div>
-    <div class="sem-cell m3"><b>S12</b>T8</div>
-    <div class="sem-cell m3"><b>S13</b>lab</div>
-    <div class="sem-cell m3"><b>S14</b>P2</div>
-    <div class="sem-cell m3"><b>S15</b>defesa</div>
-  </div>
-  <div class="legend">
-    <span><i class="c1"></i>Entender</span>
-    <span><i class="c2"></i>Medir</span>
-    <span><i class="c3"></i>Decidir</span>
-  </div>
-</section>
-
-<!-- 3 · o que vocês já têm -->
-<section class="slide" data-act="Onde estamos">
-  <div class="eyebrow"><b>Onde estamos</b> · o que já foi feito</div>
-  <h2>Vocês já têm o <em>onde</em></h2>
-  <ul class="bullets">
-    <li><strong>S1</strong>: viram o dossiê final (passo 7), formaram grupos e escolheram a atividade provisória.</li>
-    <li><strong>S2</strong>: planilha de custos básica no Excel e a área do projeto desenhada e medida no Google Earth, com o CAR conferido.</li>
-  </ul>
-  <p>O que falta é a identidade do projeto: <strong>o quê</strong>, <strong>por quê</strong> e <strong>em que condições</strong>.</p>
-  <div class="callout success">
-    <strong>Hoje destrava</strong>
-    O passo 0 do simulador: identificação do projeto, enquadramento e o diagnóstico estratégico (SWOT), a fotografia que orienta todos os números das próximas aulas.
-  </div>
-</section>
-
 <!-- ============ ATO 2 · CONCEITO ============ -->
 
 <!-- 4 · pergunta da aula -->
@@ -315,16 +278,14 @@ a{color:var(--accent)}
   <div class="eyebrow"><b>Conceito</b> · o que torna a atividade única · 2 de 2</div>
   <h2>Preço, distância e tempo</h2>
   <ul class="bullets">
-    <li><strong>Tomador de preço</strong>: o produtor raramente define o preço do que vende (commodity) nem do que compra (insumo).</li>
-    <li><strong>Dispersão e diversidade</strong>: produção espalhada no território e heterogênea, o que dificulta padronização e logística.</li>
-    <li><strong>Ciclos longos</strong>: na pecuária de cria, decisão e receita não caem no mesmo ano.</li>
+    <li><strong>Tomador de preço</strong>: raramente define o que vende (commodity) ou o que compra (insumo).</li>
+    <li><strong>Dispersão e diversidade</strong>: produção espalhada e heterogênea, dificulta padronização e logística.</li>
   </ul>
   <div class="formula">
-    <span class="label">Pecuária de cria · o relógio do ciclo</span>
+    <span class="label">Pecuária de cria · ciclos longos, decisão e receita em anos diferentes</span>
     monta · primavera → gestação → parto → cria ao pé da mãe → <b>desmama · abril seguinte</b><br>
     <b>~17 meses</b> entre a decisão (a monta) e a receita (venda do terneiro)
   </div>
-  <p class="note">Gerir, no campo, é em boa parte gerir risco.</p>
 </section>
 
 <!-- 8 · financeiro × econômico -->
@@ -357,6 +318,36 @@ a{color:var(--accent)}
     <strong>Consequência prática</strong>
     Nenhuma decisão é isolada: mudar a época de plantio mexe na janela da pastagem; trocar a categoria do rebanho muda a exigência de área e de capital de giro.
   </div>
+</section>
+
+<!-- 9b · desenho do sistema -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o sistema desenhado</div>
+  <h2>Uma propriedade mista, grãos no verão e boi no inverno</h2>
+  <div class="upa-flow">
+    <div class="lado">
+      <span class="ic-badge oliva sm" role="img" aria-label="Insumo">🌱</span>
+      <span class="camada montante">Montante</span>
+      <p>Sementes de milho, soja e pastagem de inverno, bezerros e garrotes para engorda, adubo, calcário, crédito rural (Pronaf)</p>
+    </div>
+    <div class="upa-box">
+      <span class="rot">Propriedade mista, fronteira</span>
+      <div class="fam">Família, centro de decisão</div>
+      <div class="upa-sub">
+        <div><b>🌽 Verão</b>Lavoura de milho e soja</div>
+        <div><b>🐄 Inverno</b>Pastagem e engorda de bovinos</div>
+        <div><b>🥬 Horta</b>Hortaliças, autoconsumo</div>
+        <div><b>🥚 Aves</b>Ovos, autoconsumo</div>
+        <div><b>🥛 Vaca leiteira</b>Leite, autoconsumo</div>
+      </div>
+    </div>
+    <div class="lado">
+      <span class="ic-badge terra sm" role="img" aria-label="Mercado">🛒</span>
+      <span class="camada jusante">Jusante</span>
+      <p>Grãos para cooperativa, boi gordo para frigorífico ou leilão. Horta, ovos e leite ficam na família, não entram na cadeia comercial.</p>
+    </div>
+  </div>
+  <div class="ciclo-volta equil"><span>↺</span><span>esterco dos bovinos e das aves vira adubo da lavoura e da pastagem, fecha o ciclo dentro da fronteira</span></div>
 </section>
 
 <!-- 10 · quem decide é gente -->
@@ -430,7 +421,7 @@ a{color:var(--accent)}
       <p>Armazenagem, indústria, abate, logística, varejo, mesa do consumidor.</p>
     </div>
   </div>
-  <p>Na pecuária do Pampa: compra a montante (suplemento, sanidade, genética), produz dentro (cria, recria, engorda no campo nativo), entrega a jusante (frigorífico, desossa, varejo). Cada elo retém uma fatia do valor, e quase sempre a menor fica com quem produz.</p>
+  <p>Na propriedade mista: compra a montante (sementes, adubo, bezerros para engorda), produz dentro (grãos no verão, boi no inverno), entrega a jusante (cooperativa de grãos, frigorífico ou leilão do boi gordo). Cada elo retém uma fatia do valor, e quase sempre a menor fica com quem produz.</p>
 </section>
 
 <!-- 15 · tomadora dos dois lados -->
