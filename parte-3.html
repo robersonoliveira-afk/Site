@@ -146,6 +146,8 @@ ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var
 .callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
 .callout.success{background:var(--success-bg);border-left-color:var(--olive)}
 .callout.success strong{color:var(--olive)}
+.callout .btn{display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.04em;text-decoration:none;color:var(--paper);background:var(--olive);padding:8px 13px}
+.callout .btn:hover{background:var(--olive-deep)}
 
 .hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
 .hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
@@ -519,6 +521,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
     <div class="example">
       <p>Se a soja precisa de 38 sc/ha para cobrir o COE e a média esperada é 60 sc/ha, a produção pode cair <span class="calc">~37%</span> antes de não pagar nem o caixa. Sobre o CT, a margem é menor, e é essa a que diz se o projeto resiste a um ano ruim sem corroer o patrimônio.</p>
+    </div>
+
+    <div class="callout success">
+      <strong>Ferramenta</strong>
+      <p>O protótipo <em>Ponto de equilíbrio da soja: regiões do RS</em> aplica esse conceito com dados reais: produtividade histórica por COREDE, custo de produção da CONAB (praças de referência), calculadora de custo de plantio com preços reais de insumos e um mapa clicável do estado.</p>
+      <a class="btn" href="equilibrio-soja.html">abrir ferramenta &rarr;</a>
     </div>
 
     <h3>PE, risco e a decisão de seguro</h3>
