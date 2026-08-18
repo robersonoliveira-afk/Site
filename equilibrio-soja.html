@@ -45,6 +45,8 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
   }
   input[type=number]{width:140px;}
   .hint{font-size:0.75rem;color:var(--muted);}
+  .btn-exemplo{padding:9px 18px;border:1px solid var(--accent);border-radius:8px;background:var(--accent-lt);color:var(--accent-dk);font-weight:600;font-size:0.85rem;cursor:pointer;align-self:flex-end;height:40px;}
+  .btn-exemplo:hover{background:var(--accent);color:#fff;}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:16px;}
   .kpi{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbfcfb;}
   .kpi .label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;}
@@ -174,7 +176,15 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
 
   <section class="panel">
     <h2>🧮 Calculadora de custo de plantio: soja (estimativa por hectare)</h2>
-    <p class="hint">Sementes, fertilizantes, herbicida, fungicida, inseticida, adjuvante e diesel usam preços reais da CONAB (API "Consulta de Preços de Insumos", RS) e da ANP. Escolha o produto no menu e informe a quantidade por hectare. Só tratamento de sementes, cobertura do solo e outros custos ficam sem fonte pública (preço de revenda/cooperativa muito variável): preencha com o que você pratica.</p>
+    <p class="hint">Sementes, fertilizantes, herbicida, fungicida, inseticida, adjuvante e diesel usam preços reais da CONAB (API "Consulta de Preços de Insumos", RS) e da ANP. Escolha a região, o produto de cada categoria e informe a quantidade por hectare. A calculadora começa zerada: vá lançando o que você pratica, ou use "Carregar exemplo" para preencher com um pacote de referência. Só tratamento de sementes, cobertura do solo e outros custos ficam sem fonte pública (preço de revenda/cooperativa muito variável): preencha com o que você pratica.</p>
+
+    <div class="controls" style="margin-bottom:6px">
+      <div class="field">
+        <label for="selCoredeCalc">Região (COREDE)</label>
+        <select id="selCoredeCalc"></select>
+      </div>
+      <button type="button" id="btnCarregarExemplo" class="btn-exemplo">🔄 Carregar exemplo</button>
+    </div>
 
     <table id="tblCalc">
       <thead><tr><th>Item</th><th>Fonte do preço</th><th>Preço atual</th><th>Dose / aplicação (por ha)</th><th>Nº aplicações</th><th>Custo (R$/ha)</th></tr></thead>
@@ -7088,14 +7098,25 @@ document.getElementById('footDate').textContent = DATA.gerado_em;
 document.getElementById('meta').textContent = 'Fonte: ' + DATA.fonte + ' · Saca de referência: ' + DATA.saca_kg + ' kg';
 
 const selCorede = document.getElementById('selCorede');
+const selCoredeCalc = document.getElementById('selCoredeCalc');
 const coredeNames = Object.keys(DATA.coredes).sort((a,b)=>a.localeCompare(b,'pt-BR'));
-coredeNames.forEach(c=>{
-  const o = document.createElement('option');
-  o.value = c;
-  o.textContent = c + (DATA.coredes[c].conab ? ' ★' : '');
-  selCorede.appendChild(o);
+[selCorede, selCoredeCalc].forEach(sel=>{
+  coredeNames.forEach(c=>{
+    const o = document.createElement('option');
+    o.value = c;
+    o.textContent = c + (DATA.coredes[c].conab ? ' ★' : '');
+    sel.appendChild(o);
+  });
 });
-selCorede.value = coredeNames.includes('Missões') ? 'Missões' : coredeNames[0];
+const coredeInicial = coredeNames.includes('Missões') ? 'Missões' : coredeNames[0];
+selCorede.value = coredeInicial;
+selCoredeCalc.value = coredeInicial;
+
+function setCorede(nome){
+  selCorede.value = nome;
+  selCoredeCalc.value = nome;
+  render();
+}
 
 const precoInput = document.getElementById('preco');
 precoInput.value = DATA.preco_soja.atual_r_saca;
@@ -7174,8 +7195,7 @@ function renderMapa(){
   svg.innerHTML = content;
   svg.querySelectorAll('.mapa-corede').forEach(el=>{
     el.addEventListener('click', ()=>{
-      selCorede.value = el.getAttribute('data-corede');
-      render();
+      setCorede(el.getAttribute('data-corede'));
     });
   });
 }
@@ -7293,28 +7313,29 @@ document.getElementById('insumoGrid').innerHTML = insumoOrder.filter(k=>DATA.rel
   return `<div class="insumo-card"><div class="nome">${k}</div><div class="val">${fmtNum(v.sacas_por_t)}</div><div class="unit">sc de soja / t (${v.data})</div></div>`;
 }).join('');
 
-selCorede.addEventListener('change', render);
+selCorede.addEventListener('change', ()=>setCorede(selCorede.value));
+selCoredeCalc.addEventListener('change', ()=>setCorede(selCoredeCalc.value));
 precoInput.addEventListener('input', recalcKpis);
 custeioInput.addEventListener('input', recalcKpis);
 
 // ---------- Calculadora de custo de plantio (produtos reais CONAB + diesel ANP) ----------
 // Uma linha por categoria: usuário escolhe o produto (dropdown) e informa quantidade/ha
 const linhasCalc = [
-  { key:'sementes',   categoria:'sementes',            defaultProduto:'SEMENTE DE SOJA, CERTIFICADA, RR', defaultQtd: 50, filtro: p=>p.produto.toUpperCase().includes('SOJA') },
-  { key:'fertilizante1', categoria:'fertilizante_quimico', defaultProduto:'URÉIA', defaultQtd: 100 },
-  { key:'fertilizante2', categoria:'fertilizante_quimico', defaultProduto:'MAP', defaultQtd: 150 },
-  { key:'fertilizante3', categoria:'fertilizante_quimico', defaultProduto:'CLORETO DE POTÁSSIO', defaultQtd: 100 },
-  { key:'herbicida',  categoria:'herbicida',            defaultProduto:'GLIFOSATO', defaultQtd: 3,    aplicacoes: 2 },
-  { key:'fungicida',  categoria:'fungicida',            defaultProduto:'AMISTAR', defaultQtd: 0.3,    aplicacoes: 2 },
-  { key:'inseticida', categoria:'inseticida',           defaultProduto:'ACTARA, 250 WG', defaultQtd: 0.15, aplicacoes: 2 },
-  { key:'adjuvante',  categoria:'adjuvante',            defaultProduto:'ÓLEO MINERAL', defaultQtd: 0.5,  aplicacoes: 3 },
-  { key:'diesel',     categoria:'diesel',               defaultProduto:'Diesel S10', defaultQtd: 45 },
+  { key:'sementes',   categoria:'sementes',            defaultProduto:'SEMENTE DE SOJA, CERTIFICADA, RR', exemploQtd: 50, filtro: p=>p.produto.toUpperCase().includes('SOJA') },
+  { key:'fertilizante1', categoria:'fertilizante_quimico', defaultProduto:'URÉIA', exemploQtd: 0 },
+  { key:'fertilizante2', categoria:'fertilizante_quimico', defaultProduto:'MAP', exemploQtd: 177 },
+  { key:'fertilizante3', categoria:'fertilizante_quimico', defaultProduto:'CLORETO DE POTÁSSIO', exemploQtd: 44 },
+  { key:'herbicida',  categoria:'herbicida',            defaultProduto:'GLIFOSATO', exemploQtd: 3,    aplicacoes: 2 },
+  { key:'fungicida',  categoria:'fungicida',            defaultProduto:'AMISTAR', exemploQtd: 0.3,    aplicacoes: 3 },
+  { key:'inseticida', categoria:'inseticida',           defaultProduto:'ACTARA, 250 WG', exemploQtd: 0.15, aplicacoes: 3 },
+  { key:'adjuvante',  categoria:'adjuvante',            defaultProduto:'ÓLEO MINERAL', exemploQtd: 0.5,  aplicacoes: 3 },
+  { key:'diesel',     categoria:'diesel',               defaultProduto:'Diesel S10', exemploQtd: 68 },
 ];
 const manualItens = [
-  { key:'tratsementes', label:'Tratamento de Sementes', default: 83 },
-  { key:'cobertura', label:'Cobertura do Solo (semente/manejo)', default: 100 },
-  { key:'outrosdefensivos', label:'Outros defensivos/adjuvantes não listados acima', default: 100 },
-  { key:'outros', label:'Outros Custos (frete, seguro, taxas...)', default: 200 },
+  { key:'tratsementes', label:'Tratamento de Sementes', exemplo: 83 },
+  { key:'cobertura', label:'Cobertura do Solo (semente/manejo)', exemplo: 100 },
+  { key:'outrosdefensivos', label:'Outros defensivos/adjuvantes não listados acima', exemplo: 100 },
+  { key:'outros', label:'Outros Custos (frete, seguro, taxas...)', exemplo: 400 },
 ];
 
 function produtoInfo(categoria, nomeProduto){
@@ -7336,7 +7357,7 @@ function buildCalcRows(){
       </td>
       <td>CONAB (Consulta Insumos, RS)${it.categoria==='diesel'?' + ANP':''}</td>
       <td id="calc-preco-${it.key}"></td>
-      <td><input type="number" class="calc-qty" data-key="${it.key}" value="${it.defaultQtd}" step="0.1" style="width:80px"> <span id="calc-unid-${it.key}" class="hint"></span></td>
+      <td><input type="number" class="calc-qty" data-key="${it.key}" value="0" step="0.1" style="width:80px"> <span id="calc-unid-${it.key}" class="hint"></span></td>
       <td>${temAplicacoes ? `<input type="number" class="calc-aplic" data-key="${it.key}" value="${it.aplicacoes}" step="1" min="0" style="width:60px">` : '<span class="hint">1×</span>'}</td>
       <td id="calc-cost-${it.key}">-</td>
     </tr>`;
@@ -7346,7 +7367,7 @@ function buildCalcRows(){
     <tr>
       <td>${it.label}</td>
       <td colspan="3" class="hint">sem fonte pública, preencha o que você pratica</td>
-      <td><input type="number" class="calc-manual" data-key="${it.key}" value="${it.default}" step="1" style="width:100px"> R$/ha</td>
+      <td><input type="number" class="calc-manual" data-key="${it.key}" value="0" step="1" style="width:100px"> R$/ha</td>
       <td id="calc-cost-${it.key}">-</td>
     </tr>`).join('');
 
@@ -7395,10 +7416,25 @@ function recalcCalc(){
   ).join('');
 }
 
+function carregarExemplo(){
+  linhasCalc.forEach(it=>{
+    const qtyEl = document.querySelector(`.calc-qty[data-key="${it.key}"]`);
+    if(qtyEl) qtyEl.value = it.exemploQtd;
+    const aplicEl = document.querySelector(`.calc-aplic[data-key="${it.key}"]`);
+    if(aplicEl && it.aplicacoes != null) aplicEl.value = it.aplicacoes;
+  });
+  manualItens.forEach(it=>{
+    const el = document.querySelector(`.calc-manual[data-key="${it.key}"]`);
+    if(el) el.value = it.exemplo;
+  });
+  recalcCalc();
+}
+document.getElementById('btnCarregarExemplo').addEventListener('click', carregarExemplo);
+
 buildCalcRows();
 recalcCalc();
 precoInput.addEventListener('input', recalcCalc);
-// selCorede ja aciona recalcCalc() dentro de render() (ver listener de 'change' mais acima)
+// selCorede e selCoredeCalc ja acionam recalcCalc() dentro de render() (ver setCorede() mais acima)
 
 render();
 </script>
