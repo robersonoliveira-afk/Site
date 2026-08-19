@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galinheiro móvel entre videiras, ficha técnica</title>
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/agricultura/folha-galinheiro-movel.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#F4F0E6;
+  --papel2:#EDE7D8;
+  --papel3:#E4DCC8;
+  --tinta:#2B2723;
+  --tinta2:#5C544A;
+  --oliva:#3D4A2A;
+  --oliva-claro:#E2E6D6;
+  --terra:#A8552E;
+  --terra-claro:#F0DFD4;
+  --mostarda:#B89233;
+  --mostarda-claro:#F2E7CB;
+  --linha:#D6CCB6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--papel3);color:var(--tinta);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  display:flex;justify-content:center;padding:36px 18px 60px;
+}
+.folha{width:100%;max-width:800px;background:var(--papel);padding:48px 56px 44px;box-shadow:0 2px 22px rgba(43,39,35,.14)}
+
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.1;margin:0}
+h1{font-size:32px;letter-spacing:-.01em}
+h2{font-size:19px;margin-bottom:2px}
+p{margin:0;font-size:14.5px;line-height:1.55}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--terra)}
+.rule{height:3px;width:52px;background:var(--tinta);margin:12px 0 0}
+.sub{color:var(--tinta2);font-size:15px;margin-top:10px;max-width:62ch}
+
+section{margin-top:36px}
+section > h2{margin-bottom:10px}
+.section-rule{height:1px;background:var(--linha);margin:6px 0 16px}
+
+.nota{border-left:3px solid var(--mostarda);background:var(--mostarda-claro);padding:12px 16px;font-size:13.5px;line-height:1.5;margin-top:14px}
+.nota.oliva{border-color:var(--oliva);background:var(--oliva-claro)}
+.nota.terra{border-color:var(--terra);background:var(--terra-claro)}
+
+/* esquema numerado */
+.esquema-wrap{border:1px solid var(--linha);background:#fff;padding:18px}
+.legenda-esquema{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:14px;font-size:12.5px;line-height:1.4}
+.legenda-esquema div{display:flex;gap:8px;align-items:flex-start}
+.legenda-esquema .num{flex:0 0 auto;width:18px;height:18px;border-radius:50%;background:var(--terra);color:#fff;font-family:"IBM Plex Mono",monospace;font-size:10.5px;display:flex;align-items:center;justify-content:center;font-weight:600}
+
+/* fotos, espaços a preencher */
+.fotogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+.foto-slot{position:relative;border:1px solid var(--linha);background:var(--papel2);aspect-ratio:4/3;overflow:hidden}
+.foto-slot img{width:100%;height:100%;object-fit:cover;display:block}
+.foto-slot .num{position:absolute;top:6px;left:6px;width:20px;height:20px;border-radius:50%;background:var(--terra);color:#fff;font-family:"IBM Plex Mono",monospace;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.foto-slot .legenda-foto{position:absolute;left:0;right:0;bottom:0;background:rgba(43,39,35,.72);color:#fff;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.02em;padding:4px 7px}
+
+/* dimensionamento */
+.formula{border:1px solid var(--linha);background:var(--papel2);padding:12px 16px;font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.7}
+
+/* wifi x zigbee */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.card{border:1px solid var(--linha);background:var(--papel2);padding:14px 16px}
+.card.oliva{background:var(--oliva-claro);border-color:#CBD3BB}
+.card .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tinta2);display:block;margin-bottom:5px}
+.card p{font-size:13.5px;line-height:1.5}
+
+/* tabela de materiais */
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);text-align:left;padding:6px 8px;border-bottom:1px solid var(--tinta)}
+td{padding:6px 8px;border-bottom:1px solid var(--linha);vertical-align:top}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+tr.categoria td{font-weight:600;background:var(--papel2);border-bottom:1px solid var(--linha)}
+tr.total td{font-weight:600;border-top:2px solid var(--tinta);border-bottom:none}
+
+.cabecalho{display:flex;align-items:flex-start;gap:22px}
+.selo{width:88px;height:88px;object-fit:cover;border-radius:50%;flex:0 0 auto;border:1px solid var(--linha)}
+
+.rodape{display:flex;justify-content:space-between;align-items:flex-end;margin-top:40px;padding-top:14px;border-top:1px solid var(--linha);font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2)}
+.rodape a{color:var(--terra)}
+
+@media print{
+  body{background:#fff;padding:0}
+  .folha{box-shadow:none;max-width:none;padding:14px 6px}
+  .no-print{display:none}
+  section{margin-top:24px}
+  .card, .nota, .formula, .esquema-wrap, .foto-slot, .cabecalho, .rodape, h2, tr{break-inside:avoid;page-break-inside:avoid}
+  h2{break-after:avoid;page-break-after:avoid}
+  .fotogrid{grid-template-columns:repeat(3,1fr)}
+  #fotos, #wifi-zigbee{break-before:page;page-break-before:always}
+}
+.no-print{position:fixed;top:16px;right:16px;font-family:"IBM Plex Mono",monospace;font-size:12px}
+.no-print button{font:inherit;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);padding:6px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="no-print"><button onclick="window.print()">Imprimir</button></div>
+
+<div class="folha">
+
+  <div class="cabecalho">
+    <img class="selo" src="assets/imagens/aula3-logo-galinhedo.png" alt="Emblema do projeto Galinhedo, ilustração autoral do docente">
+    <div>
+      <span class="kicker">Ficha técnica, produto de apoio · Técnico em Agricultura</span>
+      <h1>Galinheiro móvel entre videiras</h1>
+      <div class="rule"></div>
+      <p class="sub">Inspirado no modelo americano da Pasturebird, que move suas aves todos os dias para renovar a pastagem, este é um galinheiro doméstico leve o bastante para se deslocar sozinho a cada poucos dias, entre as fileiras de um vinhedo. A ideia central: aves soltas a pasto, adubando e roçando as entrelinhas a cada giro, com menos trabalho manual graças à automação de luz, comedouro e ventilação. Isolar o plantel do contato com pássaros silvestres, diante do risco de gripe aviária, é uma vantagem a mais, não o motivo principal. As medidas aqui são as de um caso real; ajuste ao espaço e ao número de aves da sua propriedade.</p>
+      <p class="sub" style="margin-top:8px;font-style:italic">Experiência e projeto: Prof. Róberson Macedo de Oliveira</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>O esquema</h2>
+    <div class="section-rule"></div>
+    <div class="esquema-wrap">
+      <svg viewBox="0 0 900 340" style="width:100%;height:auto">
+        <line x1="20" y1="325" x2="880" y2="325" stroke="#D6CCB6" stroke-width="2"/>
+
+        <path d="M170,245 C170,80 730,80 730,245" fill="none" stroke="#2B2723" stroke-width="3"/>
+        <line x1="170" y1="245" x2="170" y2="305" stroke="#2B2723" stroke-width="3"/>
+        <line x1="730" y1="245" x2="730" y2="305" stroke="#2B2723" stroke-width="3"/>
+        <line x1="170" y1="300" x2="730" y2="300" stroke="#2B2723" stroke-width="2" stroke-dasharray="4 5"/>
+
+        <line x1="182" y1="298" x2="150" y2="322" stroke="#2B2723" stroke-width="4"/>
+        <circle cx="140" cy="330" r="15" fill="none" stroke="#2B2723" stroke-width="4"/>
+        <line x1="718" y1="298" x2="750" y2="322" stroke="#2B2723" stroke-width="4"/>
+        <circle cx="760" cy="330" r="15" fill="none" stroke="#2B2723" stroke-width="4"/>
+        <line x1="176" y1="280" x2="70" y2="312" stroke="#2B2723" stroke-width="3"/>
+        <circle cx="62" cy="314" r="6" fill="none" stroke="#2B2723" stroke-width="3"/>
+
+        <rect x="170" y="247" width="68" height="56" fill="#EDE7D8" stroke="#2B2723" stroke-width="2"/>
+        <line x1="187" y1="247" x2="187" y2="303" stroke="#2B2723" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="204" y1="247" x2="204" y2="303" stroke="#2B2723" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="221" y1="247" x2="221" y2="303" stroke="#2B2723" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="170" y1="265" x2="238" y2="265" stroke="#2B2723" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="170" y1="284" x2="238" y2="284" stroke="#2B2723" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <rect x="122" y="275" width="30" height="30" fill="#F0DFD4" stroke="#A8552E" stroke-width="2"/>
+        <path d="M122,275 L152,275 L137,255 Z" fill="#F0DFD4" stroke="#A8552E" stroke-width="2"/>
+        <line x1="152" y1="295" x2="170" y2="295" stroke="#A8552E" stroke-width="4"/>
+
+        <rect x="742" y="255" width="32" height="48" rx="4" fill="#E2E6D6" stroke="#3D4A2A" stroke-width="2"/>
+        <line x1="758" y1="303" x2="758" y2="316" stroke="#3D4A2A" stroke-width="2"/>
+
+        <circle cx="450" cy="150" r="9" fill="#F2E7CB" stroke="#B89233" stroke-width="2"/>
+        <line x1="450" y1="159" x2="450" y2="170" stroke="#B89233" stroke-width="2"/>
+
+        <circle cx="660" cy="165" r="11" fill="#fff" stroke="#2B2723" stroke-width="1.5"/>
+        <circle cx="660" cy="165" r="4" fill="#2B2723"/>
+        <circle cx="700" cy="180" r="16" fill="none" stroke="#5C544A" stroke-width="2"/>
+        <circle cx="700" cy="180" r="3" fill="#5C544A"/>
+
+        <rect x="40" y="286" width="26" height="20" fill="#fff" stroke="#5C544A" stroke-width="1.5"/>
+
+        <circle cx="140" cy="330" r="11" fill="#A8552E"/><text x="140" y="334" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">1</text>
+        <circle cx="450" cy="95" r="11" fill="#A8552E"/><text x="450" y="99" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">2</text>
+        <circle cx="204" cy="240" r="11" fill="#A8552E"/><text x="204" y="244" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">3</text>
+        <circle cx="112" cy="253" r="11" fill="#A8552E"/><text x="112" y="257" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">4</text>
+        <circle cx="758" cy="248" r="11" fill="#A8552E"/><text x="758" y="252" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">5</text>
+        <circle cx="450" cy="140" r="11" fill="#A8552E"/><text x="450" y="144" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">6</text>
+        <circle cx="700" cy="150" r="11" fill="#A8552E"/><text x="700" y="154" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">7</text>
+        <circle cx="53" cy="280" r="11" fill="#A8552E"/><text x="53" y="284" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#fff">8</text>
+      </svg>
+      <div class="legenda-esquema">
+        <div><span class="num">1</span>Rodas, giram a estrutura entre as fileiras</div>
+        <div><span class="num">2</span>Frame com tela e lona sobre arco, leve</div>
+        <div><span class="num">3</span>Ninho com tapete, coleta pelo lado de fora</div>
+        <div><span class="num">4</span>Comedouro, balde com funil e cocho de PVC</div>
+        <div><span class="num">5</span>Bebedouro, bombona transparente com niples</div>
+        <div><span class="num">6</span>Lâmpada de cor, programada por horário</div>
+        <div><span class="num">7</span>Câmera, monitoramento remoto</div>
+        <div><span class="num">8</span>Tomada inteligente, liga os automatismos</div>
+      </div>
+    </div>
+    <div class="nota">Este é um esquema de princípio, não uma planta de corte. Largura, comprimento e altura variam conforme o espaço disponível e o número de aves, veja o dimensionamento adiante.</div>
+  </section>
+
+  <section id="fotos">
+    <h2>Fotos</h2>
+    <div class="section-rule"></div>
+    <div class="fotogrid">
+      <div class="foto-slot"><span class="num">1</span><img src="assets/imagens/aula3-rodas.jpg" alt="Roda com furos para ajustar a altura, presa ao braço vermelho da estrutura"><span class="legenda-foto">rodas</span></div>
+      <div class="foto-slot"><span class="num">2</span><img src="assets/imagens/aula3-estrutura.jpg" alt="Armação de metal pintada de vermelho, em arco, ainda sem a lona"><span class="legenda-foto">estrutura</span></div>
+      <div class="foto-slot"><span class="num">3</span><img src="assets/imagens/aula3-ninho-tomada.jpg" alt="Interior do galinheiro, ninho coberto por cortina escura, lâmpada e tomada inteligente ao fundo"><span class="legenda-foto">ninho</span></div>
+      <div class="foto-slot"><span class="num">4</span><img src="assets/imagens/IMG_20250419_183725353_MFNR.jpg" alt="Comedouro automático com balde e cano de PVC, acoplado à lateral do galinheiro"><span class="legenda-foto">comedouro</span></div>
+      <div class="foto-slot"><span class="num">5</span><img src="assets/imagens/aula3-bebedouro.jpg" alt="Bombona transparente com niple, vista noturna pela câmera do galinheiro"><span class="legenda-foto">bebedouro</span></div>
+      <div class="foto-slot"><span class="num">6</span><img src="assets/imagens/aula3-lampada-vermelha.jpg" alt="Interior do galinheiro iluminado pela lâmpada inteligente na cor vermelha"><span class="legenda-foto">lâmpada</span></div>
+      <div class="foto-slot"><span class="num">7</span><img src="assets/imagens/aula3-camera.png" alt="Câmera Wi-Fi e ventilador de parede montados na estrutura interna do galinheiro" style="object-position:top left"><span class="legenda-foto">câmera</span></div>
+      <div class="foto-slot"><span class="num">8</span><img src="assets/imagens/aula3-ninho-tomada.jpg" alt="Tomada inteligente instalada no teto do galinheiro, junto à lâmpada"><span class="legenda-foto">tomada</span></div>
+      <div class="foto-slot"><img src="assets/imagens/aula3-vinhedo-conjunto.jpg" alt="Vista geral do vinhedo com o galinheiro móvel entre as fileiras, ao fundo"><span class="legenda-foto">conjunto, no vinhedo</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dimensione para o seu espaço</h2>
+    <div class="section-rule"></div>
+    <p>O que define o tamanho muda conforme o uso. Dentro de um vinhedo ou pomar, é a entrelinha que manda: a estrutura precisa caber no corredor. Fora dessa restrição, inverta a lógica e dimensione pelo número de aves.</p>
+    <div class="formula">
+      largura da estrutura&nbsp; = &nbsp;entrelinha − margem de manobra<br>
+      área da estrutura&nbsp; = &nbsp;nº de aves ÷ densidade adotada<br>
+      ração por dia&nbsp; = &nbsp;nº de aves × consumo por ave<br>
+      autonomia do balde (dias)&nbsp; = &nbsp;capacidade do balde ÷ ração por dia
+    </div>
+    <div class="nota terra">No caso aqui: entrelinha de 2,5m, estrutura de 2m de largura por 3m de comprimento, folga de meio metro. Vinte aves em 6m², cerca de 3,3 aves por m². Ração à base de 120g por ave ao dia, balde para quase dez dias. O cocho tinha menos de um metro e ficou no limite para vinte aves, prefira folga a economizar nessa medida. O protocolo de produção orgânica para aves de postura permite até 7 aves por m²; a densidade de 4 aves por m² usada aqui é mais conservadora, uma recomendação própria a partir da experiência com este galinheiro, reservando área para poleiros. Um balde de 10 a 20 litros já é suficiente para a ração, não precisa de um recipiente maior. E prefira rodas mais altas: rolam com menos esforço sobre a grama, aliviando o peso na hora de deslocar a estrutura.</div>
+  </section>
+
+  <section id="wifi-zigbee">
+    <h2>Wi-Fi ou Zigbee</h2>
+    <div class="section-rule"></div>
+    <p>Os dois protocolos automatizam lâmpada, tomada e câmera. A diferença está no que cada um exige por trás.</p>
+    <div class="cols2">
+      <div class="card oliva">
+        <span class="tag">Wi-Fi, recomendado ao produtor</span>
+        <p>Cada dispositivo conecta direto na rede de internet da propriedade, sem equipamento extra. Basta ter Wi-Fi ou um roteador ligado a uma internet, inclusive por Starlink em local sem fibra ou 4G. Mais simples de instalar e de manter.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Zigbee, para quem já automatiza mais</span>
+        <p>Exige um hub central para conversar com o app, mas forma uma rede própria entre os dispositivos, o que ajuda quando são muitos sensores espalhados pela propriedade, como no monitoramento de solo e irrigação testado em paralelo neste projeto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lista de materiais</h2>
+    <div class="section-rule"></div>
+    <table>
+      <thead><tr><th>Item</th><th class="num">Qtd.</th><th class="num">Valor</th></tr></thead>
+      <tbody>
+        <tr class="categoria"><td colspan="3">Estrutura</td></tr>
+        <tr><td>Lona (6x4m)</td><td class="num">1</td><td class="num">R$ 61,98</td></tr>
+        <tr><td>Lona de polietileno azul 3x2m</td><td class="num">2</td><td class="num">R$ 50,94</td></tr>
+        <tr><td>Roda para carrinho de carga</td><td class="num">4</td><td class="num">R$ 120,80</td></tr>
+        <tr><td>Rolamento</td><td class="num">8</td><td class="num">R$ 40,00</td></tr>
+        <tr><td>Tubo industrial 30x50</td><td class="num">2</td><td class="num">R$ 220,42</td></tr>
+        <tr><td>Tubo industrial 30x40</td><td class="num">1</td><td class="num">R$ 95,44</td></tr>
+        <tr><td>Tubo industrial 20x30</td><td class="num">4</td><td class="num">R$ 273,48</td></tr>
+        <tr><td>Ferro cantoneira 5/8</td><td class="num">2</td><td class="num">R$ 62,06</td></tr>
+        <tr><td>Folha de lata</td><td class="num">4</td><td class="num">R$ 240,00</td></tr>
+        <tr><td>Eletrodo</td><td class="num">4</td><td class="num">R$ 60,00</td></tr>
+        <tr><td>Ferro sucata</td><td class="num">18,3kg</td><td class="num">R$ 183,00</td></tr>
+        <tr><td>Tinta</td><td class="num">3</td><td class="num">R$ 90,00</td></tr>
+        <tr><td>Tela</td><td class="num">1,2</td><td class="num">R$ 33,60</td></tr>
+        <tr><td>Arame</td><td class="num">1</td><td class="num">R$ 35,00</td></tr>
+        <tr><td>Parafuso</td><td class="num">1</td><td class="num">R$ 58,00</td></tr>
+        <tr><td>Disco de corte</td><td class="num">5</td><td class="num">R$ 25,00</td></tr>
+        <tr><td style="font-style:italic;color:var(--tinta2)">Subtotal estrutura</td><td></td><td class="num" style="font-weight:600">R$ 1.649,72</td></tr>
+
+        <tr class="categoria"><td colspan="3">Ninho</td></tr>
+        <tr><td>Tapete plástico para ninho, tipo astroturf, 120x465mm</td><td class="num">1</td><td class="num">R$ 108,00</td></tr>
+
+        <tr class="categoria"><td colspan="3">Comedouro</td></tr>
+        <tr><td>Alimentador comedouro tratador automático com timer (Mimamute)</td><td class="num">1</td><td class="num">R$ 234,59</td></tr>
+        <tr><td>Tomada inteligente Wi-Fi TP-Link Tapo P110</td><td class="num">1</td><td class="num">R$ 68,34</td></tr>
+        <tr><td>Bombona transparente</td><td class="num">1</td><td class="num">R$ 37,89</td></tr>
+        <tr><td>Conexões</td><td class="num">1</td><td class="num">R$ 15,00</td></tr>
+        <tr><td style="font-style:italic;color:var(--tinta2)">Subtotal comedouro</td><td></td><td class="num" style="font-weight:600">R$ 355,82</td></tr>
+
+        <tr class="categoria"><td colspan="3">Bebedouro</td></tr>
+        <tr><td>Bombona transparente</td><td class="num">1</td><td class="num">R$ 37,89</td></tr>
+        <tr><td>Bico bebedouro niple, média vazão</td><td class="num">2</td><td class="num">R$ 12,38</td></tr>
+        <tr><td>Taça bebedouro, respinga gotas</td><td class="num">2</td><td class="num">R$ 7,80</td></tr>
+        <tr><td>Conexões</td><td class="num">2</td><td class="num">R$ 20,00</td></tr>
+        <tr><td style="font-style:italic;color:var(--tinta2)">Subtotal bebedouro</td><td></td><td class="num" style="font-weight:600">R$ 78,07</td></tr>
+
+        <tr class="categoria"><td colspan="3">Iluminação</td></tr>
+        <tr><td>Bocal pendente sem chave</td><td class="num">1</td><td class="num">R$ 1,90</td></tr>
+        <tr><td>Plugue macho 10A bipolar com emenda</td><td class="num">1</td><td class="num">R$ 4,77</td></tr>
+        <tr><td>Lâmpada Wi-Fi inteligente TP-Link Tapo L530E, cor ajustável</td><td class="num">1</td><td class="num">R$ 43,26</td></tr>
+        <tr><td style="font-style:italic;color:var(--tinta2)">Subtotal iluminação</td><td></td><td class="num" style="font-weight:600">R$ 49,93</td></tr>
+
+        <tr class="categoria"><td colspan="3">Ventilação</td></tr>
+        <tr><td>Tomada inteligente Wi-Fi TP-Link Tapo P110</td><td class="num">1</td><td class="num">R$ 68,34</td></tr>
+        <tr><td>Ventilador de parede oscilante, 50cm</td><td class="num">1</td><td class="num">R$ 164,22</td></tr>
+        <tr><td style="font-style:italic;color:var(--tinta2)">Subtotal ventilação</td><td></td><td class="num" style="font-weight:600">R$ 232,56</td></tr>
+
+        <tr class="categoria"><td colspan="3">Câmeras e rede</td></tr>
+        <tr><td>Câmera Wi-Fi 360°, TP-Link Tapo C200</td><td class="num">1</td><td class="num">R$ 199,00</td></tr>
+        <tr><td>Câmera Wi-Fi externa, TP-Link Tapo C500</td><td class="num">1</td><td class="num">R$ 352,59</td></tr>
+        <tr><td>Filtro de linha, 6 tomadas</td><td class="num">1</td><td class="num">R$ 41,88</td></tr>
+        <tr><td>Protetor contra raio, 2 tomadas</td><td class="num">1</td><td class="num">R$ 24,90</td></tr>
+        <tr><td style="font-style:italic;color:var(--tinta2)">Subtotal câmeras e rede</td><td></td><td class="num" style="font-weight:600">R$ 618,37</td></tr>
+
+        <tr class="total"><td>Total, galinheiro completo</td><td></td><td class="num">R$ 3.092,47</td></tr>
+      </tbody>
+    </table>
+    <div class="nota">Três itens usados neste projeto ficam fora dessa conta: um temporizador de irrigação Zigbee (R$ 206,67), o hub Zigbee que os conecta ao Wi-Fi (R$ 179,00) e um sensor de umidade do solo (R$ 84,54), total de R$ 470,21. Foram um teste paralelo de automação da irrigação do vinhedo, não fazem parte do galinheiro. Some ao total acima só se quiser repetir esse teste.</div>
+  </section>
+
+  <div class="rodape">
+    <span>Colégio Politécnico da UFSM, Técnico em Agricultura, CPSEA101, 2026/2</span>
+    <span>Material elaborado com auxílio de inteligência artificial, sob revisão e responsabilidade dos docentes</span>
+  </div>
+
+</div>
+</body>
+</html>
