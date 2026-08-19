@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cinco tempos, esquema para impressão</title>
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/agricultura/esqueleto-cinco-tempos.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#F4F0E6;
+  --papel2:#EDE7D8;
+  --papel3:#E4DCC8;
+  --tinta:#2B2723;
+  --tinta2:#5C544A;
+  --oliva:#3D4A2A;
+  --terra:#A8552E;
+  --terra-claro:#F0DFD4;
+  --mostarda:#B89233;
+  --linha:#D6CCB6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--papel3);color:var(--tinta);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  display:flex;justify-content:center;padding:32px 16px 48px;
+}
+.folha{width:100%;max-width:1050px;background:var(--papel);padding:20px 26px;box-shadow:0 2px 22px rgba(43,39,35,.14)}
+
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.1;margin:0}
+h1{font-size:20px;letter-spacing:-.01em}
+p{margin:0;font-size:14px;line-height:1.5}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
+.rule{height:2px;width:40px;background:var(--tinta);margin:6px 0 0}
+.sub{color:var(--tinta2);font-size:11px;margin-top:5px;max-width:105ch}
+
+.esqueleto{display:flex;align-items:flex-start;gap:0;margin-top:14px}
+.et-col{flex:1;display:flex;flex-direction:column;gap:6px}
+.et-letra{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:26px;line-height:1;color:var(--terra);border-top:3px solid var(--tinta);padding-top:5px;text-align:center}
+.et-sub{display:flex;flex-direction:column;gap:5px}
+.et-item{border:1px solid var(--linha);background:var(--papel2);padding:5px 7px;display:flex;flex-direction:column;gap:1px}
+.et-item .lbl{font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:600;letter-spacing:.01em;color:var(--tinta)}
+.et-item .def{font-size:9px;line-height:1.22;color:var(--tinta2)}
+.et-item .ex{font-size:8.5px;line-height:1.22;color:var(--terra);border-top:1px dashed var(--linha);padding-top:2px;margin-top:1px}
+.et-item .ex b{font-family:"IBM Plex Mono",monospace;font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;display:block;color:var(--tinta2)}
+.et-seta{flex:0 0 auto;font-size:15px;color:var(--tinta2);align-self:flex-start;margin-top:14px;padding:0 5px}
+
+.nota{border-left:3px solid var(--mostarda);background:#F2E7CB;padding:6px 10px;font-size:9.5px;line-height:1.4;margin-top:12px}
+
+.rodape{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;padding-top:6px;border-top:1px solid var(--linha);font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta2)}
+
+@page{size:A4 landscape;margin:10mm}
+@media print{
+  body{background:#fff;padding:0}
+  .folha{box-shadow:none;max-width:none;padding:0;width:auto}
+  .no-print{display:none}
+}
+.no-print{position:fixed;top:14px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:12px}
+.no-print button{font:inherit;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);padding:6px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="no-print"><button onclick="window.print()">Imprimir (A4, paisagem)</button></div>
+
+<div class="folha">
+  <div>
+    <span class="kicker">CPSEA101 · Técnico em Agricultura · Aula 3, material de apoio</span>
+    <h1>Os cinco tempos, do ponto de partida à comunicação</h1>
+    <div class="rule"></div>
+    <p class="sub">O esqueleto do método de Jara Holliday, com um exemplo em cada etapa. O exemplo segue um caso ilustrativo de produção de bioinsumos numa pequena propriedade, para mostrar como cada item se preenche, não é um caso real documentado.</p>
+  </div>
+
+  <div class="esqueleto">
+    <div class="et-col">
+      <div class="et-letra">A</div>
+      <div class="et-sub">
+        <div class="et-item">
+          <span class="lbl">a1 · vivência</span>
+          <span class="def">presença efetiva na experiência</span>
+          <span class="ex"><b>exemplo</b>o produtor participa do preparo e da aplicação do biofertilizante</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">a2 · registro</span>
+          <span class="def">caderno, foto, entrevista</span>
+          <span class="ex"><b>exemplo</b>caderno com datas de preparo, fotos dos tanques de fermentação</span>
+        </div>
+      </div>
+    </div>
+    <div class="et-seta">→</div>
+    <div class="et-col">
+      <div class="et-letra">B</div>
+      <div class="et-sub">
+        <div class="et-item">
+          <span class="lbl">b1 · objetivo</span>
+          <span class="def">para que sistematizar</span>
+          <span class="ex"><b>exemplo</b>entender se o bioinsumo caseiro reduziu o uso de adubo químico</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">b2 · objeto</span>
+          <span class="def">período e recorte</span>
+          <span class="ex"><b>exemplo</b>os últimos dois ciclos de produção, do preparo à aplicação</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">b3 · eixo</span>
+          <span class="def">fio condutor da leitura</span>
+          <span class="ex"><b>exemplo</b>produção agroecológica, uso de bioinsumos</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">b4 · fontes</span>
+          <span class="def">de onde vem a informação</span>
+          <span class="ex"><b>exemplo</b>caderno de aplicações, entrevista com o produtor, análise de solo</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">b5 · procedimentos</span>
+          <span class="def">quem, quando, como</span>
+          <span class="ex"><b>exemplo</b>visitas quinzenais, coleta de amostras, registro fotográfico do preparo</span>
+        </div>
+      </div>
+    </div>
+    <div class="et-seta">→</div>
+    <div class="et-col">
+      <div class="et-letra">C</div>
+      <div class="et-sub">
+        <div class="et-item">
+          <span class="lbl">c1 · reconstruir</span>
+          <span class="def">linha do tempo, decisões</span>
+          <span class="ex"><b>exemplo</b>da primeira leva até hoje, com os ajustes feitos na receita</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">c2 · ordenar</span>
+          <span class="def">organizar pelo eixo</span>
+          <span class="ex"><b>exemplo</b>separar por etapa: matéria-prima, fermentação, aplicação</span>
+        </div>
+      </div>
+    </div>
+    <div class="et-seta">→</div>
+    <div class="et-col">
+      <div class="et-letra">D</div>
+      <div class="et-sub">
+        <div class="et-item">
+          <span class="lbl">d1 · sintetizar</span>
+          <span class="def">partes e suas relações</span>
+          <span class="ex"><b>exemplo</b>relação entre tempo de fermentação e resposta das plantas</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">d2 · interpretar</span>
+          <span class="def">por que aconteceu assim</span>
+          <span class="ex"><b>exemplo</b>por que o produtor ajustou a receita por tentativa e erro, sem literatura técnica à mão</span>
+        </div>
+      </div>
+    </div>
+    <div class="et-seta">→</div>
+    <div class="et-col">
+      <div class="et-letra">E</div>
+      <div class="et-sub">
+        <div class="et-item">
+          <span class="lbl">e1 · concluir</span>
+          <span class="def">afirmações abertas</span>
+          <span class="ex"><b>exemplo</b>o bioinsumo reduziu parte da adubação química, mas não a substituiu de todo</span>
+        </div>
+        <div class="et-item">
+          <span class="lbl">e2 · comunicar</span>
+          <span class="def">estratégia para o público</span>
+          <span class="ex"><b>exemplo</b>oficina prática para vizinhos, com a receita testada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nota">O exemplo de bioinsumos é ilustrativo, construído para mostrar como cada item se preenche. Numa sistematização real, cada resposta vem do que o grupo efetivamente viveu e registrou, não de um modelo pronto.</div>
+
+  <div class="rodape">
+    <span>Colégio Politécnico da UFSM, Técnico em Agricultura, CPSEA101, 2026/2</span>
+    <span>Material elaborado com auxílio de inteligência artificial, sob revisão e responsabilidade dos docentes</span>
+  </div>
+</div>
+</body>
+</html>

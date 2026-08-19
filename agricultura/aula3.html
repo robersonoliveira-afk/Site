@@ -405,6 +405,7 @@ ul.tight li{font-size:16px;gap:8px}
       </div>
     </div>
   </div>
+  <p class="small" style="text-align:center;margin-top:16px">Esta folha, com um exemplo em cada item, para imprimir: <a href="esqueleto-cinco-tempos.html" target="_blank" rel="noopener">esqueleto-cinco-tempos.html</a></p>
 </section>
 
 <!-- 8 tempo B: b3, eixo, 1 de 5 -->
@@ -699,7 +700,25 @@ ul.tight li{font-size:16px;gap:8px}
   </div>
 </section>
 
-<!-- 20 caso real, cinco tempos -->
+<!-- 20 caso real, vídeo -->
+<section class="slide">
+  <div class="head">
+    <span class="kicker">O caso em vídeo</span>
+    <h2>O galinheiro indo e voltando entre as fileiras</h2>
+  </div>
+  <div class="foto-split">
+    <div style="flex:0 0 300px">
+      <iframe width="300" height="533" src="https://www.youtube.com/embed/J7Ut0qfYxOw" title="Vídeo do galinheiro móvel entre as fileiras do vinhedo" style="border:1px solid var(--linha);box-shadow:0 2px 14px rgba(43,39,35,.14);display:block;background:#000" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="legenda">Vídeo: acervo do docente, YouTube Shorts</div>
+    </div>
+    <div class="txt">
+      <p style="margin-top:0">Trinta segundos bastam para ver o que o texto só descreve: a estrutura leve, o giro entre as fileiras, as galinhas soltas no vinhedo.</p>
+      <div class="nota">Mais fotos e vídeos do processo completo, ao longo do ano, estão no álbum linkado mais adiante, no tempo C em imagens.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 caso real, cinco tempos -->
 <section class="slide zoom">
   <div class="head">
     <span class="kicker">O mesmo caso, em cinco tempos</span>
@@ -717,7 +736,7 @@ ul.tight li{font-size:16px;gap:8px}
   </div>
 </section>
 
-<!-- 21 tempo C em imagens -->
+<!-- 22 tempo C em imagens -->
 <section class="slide">
   <div class="head">
     <span class="kicker">Tempo C, em imagens, o mesmo galinheiro ao longo de um ano</span>
@@ -752,7 +771,7 @@ ul.tight li{font-size:16px;gap:8px}
   </div>
 </section>
 
-<!-- 22 fechamento -->
+<!-- 23 fechamento -->
 <section class="slide zoom">
   <div class="head">
     <span class="kicker">Hoje você sai sabendo</span>
@@ -795,7 +814,7 @@ ul.tight li{font-size:16px;gap:8px}
 <div id="tempos" aria-hidden="true"><span class="seg"></span><span class="seg"></span><span id="tempo-lbl"></span></div>
 <div id="nav">
   <button id="ant" aria-label="Slide anterior">←</button>
-  <span id="cont" class="mono">1 / 22</span>
+  <span id="cont" class="mono">1 / 23</span>
   <button id="prox" aria-label="Próximo slide">→</button>
 </div>
 
@@ -810,7 +829,7 @@ ul.tight li{font-size:16px;gap:8px}
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
     cont.textContent = (i + 1) + ' / ' + slides.length;
-    var t = (i >= 2 && i <= 16) ? 1 : ((i >= 17 && i <= 20) ? 2 : 0);
+    var t = (i >= 2 && i <= 16) ? 1 : ((i >= 17 && i <= 21) ? 2 : 0);
     segs.forEach(function(s, k){ s.classList.toggle('on', t > 0 && k < t); });
     tlbl.textContent = t ? 'tempo ' + t : '';
     if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
