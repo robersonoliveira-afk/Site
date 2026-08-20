@@ -76,6 +76,8 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
 .callout.success{background:var(--success-bg);border-left-color:var(--olive)}
 .callout.success strong{color:var(--olive)}
+.callout .badge{display:inline-flex;align-items:center;justify-content:center;width:1.6em;height:1.6em;border-radius:50%;background:var(--olive);color:var(--paper);vertical-align:-0.4em;margin-right:0.5em}
+.callout .badge svg{width:1em;height:1em}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
@@ -122,9 +124,20 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .field span{border:1px solid var(--rule);background:var(--paper);padding:0.9vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft);min-height:2.2em;display:flex;align-items:center}
 .field span.ph{color:var(--stone-light);font-style:italic}
 
+/* gráfico de linha */
+.linechart{margin:2vh 0;max-width:64ch}
+.linechart svg{width:100%;height:auto;display:block}
+.linechart .axis{stroke:var(--rule);stroke-width:1}
+.linechart .line{fill:none;stroke:var(--terra);stroke-width:2.5}
+.linechart .dot{fill:var(--terra)}
+.linechart .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:var(--stone)}
+.linechart figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:0.6vh}
+
 /* foto */
 .foto{margin:2vh 0;max-width:70vw}
 .foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto.inline{max-width:40vw}
+.foto.inline img{max-height:24vh}
 .foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
 .slide.foto-cheia{justify-content:center;align-items:center}
 .slide.foto-cheia .foto{max-width:88vw;margin:0}
@@ -218,6 +231,14 @@ a{color:var(--accent-text)}
     <li><strong>Produtividade</strong>: histórico da propriedade, média regional (CONAB, EMATER/RS) ou potencial do sistema. Sempre justificada.</li>
     <li><strong>Preço</strong>: a premissa mais crítica e mais volátil. O resto da aula é sobre ela.</li>
   </ul>
+  <table class="tbl">
+    <thead><tr><th>Sistema</th><th class="num">Quantidade</th><th class="num">Produtividade</th><th class="num">Preço unitário</th></tr></thead>
+    <tbody>
+      <tr><td>Grãos (soja)</td><td class="num">50 ha</td><td class="num">60 sc/ha</td><td class="num">R$ 128/sc</td></tr>
+      <tr><td>Pecuária de corte</td><td class="num">80 animais</td><td class="num">220 kg vivo</td><td class="num">R$ 8,50/kg vivo</td></tr>
+      <tr><td>Leite</td><td class="num">40 vacas</td><td class="num">22 L/vaca/dia</td><td class="num">R$ 2,30/L</td></tr>
+    </tbody>
+  </table>
   <div class="callout">
     <strong>Tentação clássica</strong>
     Produtividade otimista combinada com preço de pico produz um projeto que não se sustenta na prática. A premissa realista evita o erro maior na colheita.
@@ -252,13 +273,14 @@ a{color:var(--accent-text)}
   <h2>Os descontos que a lei e o mercado cobram</h2>
   <ul class="bullets">
     <li><strong>Funrural</strong>: 1,63% sobre a receita bruta da venda, retido no ato (produtor pessoa física).</li>
+    <li><strong>Pessoa jurídica</strong>: 2,23% no lugar do Funrural (INSS 1,87% + RAT 0,11% + SENAR 0,25%, desde abr/2026, LC 224/2025).</li>
     <li><strong>Taxas de comercialização</strong>: 1,0 a 2,0%: corretagem, taxa da cooperativa, classificação.</li>
   </ul>
   <div class="formula">
     <span class="label">Receita líquida</span>
-    RL = RB − Funrural − taxas de comercialização
+    RL = RB − Funrural (ou contribuição PJ) − taxas de comercialização
   </div>
-  <p class="note">Parecem centavos por saca, em 3.000 sacas viram o salário de um mês. Dedução se calcula, não se ignora.</p>
+  <p class="note">Numa RB de R$ 384.000 (o caso da S16): R$ 6.259 de Funrural PF (1,63%) contra R$ 8.563 se o produtor fosse pessoa jurídica (2,23%). A forma jurídica muda a conta.</p>
 </section>
 
 <!-- 9 · por que RL -->
@@ -293,6 +315,15 @@ a{color:var(--accent-text)}
   <p>No leite, o descarte e os terneiros podem responder por <strong>10 a 20% da receita</strong>, esquecê-los distorce o projeto inteiro.</p>
 </section>
 
+<!-- 10b · foto: o subproduto que vira receita -->
+<section class="slide foto-cheia" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · o subproduto que vira receita</div>
+  <figure class="foto">
+    <img src="Aulas/terneiro-angus-pastagem.jpg" alt="Vacas e terneiros da raça Angus pastando em campo aberto" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>vacas e terneiros Angus, Lake Andes Wetland Management District/EUA · domínio público, Jillian Flanagan/USFWS</figcaption>
+  </figure>
+</section>
+
 <!-- 11 · fontes de preço -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · onde consultar</div>
@@ -319,6 +350,30 @@ a{color:var(--accent-text)}
     <li>O preço no interior do RS fica abaixo: desconta o frete até o porto.</li>
     <li>O indicador do dia é consultado <em>ao vivo</em>, em aula.</li>
   </ul>
+  <figure class="linechart">
+    <svg viewBox="0 0 640 230" role="img" aria-label="Gráfico de linha ilustrativo: preço da soja mais baixo na colheita e mais alto na entressafra">
+      <line class="axis" x1="40" y1="20" x2="40" y2="200"></line>
+      <line class="axis" x1="40" y1="200" x2="598" y2="200"></line>
+      <polyline class="line" points="40,175 133,190 226,160 319,115 412,77.5 505,40 598,62.5"></polyline>
+      <circle class="dot" cx="40" cy="175" r="4"></circle>
+      <circle class="dot" cx="133" cy="190" r="4"></circle>
+      <circle class="dot" cx="226" cy="160" r="4"></circle>
+      <circle class="dot" cx="319" cy="115" r="4"></circle>
+      <circle class="dot" cx="412" cy="77.5" r="4"></circle>
+      <circle class="dot" cx="505" cy="40" r="4"></circle>
+      <circle class="dot" cx="598" cy="62.5" r="4"></circle>
+      <text class="lbl" x="40" y="217" text-anchor="middle">mar</text>
+      <text class="lbl" x="133" y="217" text-anchor="middle">abr</text>
+      <text class="lbl" x="226" y="217" text-anchor="middle">mai</text>
+      <text class="lbl" x="319" y="217" text-anchor="middle">jun</text>
+      <text class="lbl" x="412" y="217" text-anchor="middle">jul</text>
+      <text class="lbl" x="505" y="217" text-anchor="middle">ago</text>
+      <text class="lbl" x="598" y="217" text-anchor="middle">set</text>
+      <text class="lbl" x="86" y="205" text-anchor="middle">↓ colheita</text>
+      <text class="lbl" x="551" y="30" text-anchor="middle">↑ entressafra</text>
+    </svg>
+    <figcaption>tendência ilustrativa de sazonalidade, não são valores reais de um ano específico</figcaption>
+  </figure>
 </section>
 
 <!-- 12b · foto: o indicador é nacional -->
@@ -352,7 +407,7 @@ a{color:var(--accent-text)}
     <span class="label">RB por zona de manejo</span>
     RB = Σ (produtividade da zona × área da zona) × preço
   </div>
-  <p>A média esconde essas diferenças; a soma por zona mostra onde a receita é maior e onde é menor. O exemplo a seguir usa esse cálculo.</p>
+  <p>A média esconde essas diferenças; a soma por zona mostra onde a receita é maior e onde é menor. O caso do Ato 3 volta a esse cálculo, com uma lavoura real dividida em zonas.</p>
 </section>
 
 <!-- 15 · quando vender -->
@@ -364,19 +419,14 @@ a{color:var(--accent-text)}
     <li>Armazenar custa: taxa mensal por saca + o capital parado.</li>
     <li>E arrisca: o preço pode não subir o suficiente para pagar a espera.</li>
   </ul>
+  <figure class="foto inline">
+    <img src="Aulas/silo-bag-armazenagem.jpg" alt="Fileiras de silo bags, bolsas plásticas brancas usadas para armazenar grãos a céu aberto" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>silo bags para armazenagem de grãos, Buenos Aires/Argentina · CC BY-SA 3.0, Roblespepe/Wikimedia Commons</figcaption>
+  </figure>
   <p class="note">A decisão depende do cálculo de cada caso. Na T6 (cenários) ela volta com ferramenta própria.</p>
 </section>
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
-
-<!-- 15b · foto: abertura do exemplo -->
-<section class="slide foto-cheia" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · a lavoura do exemplo</div>
-  <figure class="foto">
-    <img src="Aulas/lavoura-soja-novo-barreiro.jpg" alt="Lavoura de soja em pleno desenvolvimento, folhas verdes cobrindo o terreno até uma faixa de mata no fundo" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</figcaption>
-  </figure>
-</section>
 
 <!-- 16 · o caso -->
 <section class="slide" data-act="Exemplo RS">
@@ -389,6 +439,10 @@ a{color:var(--accent-text)}
     <li><strong>Preço</strong>: o que vamos pesquisar agora, com fonte e data.</li>
   </ul>
   <p class="note">Produção esperada: 3.000 sacas. Cada real por saca vale R$ 3.000 no projeto, por isso o preço merece cuidado.</p>
+  <figure class="foto inline">
+    <img src="Aulas/lavoura-soja-novo-barreiro.jpg" alt="Lavoura de soja em pleno desenvolvimento, folhas verdes cobrindo o terreno até uma faixa de mata no fundo" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</figcaption>
+  </figure>
 </section>
 
 <!-- 17 · preço pesquisado -->
@@ -466,7 +520,7 @@ a{color:var(--accent-text)}
     <li><strong>Fonte e data anotadas</strong>: a banca vai perguntar; a resposta já está pronta.</li>
   </ul>
   <div class="callout success">
-    <strong>Regra de ouro: versão receita</strong>
+    <strong><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Regra de ouro: versão receita</strong>
     Assim como toda prática de manejo precisa reaparecer como custo, todo real de receita precisa ter origem declarada: quantidade, preço, fonte, data.
   </div>
 </section>
