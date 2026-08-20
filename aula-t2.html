@@ -80,6 +80,13 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout .badge svg{width:1em;height:1em}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+
+/* texto + item ilustrativo no espaço livre à direita */
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:3vw;align-items:center;max-width:100%}
+.split-side{display:flex;align-items:center}
+.split-side .foto,.split-side .linechart{margin:0;max-width:100%;width:100%}
+.split-side .foto img{max-height:32vh;width:100%;object-fit:cover}
+.split-side .tbl{margin:0;font-size:var(--fs-small)}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--terra)}
@@ -226,22 +233,28 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · por trás da fórmula</div>
   <h2>Cada termo é uma premissa</h2>
-  <ul class="bullets">
-    <li><strong>Área</strong>: a única já medida: os hectares do croqui da S2. Não é chute, é polígono.</li>
-    <li><strong>Produtividade</strong>: histórico da propriedade, média regional (CONAB, EMATER/RS) ou potencial do sistema. Sempre justificada.</li>
-    <li><strong>Preço</strong>: a premissa mais crítica e mais volátil. O resto da aula é sobre ela.</li>
-  </ul>
-  <table class="tbl">
-    <thead><tr><th>Sistema</th><th class="num">Quantidade</th><th class="num">Produtividade</th><th class="num">Preço unitário</th></tr></thead>
-    <tbody>
-      <tr><td>Grãos (soja)</td><td class="num">50 ha</td><td class="num">60 sc/ha</td><td class="num">R$ 128/sc</td></tr>
-      <tr><td>Pecuária de corte</td><td class="num">80 animais</td><td class="num">220 kg vivo</td><td class="num">R$ 8,50/kg vivo</td></tr>
-      <tr><td>Leite</td><td class="num">40 vacas</td><td class="num">22 L/vaca/dia</td><td class="num">R$ 2,30/L</td></tr>
-    </tbody>
-  </table>
-  <div class="callout">
-    <strong>Tentação clássica</strong>
-    Produtividade otimista combinada com preço de pico produz um projeto que não se sustenta na prática. A premissa realista evita o erro maior na colheita.
+  <div class="split">
+    <div>
+      <ul class="bullets">
+        <li><strong>Área</strong>: a única já medida: os hectares do croqui da S2. Não é chute, é polígono.</li>
+        <li><strong>Produtividade</strong>: histórico da propriedade, média regional (CONAB, EMATER/RS) ou potencial do sistema. Sempre justificada.</li>
+        <li><strong>Preço</strong>: a premissa mais crítica e mais volátil. O resto da aula é sobre ela.</li>
+      </ul>
+      <div class="callout">
+        <strong>Tentação clássica</strong>
+        Produtividade otimista combinada com preço de pico produz um projeto que não se sustenta na prática. A premissa realista evita o erro maior na colheita.
+      </div>
+    </div>
+    <div class="split-side">
+      <table class="tbl">
+        <thead><tr><th>Sistema</th><th>Premissas do exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Grãos (soja)</td><td>50 ha · 60 sc/ha · R$ 128/sc</td></tr>
+          <tr><td>Corte</td><td>80 an. · 220 kg vivo · R$ 8,50/kg</td></tr>
+          <tr><td>Leite</td><td>40 vacas · 22 L/dia · R$ 2,30/L</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -307,21 +320,22 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · além do produto principal</div>
   <h2>Outras receitas da atividade</h2>
-  <ul class="bullets">
-    <li><strong>Subprodutos</strong>: terneiro macho e vaca de descarte no leite; casca e farelo na agroindústria; esterco vendido.</li>
-    <li><strong>Excedentes</strong>: silagem ou feno vendidos a vizinhos; palha; serviços de máquina.</li>
-    <li><strong>Programas</strong>: venda institucional (PNAE, PAA) com preço diferenciado.</li>
-  </ul>
-  <p>No leite, o descarte e os terneiros podem responder por <strong>10 a 20% da receita</strong>, esquecê-los distorce o projeto inteiro.</p>
-</section>
-
-<!-- 10b · foto: o subproduto que vira receita -->
-<section class="slide foto-cheia" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · o subproduto que vira receita</div>
-  <figure class="foto">
-    <img src="Aulas/terneiro-angus-pastagem.jpg" alt="Vacas e terneiros da raça Angus pastando em campo aberto" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>vacas e terneiros Angus, Lake Andes Wetland Management District/EUA · domínio público, Jillian Flanagan/USFWS</figcaption>
-  </figure>
+  <div class="split">
+    <div>
+      <ul class="bullets">
+        <li><strong>Subprodutos</strong>: terneiro macho e vaca de descarte no leite; casca e farelo na agroindústria; esterco vendido.</li>
+        <li><strong>Excedentes</strong>: silagem ou feno vendidos a vizinhos; palha; serviços de máquina.</li>
+        <li><strong>Programas</strong>: venda institucional (PNAE, PAA) com preço diferenciado.</li>
+      </ul>
+      <p>No leite, o descarte e os terneiros podem responder por <strong>10 a 20% da receita</strong>, esquecê-los distorce o projeto inteiro.</p>
+    </div>
+    <div class="split-side">
+      <figure class="foto inline">
+        <img src="Aulas/terneiro-angus-pastagem.jpg" alt="Vacas e terneiros da raça Angus pastando em campo aberto" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>terneiros Angus, subproduto da atividade leiteira · domínio público, USFWS</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- 11 · fontes de preço -->
@@ -344,36 +358,42 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · lendo o indicador</div>
   <h2>O que é o indicador CEPEA</h2>
-  <p>O CEPEA (ESALQ/USP) publica <strong>indicadores diários</strong> de preço: soja, milho, boi, leite, trigo. Para a soja, a referência é o porto de <strong>Paranaguá/PR</strong>: o preço da exportação, não o da sua cooperativa.</p>
-  <ul class="bullets">
-    <li>Serve para enxergar <strong>tendência e momento</strong> de mercado.</li>
-    <li>O preço no interior do RS fica abaixo: desconta o frete até o porto.</li>
-    <li>O indicador do dia é consultado <em>ao vivo</em>, em aula.</li>
-  </ul>
-  <figure class="linechart">
-    <svg viewBox="0 0 640 230" role="img" aria-label="Gráfico de linha ilustrativo: preço da soja mais baixo na colheita e mais alto na entressafra">
-      <line class="axis" x1="40" y1="20" x2="40" y2="200"></line>
-      <line class="axis" x1="40" y1="200" x2="598" y2="200"></line>
-      <polyline class="line" points="40,175 133,190 226,160 319,115 412,77.5 505,40 598,62.5"></polyline>
-      <circle class="dot" cx="40" cy="175" r="4"></circle>
-      <circle class="dot" cx="133" cy="190" r="4"></circle>
-      <circle class="dot" cx="226" cy="160" r="4"></circle>
-      <circle class="dot" cx="319" cy="115" r="4"></circle>
-      <circle class="dot" cx="412" cy="77.5" r="4"></circle>
-      <circle class="dot" cx="505" cy="40" r="4"></circle>
-      <circle class="dot" cx="598" cy="62.5" r="4"></circle>
-      <text class="lbl" x="40" y="217" text-anchor="middle">mar</text>
-      <text class="lbl" x="133" y="217" text-anchor="middle">abr</text>
-      <text class="lbl" x="226" y="217" text-anchor="middle">mai</text>
-      <text class="lbl" x="319" y="217" text-anchor="middle">jun</text>
-      <text class="lbl" x="412" y="217" text-anchor="middle">jul</text>
-      <text class="lbl" x="505" y="217" text-anchor="middle">ago</text>
-      <text class="lbl" x="598" y="217" text-anchor="middle">set</text>
-      <text class="lbl" x="86" y="205" text-anchor="middle">↓ colheita</text>
-      <text class="lbl" x="551" y="30" text-anchor="middle">↑ entressafra</text>
-    </svg>
-    <figcaption>tendência ilustrativa de sazonalidade, não são valores reais de um ano específico</figcaption>
-  </figure>
+  <div class="split">
+    <div>
+      <p>O CEPEA (ESALQ/USP) publica <strong>indicadores diários</strong> de preço: soja, milho, boi, leite, trigo. Para a soja, a referência é o porto de <strong>Paranaguá/PR</strong>: o preço da exportação, não o da sua cooperativa.</p>
+      <ul class="bullets">
+        <li>Serve para enxergar <strong>tendência e momento</strong> de mercado.</li>
+        <li>O preço no interior do RS fica abaixo: desconta o frete até o porto.</li>
+        <li>O indicador do dia é consultado <em>ao vivo</em>, em aula.</li>
+      </ul>
+    </div>
+    <div class="split-side">
+      <figure class="linechart">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Gráfico de linha ilustrativo: preço da soja mais baixo na colheita e mais alto na entressafra">
+          <line class="axis" x1="40" y1="20" x2="40" y2="200"></line>
+          <line class="axis" x1="40" y1="200" x2="598" y2="200"></line>
+          <polyline class="line" points="40,175 133,190 226,160 319,115 412,77.5 505,40 598,62.5"></polyline>
+          <circle class="dot" cx="40" cy="175" r="4"></circle>
+          <circle class="dot" cx="133" cy="190" r="4"></circle>
+          <circle class="dot" cx="226" cy="160" r="4"></circle>
+          <circle class="dot" cx="319" cy="115" r="4"></circle>
+          <circle class="dot" cx="412" cy="77.5" r="4"></circle>
+          <circle class="dot" cx="505" cy="40" r="4"></circle>
+          <circle class="dot" cx="598" cy="62.5" r="4"></circle>
+          <text class="lbl" x="40" y="217" text-anchor="middle">mar</text>
+          <text class="lbl" x="133" y="217" text-anchor="middle">abr</text>
+          <text class="lbl" x="226" y="217" text-anchor="middle">mai</text>
+          <text class="lbl" x="319" y="217" text-anchor="middle">jun</text>
+          <text class="lbl" x="412" y="217" text-anchor="middle">jul</text>
+          <text class="lbl" x="505" y="217" text-anchor="middle">ago</text>
+          <text class="lbl" x="598" y="217" text-anchor="middle">set</text>
+          <text class="lbl" x="86" y="205" text-anchor="middle">↓ colheita</text>
+          <text class="lbl" x="551" y="30" text-anchor="middle">↑ entressafra</text>
+        </svg>
+        <figcaption>tendência ilustrativa, não são valores reais</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- 12b · foto: o indicador é nacional -->
@@ -414,16 +434,22 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · o tempo do preço</div>
   <h2>Vender na colheita ou armazenar?</h2>
-  <p>O preço tem <strong>sazonalidade</strong>: na colheita, a oferta concentrada derruba a cotação; na entressafra, ela tende a recuperar.</p>
-  <ul class="bullets">
-    <li>Armazenar custa: taxa mensal por saca + o capital parado.</li>
-    <li>E arrisca: o preço pode não subir o suficiente para pagar a espera.</li>
-  </ul>
-  <figure class="foto inline">
-    <img src="Aulas/silo-bag-armazenagem.jpg" alt="Fileiras de silo bags, bolsas plásticas brancas usadas para armazenar grãos a céu aberto" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>silo bags para armazenagem de grãos, Buenos Aires/Argentina · CC BY-SA 3.0, Roblespepe/Wikimedia Commons</figcaption>
-  </figure>
-  <p class="note">A decisão depende do cálculo de cada caso. Na T6 (cenários) ela volta com ferramenta própria.</p>
+  <div class="split">
+    <div>
+      <p>O preço tem <strong>sazonalidade</strong>: na colheita, a oferta concentrada derruba a cotação; na entressafra, ela tende a recuperar.</p>
+      <ul class="bullets">
+        <li>Armazenar custa: taxa mensal por saca + o capital parado.</li>
+        <li>E arrisca: o preço pode não subir o suficiente para pagar a espera.</li>
+      </ul>
+      <p class="note">A decisão depende do cálculo de cada caso. Na T6 (cenários) ela volta com ferramenta própria.</p>
+    </div>
+    <div class="split-side">
+      <figure class="foto inline">
+        <img src="Aulas/silo-bag-armazenagem.jpg" alt="Fileiras de silo bags, bolsas plásticas brancas usadas para armazenar grãos a céu aberto" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>silo bags para armazenagem, Buenos Aires/Argentina · CC BY-SA 3.0, Roblespepe/Wikimedia Commons</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
@@ -432,17 +458,23 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · soja em Santa Maria</div>
   <h2>50 hectares de soja</h2>
-  <p>Lavoura de soja na região de Santa Maria, premissas declaradas:</p>
-  <ul class="bullets">
-    <li><strong>Área</strong>: 50 ha (medidos no croqui, como na S2).</li>
-    <li><strong>Produtividade</strong>: 60 sc/ha, compatível com o histórico regional.</li>
-    <li><strong>Preço</strong>: o que vamos pesquisar agora, com fonte e data.</li>
-  </ul>
-  <p class="note">Produção esperada: 3.000 sacas. Cada real por saca vale R$ 3.000 no projeto, por isso o preço merece cuidado.</p>
-  <figure class="foto inline">
-    <img src="Aulas/lavoura-soja-novo-barreiro.jpg" alt="Lavoura de soja em pleno desenvolvimento, folhas verdes cobrindo o terreno até uma faixa de mata no fundo" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</figcaption>
-  </figure>
+  <div class="split">
+    <div>
+      <p>Lavoura de soja na região de Santa Maria, premissas declaradas:</p>
+      <ul class="bullets">
+        <li><strong>Área</strong>: 50 ha (medidos no croqui, como na S2).</li>
+        <li><strong>Produtividade</strong>: 60 sc/ha, compatível com o histórico regional.</li>
+        <li><strong>Preço</strong>: o que vamos pesquisar agora, com fonte e data.</li>
+      </ul>
+      <p class="note">Produção esperada: 3.000 sacas. Cada real por saca vale R$ 3.000 no projeto, por isso o preço merece cuidado.</p>
+    </div>
+    <div class="split-side">
+      <figure class="foto inline">
+        <img src="Aulas/lavoura-soja-novo-barreiro.jpg" alt="Lavoura de soja em pleno desenvolvimento, folhas verdes cobrindo o terreno até uma faixa de mata no fundo" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- 17 · preço pesquisado -->
