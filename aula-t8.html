@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
 <title>T8: Investimento e módulos aplicados</title>
-<meta name="description" content="Aula teórica 8: Payback, VPL e TIR; perenes, pecuária, fruticultura e agricultura de precisão integradas pelo mesmo método. Deck de projeção e estudo. Colégio Politécnico da UFSM.">
+<meta name="description" content="Aula teórica 8: Payback, VPL e TIR; perenes, pecuária, fruticultura e agricultura de precisão integradas pelo mesmo método. Colégio Politécnico da UFSM.">
 <meta name="robots" content="noindex">
 <!-- ============================================================
   GUIA RÁPIDO DE EDIÇÃO (para o professor)
@@ -79,6 +79,7 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout.success strong{color:var(--olive)}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.cols2.asym{grid-template-columns:3fr 2fr}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--olive)}
@@ -128,6 +129,8 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .foto{margin:2vh 0;max-width:70vw}
 .foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
 .foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.foto.side{max-width:100%;margin:0}
+.foto.side img{max-height:48vh;width:100%;object-fit:contain}
 .slide.foto-cheia{justify-content:center;align-items:center}
 .slide.foto-cheia .foto{max-width:88vw;margin:0}
 .slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
@@ -174,7 +177,7 @@ a{color:var(--accent-text)}
 
 <!-- 1 · capa -->
 <section class="slide cover" data-act="Abertura">
-  <div class="eyebrow">Aula teórica · deck de projeção e estudo</div>
+  <div class="eyebrow">Aula teórica · projeção e estudo</div>
   <div class="t-mark">
     <div class="t-num">T8</div>
     <div>
@@ -195,7 +198,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
   <h2>Um ano não conta a história inteira</h2>
-  <p class="lead">Até aqui, tudo coube num ciclo: plantar, colher, vender. Mas trator, pomar, aviário e piloto automático atravessam muitos ciclos, e julgá-los por um ano é o erro que esta aula corrige.</p>
+  <p class="lead">Até aqui, tudo coube num ciclo: plantar, colher, vender. Mas trator, pomar, aviário e piloto automático atravessam muitos ciclos, e julgá-los por um ano é o erro tratado nesta aula.</p>
   <ul class="bullets">
     <li><strong>Payback</strong>: em quanto tempo o dinheiro volta?</li>
     <li><strong>VPL</strong>: o projeto vale mais que deixar o dinheiro aplicado?</li>
@@ -238,7 +241,7 @@ a{color:var(--accent-text)}
       <tr><td><strong>VPL &lt; 0</strong></td><td>destrói valor frente à renda fixa: não recomendado</td></tr>
     </tbody>
   </table>
-  <p class="note">Com a Selic a 14,25%, a régua está alta: um projeto precisa render muito para vencer a aplicação. O juro alto trava investimento longo, no campo e fora dele.</p>
+  <p class="note">Com a Selic a 14,25%, o parâmetro de comparação é exigente: um projeto precisa render muito para vencer a aplicação. O juro alto trava investimento longo, no campo e fora dele.</p>
 </section>
 
 <!-- 8 · TIR -->
@@ -253,7 +256,7 @@ a{color:var(--accent-text)}
   </div>
   <div class="callout success">
     <strong>Nota pedagógica</strong>
-    VPL e TIR se calculam em planilha (funções VPL e TIR do Excel/LibreOffice). O simulador faz isso no passo 6. O trabalho do técnico não é a conta à mão: é montar o fluxo de caixa correto e interpretar o resultado.
+    VPL e TIR se calculam em planilha (funções VPL e TIR do Excel/LibreOffice). O simulador faz isso no passo 6. O trabalho do técnico é montar o fluxo de caixa correto e interpretar o resultado, não fazer a conta à mão.
   </div>
 </section>
 
@@ -261,17 +264,23 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · culturas perenes</div>
   <h2>Perenes: anos de custo antes da receita</h2>
-  <p>Fruticultura e silvicultura têm uma fase que a lavoura anual não conhece: a <strong>formação</strong>: desembolso contínuo, receita nenhuma.</p>
-  <table class="tbl">
-    <thead><tr><th>Cultura</th><th>Primeira colheita</th><th>Plena produção</th></tr></thead>
-    <tbody>
-      <tr><td>Banana</td><td class="num">1 a 1,5 ano</td><td class="num">-</td></tr>
-      <tr><td>Maçã, pêssego</td><td class="num">2 a 3 anos</td><td class="num">-</td></tr>
-      <tr><td><strong>Uva</strong></td><td class="num">2 a 3 anos</td><td class="num">5 a 7 anos</td></tr>
-      <tr><td>Citros</td><td class="num">3 a 4 anos</td><td class="num">-</td></tr>
-      <tr><td>Eucalipto</td><td class="num">corte aos 6, 7 ou 15 anos</td><td class="num">-</td></tr>
-    </tbody>
-  </table>
+  <p>Fruticultura e silvicultura têm uma fase que não existe na lavoura anual: a <strong>formação</strong>, desembolso contínuo, receita nenhuma.</p>
+  <div class="cols2 asym">
+    <table class="tbl">
+      <thead><tr><th>Cultura</th><th>Primeira colheita</th><th>Plena produção</th></tr></thead>
+      <tbody>
+        <tr><td>Banana</td><td class="num">1 a 1,5 ano</td><td class="num">-</td></tr>
+        <tr><td>Maçã, pêssego</td><td class="num">2 a 3 anos</td><td class="num">-</td></tr>
+        <tr><td><strong>Uva</strong></td><td class="num">2 a 3 anos</td><td class="num">5 a 7 anos</td></tr>
+        <tr><td>Citros</td><td class="num">3 a 4 anos</td><td class="num">-</td></tr>
+        <tr><td>Eucalipto</td><td class="num">corte aos 6, 7 ou 15 anos</td><td class="num">-</td></tr>
+      </tbody>
+    </table>
+    <figure class="foto side">
+      <img src="Aulas/pomar-jovem-formacao.jpg" alt="Pomar recém-plantado: fileiras de mudas jovens amarradas a postes e arames, sobre solo revolvido e ainda sem cobertura vegetal" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>pomar recém-plantado, em formação · CC BY-SA 2.0, Paul Pollard/Geograph</figcaption>
+    </figure>
+  </div>
   <p class="note">O custo de implantação não é custo da safra: é investimento, amortizado ao longo dos anos de produção, como a depreciação da T4.</p>
 </section>
 
@@ -279,7 +288,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · o erro clássico em perenes</div>
   <h2>Julgar o pomar pelo ano 2</h2>
-  <p>Na formação, o resultado anual é negativo <strong>por definição</strong>. Comparar o "lucro" do pomar no ano 2 com a soja do vizinho condena qualquer perene, e é análise errada.</p>
+  <p>Na formação, o resultado anual é negativo <strong>por definição</strong>. Comparar o "lucro" do pomar no ano 2 com a soja do vizinho é análise errada: por esse critério, nenhuma perene seria viável.</p>
   <ul class="bullets">
     <li><strong>Fase de implantação</strong> (ano 0): investimento inicial: mudas, preparo, sistema de condução.</li>
     <li><strong>Fase de formação</strong> (anos 1 a N): custo capitalizado: poda, adubação, tratos sem receita.</li>
@@ -293,14 +302,22 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Conceito</b> · o método viaja · pecuária</div>
   <h2>Do hectare à cabeça: só muda a unidade</h2>
   <p>COE, COT, CT, margens, PE e fluxo de caixa valem no rebanho como na lavoura. O que muda são as unidades e os coeficientes técnicos:</p>
-  <div class="formula">
-    <span class="label">Unidade animal · padrão Embrapa</span>
-    1 UA = 450 kg de peso vivo · novilha de 250 kg = <b>0,56 UA</b><br>
-    taxa de lotação = UA ÷ ha do pasto
-  </div>
-  <div class="formula">
-    <span class="label">Ganho médio diário · eficiência do corte</span>
-    GMD 1,2 kg/dia × 90 dias = <b>108 kg</b> de ganho por animal
+  <div class="cols2 asym">
+    <div>
+      <div class="formula">
+        <span class="label">Unidade animal · padrão Embrapa</span>
+        1 UA = 450 kg de peso vivo · novilha de 250 kg = <b>0,56 UA</b><br>
+        taxa de lotação = UA ÷ ha do pasto
+      </div>
+      <div class="formula">
+        <span class="label">Ganho médio diário · eficiência do corte</span>
+        GMD 1,2 kg/dia × 90 dias = <b>108 kg</b> de ganho por animal
+      </div>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/bezerrada-nelore-pastagem.jpg" alt="Rebanho numeroso de bovinos nelore reunido em pastagem aberta, com o campo se estendendo até o horizonte" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>bezerrada padronizada a pasto · CC BY-SA 3.0, Zeloneto/Wikimedia Commons</figcaption>
+    </figure>
   </div>
   <p class="note">Superlotação degrada o pasto e derruba o GMD: o excesso de insumo com resposta negativa da T6, agora em kg de pasto por kg de boi.</p>
 </section>
@@ -373,7 +390,7 @@ a{color:var(--accent-text)}
       <tr><td><strong>Tecnologia</strong> (AP)</td><td>equipamento embarcado</td><td>economia de insumo por safra</td><td>ganho líquido, payback, escala</td></tr>
     </tbody>
   </table>
-  <p class="note">É o mesmo fluxo de caixa da T7, esticado em anos e descontado pelo tempo. Quem domina o método decide em qualquer um dos quatro: o ato 3 prova isso com números.</p>
+  <p class="note">É o mesmo fluxo de caixa da T7, esticado em anos e descontado pelo tempo. Quem domina o método decide em qualquer um dos quatro: os exemplos a seguir mostram isso com números.</p>
 </section>
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
@@ -398,14 +415,20 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · fruticultura · vinhedo</div>
   <h2>O vinhedo, ano a ano</h2>
   <p class="note">2 ha de uva em espaldeira (mudas, postes e fios dimensionados na calculadora do site). Implantação R$ 120.000; formação −R$ 10.000/ano; primeira colheita no ano 3; plena produção +R$ 45.000/ano. Valores de referência didática.</p>
-  <div class="cascade">
-    <div class="row minus"><span>ano 0 · implantação</span><span>−120.000</span></div>
-    <div class="row minus"><span>anos 1–2 · formação (acumulado no fundo do vale)</span><span>−140.000</span></div>
-    <div class="row"><span>ano 3 · primeira colheita parcial</span><span>+15.000</span></div>
-    <div class="row"><span>anos 4+ · plena produção</span><span>+45.000/ano</span></div>
-    <div class="row final"><span>acumulado vira positivo no ano 6</span><span>payback ≈ 6 anos</span></div>
+  <div class="cols2 asym">
+    <div class="cascade">
+      <div class="row minus"><span>ano 0 · implantação</span><span>−120.000</span></div>
+      <div class="row minus"><span>anos 1–2 · formação (acumulado no fundo do vale)</span><span>−140.000</span></div>
+      <div class="row"><span>ano 3 · primeira colheita parcial</span><span>+15.000</span></div>
+      <div class="row"><span>anos 4+ · plena produção</span><span>+45.000/ano</span></div>
+      <div class="row final"><span>acumulado vira positivo no ano 6</span><span>payback ≈ 6 anos</span></div>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/parreiral-bento-goncalves.jpg" alt="Produtor rural caminhando entre as fileiras de um parreiral em encosta, com o vale da Serra Gaúcha ao fundo" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>parreiral em produção, Bento Gonçalves/RS · CC BY 3.0 BR, Daniel Isaia/Agência Brasil</figcaption>
+    </figure>
   </div>
-  <p class="note">Dois anos e meio pagando para trabalhar, seis até o dinheiro voltar: é isso que a linha de investimento com carência (T7) existe para financiar.</p>
+  <p class="note">Dois anos e meio de formação sem receita, seis até o retorno do investimento: é isso que a linha de investimento com carência (T7) existe para financiar.</p>
 </section>
 
 <!-- 18 · caso 2 vinhedo veredito -->
@@ -419,7 +442,7 @@ a{color:var(--accent-text)}
   <ul class="bullets">
     <li><strong>No ano 2</strong>, o caixa acumulado está em −R$ 140.000 e o resultado anual é negativo: quem julga pelo ano abandona um bom projeto.</li>
     <li><strong>No horizonte inteiro</strong>, o vinhedo rende 18,6% a.a., vence a renda fixa com folga de 4 pontos.</li>
-    <li><strong>O risco mora no meio</strong>: granizo ou preço fraco nos anos 4–6 desloca o payback, o cenário pessimista da T6 vale dobrado em perenes.</li>
+    <li><strong>No meio do período</strong>: granizo ou preço fraco nos anos 4–6 desloca o payback, o cenário pessimista da T6 vale dobrado em perenes.</li>
   </ul>
 </section>
 
@@ -428,12 +451,18 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Exemplo RS</b> · caso 3 · pecuária de corte</div>
   <h2>Confinamento: o método em kg</h2>
   <p class="note">Lote de 100 bois, 90 dias, GMD 1,2 kg/dia → 10.800 kg produzidos. CT R$ 101.000; COE R$ 88.000; venda a R$ 13,50/kg vivo. Valores ilustrativos do site: usar os da planilha do grupo.</p>
-  <div class="cascade">
-    <div class="row"><span>custo por kg = 101.000 ÷ 10.800</span><span>R$ 9,35/kg</span></div>
-    <div class="row total"><span>PE de preço = 88.000 ÷ 10.800</span><span>R$ 8,15/kg</span></div>
-    <div class="row final"><span>MS de preço = (13,50 − 8,15) ÷ 13,50</span><span>≈ 40%</span></div>
+  <div class="cols2 asym">
+    <div class="cascade">
+      <div class="row"><span>custo por kg = 101.000 ÷ 10.800</span><span>R$ 9,35/kg</span></div>
+      <div class="row total"><span>PE de preço = 88.000 ÷ 10.800</span><span>R$ 8,15/kg</span></div>
+      <div class="row final"><span>MS de preço = (13,50 − 8,15) ÷ 13,50</span><span>≈ 40%</span></div>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/confinamento-bovinos-cocho.jpg" alt="Bovinos de corte em piquete de confinamento, alinhados junto ao cocho de concreto atrás da cerca de arame" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>confinamento com cocho, Córdoba/Argentina · CC BY 4.0, Nicolas1231/Wikimedia Commons</figcaption>
+    </figure>
   </div>
-  <p class="note">A mesma T6, em outra unidade. E o olhar da T7: o grosso do desembolso é a compra do boi magro no dia zero + ração diária por 90 dias, capital de giro alto e concentrado, embora o ciclo seja curto. O investimento aqui são as instalações; o lote é giro.</p>
+  <p class="note">A mesma T6, em outra unidade. Do ponto de vista da T7, o grosso do desembolso é a compra do boi magro no dia zero + ração diária por 90 dias, capital de giro alto e concentrado, embora o ciclo seja curto. O investimento aqui são as instalações; o lote é giro.</p>
 </section>
 
 <!-- 20 · caso 4 leite -->
@@ -441,15 +470,23 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Exemplo RS</b> · caso 4 · leite · a T5 revisitada</div>
   <h2>Investir numa atividade com margem negativa?</h2>
   <p class="note">O caso da T5: 30 vacas, 219.000 L/ano; por litro RL 2,40 · COE 2,05 · COT 2,45 → MB +0,35 · ML −0,05. Referência didática padrão Campo Futuro.</p>
-  <div class="cascade">
-    <div class="row"><span>resfriador a granel: investimento</span><span>30.000</span></div>
-    <div class="row"><span>fim do desconto de qualidade: +R$ 0,08/L × 219.000 L</span><span>+17.520/ano</span></div>
-    <div class="row final"><span>payback = 30.000 ÷ 17.520 · e a ML vai de −0,05 a +0,03/L</span><span>1,7 ano</span></div>
+  <div class="cols2 asym">
+    <div>
+      <div class="cascade">
+        <div class="row"><span>resfriador a granel: investimento</span><span>30.000</span></div>
+        <div class="row"><span>fim do desconto de qualidade: +R$ 0,08/L × 219.000 L</span><span>+17.520/ano</span></div>
+        <div class="row final"><span>payback = 30.000 ÷ 17.520 · e a ML vai de −0,05 a +0,03/L</span><span>1,7 ano</span></div>
+      </div>
+      <ul class="bullets compact">
+        <li><strong>A ordem importa</strong>: investir primeiro no que move o custo ou o preço <em>por litro</em>; ampliar o rebanho com ML negativa multiplica o prejuízo por vaca.</li>
+        <li><strong>Estrutura do rebanho</strong>: vacas secas e novilhas na calculadora do site: quantos litros pagam o custo do rebanho inteiro, não só das vacas em lactação.</li>
+      </ul>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/resfriador-tanque-leite.jpg" alt="Tanque resfriador de leite a granel, de aço inoxidável, instalado na sala de leite de uma propriedade" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>resfriador de leite a granel · CC BY-SA 3.0, Fotonovela/Wikimedia Commons</figcaption>
+    </figure>
   </div>
-  <ul class="bullets compact">
-    <li><strong>A ordem importa</strong>: investir primeiro no que move o custo ou o preço <em>por litro</em>; ampliar o rebanho com ML negativa multiplica o prejuízo por vaca.</li>
-    <li><strong>Estrutura do rebanho</strong>: vacas secas e novilhas na calculadora do site: quantos litros pagam o custo do rebanho inteiro, não só das vacas em lactação.</li>
-  </ul>
 </section>
 
 <!-- 21 · caso 5 AP -->
@@ -457,17 +494,23 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Exemplo RS</b> · caso 5 · precisão · a pergunta da T6</div>
   <h2>Em quantos hectares a AP se paga?</h2>
   <p class="note">Piloto automático: R$ 35.000, vida útil 8 anos (depreciação R$ 4.375/ano). Economia: 7% de sobreposição eliminada sobre o gasto de adubação da área.</p>
-  <table class="tbl">
-    <thead><tr><th></th><th class="num">500 ha</th><th class="num">50 ha</th></tr></thead>
-    <tbody>
-      <tr><td>Gasto com adubação (R$ 600/ha)</td><td class="num">300.000</td><td class="num">30.000</td></tr>
-      <tr><td>Economia de 7%</td><td class="num">21.000/ano</td><td class="num">2.100/ano</td></tr>
-      <tr><td>− depreciação</td><td class="num">4.375</td><td class="num">4.375</td></tr>
-      <tr><td><strong>Ganho líquido</strong></td><td class="num"><b>+16.625/ano</b></td><td class="num"><b>−2.275/ano</b></td></tr>
-      <tr><td><strong>Payback</strong></td><td class="num">2,1 anos</td><td class="num">nunca</td></tr>
-    </tbody>
-  </table>
-  <p class="note">A resposta da pergunta armada na T6: <strong>depende da escala</strong>, neste exemplo, o equilíbrio fica em ~104 ha (onde 7% da adubação = depreciação). Alternativas abaixo disso: contratar o serviço, dividir o equipamento na cooperativa, ou NDVI gratuito.</p>
+  <div class="cols2 asym">
+    <table class="tbl">
+      <thead><tr><th></th><th class="num">500 ha</th><th class="num">50 ha</th></tr></thead>
+      <tbody>
+        <tr><td>Gasto com adubação (R$ 600/ha)</td><td class="num">300.000</td><td class="num">30.000</td></tr>
+        <tr><td>Economia de 7%</td><td class="num">21.000/ano</td><td class="num">2.100/ano</td></tr>
+        <tr><td>− depreciação</td><td class="num">4.375</td><td class="num">4.375</td></tr>
+        <tr><td><strong>Ganho líquido</strong></td><td class="num"><b>+16.625/ano</b></td><td class="num"><b>−2.275/ano</b></td></tr>
+        <tr><td><strong>Payback</strong></td><td class="num">2,1 anos</td><td class="num">nunca</td></tr>
+      </tbody>
+    </table>
+    <figure class="foto side">
+      <img src="Aulas/trator-piloto-automatico-gps.jpg" alt="Trator agrícola de grande porte visto de perfil, com receptor GPS StarFire montado na frente do teto da cabine para direção assistida por satélite" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>receptor GPS de piloto automático na cabine · CC BY-SA 3.0, bdk/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
+  <p class="note">A resposta à pergunta colocada na T6: <strong>depende da escala</strong>, neste exemplo, o equilíbrio fica em ~104 ha (onde 7% da adubação = depreciação). Alternativas abaixo disso: contratar o serviço, dividir o equipamento na cooperativa, ou NDVI gratuito.</p>
 </section>
 
 <!-- 22 · síntese dos casos -->
@@ -484,7 +527,7 @@ a{color:var(--accent-text)}
       <tr><td><strong>Piloto automático</strong></td><td class="num">se paga a partir de ~104 ha</td><td>a escala decide, não a tecnologia</td></tr>
     </tbody>
   </table>
-  <p class="note">Agropecuária, zootecnia, fruticultura e precisão na mesma mesa, nenhum caso precisou de método novo. Essa é a tese do curso.</p>
+  <p class="note">Agropecuária, zootecnia, fruticultura e precisão analisadas com o mesmo método; nenhum caso precisou de método novo. Essa é a tese do curso.</p>
 </section>
 
 <!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
@@ -539,8 +582,8 @@ a{color:var(--accent-text)}
 <!-- 26 · ponte -->
 <section class="slide" data-act="Ponte">
   <div class="eyebrow"><b>Ponte</b> · o que vem</div>
-  <h2>O método está completo: agora, o projeto</h2>
-  <p>Não há mais conceito novo: da S13 em diante é lapidação. O caminho até a defesa:</p>
+  <h2>O método está completo: a seguir, o projeto</h2>
+  <p>Não há mais conceito novo: da S13 em diante é ajuste final. O caminho até a defesa:</p>
   <ul class="bullets">
     <li><strong>S13 · laboratório</strong>: simulador aberto, passos 0 a 6 completos, dúvidas em sala.</li>
     <li><strong>S14 · P2</strong>: a prova cobre os movimentos Medir e Decidir: margens, PE, cenários, crédito e investimento.</li>
@@ -558,7 +601,7 @@ a{color:var(--accent-text)}
   <h2>Fontes e créditos</h2>
   <p class="src">Referência bibliográfica geral: KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <b>Gestão de propriedades rurais</b>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener">Minha Biblioteca</a>. Acesso em: 29 maio 2026. Dados, preços e taxas citados nos exemplos: fontes indicadas em aula e atualizadas a cada oferta.</p>
   <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
-  <p class="note">Material de estudo: <a href="parte-5.html#unidades">Parte V.A: pecuária</a> · <a href="parte-5.html#perenes">V.B: perenes e investimento</a> · <a href="parte-5.html#ap-decisao">V.C: agricultura de precisão</a> · <a href="parte-5.html#quizA">autoavaliações A</a>/<a href="parte-5.html#quizB">B</a>/<a href="parte-5.html#quizC">C</a> · <a href="rebanho.html">calculadora de rebanho</a> · <a href="vinhedo.html">calculadora de vinhedo</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+  <p class="note">Material de estudo: <a href="parte-5.html#unidades">Parte V.A: pecuária</a> · <a href="parte-5.html#perenes">V.B: perenes e investimento</a> · <a href="parte-5.html#ap-decisao">V.C: agricultura de precisão</a> · <a href="parte-5.html#quizA">autoavaliações A</a>/<a href="parte-5.html#quizB">B</a>/<a href="parte-5.html#quizC">C</a> · <a href="rebanho.html">calculadora de rebanho</a> · <a href="vinhedo.html">calculadora de vinhedo</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste material = apostila da aula (Ctrl+P).</p>
 </section>
 
 </main>

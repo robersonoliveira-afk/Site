@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#B89233">
 <title>T3: Do manejo técnico ao custo</title>
-<meta name="description" content="Aula teórica 3: Do diagnóstico técnico aos itens de custo; classificação fixo × variável, direto × indireto. Deck de projeção e estudo. Colégio Politécnico da UFSM.">
+<meta name="description" content="Aula teórica 3: Do diagnóstico técnico aos itens de custo; classificação fixo × variável, direto × indireto. Colégio Politécnico da UFSM.">
 <meta name="robots" content="noindex">
 <!-- ============================================================
   GUIA RÁPIDO DE EDIÇÃO (para o professor)
@@ -78,6 +78,7 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout.success strong{color:var(--olive)}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.cols2.asym{grid-template-columns:3fr 2fr}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--terra)}
@@ -126,6 +127,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .foto{margin:2vh 0;max-width:70vw}
 .foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
 .foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.foto.side{max-width:100%;margin:0}
+.foto.side img{max-width:100%;max-height:34vh;width:auto;margin-left:auto;margin-right:auto}
+.foto.side figcaption{line-height:1.5}
 .slide.foto-cheia{justify-content:center;align-items:center}
 .slide.foto-cheia .foto{max-width:88vw;margin:0}
 .slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
@@ -159,6 +163,7 @@ a{color:var(--accent-text)}
   .slide::before{height:3mm}
   .mock{max-width:100%}
   .foto{max-width:100%}
+  .foto.side img{max-height:72mm}
 }
 </style>
 </head>
@@ -172,7 +177,7 @@ a{color:var(--accent-text)}
 
 <!-- 1 · capa -->
 <section class="slide cover" data-act="Abertura">
-  <div class="eyebrow">Aula teórica · deck de projeção e estudo</div>
+  <div class="eyebrow">Aula teórica · projeção e estudo</div>
   <div class="t-mark">
     <div class="t-num">T3</div>
     <div>
@@ -193,12 +198,12 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
   <h2>Quanto custa produzir o que você <em>declarou</em>?</h2>
-  <p class="lead">O manejo que o grupo descreveu no projeto não é texto decorativo: cada prática consome insumo, máquina ou trabalho, e tudo isso tem preço.</p>
+  <p class="lead">O manejo que o grupo descreveu no projeto consome insumo, máquina ou trabalho em cada prática, e tudo isso tem preço.</p>
   <div class="formula">
     <span class="label">Regra de ouro do curso</span>
     toda prática de manejo declarada precisa reaparecer como <b>custo</b>
   </div>
-  <p class="note">A banca da defesa vai cruzar as duas listas. Manejo sem custo é conta esquecida; custo sem manejo é número sem origem.</p>
+  <p class="note">A banca da defesa cruza as duas listas: manejo sem custo correspondente e custo sem manejo que o justifique são falhas do projeto.</p>
 </section>
 
 <!-- 5 · a lógica que não muda -->
@@ -222,7 +227,7 @@ a{color:var(--accent-text)}
     <span class="label">Cada linha do orçamento</span>
     custo do item = coeficiente técnico × <b>preço unitário</b>
   </div>
-  <p class="note">O diagnóstico fornece o coeficiente; a pesquisa de preço (T2) fornece o preço. Quem chuta o coeficiente erra o custo inteiro, por isso o diagnóstico vem primeiro.</p>
+  <p class="note">O diagnóstico fornece o coeficiente; a pesquisa de preço (T2) fornece o preço. Um coeficiente estimado sem base erra o custo inteiro, por isso o diagnóstico vem primeiro.</p>
 </section>
 
 <!-- 7 · agricultura: laudo de solo -->
@@ -230,11 +235,17 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 1/3</div>
   <h2>Agricultura: o laudo de solo</h2>
   <p>Nenhuma lavoura séria começa sem análise de solo. O laudo é a origem dos <strong>maiores custos variáveis</strong> de qualquer cultura: calagem e adubação de base e cobertura.</p>
-  <ul class="bullets">
-    <li>Lê-se o laudo, consulta-se o <strong>Manual CQFS-RS/SC</strong> (11ª ed., 2016), obtém-se a dose: calcário em t/ha, adubo em kg/ha.</li>
-    <li>Em trigo de alta tecnologia (60 sc/ha esperadas), fertilizantes chegam a <strong>~39% do custo de produção</strong> (CEPA/Epagri, safra 2026).</li>
-    <li>A análise custa <strong>R$ 65 a R$ 150 por amostra</strong>, e é o primeiro item da planilha, porque fundamenta todos os outros.</li>
-  </ul>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li>Lê-se o laudo, consulta-se o <strong>Manual CQFS-RS/SC</strong> (11ª ed., 2016), obtém-se a dose: calcário em t/ha, adubo em kg/ha.</li>
+      <li>Em trigo de alta tecnologia (60 sc/ha esperadas), fertilizantes chegam a <strong>~39% do custo de produção</strong> (CEPA/Epagri, safra 2026).</li>
+      <li>A análise custa <strong>R$ 65 a R$ 150 por amostra</strong>, e é o primeiro item da planilha, porque fundamenta todos os outros.</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/coleta-amostra-solo.jpg" alt="Técnico curvado na lavoura retirando amostra de solo com trado, ao lado de um balde de coleta, entre as linhas de milho recém-emergido" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>coleta da amostra na lavoura · domínio público, Tim McCabe/USDA-NRCS</figcaption>
+    </figure>
+  </div>
   <p class="note">Análise química e física do solo também é requisito do crédito rural (Parte IV.2).</p>
 </section>
 
@@ -243,10 +254,16 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 2/3</div>
   <h2>Zootecnia: estrutura e evolução do rebanho</h2>
   <p>O equivalente ao laudo é responder: <strong>quantos animais de cada categoria</strong> existem, e como esse número evolui no tempo?</p>
-  <ul class="bullets">
-    <li>A estrutura do rebanho define ração por animal/dia, vacinas por categoria, sal mineral por cabeça/mês, cada um, um coeficiente técnico.</li>
-    <li>Vaca em lactação, vaca seca, novilha e terneira têm <strong>perfis de custo completamente diferentes</strong>.</li>
-  </ul>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li>A estrutura do rebanho define ração por animal/dia, vacinas por categoria, sal mineral por cabeça/mês, cada um, um coeficiente técnico.</li>
+      <li>Vaca em lactação, vaca seca, novilha e terneira têm <strong>perfis de custo completamente diferentes</strong>.</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/rebanho-pampa-bage.jpg" alt="Rebanho de corte junto à vegetação de campo, com vacas adultas e terneiros de pelagens e portes diferentes na mesma tropa" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>rebanho de corte no Pampa, Bagé/RS · CC BY-SA 3.0, Paula Cavalheiro</figcaption>
+    </figure>
+  </div>
   <div class="callout">
     <strong>Erro frequente</strong>
     Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. A calculadora do site (rebanho.html) mostra como o resultado muda por categoria.
@@ -258,10 +275,16 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 3/3</div>
   <h2>Fruticultura: o sistema de produção</h2>
   <p>No pomar, o diagnóstico é a definição do sistema: decisões agronômicas de longo prazo que <strong>fixam os custos por 15 a 20 anos</strong>.</p>
-  <ul class="bullets">
-    <li>O espaçamento define o número de <strong>mudas por hectare</strong>, o coeficiente central da implantação.</li>
-    <li>Particularidade única: a <strong>fase de formação</strong>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</li>
-  </ul>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li>O espaçamento define o número de <strong>mudas por hectare</strong>, o coeficiente central da implantação.</li>
+      <li>Particularidade única: a <strong>fase de formação</strong>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/pomar-novo-plantio.jpg" alt="Pomar jovem com mudas tutoradas plantadas em fileiras regulares, evidenciando o espaçamento entre plantas e entre linhas" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>pomar em fase de formação · CC BY-SA 2.0, Dave Bushell/Geograph</figcaption>
+    </figure>
+  </div>
   <p class="note">Implantação (investimento amortizável) não se confunde com custeio anual (COE recorrente). A T8 aprofunda perenes, payback e VPL.</p>
 </section>
 
@@ -289,7 +312,7 @@ a{color:var(--accent-text)}
     <li>Quem mistura <strong>direto com indireto</strong> distorce o resultado por atividade.</li>
     <li>Quem ignora os <strong>implícitos</strong> acha que lucrou mais do que lucrou.</li>
   </ul>
-  <p class="note">Três pares de óculos para o mesmo gasto, cada um responde uma pergunta diferente. Metodologia: Matsunaga et al. (IEA), base do Campo Futuro/CNA.</p>
+  <p class="note">Três critérios de classificação para o mesmo gasto, cada um responde a uma pergunta diferente. Metodologia: Matsunaga et al. (IEA), base do Campo Futuro/CNA.</p>
 </section>
 
 <!-- 12 · fixos × variáveis -->
@@ -328,7 +351,7 @@ a{color:var(--accent-text)}
     <li>Desaparece → <strong>variável</strong>. Sem plantio não há semente, adubo nem diesel de operação.</li>
   </ul>
   <p>Segundo teste, equivalente: <em>se eu dobrar a área, esse gasto dobra junto?</em> Dobra → variável; não dobra → fixo.</p>
-  <p class="note">Alguns itens resistem aos dois testes, energia da irrigação, por exemplo. Guardem essa: ela volta no exemplo do arroz.</p>
+  <p class="note">Alguns itens resistem aos dois testes, energia da irrigação, por exemplo. Esse caso reaparece no exemplo do arroz.</p>
 </section>
 
 <!-- 14 · diretos × indiretos -->
@@ -371,14 +394,14 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · para onde isso vai</div>
   <h2>Onde a classificação se encaixa</h2>
-  <p>Na T4, os itens classificados hoje serão somados em três camadas, a estrutura Matsunaga/IEA usada pelo Campo Futuro/CNA:</p>
+  <p>Na T4, os itens classificados serão somados em três camadas, a estrutura Matsunaga/IEA usada pelo Campo Futuro/CNA:</p>
   <div class="cascade">
     <div class="row total"><span>COE: desembolsos do ciclo (explícitos)</span><span>T4</span></div>
     <div class="row"><span>+ depreciação → COT</span><span>T4</span></div>
     <div class="row"><span>+ remuneração dos fatores → CT</span><span>T4</span></div>
     <div class="row final"><span>RL − cada camada = margens</span><span>T5</span></div>
   </div>
-  <p class="note">Hoje o trabalho é ter a lista completa e bem classificada. Sem ela, a T4 soma errado, e a T5 interpreta errado.</p>
+  <p class="note">O trabalho desta aula é ter a lista completa e bem classificada. Sem ela, a T4 soma errado, e a T5 interpreta errado.</p>
 </section>
 
 <!-- 17 · gancho AP -->
@@ -386,10 +409,16 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
   <h2>Quando o coeficiente vira mapa</h2>
   <p>Na agricultura de precisão, o coeficiente técnico deixa de ser um número único por lavoura: a <strong>taxa variável</strong> aplica dose diferente em cada zona de manejo.</p>
-  <ul class="bullets">
-    <li>O laudo de solo vira <strong>grade de amostragem</strong>, vários laudos georreferenciados.</li>
-    <li>O custo do adubo passa a ser <strong>Σ (dose da zona × área da zona × preço)</strong>, a mesma soma por zonas que fizemos com a receita na T2.</li>
-  </ul>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li>O laudo de solo vira <strong>grade de amostragem</strong>, vários laudos georreferenciados.</li>
+      <li>O custo do adubo passa a ser <strong>Σ (dose da zona × área da zona × preço)</strong>, a mesma soma por zonas que fizemos com a receita na T2.</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/mapa-produtividade-soja.jpg" alt="Mapa de produtividade de uma lavoura de soja gerado por monitor de colheita, com faixas coloridas mostrando rendimentos distintos dentro do mesmo talhão" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>mapa de produtividade da soja: zonas dentro do mesmo talhão · CC BY-SA 3.0, ISUcyGrain</figcaption>
+    </figure>
+  </div>
   <p class="note">A pergunta econômica (a economia de insumo paga o custo da tecnologia?) é o tema da T8 para a turma de AP.</p>
 </section>
 
@@ -400,11 +429,17 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Exemplo RS</b> · arroz irrigado</div>
   <h2>Arroz irrigado na metade sul</h2>
   <p>O IRGA publica todo ano o <strong>custo médio ponderado</strong> do arroz irrigado gaúcho: média de Uruguaiana (Fronteira Oeste), Cachoeira do Sul, Pelotas, Bagé, São Lourenço do Sul e Santo Antônio da Patrulha.</p>
-  <ul class="bullets">
-    <li><strong>Safra 2025/26</strong>: sistema cultivo mínimo, publicação de junho de 2026.</li>
-    <li><strong>Produtividade média</strong>: 174,79 sc/ha (média das três safras anteriores).</li>
-  </ul>
-  <p class="note">É um orçamento completo e público, feito com a mesma lógica que o projeto de vocês: manejo típico → coeficientes → custos. Vamos lê-lo com os óculos da aula.</p>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li><strong>Safra 2025/26</strong>: sistema cultivo mínimo, publicação de junho de 2026.</li>
+      <li><strong>Produtividade média</strong>: 174,79 sc/ha (média das três safras anteriores).</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/arroz-irrigado-varzea-rs.jpg" alt="Lavoura de arroz irrigado em área de várzea, com o arroz ainda verde estendendo-se plano até a mata e o casario ao fundo" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>lavoura de arroz irrigado em várzea, Sertão Santana/RS · CC BY-SA 3.0 BR, Paulo RS Menezes</figcaption>
+    </figure>
+  </div>
+  <p class="note">É um orçamento completo e público, feito com a mesma lógica que o projeto de vocês: manejo típico → coeficientes → custos. A leitura a seguir aplica os critérios da aula.</p>
 </section>
 
 <!-- 19 · do manejo à lista -->
@@ -444,10 +479,16 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Exemplo RS</b> · discussão</div>
   <h2>Energia da irrigação: fixa ou variável?</h2>
   <p class="lead">Na planilha IRGA, energia elétrica da irrigação (R$ 429/ha) está no custeio, variável. Mas a conta de luz do bombeamento tem duas partes:</p>
-  <ul class="bullets">
-    <li><strong>Consumo (kWh)</strong>: varia com as horas de bombeamento: mais área ou mais levantes, mais consumo. Comportamento de <strong>variável</strong>.</li>
-    <li><strong>Demanda contratada</strong>: o valor pago pela potência disponível, que vence <strong>mesmo com as bombas desligadas</strong>. Comportamento de <strong>fixo</strong>.</li>
-  </ul>
+  <div class="cols2 asym">
+    <ul class="bullets">
+      <li><strong>Consumo (kWh)</strong>: varia com as horas de bombeamento: mais área ou mais levantes, mais consumo. Comportamento de <strong>variável</strong>.</li>
+      <li><strong>Demanda contratada</strong>: o valor pago pela potência disponível, que vence <strong>mesmo com as bombas desligadas</strong>. Comportamento de <strong>fixo</strong>.</li>
+    </ul>
+    <figure class="foto side">
+      <img src="Aulas/bomba-irrigacao-arroz.jpg" alt="Conjunto motobomba instalado na borda de uma lavoura, com motor elétrico, caixa de ligação, tubulação e registros" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>motobomba elétrica de irrigação de arroz · domínio público, USDA-NRCS</figcaption>
+    </figure>
+  </div>
   <div class="callout success">
     <strong>O que importa</strong>
     Mais que o rótulo, o critério: classifique pelo comportamento do gasto na sua propriedade, e declare o critério no projeto.
@@ -456,7 +497,7 @@ a{color:var(--accent-text)}
 
 <!-- 22 · custo × preço -->
 <section class="slide" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · o número que dói</div>
+  <div class="eyebrow"><b>Exemplo RS</b> · custo versus preço de venda</div>
   <h2>R$ 90 de custo, e o preço?</h2>
   <div class="formula">
     <span class="label">Custo por saca: IRGA 2025/26</span>
@@ -538,7 +579,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Ponte">
   <div class="eyebrow"><b>Ponte</b> · o que vem</div>
   <h2>T4: COE, COT e Custo Total</h2>
-  <p>A lista está feita e classificada. Na próxima teórica ela vira <strong>orçamento em três camadas</strong>: COE, COT e CT, incluindo a depreciação linear e o autoengano de não pagar a própria mão de obra.</p>
+  <p>A lista está feita e classificada. Na próxima teórica ela vira <strong>orçamento em três camadas</strong>: COE, COT e CT, incluindo a depreciação linear e o custo de não remunerar a própria mão de obra.</p>
   <ul class="bullets">
     <li><strong>Revisar no site</strong>: Parte II, blocos II.1 (diagnóstico) e II.3 (classificação) + a autoavaliação do bloco.</li>
     <li><strong>Trazer para a T4</strong>: a lista de custos do passo 3, a mais completa possível, e os valores de máquinas e benfeitorias da propriedade.</li>
@@ -555,7 +596,7 @@ a{color:var(--accent-text)}
   <h2>Fontes e créditos</h2>
   <p class="src">Referência bibliográfica geral: KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <b>Gestão de propriedades rurais</b>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener">Minha Biblioteca</a>. Acesso em: 29 maio 2026. Dados, preços e taxas citados nos exemplos: fontes indicadas em aula e atualizadas a cada oferta.</p>
   <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
-  <p class="note">Material de estudo: <a href="parte-2.html#diagnostico">Parte II.1: Diagnóstico técnico</a> · <a href="parte-2.html#classificacao">Parte II.3: Classificação dos custos</a> · <a href="rebanho.html">calculadora do rebanho</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+  <p class="note">Material de estudo: <a href="parte-2.html#diagnostico">Parte II.1: Diagnóstico técnico</a> · <a href="parte-2.html#classificacao">Parte II.3: Classificação dos custos</a> · <a href="rebanho.html">calculadora do rebanho</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste material = apostila da aula (Ctrl+P).</p>
 </section>
 
 </main>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
 <title>T6: Equilíbrio, análise marginal e cenários</title>
-<meta name="description" content="Aula teórica 6: Ponto de equilíbrio, margem de segurança, análise marginal e cenários. Deck de projeção e estudo. Colégio Politécnico da UFSM.">
+<meta name="description" content="Aula teórica 6: Ponto de equilíbrio, margem de segurança, análise marginal e cenários. Colégio Politécnico da UFSM.">
 <meta name="robots" content="noindex">
 <!-- ============================================================
   GUIA RÁPIDO DE EDIÇÃO (para o professor)
@@ -79,6 +79,7 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout.success strong{color:var(--olive)}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.cols2.asym{grid-template-columns:3fr 2fr}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--olive)}
@@ -127,7 +128,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 /* foto */
 .foto{margin:2vh 0;max-width:70vw}
 .foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
-.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh;line-height:1.5}
+.foto.side{max-width:100%;margin:0}
+.foto.side img{max-height:42vh;width:100%;object-fit:contain}
 .slide.foto-cheia{justify-content:center;align-items:center}
 .slide.foto-cheia .foto{max-width:88vw;margin:0}
 .slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
@@ -174,7 +177,7 @@ a{color:var(--accent-text)}
 
 <!-- 1 · capa -->
 <section class="slide cover" data-act="Abertura">
-  <div class="eyebrow">Aula teórica · deck de projeção e estudo</div>
+  <div class="eyebrow">Aula teórica · projeção e estudo</div>
   <div class="t-mark">
     <div class="t-num">T6</div>
     <div>
@@ -191,7 +194,7 @@ a{color:var(--accent-text)}
 
 <!-- ============ ATO 2 · CONCEITO ============ -->
 
-<!-- 4 · pergunta da aula -->
+<!-- 2 · pergunta da aula -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
   <h2>O plano encontra o <em>imprevisto</em></h2>
@@ -203,7 +206,7 @@ a{color:var(--accent-text)}
   </ul>
 </section>
 
-<!-- 5 · PE conceito -->
+<!-- 3 · PE conceito -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · ponto de equilíbrio</div>
   <h2>A fronteira entre lucro e prejuízo</h2>
@@ -218,7 +221,7 @@ a{color:var(--accent-text)}
   </div>
 </section>
 
-<!-- 6 · três fronteiras -->
+<!-- 4 · três fronteiras -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · qual custo na fórmula?</div>
   <h2>Três custos, três fronteiras</h2>
@@ -234,7 +237,7 @@ a{color:var(--accent-text)}
   <p class="note">O PE sobre o COE é o alarme de curto prazo; o PE sobre o CT é a régua da viabilidade: o mesmo par de leituras das margens.</p>
 </section>
 
-<!-- 7 · MS -->
+<!-- 5 · MS -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · margem de segurança</div>
   <h2>Quanta folga o projeto tem?</h2>
@@ -247,7 +250,7 @@ a{color:var(--accent-text)}
   <p class="note">Exemplo do site: soja que precisa de 38 sc/ha para cobrir o COE, com expectativa de 60 sc/ha → a produção pode cair ~37% antes de não pagar nem o caixa.</p>
 </section>
 
-<!-- 8 · MS e decisões -->
+<!-- 6 · MS e decisões -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a MS decide coisas concretas</div>
   <h2>Da folga à decisão</h2>
@@ -262,7 +265,7 @@ a{color:var(--accent-text)}
   </div>
 </section>
 
-<!-- 9 · função de produção -->
+<!-- 7 · função de produção -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · função de produção</div>
   <h2>A lavoura não responde em linha reta</h2>
@@ -274,11 +277,11 @@ a{color:var(--accent-text)}
   <ul class="bullets compact">
     <li><strong>PT: produto total</strong>: o acumulado com X unidades do insumo.</li>
     <li><strong>PM: produto médio</strong>: PT ÷ X, a eficiência média.</li>
-    <li><strong>PMg: produto marginal</strong>: ΔPT ÷ ΔX, o que a <em>última</em> unidade acrescentou: a base de toda a análise de hoje.</li>
+    <li><strong>PMg: produto marginal</strong>: ΔPT ÷ ΔX, o que a <em>última</em> unidade acrescentou: a base de toda a análise marginal desta aula.</li>
   </ul>
 </section>
 
-<!-- 10 · três fases -->
+<!-- 8 · três fases -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · lei dos rendimentos decrescentes</div>
   <h2>As três fases da resposta</h2>
@@ -293,7 +296,7 @@ a{color:var(--accent-text)}
   <p>A fase II é a <strong>lei dos rendimentos decrescentes</strong>: a partir de certo ponto, cada unidade adicional rende menos que a anterior. Vale para N no milho, concentrado na vaca, lotação no campo: é regularidade, não exceção.</p>
 </section>
 
-<!-- 11 · análise marginal -->
+<!-- 9 · análise marginal -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · análise marginal</div>
   <h2>A pergunta certa é sempre sobre a <em>próxima</em> dose</h2>
@@ -309,40 +312,54 @@ a{color:var(--accent-text)}
   <p class="note">Aplicar além desse ponto reduz o lucro, mesmo com a produção ainda subindo.</p>
 </section>
 
-<!-- 12 · milho × ureia -->
+<!-- 10 · milho × ureia -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · milho e ureia no RS</div>
   <h2>Máximo lucro ≠ máxima produção</h2>
   <p class="note">Milho a R$ 78/sc, ureia a R$ 4,20/kg (insumo + aplicação): registros de três safras de um produtor do Alto Uruguai (Parte III.3 do site).</p>
-  <table class="tbl">
-    <thead><tr><th class="num">Ureia (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">RM (R$/kg)</th><th class="num">CM (R$/kg)</th><th>Leitura</th></tr></thead>
-    <tbody>
-      <tr><td class="num">40</td><td class="num">118</td><td class="num">54,60</td><td class="num">4,20</td><td>RM &gt; CM: seguir</td></tr>
-      <tr><td class="num">80</td><td class="num">138</td><td class="num">39,00</td><td class="num">4,20</td><td>RM &gt; CM: seguir</td></tr>
-      <tr><td class="num">120</td><td class="num">152</td><td class="num">27,30</td><td class="num">4,20</td><td><strong>≈ ótimo econômico</strong></td></tr>
-      <tr><td class="num">160</td><td class="num">160</td><td class="num">15,60</td><td class="num">4,20</td><td>passou do ponto</td></tr>
-      <tr><td class="num">200</td><td class="num">163</td><td class="num">5,85</td><td class="num">4,20</td><td>quase nada, pagando caro</td></tr>
-    </tbody>
-  </table>
-  <p class="note">A máxima produção está em 200 kg/ha; o máximo lucro, perto de 120. E a tabela só existe porque alguém <strong>anotou dose e produção</strong> por três safras. Sem registro, não há análise marginal; há chute.</p>
+  <div class="cols2 asym">
+    <table class="tbl">
+      <thead><tr><th class="num">Ureia (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">RM (R$/kg)</th><th class="num">CM (R$/kg)</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td class="num">40</td><td class="num">118</td><td class="num">54,60</td><td class="num">4,20</td><td>RM &gt; CM: seguir</td></tr>
+        <tr><td class="num">80</td><td class="num">138</td><td class="num">39,00</td><td class="num">4,20</td><td>RM &gt; CM: seguir</td></tr>
+        <tr><td class="num">120</td><td class="num">152</td><td class="num">27,30</td><td class="num">4,20</td><td><strong>≈ ótimo econômico</strong></td></tr>
+        <tr><td class="num">160</td><td class="num">160</td><td class="num">15,60</td><td class="num">4,20</td><td>passou do ponto</td></tr>
+        <tr><td class="num">200</td><td class="num">163</td><td class="num">5,85</td><td class="num">4,20</td><td>quase nada, pagando caro</td></tr>
+      </tbody>
+    </table>
+    <figure class="foto side">
+      <img src="Aulas/milho-lavoura-rs.jpg" alt="Lavoura de milho em fase vegetativa, plantada em relevo ondulado, com mata e morros ao fundo, no interior do Rio Grande do Sul" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>lavoura de milho em Barão do Triunfo/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
+  <p class="note">A máxima produção está em 200 kg/ha; o máximo lucro, perto de 120. A tabela só existe porque alguém <strong>anotou dose e produção</strong> por três safras. Sem registro, não há análise marginal, apenas estimativa.</p>
 </section>
 
-<!-- 13 · gancho AP -->
+<!-- 11 · gancho AP -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
   <h2>Taxa variável é análise marginal por zona</h2>
-  <p>A dose ótima depende da resposta da lavoura, e a resposta <strong>muda de zona para zona</strong>: solo corrigido responde pouco a mais adubo; zona deficiente responde muito.</p>
-  <ul class="bullets">
-    <li>Dose única na média: sobra insumo onde não responde, falta onde responderia: desperdício dos dois lados.</li>
-    <li>Taxa variável: resolver <strong>RM = CM em cada zona de manejo</strong>: o mapa de prescrição é a regra de ouro georreferenciada.</li>
-  </ul>
-  <p class="note">É o argumento econômico central da AP: o equipamento não cria a lógica, executa, hectare a hectare, a conta desta aula. Se ele mesmo se paga é a pergunta da T8.</p>
+  <div class="cols2 asym">
+    <div>
+      <p>A dose ótima depende da resposta da lavoura, e a resposta <strong>muda de zona para zona</strong>: solo corrigido responde pouco a mais adubo; zona deficiente responde muito.</p>
+      <ul class="bullets">
+        <li>Dose única na média: sobra insumo onde não responde, falta onde responderia: desperdício dos dois lados.</li>
+        <li>Taxa variável: resolver <strong>RM = CM em cada zona de manejo</strong>: o mapa de prescrição aplica essa lógica ponto a ponto.</li>
+      </ul>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/mapa-produtividade-soja.jpg" alt="Mapa de produtividade de uma lavoura de soja gerado por monitor de colheita, com manchas em verde, amarelo e vermelho indicando faixas distintas de rendimento dentro do mesmo talhão" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>mapa de produtividade de soja: a mesma lavoura, zonas que respondem diferente · CC BY-SA 3.0, ISUcyGrain/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
+  <p class="note">É o argumento econômico central da AP: o equipamento não cria a lógica, apenas a executa, hectare a hectare. Se ele mesmo se paga é avaliado na T8.</p>
 </section>
 
-<!-- 14 · cenários -->
+<!-- 12 · cenários -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · análise de cenários</div>
-  <h2>Um número só é uma armadilha</h2>
+  <h2>Um único número esconde o risco</h2>
   <p>Projetar um único resultado, produtividade exata, preço exato, é apostar que nada desvia. A análise de cenários não elimina o risco: <strong>torna-o visível e mensurável</strong>, em três versões do futuro:</p>
   <table class="tbl">
     <thead><tr><th>Cenário</th><th>Premissas típicas</th><th>Pergunta que responde</th></tr></thead>
@@ -355,9 +372,9 @@ a{color:var(--accent-text)}
   <p class="note">As premissas não são chute: vêm da série histórica da região (CONAB, EMATER/RS, IRGA) e da variação real dos preços (CEPEA).</p>
 </section>
 
-<!-- 15 · decidir com cenários -->
+<!-- 13 · decidir com cenários -->
 <section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · o veredito dos três futuros</div>
+  <div class="eyebrow"><b>Conceito</b> · a decisão a partir dos cenários</div>
   <h2>Como decidir com os cenários</h2>
   <table class="tbl">
     <thead><tr><th>Se…</th><th>Diagnóstico</th><th>Decisão típica</th></tr></thead>
@@ -376,7 +393,16 @@ a{color:var(--accent-text)}
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
 
-<!-- 16 · arroz: o caso -->
+<!-- 14 · foto: a lavoura de arroz -->
+<section class="slide foto-cheia" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · a lavoura por trás da conta</div>
+  <figure class="foto">
+    <img src="Aulas/lavoura-arroz-irrigado-rs.jpg" alt="Quadro de lavoura de arroz irrigado em área de várzea, com o arroz ainda verde, mata e casario ao fundo, sob céu azul" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>lavoura de arroz irrigado em Sertão Santana/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
+  </figure>
+</section>
+
+<!-- 15 · arroz: o caso -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · arroz irrigado</div>
   <h2>O arroz gaúcho em 2025/26</h2>
@@ -395,7 +421,7 @@ a{color:var(--accent-text)}
   <p class="note">Uma das maiores produtividades de arroz do mundo, e um preço que não cobre o custo. Consulte o preço CEPEA vigente para comparar com os valores usados aqui.</p>
 </section>
 
-<!-- 17 · arroz: PE de preço -->
+<!-- 16 · arroz: PE de preço -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · a fronteira do preço</div>
   <h2>PE de preço: a conta em três linhas</h2>
@@ -408,7 +434,7 @@ a{color:var(--accent-text)}
   <p class="note">Prejuízo econômico na lavoura média: ~R$ 29,20/sc × 174,79 sc/ha ≈ R$ 5.104/ha.</p>
 </section>
 
-<!-- 18 · arroz: MS negativa -->
+<!-- 17 · arroz: MS negativa -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · a fronteira da produção</div>
   <h2>Quando o PE fica acima do teto</h2>
@@ -424,43 +450,60 @@ a{color:var(--accent-text)}
   </div>
 </section>
 
-<!-- 19 · arroz: leitura -->
+<!-- 18 · arroz: leitura -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 1 · da conta à decisão</div>
   <h2>O que o gestor faz com isso?</h2>
   <ul class="bullets">
     <li><strong>Curto prazo</strong>: com a lavoura plantada, colher ainda é racional se o preço cobrir o custo <em>que falta desembolsar</em>; decisão de MB, não de LE.</li>
     <li><strong>Comercialização</strong>: PE de preço em mãos, cada centavo acima de R$ 67,40 recupera desembolso; escalonar venda e armazenar viram decisões calculadas.</li>
-    <li><strong>Próxima safra</strong>: replantar exige cenário. O pessimista repete 2025/26. Reduzir área, cortar custo, arrendar? A conta da T5 e a desta aula, juntas, na mesa.</li>
+    <li><strong>Próxima safra</strong>: replantar exige cenário. O pessimista repete 2025/26. Reduzir área, cortar custo, arrendar? A resposta reúne a conta da T5 e a desta aula.</li>
   </ul>
   <p class="note">É a situação real de milhares de produtores gaúchos nesta safra, e o motivo de o PE ser a primeira conta do técnico, não a última.</p>
+</section>
+
+<!-- 19 · foto: a lavoura de soja -->
+<section class="slide foto-cheia" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · a lavoura dos três cenários</div>
+  <figure class="foto">
+    <img src="Aulas/lavoura-soja-rs.jpg" alt="Lavoura de soja em pleno desenvolvimento vegetativo, estendendo-se até o horizonte em relevo suavemente ondulado, com estrada de terra ao lado" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>lavoura de soja no Rio Grande do Sul · CC BY-SA 3.0, Tiago Fioreze/Wikimedia Commons</figcaption>
+  </figure>
 </section>
 
 <!-- 20 · soja: cenário-base -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · soja em Santa Maria</div>
-  <h2>O cenário-base da nossa soja</h2>
+  <h2>O cenário-base da soja</h2>
   <p>A lavoura da T2: 50 ha, 60 sc/ha esperadas, R$ 128/sc posto cooperativa. Custos didáticos por hectare: COE R$ 4.480 e CT R$ 5.760 (equivalente a 45 sc/ha, na linha dos levantamentos da safra 25/26 no RS).</p>
   <div class="cascade">
     <div class="row"><span>PE produção (COE) = 4.480 ÷ 128</span><span>35,0 sc/ha</span></div>
     <div class="row total"><span>PE produção (CT) = 5.760 ÷ 128</span><span>45,0 sc/ha</span></div>
     <div class="row final"><span>MS sobre o CT = (60 − 45) ÷ 60</span><span>25%</span></div>
   </div>
-  <p class="note">Folga de 25% até o prejuízo econômico e de 41,7% até o caixa: projeto saudável no cenário-base. Agora, o quadro se move.</p>
+  <p class="note">Folga de 25% até o prejuízo econômico e de 41,7% até o caixa: projeto saudável no cenário-base. O preço, porém, não é fixo.</p>
 </section>
 
 <!-- 21 · soja: o preço se move -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · por que o preço muda</div>
-  <h2>O preço da soja mora em Chicago, e no câmbio</h2>
-  <div class="formula">
-    <span class="label">Formação do preço interno</span>
-    preço interno ≈ (Chicago + prêmio) × <b>câmbio</b> − frete
+  <h2>O preço da soja depende de Chicago e do câmbio</h2>
+  <div class="cols2 asym">
+    <div>
+      <div class="formula">
+        <span class="label">Formação do preço interno</span>
+        preço interno ≈ (Chicago + prêmio) × <b>câmbio</b> − frete
+      </div>
+      <ul class="bullets compact">
+        <li><strong>Julho de 2026</strong>: indicador CEPEA/Paranaguá a R$ 141,02/sc (17/jul), maior nível em seis meses, +5,6% no mês; o interior do RS acompanha com desconto de frete.</li>
+        <li><strong>O dólar no mesmo mês</strong>: recuou de mais de R$ 5,20 no início de julho para R$ 5,09 (20/jul); a alta veio de Chicago e do prêmio, <em>apesar</em> do câmbio.</li>
+      </ul>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/silos-armazenagem-rs.jpg" alt="Bateria de silos metálicos de armazenagem de grãos com correias transportadoras elevadas, à beira de uma estrada no interior do Rio Grande do Sul" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>silos de armazenagem em Rio Pardo/RS: onde o produtor espera o preço · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
+    </figure>
   </div>
-  <ul class="bullets compact">
-    <li><strong>Julho de 2026</strong>: indicador CEPEA/Paranaguá a R$ 141,02/sc (17/jul), maior nível em seis meses, +5,6% no mês; o interior do RS acompanha com desconto de frete.</li>
-    <li><strong>O dólar no mesmo mês</strong>: recuou de mais de R$ 5,20 no início de julho para R$ 5,09 (20/jul); a alta veio de Chicago e do prêmio, <em>apesar</em> do câmbio.</li>
-  </ul>
   <p>Duas variáveis fora do controle do produtor, multiplicando-se. É exatamente por isso que o preço entra nos cenários como <strong>faixa</strong>, nunca como certeza.</p>
 </section>
 
@@ -483,11 +526,11 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 2 · o veredito</div>
   <h2>Entre +153 mil e −49 mil</h2>
-  <p class="lead">O mesmo projeto, as mesmas 50 ha, o mesmo manejo, e um intervalo de R$ 200 mil entre o melhor e o pior futuro provável.</p>
+  <p class="lead">O mesmo projeto, com as mesmas 50 ha e o mesmo manejo, produz um intervalo de R$ 200 mil entre o melhor e o pior futuro provável.</p>
   <ul class="bullets">
-    <li>O pessimista dá prejuízo <strong>moderado e sobrevivível</strong>: quadro de "atenção"; seguro agrícola e venda escalonada entram na conta, não por medo, mas por número.</li>
-    <li>Uma MS de 25% que parecia confortável <strong>desaparece</strong> quando preço e produção caem juntos, e no RS eles caem juntos: estiagem derruba a produção estadual sem derrubar o preço de Chicago.</li>
-    <li>Contraste com o arroz: lá nem o otimista fecha o CT, cenários também servem para dizer <strong>quando a atividade, e não o ano, é o problema</strong>.</li>
+    <li>O pessimista dá prejuízo <strong>moderado e sobrevivível</strong>: quadro de "atenção"; seguro agrícola e venda escalonada entram na conta, justificados pelo número, não pela impressão de risco.</li>
+    <li>Uma MS de 25% que parecia confortável <strong>desaparece</strong> quando preço e produção caem juntos, situação comum no RS: estiagem derruba a produção estadual sem derrubar o preço de Chicago.</li>
+    <li>Contraste com o arroz: no caso do arroz, nem o otimista cobre o CT. Os cenários também mostram <strong>quando o problema é a atividade, não apenas o ano</strong>.</li>
   </ul>
 </section>
 
@@ -545,7 +588,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Ponte">
   <div class="eyebrow"><b>Ponte</b> · o que vem</div>
   <h2>T7: Crédito rural e fluxo de caixa</h2>
-  <p>Os cenários dizem <em>se</em> o projeto aguenta o ano ruim. A T7 pergunta <strong>com que dinheiro</strong> ele atravessa o ano: Plano Safra, enquadramento (Pronaf, Pronamp), custeio × investimento, e o fluxo de caixa que o banco vai querer ver.</p>
+  <p>Os cenários mostram <em>se</em> o projeto aguenta o ano ruim. A T7 trata de <strong>com que dinheiro</strong> ele atravessa o ano: Plano Safra, enquadramento (Pronaf, Pronamp), custeio × investimento, e o fluxo de caixa que o banco vai querer ver.</p>
   <ul class="bullets">
     <li><strong>Revisar no site</strong>: Parte III, blocos 2 a 5 (função de produção, análise marginal, equilíbrio, cenários) + autoavaliação.</li>
     <li><strong>Trazer para a T7</strong>: o cenário pessimista registrado; ele dimensiona o crédito e a proteção.</li>
@@ -562,7 +605,7 @@ a{color:var(--accent-text)}
   <h2>Fontes e créditos</h2>
   <p class="src">Referência bibliográfica geral: KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <b>Gestão de propriedades rurais</b>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener">Minha Biblioteca</a>. Acesso em: 29 maio 2026. Dados, preços e taxas citados nos exemplos: fontes indicadas em aula e atualizadas a cada oferta.</p>
   <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
-  <p class="note">Material de estudo: <a href="parte-3.html#fatores-producao">Parte III.2: Fatores e função de produção</a> · <a href="parte-3.html#marginal">III.3: Análise marginal</a> · <a href="parte-3.html#equilibrio">III.4: Ponto de equilíbrio</a> · <a href="parte-3.html#cenarios">III.5: Cenários</a> · <a href="parte-3.html#quiz">autoavaliação</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+  <p class="note">Material de estudo: <a href="parte-3.html#fatores-producao">Parte III.2: Fatores e função de produção</a> · <a href="parte-3.html#marginal">III.3: Análise marginal</a> · <a href="parte-3.html#equilibrio">III.4: Ponto de equilíbrio</a> · <a href="parte-3.html#cenarios">III.5: Cenários</a> · <a href="parte-3.html#quiz">autoavaliação</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste material = apostila da aula (Ctrl+P).</p>
 </section>
 
 </main>

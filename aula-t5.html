@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
 <title>T5: Margens e indicadores</title>
-<meta name="description" content="Aula teórica 5: Margem bruta, margem líquida e lucro econômico; indicadores de viabilidade. Deck de projeção e estudo. Colégio Politécnico da UFSM.">
+<meta name="description" content="Aula teórica 5: Margem bruta, margem líquida e lucro econômico; indicadores de viabilidade. Colégio Politécnico da UFSM.">
 <meta name="robots" content="noindex">
 <!-- ============================================================
   GUIA RÁPIDO DE EDIÇÃO (para o professor)
@@ -79,6 +79,7 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .callout.success strong{color:var(--olive)}
 
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.cols2.asym{grid-template-columns:3fr 2fr}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--olive)}
@@ -128,6 +129,8 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .foto{margin:2vh 0;max-width:70vw}
 .foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
 .foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+.foto.side{max-width:100%;margin:0}
+.foto.side img{max-height:52vh;width:100%;object-fit:contain;background:#fff}
 .slide.foto-cheia{justify-content:center;align-items:center}
 .slide.foto-cheia .foto{max-width:88vw;margin:0}
 .slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
@@ -174,7 +177,7 @@ a{color:var(--accent-text)}
 
 <!-- 1 · capa -->
 <section class="slide cover" data-act="Abertura">
-  <div class="eyebrow">Aula teórica · deck de projeção e estudo</div>
+  <div class="eyebrow">Aula teórica · projeção e estudo</div>
   <div class="t-mark">
     <div class="t-num">T5</div>
     <div>
@@ -201,8 +204,8 @@ a{color:var(--accent-text)}
 
 <!-- 5 · a pilha relembrada -->
 <section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · o material da conta</div>
-  <h2>Tudo já está na mesa</h2>
+  <div class="eyebrow"><b>Conceito</b> · os elementos da conta</div>
+  <h2>Nada disso é novo</h2>
   <div class="cascade">
     <div class="row total"><span>RL: receita líquida (passo 1)</span><span>T2</span></div>
     <div class="row"><span>COE: o caixa do ciclo (passo 3)</span><span>T4</span></div>
@@ -237,8 +240,8 @@ a{color:var(--accent-text)}
   <h2>MB: o ano fechou no caixa?</h2>
   <p>A margem bruta diz se a receita cobriu os <strong>desembolsos do ciclo</strong>, nada mais.</p>
   <ul class="bullets">
-    <li><strong>MB negativa</strong>: cada unidade produzida piora o caixa; parar ou reformular <em>imediatamente</em>; não há o que esperar.</li>
-    <li><strong>MB positiva</strong>: o ciclo se paga no curto prazo. É a condição para continuar a safra em andamento, e só isso.</li>
+    <li><strong>MB negativa</strong>: cada unidade produzida piora o caixa; parar ou reformular <em>não pode esperar</em>.</li>
+    <li><strong>MB positiva</strong>: o ciclo se paga no curto prazo. É a condição para continuar a safra em andamento, mas não garante mais do que isso.</li>
   </ul>
   <div class="callout">
     <strong>A armadilha</strong>
@@ -295,7 +298,7 @@ a{color:var(--accent-text)}
     <li><strong>Médio prazo (2–5 anos)</strong>: decide-se pela ML: nenhuma atividade sobrevive anos repondo nada e pagando ninguém.</li>
     <li><strong>Longo prazo (a vida do projeto)</strong>: decide-se pelo LE: capital e terra sempre têm alternativa; ignorá-la é escolher ficar mais pobre devagar.</li>
   </ul>
-  <p class="note">É por isso que uma atividade pode ser racional de manter <em>nesta safra</em> e irracional de manter <em>por dez anos</em>, as duas coisas ao mesmo tempo.</p>
+  <p class="note">É por isso que uma atividade pode ser racional de manter <em>nesta safra</em> e irracional de manter <em>por dez anos</em>.</p>
 </section>
 
 <!-- 12 · indicadores -->
@@ -324,7 +327,7 @@ a{color:var(--accent-text)}
     <li><strong>Preço de nivelamento</strong>: COE ÷ produção, abaixo desse preço, nem o desembolso volta.</li>
   </ul>
   <p>Os nivelamentos são <strong>alarmes antecipados</strong>: comparados com a média regional e o preço de mercado, dizem quanto de folga o projeto tem antes da safra acontecer.</p>
-  <p class="note">Na T6 eles crescem e viram ponto de equilíbrio e margem de segurança.</p>
+  <p class="note">Na T6, esses indicadores se tornam ponto de equilíbrio e margem de segurança.</p>
 </section>
 
 <!-- 14 · referências -->
@@ -341,19 +344,27 @@ a{color:var(--accent-text)}
       <tr><td>Preço de nivelamento</td><td class="num">&lt;&lt; preço de mercado</td><td>CEPEA, cooperativa</td></tr>
     </tbody>
   </table>
-  <p class="note">Rentabilidade menor que a Selic com risco de seca e de preço? O número obriga a pergunta, não a responde sozinho. Contexto e projeto de vida também decidem.</p>
+  <p class="note">Rentabilidade menor que a Selic, com risco de seca e de preço? O número levanta a pergunta, mas não responde sozinho: contexto e projeto de vida também decidem.</p>
 </section>
 
 <!-- 15 · gancho AP -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · agricultura de precisão</div>
   <h2>A margem também é um mapa</h2>
-  <p>Se a receita varia por zona (T2) e o custo varia por zona (T3), então a <strong>margem varia por zona</strong>, e a média da lavoura esconde os extremos.</p>
-  <ul class="bullets">
-    <li>Zonas de alta produtividade: MB por hectare muito acima da média.</li>
-    <li>Zonas degradadas: podem ter <strong>MB negativa</strong> dentro de uma lavoura lucrativa, hectares que destroem valor todo ano.</li>
-  </ul>
-  <p class="note">O mapa de margem é o argumento econômico da AP: ele aponta onde investir em correção, e onde talvez nem valha a pena plantar. A conta de "corrigir se paga?" é a T6.</p>
+  <div class="cols2 asym">
+    <div>
+      <p>Se a receita varia por zona (T2) e o custo varia por zona (T3), então a <strong>margem varia por zona</strong>, e a média da lavoura esconde os extremos.</p>
+      <ul class="bullets compact">
+        <li>Zonas de alta produtividade: MB por hectare muito acima da média.</li>
+        <li>Zonas degradadas: podem ter <strong>MB negativa</strong> dentro de uma lavoura lucrativa, hectares que destroem valor todo ano.</li>
+      </ul>
+      <p class="note">O mapa de margem é o argumento econômico da AP: ele aponta onde investir em correção, e onde talvez nem valha a pena plantar. A T6 avalia se vale a pena corrigir.</p>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/mapa-produtividade-soja.jpg" alt="Mapa de produtividade de uma lavoura de soja gerado pela colheitadeira, com zonas em verde, amarelo e vermelho conforme a produtividade estimada" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>mapa de colheita de soja, zonas de produtividade · CC BY-SA 3.0, ISUcyGrain/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
@@ -362,29 +373,45 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · leite na região central</div>
   <h2>A propriedade leiteira que "vai bem"</h2>
-  <p>Propriedade familiar da região de Santa Maria, o retrato típico dos painéis Campo Futuro/CNA da pecuária de leite:</p>
-  <ul class="bullets">
-    <li><strong>30 vacas em lactação</strong>, 20 L/vaca/dia, 600 L/dia, ~219.000 L/ano.</li>
-    <li>Mão de obra 100% familiar; terra própria; equipamentos quitados.</li>
-    <li>O produtor diz: <em>"o leite paga as contas do mês, vamos bem"</em>.</li>
-  </ul>
-  <p class="note">Valores por litro no padrão Campo Futuro, como referência didática. Consulte o painel mais recente da região e o preço EMATER/RS do dia para números atuais.</p>
+  <div class="cols2 asym">
+    <div>
+      <p>Propriedade familiar da região de Santa Maria, o retrato típico dos painéis Campo Futuro/CNA da pecuária de leite:</p>
+      <ul class="bullets compact">
+        <li><strong>30 vacas em lactação</strong>, 20 L/vaca/dia, 600 L/dia, ~219.000 L/ano.</li>
+        <li>Mão de obra 100% familiar; terra própria; equipamentos quitados.</li>
+        <li>O produtor diz: <em>"o leite paga as contas do mês, vamos bem"</em>.</li>
+      </ul>
+      <p class="note">Valores por litro no padrão Campo Futuro, como referência didática. Consulte o painel mais recente da região e o preço EMATER/RS do dia para números atuais.</p>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/gado-leiteiro-palmeira-pr.jpg" alt="Vacas holandesas pastando em piquete verde, com mata ao fundo" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>gado leiteiro a pasto, Palmeira/PR · CC BY-SA 3.0, Deyvid A. R. Setti/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- 17 · a pilha por litro -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · os números</div>
   <h2>A pilha, por litro de leite</h2>
-  <table class="tbl">
-    <thead><tr><th>Camada</th><th class="num">R$/litro</th><th>O que contém</th></tr></thead>
-    <tbody>
-      <tr><td><strong>RL</strong></td><td class="num">2,40</td><td>preço recebido, líquido de Funrural e frete</td></tr>
-      <tr><td><strong>COE</strong></td><td class="num">2,05</td><td>ração, sanidade, energia, ordenha, manutenção</td></tr>
-      <tr><td><strong>COT</strong></td><td class="num">2,45</td><td>+ depreciação (sala de ordenha, resfriador, matrizes) + pró-labore da família</td></tr>
-      <tr><td><strong>CT</strong></td><td class="num"><b>2,75</b></td><td>+ oportunidade da terra (arrendamento) e do capital</td></tr>
-    </tbody>
-  </table>
-  <p class="note">A conta que quase nenhuma propriedade leiteira faz: o que os painéis Campo Futuro fazem questão de mostrar.</p>
+  <div class="cols2 asym">
+    <div>
+      <table class="tbl">
+        <thead><tr><th>Camada</th><th class="num">R$/litro</th><th>O que contém</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RL</strong></td><td class="num">2,40</td><td>preço recebido, líquido de Funrural e frete</td></tr>
+          <tr><td><strong>COE</strong></td><td class="num">2,05</td><td>ração, sanidade, energia, ordenha, manutenção</td></tr>
+          <tr><td><strong>COT</strong></td><td class="num">2,45</td><td>+ depreciação (sala de ordenha, resfriador, matrizes) + pró-labore da família</td></tr>
+          <tr><td><strong>CT</strong></td><td class="num"><b>2,75</b></td><td>+ oportunidade da terra (arrendamento) e do capital</td></tr>
+        </tbody>
+      </table>
+      <p class="note">A conta que quase nenhuma propriedade leiteira faz: o que os painéis Campo Futuro fazem questão de mostrar.</p>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/resfriador-tanque-leite.jpg" alt="Resfriador de leite a granel, tanque horizontal de inox instalado na sala de leite de uma propriedade leiteira" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>resfriador de leite a granel na sala de leite · CC BY-SA 3.0, Fotonovela/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- 18 · as três margens -->
@@ -403,13 +430,21 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · a descapitalização silenciosa</div>
   <h2>Por que ninguém percebe?</h2>
-  <p class="lead">Porque a MB positiva paga o mercado, a luz e o combustível, <em>a sensação de normalidade é real</em>. O prejuízo está nos itens sem boleto:</p>
-  <ul class="bullets">
-    <li>O resfriador que envelhece sem fundo de reposição.</li>
-    <li>As diárias de 365 dias por ano que a família nunca recebeu.</li>
-    <li>O arrendamento que a terra renderia sem nenhuma ordenha às 5h da manhã.</li>
-  </ul>
-  <p class="note">É o retrato de parte relevante da pecuária leiteira gaúcha nos painéis Campo Futuro, e uma das razões estruturais do abandono da atividade e da sucessão interrompida.</p>
+  <div class="cols2 asym">
+    <div>
+      <p class="lead">Porque a MB positiva paga o mercado, a luz e o combustível, <em>a sensação de normalidade é real</em>. O prejuízo está nos itens sem boleto:</p>
+      <ul class="bullets compact">
+        <li>O resfriador que envelhece sem fundo de reposição.</li>
+        <li>As diárias de 365 dias por ano que a família nunca recebeu.</li>
+        <li>O arrendamento que a terra renderia sem nenhuma ordenha às 5h da manhã.</li>
+      </ul>
+      <p class="note">É o retrato de parte relevante da pecuária leiteira gaúcha nos painéis Campo Futuro, e uma das razões estruturais do abandono da atividade e da sucessão interrompida.</p>
+    </div>
+    <figure class="foto side">
+      <img src="Aulas/ordenha-balde-ao-pe.jpg" alt="Produtor agachado ordenhando uma vaca com ordenhadeira mecânica de balde ao pé, dentro de estábulo simples" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>ordenha mecânica, balde ao pé · CC BY 3.0, Andrevruas/Wikimedia Commons</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- 20 · o que fazer -->
@@ -423,7 +458,7 @@ a{color:var(--accent-text)}
   </ul>
   <div class="callout success">
     <strong>O papel do técnico</strong>
-    Não é decidir pela família, é colocar as três margens na mesa para que a decisão seja tomada enxergando, e não no escuro.
+    Não é decidir pela família, é colocar as três margens na mesa para que a decisão seja tomada com informação completa.
   </div>
 </section>
 
@@ -433,8 +468,8 @@ a{color:var(--accent-text)}
   <h2>Três lições do caso</h2>
   <ul class="bullets">
     <li><strong>"Paga as contas" ≠ viável</strong>: MB positiva com LE negativo é a combinação mais comum e mais perigosa da agropecuária familiar.</li>
-    <li><strong>O prejuízo mora nos invisíveis</strong>: depreciação, pró-labore e oportunidade: exatamente os custos que a T4 obrigou a lançar.</li>
-    <li><strong>A margem certa para a pergunta certa</strong>: continuar a safra? MB. Continuar na atividade? ML. Continuar investido? LE.</li>
+    <li><strong>O prejuízo está nos invisíveis</strong>: depreciação, pró-labore e oportunidade: exatamente os custos que a T4 exigiu lançar.</li>
+    <li><strong>A margem depende da pergunta</strong>: continuar a safra? MB. Continuar na atividade? ML. Continuar investido? LE.</li>
   </ul>
 </section>
 
@@ -453,7 +488,7 @@ a{color:var(--accent-text)}
       <div class="field"><label>Indicadores</label><span class="ph">lucratividade · rentabilidade · IEE · nivelamentos</span></div>
     </div>
   </div>
-  <p class="note">O simulador calcula tudo sozinho a partir dos passos 1–4. A tarefa de hoje não é digitar, é <strong>ler</strong>.</p>
+  <p class="note">O simulador calcula tudo sozinho a partir dos passos 1–4. A tarefa não é digitar, é <strong>ler</strong>.</p>
 </section>
 
 <!-- 23 · interpretação escrita -->
@@ -482,7 +517,7 @@ a{color:var(--accent-text)}
     <li>Interpretação escrita das três margens no campo de observações</li>
     <li>Uma comparação externa registrada (Selic, média regional ou preço de mercado)</li>
   </ul>
-  <p class="note">Terminou antes? Mude o preço do passo 1 em −10% e veja o que acontece com as margens, é o aperitivo da T6.</p>
+  <p class="note">Terminou antes? Mude o preço do passo 1 em −10% e veja o que acontece com as margens: é uma prévia da T6.</p>
 </section>
 
 <!-- ============ ATO 5 · PONTE ============ -->
@@ -491,7 +526,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Ponte">
   <div class="eyebrow"><b>Ponte</b> · o que vem</div>
   <h2>T6: Equilíbrio, análise marginal e cenários</h2>
-  <p>As margens de hoje são uma fotografia. A T6 pergunta o que acontece quando o quadro se move: <strong>quanto a produção pode cair antes do prejuízo? A próxima dose de adubo se paga? E se o preço despencar?</strong></p>
+  <p>As margens são uma fotografia. A T6 examina o que acontece quando o quadro se move: <strong>quanto a produção pode cair antes do prejuízo? A próxima dose de adubo se paga? E se o preço despencar?</strong></p>
   <ul class="bullets">
     <li><strong>Revisar no site</strong>: Parte III, bloco 1 completo (margens e indicadores) + autoavaliação.</li>
     <li><strong>Trazer para a T6</strong>: as três margens do projeto anotadas; elas serão o cenário-base.</li>
@@ -508,7 +543,7 @@ a{color:var(--accent-text)}
   <h2>Fontes e créditos</h2>
   <p class="src">Referência bibliográfica geral: KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <b>Gestão de propriedades rurais</b>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener">Minha Biblioteca</a>. Acesso em: 29 maio 2026. Dados, preços e taxas citados nos exemplos: fontes indicadas em aula e atualizadas a cada oferta.</p>
   <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
-  <p class="note">Material de estudo: <a href="parte-3.html#receita-margens">Parte III.1: Receita, margens e indicadores</a> · <a href="parte-3.html#quiz">autoavaliação da Parte III</a> · <a href="rebanho.html">calculadora do rebanho</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste deck = apostila da aula (Ctrl+P).</p>
+  <p class="note">Material de estudo: <a href="parte-3.html#receita-margens">Parte III.1: Receita, margens e indicadores</a> · <a href="parte-3.html#quiz">autoavaliação da Parte III</a> · <a href="rebanho.html">calculadora do rebanho</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste material = apostila da aula (Ctrl+P).</p>
 </section>
 
 </main>
