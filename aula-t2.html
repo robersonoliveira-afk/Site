@@ -87,6 +87,10 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .split-side .foto,.split-side .linechart{margin:0;max-width:100%;width:100%}
 .split-side .foto img{max-height:32vh;width:100%;object-fit:cover}
 .split-side .tbl{margin:0;font-size:var(--fs-small)}
+.tool-link{display:flex;flex-direction:column;gap:0.9vh;text-decoration:none;border:1px solid var(--rule);background:#fff;padding:2.4vh 1.8vw;box-shadow:0 3px 14px rgba(26,26,23,0.06);max-width:320px}
+.tool-link-lbl{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text)}
+.tool-link-name{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2.2vw,32px);color:var(--ink);line-height:1.15}
+.tool-link-cta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra);font-weight:600}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--terra)}
@@ -416,6 +420,29 @@ a{color:var(--accent-text)}
   </figure>
 </section>
 
+<!-- 12c · relação de troca -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · preço relativo</div>
+  <h2>O preço que importa é o <em>relativo</em></h2>
+  <div class="split">
+    <div>
+      <p>Preço em reais sobe todo ano com a inflação. Quem revela poder de compra é o preço de um produto <strong>medido em outro produto</strong>: quantas sacas de soja compram uma tonelada de ureia.</p>
+      <div class="formula">
+        <span class="label">Relação de troca · soja × ureia, RS</span>
+        jan/2018: <b>18,8</b> sc/t → mar/2026: <b>37,9</b> sc/t
+      </div>
+      <p class="note">Série NESPro/UFRGS, Camnpal e CONAB, valores reais (IPCA). Em aula: abrir a ferramenta e trocar produto e insumo ao vivo.</p>
+    </div>
+    <div class="split-side">
+      <a class="tool-link" href="relacao-troca-precos.html" target="_blank" rel="noopener">
+        <span class="tool-link-lbl">Ferramenta ao vivo</span>
+        <span class="tool-link-name">Relação de troca: lavoura × pecuária</span>
+        <span class="tool-link-cta">abrir →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- 13 · preço defensável -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · faz diferença</div>
@@ -640,7 +667,7 @@ a{color:var(--accent-text)}
   <h2>Fontes e créditos</h2>
   <p class="src">Referência bibliográfica geral: KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <b>Gestão de propriedades rurais</b>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener">Minha Biblioteca</a>. Acesso em: 29 maio 2026. Dados, preços e taxas citados nos exemplos: fontes indicadas em aula e atualizadas a cada oferta.</p>
   <p>Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na organização didática e diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
-  <p class="note">Material de estudo: <a href="parte-3.html#receita-margens">Parte III.1: Receita</a> · <a href="parte-4.html#preco">Parte IV.3: Preço e fontes</a> · <a href="projeto.html">simulador de projetos</a> · versão impressa deste material = apostila da aula (Ctrl+P).</p>
+  <p class="note">Material de estudo: <a href="parte-3.html#receita-margens">Parte III.1: Receita</a> · <a href="parte-4.html#preco">Parte IV.3: Preço e fontes</a> · <a href="projeto.html">simulador de projetos</a> · <a href="relacao-troca-precos.html" target="_blank" rel="noopener">relação de troca: lavoura × pecuária</a> · versão impressa deste material = apostila da aula (Ctrl+P).</p>
 </section>
 
 </main>
