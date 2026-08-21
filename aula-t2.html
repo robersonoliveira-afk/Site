@@ -90,7 +90,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tool-link{display:flex;flex-direction:column;gap:0.9vh;text-decoration:none;border:1px solid var(--rule);background:#fff;padding:2.4vh 1.8vw;box-shadow:0 3px 14px rgba(26,26,23,0.06);max-width:320px}
 .tool-link-lbl{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text)}
 .tool-link-name{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2.2vw,32px);color:var(--ink);line-height:1.15}
-.tool-link-cta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra);font-weight:600}
+.tool-link-cta{display:flex;align-items:center;gap:0.5em;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra);font-weight:600}
+.tool-link-cta svg{width:1.1em;height:1.1em;animation:tool-click-pulse 1.6s ease-in-out infinite}
+@keyframes tool-click-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.18);opacity:0.7}}
 .panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
 .panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
 .panel h3.alt{color:var(--terra)}
@@ -462,13 +464,13 @@ a{color:var(--accent-text)}
         <span class="label">Relação de troca · soja × ureia, RS</span>
         jan/2018: <b>18,8</b> sc/t → mar/2026: <b>37,9</b> sc/t
       </div>
-      <p class="note">Série NESPro/UFRGS, Camnpal e CONAB, valores reais (IPCA). Em aula: abrir a ferramenta e trocar produto e insumo ao vivo.</p>
+      <p class="note">Série NESPro/UFRGS, Camnpal e CONAB, valores reais (IPCA). Abra e explore essa ferramenta.</p>
     </div>
     <div class="split-side">
       <a class="tool-link" href="relacao-troca-precos.html" target="_blank" rel="noopener">
         <span class="tool-link-lbl">Ferramenta ao vivo</span>
         <span class="tool-link-name">Relação de troca: lavoura × pecuária</span>
-        <span class="tool-link-cta">abrir →</span>
+        <span class="tool-link-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path></svg> clique aqui</span>
       </a>
     </div>
   </div>
