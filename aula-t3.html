@@ -89,6 +89,8 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tbl.tbl-wide{max-width:100%}
 .tbl.tbl-wide td em{color:var(--ink-soft);font-style:italic}
 .tbl td.blank{border-bottom:1.5pt dashed var(--stone-light);min-width:2.4em}
+.tbl.tbl-tight th,.tbl.tbl-tight td{padding:0.7vh 0.7vw;white-space:nowrap}
+.tbl.tbl-tight{font-size:clamp(12px,1.35vw,20px)}
 .tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
 .tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
 .tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
@@ -278,23 +280,21 @@ a{color:var(--accent-text)}
 
 <!-- 8b · rebanho estabilizado: cálculo no quadro -->
 <section class="slide top-align" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · rebanho estabilizado · vamos calcular</div>
+  <div class="eyebrow"><b>Conceito</b> · rebanho estabilizado · a evolução no tempo</div>
   <h2>Um rebanho que não cresce nem encolhe</h2>
   <p class="note">Premissas: natalidade 80% · mortalidade de bezerros 5% · descarte anual de matrizes 20% · 1 touro para 25 vacas · vida útil do touro 4 anos.</p>
-  <table class="tbl tbl-wide">
-    <thead><tr><th>Indicador</th><th>Como calcular</th><th>Resultado</th></tr></thead>
+  <table class="tbl tbl-wide tbl-tight">
+    <thead><tr><th>Ano</th><th>Matrizes</th><th>Touros</th><th>Nascim. M/F</th><th>Desmame M/F</th><th>Descarte vacas</th><th>Novilhas retidas</th><th>Excedente venda</th><th>Touro descarte</th></tr></thead>
     <tbody>
-      <tr><td>Matrizes (vacas)</td><td>ponto de partida do diagnóstico</td><td class="num"><strong>100</strong></td></tr>
-      <tr><td>Touros</td><td>1 touro : 25 vacas</td><td class="num blank"></td></tr>
-      <tr><td>Nascimentos: total → machos / fêmeas</td><td>matrizes × natalidade, depois ÷ 2</td><td class="num blank"></td></tr>
-      <tr><td>Desmame viável: machos / fêmeas</td><td>nascidos − mortalidade (5%)</td><td class="num blank"></td></tr>
-      <tr><td>Vacas de descarte</td><td>matrizes × descarte anual</td><td class="num blank"></td></tr>
-      <tr><td>Novilhas retidas (reposição)</td><td>repor 1 para 1 as vacas descartadas</td><td class="num blank"></td></tr>
-      <tr><td>Excedente para venda</td><td>desmamados − retidas</td><td class="num blank"></td></tr>
-      <tr><td>Touro de descarte</td><td>plantel de touros ÷ vida útil</td><td class="num blank"></td></tr>
+      <tr><td>1</td><td class="num">100</td><td class="num">4</td><td class="num">40 / 40</td><td class="num">38 / 38</td><td class="num">20</td><td class="num">20</td><td class="num">38 M + 18 F</td><td class="num">1</td></tr>
+      <tr><td>2</td><td class="num">100</td><td class="num">4</td><td class="num">40 / 40</td><td class="num">38 / 38</td><td class="num">20</td><td class="num">20</td><td class="num">38 M + 18 F</td><td class="num">1</td></tr>
+      <tr><td>3</td><td class="num">100</td><td class="num">4</td><td class="num">40 / 40</td><td class="num">38 / 38</td><td class="num">20</td><td class="num">20</td><td class="num">38 M + 18 F</td><td class="num">1</td></tr>
+      <tr><td>4</td><td class="num">100</td><td class="num">4</td><td class="num">40 / 40</td><td class="num">38 / 38</td><td class="num">20</td><td class="num">20</td><td class="num">38 M + 18 F</td><td class="num">1</td></tr>
+      <tr><td>5</td><td class="num">100</td><td class="num">4</td><td class="num">40 / 40</td><td class="num">38 / 38</td><td class="num">20</td><td class="num">20</td><td class="num">38 M + 18 F</td><td class="num">1</td></tr>
+      <tr><td>6</td><td class="num">100</td><td class="num">4</td><td class="num">40 / 40</td><td class="num">38 / 38</td><td class="num">20</td><td class="num">20</td><td class="num">38 M + 18 F</td><td class="num">1</td></tr>
     </tbody>
   </table>
-  <p class="note">Façam a conta juntos, linha por linha, no quadro: sair da sala com o rebanho de 100 matrizes estabilizado, sem crescer nem encolher.</p>
+  <p class="note">Reparem: os números se repetem ano após ano — é isso que "estabilizado" significa. Cada novilha retida este ano só entra como matriz daqui a ~2-3 anos (recria + primeira cria); mude a taxa de descarte ou a retenção, e essa tabela inteira muda.</p>
 </section>
 
 <!-- 9 · fruticultura: sistema -->
