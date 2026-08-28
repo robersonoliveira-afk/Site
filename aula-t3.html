@@ -90,6 +90,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
 .tbl td.num b{color:var(--terra)}
 .tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
+.tbl td .line-ico{display:inline-block;width:14px;height:14px;vertical-align:-3px;margin-right:7px;color:var(--terra);stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+.h-ico{display:inline-block;width:16px;height:16px;vertical-align:-3px;margin-right:8px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* capa */
 .cover{justify-content:center}
@@ -203,7 +206,7 @@ a{color:var(--accent-text)}
     <span class="label">Regra de ouro do curso</span>
     toda prática de manejo declarada precisa reaparecer como <b>custo</b>
   </div>
-  <p class="note">A banca da defesa cruza as duas listas: manejo sem custo correspondente e custo sem manejo que o justifique são falhas do projeto.</p>
+  <p class="note"><strong>Manejo sem custo correspondente e custo sem manejo que o justifique são falhas do projeto.</strong></p>
 </section>
 
 <!-- 5 · a lógica que não muda -->
@@ -321,7 +324,7 @@ a{color:var(--accent-text)}
   <h2>Variáveis × fixos</h2>
   <div class="cols2">
     <div class="panel">
-      <h3>Custos variáveis (CV)</h3>
+      <h3><svg class="h-ico" viewBox="0 0 24 24"><path d="M4 20V14M9 20V10M14 20V6M19 20V3"/></svg>Custos variáveis (CV)</h3>
       <p>Variam com a escala de produção: mais área, mais custo; menos área, menos custo.</p>
       <ul class="bullets compact">
         <li>Sementes, fertilizantes, corretivos, defensivos</li>
@@ -330,7 +333,7 @@ a{color:var(--accent-text)}
       </ul>
     </div>
     <div class="panel">
-      <h3 class="alt">Custos fixos (CF)</h3>
+      <h3 class="alt"><svg class="h-ico" viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M4 9h16"/></svg>Custos fixos (CF)</h3>
       <p>Existem independentemente do volume. Mesmo em ano sem safra, permanecem: remuneram a estrutura, não a produção.</p>
       <ul class="bullets compact">
         <li>Depreciação de máquinas e benfeitorias</li>
@@ -449,10 +452,10 @@ a{color:var(--accent-text)}
   <table class="tbl">
     <thead><tr><th>Prática declarada</th><th>Itens que ela gera na planilha IRGA</th></tr></thead>
     <tbody>
-      <tr><td><strong>Irrigação por inundação</strong></td><td>diesel e energia das bombas, água, canais e condutos, taipas, aguador</td></tr>
-      <tr><td><strong>Adubação conforme laudo</strong></td><td>adubo de base e cobertura, ureia, aplicação</td></tr>
-      <tr><td><strong>Controle fitossanitário</strong></td><td>agroquímicos, aviação agrícola</td></tr>
-      <tr><td><strong>Colheita mecanizada</strong></td><td>combustível, manutenção, transportes internos, secagem, frete</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 3c-3 4-6 6-6 10a6 6 0 0012 0c0-4-3-6-6-10z"/></svg><strong>Irrigação por inundação</strong></td><td>diesel e energia das bombas, água, canais e condutos, taipas, aguador</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 20v-9"/><path d="M12 13c-3 .5-5-1.5-5-4.5 3-.5 5 1.5 5 4.5z"/><path d="M12 13c3 .5 5-1.5 5-4.5-3-.5-5 1.5-5 4.5z"/></svg><strong>Adubação conforme laudo</strong></td><td>adubo de base e cobertura, ureia, aplicação</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 3l6 2.5v5c0 4.5-2.5 7.5-6 9-3.5-1.5-6-4.5-6-9v-5z"/></svg><strong>Controle fitossanitário</strong></td><td>agroquímicos, aviação agrícola</td></tr>
+      <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 20V6"/><path d="M12 8c-2-2-4-2-5-1 1 2 3 2 5 1z"/><path d="M12 8c2-2 4-2 5-1-1 2-3 2-5 1z"/><path d="M12 11c-2-2-4-2-5-1 1 2 3 2 5 1z"/><path d="M12 11c2-2 4-2 5-1-1 2-3 2-5 1z"/></svg><strong>Colheita mecanizada</strong></td><td>combustível, manutenção, transportes internos, secagem, frete</td></tr>
     </tbody>
   </table>
   <p class="note">Teste reverso: se o projeto declara "controle de invasoras" e a planilha não tem herbicida nem aplicação, falta uma linha.</p>
