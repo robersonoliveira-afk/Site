@@ -49,6 +49,7 @@ body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-s
 .deck{position:fixed;inset:0}
 .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
 .slide.on{display:flex}
+.slide.top-align{justify-content:flex-start}
 .slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
 
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
@@ -85,6 +86,9 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .panel p,.panel li{font-size:var(--fs-small)}
 
 .tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl.tbl-wide{max-width:100%}
+.tbl.tbl-wide td em{color:var(--ink-soft);font-style:italic}
+.tbl td.blank{border-bottom:1.5pt dashed var(--stone-light);min-width:2.4em}
 .tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
 .tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
 .tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
@@ -234,7 +238,7 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 7 · agricultura: laudo de solo -->
-<section class="slide" data-act="Conceito">
+<section class="slide top-align" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 1/3</div>
   <h2>Agricultura: o laudo de solo</h2>
   <p>Nenhuma lavoura séria começa sem análise de solo. O laudo é a origem dos <strong>maiores custos variáveis</strong> de qualquer cultura: calagem e adubação de base e cobertura.</p>
@@ -242,18 +246,17 @@ a{color:var(--accent-text)}
     <ul class="bullets">
       <li>Lê-se o laudo, consulta-se o <strong>Manual CQFS-RS/SC</strong> (11ª ed., 2016), obtém-se a dose: calcário em t/ha, adubo em kg/ha.</li>
       <li>Em trigo de alta tecnologia (60 sc/ha esperadas), fertilizantes chegam a <strong>~39% do custo de produção</strong> (CEPA/Epagri, safra 2026).</li>
-      <li>A análise custa <strong>R$ 65 a R$ 150 por amostra</strong>, e é o primeiro item da planilha, porque fundamenta todos os outros.</li>
     </ul>
     <figure class="foto side">
       <img src="Aulas/coleta-amostra-solo.jpg" alt="Técnico curvado na lavoura retirando amostra de solo com trado, ao lado de um balde de coleta, entre as linhas de milho recém-emergido" loading="lazy" onerror="this.style.display='none'">
       <figcaption>coleta da amostra na lavoura · domínio público, Tim McCabe/USDA-NRCS</figcaption>
     </figure>
   </div>
-  <p class="note">Análise química e física do solo também é requisito do crédito rural (Parte IV.2).</p>
+  <p class="note">A análise custa <strong>R$ 65 a R$ 150 por amostra</strong> e também é requisito do crédito rural (Parte IV.2) — é o primeiro item da planilha, porque fundamenta todos os outros.</p>
 </section>
 
 <!-- 8 · zootecnia: rebanho -->
-<section class="slide" data-act="Conceito">
+<section class="slide top-align" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · diagnóstico por atividade · 2/3</div>
   <h2>Zootecnia: estrutura e evolução do rebanho</h2>
   <p>O equivalente ao laudo é responder: <strong>quantos animais de cada categoria</strong> existem, e como esse número evolui no tempo?</p>
@@ -269,8 +272,29 @@ a{color:var(--accent-text)}
   </div>
   <div class="callout">
     <strong>Erro frequente</strong>
-    Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. A calculadora do site (rebanho.html) mostra como o resultado muda por categoria.
+    Tratar o rebanho como número único ("100 animais") distorce ração e sanidade. A calculadora (rebanho.html) mostra o efeito por categoria.
   </div>
+</section>
+
+<!-- 8b · rebanho estabilizado: cálculo no quadro -->
+<section class="slide top-align" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · rebanho estabilizado · vamos calcular</div>
+  <h2>Um rebanho que não cresce nem encolhe</h2>
+  <p class="note">Premissas: natalidade 80% · mortalidade de bezerros 5% · descarte anual de matrizes 20% · 1 touro para 25 vacas · vida útil do touro 4 anos.</p>
+  <table class="tbl tbl-wide">
+    <thead><tr><th>Indicador</th><th>Como calcular</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>Matrizes (vacas)</td><td>ponto de partida do diagnóstico</td><td class="num"><strong>100</strong></td></tr>
+      <tr><td>Touros</td><td>1 touro : 25 vacas</td><td class="num blank"></td></tr>
+      <tr><td>Nascimentos: total → machos / fêmeas</td><td>matrizes × natalidade, depois ÷ 2</td><td class="num blank"></td></tr>
+      <tr><td>Desmame viável: machos / fêmeas</td><td>nascidos − mortalidade (5%)</td><td class="num blank"></td></tr>
+      <tr><td>Vacas de descarte</td><td>matrizes × descarte anual</td><td class="num blank"></td></tr>
+      <tr><td>Novilhas retidas (reposição)</td><td>repor 1 para 1 as vacas descartadas</td><td class="num blank"></td></tr>
+      <tr><td>Excedente para venda</td><td>desmamados − retidas</td><td class="num blank"></td></tr>
+      <tr><td>Touro de descarte</td><td>plantel de touros ÷ vida útil</td><td class="num blank"></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Façam a conta juntos, linha por linha, no quadro: sair da sala com o rebanho de 100 matrizes estabilizado, sem crescer nem encolher.</p>
 </section>
 
 <!-- 9 · fruticultura: sistema -->
@@ -397,14 +421,16 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a estrutura que a classificação alimenta</div>
   <h2>Onde a classificação se encaixa</h2>
-  <p>Os itens classificados serão somados em três camadas, a estrutura Matsunaga/IEA usada pelo Campo Futuro/CNA:</p>
-  <div class="cascade">
-    <div class="row total"><span>COE: desembolsos do ciclo (explícitos)</span></div>
-    <div class="row"><span>+ depreciação → COT</span></div>
-    <div class="row"><span>+ remuneração dos fatores → CT</span></div>
-    <div class="row final"><span>RL − cada camada = margens</span></div>
-  </div>
-  <p class="note">O trabalho desta aula é ter a lista completa e bem classificada. Sem ela, a soma seguinte erra, e a interpretação também.</p>
+  <p>Os itens classificados serão somados em três camadas, a estrutura Matsunaga/IEA usada pelo Campo Futuro/CNA. Cada camada responde a uma pergunta diferente do produtor:</p>
+  <table class="tbl tbl-wide">
+    <thead><tr><th>Nível de custo</th><th>O que compõe?</th><th>Pergunta que responde</th></tr></thead>
+    <tbody>
+      <tr><td><strong>COE</strong></td><td>Custos diretos, variáveis e explícitos: insumos, diesel, mão de obra contratada.</td><td><em>"Consigo pagar as contas deste ano e continuar na atividade no curtíssimo prazo?"</em></td></tr>
+      <tr><td><strong>COT</strong></td><td>COE + custos implícitos de reposição: depreciação de máquinas e mão de obra da própria família.</td><td><em>"Consigo repor meu maquinário e sustentar minha família no médio prazo sem me endividar?"</em></td></tr>
+      <tr><td><strong>CT</strong></td><td>COT + custos de oportunidade: remuneração sobre o capital investido e sobre a terra.</td><td><em>"Vale a pena continuar produzindo, ou eu ganharia mais arrendando a terra e investindo no mercado?"</em></td></tr>
+    </tbody>
+  </table>
+  <p class="note">RL − cada camada = a margem correspondente. O trabalho desta aula é ter a lista completa e bem classificada: sem ela, essa soma erra, e a interpretação também.</p>
 </section>
 
 <!-- 17 · gancho AP -->
