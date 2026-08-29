@@ -90,6 +90,23 @@ body.lista .barra,body.lista .prog{display:none}
 .mapa-legenda .dot.ref{background:var(--tinta);border-radius:2px;transform:rotate(45deg)}
 .pt-ref{fill:var(--tinta)}
 .pt-ref-label{font-family:var(--mono);font-size:9px;fill:var(--tinta2)}
+/* tags / palavras-chave */
+.tags-grupo{margin-bottom:1.5rem}
+.tags-grupo .rot{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);margin-bottom:.6rem}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{display:inline-block;background:var(--papel2);border:1px solid var(--linha);border-radius:20px;padding:.32rem .85rem;font-size:.86rem;color:var(--tinta2);line-height:1.3}
+/* frequencia */
+.freq-row{display:grid;grid-template-columns:15rem 1fr 3.6rem;align-items:center;gap:.8rem;margin-bottom:.6rem}
+.freq-row .nome{font-size:.94rem;color:var(--tinta)}
+.freq-row .trilha{background:var(--papel3);border-radius:2px;height:12px;overflow:hidden}
+.freq-row .barval{height:100%;border-radius:2px}
+.freq-row .barval.ambiental{background:var(--oliva)}
+.freq-row .barval.mercado{background:var(--terra)}
+.freq-row .barval.outro{background:var(--tinta3)}
+.freq-row .qtd{font-family:var(--mono);font-size:.82rem;color:var(--tinta3);text-align:right}
+.freq-legenda{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1rem;font-size:.85rem;color:var(--tinta2)}
+.freq-legenda .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:.4rem;vertical-align:-1px}
+.freq-legenda .sw.ambiental{background:var(--oliva)} .freq-legenda .sw.mercado{background:var(--terra)} .freq-legenda .sw.outro{background:var(--tinta3)}
 @media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
 </style>
 </head>
@@ -235,12 +252,92 @@ body.lista .barra,body.lista .prog{display:none}
   </div>
 </section>
 
+<!-- 06 palavras-chave dos cartazes -->
+<section class="slide">
+  <div class="kicker">Turma 2026 · Brainstorming em cartazes</div>
+  <h2>Todas as palavras-chave que apareceram</h2>
+  <p class="lead" style="margin-bottom:.4rem">Os três grupos escreveram estes termos nos cartazes de brainstorming para o Polifruti, antes de qualquer classificação nossa.</p>
+
+  <div class="tags-grupo">
+    <div class="rot">Cartaz 1</div>
+    <div class="tag-cloud">
+      <span class="tag">Mudanças climáticas</span><span class="tag">Adaptação e produção</span><span class="tag">Irrigação</span><span class="tag">Manejo do solo</span><span class="tag">Orientações (estrutura e legislação)</span><span class="tag">Processamento e agregação de valor</span><span class="tag">Custo-benefício</span><span class="tag">Qualidade de vida dos frutícultores</span><span class="tag">Bioinsumos</span><span class="tag">Marca de produto</span><span class="tag">Identidade</span><span class="tag">Impacto das derivas</span><span class="tag">Orientação, esclarecimento, formação</span>
+    </div>
+  </div>
+
+  <div class="tags-grupo">
+    <div class="rot">Cartaz 2</div>
+    <div class="tag-cloud">
+      <span class="tag">Atualização técnica</span><span class="tag">Greening</span><span class="tag">Pragas do pomar doméstico</span><span class="tag">Controle biológico</span><span class="tag">Poda</span><span class="tag">Plantio</span><span class="tag">Espaçamento</span><span class="tag">Análise de solo</span><span class="tag">Matéria orgânica</span><span class="tag">Tecnologia de produção</span><span class="tag">Logística</span><span class="tag">Mercado comprador</span><span class="tag">Consumidor / público</span><span class="tag">Questão ambiental</span><span class="tag">Aproveitamento de área</span><span class="tag">Consórcio em áreas pequenas</span><span class="tag">Deriva</span><span class="tag">Relato de produtor (pitaia)</span>
+    </div>
+  </div>
+
+  <div class="tags-grupo">
+    <div class="rot">Cartaz 3</div>
+    <div class="tag-cloud">
+      <span class="tag">Plantio ecológico</span><span class="tag">Mudança de paradigmas</span><span class="tag">Conscientização</span><span class="tag">Transição agroecológica</span><span class="tag">Biofertilizantes</span><span class="tag">Caldas</span><span class="tag">Certificação orgânica</span><span class="tag">Agregação de valor</span><span class="tag">Benefícios à saúde</span><span class="tag">Plantas consorciadas</span><span class="tag">Recuperação de áreas degradadas</span><span class="tag">Manejo fitossanitário</span><span class="tag">Homeopatia</span><span class="tag">Cuidados alternativos</span><span class="tag">Sistema agroflorestal</span><span class="tag">Preservação do ecossistema</span><span class="tag">Espaços urbanos</span><span class="tag">Hortas escolares / comunitárias</span><span class="tag">Cadastro de culturas sensíveis</span><span class="tag">Amparo legal</span><span class="tag">Deriva</span>
+    </div>
+  </div>
+</section>
+
+<!-- 07 frequencia -->
+<section class="slide">
+  <div class="kicker oliva">Turma 2026 · Frequência entre os grupos</div>
+  <h2>O que se repete nos três cartazes</h2>
+  <p class="lead" style="margin-bottom:.4rem">Contagem por grupo que tocou no tema, não por palavra repetida. Termos parecidos foram agrupados: "impacto das derivas", "deriva" e "amparo legal contra a deriva" contam como um só tema.</p>
+
+  <div class="especies">
+    <div class="freq-row"><div class="nome">Deriva: amparo legal e orientação</div><div class="trilha"><div class="barval ambiental" style="width:100%"></div></div><div class="qtd">3 / 3</div></div>
+    <div class="freq-row"><div class="nome">Transição agroecológica e manejo alternativo</div><div class="trilha"><div class="barval ambiental" style="width:100%"></div></div><div class="qtd">3 / 3</div></div>
+    <div class="freq-row"><div class="nome">Agregação de valor e mercado</div><div class="trilha"><div class="barval mercado" style="width:100%"></div></div><div class="qtd">3 / 3</div></div>
+    <div class="freq-row"><div class="nome">Aproveitamento de área e espaços pequenos</div><div class="trilha"><div class="barval ambiental" style="width:66%"></div></div><div class="qtd">2 / 3</div></div>
+    <div class="freq-row"><div class="nome">Manejo técnico convencional e tecnologia</div><div class="trilha"><div class="barval outro" style="width:66%"></div></div><div class="qtd">2 / 3</div></div>
+    <div class="freq-row"><div class="nome">Mudanças climáticas</div><div class="trilha"><div class="barval ambiental" style="width:33%"></div></div><div class="qtd">1 / 3</div></div>
+    <div class="freq-row"><div class="nome">Qualidade de vida dos frutícultores</div><div class="trilha"><div class="barval outro" style="width:33%"></div></div><div class="qtd">1 / 3</div></div>
+    <div class="freq-row"><div class="nome">Logística</div><div class="trilha"><div class="barval outro" style="width:33%"></div></div><div class="qtd">1 / 3</div></div>
+    <div class="freq-legenda">
+      <span><span class="sw ambiental"></span>Ambiental / ecológico</span>
+      <span><span class="sw mercado"></span>Mercado / agregação de valor</span>
+      <span><span class="sw outro"></span>Outros</span>
+    </div>
+  </div>
+  <div class="destaque">
+    <p><strong>Padrão que salta aos olhos:</strong> das linhas com 2/3 ou 3/3, quatro das cinco são de natureza ambiental (verde). Só o eixo de mercado escapa dessa maioria. Não é força de expressão: foi a própria turma que escreveu isso nos cartazes, de forma independente entre os três grupos.</p>
+  </div>
+</section>
+
+<!-- 08 temas possiveis -->
+<section class="slide">
+  <div class="kicker mostarda">Turma 2026 · Proposta para validação</div>
+  <h2>Possíveis temas para o Polifruti</h2>
+  <p class="lead" style="margin-bottom:.4rem">A partir da recorrência entre os três cartazes, três candidatos se destacam por aparecerem nos três grupos, sem que os grupos tenham combinado entre si.</p>
+
+  <div class="eixo">
+    <div class="rot"><span class="nome">1. Deriva de herbicidas hormonais: amparo legal e orientação</span><span class="qtd">3 / 3 cartazes</span></div>
+    <div class="cita">Este eixo também apareceu, de forma independente, no fórum de escolha das UPAs (Unidade 1, aula 4): terceira fonte confirmando o mesmo tema.</div>
+  </div>
+
+  <div class="eixo">
+    <div class="rot"><span class="nome">2. Transição agroecológica: bioinsumos e manejo alternativo</span><span class="qtd">3 / 3 cartazes</span></div>
+    <div class="cita">Concentra a maior parte dos itens do cartaz 3 (plantio ecológico, biofertilizantes, certificação, manejo fitossanitário, sistema agroflorestal) e conversa com "bioinsumos" (cartaz 1) e "controle biológico" (cartaz 2).</div>
+  </div>
+
+  <div class="eixo">
+    <div class="rot"><span class="nome">3. Do pomar ao mercado: agregação de valor e identidade</span><span class="qtd">3 / 3 cartazes</span></div>
+    <div class="cita">Processamento, marca e identidade (cartaz 1); mercado comprador e consumidor (cartaz 2); agregação de valor e benefícios à saúde (cartaz 3).</div>
+  </div>
+
+  <div class="destaque">
+    <p><strong>Decisão em aberto:</strong> dois dos três candidatos (1 e 2) são de natureza ambiental. Manter os dois separados, já que um trata de ameaça externa e jurídica e o outro de prática de manejo, ou fundir num único eixo ambiental e abrir a terceira vaga para outro candidato, como mudanças climáticas, qualidade de vida dos frutícultores ou um segundo desdobramento de mercado? Ficam de fora por enquanto, com 1/3: mudanças climáticas, qualidade de vida dos frutícultores, logística e o relato de produtor como formato de atividade.</p>
+  </div>
+</section>
+
 <div class="prog" id="prog"></div>
 <div class="barra">
   <span>Unidade 1 · Anexo: retrato da turma e eixos do Polifruti</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 5</span>
+    <span id="cont">1 / 8</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>
