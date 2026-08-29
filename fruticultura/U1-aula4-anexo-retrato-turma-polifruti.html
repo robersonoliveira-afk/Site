@@ -87,6 +87,9 @@ body.lista .barra,body.lista .prog{display:none}
 .mapa-legenda .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
 .mapa-legenda .dot.exact{background:var(--terra)}
 .mapa-legenda .dot.approx{background:var(--papel);border:2px solid var(--mostarda)}
+.mapa-legenda .dot.ref{background:var(--tinta);border-radius:2px;transform:rotate(45deg)}
+.pt-ref{fill:var(--tinta)}
+.pt-ref-label{font-family:var(--mono);font-size:9px;fill:var(--tinta2)}
 @media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
 </style>
 </head>
@@ -219,12 +222,15 @@ body.lista .barra,body.lista .prog{display:none}
         <circle class="pt-exact" cx="339.8" cy="95.7" r="4.4"><title>Palmeira das Missões</title></circle>
         <circle class="pt-exact" cx="326.0" cy="225.7" r="4.4"><title>Sobradinho</title></circle>
         <circle class="pt-exact" cx="271.5" cy="246.8" r="4.4"><title>São Pedro do Sul (Tiago)</title></circle>
+        <rect class="pt-ref" x="484.3" y="273.7" width="7" height="7" transform="rotate(45 487.8 277.2)"><title>Porto Alegre (referência, não é UPA)</title></rect>
+        <text class="pt-ref-label" x="493" y="280">POA</text>
       </svg>
     </div>
     <div class="mapa-legenda">
       <div class="item"><span class="dot exact"></span> Coordenada informada pelo próprio aluno na ficha</div>
       <div class="item"><span class="dot approx"></span> Aproximado pelo centro do município, quando a ficha não trouxe coordenada</div>
-      <p style="margin-top:1rem">Contorno: malha territorial do RS, IBGE. Pontos no mesmo município foram levemente afastados só para ficarem visíveis; passe o cursor sobre cada um para ver a UPA. Fora do mapa: 1 ficha em Clevelândia, no Paraná.</p>
+      <div class="item"><span class="dot ref"></span> Porto Alegre, só como referência: não é uma UPA</div>
+      <p style="margin-top:1rem">Contorno: malha territorial do RS, IBGE. Pontos no mesmo município foram levemente afastados só para ficarem visíveis; passe o cursor sobre cada um para ver a UPA. Fora do mapa: 1 ficha em Clevelândia, no Paraná. O ponto mais próximo de Porto Alegre é Montenegro, a cerca de 55 km da capital.</p>
     </div>
   </div>
 </section>
