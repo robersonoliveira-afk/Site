@@ -107,6 +107,12 @@ body.lista .barra,body.lista .prog{display:none}
 .freq-legenda{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1rem;font-size:.85rem;color:var(--tinta2)}
 .freq-legenda .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:.4rem;vertical-align:-1px}
 .freq-legenda .sw.ambiental{background:var(--oliva)} .freq-legenda .sw.mercado{background:var(--terra)} .freq-legenda .sw.outro{background:var(--tinta3)}
+/* programacao */
+table{border-collapse:collapse;width:100%;margin-top:1.2rem;font-size:.95rem}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--linha);font-weight:500}
+td{padding:.75rem .8rem;border-bottom:1px solid var(--linha);color:var(--tinta2);line-height:1.45;vertical-align:top}
+td:first-child{color:var(--tinta);font-weight:500;white-space:nowrap}
+tr.coffee td{background:var(--mostarda-cl)}
 @media print{.barra,.prog{display:none}.slide{display:flex!important;min-height:auto;page-break-after:always;padding:2cm}}
 </style>
 </head>
@@ -332,12 +338,32 @@ body.lista .barra,body.lista .prog{display:none}
   </div>
 </section>
 
+<!-- 09 proposta de programacao -->
+<section class="slide">
+  <div class="kicker">Turma 2026 · Proposta de programação</div>
+  <h2>V Polifruti: uma ideia de estrutura para o dia</h2>
+  <p class="lead" style="margin-bottom:.4rem">Proposta ainda aberta, construída a partir da recorrência dos temas nos três cartazes. Serve de ponto de partida para a decisão final da equipe organizadora.</p>
+
+  <table>
+    <tr><th style="width:16%">Horário</th><th>Bloco</th><th style="width:22%">Quem conduz</th></tr>
+    <tr><td>08h00 – 09h00</td><td>Abertura oficial e atualização: a situação das derivas de herbicidas hormonais no RS</td><td>Prof. Gustavo Pinto</td></tr>
+    <tr><td>09h00 – 11h10</td><td>Transição agroecológica na prática: estações rotativas de diagnóstico e manejo fitossanitário alternativo, bioinsumos na prática e desenho do pomar</td><td>Equipe técnica e convidados</td></tr>
+    <tr class="coffee"><td>11h10 – 11h40</td><td>Coffee break, posicionado logo após a parte prática, quando o público está mais engajado e retorna mais rápido</td><td></td></tr>
+    <tr><td>11h40 – 12h10</td><td>Do pomar ao mercado: transformando a transição em valor</td><td>Uma aluna</td></tr>
+    <tr><td>12h10 – 12h30</td><td>Encerramento, funciona como margem de segurança para eventual atraso no retorno do coffee</td><td></td></tr>
+  </table>
+
+  <div class="destaque">
+    <p><strong>Pontos ainda em aberto para a equipe organizadora decidir:</strong> quem conduz o bloco central; se ele mantém 3 estações de ~40 min ou passa para 2 estações de ~60 min; e se o formato é de estações rotativas mão na massa ou de GTs simultâneos, como no IV Polifruti.</p>
+  </div>
+</section>
+
 <div class="prog" id="prog"></div>
 <div class="barra">
   <span>Unidade 1 · Anexo: retrato da turma e eixos do Polifruti</span>
   <span class="mid">
     <button onclick="ir(-1)">← anterior</button>
-    <span id="cont">1 / 8</span>
+    <span id="cont">1 / 9</span>
     <button onclick="ir(1)">próximo →</button>
     <button onclick="document.body.classList.toggle('lista')">modo lista</button>
   </span>
