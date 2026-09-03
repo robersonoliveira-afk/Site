@@ -178,6 +178,78 @@ ul.tight li{font-size:16px;gap:8px}
 #zona-esq,#zona-dir{position:fixed;top:0;bottom:0;width:12%;z-index:10;cursor:pointer}
 #zona-esq{left:0}#zona-dir{right:0}
 @media print{body{display:block;overflow:visible}#palco{width:auto;height:auto;transform:none!important}.slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;page-break-after:always}#nav,#zona-esq,#zona-dir{display:none}}
+
+/* ===== celular e telas estreitas: layout fluido, um slide por vez, rolagem vertical ===== */
+@media (max-width:820px){
+  html,body{height:auto}
+  html{overflow-x:hidden}
+  body{display:block;overflow:visible}
+  #palco{width:100%!important;height:auto!important;transform:none!important;transform-origin:top left}
+
+  .slide{position:static;inset:auto;min-height:100vh;height:auto;padding:26px 18px 96px;box-shadow:none}
+  .slide.on{display:flex}
+  .head{margin-bottom:14px}
+
+  .body,.slide.zoom .body{flex:0 0 auto!important;justify-content:flex-start!important;gap:14px!important;min-height:0}
+  .body[style],.body>div[style*="display:flex"]{flex-direction:column!important;align-items:stretch!important}
+  .body [style*="flex:0 0"]{flex:0 0 auto!important;width:100%!important;max-width:100%!important}
+
+  /* tipografia */
+  h1{font-size:29px!important;line-height:1.12}
+  h2{font-size:22px!important;line-height:1.18}
+  h3{font-size:16.5px!important}
+  p,.card p,.body p,.small,li{font-size:15px!important;line-height:1.55!important}
+  .sub{font-size:13.5px!important;max-width:none!important}
+  .kicker{font-size:10px!important;line-height:1.4}
+  .nota{font-size:14px!important;padding:12px 14px!important}
+  .quote{font-size:14.5px!important;max-width:none!important;padding:14px 16px!important}
+  ul li,ul.tight li{padding-left:16px}
+  .rule{margin-top:12px}
+
+  /* grades -> uma coluna */
+  .cols,.c2,.c3,.c4,.c5,.tempos,.mapa,.aval,.fotogrid,.fotos-par{
+    display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
+
+  /* linhas horizontais -> empilhadas */
+  .foto-split,.foto-split.inversa,.esqueleto,.banner-showcase,.frase-row{
+    display:flex!important;flex-direction:column!important;align-items:stretch!important;
+    gap:13px!important;flex:0 0 auto!important;min-height:0}
+  .assin,.capa-logos{flex-wrap:wrap!important;gap:14px 22px!important}
+  .stat .v{display:block!important}
+
+  /* larguras fixas -> fluido */
+  .foto-split .img,.banner-frame,.et-col{flex:0 0 auto!important;width:100%!important;max-width:100%!important}
+  .capa-foto{width:100%!important;max-width:240px;height:auto!important;flex:none!important}
+  .capa-foto img,.banner-frame img{width:100%!important;height:auto!important}
+  .foto-split .img img{max-height:none!important}
+  .fotogrid img,.fotos-par img{height:auto!important;max-height:300px}
+  .slide img{max-width:100%;height:auto}
+  .slide iframe{width:100%!important;max-width:340px;height:auto!important;aspect-ratio:300/533;margin-inline:auto;display:block}
+
+  /* setas de diagrama giram para baixo */
+  .et-seta{transform:rotate(90deg);align-self:center;margin:2px auto!important}
+
+  /* capa: tira o bloco visual absoluto */
+  .capa{justify-content:flex-start!important}
+  .capa-visual{position:static!important;inset:auto!important;align-items:flex-start!important;margin-top:16px;gap:16px!important}
+  .capa-logos .logo-poli{height:52px!important}
+  .capa-logos .logo-curso{height:66px!important}
+
+  /* mapa do semestre */
+  .sem{grid-template-columns:44px 1fr!important;font-size:12.5px!important}
+  .legenda{flex-wrap:wrap;gap:8px 14px}
+
+  /* tabelas largas rolam dentro do próprio quadro */
+  .slide table{display:block;overflow-x:auto;max-width:100%}
+
+  /* rodapé empilhado */
+  .rodape{flex-direction:column;align-items:flex-start;gap:5px;font-size:9px!important;margin-top:14px}
+
+  /* navegação: barra inferior, sem zonas de toque laterais nem trilha superior */
+  #zona-esq,#zona-dir,#tempos{display:none!important}
+  #nav{left:0;right:0;bottom:0;justify-content:center;gap:16px;
+    background:var(--papel);border-top:1px solid var(--linha);padding:9px 0}
+}
 </style>
 </head>
 <body>
@@ -838,6 +910,7 @@ ul.tight li{font-size:16px;gap:8px}
     segs.forEach(function(s, k){ s.classList.toggle('on', t > 0 && k < t); });
     tlbl.textContent = t ? 'tempo ' + t : '';
     if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
+    window.scrollTo(0, 0);
   }
   function escala(){
     var e = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
