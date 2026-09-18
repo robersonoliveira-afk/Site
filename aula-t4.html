@@ -144,6 +144,36 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .slide.com-foto.foto-p.on{grid-template-columns:1.85fr 1fr}
 .slide.com-foto.foto-g.on{grid-template-columns:1.05fr 1fr}
 
+/* com-diagrama: texto + grafico SVG lado a lado, mesma mecanica do com-foto */
+.slide.com-diagrama.on{display:grid;grid-template-columns:1.15fr 1fr;column-gap:3vw;align-content:center;align-items:center}
+.slide.com-diagrama .txt{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.slide.com-diagrama svg.diagrama{width:100%;height:auto;display:block}
+
+/* texto mais compacto quando a slide divide espaco com foto ou grafico */
+.slide.com-foto,.slide.com-diagrama{padding-top:5.5vh;padding-bottom:8.5vh}
+.slide.com-foto .txt .lead,.slide.com-diagrama .txt .lead{margin-bottom:1.1vh}
+.slide.com-foto .txt ul.bullets,.slide.com-diagrama .txt ul.bullets{margin:0.3vh 0 1vh}
+.slide.com-foto .txt ul.bullets li,.slide.com-diagrama .txt ul.bullets li{padding:0.55vh 0 0.55vh 1.6em}
+.slide.com-foto .txt .callout,.slide.com-diagrama .txt .callout{margin:1.3vh 0;padding:1.2vh 1.4vw}
+.slide.com-foto .txt .formula,.slide.com-diagrama .txt .formula{margin:1.3vh 0;padding:1.2vh 1.4vw}
+
+/* tabela ampliada e centralizada, para uma sintese que merece destaque */
+.tbl.tbl-wide{max-width:92ch;margin:2.5vh auto;font-size:var(--fs-body)}
+.tbl.tbl-wide th,.tbl.tbl-wide td{padding:1.6vh 1.6vw}
+
+/* diagrama das tres camadas: degrade ordinal (concreto -> abstrato), validado p/ contraste e daltonismo */
+.diagrama{--camada1:#8A6D1F;--camada2:#B89233;--camada3:#CDA85A}
+.diagrama .eixo{stroke:var(--rule-soft);stroke-width:1.5}
+.diagrama .base{stroke:var(--rule);stroke-width:2}
+.diagrama .seg{stroke:var(--paper);stroke-width:2}
+.diagrama .bracket{stroke:var(--stone);stroke-width:1.5;fill:none}
+.diagrama .rb-dot{fill:var(--ink)}
+.diagrama .eixo-label,.diagrama .x-label{font-family:'IBM Plex Mono',monospace;font-size:13px;fill:var(--stone);letter-spacing:0.06em}
+.diagrama .x-label{text-transform:uppercase}
+.diagrama .bkt-title{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:600;letter-spacing:0.02em}
+.diagrama .bkt-sub{font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;fill:var(--ink-soft)}
+.diagrama .legenda text{font-family:'IBM Plex Sans',sans-serif;font-size:14px;fill:var(--ink-soft)}
+
 /* checklist */
 ul.check{list-style:none;margin:1vh 0;max-width:60ch}
 ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
@@ -170,7 +200,7 @@ a{color:var(--accent-text)}
   .hud,.progress,.hint{display:none!important}
   .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
   .slide::before{height:3mm}
-  .slide.com-foto{display:grid!important}
+  .slide.com-foto,.slide.com-diagrama{display:grid!important}
   .slide.com-foto .foto img{max-height:120mm}
   .mock{max-width:100%}
   .foto{max-width:100%}
@@ -213,17 +243,61 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 5 · visão geral -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · a estrutura</div>
-  <h2>Três camadas, três perguntas</h2>
-  <div class="cascade">
-    <div class="row total"><span>COE: Custo Operacional Efetivo (o caixa)</span><span>paga as contas?</span></div>
-    <div class="row"><span>+ depreciação + pró-labore</span><span></span></div>
-    <div class="row total"><span>COT: Custo Operacional Total (a sustentabilidade)</span><span>repõe e remunera?</span></div>
-    <div class="row"><span>+ custo de oportunidade do capital e da terra</span><span></span></div>
-    <div class="row final"><span>CT: Custo Total (a decisão de investidor)</span><span>vale a pena?</span></div>
+<section class="slide com-diagrama" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · a estrutura</div>
+    <h2>Três camadas, três perguntas</h2>
+    <div class="cascade">
+      <div class="row total"><span>COE: Custo Operacional Efetivo (o caixa)</span><span>paga as contas?</span></div>
+      <div class="row"><span>+ depreciação + pró-labore</span><span></span></div>
+      <div class="row total"><span>COT: Custo Operacional Total (a sustentabilidade)</span><span>repõe e remunera?</span></div>
+      <div class="row"><span>+ custo de oportunidade do capital e da terra</span><span></span></div>
+      <div class="row final"><span>CT: Custo Total (a decisão de investidor)</span><span>vale a pena?</span></div>
+    </div>
+    <p class="note">Metodologia Matsunaga et al. (IEA, 1976), adotada pelo Campo Futuro/CNA: o padrão desta disciplina. CONAB e CEPEA têm estruturas equivalentes.</p>
   </div>
-  <p class="note">Metodologia Matsunaga et al. (IEA, 1976), adotada pelo Campo Futuro/CNA: o padrão desta disciplina. CONAB e CEPEA têm estruturas equivalentes.</p>
+  <svg class="diagrama" viewBox="0 0 760 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico de barra empilhada mostrando as três camadas de custo: COE na base, depois COT (COE + depreciação e pró-labore), depois CT (COT + custo de oportunidade), com um ponto acima indicando a receita bruta">
+      <line class="eixo" x1="40" y1="100" x2="660" y2="100"/>
+      <line class="eixo" x1="40" y1="160" x2="660" y2="160"/>
+      <line class="eixo" x1="40" y1="220" x2="660" y2="220"/>
+      <line class="eixo" x1="40" y1="280" x2="660" y2="280"/>
+      <line class="eixo" x1="40" y1="340" x2="660" y2="340"/>
+      <line class="base" x1="40" y1="400" x2="660" y2="400"/>
+      <text class="eixo-label" x="18" y="400" transform="rotate(-90 18 400)" text-anchor="middle">R$</text>
+      <rect class="seg" x="90" y="220" width="90" height="180" fill="var(--camada1)"/>
+      <rect class="seg" x="90" y="160" width="90" height="60" fill="var(--camada2)"/>
+      <rect class="seg" x="90" y="100" width="90" height="60" fill="var(--camada3)"/>
+      <circle class="rb-dot" cx="135" cy="75" r="7"/>
+      <text class="x-label" x="135" y="425" text-anchor="middle">propriedade</text>
+      <path class="bracket" d="M 210 220 h 14 v 180 h -14"/>
+      <text class="bkt-title" x="234" y="292" fill="var(--camada1)">COE</text>
+      <text class="bkt-sub" x="234" y="312">
+        <tspan x="234" dy="0">mão de obra, insumos,</tspan>
+        <tspan x="234" dy="17">mecanização, tributos</tspan>
+      </text>
+      <path class="bracket" d="M 380 160 h 14 v 240 h -14"/>
+      <text class="bkt-title" x="404" y="262" fill="var(--accent-text)">COT</text>
+      <text class="bkt-sub" x="404" y="282">
+        <tspan x="404" dy="0">= COE + depreciação</tspan>
+        <tspan x="404" dy="17">e pró-labore</tspan>
+      </text>
+      <path class="bracket" d="M 570 100 h 14 v 300 h -14"/>
+      <text class="bkt-title" x="594" y="232" fill="var(--stone)">CT</text>
+      <text class="bkt-sub" x="594" y="252">
+        <tspan x="594" dy="0">= COT + custo de</tspan>
+        <tspan x="594" dy="17">oportunidade</tspan>
+      </text>
+      <g class="legenda" transform="translate(40,460)">
+        <rect x="0" y="-11" width="13" height="13" fill="var(--camada1)"/>
+        <text x="18" y="0">COE</text>
+        <rect x="80" y="-11" width="13" height="13" fill="var(--camada2)"/>
+        <text x="98" y="0">Depreciação e pró-labore</text>
+        <rect x="290" y="-11" width="13" height="13" fill="var(--camada3)"/>
+        <text x="308" y="0">Custo de oportunidade</text>
+        <circle cx="521" cy="-4" r="6" fill="var(--ink)"/>
+        <text x="534" y="0">Receita bruta</text>
+      </g>
+    </svg>
 </section>
 
 <!-- 6 · COE definição -->
@@ -327,12 +401,12 @@ a{color:var(--accent-text)}
     <h2>O autoengano de trabalhar de graça</h2>
     <p class="lead">O produtor que não lança o próprio salário está <em>subsidiando o projeto com trabalho não pago</em>, e chamando isso de lucro.</p>
     <ul class="bullets">
-      <li>Teste simples: quanto custaria <strong>contratar alguém</strong> para fazer exatamente o que o produtor faz? Esse é o pró-labore.</li>
-      <li>Vale também para a família: os filhos que tiram leite todo dia são mão de obra; se estiver declarada no manejo, precisa reaparecer como custo (regra de ouro).</li>
+      <li>Teste simples: quanto custaria <strong>contratar alguém</strong> para fazer o que o produtor faz? Esse é o pró-labore.</li>
+      <li>Vale também para a família: filhos que tiram leite todo dia são mão de obra, e precisam reaparecer como custo.</li>
     </ul>
     <div class="callout">
       <strong>Consequência prática</strong>
-      Sem pró-labore na planilha, qualquer comparação com emprego assalariado ou arrendamento sai distorcida a favor do projeto.
+      Sem pró-labore, a comparação com emprego assalariado sai distorcida a favor do projeto.
     </div>
   </div>
   <figure class="foto">
@@ -374,7 +448,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · síntese</div>
   <h2>As quatro leituras da receita</h2>
-  <table class="tbl">
+  <table class="tbl tbl-wide">
     <thead><tr><th>Situação</th><th>O que significa</th></tr></thead>
     <tbody>
       <tr><td class="num"><b>RB &lt; COE</b></td><td>Insustentável: perde caixa a cada saca. Parar ou reformular já.</td></tr>
@@ -387,19 +461,25 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 16 · registro de campo -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · de onde vêm os números</div>
-  <h2>Sem registro, o orçamento é chute</h2>
-  <p>Todo esse aparato depende de um elemento que nenhuma fórmula substitui: o <strong>dado real do campo</strong>, a função de controle do ciclo de gestão.</p>
-  <ul class="bullets">
-    <li>Histórico por talhão valida premissas, compara safras e alimenta a análise marginal.</li>
-    <li>Bancos usam esses registros para <strong>avaliar risco e conceder crédito</strong>.</li>
-    <li>Solução sem custo: Google Forms no celular → planilha automática → análise por talhão.</li>
-  </ul>
-  <div class="formula">
-    <span class="label">O fluxo dos dados</span>
-    operação no campo → registro no celular → planilha → análise → <b>decisão</b>
+<section class="slide com-foto" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · de onde vêm os números</div>
+    <h2>Sem registro, o orçamento é chute</h2>
+    <p>Todo esse aparato depende de um elemento que nenhuma fórmula substitui: o <strong>dado real do campo</strong>, a função de controle do ciclo de gestão.</p>
+    <ul class="bullets">
+      <li>Histórico por talhão valida premissas, compara safras e alimenta a análise marginal.</li>
+      <li>Bancos usam esses registros para <strong>avaliar risco e conceder crédito</strong>.</li>
+      <li>Solução sem custo: Google Forms no celular → planilha automática → análise por talhão.</li>
+    </ul>
+    <div class="formula">
+      <span class="label">O fluxo dos dados</span>
+      operação no campo → registro no celular → planilha → análise → <b>decisão</b>
+    </div>
   </div>
+  <figure class="foto">
+    <img src="Aulas/trator-piloto-automatico-gps.jpg" alt="Trator agrícola de grande porte visto de perfil, com receptor GPS montado no teto da cabine para direção assistida por satélite" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>receptor GPS de piloto automático: também é tecnologia captando dado de campo · CC BY-SA 3.0, bdk/Wikimedia Commons</figcaption>
+  </figure>
 </section>
 
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
@@ -557,18 +637,62 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 21 · lições -->
-<section class="slide" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · o que fica</div>
-  <h2>Três lições do caso</h2>
-  <ul class="bullets">
-    <li><strong>Depreciação se calcula em minutos</strong>: três números e uma divisão. Deixar de calculá-la é uma escolha do produtor, não uma limitação técnica.</li>
-    <li><strong>Custo fixo depende da escala</strong>: a pergunta "quantos hectares essa máquina atende?" vale para cada bem do inventário.</li>
-    <li><strong>Sobra de caixa não é lucro</strong>: só o resultado sobre o COT (e depois sobre o CT) diz se a atividade se sustenta.</li>
-  </ul>
-  <div class="callout success">
-    <strong>Para o projeto de vocês</strong>
-    Cada máquina e benfeitoria declarada no manejo precisa de: valor, residual, vida útil, e a depreciação lançada no passo 4.
+<section class="slide com-diagrama" data-act="Exemplo RS">
+  <div class="txt">
+    <div class="eyebrow"><b>Exemplo RS</b> · o que fica</div>
+    <h2>Três lições do caso</h2>
+    <ul class="bullets">
+      <li><strong>Depreciação se calcula em minutos</strong>: três números e uma divisão, escolha do produtor, não limitação técnica.</li>
+      <li><strong>Custo fixo depende da escala</strong>: "quantos hectares essa máquina atende?" vale para cada bem do inventário.</li>
+      <li><strong>Sobra de caixa não é lucro</strong>: só o resultado sobre o COT, e depois sobre o CT, diz se a atividade se sustenta.</li>
+    </ul>
+    <div class="callout success">
+      <strong>Para o projeto de vocês</strong>
+      Cada máquina e benfeitoria do manejo precisa de valor, residual, vida útil e depreciação lançada no passo 4.
+    </div>
   </div>
+  <svg class="diagrama" viewBox="0 0 760 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico de barra empilhada mostrando as três camadas de custo: COE na base, depois COT (COE + depreciação e pró-labore), depois CT (COT + custo de oportunidade), com um ponto acima indicando a receita bruta">
+      <line class="eixo" x1="40" y1="100" x2="660" y2="100"/>
+      <line class="eixo" x1="40" y1="160" x2="660" y2="160"/>
+      <line class="eixo" x1="40" y1="220" x2="660" y2="220"/>
+      <line class="eixo" x1="40" y1="280" x2="660" y2="280"/>
+      <line class="eixo" x1="40" y1="340" x2="660" y2="340"/>
+      <line class="base" x1="40" y1="400" x2="660" y2="400"/>
+      <text class="eixo-label" x="18" y="400" transform="rotate(-90 18 400)" text-anchor="middle">R$</text>
+      <rect class="seg" x="90" y="220" width="90" height="180" fill="var(--camada1)"/>
+      <rect class="seg" x="90" y="160" width="90" height="60" fill="var(--camada2)"/>
+      <rect class="seg" x="90" y="100" width="90" height="60" fill="var(--camada3)"/>
+      <circle class="rb-dot" cx="135" cy="75" r="7"/>
+      <text class="x-label" x="135" y="425" text-anchor="middle">propriedade</text>
+      <path class="bracket" d="M 210 220 h 14 v 180 h -14"/>
+      <text class="bkt-title" x="234" y="292" fill="var(--camada1)">COE</text>
+      <text class="bkt-sub" x="234" y="312">
+        <tspan x="234" dy="0">mão de obra, insumos,</tspan>
+        <tspan x="234" dy="17">mecanização, tributos</tspan>
+      </text>
+      <path class="bracket" d="M 380 160 h 14 v 240 h -14"/>
+      <text class="bkt-title" x="404" y="262" fill="var(--accent-text)">COT</text>
+      <text class="bkt-sub" x="404" y="282">
+        <tspan x="404" dy="0">= COE + depreciação</tspan>
+        <tspan x="404" dy="17">e pró-labore</tspan>
+      </text>
+      <path class="bracket" d="M 570 100 h 14 v 300 h -14"/>
+      <text class="bkt-title" x="594" y="232" fill="var(--stone)">CT</text>
+      <text class="bkt-sub" x="594" y="252">
+        <tspan x="594" dy="0">= COT + custo de</tspan>
+        <tspan x="594" dy="17">oportunidade</tspan>
+      </text>
+      <g class="legenda" transform="translate(40,460)">
+        <rect x="0" y="-11" width="13" height="13" fill="var(--camada1)"/>
+        <text x="18" y="0">COE</text>
+        <rect x="80" y="-11" width="13" height="13" fill="var(--camada2)"/>
+        <text x="98" y="0">Depreciação e pró-labore</text>
+        <rect x="290" y="-11" width="13" height="13" fill="var(--camada3)"/>
+        <text x="308" y="0">Custo de oportunidade</text>
+        <circle cx="521" cy="-4" r="6" fill="var(--ink)"/>
+        <text x="534" y="0">Receita bruta</text>
+      </g>
+    </svg>
 </section>
 
 <!-- ============ ATO 4 · MÃO NO SIMULADOR ============ -->
