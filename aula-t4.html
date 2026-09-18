@@ -90,6 +90,11 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tbl td.num b{color:var(--terra)}
 .tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
 
+/* celula a preencher no quadro */
+.gap{display:inline-block;min-width:6.5ch;height:1.05em;border-bottom:2px solid var(--accent);vertical-align:-0.15em}
+.gap.wide{min-width:15ch}
+.cascade .gap{min-width:7ch}
+
 /* capa */
 .cover{justify-content:center}
 .cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
@@ -131,6 +136,14 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .slide.foto-cheia .foto img{max-height:74vh;margin:0 auto}
 .slide.foto-cheia .foto figcaption{text-align:center}
 
+/* foto ao lado do texto: <section class="slide com-foto"> com <div class="txt"> e <figure class="foto"> */
+.slide.com-foto.on{display:grid;grid-template-columns:1.35fr 1fr;column-gap:3.2vw;align-content:center;align-items:center}
+.slide.com-foto .txt{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.slide.com-foto .foto{margin:0;max-width:100%}
+.slide.com-foto .foto img{width:100%;max-width:100%;max-height:60vh;object-fit:cover}
+.slide.com-foto.foto-p.on{grid-template-columns:1.85fr 1fr}
+.slide.com-foto.foto-g.on{grid-template-columns:1.05fr 1fr}
+
 /* checklist */
 ul.check{list-style:none;margin:1vh 0;max-width:60ch}
 ul.check li{padding:1vh 0 1vh 2em;position:relative;font-size:var(--fs-body);color:var(--ink-soft);border-bottom:1px solid var(--rule-soft)}
@@ -157,6 +170,8 @@ a{color:var(--accent-text)}
   .hud,.progress,.hint{display:none!important}
   .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
   .slide::before{height:3mm}
+  .slide.com-foto{display:grid!important}
+  .slide.com-foto .foto img{max-height:120mm}
   .mock{max-width:100%}
   .foto{max-width:100%}
 }
@@ -257,27 +272,24 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 9 · depreciação conceito -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · o custo invisível</div>
-  <h2>Depreciação: o custo que não emite boleto</h2>
-  <p>É a <strong>perda de valor</strong> dos bens da propriedade ao longo do tempo, pelo uso, pelo desgaste natural, pela obsolescência tecnológica.</p>
-  <ul class="bullets">
-    <li>Tratores e colheitadeiras, galpões, sistemas de irrigação, matrizes: tudo se consome produzindo.</li>
-    <li>Mesmo sem boleto este mês, o equipamento <strong>está sendo gasto</strong> a cada hora de operação.</li>
-  </ul>
-  <div class="callout">
-    <strong>Impacto no lucro</strong>
-    Sem contabilizar a depreciação, o lucro fica superestimado, e não se guarda dinheiro para repor o bem quando ele acabar.
+<section class="slide com-foto foto-p" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · o custo invisível</div>
+    <h2>Depreciação: o custo que não emite boleto</h2>
+    <p>É a <strong>perda de valor</strong> dos bens da propriedade ao longo do tempo, pelo uso, pelo desgaste natural, pela obsolescência tecnológica.</p>
+    <ul class="bullets">
+      <li>Tratores e colheitadeiras, galpões, sistemas de irrigação, matrizes: tudo se consome produzindo.</li>
+      <li>Mesmo sem boleto este mês, o equipamento <strong>está sendo gasto</strong> a cada hora de operação.</li>
+    </ul>
+    <div class="callout">
+      <strong>Impacto no lucro</strong>
+      Sem contabilizar a depreciação, o lucro fica superestimado, e não se guarda dinheiro para repor o bem quando ele acabar.
+    </div>
   </div>
-</section>
-
-<!-- 9b · foto: o desgaste que não emite boleto -->
-<section class="slide foto-cheia" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · décadas de desgaste, nenhum boleto</div>
   <figure class="foto">
-    <img src="Aulas/trator-massey-ferguson-antigo.jpg" alt="Trator Massey Ferguson 50X antigo, de pintura vermelha desbotada e pneus gastos, parado em campo de pastagem, ainda em uso na propriedade" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>trator Massey Ferguson 50X, modelo antigo ainda em serviço, Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
-  </figure>
+      <img src="Aulas/trator-massey-ferguson-antigo.jpg" alt="Trator Massey Ferguson 50X antigo, de pintura vermelha desbotada e pneus gastos, parado em campo de pastagem, ainda em uso na propriedade" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>trator Massey Ferguson 50X, modelo antigo ainda em serviço, Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
+    </figure>
 </section>
 
 <!-- 10 · depreciação linear -->
@@ -309,18 +321,24 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 12 · pró-labore / autoengano -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · o segundo custo invisível</div>
-  <h2>O autoengano de trabalhar de graça</h2>
-  <p class="lead">O produtor que não lança o próprio salário está <em>subsidiando o projeto com trabalho não pago</em>, e chamando isso de lucro.</p>
-  <ul class="bullets">
-    <li>Teste simples: quanto custaria <strong>contratar alguém</strong> para fazer exatamente o que o produtor faz? Esse é o pró-labore.</li>
-    <li>Vale também para a família: os filhos que tiram leite todo dia são mão de obra; se estiver declarada no manejo, precisa reaparecer como custo (regra de ouro).</li>
-  </ul>
-  <div class="callout">
-    <strong>Consequência prática</strong>
-    Sem pró-labore na planilha, qualquer comparação com emprego assalariado ou arrendamento sai distorcida a favor do projeto.
+<section class="slide com-foto foto-p" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · o segundo custo invisível</div>
+    <h2>O autoengano de trabalhar de graça</h2>
+    <p class="lead">O produtor que não lança o próprio salário está <em>subsidiando o projeto com trabalho não pago</em>, e chamando isso de lucro.</p>
+    <ul class="bullets">
+      <li>Teste simples: quanto custaria <strong>contratar alguém</strong> para fazer exatamente o que o produtor faz? Esse é o pró-labore.</li>
+      <li>Vale também para a família: os filhos que tiram leite todo dia são mão de obra; se estiver declarada no manejo, precisa reaparecer como custo (regra de ouro).</li>
+    </ul>
+    <div class="callout">
+      <strong>Consequência prática</strong>
+      Sem pró-labore na planilha, qualquer comparação com emprego assalariado ou arrendamento sai distorcida a favor do projeto.
+    </div>
   </div>
+  <figure class="foto">
+    <img src="Aulas/produtor-rural-horta-planaltina.jpg" alt="Produtor rural de chapéu empurra carrinho de mão com caixas de verdura por entre canteiros de alface" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>produtor rural Vilmar de Almeida leva a colheita para comercializar, Planaltina/DF · CC BY-SA 2.0, Sergio Amaral/Ministério do Desenvolvimento Social/Wikimedia Commons</figcaption>
+  </figure>
 </section>
 
 <!-- 13 · CT -->
@@ -336,14 +354,20 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 14 · custo de oportunidade -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · remuneração dos fatores</div>
-  <h2>Custo de oportunidade: o que você deixa de ganhar</h2>
-  <ul class="bullets">
-    <li><strong>Da terra própria</strong>: o arrendamento que ela renderia se não fosse usada no projeto. Referência prática: % do valor da terra ou sacas/ha da região (sindicatos rurais).</li>
-    <li><strong>Do capital</strong>: o rendimento que o dinheiro imobilizado em máquinas, animais e insumos teria numa aplicação financeira de referência.</li>
-  </ul>
-  <p>Não é dinheiro que sai, é dinheiro que <strong>deixa de entrar</strong> por se ter escolhido produzir. Na planilha IRGA da T3: "renda dos fatores", R$ 2.743/ha (17,4% do CT).</p>
+<section class="slide com-foto" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · remuneração dos fatores</div>
+    <h2>Custo de oportunidade: o que você deixa de ganhar</h2>
+    <ul class="bullets">
+      <li><strong>Da terra própria</strong>: o arrendamento que ela renderia se não fosse usada no projeto. Referência prática: % do valor da terra ou sacas/ha da região (sindicatos rurais).</li>
+      <li><strong>Do capital</strong>: o rendimento que o dinheiro imobilizado em máquinas, animais e insumos teria numa aplicação financeira de referência.</li>
+    </ul>
+    <p>Não é dinheiro que sai, é dinheiro que <strong>deixa de entrar</strong> por se ter escolhido produzir. Na planilha IRGA da T3: "renda dos fatores", R$ 2.743/ha (17,4% do CT).</p>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/gado-pastagem-mariana-pimentel.jpg" alt="Gado bovino pastando em campo verde ao lado de uma lagoa, com árvores ao fundo, em propriedade rural" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>gado no pasto em propriedade rural, Mariana Pimentel/RS · CC BY-SA 4.0, Paulo RS Menezes/Wikimedia Commons</figcaption>
+  </figure>
 </section>
 
 <!-- 15 · a escadinha -->
@@ -381,25 +405,22 @@ a{color:var(--accent-text)}
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
 
 <!-- 17 · o caso -->
-<section class="slide" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · trator 75 cv</div>
-  <h2>O trator da propriedade familiar</h2>
-  <p>O trator de <strong>75 cv</strong> é a máquina típica da propriedade familiar gaúcha: lavoura, pecuária de leite, fruticultura. Premissas do caso:</p>
-  <ul class="bullets">
-    <li><strong>Valor de compra</strong>: R$ 200.000 (mercado 2026: R$ 160–260 mil conforme marca e configuração).</li>
-    <li><strong>Valor residual</strong>: R$ 40.000 (20% após a vida útil).</li>
-    <li><strong>Vida útil</strong>: 10 anos ou 10.000 horas (1.000 h/ano de uso).</li>
-  </ul>
-  <p class="note">Premissas declaradas, como sempre: valor com cotação real da região, residual e vida útil justificados.</p>
-</section>
-
-<!-- 17b · foto: a máquina do caso -->
-<section class="slide foto-cheia" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · a máquina do caso</div>
+<section class="slide com-foto" data-act="Exemplo RS">
+  <div class="txt">
+    <div class="eyebrow"><b>Exemplo RS</b> · trator 75 cv</div>
+    <h2>O trator da propriedade familiar</h2>
+    <p>O trator de <strong>75 cv</strong> é a máquina típica da propriedade familiar gaúcha: lavoura, pecuária de leite, fruticultura. Premissas do caso:</p>
+    <ul class="bullets">
+      <li><strong>Valor de compra</strong>: R$ 200.000 (mercado 2026: R$ 160–260 mil conforme marca e configuração).</li>
+      <li><strong>Valor residual</strong>: R$ 40.000 (20% após a vida útil).</li>
+      <li><strong>Vida útil</strong>: 10 anos ou 10.000 horas (1.000 h/ano de uso).</li>
+    </ul>
+    <p class="note">Premissas declaradas, como sempre: valor com cotação real da região, residual e vida útil justificados.</p>
+  </div>
   <figure class="foto">
-    <img src="Aulas/trator-new-holland-tl75e.jpg" alt="Trator New Holland TL75E azul, de porte médio e pneus enlameados, estacionado ao lado de galpão de madeira em pequena propriedade rural" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>trator New Holland TL75E, 75 cv, em propriedade familiar de Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
-  </figure>
+      <img src="Aulas/trator-new-holland-tl75e.jpg" alt="Trator New Holland TL75E azul, de porte médio e pneus enlameados, estacionado ao lado de galpão de madeira em pequena propriedade rural" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>trator New Holland TL75E, 75 cv, em propriedade familiar de Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
+    </figure>
 </section>
 
 <!-- 18 · depreciação anual e por hora -->
@@ -432,27 +453,107 @@ a{color:var(--accent-text)}
   <p>Os R$ 16.000/ano não mudam, é custo <strong>fixo</strong> (T3). O que muda é sobre quantos hectares ele se dilui. Máquina parada é depreciação sem produção.</p>
 </section>
 
-<!-- 19b · foto: máquina parada também deprecia -->
-<section class="slide foto-cheia" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · parada, e mesmo assim depreciando</div>
-  <figure class="foto">
-    <img src="Aulas/trator-valmet-65-parado.jpg" alt="Trator Valmet 65 alaranjado e antigo, parado e cercado por vegetação alta que já cobre parte das rodas" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>trator Valmet 65 parado no mato, Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
-  </figure>
+<!-- 19c · inventário · tabela em branco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o inventário</div>
+  <h2>Três bens, a mesma divisão</h2>
+  <p>Numa propriedade de 80 ha, o trator não é o único bem que se desgasta. A conta se repete para tudo que a atividade usa sem consumir de uma vez:</p>
+  <table class="tbl">
+    <thead><tr><th>Bem</th><th class="num">Valor</th><th class="num">Residual</th><th class="num">Vida útil</th><th class="num">Depreciação/ano</th></tr></thead>
+    <tbody>
+      <tr><td>Trator 75 cv</td><td class="num">200.000</td><td class="num">40.000</td><td class="num">10 anos</td><td class="num">16.000</td></tr>
+      <tr><td>Galpão de máquinas</td><td class="num">120.000</td><td class="num">0</td><td class="num">25 anos</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>Grade e pulverizador</td><td class="num">18.000</td><td class="num">0</td><td class="num">15 anos</td><td class="num"><span class="gap"></span></td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="4">Depreciação anual da propriedade</td><td class="num"><span class="gap"></span></td></tr></tfoot>
+  </table>
+  <p class="note">Galpão e implementos entram com residual zero: ao fim da vida útil não há revenda prevista. Residual é premissa declarada, não regra fixa.</p>
+</section>
+
+<!-- 19d · inventário · preenchido -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o inventário fechado</div>
+  <h2>O patrimônio que se consome todo ano</h2>
+  <table class="tbl">
+    <thead><tr><th>Bem</th><th class="num">Valor</th><th class="num">Residual</th><th class="num">Vida útil</th><th class="num">Depreciação/ano</th></tr></thead>
+    <tbody>
+      <tr><td>Trator 75 cv</td><td class="num">200.000</td><td class="num">40.000</td><td class="num">10 anos</td><td class="num">16.000</td></tr>
+      <tr><td>Galpão de máquinas</td><td class="num">120.000</td><td class="num">0</td><td class="num">25 anos</td><td class="num">4.800</td></tr>
+      <tr><td>Grade e pulverizador</td><td class="num">18.000</td><td class="num">0</td><td class="num">15 anos</td><td class="num">1.200</td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="4">Depreciação anual da propriedade</td><td class="num"><b>22.000</b></td></tr></tfoot>
+  </table>
+  <p>São <strong>R$ 22.000 por ano</strong> de patrimônio se consumindo, sem um boleto sequer. É o número que falta na conta de quem só olha o extrato.</p>
 </section>
 
 <!-- 20 · o autoengano completo -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · as três verdades</div>
   <h2>O "lucro" que era prejuízo</h2>
-  <p>Propriedade de 80 ha com o trator do exemplo. O produtor comemora: sobraram <strong>R$ 40.000</strong> no caixa (RB − COE).</p>
+  <p>A mesma propriedade de 80 ha. O produtor comemora: sobraram <strong>R$ 40.000</strong> no caixa (RB − COE). Ele retira R$ 3.000 por mês para viver.</p>
   <div class="cascade">
     <div class="row total"><span>Sobra de caixa (RB − COE)</span><span>R$ 40.000</span></div>
-    <div class="row minus"><span>− depreciação do trator e benfeitorias</span><span>R$ 22.000</span></div>
-    <div class="row minus"><span>− pró-labore (12 × R$ 3.000)</span><span>R$ 36.000</span></div>
-    <div class="row final"><span>Resultado sobre o COT</span><span>− R$ 18.000</span></div>
+    <div class="row minus"><span>− depreciação do trator e benfeitorias</span><span><span class="gap"></span></span></div>
+    <div class="row minus"><span>− pró-labore (12 × R$ 3.000)</span><span><span class="gap"></span></span></div>
+    <div class="row final"><span>Resultado sobre o COT</span><span><span class="gap"></span></span></div>
   </div>
-  <p class="note">Pagou as contas, mas consumiu patrimônio e trabalhou de graça, e ainda faltaria a remuneração da terra e do capital (CT). As três camadas mostram resultados diferentes para o mesmo ano.</p>
+  <p class="note">A depreciação é a soma do inventário. O pró-labore está escrito na própria linha.</p>
+</section>
+
+<!-- 20b · a cascata fechada -->
+<section class="slide com-foto foto-g" data-act="Exemplo RS">
+  <div class="txt">
+    <div class="eyebrow"><b>Exemplo RS</b> · a conta fechada</div>
+    <h2>Onde o sinal vira</h2>
+    <div class="cascade">
+      <div class="row total"><span>Sobra de caixa (RB − COE)</span><span>R$ 40.000</span></div>
+      <div class="row minus"><span>− depreciação do trator e benfeitorias</span><span>R$ 22.000</span></div>
+      <div class="row minus"><span>− pró-labore (12 × R$ 3.000)</span><span>R$ 36.000</span></div>
+      <div class="row final"><span>Resultado sobre o COT</span><span>− R$ 18.000</span></div>
+    </div>
+    <p class="note">Pagou as contas, mas consumiu patrimônio e trabalhou de graça, e ainda faltaria a remuneração da terra e do capital (CT). As três camadas mostram resultados diferentes para o mesmo ano.</p>
+  </div>
+  <figure class="foto">
+      <img src="Aulas/trator-valmet-65-parado.jpg" alt="Trator Valmet 65 alaranjado e antigo, parado e cercado por vegetação alta que já cobre parte das rodas" loading="lazy" onerror="this.style.display='none'">
+      <figcaption>trator Valmet 65 parado no mato, Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
+    </figure>
+</section>
+
+<!-- 20c · quatro safras · tabela em branco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a mesma lavoura, quatro safras</div>
+  <h2>Quanto essa lavoura precisava colher</h2>
+  <div class="formula">
+    <span class="label">As três camadas da propriedade de 80 ha, por hectare</span>
+    COE <b>4.800,00</b> · COT <b>5.525,00</b> · CT <b>7.000,00</b>
+  </div>
+  <p>A estrutura de custo não muda de uma safra para outra. O que muda é a colheita. Soja a R$ 132,50/sc:</p>
+  <table class="tbl">
+    <thead><tr><th>Safra</th><th class="num">sc/ha</th><th class="num">Receita bruta/ha</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td>Excelente</td><td class="num">55</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td>Boa</td><td class="num">48</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td>Fraca</td><td class="num">40</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td>Quebra</td><td class="num">34</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">O COT soma ao COE os R$ 22.000 de depreciação e os R$ 36.000 de pró-labore, diluídos nos 80 ha. O CT acrescenta R$ 1.475/ha de remuneração da terra e do capital.</p>
+</section>
+
+<!-- 20d · quatro safras · os veredictos -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · quatro veredictos</div>
+  <h2>Quatro safras, quatro respostas</h2>
+  <table class="tbl">
+    <thead><tr><th>Safra</th><th class="num">sc/ha</th><th class="num">RB/ha</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td>Excelente</td><td class="num">55</td><td class="num"><b>7.287,50</b></td><td>RB ≥ CT: viabilidade plena, folga de R$ 287,50/ha</td></tr>
+      <tr><td>Boa</td><td class="num">48</td><td class="num">6.360,00</td><td>RB ≥ COT: sustentabilidade mínima, não remunera a terra</td></tr>
+      <tr><td>Fraca</td><td class="num">40</td><td class="num">5.300,00</td><td>RB ≥ COE: paga o caixa e consome patrimônio</td></tr>
+      <tr><td>Quebra</td><td class="num">34</td><td class="num">4.505,00</td><td>RB &lt; COE: prejuízo em caixa, parar ou reformular</td></tr>
+    </tbody>
+  </table>
+  <p>A safra fraca é o ano da conta anterior: sobra de caixa de R$ 40.000 e resultado de − R$ 18.000 sobre o COT. Vinte e uma sacas separam a primeira linha da última, e elas atravessam os quatro degraus da escada.</p>
 </section>
 
 <!-- 21 · lições -->
