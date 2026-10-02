@@ -1244,7 +1244,7 @@ function coletarTudo(){
 // --- cálculo central: do ESTADO derivam todos os números ---
 function derivar(E){
   const n = numv(E.p1.qtd);
-  // giro (modo D: corte, suínos, aves de corte, tilápia): ciclos/ano multiplicam a receita,
+  // giro (modo D: corte, suínos, aves de corte, tilápia): ciclos/ano multiplicam receita e custeio,
   // mortalidade reduz a quantidade efetivamente vendida (custo já é lançado sobre a qtd alojada)
   const tGiro = !!(TEMPLATES[E.template] && TEMPLATES[E.template].giro);
   const ciclosAno = tGiro ? (numv(E.p2.campos.ciclos_ano)||1) : 1;
@@ -1259,7 +1259,7 @@ function derivar(E){
   const rl = rb - comerc - fVal;
 
   let subtotalCoe = 0;
-  E.p3.itens.forEach(it=>{ subtotalCoe += numv(it.qtd)*numv(it.preco)*n; });
+  E.p3.itens.forEach(it=>{ subtotalCoe += numv(it.qtd)*numv(it.preco)*n*ciclosAno; });
   const seguro = subtotalCoe*numv(E.p3.seguro)/100;
   const ater   = subtotalCoe*numv(E.p3.ater)/100;
   const juros  = subtotalCoe*numv(E.p3.juros)/100;
@@ -1287,7 +1287,7 @@ function derivar(E){
   const remTerra = numv(E.p4.arrendamento)*numv(E.p4.area);
   const ct = cot + remCap + remTerra;
 
-  return {n, principal, sec, rb, fAliq, fVal, comerc, rl,
+  return {n, ciclosAno, nVend:qtdEfetiva*ciclosAno, principal, sec, rb, fAliq, fVal, comerc, rl,
     subtotalCoe, seguro, ater, juros, coe,
     depBens, depFormacao, dep, capMedio, prol, out, cot, remCap, remTerra, ct,
     investHa, investimento};
@@ -1592,7 +1592,7 @@ function pintar(E,D){
   document.querySelectorAll('#itens-coe .item').forEach(it=>{
     const c=numv(it.querySelector('.i-qtd').value)*numv(it.querySelector('.i-preco').value);
     it.querySelector('.v-und').textContent=brl(c);
-    it.querySelector('.v-tot').textContent=brl(c*D.n);
+    it.querySelector('.v-tot').textContent=brl(c*D.n*D.ciclosAno);
   });
   el('subtotal').textContent=brl(D.subtotalCoe);
   el('r-sub').textContent=brl(D.subtotalCoe);
@@ -1654,7 +1654,7 @@ function pintar(E,D){
     el('equil').innerHTML=txt;
   }else{ el('equil').textContent='Informe a receita líquida para ver o ponto de equilíbrio.'; }
   // passo 6 — leitura visual e indicadores
-  el('r6-visual').innerHTML = visuaisHTML({rb:D.rb,coe:D.coe,cot:D.cot,ct:D.ct,rl:D.rl,n:D.n,prod:numv(E.p1.prod),preco:numv(E.p1.preco),un:un,unProd:TEMPLATES[E.template].unProd,lblProd:TEMPLATES[E.template].lblProd});
+  el('r6-visual').innerHTML = visuaisHTML({rb:D.rb,coe:D.coe,cot:D.cot,ct:D.ct,rl:D.rl,n:D.nVend,prod:numv(E.p1.prod),preco:numv(E.p1.preco),un:un,unProd:TEMPLATES[E.template].unProd,lblProd:TEMPLATES[E.template].lblProd});
   // passo 6 — perenes
   const isPerene=ehPerene(E.template);
   el('perene-on').style.display=isPerene?'':'none';
@@ -1850,6 +1850,7 @@ function estadoCanonico(E,D){
     swot:E.swot,
     modalidade,
     nUnidades:D.n,
+    nVendidas:D.nVend,
     passo1:{produto:E.p1.produto||'', produtividade:E.p1.prod||'',
       unidProd:E.p1.unProd||t.unProd, preco:numv(E.p1.preco),
       rb:D.rb, funruralAliq:(D.fAliq*100).toLocaleString('pt-BR',{minimumFractionDigits:2}),
@@ -1857,7 +1858,7 @@ function estadoCanonico(E,D){
     passo2:{modo:t.modo+': '+m.titulo.toLowerCase(), observacoes:E.p2.observacoes},
     passo3:{itens:E.p3.itens
       .filter(it=>(it.desc||it.cat) && (numv(it.qtd)*numv(it.preco))>0)
-      .map(it=>({item:it.desc||it.cat, valor:numv(it.qtd)*numv(it.preco)*D.n})), coe:D.coe},
+      .map(it=>({item:it.desc||it.cat, valor:numv(it.qtd)*numv(it.preco)*D.n*D.ciclosAno})), coe:D.coe},
     passo4:{depreciacao:D.depBens, depFormacao:D.depFormacao, prolabore:D.prol, outros:D.out, cot:D.cot,
       remCapital:D.remCap, remTerra:D.remTerra, ct:D.ct},
     passo5: ehPerene(E.template) ? {
@@ -1941,7 +1942,7 @@ function montarDossie(C){
       '<table class="fluxo"><thead><tr><th>Ano</th><th>Fase</th><th>Fluxo</th><th>Descontado</th><th>Acum.</th></tr></thead><tbody>'+linhas+'</tbody></table></div>';
   }
 
-  const vViz={rb:num(p1.rb),coe:coe,cot:cot,ct:ct,rl:rl,n:n,prod:num(p1.produtividade),preco:num(p1.preco),un:un,unProd:p1.unidProd||'',lblProd:'Produtividade'};
+  const vViz={rb:num(p1.rb),coe:coe,cot:cot,ct:ct,rl:rl,n:(C.nVendidas!=null?num(C.nVendidas):n),prod:num(p1.produtividade),preco:num(p1.preco),un:un,unProd:p1.unidProd||'',lblProd:'Produtividade'};
   const bViz='<div class="bloco"><h2><span class="n">6</span>Leitura visual e indicadores</h2>'+visuaisHTML(vViz)+'</div>';
   const hoje=id.data||new Date().toLocaleDateString('pt-BR');
   const head='<div class="doc-head"><p class="eyebrow">projeto de viabilidade · '+esc(tpl.nome.toLowerCase())+'</p>'+
