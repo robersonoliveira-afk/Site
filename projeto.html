@@ -835,7 +835,7 @@
       </h2>
       <div class="ajuda-box" id="aj-viab" hidden>
         <p>VPL, TIR e payback medem se o investimento perene compensa ao longo do tempo.</p>
-        <p>O fluxo de caixa da fase produtiva já desconta a remuneração do capital e da terra, quando informadas no passo 4. Se a taxa de desconto usada aqui for a mesma taxa de remuneração do capital, o custo de capital está sendo contado duas vezes: uma no fluxo, outra no desconto. Para evitar isso, use como taxa de desconto uma referência independente do custo de oportunidade já lançado no passo 4, como a taxa de captação do crédito ou a Selic.</p>
+        <p>O fluxo de caixa da fase produtiva é a receita líquida menos os custos que saem do bolso. Ficam de fora as depreciações, que não são desembolso, e a remuneração do capital, porque o custo do capital já entra pela taxa de desconto. A remuneração da terra permanece, quando informada no passo 4. Use como taxa de desconto o custo de oportunidade do capital, por exemplo a taxa de captação do crédito ou a Selic.</p>
         <a href="parte-5.html#ap-viabilidade" target="_blank" rel="noopener">ver no site →</a>
       </div>
       <div class="grid2">
@@ -1673,7 +1673,7 @@ function pintarPerene(E,D){
   }
   const taxa=numv(E.p6.taxaDesconto);
   const cf=numv(E.p6.custoFormacao);
-  const ctCaixa=D.ct-D.dep; // exclui TODA depreciação (bens + formação): não é desembolso de caixa
+  const ctCaixa=D.ct-D.dep-D.remCap; // exclui depreciação (não é desembolso) e remuneração do capital (já cobrada pela taxa de desconto)
   const {f,fases,form,vida}=montarFluxos(numv(E.p5.form),numv(E.p5.vida),D.investimento,cf,D.rl,ctCaixa);
   el('dica-form').textContent=ctCaixa>0?
     ('referência: manutenção sem receita plena, em geral 30–50% do custo em caixa ('+brl(ctCaixa*0.3)+'–'+brl(ctCaixa*0.5)+').'):
@@ -1926,7 +1926,7 @@ function montarDossie(C){
   let b6='';
   if(ehPerene(C.template)&&p5){
     const taxa=num(p5.taxaDesconto);
-    const ctCaixa=ct-num(p4.depreciacao||0)-num(p4.depFormacao||0); // exclui TODA depreciação (bens + formação)
+    const ctCaixa=ct-num(p4.depreciacao||0)-num(p4.depFormacao||0)-num(p4.remCapital||0); // exclui depreciação e remuneração do capital
     const {f,fases,form,vida}=montarFluxos(num(p5.formacao),num(p5.vidaUtil),num(p5.investimento),num(p5.custoFormacao),rl,ctCaixa);
     const valVpl=vpl(taxa,f),valTir=tir(f),payS=payback(f,false,taxa),i=taxa/100;
     let acc=0,linhas='';const rot={impl:'ano 0',form:'formação',prod:'produção'};
@@ -1934,7 +1934,7 @@ function montarDossie(C){
       linhas+='<tr><td>'+t+'</td><td><span class="fase '+fases[t]+'">'+rot[fases[t]]+'</span></td>'+
         '<td class="'+(fc>=0?'pos':'neg')+'">'+brl(fc)+'</td><td>'+brl(d)+'</td><td class="'+(acc>=0?'pos':'neg')+'">'+brl(acc)+'</td></tr>';});
     b6='<div class="bloco"><h2><span class="n">7</span>Avaliação plurianual</h2>'+
-      '<p class="leg">Implantação no ano 0, formação por '+form+' ano(s), produção por '+vida+' ano(s). Fase produtiva = RL − CT (escala total). Taxa de desconto '+pct(i)+' a.a.</p>'+
+      '<p class="leg">Implantação no ano 0, formação por '+form+' ano(s), produção por '+vida+' ano(s). Fase produtiva = RL − (CT − depreciações − remuneração do capital); o custo do capital entra pela taxa de desconto. Taxa de desconto '+pct(i)+' a.a.</p>'+
       '<div class="kpis">'+
       '<div class="kpi"><div class="k">VPL</div><div class="v '+(valVpl>=0?'pos':'neg')+'">'+brl(valVpl)+'</div><div class="h">a '+pct(i)+' a.a.</div></div>'+
       '<div class="kpi"><div class="k">TIR</div><div class="v '+(valTir===null?'':(valTir>=i?'pos':'neg'))+'">'+(valTir===null?'n/d':pct(valTir))+'</div><div class="h">'+(valTir===null?'sem troca de sinal':(valTir>=i?'acima da taxa':'abaixo da taxa'))+'</div></div>'+
