@@ -308,12 +308,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>Indicadores de viabilidade</h3>
-    <p>As margens dão valores absolutos; os indicadores tornam o projeto <em>comparável</em>: com outros projetos, com a renda fixa, com a média da região.</p>
+    <p>As margens dão valores absolutos; os indicadores tornam o projeto <em>comparável</em>: com outros projetos e com a média da região.</p>
     <div class="tbl-wrap">
     <table class="tbl">
       <tr><th>Indicador</th><th>Fórmula</th><th>Referência de qualidade</th></tr>
       <tr><td>Lucratividade (%)</td><td class="num">LE ÷ RB × 100</td><td>&gt; 15 a 20%</td></tr>
-      <tr><td>Rentabilidade (%)</td><td class="num">LE ÷ CT × 100</td><td>&gt; taxa Selic do período</td></tr>
+      <tr><td>Rentabilidade (%)</td><td class="num">LE ÷ CT × 100</td><td>&gt; 0 (o CT já inclui arrendar e aplicar)</td></tr>
       <tr><td>IEE</td><td class="num">RB ÷ CT</td><td>&gt; 1,0 (quanto maior, melhor)</td></tr>
       <tr><td>Prod. de nivelamento</td><td class="num">COE ÷ preço ÷ área</td><td>bem abaixo da média regional</td></tr>
       <tr><td>Preço de nivelamento</td><td class="num">COE ÷ produção</td><td>bem abaixo do preço de mercado</td></tr>
@@ -321,7 +321,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
     <div class="callout success">
       <strong>Convenção do curso</strong>
-      A <strong>Rentabilidade</strong> é sempre calculada sobre o <em>CT</em> (LE ÷ CT), nunca sobre o COE. Só o CT incorpora o custo de oportunidade da terra e do capital, e é a única base que compara o projeto com a alternativa de simplesmente arrendar e aplicar.
+      A <strong>Rentabilidade</strong> é sempre calculada sobre o <em>CT</em> (LE ÷ CT), nunca sobre o COE. Só o CT incorpora o custo de oportunidade da terra e do capital, e é a única base que compara o projeto com a alternativa de simplesmente arrendar e aplicar. Por isso a referência é zero: rentabilidade positiva já significa render mais que essa alternativa. Compará-la com a Selic contaria o capital duas vezes.
     </div>
     <p>A <strong>Lucratividade</strong> mede quanto da receita vira lucro (eficiência sobre o que se fatura); a <strong>Rentabilidade</strong> mede quanto o projeto rende sobre o capital nele imobilizado (eficiência sobre o que se investe). O <strong>IEE</strong> resume tudo num número: quantas vezes a receita cobre o custo total. IEE = 1,0 é o equilíbrio econômico; abaixo disso, o projeto destrói valor.</p>
   </div></div>
@@ -632,7 +632,7 @@ const QUIZ = [
     ]
   },
   {
-    q: "Para medir o retorno do projeto e comparar com a renda fixa, você calcula a rentabilidade como:",
+    q: "Para medir o retorno do projeto frente à alternativa de arrendar e aplicar, você calcula a rentabilidade como:",
     a: [
       {t:"Lucro ÷ COE, sobre o que efetivamente desembolsei.", p:"op"},
       {t:"Lucro econômico ÷ CT: só o CT inclui o custo de oportunidade da terra e do capital.", p:"es"},
