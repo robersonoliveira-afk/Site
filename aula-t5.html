@@ -157,8 +157,28 @@ svg [data-p]{transform:none}
 .marca[data-p]{opacity:1;transform:none;transition:color .4s ease}
 .marca[data-p].vis{color:var(--terra);font-weight:700}
 @media (prefers-reduced-motion:reduce){
-  [data-p],.cresce-y,.cresce-x,.traca,.zona{transition:none!important}
+  [data-p],.cresce-y,.cresce-x,.traca,.zona,.cai use,.pinta use,.desliza,.pontos{transition:none!important}
 }
+
+/* glossário de siglas */
+.siglas{display:flex;flex-direction:column;gap:1.1vh;max-width:none;margin-bottom:1.6vh}
+.siglas .s{display:grid;grid-template-columns:5ch 1fr;column-gap:1.4vw;align-items:baseline;padding:0.9vh 1.2vw;background:#fff;border:1px solid var(--rule);border-left:4px solid var(--accent)}
+.siglas .s b{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);color:var(--accent-text);font-weight:600}
+.siglas .s span{font-size:var(--fs-body);color:var(--ink)}
+.siglas .s span i{font-style:normal;color:var(--stone);font-size:var(--fs-small)}
+.siglas .s.custo{border-left-color:var(--mustard)}
+
+/* sacas: caem uma a uma e depois ganham a cor da camada que pagam */
+.cai use{opacity:0;transform:translateY(-70px);transition:transform .55s cubic-bezier(.3,1.35,.5,1),opacity .3s ease;transition-delay:calc(var(--i)*18ms)}
+.vis.cai use{opacity:1;transform:none}
+.pinta use{opacity:0;transition:opacity .35s ease;transition-delay:calc(var(--i)*28ms)}
+.vis.pinta use{opacity:1}
+/* saca que desliza pela régua de preço */
+.desliza{transform:translateX(-460px);transition:transform 1.6s cubic-bezier(.25,.8,.3,1)}
+.vis .desliza{transform:none}
+/* pontos de insumo no talhão */
+.pontos{opacity:0;transition:opacity .8s ease}
+.vis .pontos,.vis.pontos{opacity:1}
 
 /* checklist */
 ul.check{list-style:none;margin:1vh 0;max-width:58ch}
@@ -194,6 +214,7 @@ a{color:var(--accent-text)}
   .cresce-y,.cresce-x{transform:none!important}
   .traca{stroke-dashoffset:0!important}
   .zona.alta{fill:var(--z-alta)} .zona.media{fill:var(--z-media)} .zona.baixa{fill:var(--z-baixa)}
+  .cai use,.pinta use,.desliza,.pontos{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -202,6 +223,13 @@ a{color:var(--accent-text)}
 <div class="progress" id="progress"></div>
 
 <main class="deck" id="deck">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="saca" viewBox="0 0 40 48">
+    <path d="M13,4 L27,4 L25,10 C36,15 39,26 37,36 C35,45 28,47 20,47 C12,47 5,45 3,36 C1,26 4,15 15,10 Z"/>
+    <path d="M14,10 L26,10" fill="none" stroke="#FAF7F0" stroke-width="2.5"/>
+  </symbol>
+</svg>
 
 <!-- ============ ABERTURA ============ -->
 
@@ -238,23 +266,37 @@ a{color:var(--accent-text)}
 
 <!-- ============ CONCEITO ============ -->
 
+<!-- 2b · as peças da conta -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · as peças da conta</div>
+  <h2>Cinco siglas que já conhecemos</h2>
+  <div class="siglas">
+    <div class="s" data-p="1"><b>RB</b><span>Receita bruta <i>· produção × preço</i></span></div>
+    <div class="s" data-p="2"><b>RL</b><span>Receita líquida <i>· RB menos Funrural e despesas de venda</i></span></div>
+    <div class="s custo" data-p="3"><b>COE</b><span>Custo operacional efetivo <i>· o que sai do bolso no ciclo</i></span></div>
+    <div class="s custo" data-p="4"><b>COT</b><span>Custo operacional total <i>· COE + depreciação + pró-labore</i></span></div>
+    <div class="s custo" data-p="5"><b>CT</b><span>Custo total <i>· COT + o que terra e capital renderiam em outra alternativa</i></span></div>
+  </div>
+  <p class="note" data-p="6">Receitas da T2, custos da T4. Hoje elas se encontram.</p>
+</section>
+
 <!-- 3 · as três margens: o gráfico se monta -->
 <section class="slide com-diagrama" data-act="Conceito">
   <div class="txt">
     <div class="eyebrow"><b>Conceito</b> · as três margens</div>
     <h2>Três margens, três perguntas</h2>
     <div class="formula" data-p="1">
-      <span class="label">Margem bruta · a safra</span>
+      <span class="label">Margem bruta (MB) · a safra</span>
       MB = RL − COE
       <span class="q">O ano fechou no caixa?</span>
     </div>
     <div class="formula" data-p="2">
-      <span class="label">Margem líquida · 2 a 5 anos</span>
+      <span class="label">Margem líquida (ML) · 2 a 5 anos</span>
       ML = RL − COT
       <span class="q">A propriedade se mantém de pé?</span>
     </div>
     <div class="formula" data-p="3">
-      <span class="label">Lucro econômico · a vida do projeto</span>
+      <span class="label">Lucro econômico (LE) · a vida do projeto</span>
       LE = RL − <b>CT</b>
       <span class="q">Valeu a pena ter produzido?</span>
     </div>
@@ -350,34 +392,84 @@ a{color:var(--accent-text)}
   <p class="lead">R$&nbsp;30 mil de lucro é muito ou pouco? <strong>Depende da escala.</strong></p>
   <div class="formula" data-p="1">
     <span class="label">Lucratividade · quanto do faturamento vira lucro</span>
-    LE ÷ RB × 100
+    lucro econômico ÷ receita bruta × 100
+    <span class="q">LE ÷ RB × 100</span>
   </div>
   <div class="formula" data-p="2">
     <span class="label">Rentabilidade · quanto rende o que se investe</span>
-    LE ÷ <b>CT</b> × 100
-    <span class="q">Compare com a Selic: a aplicação sem risco.</span>
+    lucro econômico ÷ <b>custo total</b> × 100
+    <span class="q">LE ÷ CT × 100. Compare com a Selic, a taxa básica de juros: o que o dinheiro rende sem risco.</span>
   </div>
 </section>
 
-<!-- 9 · IEE e nivelamentos -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · três alarmes</div>
-  <h2>IEE e os pontos de nivelamento</h2>
-  <div class="formula" data-p="1">
-    <span class="label">IEE · índice de eficiência econômica</span>
-    RB ÷ CT
-    <span class="q">1,0 é o equilíbrio. Abaixo disso, destrói valor.</span>
+<!-- 9a · produção de nivelamento: as sacas -->
+<section class="slide com-diagrama" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · produção de nivelamento</div>
+    <h2>Quantas sacas pagam a conta?</h2>
+    <p>A soja da T4: <strong>55 sacas por hectare</strong>, vendidas a R$&nbsp;132,50. Custo ÷ preço da saca:</p>
+    <div class="cascade">
+      <div class="row" data-p="2"><span>COE · R$ 4.800</span><span>36 sc</span></div>
+      <div class="row" data-p="3"><span>COT · R$ 5.525</span><span>42 sc</span></div>
+      <div class="row" data-p="4"><span>CT · R$ 7.000</span><span>53 sc</span></div>
+      <div class="row final" data-p="5"><span>Sobram</span><span>2 sc</span></div>
+    </div>
   </div>
-  <div class="formula" data-p="2">
-    <span class="label">Produção de nivelamento</span>
-    COE ÷ preço
-    <span class="q">Quanto colher por hectare só para pagar o caixa.</span>
+  <svg class="diagrama" viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cinquenta e cinco sacas de soja, colhidas em um hectare. As primeiras 36 pagam o custo operacional efetivo, as 6 seguintes completam o custo operacional total, mais 11 completam o custo total e sobram 2 sacas.">
+    <g id="sacas"></g>
+    <g font-size="21">
+      <g data-p="2"><rect x="30" y="345" width="20" height="20" fill="#8A6D1F"/><text x="58" y="362">36 pagam o COE</text></g>
+      <g data-p="3"><rect x="320" y="345" width="20" height="20" fill="#B89233"/><text x="348" y="362">+6 o COT</text></g>
+      <g data-p="4"><rect x="30" y="390" width="20" height="20" fill="#CDA85A"/><text x="58" y="407">+11 o CT</text></g>
+      <g data-p="5"><rect x="320" y="390" width="20" height="20" fill="#3D4A2A"/><text x="348" y="407" font-weight="600" style="fill:var(--olive)">2 de sobra</text></g>
+    </g>
+  </svg>
+</section>
+
+<!-- 9b · preço de nivelamento e IEE -->
+<section class="slide com-diagrama" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · preço de nivelamento</div>
+    <h2>Por quanto a saca precisa ser vendida?</h2>
+    <p>Custo ÷ 55 sacas = o preço mínimo de cada saca.</p>
+    <div class="cascade">
+      <div class="row" data-p="1"><span>paga o COE</span><span>R$ 87</span></div>
+      <div class="row" data-p="2"><span>paga o CT</span><span>R$ 127</span></div>
+      <div class="row final" data-p="3"><span>preço de mercado</span><span>R$ 132,50</span></div>
+    </div>
+    <p data-p="4"><strong>Índice de eficiência econômica (IEE)</strong> = receita bruta ÷ custo total = 7.287 ÷ 7.000 = <strong>1,04</strong>. Cada real de custo volta como R$&nbsp;1,04.</p>
   </div>
-  <div class="formula" data-p="3">
-    <span class="label">Preço de nivelamento</span>
-    COE ÷ produção
-    <span class="q">Abaixo dele, nem o desembolso volta.</span>
-  </div>
+  <svg class="diagrama" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Régua de preço da saca de soja, de 60 a 140 reais. Uma marca em 87 reais indica o preço que paga o custo operacional efetivo; outra em 127 reais, o que paga o custo total. Uma saca desliza pela régua até 132,50 reais, o preço de mercado, um pouco acima do custo total.">
+    <rect x="40" y="200" width="177" height="22" fill="var(--critical-bg)"/>
+    <rect x="217" y="200" width="260" height="22" fill="var(--highlight)"/>
+    <rect x="477" y="200" width="83" height="22" fill="var(--success-bg)"/>
+    <line class="base" x1="40" y1="222" x2="560" y2="222"/>
+    <g class="mono rot" font-size="17" text-anchor="middle">
+      <line x1="40" y1="222" x2="40" y2="232" stroke="var(--stone-light)"/><text x="40" y="252">60</text>
+      <line x1="170" y1="222" x2="170" y2="232" stroke="var(--stone-light)"/><text x="170" y="252">80</text>
+      <line x1="300" y1="222" x2="300" y2="232" stroke="var(--stone-light)"/><text x="300" y="252">100</text>
+      <line x1="430" y1="222" x2="430" y2="232" stroke="var(--stone-light)"/><text x="430" y="252">120</text>
+      <line x1="560" y1="222" x2="560" y2="232" stroke="var(--stone-light)"/><text x="560" y="252">140</text>
+    </g>
+    <g data-p="1">
+      <line x1="217" y1="120" x2="217" y2="222" stroke="#8A6D1F" stroke-width="4"/>
+      <text x="217" y="82" text-anchor="middle" class="mono" font-size="26" font-weight="600" style="fill:#8A6D1F">R$ 87</text>
+      <text x="217" y="108" text-anchor="middle" font-size="19">paga o COE</text>
+    </g>
+    <g data-p="2">
+      <line x1="477" y1="120" x2="477" y2="222" stroke="var(--ink)" stroke-width="4"/>
+      <text x="430" y="82" text-anchor="middle" class="mono" font-size="26" font-weight="600" style="fill:var(--ink)">R$ 127</text>
+      <text x="430" y="108" text-anchor="middle" font-size="19">paga o CT</text>
+    </g>
+    <g data-p="3">
+      <g class="desliza">
+        <use href="#saca" x="491" y="268" width="40" height="48" style="fill:var(--olive)"/>
+        <text x="511" y="345" text-anchor="middle" class="mono" font-size="22" font-weight="600" style="fill:var(--olive)">R$ 132,50</text>
+        <text x="511" y="370" text-anchor="middle" font-size="18" style="fill:var(--olive)">mercado</text>
+      </g>
+    </g>
+    <text x="40" y="190" font-size="17" class="rot">R$ por saca</text>
+  </svg>
 </section>
 
 <!-- 10 · com o que comparar -->
@@ -405,8 +497,8 @@ a{color:var(--accent-text)}
       <h2>A margem também é um <em>mapa</em></h2>
       <p class="lead">A produtividade varia dentro da lavoura. Então <strong>a margem também varia</strong>.</p>
       <ul class="bullets">
-        <li data-p="1">A média da lavoura esconde os extremos.</li>
-        <li data-p="2">O mapa de colheita mostra onde cada hectare ganha ou perde.</li>
+        <li data-p="1">A colhedora mede a produção a cada metro: é o <strong>mapa de colheita</strong>.</li>
+        <li data-p="2">Com ele, cada zona da lavoura ganha a sua própria conta.</li>
       </ul>
     </div>
     <figure class="foto">
@@ -526,11 +618,52 @@ a{color:var(--accent-text)}
   </svg>
 </section>
 
+<!-- 15b · o que é taxa variável -->
+<section class="slide com-diagrama" data-act="Exemplo RS">
+  <div class="txt">
+    <div class="eyebrow"><b>Agricultura de precisão</b> · taxa variável</div>
+    <h2>Dose fixa ou dose variável?</h2>
+    <ul class="bullets">
+      <li data-p="1"><strong>Dose fixa</strong>: a mesma semente e o mesmo adubo no talhão inteiro.</li>
+      <li data-p="2"><strong>Dose variável</strong>: guiada pelo mapa, a máquina põe mais onde o solo responde e menos onde não responde.</li>
+    </ul>
+    <p data-p="3">Na zona baixa, o solo compactado não aproveitaria o insumo extra: <strong>cortar a dose quase não tira produção</strong>.</p>
+  </div>
+  <svg class="diagrama" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dois desenhos do mesmo talhão. À esquerda, dose fixa: pontos de insumo igualmente espaçados nas três zonas. À direita, dose variável: pontos densos na zona alta, médios na média e espaçados na zona baixa.">
+    <defs>
+      <pattern id="pDenso" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="6.5" cy="6.5" r="3.6" fill="#1A1A17"/></pattern>
+      <pattern id="pMedio" width="19" height="19" patternUnits="userSpaceOnUse"><circle cx="9.5" cy="9.5" r="3.6" fill="#1A1A17"/></pattern>
+      <pattern id="pRaro" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="16" cy="16" r="3.6" fill="#1A1A17"/></pattern>
+    </defs>
+    <g transform="translate(8,20) scale(0.49)">
+      <path d="M40,50 L250,46 Q212,210 250,397 L30,400 Z" fill="var(--z-alta)" fill-opacity="0.3"/>
+      <path d="M250,46 L560,40 L563,170 Q460,200 400,270 Q350,320 360,395 L250,397 Q212,210 250,46 Z" fill="var(--z-media)" fill-opacity="0.3"/>
+      <path d="M563,170 L570,390 L360,395 Q350,320 400,270 Q460,200 563,170 Z" fill="var(--z-baixa)" fill-opacity="0.3"/>
+      <g data-p="1"><path class="pontos" d="M40,50 L560,40 L570,390 L30,400 Z" fill="url(#pMedio)"/></g>
+      <path d="M40,50 L560,40 L570,390 L30,400 Z" fill="none" stroke="var(--ink-soft)" stroke-width="5"/>
+    </g>
+    <g transform="translate(308,20) scale(0.49)">
+      <path d="M40,50 L250,46 Q212,210 250,397 L30,400 Z" fill="var(--z-alta)" fill-opacity="0.3"/>
+      <path d="M250,46 L560,40 L563,170 Q460,200 400,270 Q350,320 360,395 L250,397 Q212,210 250,46 Z" fill="var(--z-media)" fill-opacity="0.3"/>
+      <path d="M563,170 L570,390 L360,395 Q350,320 400,270 Q460,200 563,170 Z" fill="var(--z-baixa)" fill-opacity="0.3"/>
+      <g data-p="2">
+        <path class="pontos" d="M40,50 L250,46 Q212,210 250,397 L30,400 Z" fill="url(#pDenso)"/>
+        <path class="pontos" d="M250,46 L560,40 L563,170 Q460,200 400,270 Q350,320 360,395 L250,397 Q212,210 250,46 Z" fill="url(#pMedio)"/>
+        <path class="pontos" d="M563,170 L570,390 L360,395 Q350,320 400,270 Q460,200 563,170 Z" fill="url(#pRaro)"/>
+      </g>
+      <path d="M40,50 L560,40 L570,390 L30,400 Z" fill="none" stroke="var(--ink-soft)" stroke-width="5"/>
+    </g>
+    <text x="150" y="250" text-anchor="middle" font-size="22" font-weight="600" style="fill:var(--ink)">Dose fixa</text>
+    <text x="450" y="250" text-anchor="middle" font-size="22" font-weight="600" style="fill:var(--ink)">Dose variável</text>
+    <text x="300" y="300" text-anchor="middle" font-size="18" class="rot">cada ponto: semente e adubo · zonas alta, média e baixa</text>
+  </svg>
+</section>
+
 <!-- 16 · dose variável na zona baixa -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · taxa variável</div>
-  <h2>Dose variável na zona baixa</h2>
-  <p>Menos semente e adubo onde o solo não responde: COE de <strong>R$&nbsp;7.800/ha</strong>, produção mantida em <strong>18 t/ha</strong>. Depreciação e oportunidade não mudam.</p>
+  <h2>A conta da dose variável na zona baixa</h2>
+  <p>Semente e adubo ajustados: o COE cai R$&nbsp;1.770, para <strong>R$&nbsp;7.800/ha</strong>. A produção segue em <strong>18 t/ha</strong>.</p>
   <table class="tbl">
     <thead><tr><th>Zona baixa, R$/ha</th><th class="num">Hoje</th><th class="num">Dose variável</th></tr></thead>
     <tbody>
@@ -620,6 +753,30 @@ a{color:var(--accent-text)}
   <span class="counter"><span id="counter">1 / 1</span><span class="mais" id="mais"></span></span>
 </div>
 
+<script>
+// monta as 55 sacas do slide de produção de nivelamento
+(function(){
+  const S=document.getElementById('sacas'); if(!S) return;
+  const NS='http://www.w3.org/2000/svg', cols=11;
+  const grupos=[
+    {p:1,cls:'cai',  de:0, ate:55,cor:'#D9D3C2'},
+    {p:2,cls:'pinta',de:0, ate:36,cor:'#8A6D1F'},
+    {p:3,cls:'pinta',de:36,ate:42,cor:'#B89233'},
+    {p:4,cls:'pinta',de:42,ate:53,cor:'#CDA85A'},
+    {p:5,cls:'pinta',de:53,ate:55,cor:'#3D4A2A'}];
+  grupos.forEach(g=>{
+    const G=document.createElementNS(NS,'g'); G.setAttribute('data-p',g.p); G.setAttribute('class',g.cls);
+    for(let i=g.de;i<g.ate;i++){
+      const u=document.createElementNS(NS,'use');
+      u.setAttribute('href','#saca'); u.setAttribute('width',40); u.setAttribute('height',48);
+      u.setAttribute('x',30+(i%cols)*50); u.setAttribute('y',20+Math.floor(i/cols)*62);
+      u.style.fill=g.cor; u.style.setProperty('--i',i-g.de);
+      G.appendChild(u);
+    }
+    S.appendChild(G);
+  });
+})();
+</script>
 <script>
 (function(){
   const slides=[...document.querySelectorAll('.slide')];
