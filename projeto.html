@@ -1741,7 +1741,7 @@ function calcIndic(v){
     precoNiv: prodTot>0? v.coe/prodTot : null,
     margemSeg:(v.prod>0&&prodNiv!=null)?(v.prod-prodNiv)/v.prod:null,
     lucr: v.rb>0? res/v.rb : null,
-    roi:  v.coe>0? res/v.coe : null,
+    roi:  v.ct>0? res/v.ct : null,   // rentabilidade = LE ÷ CT (convenção do curso, Parte III.1)
     recCF: cf>0? v.rb/cf : null,
     pctCF: v.rb>0? cf/v.rb : null,
     efic: v.ct>0? v.rb/v.ct : null };
@@ -1825,7 +1825,7 @@ function visuaisHTML(v){
     (ind.precoNiv!=null?card('Preço de nivelamento',brl(ind.precoNiv),'preço mínimo de venda para cobrir o COE'):'')+
     (ind.margemSeg!=null?card('Margem de segurança',pct(ind.margemSeg),'quanto a produção pode cair até o equilíbrio',sgn(ind.margemSeg)):'')+
     (ind.lucr!=null?card('Lucratividade',pct(ind.lucr),'lucro líquido sobre a receita bruta',sgn(ind.lucr)):'')+
-    (ind.roi!=null?card('Rentabilidade (ROI)',pct(ind.roi),'retorno sobre o capital de giro (COE)',sgn(ind.roi)):'')+
+    (ind.roi!=null?card('Rentabilidade',pct(ind.roi),'lucro econômico sobre o custo total (compare com a Selic)',sgn(ind.roi)):'')+
     eficCard+
     (ind.recCF!=null?card('Receita / custos fixos',fmtN(ind.recCF,2)+'×','quantas vezes a RB cobre os custos fixos'):'')+
     (ind.pctCF!=null?card('% custos fixos da RB',pct(ind.pctCF),'parte da receita comprometida com fixos'):'');

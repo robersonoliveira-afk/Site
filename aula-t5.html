@@ -36,11 +36,12 @@
   --accent:var(--terra);
   --accent-text:#8A4322;
   --accent-deep:#93492A;
-  --fs-body:clamp(16px,1.75vw,28px);
-  --fs-small:clamp(13px,1.35vw,21px);
-  --fs-mono:clamp(11px,1.15vw,17px);
-  --fs-h2:clamp(26px,3.6vw,54px);
-  --fs-big:clamp(30px,4.6vw,70px);
+  /* min(vw,vh): em 16:9 vale o vw; em telas largas e baixas a altura limita e nada estoura */
+  --fs-body:clamp(16px,min(1.75vw,3.11vh),28px);
+  --fs-small:clamp(13px,min(1.35vw,2.4vh),21px);
+  --fs-mono:clamp(11px,min(1.15vw,2.04vh),17px);
+  --fs-h2:clamp(26px,min(3.6vw,6.4vh),54px);
+  --fs-big:clamp(30px,min(4.6vw,8.18vh),70px);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
@@ -60,7 +61,7 @@ h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
 .slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
 .slide p strong{color:var(--ink);font-weight:600}
 .slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
-.lead{font-size:clamp(18px,2.2vw,34px)!important;line-height:1.45}
+.lead{font-size:clamp(18px,min(2.2vw,3.91vh),34px)!important;line-height:1.45}
 .note{font-size:var(--fs-small)!important;color:var(--stone)!important}
 
 ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch}
@@ -69,7 +70,7 @@ ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--acc
 ul.bullets li strong{color:var(--ink);font-weight:600}
 ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
 
-.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.7vw,26px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,min(1.7vw,3.02vh),26px);line-height:1.55;color:var(--ink);max-width:64ch}
 .formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
 .formula b{font-weight:600;color:var(--terra)}
 
@@ -92,19 +93,47 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .tbl td.num b{color:var(--terra)}
 .tbl tfoot td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive)}
 
+/* celula a preencher no quadro */
+.gap{display:inline-block;min-width:6.5ch;height:1.05em;border-bottom:2px solid var(--accent);vertical-align:-0.15em}
+.gap.wide{min-width:12ch}
+.tbl.grande{font-size:var(--fs-body);max-width:80ch}
+.tbl.grande th{font-size:var(--fs-small)}
+.tbl.grande td{padding:1.2vh 1.1vw}
+
+/* com-diagrama: texto + grafico SVG lado a lado */
+.slide.com-diagrama.on{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;align-content:center;align-items:center}
+.slide.com-diagrama{padding-top:5.5vh;padding-bottom:8.5vh}
+.slide.com-diagrama .txt{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.slide.com-diagrama .txt .cascade{margin:1.2vh 0}
+.slide.com-diagrama .txt .formula{margin:1.2vh 0;padding:1.2vh 1.4vw}
+.slide.com-diagrama svg.diagrama{width:100%;height:auto;max-height:68vh;display:block}
+
+/* graficos: camadas no mesmo degrade da T4 (concreto -> abstrato) */
+.diagrama{--camada1:#8A6D1F;--camada2:#B89233;--camada3:#CDA85A;--pos:#3D4A2A;--neg:#A8552E}
+.diagrama text{font-family:'IBM Plex Sans',sans-serif;fill:var(--ink-soft)}
+.diagrama .mono{font-family:'IBM Plex Mono',monospace}
+.diagrama .base{stroke:var(--rule);stroke-width:2}
+.diagrama .guia{stroke:var(--stone-light);stroke-width:1.5;stroke-dasharray:5 5}
+.diagrama .rl{stroke:var(--ink);stroke-width:3.5}
+.diagrama .seta-pos{stroke:var(--pos);stroke-width:5}
+.diagrama .seta-neg{stroke:var(--neg);stroke-width:5}
+.diagrama .t-pos{fill:var(--pos);font-weight:600}
+.diagrama .t-neg{fill:var(--neg);font-weight:600}
+.diagrama .rot{fill:var(--stone)}
+
 /* capa */
 .cover{justify-content:center}
 .cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
-.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,9vw,140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(60px,min(9vw,16vh),140px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
 .cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh}
 .cover .mv b{color:var(--terra-ink)}
-.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.2vw,80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,min(5.2vw,9.24vh),80px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
 .cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
 .cover .sub{margin-top:2.5vh;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
 .cover .cred{margin-top:3vh;display:flex;align-items:center;gap:1.4vw}
 .cover .cred img{height:clamp(34px,6vh,54px);width:auto}
 .cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
-.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+.hint{position:absolute;bottom:9vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
 
 /* cascata */
 .cascade{display:flex;flex-direction:column;gap:0.6vh;margin:2vh 0;max-width:64ch;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small)}
@@ -143,7 +172,7 @@ ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.7
 
 /* colofão */
 .colophon p{font-size:var(--fs-small);max-width:70ch}
-.colophon .src{font-size:clamp(11px,1.1vw,16px);color:var(--stone);line-height:1.6;max-width:75ch}
+.colophon .src{font-size:clamp(11px,min(1.1vw,1.96vh),16px);color:var(--stone);line-height:1.6;max-width:75ch}
 .colophon .src b{color:var(--ink-soft)}
 
 /* hud */
@@ -162,6 +191,8 @@ a{color:var(--accent-text)}
   .hud,.progress,.hint{display:none!important}
   .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
   .slide::before{height:3mm}
+  .slide.com-diagrama{display:grid!important}
+  .slide.com-diagrama svg.diagrama{max-height:150mm}
   .mock{max-width:100%}
   .foto{max-width:100%}
 }
@@ -217,21 +248,44 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 6 · as três margens -->
-<section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · as fórmulas</div>
-  <h2>As três margens</h2>
-  <div class="formula">
-    <span class="label">Margem bruta: curto prazo</span>
-    MB = RL − COE
+<section class="slide com-diagrama" data-act="Conceito">
+  <div class="txt">
+    <div class="eyebrow"><b>Conceito</b> · as fórmulas</div>
+    <h2>As três margens</h2>
+    <div class="formula">
+      <span class="label">Margem bruta: curto prazo</span>
+      MB = RL − COE
+    </div>
+    <div class="formula">
+      <span class="label">Margem líquida: sustentabilidade</span>
+      ML = RL − COT
+    </div>
+    <div class="formula">
+      <span class="label">Lucro econômico: viabilidade</span>
+      LE = RL − <b>CT</b>
+    </div>
   </div>
-  <div class="formula">
-    <span class="label">Margem líquida: sustentabilidade</span>
-    ML = RL − COT
-  </div>
-  <div class="formula">
-    <span class="label">Lucro econômico: viabilidade</span>
-    LE = RL − <b>CT</b>
-  </div>
+  <svg class="diagrama" viewBox="0 0 600 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barra empilhada com as camadas COE, COT e CT e uma linha horizontal da receita líquida acima delas. Três setas medem a distância da linha da receita até o topo de cada camada: a maior é a margem bruta, a média é a margem líquida e a menor é o lucro econômico.">
+    <line class="base" x1="40" y1="410" x2="580" y2="410"/>
+    <rect x="60" y="250" width="110" height="160" fill="var(--camada1)" stroke="var(--paper)" stroke-width="2"/>
+    <rect x="60" y="185" width="110" height="65" fill="var(--camada2)" stroke="var(--paper)" stroke-width="2"/>
+    <rect x="60" y="145" width="110" height="40" fill="var(--camada3)" stroke="var(--paper)" stroke-width="2"/>
+    <text x="115" y="337" text-anchor="middle" class="mono" font-size="23" font-weight="600" style="fill:#fff">COE</text>
+    <text x="115" y="224" text-anchor="middle" class="mono" font-size="23" font-weight="600" style="fill:var(--mustard-ink)">COT</text>
+    <text x="115" y="172" text-anchor="middle" class="mono" font-size="21" font-weight="600" style="fill:var(--mustard-ink)">CT</text>
+    <line class="guia" x1="170" y1="250" x2="270" y2="250"/>
+    <line class="guia" x1="170" y1="185" x2="390" y2="185"/>
+    <line class="guia" x1="170" y1="145" x2="510" y2="145"/>
+    <line class="rl" x1="40" y1="90" x2="580" y2="90"/>
+    <text x="40" y="74" font-size="24" font-weight="600" style="fill:var(--ink)">Receita líquida (RL)</text>
+    <line class="seta-pos" x1="270" y1="94" x2="270" y2="248"/>
+    <line class="seta-pos" x1="390" y1="94" x2="390" y2="183"/>
+    <line class="seta-pos" x1="510" y1="94" x2="510" y2="143"/>
+    <text x="282" y="176" font-size="28" class="t-pos">MB</text>
+    <text x="402" y="146" font-size="28" class="t-pos">ML</text>
+    <text x="522" y="128" font-size="28" class="t-pos">LE</text>
+    <text x="40" y="448" font-size="21" class="rot">Cada margem é a distância da receita até uma camada de custo.</text>
+  </svg>
 </section>
 
 <!-- 7 · MB -->
@@ -268,7 +322,7 @@ a{color:var(--accent-text)}
   <p>O lucro econômico desconta o custo completo, inclusive o que a terra e o capital <strong>renderiam na melhor alternativa</strong> (arrendar, aplicar).</p>
   <ul class="bullets">
     <li><strong>LE positivo</strong>: o projeto gera riqueza acima de qualquer alternativa; viabilidade plena.</li>
-    <li><strong>LE = 0</strong>: não é fracasso, significa que tudo foi remunerado, inclusive a terra, o capital e o gestor, exatamente como a melhor alternativa remuneraria.</li>
+    <li><strong>LE = 0</strong>: não é fracasso. Terra, capital e gestor foram remunerados exatamente como na melhor alternativa.</li>
     <li><strong>LE negativo</strong>: o produtor ganharia mais arrendando e aplicando. A atividade pode continuar de pé, mas está deixando riqueza na mesa.</li>
   </ul>
 </section>
@@ -289,6 +343,38 @@ a{color:var(--accent-text)}
   <p class="note">A leitura que separa o gestor do operador: MB positiva diz que o ano fechou no caixa; só o LE diz se valeu a pena ter plantado em vez de arrendar.</p>
 </section>
 
+<!-- 10b · quatro propriedades · tabela em branco -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · leitura em camadas</div>
+  <h2>Quatro propriedades, quatro diagnósticos</h2>
+  <table class="tbl grande">
+    <thead><tr><th>Propriedade</th><th class="num">MB</th><th class="num">ML</th><th class="num">LE</th><th>Diagnóstico</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td class="num">+40</td><td class="num">+12</td><td class="num">−8</td><td><span class="gap wide"></span></td></tr>
+      <tr><td>B</td><td class="num">−5</td><td class="num">−30</td><td class="num">−50</td><td><span class="gap wide"></span></td></tr>
+      <tr><td>C</td><td class="num">+60</td><td class="num">+35</td><td class="num">+10</td><td><span class="gap wide"></span></td></tr>
+      <tr><td>D</td><td class="num">+25</td><td class="num">−6</td><td class="num">−30</td><td><span class="gap wide"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Valores em R$ mil por ano. Leia de cima para baixo: a primeira margem negativa define o diagnóstico.</p>
+</section>
+
+<!-- 10c · quatro propriedades · diagnósticos -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · leitura em camadas</div>
+  <h2>A primeira margem negativa decide</h2>
+  <table class="tbl grande">
+    <thead><tr><th>Propriedade</th><th class="num">MB</th><th class="num">ML</th><th class="num">LE</th><th>Diagnóstico</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td class="num">+40</td><td class="num">+12</td><td class="num"><b>−8</b></td><td>Sustentável, mas rende menos que arrendar e aplicar</td></tr>
+      <tr><td>B</td><td class="num"><b>−5</b></td><td class="num">−30</td><td class="num">−50</td><td>Não paga nem o caixa: parar ou reformular já</td></tr>
+      <tr><td>C</td><td class="num">+60</td><td class="num">+35</td><td class="num">+10</td><td>Gera riqueza acima das alternativas</td></tr>
+      <tr><td>D</td><td class="num">+25</td><td class="num"><b>−6</b></td><td class="num">−30</td><td>Paga o caixa consumindo patrimônio</td></tr>
+    </tbody>
+  </table>
+  <p>D é a mais perigosa: o caixa sobra todo ano e o problema só aparece quando a máquina precisa ser trocada.</p>
+</section>
+
 <!-- 11 · horizontes -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · o tempo de cada margem</div>
@@ -305,7 +391,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · de valores a índices</div>
   <h2>Lucratividade e rentabilidade</h2>
-  <p>Margens são valores absolutos: R$ 30.000 é muito ou pouco? Depende da escala. Os indicadores tornam o projeto <strong>comparável</strong>.</p>
+  <p>Margens são valores absolutos: R$&nbsp;30.000 é muito ou pouco? Depende da escala. Os indicadores tornam o projeto <strong>comparável</strong>.</p>
   <div class="formula">
     <span class="label">Lucratividade: eficiência sobre o que se fatura</span>
     lucratividade = LE ÷ RB × 100
@@ -321,13 +407,19 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · três alarmes</div>
   <h2>IEE e os pontos de nivelamento</h2>
-  <ul class="bullets">
-    <li><strong>IEE = RB ÷ CT</strong>: quantas vezes a receita cobre o custo total. 1,0 é o equilíbrio econômico; abaixo disso, o projeto destrói valor.</li>
-    <li><strong>Produção de nivelamento</strong>: COE ÷ preço ÷ área, quantas unidades por hectare só para pagar o caixa.</li>
-    <li><strong>Preço de nivelamento</strong>: COE ÷ produção, abaixo desse preço, nem o desembolso volta.</li>
-  </ul>
-  <p>Os nivelamentos são <strong>alarmes antecipados</strong>: comparados com a média regional e o preço de mercado, dizem quanto de folga o projeto tem antes da safra acontecer.</p>
-  <p class="note">Ponto de equilíbrio e margem de segurança partem desses mesmos nivelamentos.</p>
+  <div class="formula">
+    <span class="label">IEE: índice de eficiência econômica</span>
+    IEE = RB ÷ CT · <b>1,0</b> é o equilíbrio; abaixo, destrói valor
+  </div>
+  <div class="formula">
+    <span class="label">Produção de nivelamento: o mínimo que paga o caixa</span>
+    COE ÷ preço ÷ área = unidades por hectare
+  </div>
+  <div class="formula">
+    <span class="label">Preço de nivelamento: abaixo dele, nem o desembolso volta</span>
+    COE ÷ produção = R$ por unidade
+  </div>
+  <p>Comparados com a média regional e o preço de mercado, os nivelamentos dizem <strong>quanta folga</strong> o projeto tem antes da safra acontecer.</p>
 </section>
 
 <!-- 14 · referências -->
@@ -399,13 +491,13 @@ a{color:var(--accent-text)}
       <table class="tbl">
         <thead><tr><th>Camada</th><th class="num">R$/litro</th><th>O que contém</th></tr></thead>
         <tbody>
-          <tr><td><strong>RL</strong></td><td class="num">2,40</td><td>preço recebido, líquido de Funrural e frete</td></tr>
+          <tr><td><strong>RB</strong></td><td class="num">2,50</td><td>preço pago pelo laticínio</td></tr>
+          <tr><td><strong>RL</strong></td><td class="num">2,40</td><td>menos Funrural e frete</td></tr>
           <tr><td><strong>COE</strong></td><td class="num">2,05</td><td>ração, sanidade, energia, ordenha, manutenção</td></tr>
-          <tr><td><strong>COT</strong></td><td class="num">2,45</td><td>+ depreciação (sala de ordenha, resfriador, matrizes) + pró-labore da família</td></tr>
+          <tr><td><strong>COT</strong></td><td class="num">2,45</td><td>+ depreciação (ordenha, resfriador, matrizes) e pró-labore</td></tr>
           <tr><td><strong>CT</strong></td><td class="num"><b>2,75</b></td><td>+ oportunidade da terra (arrendamento) e do capital</td></tr>
         </tbody>
       </table>
-      <p class="note">A conta que quase nenhuma propriedade leiteira faz: o que os painéis Campo Futuro fazem questão de mostrar.</p>
     </div>
     <figure class="foto side">
       <img src="Aulas/resfriador-tanque-leite.jpg" alt="Resfriador de leite a granel, tanque horizontal de inox instalado na sala de leite de uma propriedade leiteira" loading="lazy" onerror="this.style.display='none'">
@@ -414,16 +506,59 @@ a{color:var(--accent-text)}
   </div>
 </section>
 
-<!-- 18 · as três margens -->
+<!-- 18a · as três margens · tabela em branco -->
 <section class="slide" data-act="Exemplo RS">
-  <div class="eyebrow"><b>Exemplo RS</b> · o veredito</div>
-  <h2>Três margens, três verdades</h2>
-  <div class="cascade">
-    <div class="row final"><span>MB = 2,40 − 2,05 = +R$ 0,35/L</span><span>+R$ 76.650/ano</span></div>
-    <div class="row bad"><span>ML = 2,40 − 2,45 = −R$ 0,05/L</span><span>−R$ 10.950/ano</span></div>
-    <div class="row bad"><span>LE = 2,40 − 2,75 = −R$ 0,35/L</span><span>−R$ 76.650/ano</span></div>
+  <div class="eyebrow"><b>Exemplo RS</b> · as três margens</div>
+  <h2>Por litro e por ano</h2>
+  <div class="formula">
+    <span class="label">A pilha do leite, R$ por litro</span>
+    RL <b>2,40</b> · COE <b>2,05</b> · COT <b>2,45</b> · CT <b>2,75</b> · 219.000 L/ano
   </div>
-  <p>O produtor tem razão: sobram R$ 76 mil no caixa, <strong>a MB é positiva</strong>. E os painéis também: a cada litro, 5 centavos de patrimônio se consomem e 35 centavos deixam de ser ganhos frente a arrendar e aplicar.</p>
+  <table class="tbl grande">
+    <thead><tr><th>Margem</th><th>Conta</th><th class="num">R$/litro</th><th class="num">R$/ano</th></tr></thead>
+    <tbody>
+      <tr><td><strong>MB</strong></td><td>2,40 − 2,05</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap wide"></span></td></tr>
+      <tr><td><strong>ML</strong></td><td>2,40 − 2,45</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap wide"></span></td></tr>
+      <tr><td><strong>LE</strong></td><td>2,40 − 2,75</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap wide"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Para o ano, multiplique a margem por litro pelos 219.000 litros.</p>
+</section>
+
+<!-- 18b · as três margens · o veredito -->
+<section class="slide com-diagrama" data-act="Exemplo RS">
+  <div class="txt">
+    <div class="eyebrow"><b>Exemplo RS</b> · o veredito</div>
+    <h2>Três margens, três verdades</h2>
+    <div class="cascade">
+      <div class="row final"><span>MB +0,35/L</span><span>+R$&nbsp;76.650/ano</span></div>
+      <div class="row bad"><span>ML −0,05/L</span><span>−R$&nbsp;10.950/ano</span></div>
+      <div class="row bad"><span>LE −0,35/L</span><span>−R$&nbsp;76.650/ano</span></div>
+    </div>
+    <p>O produtor tem razão: sobram R$&nbsp;76 mil no caixa. E os painéis também: cada litro consome 5 centavos de patrimônio e deixa de ganhar 35 centavos frente a arrendar e aplicar.</p>
+  </div>
+  <svg class="diagrama" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Régua vertical de R$ 2,00 a R$ 2,80 por litro. A linha da receita líquida está em 2,40. O COE, em 2,05, fica abaixo dela: a margem bruta é positiva, 35 centavos. O COT, em 2,45, e o CT, em 2,75, ficam acima: a margem líquida é negativa em 5 centavos e o lucro econômico, em 35 centavos.">
+    <line class="base" x1="110" y1="40" x2="110" y2="420"/>
+    <g class="mono rot" font-size="20" text-anchor="end">
+      <text x="98" y="426">2,00</text><text x="98" y="378.5">2,10</text><text x="98" y="331">2,20</text><text x="98" y="283.5">2,30</text>
+      <text x="98" y="236">2,40</text><text x="98" y="188.5">2,50</text><text x="98" y="141">2,60</text><text x="98" y="93.5">2,70</text><text x="98" y="46">2,80</text>
+    </g>
+    <line class="guia" x1="110" y1="396" x2="580" y2="396"/>
+    <line class="guia" x1="110" y1="206" x2="580" y2="206"/>
+    <line class="guia" x1="110" y1="64" x2="580" y2="64"/>
+    <text x="122" y="388" font-size="22" class="mono" font-weight="600" style="fill:var(--camada1)">COE 2,05</text>
+    <text x="122" y="198" font-size="22" class="mono" font-weight="600" style="fill:var(--accent-text)">COT 2,45</text>
+    <text x="122" y="56" font-size="22" class="mono" font-weight="600" style="fill:var(--stone)">CT 2,75</text>
+    <line class="rl" x1="110" y1="230" x2="580" y2="230"/>
+    <text x="122" y="258" font-size="22" class="mono" font-weight="600" style="fill:var(--ink)">RL 2,40</text>
+    <line class="seta-pos" x1="300" y1="233" x2="300" y2="394"/>
+    <line class="seta-neg" x1="410" y1="227" x2="410" y2="208"/>
+    <line class="seta-neg" x1="520" y1="227" x2="520" y2="66"/>
+    <text x="312" y="320" font-size="25" class="t-pos">MB +0,35</text>
+    <text x="398" y="190" font-size="25" class="t-neg" text-anchor="end">ML −0,05</text>
+    <text x="508" y="150" font-size="25" class="t-neg" text-anchor="end">LE −0,35</text>
+    <text x="110" y="462" font-size="18" class="rot">R$ por litro · a régua começa em R$&nbsp;2,00</text>
+  </svg>
 </section>
 
 <!-- 19 · como se vive assim -->
@@ -447,19 +582,110 @@ a{color:var(--accent-text)}
   </div>
 </section>
 
+<!-- 19b · indicadores do leite · tabela em branco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · os indicadores</div>
+  <h2>O leite pelos indicadores</h2>
+  <div class="formula">
+    <span class="label">Os dados, R$ por litro</span>
+    RB <b>2,50</b> · COE <b>2,05</b> · CT <b>2,75</b> · LE <b>−0,35</b> · 600 L/dia
+  </div>
+  <table class="tbl grande">
+    <thead><tr><th>Indicador</th><th>Conta</th><th class="num">Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>Lucratividade</td><td>LE ÷ RB</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>Rentabilidade</td><td>LE ÷ CT</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>IEE</td><td>RB ÷ CT</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>Produção de nivelamento</td><td>600 L/dia × COE ÷ preço</td><td class="num"><span class="gap"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">O preço de nivelamento já está nos dados: é o próprio COE por litro, R$&nbsp;2,05.</p>
+</section>
+
+<!-- 19c · indicadores do leite · leitura -->
+<section class="slide com-diagrama" data-act="Exemplo RS">
+  <div class="txt">
+    <div class="eyebrow"><b>Exemplo RS</b> · os indicadores</div>
+    <h2>Folga no caixa, falta no custo total</h2>
+    <div class="cascade">
+      <div class="row bad"><span>Lucratividade</span><span>−14,0%</span></div>
+      <div class="row bad"><span>Rentabilidade</span><span>−12,7%</span></div>
+      <div class="row bad"><span>IEE</span><span>0,91</span></div>
+      <div class="row final"><span>Produção de nivelamento</span><span>492 L/dia</span></div>
+    </div>
+    <p>Preço e produção podem cair 18% antes de o caixa fechar no vermelho. Mas cada real de custo total traz só <strong>91 centavos</strong> de receita.</p>
+  </div>
+  <svg class="diagrama" viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Três barras horizontais. Produção: 600 litros por dia, com o nivelamento em 492, folga de 18%. Preço: R$ 2,50 por litro, com o nivelamento em R$ 2,05, folga de 18%. IEE: 0,91, abaixo da marca de equilíbrio 1,0, faltam 9%.">
+    <text x="30" y="34" font-size="24" font-weight="600" style="fill:var(--ink)">Produção, L/dia</text>
+    <rect x="30" y="48" width="480" height="40" fill="var(--success-bg)" stroke="var(--pos)" stroke-width="2"/>
+    <line x1="424" y1="38" x2="424" y2="98" stroke="var(--ink)" stroke-width="3"/>
+    <text x="414" y="124" font-size="21" class="mono" text-anchor="end">nivelamento 492</text>
+    <text x="510" y="124" font-size="21" class="mono" text-anchor="end" font-weight="600" style="fill:var(--ink)">600</text>
+    <text x="467" y="75" font-size="21" class="t-pos" text-anchor="middle">18%</text>
+
+    <text x="30" y="184" font-size="24" font-weight="600" style="fill:var(--ink)">Preço, R$/L</text>
+    <rect x="30" y="198" width="480" height="40" fill="var(--success-bg)" stroke="var(--pos)" stroke-width="2"/>
+    <line x1="424" y1="188" x2="424" y2="248" stroke="var(--ink)" stroke-width="3"/>
+    <text x="414" y="274" font-size="21" class="mono" text-anchor="end">nivelamento 2,05</text>
+    <text x="510" y="274" font-size="21" class="mono" text-anchor="end" font-weight="600" style="fill:var(--ink)">2,50</text>
+    <text x="467" y="225" font-size="21" class="t-pos" text-anchor="middle">18%</text>
+
+    <text x="30" y="334" font-size="24" font-weight="600" style="fill:var(--ink)">IEE</text>
+    <rect x="30" y="348" width="437" height="40" fill="var(--critical-bg)" stroke="var(--neg)" stroke-width="2"/>
+    <line x1="510" y1="338" x2="510" y2="398" stroke="var(--ink)" stroke-width="3"/>
+    <text x="510" y="424" font-size="21" class="mono" text-anchor="middle" font-weight="600" style="fill:var(--ink)">1,0</text>
+    <text x="457" y="424" font-size="21" class="mono" text-anchor="end">0,91</text>
+    <text x="455" y="375" font-size="21" class="t-neg" text-anchor="end">faltam 9%</text>
+  </svg>
+</section>
+
 <!-- 20 · o que fazer -->
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · da leitura à ação</div>
   <h2>O diagnóstico aponta as alavancas</h2>
   <ul class="bullets">
-    <li><strong>Diluir o fixo</strong>: a depreciação e o pró-labore por litro caem se cada vaca produzir mais: produtividade é a alavanca mais forte do leite.</li>
-    <li><strong>Rever o COE</strong>: ração é o maior item: produzir volumoso de qualidade em casa versus comprar concentrado.</li>
-    <li><strong>Comparar de frente</strong>: se nem com eficiência o LE fica positivo, a comparação honesta com arrendar a terra precisa ir para a mesa da família.</li>
+    <li><strong>Diluir o fixo</strong>: mais litros por vaca, menos depreciação e pró-labore por litro.</li>
+    <li><strong>Rever o COE</strong>: ração é o maior item; volumoso de qualidade feito em casa compete com concentrado comprado.</li>
+    <li><strong>Comparar de frente</strong>: se nem com eficiência o LE fica positivo, o arrendamento precisa ir para a mesa da família.</li>
   </ul>
   <div class="callout success">
     <strong>O papel do técnico</strong>
-    Não é decidir pela família, é colocar as três margens na mesa para que a decisão seja tomada com informação completa.
+    Não é decidir pela família: é pôr as três margens na mesa para que ela decida com informação completa.
   </div>
+</section>
+
+<!-- 20b · produtividade · tabela em branco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a alavanca da produtividade</div>
+  <h2>E se cada vaca der 24 litros?</h2>
+  <p>As mesmas 30 vacas, 20% mais leite. Os fixos do ano não mudam: R$&nbsp;87.600 de depreciação e pró-labore, R$&nbsp;65.700 de oportunidade. O COE segue em R$&nbsp;2,05 por litro.</p>
+  <table class="tbl grande">
+    <thead><tr><th>R$ por litro</th><th class="num">20 L/vaca</th><th class="num">24 L/vaca</th></tr></thead>
+    <tbody>
+      <tr><td>Produção anual</td><td class="num">219.000 L</td><td class="num">262.800 L</td></tr>
+      <tr><td>Fixos ÷ produção</td><td class="num">0,40</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>Oportunidade ÷ produção</td><td class="num">0,30</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>ML = RL − COT</td><td class="num">−0,05</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>LE = RL − CT</td><td class="num">−0,35</td><td class="num"><span class="gap"></span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 20c · produtividade · resultado -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · a alavanca da produtividade</div>
+  <h2>A produtividade vira a ML, não o LE</h2>
+  <table class="tbl grande">
+    <thead><tr><th>R$ por litro</th><th class="num">20 L/vaca</th><th class="num">24 L/vaca</th></tr></thead>
+    <tbody>
+      <tr><td>Produção anual</td><td class="num">219.000 L</td><td class="num">262.800 L</td></tr>
+      <tr><td>Fixos ÷ produção</td><td class="num">0,40</td><td class="num">0,33</td></tr>
+      <tr><td>Oportunidade ÷ produção</td><td class="num">0,30</td><td class="num">0,25</td></tr>
+      <tr><td>ML = RL − COT</td><td class="num">−0,05</td><td class="num"><b>+0,02</b></td></tr>
+      <tr><td>LE = RL − CT</td><td class="num">−0,35</td><td class="num"><b>−0,23</b></td></tr>
+    </tbody>
+  </table>
+  <p>Quatro litros a mais por vaca param a descapitalização: a ML passa a <strong>+R$&nbsp;4.380/ano</strong>. O LE melhora, mas segue em −R$&nbsp;61.320/ano. A pergunta do arrendamento continua na mesa.</p>
 </section>
 
 <!-- 21 · lições -->
@@ -495,15 +721,15 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Simulador">
   <div class="eyebrow"><b>Mão no simulador</b> · a entrega</div>
   <h2>Tarefa de saída: parte 2</h2>
-  <p>Cada grupo escreve, no campo de observações do passo 6, a <strong>interpretação das três margens do próprio projeto</strong>: um parágrafo por margem:</p>
+  <p>No campo de observações do passo 6, cada grupo escreve <strong>um parágrafo por margem</strong> do próprio projeto:</p>
   <ul class="bullets">
-    <li>O valor, o sinal e <strong>o que ele significa</strong> neste projeto específico.</li>
-    <li>A decisão que essa margem sustentaria (continuar? reestruturar? comparar com arrendamento?).</li>
+    <li>O valor, o sinal e <strong>o que ele significa</strong> neste projeto.</li>
+    <li>A decisão que a margem sustenta: continuar, reestruturar, comparar com arrendar.</li>
     <li>Uma comparação externa: rentabilidade × Selic, nivelamento × média regional.</li>
   </ul>
   <div class="callout">
     <strong>Critério de qualidade</strong>
-    "MB deu R$ 40 mil" não interpreta nada. "A MB cobre o ciclo, mas a ML negativa mostra que estamos consumindo o resfriador", isso é interpretação.
+    "A MB deu R$&nbsp;40 mil" não interpreta. "A MB cobre o ciclo, mas a ML negativa mostra que estamos consumindo o resfriador" interpreta.
   </div>
 </section>
 
