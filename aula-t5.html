@@ -160,6 +160,11 @@ svg [data-p]{transform:none}
   [data-p],.cresce-y,.cresce-x,.traca,.zona,.cai use,.pinta use,.desliza,.pontos{transition:none!important}
 }
 
+/* caminhos de decisão */
+.caixa{margin:1.2vh 0;padding:1.3vh 1.4vw;background:var(--paper-warm);border-left:4px solid var(--mustard);font-size:var(--fs-body);line-height:1.4;color:var(--ink-soft);max-width:56ch}
+.caixa strong{display:block;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);font-weight:600;margin-bottom:0.4vh}
+.caixa b{color:var(--ink);font-weight:600}
+
 /* glossário de siglas */
 .siglas{display:flex;flex-direction:column;gap:1.1vh;max-width:none;margin-bottom:1.6vh}
 .siglas .s{display:grid;grid-template-columns:5ch 1fr;column-gap:1.4vw;align-items:baseline;padding:0.9vh 1.2vw;background:#fff;border:1px solid var(--rule);border-left:4px solid var(--accent)}
@@ -517,7 +522,7 @@ a{color:var(--accent-text)}
     <ul class="bullets">
       <li data-p="1"><span class="dot" style="background:var(--z-alta)"></span><strong>Alta</strong>: 8 ha, 55 t/ha</li>
       <li data-p="2"><span class="dot" style="background:var(--z-media)"></span><strong>Média</strong>: 8 ha, 42 t/ha</li>
-      <li data-p="3"><span class="dot" style="background:var(--z-baixa)"></span><strong>Baixa</strong>: 4 ha, 18 t/ha, solo compactado e ácido</li>
+      <li data-p="3"><span class="dot" style="background:var(--z-baixa)"></span><strong>Baixa</strong>: 4 ha, 18 t/ha, solo raso e pedregoso</li>
     </ul>
     <p class="note" data-p="4">Silagem avaliada a R$&nbsp;500 por tonelada: o preço de comprá-la pronta.</p>
   </div>
@@ -621,15 +626,14 @@ a{color:var(--accent-text)}
 <!-- 15b · o que é taxa variável -->
 <section class="slide com-diagrama" data-act="Exemplo RS">
   <div class="txt">
-    <div class="eyebrow"><b>Agricultura de precisão</b> · taxa variável</div>
-    <h2>Dose fixa ou dose variável?</h2>
-    <ul class="bullets">
-      <li data-p="1"><strong>Dose fixa</strong>: a mesma semente e o mesmo adubo no talhão inteiro.</li>
-      <li data-p="2"><strong>Dose variável</strong>: guiada pelo mapa, a máquina põe mais onde o solo responde e menos onde não responde.</li>
-    </ul>
-    <p data-p="3">Na zona baixa, o solo compactado não aproveitaria o insumo extra: <strong>cortar a dose quase não tira produção</strong>.</p>
+    <div class="eyebrow"><b>Agricultura de precisão</b> · manejo por zona</div>
+    <h2>O que fazer com a zona baixa?</h2>
+    <p>Depende da causa. Amostragem de solo e penetrômetro dizem qual é.</p>
+    <div class="caixa" data-p="1"><strong>Causa corrigível · compactação, acidez</strong><b>Corrigir</b>: calcário a taxa variável, descompactação só onde precisa. É investimento: a T6 diz se ele se paga.</div>
+    <div class="caixa" data-p="2"><strong>Causa permanente · solo raso, encharcamento</strong><b>Ajustar</b>: dose variável, só o insumo que o solo devolve. Ou mudar o uso da área.</div>
+    <p class="note" data-p="4">Neste talhão, a zona baixa tem solo raso e pedregoso: o caminho é ajustar.</p>
   </div>
-  <svg class="diagrama" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dois desenhos do mesmo talhão. À esquerda, dose fixa: pontos de insumo igualmente espaçados nas três zonas. À direita, dose variável: pontos densos na zona alta, médios na média e espaçados na zona baixa.">
+  <svg class="diagrama" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dois desenhos do mesmo talhão, para o caminho de ajustar a dose. À esquerda, dose fixa: pontos de insumo igualmente espaçados nas três zonas. À direita, dose variável: pontos densos na zona alta, médios na média e espaçados na zona baixa.">
     <defs>
       <pattern id="pDenso" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="6.5" cy="6.5" r="3.6" fill="#1A1A17"/></pattern>
       <pattern id="pMedio" width="19" height="19" patternUnits="userSpaceOnUse"><circle cx="9.5" cy="9.5" r="3.6" fill="#1A1A17"/></pattern>
@@ -639,14 +643,14 @@ a{color:var(--accent-text)}
       <path d="M40,50 L250,46 Q212,210 250,397 L30,400 Z" fill="var(--z-alta)" fill-opacity="0.3"/>
       <path d="M250,46 L560,40 L563,170 Q460,200 400,270 Q350,320 360,395 L250,397 Q212,210 250,46 Z" fill="var(--z-media)" fill-opacity="0.3"/>
       <path d="M563,170 L570,390 L360,395 Q350,320 400,270 Q460,200 563,170 Z" fill="var(--z-baixa)" fill-opacity="0.3"/>
-      <g data-p="1"><path class="pontos" d="M40,50 L560,40 L570,390 L30,400 Z" fill="url(#pMedio)"/></g>
+      <g data-p="2"><path class="pontos" d="M40,50 L560,40 L570,390 L30,400 Z" fill="url(#pMedio)"/></g>
       <path d="M40,50 L560,40 L570,390 L30,400 Z" fill="none" stroke="var(--ink-soft)" stroke-width="5"/>
     </g>
     <g transform="translate(308,20) scale(0.49)">
       <path d="M40,50 L250,46 Q212,210 250,397 L30,400 Z" fill="var(--z-alta)" fill-opacity="0.3"/>
       <path d="M250,46 L560,40 L563,170 Q460,200 400,270 Q350,320 360,395 L250,397 Q212,210 250,46 Z" fill="var(--z-media)" fill-opacity="0.3"/>
       <path d="M563,170 L570,390 L360,395 Q350,320 400,270 Q460,200 563,170 Z" fill="var(--z-baixa)" fill-opacity="0.3"/>
-      <g data-p="2">
+      <g data-p="3">
         <path class="pontos" d="M40,50 L250,46 Q212,210 250,397 L30,400 Z" fill="url(#pDenso)"/>
         <path class="pontos" d="M250,46 L560,40 L563,170 Q460,200 400,270 Q350,320 360,395 L250,397 Q212,210 250,46 Z" fill="url(#pMedio)"/>
         <path class="pontos" d="M563,170 L570,390 L360,395 Q350,320 400,270 Q460,200 563,170 Z" fill="url(#pRaro)"/>
@@ -663,7 +667,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · taxa variável</div>
   <h2>A conta da dose variável na zona baixa</h2>
-  <p>Semente e adubo ajustados: o COE cai R$&nbsp;1.770, para <strong>R$&nbsp;7.800/ha</strong>. A produção segue em <strong>18 t/ha</strong>.</p>
+  <p>Semente e adubo ajustados ao solo raso: o COE cai R$&nbsp;1.770, para <strong>R$&nbsp;7.800/ha</strong>. A produção segue em <strong>18 t/ha</strong>.</p>
   <table class="tbl">
     <thead><tr><th>Zona baixa, R$/ha</th><th class="num">Hoje</th><th class="num">Dose variável</th></tr></thead>
     <tbody>
@@ -673,7 +677,7 @@ a{color:var(--accent-text)}
       <tr><td>LE</td><td class="num neg">−2.610</td><td class="num neg"><span class="gap"><span data-p="3">−840</span></span></td></tr>
     </tbody>
   </table>
-  <p data-p="4">A dose variável salva o caixa e repõe a depreciação, mas não o lucro econômico. Corrigir o solo, virar pastagem ou arrendar: <strong>a conta vai para a mesa</strong>.</p>
+  <p data-p="4">A dose variável salva o caixa e repõe a depreciação, mas não o lucro econômico. Pastagem ou arrendamento: <strong>a conta vai para a mesa</strong>.</p>
 </section>
 
 <!-- 17 · lições -->
