@@ -60,6 +60,26 @@
   .steps button.feito .ix{color:var(--verde-ok)}
   .steps button:disabled{opacity:.4;cursor:not-allowed}
 
+  /* barra de progresso do preenchimento (vermelho → verde) */
+  .prog{margin:16px 0 2px}
+  .prog-track{height:10px;border-radius:999px;background:var(--papel-2);border:1px solid var(--linha);overflow:hidden}
+  .prog-fill{height:100%;width:0;border-radius:999px;background:var(--vermelho);transition:width .45s ease,background-color .45s ease}
+  .prog-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:6px;font-family:var(--mono);font-size:.72rem;color:#8a8270}
+  .prog-meta #prog-pct{font-size:.9rem;font-weight:500;color:var(--tinta)}
+  .prog.completo .prog-meta #prog-pct{color:var(--verde-ok)}
+
+  /* botão salvar + sinal de estado (topo) */
+  .savebar{display:flex;align-items:center;gap:12px;margin:10px 0 2px}
+  .btn-save{font-family:var(--sans);font-size:.82rem;font-weight:500;color:#fff;background:var(--oliva);border:none;border-radius:7px;padding:7px 16px;cursor:pointer}
+  .btn-save:hover{background:#2A331C}
+  .save-status{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.72rem;color:#8a8270}
+  .save-status .dot{width:9px;height:9px;border-radius:50%;background:#c9c1ab;flex:none;transition:background-color .3s,box-shadow .3s}
+  .save-status.ok .dot{background:var(--verde-ok);box-shadow:0 0 0 3px rgba(61,107,46,.18)}
+  .save-status.pendente .dot{background:var(--mostarda)}
+  .save-status.erro .dot{background:var(--vermelho)}
+  .save-status.flash .dot{animation:pulseDot .6s ease}
+  @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(61,107,46,.5)}100%{box-shadow:0 0 0 9px rgba(61,107,46,0)}}
+
   .card{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:20px;margin-bottom:18px}
   .card h2{font-family:var(--serif);font-weight:500;font-size:1.15rem;margin:0 0 14px;display:flex;align-items:baseline;gap:10px}
   .card h2 .n{font-family:var(--mono);font-size:.8rem;color:var(--mostarda);border:1px solid var(--linha);border-radius:4px;padding:1px 7px}
@@ -217,7 +237,7 @@
   }
   @media print{
     body{background:#fff}
-    .top,.steps,.nav,.toolbar,.no-print{display:none!important}
+    .top,.prog,.savebar,.steps,.nav,.toolbar,.no-print{display:none!important}
     .wrap{max-width:none;padding:0}
     section[data-step]{display:none!important}
     section[data-step="7"]{display:block!important}
@@ -282,6 +302,21 @@
     <p class="eyebrow">Simulador</p>
     <h1 id="titulo-topo">Projeto Agropecuário</h1>
     <p class="sub" id="sub-topo">Preencha em etapas; cada número se justifica e propaga para o relatório de viabilidade.</p>
+  </div>
+
+  <div class="prog" id="prog">
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    <div class="prog-meta">
+      <span id="prog-pct">0%</span>
+      <span id="prog-msg">comece pela identificação</span>
+    </div>
+  </div>
+
+  <div class="savebar" id="savebar">
+    <button type="button" class="btn-save" id="btn-salvar">Salvar</button>
+    <span class="save-status" id="save-status">
+      <span class="dot"></span><span id="save-quando">salvamento automático ativo</span>
+    </span>
   </div>
 
   <nav class="steps" id="steps"></nav>
@@ -880,6 +915,8 @@ const TEMPLATES = {
   graos:       {nome:"🌾 Grãos e cereais (soja, milho, arroz, trigo)", un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"sc/ha",                 unPreco:"R$/sc",      sec:"palha, grão 2ª categoria",       familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
   fumo:        {nome:"🍂 Fumo (tabaco)",                               un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"@/ha",                  unPreco:"R$/@",       sec:"",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
   horta:       {nome:"🥦 Horta / olericultura (alface, tomate...)",    un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"",                              familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  melancia:    {nome:"🍉 Melancia",                                    un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"frutos refugo / 2ª",            familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
+  mandioca:    {nome:"🥔 Mandioca / aipim",                            un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"t/ha",                  unPreco:"R$/t",       sec:"rama para plantio / forragem",  familia:"lavoura", modo:"A", grupo:"Lavoura anual"},
   // ── LAVOURA PERENE ───────────────────────────────────────────────────────
   fruta:       {nome:"🍎 Fruticultura (uva, maçã, pêssego, citros...)",un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"2ª categoria, lenha/resíduo",    familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
   ervamate:    {nome:"🌿 Erva-mate",                                   un:"ha",      lblQtd:"Área",               lblProd:"Produtividade", unProd:"kg/ha",                 unPreco:"R$/kg",      sec:"",                              familia:"lavoura", modo:"B", grupo:"Lavoura perene", perene:true},
@@ -1274,13 +1311,76 @@ function montarFluxos(form,vida,inv,cf,rl,ct){
 
 // --- persistência ---
 let saveTimer=null;
+function marcarSalvo(hora){
+  const txt = 'salvo · ' + hora;
+  el('saved').textContent = txt;                       // carimbo da barra de baixo
+  const s = el('save-status');                         // sinal do topo
+  s.classList.remove('pendente','erro'); s.classList.add('ok');
+  el('save-quando').textContent = txt;
+}
+function marcarPendente(){
+  const s = el('save-status');
+  s.classList.remove('ok','erro'); s.classList.add('pendente');
+  el('save-quando').textContent = 'alterações não salvas…';
+}
 function persistir(E){
   try{ localStorage.setItem(KEY, JSON.stringify(E));
-    el('saved').textContent = 'salvo · ' + new Date().toLocaleTimeString('pt-BR');
-  }catch(e){ el('saved').textContent='não foi possível salvar localmente'; }
+    marcarSalvo(new Date().toLocaleTimeString('pt-BR'));
+  }catch(e){
+    el('saved').textContent='não foi possível salvar localmente';
+    const s=el('save-status'); s.classList.remove('ok','pendente'); s.classList.add('erro');
+    el('save-quando').textContent='falha ao salvar neste navegador';
+  }
 }
 function carregarSalvo(){
   try{ const t=localStorage.getItem(KEY); return t?JSON.parse(t):null; }catch(e){ return null; }
+}
+
+// ===========================================================================
+// PROGRESSO — quanto do projeto já está preenchido (0–100%)
+//   Lista plana de checagens sobre os campos-chave dos passos ativos; cada
+//   item pesa igual, então todo campo preenchido move a barra.
+// ===========================================================================
+function progresso(E){
+  const ok  = v => String(v==null?'':v).trim()!=='';
+  const pos = v => numv(v)>0;
+  const perene = ehPerene(E.template);
+  const c = [];
+  // 0 · identificação
+  c.push(ok(E.identificacao.projeto), ok(E.identificacao.produtor),
+         ok(E.identificacao.municipio), ok(E.identificacao.unidade));
+  // 1 · receita
+  c.push(ok(E.p1.produto), pos(E.p1.qtd), pos(E.p1.prod), pos(E.p1.preco));
+  // 2 · manejo
+  const nCampos = Object.values(E.p2.campos).filter(ok).length;
+  c.push(ok(E.p2.observacoes), nCampos>=1, nCampos>=3);
+  // 3 · custeio
+  const nCoe = E.p3.itens.filter(it=>ok(it.desc)&&pos(it.preco)).length;
+  c.push(nCoe>=1, nCoe>=3);
+  // 4 · fixos
+  const nBens = E.p4.bens.filter(b=>ok(b.desc)&&pos(b.aq)).length;
+  c.push(nBens>=1, pos(E.p4.prolabore)||pos(E.p4.outros));
+  // 5 · implantação (só perenes)
+  if(perene){
+    const nImp = E.p5.itens.filter(it=>ok(it.desc)&&pos(it.preco)).length;
+    c.push(pos(E.p5.form), pos(E.p5.vida), nImp>=1, pos(E.p5.area), pos(E.p6.taxaDesconto));
+  }
+  const feitos = c.filter(Boolean).length, total = c.length;
+  return {pct: Math.round(feitos/total*100), feitos, total};
+}
+function atualizarProgresso(E){
+  const {pct, feitos, total} = progresso(E);
+  el('prog-fill').style.width = pct + '%';
+  el('prog-fill').style.backgroundColor = 'hsl(' + Math.round(pct*1.2) + ' 55% 42%)'; // 0=vermelho → 120=verde
+  el('prog-pct').textContent = pct + '%';
+  el('prog').classList.toggle('completo', pct===100);
+  let msg;
+  if(pct===0)      msg = 'comece pela identificação';
+  else if(pct<34)  msg = 'começo de projeto, siga preenchendo';
+  else if(pct<67)  msg = feitos + ' de ' + total + ' campos-chave preenchidos';
+  else if(pct<100) msg = 'quase lá, falta(m) ' + (total-feitos) + ' campo(s) para fechar';
+  else             msg = 'projeto completo · gere o relatório';
+  el('prog-msg').textContent = msg;
 }
 
 // ===========================================================================
@@ -2054,6 +2154,7 @@ function recalc(){
   const E=coletarTudo();
   const D=derivar(E);
   pintar(E,D);
+  atualizarProgresso(E);
   clearTimeout(saveTimer);
   saveTimer=setTimeout(()=>persistir(E),300);
 }
@@ -2076,6 +2177,7 @@ function toggleCredito(){
 
 const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
+  marcarPendente();
   if(e.target.id==='template'){ aplicarTemplate(true); if(!passosAtivos().includes(passoAtual)) irPara(0); else renderSteps(); }
   if(e.target.id==='usa-credito') toggleCredito();
   if(e.target.id==='id-municipio'){
@@ -2092,6 +2194,11 @@ wrapEl.addEventListener('input',e=>{
     }
   }
   recalc();
+});
+el('btn-salvar').addEventListener('click',()=>{
+  clearTimeout(saveTimer);
+  persistir(coletarTudo());
+  const s=el('save-status'); s.classList.add('flash'); setTimeout(()=>s.classList.remove('flash'),650);
 });
 el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
 el('add-dep').addEventListener('click',()=>{addDep();recalc();});
