@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://robersonoliveira-afk.github.io/Site/</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-1.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-2.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-3.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-4.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-5.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-6.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/projeto.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/aulas.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/credito.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/quiz-geral.html</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/rebanho.html</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://robersonoliveira-afk.github.io/Site/vinhedo.html</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+
+  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-1.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-2.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-3.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-4.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-5.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/parte-6.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/projeto.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t0.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t1.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t2.html</loc><lastmod>2026-08-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t3.html</loc><lastmod>2026-08-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t4.html</loc><lastmod>2026-09-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t5.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t6.html</loc><lastmod>2026-08-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t7.html</loc><lastmod>2026-08-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aula-t8.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://robersonoliveira-afk.github.io/Site/aulas.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/roteiro.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/credito.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/quiz-geral.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/rebanho.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/vinhedo.html</loc><lastmod>2026-08-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/equilibrio-soja.html</loc><lastmod>2026-08-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/relacao-troca-precos.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://robersonoliveira-afk.github.io/Site/revisao-agricultura.html</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/revisao-agricultura-precisao.html</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/revisao-agropecuaria.html</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/revisao-fruticultura.html</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://robersonoliveira-afk.github.io/Site/revisao-zootecnia.html</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
