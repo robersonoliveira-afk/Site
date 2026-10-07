@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7C3D1F">
+<meta name="robots" content="noindex">
+<title>Módulo 9 · Começar ou ampliar</title>
+<meta name="description" content="Módulo 9 do curso de gestão para produtores: começar ou ampliar um negócio rural, escolher a atividade, comprar ou arrendar terra, capital de entrada, documentação e cuidados antes de assinar.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-9.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* comparador de atividades */
+.comp{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.comp .abas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.comp .abas button{font:inherit;font-size:14px;padding:8px 11px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.comp .abas button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
+.crit{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-bottom:9px;font-size:14.5px}
+@media (max-width:420px){.crit{grid-template-columns:118px 1fr;font-size:13.5px}}
+.crit .tr{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.crit .tr i{height:14px;background:var(--rule-soft);transition:background .4s}
+.crit .tr i.on{background:var(--terra)}
+.comp .nota{font-size:15px;color:var(--ink-soft);margin-top:12px;line-height:1.5;min-height:46px}
+
+/* pilha do capital */
+.pilha{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.pilha .cam{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;margin-bottom:4px;color:#fff;font-size:15.5px;transform:translateX(-14px);opacity:0;transition:transform .5s,opacity .5s}
+.pilha.on .cam{transform:none;opacity:1}
+.pilha .cam b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px;opacity:.85;white-space:nowrap}
+.pilha.on .cam:nth-child(2){transition-delay:.12s}.pilha.on .cam:nth-child(3){transition-delay:.24s}.pilha.on .cam:nth-child(4){transition-delay:.36s}.pilha.on .cam:nth-child(5){transition-delay:.48s}.pilha.on .cam:nth-child(6){transition-delay:.6s}
+
+/* checklist */
+.check{list-style:none;display:grid;gap:8px;margin:18px 0}
+.check label{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--rule);padding:12px 14px;cursor:pointer;font-size:16px;line-height:1.45;color:var(--ink-soft);transition:background .2s}
+.check input{width:20px;height:20px;accent-color:var(--terra);flex-shrink:0;margin-top:2px}
+.check label:has(input:checked){background:var(--success-bg)}
+.check-cont{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--stone)}
+
+/* calculadora */
+.mini{font:inherit;font-size:13px;font-weight:600;padding:8px 12px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+.grupo{margin:22px 0 6px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E3C46E;display:flex;align-items:center;gap:10px}
+.grupo::after{content:"";flex:1;height:1px;background:rgba(250,247,240,.2)}
+.campos .sel{flex:1;border:0;background:transparent;font-family:'IBM Plex Sans',sans-serif;font-size:17px;padding:12px;color:var(--ink);outline:none}
+.empilha{display:flex;height:34px;margin:16px 0 6px;background:rgba(250,247,240,.08);overflow:hidden}
+.empilha div{height:100%;width:0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:rgba(250,247,240,.8);margin-bottom:10px}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+</style>
+</head>
+<body class="arco-decidir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 9 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/parreiral-bento-goncalves.jpg')" role="img" aria-label="Produtor em parreiral na Serra gaúcha"></div>
+  <div class="wrap">
+    <div class="num sobe">9</div>
+    <p class="arco">Decidir · o novo negócio</p>
+    <h1>Começar ou ampliar</h1>
+    <p class="pergunta">Comprar um sítio é o primeiro passo, ou o último?</p>
+    <div class="meta"><span>6 lições</span><span>cerca de 30 minutos</span></div>
+  </div>
+  <span class="credito">produtor no parreiral, Bento Gonçalves/RS · CC BY 3.0 BR, Daniel Isaia/Agência Brasil</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Como escolher a atividade, olhando além do gosto.</li>
+      <li>Comprar ou arrendar a terra.</li>
+      <li>O capital de entrada: muito mais do que a terra.</li>
+      <li>O que conferir antes de assinar.</li>
+      <li>Começar pequeno e crescer com o que o negócio gera.</li>
+      <li>Ampliar quem já produz: quando faz sentido.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">Escolher a atividade</h2>
+    <p class="rv">Muita gente começa pelo sítio: encontra uma área bonita, compra, e só depois pensa no que vai produzir. O caminho mais seguro é o contrário: <strong>primeiro a atividade, depois a terra que serve para ela</strong>.</p>
+    <p class="rv">Para escolher, sete perguntas ajudam mais do que o gosto pessoal, que também conta:</p>
+    <ul class="lista rv">
+      <li><strong>Mercado:</strong> quem vai comprar, a que distância, por quanto? (módulo 2)</li>
+      <li><strong>Terra e clima:</strong> a região e o solo servem para essa atividade? O zoneamento agrícola e a EMATER ajudam a responder.</li>
+      <li><strong>Mão de obra:</strong> quantas pessoas, quantas horas, em quais dias? O leite, por exemplo, exige ordenha todos os dias do ano.</li>
+      <li><strong>Capital:</strong> quanto é preciso investir antes de produzir?</li>
+      <li><strong>Tempo até a primeira venda:</strong> meses ou anos?</li>
+      <li><strong>Conhecimento:</strong> você ou alguém próximo já sabe fazer? Onde aprender?</li>
+      <li><strong>Risco:</strong> clima, preço, doenças. (módulo 8)</li>
+    </ul>
+    <p class="rv">Compare abaixo algumas atividades comuns no Rio Grande do Sul. É uma comparação geral: os números reais variam muito com a escala, a tecnologia e a região.</p>
+
+    <div class="comp rv">
+      <div class="abas" id="comp-abas"></div>
+      <div id="comp-crit"></div>
+      <p class="nota" id="comp-nota"></p>
+    </div>
+    <p class="rv" style="font-size:15px;color:var(--stone);margin-top:-8px">Escala de 1 a 5, comparação qualitativa entre as atividades.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Comprar ou arrendar</h2>
+    <p class="rv">Ser dono da terra é um sonho legítimo, e terra costuma ser um bom patrimônio a longo prazo. Mas, para quem está começando, comprar nem sempre é o melhor primeiro passo.</p>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead><tr><th></th><th>Comprar</th><th>Arrendar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Capital</strong></td><td>Exige muito dinheiro de entrada, que fica empatado.</td><td>Exige pouco: o dinheiro vai para produzir.</td></tr>
+          <tr><td><strong>Segurança</strong></td><td>A terra é sua, para investir e passar adiante.</td><td>Depende do contrato e da renovação.</td></tr>
+          <tr><td><strong>Flexibilidade</strong></td><td>Difícil voltar atrás se a atividade não der certo.</td><td>Permite testar, mudar de área ou crescer aos poucos.</td></tr>
+          <tr><td><strong>Custo</strong></td><td>O custo de oportunidade do dinheiro empatado (módulo 4).</td><td>O valor do arrendamento, pago todo ano.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rv">Uma conta simples ajuda: <strong>quanto o dinheiro da compra renderia aplicado, por ano, comparado ao arrendamento de uma área igual</strong>. Se o arrendamento for menor, arrendar libera dinheiro para produzir. É a conta que você faz no fim deste módulo.</p>
+    <p class="rv">Arrendamento e parceria rural são regulados pelo Estatuto da Terra, que estabelece, entre outras coisas, prazos mínimos de contrato conforme a atividade. Faça sempre contrato por escrito, com prazo, valor, forma de pagamento e o que acontece com as benfeitorias.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">O capital de entrada</h2>
+    <p class="rv">O erro mais comum de quem começa é gastar tudo na terra e nas máquinas e ficar sem dinheiro para produzir e para viver. O capital de entrada tem seis camadas, e todas precisam caber no plano:</p>
+    <div class="pilha" data-anima>
+      <div class="cam" style="background:#3D4A2A">Terra <b>comprar ou arrendar</b></div>
+      <div class="cam" style="background:#5E6B45">Construções e instalações <b>galpão, cercas, água, energia</b></div>
+      <div class="cam" style="background:#8A6C1F">Máquinas e equipamentos <b>módulo 3</b></div>
+      <div class="cam" style="background:#A88326">Animais ou implantação <b>rebanho, mudas, pomar</b></div>
+      <div class="cam" style="background:#A8552E">Capital de giro da primeira safra <b>módulo 6</b></div>
+      <div class="cam" style="background:#7C3D1F">Reserva da família até a primeira venda <b>módulo 1</b></div>
+    </div>
+    <p class="rv">As duas últimas camadas são as mais esquecidas e as que mais quebram negócios novos. Nas atividades de retorno lento, como pomares, vinhedos e gado de cria, elas podem ser maiores do que as máquinas.</p>
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>O site da disciplina tem calculadoras para dimensionar a implantação de um <a href="../vinhedo.html">vinhedo</a> e a estrutura de um <a href="../rebanho.html">rebanho leiteiro</a>.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">Antes de assinar</h2>
+    <p class="rv">Comprar ou arrendar uma área é uma decisão difícil de desfazer. Use a lista abaixo antes de fechar negócio. Ela fica salva no seu aparelho.</p>
+    <ul class="check" id="check">
+      <li><label><input type="checkbox" data-c="mat"> Pedi a matrícula atualizada no Registro de Imóveis e conferi o dono, as dívidas e as restrições.</label></li>
+      <li><label><input type="checkbox" data-c="ccir"> Conferi o CCIR, os comprovantes de ITR e o CAR da área.</label></li>
+      <li><label><input type="checkbox" data-c="amb"> Sei onde estão as áreas de preservação e a reserva legal, e quanto sobra para produzir.</label></li>
+      <li><label><input type="checkbox" data-c="agua"> Visitei a área na seca e na chuva. Sei de onde vem a água e se ela é suficiente.</label></li>
+      <li><label><input type="checkbox" data-c="solo"> Fiz análise de solo e sei o histórico de uso da área.</label></li>
+      <li><label><input type="checkbox" data-c="acesso"> A estrada aguenta caminhão o ano todo, e há energia elétrica adequada.</label></li>
+      <li><label><input type="checkbox" data-c="viz"> Conversei com vizinhos sobre divisas, enchentes, geadas e produtividade da região.</label></li>
+      <li><label><input type="checkbox" data-c="lic"> Sei se a atividade exige licença ambiental ou autorização para irrigar.</label></li>
+      <li><label><input type="checkbox" data-c="ater"> Conversei com a EMATER, o sindicato rural ou a cooperativa da região sobre a atividade.</label></li>
+      <li><label><input type="checkbox" data-c="cad"> Sei como fazer a inscrição estadual de produtor e, se for o caso, o CAF.</label></li>
+    </ul>
+    <p class="check-cont" id="check-cont"></p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Começar pequeno</h2>
+    <p class="rv">Ninguém aprende uma atividade nova sem errar. A questão é errar barato. Algumas estratégias de quem começou bem:</p>
+    <ul class="lista rv">
+      <li><strong>Testar antes de mergulhar:</strong> uma área pequena, um lote pequeno de animais, uma safra de aprendizado.</li>
+      <li><strong>Arrendar antes de comprar:</strong> conhecer a atividade e a região antes de empatar o capital.</li>
+      <li><strong>Manter uma renda de fora no começo:</strong> o emprego, um serviço, o aluguel. Ela sustenta a família enquanto o negócio cresce.</li>
+      <li><strong>Comprar usado e dividir máquinas:</strong> patrulha agrícola da prefeitura, condomínio de máquinas com vizinhos, serviço terceirizado.</li>
+      <li><strong>Aprender com quem faz:</strong> cursos do SENAR-RS e da EMATER, dias de campo, visitas a produtores, cooperativas.</li>
+      <li><strong>Crescer com o que o negócio gera:</strong> reinvestir a sobra é mais lento, mas não cria dívida.</li>
+    </ul>
+    <p class="destaque rv">O negócio que dura não é o que começa grande. É o que aguenta o primeiro ano ruim.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 6 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 6</p>
+    <h2 class="rv">Ampliar quem já produz</h2>
+    <p class="rv">Para quem já está na atividade, as mesmas perguntas valem na hora de crescer: comprar mais terra, aumentar o rebanho, entrar numa atividade nova, montar uma agroindústria. Três cuidados a mais:</p>
+    <ul class="lista rv">
+      <li><strong>Ampliar o que dá lucro, não o que dá prejuízo.</strong> Se a atividade não paga o custo total hoje (módulo 5), fazer mais dela costuma aumentar o problema, não resolver.</li>
+      <li><strong>Olhar o gargalo.</strong> Às vezes o limite não é a área: é a mão de obra, a água, a ordenha, o armazém. Ampliar a parte errada não aumenta a produção.</li>
+      <li><strong>Somar as dívidas.</strong> A parcela nova vai se juntar às que já existem (módulo 7).</li>
+    </ul>
+    <p class="rv">Para avaliar um projeto com mais detalhe, com investimentos, fluxo de vários anos e indicadores de viabilidade, use o <a href="../projeto.html">simulador de projetos</a> do site da disciplina.</p>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2 class="so-novo">Quanto você precisa para começar?</h2>
+    <h2 class="so-ja">Quanto você precisa para ampliar?</h2>
+    <p>Preencha cada camada do capital. Os botões trazem valores que você já calculou em outros módulos.</p>
+    <p style="margin:4px 0 6px"><button type="button" class="mini" id="e-exemplo">ver o exemplo de quem vai começar com hortaliças</button></p>
+
+    <p class="grupo">A terra</p>
+    <div class="campos">
+      <div class="campo"><label for="e-modo">Como vai ter a terra</label><div class="inp"><select id="e-modo" class="sel"><option value="comprar">comprar</option><option value="arrendar">arrendar</option><option value="ja">já tenho</option></select></div></div>
+      <div class="campo"><label for="e-ha">Área <small>hectares</small></label><div class="inp"><input id="e-ha" inputmode="decimal" autocomplete="off" placeholder="0"><span style="padding-right:12px">ha</span></div></div>
+      <div class="campo"><label for="e-preco">Preço da terra por hectare <small>para comprar</small></label><div class="inp"><span>R$</span><input id="e-preco" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="e-arr">Arrendamento por hectare por ano <small>na região, para comparar</small></label><div class="inp"><span>R$</span><input id="e-arr" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <p class="grupo">As outras camadas</p>
+    <div class="campos">
+      <div class="campo"><label for="e-const">Construções e instalações</label><div class="inp"><span>R$</span><input id="e-const" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="e-maq">Máquinas e equipamentos</label><div class="inp"><span>R$</span><input id="e-maq" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="e-usa3" hidden style="margin-top:6px">usar o total do meu módulo 3</button></div>
+      <div class="campo"><label for="e-anim">Animais, mudas ou implantação</label><div class="inp"><span>R$</span><input id="e-anim" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="e-giro">Capital de giro da primeira safra</label><div class="inp"><span>R$</span><input id="e-giro" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="e-usa6" hidden style="margin-top:6px">usar o buraco do meu módulo 6</button></div>
+      <div class="campo"><label for="e-res">Reserva da família até a primeira venda</label><div class="inp"><span>R$</span><input id="e-res" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="e-usa1" hidden style="margin-top:6px">usar o valor do meu módulo 1</button></div>
+      <div class="campo"><label for="e-prop">Recursos próprios disponíveis <small>tudo o que você tem para investir</small></label><div class="inp"><span>R$</span><input id="e-prop" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="resultado" id="e-res-box" hidden>
+      <div class="empilha" id="e-emp"></div>
+      <div class="leg" id="e-leg"></div>
+      <div class="linha"><span>Capital de entrada total</span><b id="e-tot"></b></div>
+      <div class="linha"><span>Recursos próprios</span><b id="e-propv"></b></div>
+      <div class="linha"><span>Falta</span><b id="e-falta"></b></div>
+      <div class="linha" id="e-cmp-w"><span>Custo por ano: comprar (rendimento perdido) x arrendar</span><b id="e-cmp"></b></div>
+      <div class="veredito" id="e-ver"></div>
+      <p class="salvo" id="e-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Primeiro a atividade e o mercado, depois a terra que serve para eles.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Arrendar libera capital e permite testar. Comprar dá segurança, mas empata dinheiro.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>O capital de entrada tem seis camadas. Capital de giro e reserva da família são as mais esquecidas.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>Comece pequeno, confira tudo antes de assinar e amplie só o que já dá lucro.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>Qual a ordem mais segura para começar um negócio rural?</p>
+      <button type="button" class="alt">Comprar a terra, depois escolher a atividade.</button>
+      <button type="button" class="alt" data-certa>Escolher a atividade e o mercado, depois buscar a terra adequada.</button>
+      <button type="button" class="alt">Comprar as máquinas, depois a terra.</button>
+      <p class="fb">A atividade define o tipo de terra, a localização, a água e o capital necessários.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>Comprar 20 ha custa R$ 600 mil. Aplicado, esse dinheiro renderia R$ 36 mil por ano. Arrendar uma área igual custa R$ 16 mil por ano. Do ponto de vista do custo anual:</p>
+      <button type="button" class="alt">Comprar é mais barato.</button>
+      <button type="button" class="alt" data-certa>Arrendar é mais barato e libera dinheiro para produzir.</button>
+      <button type="button" class="alt">Os dois custam igual.</button>
+      <p class="fb">R$ 16 mil de arrendamento contra R$ 36 mil que o dinheiro deixaria de render. Comprar pode valer por outros motivos, como segurança e patrimônio, mas custa mais por ano.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>A atividade de leite da propriedade não cobre o custo total. Dobrar o rebanho tende a:</p>
+      <button type="button" class="alt">Resolver o problema, porque a escala maior dilui o custo.</button>
+      <button type="button" class="alt" data-certa>Aumentar o problema, se a causa do prejuízo não for a escala.</button>
+      <button type="button" class="alt">Não fazer diferença.</button>
+      <p class="fb">Escala pode ajudar, mas primeiro é preciso saber por que a atividade não paga o custo. Ampliar o que dá prejuízo costuma ampliar o prejuízo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="9">Concluir o módulo 9</button>
+    <span class="proximo">A seguir, módulo 10<br><a href="modulo-10.html">Planejar o próximo passo</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* comparador de atividades: 1 a 5 em cada critério */
+(function(){
+  var CRIT = ['Capital para começar','Mão de obra','Tempo até a 1ª venda','Área necessária','Risco de preço'];
+  var ATIV = {
+    'Hortaliças': {v:[2,5,1,1,4], n:'Pouca área e retorno rápido, mas muito trabalho manual e preço que muda toda semana. Venda direta e feiras ajudam a estabilizar.'},
+    'Leite': {v:[4,5,3,2,3], n:'Renda todo mês e boa escala em áreas médias. Exige investimento em rebanho e equipamentos, e ordenha todos os dias do ano.'},
+    'Gado de corte (cria)': {v:[3,2,5,5,3], n:'Pouca mão de obra, mas precisa de área e o primeiro terneiro vendido demora. Combina com campo nativo e integração com lavoura.'},
+    'Grãos': {v:[5,2,2,5,4], n:'Muito mecanizada e exigente em capital e área. Preço mundial, como visto no módulo 2. Para quem começa pequeno, costuma ser via arrendamento ou serviço contratado.'},
+    'Frutas e uva': {v:[4,4,5,2,3], n:'Pouca área, mas a implantação é cara e o pomar ou vinhedo leva anos para produzir. Exige reserva grande e conhecimento técnico.'},
+    'Galinhas coloniais': {v:[2,4,2,1,3], n:'Começa com pouco capital e pouca área, com venda direta de ovos. Exige cuidado sanitário e regularidade de entrega.'}
+  };
+  var abas = document.getElementById('comp-abas'), box = document.getElementById('comp-crit'), nota = document.getElementById('comp-nota');
+  CRIT.forEach(function(c, i){
+    var d = document.createElement('div'); d.className = 'crit';
+    d.innerHTML = '<span>' + c + '</span><span class="tr">' + '<i></i><i></i><i></i><i></i><i></i></span>';
+    box.appendChild(d);
+  });
+  function mostra(n){
+    abas.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.textContent === n); });
+    box.querySelectorAll('.crit').forEach(function(d, i){
+      d.querySelectorAll('i').forEach(function(x, k){ x.classList.toggle('on', k < ATIV[n].v[i]); x.style.transitionDelay = (k * 0.06) + 's'; });
+    });
+    nota.textContent = ATIV[n].n;
+  }
+  Object.keys(ATIV).forEach(function(n){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = n;
+    b.addEventListener('click', function(){ mostra(n); }); abas.appendChild(b);
+  });
+  mostra('Hortaliças');
+})();
+
+/* checklist */
+(function(){
+  var est = (Curso.caderno().m9check) || {}, cont = document.getElementById('check-cont');
+  var bx = document.querySelectorAll('#check input');
+  function upd(){ var n = 0; bx.forEach(function(b){ if (b.checked) n++; }); cont.textContent = n + ' de ' + bx.length + ' itens conferidos'; }
+  bx.forEach(function(b){
+    b.checked = !!est[b.dataset.c];
+    b.addEventListener('change', function(){ est[b.dataset.c] = b.checked; Curso.salvarCaderno('m9check', est); upd(); });
+  });
+  upd();
+})();
+
+/* capital de entrada */
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  var nums = ['preco','arr','const','maq','anim','giro','res','prop'];
+  nums.forEach(function(k){ Curso.mascara(g('e-' + k)); });
+  var dec = function(s){ s = String(s || '').replace(/\./g, '').replace(',', '.'); var v = parseFloat(s); return isFinite(v) ? v : 0; };
+  var CAM = [['terra','Terra','#9DB86A'],['const','Construções','#5E6B45'],['maq','Máquinas','#8A6C1F'],['anim','Animais ou implantação','#A88326'],['giro','Capital de giro','#D9895E'],['res','Reserva da família','#E59A72']];
+  var exemplo = false;
+  function calc(){
+    var modo = g('e-modo').value, ha = dec(g('e-ha').value);
+    var v = {}; nums.forEach(function(k){ v[k] = Curso.num(g('e-' + k).value); });
+    var terra = modo === 'comprar' ? ha * v.preco : 0;
+    var val = {terra:terra, const:v.const, maq:v.maq, anim:v.anim, giro:v.giro, res:v.res};
+    var tot = 0; CAM.forEach(function(c){ tot += val[c[0]]; });
+    if (!tot){ g('e-res-box').hidden = true; return; }
+    g('e-res-box').hidden = false;
+    var emp = g('e-emp'), leg = g('e-leg');
+    if (!emp.children.length){
+      CAM.forEach(function(c){ var d = document.createElement('div'); d.style.background = c[2]; emp.appendChild(d); });
+      leg.innerHTML = CAM.map(function(c){ return '<span style="--c:' + c[2] + '">' + c[1] + '</span>'; }).join('');
+    }
+    requestAnimationFrame(function(){ CAM.forEach(function(c, i){ emp.children[i].style.width = (val[c[0]] / tot * 100) + '%'; }); });
+    var falta = Math.max(tot - v.prop, 0);
+    g('e-tot').textContent = Curso.reais(tot); g('e-propv').textContent = Curso.reais(v.prop); g('e-falta').textContent = Curso.reais(falta);
+    var cmpTxt = '';
+    if (ha > 0 && v.preco > 0 && v.arr > 0){
+      g('e-cmp-w').hidden = false;
+      var rend = ha * v.preco * 0.06, arrAno = ha * v.arr;
+      g('e-cmp').textContent = Curso.reais(rend) + ' x ' + Curso.reais(arrAno);
+      cmpTxt = rend > arrAno
+        ? ' O dinheiro da compra renderia ' + Curso.reais(rend) + ' por ano aplicado a 6%, mais do que o arrendamento de ' + Curso.reais(arrAno) + ': arrendar custa menos por ano e libera ' + Curso.reais(ha * v.preco) + ' para produzir.'
+        : ' O arrendamento de ' + Curso.reais(arrAno) + ' por ano é maior do que o rendimento do dinheiro da compra, ' + Curso.reais(rend) + ' a 6%: comprar faz sentido também pelo custo.';
+    } else g('e-cmp-w').hidden = true;
+    var semReserva = (v.giro + v.res) / tot < 0.1;
+    var txt, cls;
+    if (!v.prop){ cls = ''; txt = 'Informe os recursos próprios para ver quanto falta.'; }
+    else if (falta === 0){ cls = 'ok'; txt = 'Os recursos próprios cobrem todo o capital de entrada, sem dívida. É a forma mais segura de começar.'; }
+    else if (falta / tot < 0.4){ cls = ''; txt = 'Faltam ' + Curso.reais(falta) + ', ' + Math.round(falta / tot * 100) + '% do total. Pode vir de crédito de investimento, mas confira a capacidade de pagamento no módulo 7 antes.'; }
+    else { cls = 'alerta'; txt = 'Faltam ' + Curso.reais(falta) + ', ' + Math.round(falta / tot * 100) + '% do total. Começar tão endividado é arriscado: um ano ruim no início compromete tudo. Considere arrendar em vez de comprar, começar menor ou adiar parte dos investimentos.'; }
+    if (semReserva) txt += ' Atenção: capital de giro e reserva da família somam menos de 10% do total. Essas são as camadas que mais fazem falta no primeiro ano.';
+    txt += cmpTxt;
+    g('e-ver').className = 'veredito ' + cls; g('e-ver').textContent = txt;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m9', {modoTerra:modo, area:ha, precoHa:v.preco, arrendamentoHa:v.arr, terra:terra, construcoes:v.const, maquinas:v.maq, animais:v.anim, giro:v.giro, reserva:v.res, total:tot, recursosProprios:v.prop, falta:falta});
+      g('e-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else g('e-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+  }
+  nums.concat(['ha']).forEach(function(k){ g('e-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+  g('e-modo').addEventListener('change', function(){ exemplo = false; calc(); });
+  var cad = Curso.caderno();
+  function botao(id, valor, alvo){ if (valor > 0){ var b = g(id); b.hidden = false; b.addEventListener('click', function(){ g(alvo).value = Math.round(valor).toLocaleString('pt-BR'); exemplo = false; calc(); }); } }
+  if (cad.m3inv) botao('e-usa3', cad.m3inv.valorTotal, 'e-maq');
+  if (cad.m6 && cad.m6.menorSaldo < 0) botao('e-usa6', -cad.m6.menorSaldo, 'e-giro');
+  if (cad.m1novo){ var f = Math.max(cad.m1novo.gastosCasa - cad.m1novo.rendasFora, 0) * cad.m1novo.mesesAtePrimeiraVenda; botao('e-usa1', f, 'e-res'); }
+  if (cad.m9){
+    var m = cad.m9; g('e-modo').value = m.modoTerra || 'comprar'; g('e-ha').value = m.area ? String(m.area).replace('.', ',') : '';
+    var mp = {preco:m.precoHa, arr:m.arrendamentoHa, const:m.construcoes, maq:m.maquinas, anim:m.animais, giro:m.giro, res:m.reserva, prop:m.recursosProprios};
+    nums.forEach(function(k){ if (mp[k]) g('e-' + k).value = Math.round(mp[k]).toLocaleString('pt-BR'); });
+    calc();
+  }
+  g('e-exemplo').addEventListener('click', function(){
+    g('e-modo').value = 'arrendar'; g('e-ha').value = '3';
+    var ex = {preco:30000, arr:900, const:25000, maq:18000, anim:12000, giro:15000, res:30000, prop:80000};
+    nums.forEach(function(k){ g('e-' + k).value = ex[k].toLocaleString('pt-BR'); });
+    exemplo = true; calc();
+    g('e-res-box').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

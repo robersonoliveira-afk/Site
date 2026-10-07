@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7C3D1F">
+<meta name="robots" content="noindex">
+<title>Módulo 7 · Crédito rural</title>
+<meta name="description" content="Módulo 7 do curso de gestão para produtores: crédito rural, custeio, investimento, PRONAF, PRONAMP, custo real do financiamento e capacidade de pagamento.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-7.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* alavanca */
+.alav{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.alav svg{width:100%;height:auto;display:block;max-width:360px;margin:0 auto}
+.alav .braco{transform-origin:180px 120px;transition:transform 1s cubic-bezier(.3,1.4,.5,1)}
+.alav .abas{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.alav .abas button{font:inherit;font-size:14.5px;padding:9px 14px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.alav .abas button.on{background:var(--olive-deep);color:var(--paper);border-color:var(--olive-deep)}
+.alav .cap{font-size:15.5px;color:var(--ink-soft);margin-top:12px;line-height:1.5;min-height:72px}
+.alav text{font-family:'IBM Plex Sans',sans-serif;font-size:13px}
+
+/* tipos */
+.tipos{display:grid;gap:10px;margin:20px 0}
+@media (min-width:600px){.tipos{grid-template-columns:1fr 1fr}}
+.tipo{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--terra);padding:14px 16px}
+.tipo h4{font-family:'Fraunces',serif;font-weight:500;font-size:19.5px;margin-bottom:4px}
+.tipo p{font-size:15.5px;line-height:1.5;color:var(--ink-soft);margin:0}
+.tipo .prazo{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);display:block;margin-top:6px}
+
+/* simulador */
+.mini{font:inherit;font-size:13px;font-weight:600;padding:8px 12px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+.parcelas{background:rgba(250,247,240,.05);border:1px solid rgba(250,247,240,.15);padding:12px 8px 6px;margin:12px 0}
+.parcelas svg{width:100%;height:auto;display:block}
+.parcelas text{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:rgba(250,247,240,.75)}
+.parcelas .bar{transition:y .7s cubic-bezier(.2,.7,.2,1),height .7s cubic-bezier(.2,.7,.2,1)}
+.tab-parc{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13.5px;margin-top:8px}
+.tab-parc th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(250,247,240,.6);text-align:right;padding:6px;font-weight:500}
+.tab-parc th:first-child,.tab-parc td:first-child{text-align:left}
+.tab-parc td{text-align:right;padding:6px;border-top:1px solid rgba(250,247,240,.1)}
+.tab-parc tr.aperto td{color:#E59A72}
+details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8);margin-top:10px}
+</style>
+</head>
+<body class="arco-decidir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 7 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/cooperativa-credito-sertao-santana.jpg')" role="img" aria-label="Agência de cooperativa de crédito em cidade do interior gaúcho"></div>
+  <div class="wrap">
+    <div class="num sobe">7</div>
+    <p class="arco">Decidir · o crédito</p>
+    <h1>Crédito rural</h1>
+    <p class="pergunta">Esse financiamento vai fazer a propriedade crescer, ou só vai criar uma parcela a mais?</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 25 minutos</span></div>
+  </div>
+  <span class="credito">agência de cooperativa de crédito, Sertão Santana/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Quando o crédito ajuda, e quando atrapalha.</li>
+      <li>Os tipos de crédito rural e para que serve cada um.</li>
+      <li>PRONAF, PRONAMP e as outras linhas.</li>
+      <li>O custo de verdade de um financiamento.</li>
+      <li>Capacidade de pagamento: a parcela cabe na sobra?</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">Crédito é alavanca</h2>
+    <p class="rv">Crédito é dinheiro emprestado, que volta ao banco com juros. Usado no lugar certo, ele funciona como uma alavanca: permite fazer hoje o que a propriedade só conseguiria fazer daqui a anos, e o resultado paga a conta. Usado no lugar errado, a alavanca vira contra quem a segura.</p>
+
+    <div class="alav rv">
+      <svg viewBox="0 0 360 170" role="img" aria-label="Alavanca representando o efeito do crédito">
+        <path d="M168 150 L180 122 L192 150 Z" fill="#3A3833"/>
+        <g class="braco" id="braco">
+          <rect x="30" y="116" width="300" height="8" fill="#7C3D1F"/>
+          <rect x="34" y="84" width="60" height="32" fill="#B89233"/><text x="64" y="104" text-anchor="middle" fill="#3A2F08">parcela</text>
+          <rect x="250" y="70" width="76" height="46" fill="#3D4A2A"/><text x="288" y="90" text-anchor="middle" fill="#FAF7F0">o que o</text><text x="288" y="106" text-anchor="middle" fill="#FAF7F0">crédito gera</text>
+        </g>
+        <line x1="20" y1="150" x2="340" y2="150" stroke="#D9D3C2" stroke-width="2"/>
+      </svg>
+      <div class="abas" id="alav-abas"><button type="button" data-a="-12" data-t="O crédito financiou algo que gera renda: uma ordenhadeira que permite ordenhar mais vacas, uma correção de solo que aumenta a produtividade, o custeio de uma safra bem planejada. O que ele gera é maior do que a parcela.">Gera renda</button><button type="button" data-a="12" data-t="O crédito financiou algo que não gera renda suficiente: uma máquina maior do que a área precisa, ou pagou outra dívida. A parcela pesa mais do que o retorno, e a propriedade fica mais apertada a cada ano.">Não gera</button></div>
+      <p class="cap" id="alav-cap">Toque nas opções para ver os dois lados da alavanca.</p>
+    </div>
+
+    <p class="rv">A regra de ouro: <strong>antes de perguntar quanto o banco empresta, pergunte quanto aquilo vai render</strong>. Os módulos 4 e 5 dão as ferramentas para responder.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Os tipos de crédito rural</h2>
+    <p class="rv">O crédito rural tem regras próprias, definidas pelo governo federal e pelo Banco Central, e juros geralmente menores que os do crédito comum. Ele é dividido conforme a finalidade:</p>
+    <div class="tipos">
+      <div class="tipo rv d1"><h4>Custeio</h4><p>Paga as despesas de uma safra ou de um ciclo de produção: sementes, adubo, defensivos, ração, mão de obra.</p><span class="prazo">curto prazo · paga na colheita ou na venda</span></div>
+      <div class="tipo rv d2"><h4>Investimento</h4><p>Financia bens que duram vários anos: máquinas, construções, correção de solo, irrigação, animais de reprodução, pomares.</p><span class="prazo">longo prazo · parcelas anuais, às vezes com carência</span></div>
+      <div class="tipo rv d3"><h4>Comercialização</h4><p>Permite guardar a produção e vender depois, quando o preço estiver melhor, sem precisar vender na colheita para pagar as contas.</p><span class="prazo">curto prazo · paga com a venda</span></div>
+      <div class="tipo rv d4"><h4>Industrialização</h4><p>Financia o beneficiamento ou a transformação da produção na própria propriedade ou na cooperativa: agroindústria, queijaria, embalagem.</p><span class="prazo">prazo conforme o projeto</span></div>
+    </div>
+    <p class="rv">Usar a linha certa importa. Pagar uma máquina com dinheiro do custeio, por exemplo, obriga a devolver em poucos meses um bem que vai render durante dez anos.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">PRONAF, PRONAMP e as demais linhas</h2>
+    <p class="rv">Todo ano, o governo federal anuncia o <strong>Plano Safra</strong>, que vale de julho a junho e define quanto dinheiro haverá para o crédito rural, os juros e os limites de cada programa. Os principais para pequenos e médios produtores:</p>
+    <ul class="lista rv">
+      <li><strong>PRONAF:</strong> o programa da agricultura familiar, com os juros mais baixos do crédito rural. Exige o CAF, o cadastro da agricultura familiar. Tem linhas de custeio e de investimento e linhas específicas, por exemplo para mulheres, jovens e agroecologia.</li>
+      <li><strong>PRONAMP:</strong> o programa do médio produtor, para quem tem renda acima do limite do PRONAF e abaixo de um teto definido no Plano Safra.</li>
+      <li><strong>Demais linhas:</strong> crédito rural com juros controlados para os demais produtores, e programas de investimento com finalidades específicas, como armazenagem, irrigação e recuperação de solos.</li>
+    </ul>
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>Os juros, os limites e as regras mudam a cada Plano Safra. Confira sempre as condições do ano no seu banco ou cooperativa de crédito, e peça ajuda à EMATER ou ao sindicato rural para montar o projeto.</span>
+    </div>
+    <p class="rv">Quer ver quanto crédito rural chega ao seu município, e em quais atividades? O site da disciplina tem um <a href="../credito.html">painel de crédito rural do RS</a>, com dados do Banco Central.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">O custo de verdade</h2>
+    <p class="rv">A taxa de juros anunciada é só uma parte do custo. Antes de assinar, some tudo:</p>
+    <ul class="lista rv">
+      <li><strong>Juros:</strong> confira se a taxa é ao ano ou ao mês, e se é fixa.</li>
+      <li><strong>Seguro e PROAGRO:</strong> em muitas operações de custeio, a adesão ao PROAGRO ou a um seguro é exigida, e tem custo.</li>
+      <li><strong>Projeto e assistência técnica:</strong> o projeto exigido pelo banco pode ter custo.</li>
+      <li><strong>Tarifas e cotas:</strong> abertura de cadastro, tarifas da conta e, nas cooperativas de crédito, a integralização de cotas.</li>
+      <li><strong>Produtos empurrados:</strong> título de capitalização, seguro de vida, consórcio. A lei proíbe condicionar o crédito à compra de outro produto. Você pode recusar.</li>
+    </ul>
+    <p class="destaque rv">Pergunte sempre: quanto vou pagar no total, somando tudo, até a última parcela?</p>
+    <p class="rv">Compare essa resposta entre bancos e cooperativas. Pequenas diferenças na taxa, num financiamento de dez anos, viram muito dinheiro.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">A parcela cabe na sobra?</h2>
+    <p class="rv">O banco olha a capacidade de pagamento antes de aprovar. Mas quem precisa olhar com mais cuidado é o produtor. A pergunta é: <strong>em um ano normal, a sobra da propriedade paga a maior parcela e ainda deixa folga?</strong></p>
+    <ul class="lista rv">
+      <li><strong>Qual sobra:</strong> a sobra depois de pagar o que sai do bolso e a retirada da família. Ou seja, o dinheiro que sobra de verdade no ano, como no módulo 1.</li>
+      <li><strong>Qual parcela:</strong> a maior. Em muitos financiamentos rurais de investimento, a amortização é constante e os juros diminuem com o tempo: a primeira parcela depois da carência é a mais pesada.</li>
+      <li><strong>Qual folga:</strong> os anos ruins existem. Se a parcela consome toda a sobra de um ano normal, um ano ruim vira atraso.</li>
+    </ul>
+    <p class="rv">E não esqueça as parcelas que já existem. A capacidade de pagamento é uma só, para todas as dívidas juntas.</p>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>Simule um financiamento de investimento</h2>
+    <p>Parcelas anuais com amortização constante, um formato comum nos financiamentos rurais de investimento. Confira no contrato qual é o seu. Use a taxa que o banco ou a cooperativa informou para a linha que você pretende usar.</p>
+    <p class="so-novo">Para quem vai começar, use como sobra a estimativa de um ano normal, depois que a atividade estiver em produção. E lembre que, nos primeiros anos, ela costuma ser menor.</p>
+    <p style="margin:4px 0 6px"><button type="button" class="mini" id="c-exemplo">ver o exemplo de uma ordenhadeira</button></p>
+
+    <div class="campos">
+      <div class="campo"><label for="c-valor">Valor financiado</label><div class="inp"><span>R$</span><input id="c-valor" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="c-juros">Juros ao ano <small>em porcentagem</small></label><div class="inp"><input id="c-juros" inputmode="decimal" autocomplete="off" placeholder="0"><span style="padding-right:12px">%</span></div></div>
+      <div class="campo"><label for="c-prazo">Prazo total <small>em anos, incluindo a carência</small></label><div class="inp"><input id="c-prazo" inputmode="numeric" autocomplete="off" placeholder="0"><span style="padding-right:12px">anos</span></div></div>
+      <div class="campo"><label for="c-car">Carência <small>anos pagando só os juros</small></label><div class="inp"><input id="c-car" inputmode="numeric" autocomplete="off" placeholder="0"><span style="padding-right:12px">anos</span></div></div>
+      <div class="campo"><label for="c-sobra">Sobra da propriedade num ano normal <small>depois do COE e da retirada da família</small></label><div class="inp"><span>R$</span><input id="c-sobra" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="c-usa1" hidden style="margin-top:6px">usar a sobra do meu módulo 1</button></div>
+      <div class="campo"><label for="c-outras">Parcelas que já existem, por ano</label><div class="inp"><span>R$</span><input id="c-outras" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="resultado" id="c-res" hidden>
+      <div class="parcelas"><svg viewBox="0 0 360 180" id="c-svg" role="img" aria-label="Parcelas anuais comparadas com a sobra"></svg></div>
+      <div class="linha"><span>Maior parcela</span><b id="c-maior"></b></div>
+      <div class="linha"><span>Total pago até o fim</span><b id="c-total"></b></div>
+      <div class="linha"><span>Só de juros</span><b id="c-juros-t"></b></div>
+      <div class="veredito" id="c-ver"></div>
+      <details class="tabela"><summary>Ver todas as parcelas</summary><table class="tab-parc" id="c-tab"></table></details>
+      <p class="salvo" id="c-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Crédito é alavanca: só vale quando o que ele gera é maior do que a parcela.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Custeio paga a safra, investimento paga bens duráveis. Use a linha certa para cada finalidade.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>PRONAF exige o CAF. Juros e limites mudam a cada Plano Safra: confira sempre.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>Compare o custo total, não só a taxa. E confira se a maior parcela cabe na sobra de um ano normal, com folga.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>Para comprar um trator que vai trabalhar dez anos, a linha mais adequada é:</p>
+      <button type="button" class="alt">Custeio, porque sai mais rápido.</button>
+      <button type="button" class="alt" data-certa>Investimento, com prazo compatível com a vida do bem.</button>
+      <button type="button" class="alt">Comercialização.</button>
+      <p class="fb">Bens que duram vários anos devem ser pagos ao longo de vários anos, com o que eles ajudam a produzir.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>O gerente condiciona a liberação do custeio à compra de um título de capitalização. O que fazer?</p>
+      <button type="button" class="alt">Aceitar, porque é assim que funciona.</button>
+      <button type="button" class="alt" data-certa>Recusar: a lei proíbe condicionar o crédito à compra de outro produto.</button>
+      <button type="button" class="alt">Desistir do crédito.</button>
+      <p class="fb">Essa prática é chamada de venda casada e é proibida. Se persistir, procure a ouvidoria do banco ou o Banco Central.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>A propriedade sobra, num ano normal, R$ 40 mil. A maior parcela do financiamento seria R$ 38 mil. A decisão mais prudente é:</p>
+      <button type="button" class="alt">Contratar, porque cabe.</button>
+      <button type="button" class="alt" data-certa>Rever o valor ou o prazo, porque não sobra folga para um ano ruim.</button>
+      <button type="button" class="alt">Contratar e torcer por preços melhores.</button>
+      <p class="fb">Cabe só em ano normal e sem folga. Um ano ruim vira atraso. Vale financiar menos ou alongar o prazo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="7">Concluir o módulo 7</button>
+    <span class="proximo">A seguir, módulo 8<br><a href="modulo-8.html">Riscos e venda</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* alavanca */
+(function(){
+  var br = document.getElementById('braco'), cap = document.getElementById('alav-cap');
+  document.querySelectorAll('#alav-abas button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#alav-abas button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      br.style.transform = 'rotate(' + b.getAttribute('data-a') + 'deg)';
+      cap.textContent = b.getAttribute('data-t');
+    });
+  });
+})();
+
+/* simulador SAC anual com carência */
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  ['valor','sobra','outras'].forEach(function(k){ Curso.mascara(g('c-' + k)); });
+  var dec = function(s){ s = String(s || '').replace(/\./g, '').replace(',', '.'); var v = parseFloat(s); return isFinite(v) ? v : 0; };
+  var exemplo = false;
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(t, a){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+  function calc(){
+    var valor = Curso.num(g('c-valor').value), j = dec(g('c-juros').value) / 100, prazo = Math.round(dec(g('c-prazo').value));
+    var car = Math.round(dec(g('c-car').value)), sobra = Curso.num(g('c-sobra').value), outras = Curso.num(g('c-outras').value);
+    if (!valor || !prazo){ g('c-res').hidden = true; return; }
+    g('c-res').hidden = false;
+    car = Math.min(car, prazo - 1);
+    var nAm = prazo - car, amort = valor / nAm, saldo = valor, parc = [], totJ = 0;
+    for (var a = 1; a <= prazo; a++){
+      var jur = saldo * j, am = a > car ? amort : 0;
+      parc.push({ano:a, juros:jur, amort:am, total:jur + am, saldo:saldo - am});
+      totJ += jur; saldo -= am;
+    }
+    var maior = Math.max.apply(null, parc.map(function(p){ return p.total; }));
+    var cabe = sobra - outras;
+    /* gráfico */
+    var svg = g('c-svg'); svg.innerHTML = '';
+    var W = 360, H = 180, x0 = 6, bw = (W - x0 - 4) / prazo, top = Math.max(maior, cabe, 1) * 1.1;
+    var esc = (H - 30) / top;
+    parc.forEach(function(p, i){
+      var x = x0 + i * bw + 2, hj = p.juros * esc, ha = p.amort * esc, base = H - 18;
+      var ra = svg.appendChild(el('rect', {x:x, width:Math.max(bw - 4, 2), y:base, height:0, fill:'#B89233', class:'bar'}));
+      var rj = svg.appendChild(el('rect', {x:x, width:Math.max(bw - 4, 2), y:base, height:0, fill:'#E59A72', class:'bar'}));
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        ra.setAttribute('y', base - ha); ra.setAttribute('height', ha);
+        rj.setAttribute('y', base - ha - hj); rj.setAttribute('height', hj);
+      }); });
+      if (prazo <= 15 || (i + 1) % 2 === 1){ var t = el('text', {x:x + (bw - 4) / 2, y:H - 4, 'text-anchor':'middle'}); t.textContent = (i + 1); svg.appendChild(t); }
+    });
+    if (cabe > 0){
+      var y = H - 18 - cabe * esc;
+      svg.appendChild(el('line', {x1:0, x2:W, y1:y, y2:y, stroke:'#9DB86A', 'stroke-width':2, 'stroke-dasharray':'6 4'}));
+      var tt = el('text', {x:W - 4, y:y - 5, 'text-anchor':'end', fill:'#9DB86A'}); tt.textContent = 'sobra disponível'; tt.setAttribute('style', 'fill:#9DB86A'); svg.appendChild(tt);
+    }
+    var lg = el('text', {x:6, y:12}); lg.textContent = 'parcela por ano: juros (terra) + amortização (mostarda)'; svg.appendChild(lg);
+
+    g('c-maior').textContent = Curso.reais(maior);
+    g('c-total').textContent = Curso.reais(valor + totJ);
+    g('c-juros-t').textContent = Curso.reais(totJ);
+    g('c-tab').innerHTML = '<tr><th>Ano</th><th>Juros</th><th>Amortização</th><th>Parcela</th></tr>' + parc.map(function(p){
+      return '<tr' + (cabe > 0 && p.total > cabe * 0.8 ? ' class="aperto"' : '') + '><td>' + p.ano + '</td><td>' + Curso.reais(p.juros) + '</td><td>' + Curso.reais(p.amort) + '</td><td>' + Curso.reais(p.total) + '</td></tr>';
+    }).join('');
+    var txt, cls;
+    if (!sobra){ cls = ''; txt = 'Informe a sobra da propriedade num ano normal para ver se a parcela cabe.'; }
+    else if (cabe <= 0){ cls = 'alerta'; txt = 'As parcelas que já existem consomem toda a sobra. Um novo financiamento, agora, só se gerar renda suficiente para pagar a si mesmo desde o primeiro ano.'; }
+    else if (maior > cabe){ cls = 'alerta'; txt = 'A maior parcela (' + Curso.reais(maior) + ') é maior do que a sobra disponível (' + Curso.reais(cabe) + '). Só fecha se o investimento aumentar a sobra. Caso contrário, financie menos, alongue o prazo ou espere.'; }
+    else if (maior > cabe * 0.7){ cls = ''; txt = 'A maior parcela usa ' + Math.round(maior / cabe * 100) + '% da sobra disponível. Cabe num ano normal, mas com pouca folga para um ano ruim. Vale considerar um prazo maior ou um valor menor.'; }
+    else { cls = 'ok'; txt = 'A maior parcela usa ' + Math.round(maior / cabe * 100) + '% da sobra disponível. Há folga para enfrentar um ano mais fraco. Agora confira se o investimento vai gerar renda suficiente para valer a pena.'; }
+    g('c-ver').className = 'veredito ' + cls; g('c-ver').textContent = txt;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m7', {valor:valor, jurosAno:j * 100, prazo:prazo, carencia:car, sobra:sobra, outrasParcelas:outras, maiorParcela:maior, totalPago:valor + totJ, totalJuros:totJ});
+      g('c-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else g('c-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+  }
+  ['valor','juros','prazo','car','sobra','outras'].forEach(function(k){ g('c-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+  var cad = Curso.caderno();
+  if (cad.m1 && cad.m1.vendas){
+    var s1 = cad.m1.vendas - cad.m1.gastosProducao - Math.max(cad.m1.gastosCasa - cad.m1.rendasFora, 0);
+    if (s1 > 0){ var b = g('c-usa1'); b.hidden = false; b.addEventListener('click', function(){ g('c-sobra').value = Math.round(s1 * 12).toLocaleString('pt-BR'); exemplo = false; calc(); }); }
+  }
+  if (cad.m7){
+    var m = cad.m7;
+    g('c-valor').value = Math.round(m.valor).toLocaleString('pt-BR'); g('c-juros').value = String(m.jurosAno).replace('.', ',');
+    g('c-prazo').value = m.prazo; g('c-car').value = m.carencia || '';
+    g('c-sobra').value = m.sobra ? Math.round(m.sobra).toLocaleString('pt-BR') : ''; g('c-outras').value = m.outrasParcelas ? Math.round(m.outrasParcelas).toLocaleString('pt-BR') : '';
+    calc();
+  }
+  g('c-exemplo').addEventListener('click', function(){
+    g('c-valor').value = '80.000'; g('c-juros').value = '5'; g('c-prazo').value = '8'; g('c-car').value = '1';
+    g('c-sobra').value = '30.000'; g('c-outras').value = '6.000';
+    exemplo = true; calc();
+    g('c-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

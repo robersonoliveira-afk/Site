@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3A2F08">
+<meta name="robots" content="noindex">
+<title>Módulo 6 · O dinheiro no tempo</title>
+<meta name="description" content="Módulo 6 do curso de gestão para produtores: fluxo de caixa, calendário de entradas e saídas, capital de giro e reserva.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-6.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* comparação de calendários */
+.cal{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.cal .abas{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.cal .abas button{font:inherit;font-size:14.5px;padding:8px 12px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.cal .abas button.on{background:var(--mustard);border-color:var(--mustard);color:var(--mustard-ink);font-weight:600}
+.cal svg{width:100%;height:auto;display:block}
+.cal svg text{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:#6B6960}
+.cal .b{transition:y .6s cubic-bezier(.2,.7,.2,1),height .6s cubic-bezier(.2,.7,.2,1)}
+.cal .linha-s{transition:d .6s}
+.cal .cap{font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.5;min-height:66px}
+
+/* fluxo da calculadora */
+.fluxo{background:rgba(250,247,240,.05);border:1px solid rgba(250,247,240,.15);padding:12px 8px 6px;margin:12px 0}
+.fluxo svg{width:100%;height:auto;display:block}
+.fluxo text{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:rgba(250,247,240,.7)}
+.fluxo .bar{transition:y .7s cubic-bezier(.2,.7,.2,1),height .7s cubic-bezier(.2,.7,.2,1)}
+.campos .sel{flex:1;border:0;background:transparent;font-family:'IBM Plex Sans',sans-serif;font-size:17px;padding:12px;color:var(--ink);outline:none}
+.mini{font:inherit;font-size:13px;font-weight:600;padding:8px 12px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+</style>
+</head>
+<body class="arco-medir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 6 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/gado-leiteiro-palmeira-pr.jpg')" role="img" aria-label="Gado leiteiro a pasto"></div>
+  <div class="wrap">
+    <div class="num sobe">6</div>
+    <p class="arco">Medir · o caixa</p>
+    <h1>O dinheiro no tempo</h1>
+    <p class="pergunta">A atividade deu lucro no ano. Então por que faltou dinheiro em setembro?</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 20 minutos</span></div>
+  </div>
+  <span class="credito">gado leiteiro a pasto, Palmeira/PR · CC BY-SA 3.0, Deyvid A. R. Setti</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Por que lucro e dinheiro no bolso não são a mesma coisa.</li>
+      <li>O calendário do dinheiro em cada atividade.</li>
+      <li>O mês mais apertado e o capital de giro.</li>
+      <li>Reserva: o colchão para o ano ruim.</li>
+      <li>Sinais de que o caixa está pedindo socorro.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">Lucro não é dinheiro no bolso</h2>
+    <p class="rv">O módulo 5 olhou para o ano inteiro: somou tudo o que entrou e tudo o que saiu. Mas o dinheiro não entra e sai de uma vez. Ele tem <strong>datas</strong>. Na lavoura, quase todo o gasto acontece no plantio, meses antes da colheita. No gado de corte, a venda pode acontecer uma vez por ano. Enquanto isso, a família come todo mês.</p>
+    <p class="destaque rv">Uma atividade pode dar lucro no ano e, mesmo assim, deixar a família sem dinheiro durante meses.</p>
+    <p class="rv">Acompanhar o dinheiro mês a mês tem nome: <strong>fluxo de caixa</strong>. Ele não mostra se a atividade é boa ou ruim. Mostra se haverá dinheiro na hora de pagar as contas.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">O calendário do dinheiro</h2>
+    <p class="rv">Cada atividade tem um ritmo. Compare abaixo três atividades com o mesmo resultado no ano, mas calendários muito diferentes, de julho a junho. As barras mostram o que entra (acima) e o que sai (abaixo) em cada mês. A linha mostra o saldo acumulado.</p>
+
+    <div class="cal rv">
+      <div class="abas" id="cal-abas"></div>
+      <svg viewBox="0 0 360 210" id="cal-svg" role="img" aria-label="Entradas, saídas e saldo acumulado mês a mês"></svg>
+      <p class="cap" id="cal-cap"></p>
+    </div>
+    <p class="rv" style="font-size:15px;color:var(--stone);margin-top:-8px">Calendários simplificados, com valores de exemplo, para mostrar o ritmo de cada atividade.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">O mês mais apertado</h2>
+    <p class="rv">No gráfico da soja, repare no ponto mais baixo da linha. É o momento em que a propriedade já gastou quase tudo e ainda não vendeu nada. A distância entre esse ponto e o zero é o <strong>capital de giro</strong>: o dinheiro de que a propriedade precisa para atravessar o ano.</p>
+    <p class="rv">Esse dinheiro pode vir de três lugares:</p>
+    <ul class="lista rv">
+      <li><strong>Do próprio caixa:</strong> o que sobrou da safra anterior. É a forma mais barata.</li>
+      <li><strong>Do crédito de custeio:</strong> o banco ou a cooperativa adianta o dinheiro do plantio, que é pago na colheita, com juros. O módulo 7 trata disso.</li>
+      <li><strong>Do fornecedor:</strong> comprar insumos para pagar na safra. Prático, mas os juros costumam vir escondidos no preço. Pergunte sempre o preço à vista.</li>
+    </ul>
+    <p class="rv">Saber o tamanho do buraco com antecedência é o que permite escolher a fonte mais barata, em vez de aceitar a primeira que aparece.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">Reserva: o colchão</h2>
+    <p class="rv">O campo tem anos ruins. As estiagens recentes e a enchente de 2024 mostraram no Rio Grande do Sul como um evento só pode levar a renda de uma safra inteira. A <strong>reserva</strong> é o dinheiro guardado para que um ano ruim não vire uma dívida cara ou a venda de um bem.</p>
+    <ul class="lista rv">
+      <li><strong>Quanto guardar:</strong> uma referência prática é o suficiente para cobrir os gastos da casa e os custos fixos da propriedade por alguns meses, além do capital de giro do plantio.</li>
+      <li><strong>Onde guardar:</strong> numa aplicação segura e fácil de resgatar. A reserva não é para render muito, é para estar lá quando precisar.</li>
+      <li><strong>Quando formar:</strong> nos anos bons. É tentador trocar a caminhonete no ano de preço alto. Separar uma parte antes é o que garante o ano seguinte.</li>
+    </ul>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      No primeiro ano, o fluxo de caixa costuma ser só de saídas. Some à reserva da família, calculada no módulo 1, o capital de giro da primeira safra. É comum o novo produtor investir tudo na terra e nos equipamentos e ficar sem dinheiro para tocar a produção.
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Sinais de alerta</h2>
+    <p class="rv">O caixa costuma dar sinais antes de a situação ficar grave. Fique atento se:</p>
+    <ul class="lista rv">
+      <li>As contas da casa estão sendo pagas com o cheque especial ou o cartão parcelado.</li>
+      <li>A produção é vendida às pressas, no pior preço, para pagar dívidas.</li>
+      <li>A manutenção das máquinas e a adubação vêm sendo adiadas para "o ano que vem".</li>
+      <li>Um empréstimo novo está sendo usado para pagar outro empréstimo.</li>
+      <li>Ninguém na família sabe dizer quanto há a pagar nos próximos três meses.</li>
+    </ul>
+    <p class="rv">Qualquer um desses sinais pede uma conversa franca em família e, muitas vezes, uma renegociação com o banco ou a cooperativa antes que as parcelas atrasem. Renegociar cedo é sempre mais fácil.</p>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>Os próximos 12 meses</h2>
+    <p class="so-ja">Um fluxo simplificado: o que entra e sai todo mês, mais a venda e o plantio da atividade principal. O gráfico mostra o saldo mês a mês, a partir do mês atual.</p>
+    <p class="so-novo">Simule o primeiro ano do negócio: o saldo inicial é o dinheiro disponível depois das compras da terra e dos equipamentos. Se a primeira venda vem depois de 12 meses, deixe a venda da safra em zero.</p>
+    <p style="margin:4px 0 6px"><button type="button" class="mini" id="f-exemplo">ver o exemplo de uma lavoura</button></p>
+
+    <div class="campos">
+      <div class="campo"><label for="f-saldo">Dinheiro disponível hoje <small>no caixa da propriedade</small></label><div class="inp"><span>R$</span><input id="f-saldo" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="f-entm">Entradas todo mês <small>leite, ovos, feira, outras rendas</small></label><div class="inp"><span>R$</span><input id="f-entm" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="f-saim">Saídas todo mês <small>retirada da família, custos fixos, parcelas</small></label><div class="inp"><span>R$</span><input id="f-saim" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="f-plv">Gasto de plantio ou safra <small>insumos e operações</small></label><div class="inp"><span>R$</span><input id="f-plv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="f-plm">Mês do plantio</label><div class="inp"><select id="f-plm" class="sel"></select></div></div>
+      <div class="campo"><label for="f-pln">Em quantos meses esse gasto se espalha</label><div class="inp"><select id="f-pln" class="sel"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div></div>
+      <div class="campo"><label for="f-vv">Venda da safra <small>valor total esperado</small></label><div class="inp"><span>R$</span><input id="f-vv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="f-vm">Mês da venda</label><div class="inp"><select id="f-vm" class="sel"></select></div></div>
+    </div>
+
+    <div class="resultado" id="f-res" hidden>
+      <div class="fluxo"><svg viewBox="0 0 360 190" id="f-svg" role="img" aria-label="Saldo de caixa mês a mês"></svg></div>
+      <div class="linha"><span>Saldo no fim dos 12 meses</span><b id="f-fim"></b></div>
+      <div class="linha"><span>Mês mais apertado</span><b id="f-minm"></b></div>
+      <div class="linha"><span>Saldo no mês mais apertado</span><b id="f-min"></b></div>
+      <div class="veredito" id="f-ver"></div>
+      <p class="salvo" id="f-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Lucro é o resultado do ano. Fluxo de caixa é o dinheiro mês a mês. Os dois precisam fechar.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>O ponto mais baixo do saldo mostra o capital de giro necessário para atravessar o ano.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>Capital de giro pode vir do caixa, do custeio ou do fornecedor. Conhecer o tamanho do buraco permite escolher o mais barato.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>A reserva se forma nos anos bons e protege a família e a propriedade nos anos ruins.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>A lavoura teve lucro no ano, mas em novembro faltou dinheiro para pagar a semente. Como isso é possível?</p>
+      <button type="button" class="alt">Não é possível: se teve lucro, sobrou dinheiro.</button>
+      <button type="button" class="alt" data-certa>O gasto do plantio veio antes da venda da colheita.</button>
+      <button type="button" class="alt">O lucro foi calculado errado.</button>
+      <p class="fb">O lucro olha o ano inteiro. O caixa olha mês a mês. O plantio é pago meses antes da colheita.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>No fluxo de caixa, o saldo mais baixo do ano foi de R$ 80 mil negativos, em dezembro. Isso indica:</p>
+      <button type="button" class="alt">Que a atividade tem prejuízo de R$ 80 mil.</button>
+      <button type="button" class="alt" data-certa>Que são necessários R$ 80 mil de capital de giro para atravessar o ano.</button>
+      <button type="button" class="alt">Que a propriedade deve vender a safra em dezembro.</button>
+      <p class="fb">O ponto mais baixo é o tamanho do buraco a cobrir com caixa próprio, custeio ou prazo do fornecedor.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>Qual é a melhor época para formar a reserva da propriedade?</p>
+      <button type="button" class="alt">Depois de um ano ruim, para se recuperar.</button>
+      <button type="button" class="alt" data-certa>Nos anos bons, separando uma parte antes de gastar.</button>
+      <button type="button" class="alt">Só quando todas as dívidas estiverem pagas.</button>
+      <p class="fb">A reserva se forma quando sobra. Nos anos ruins, ela é usada.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="6">Concluir o módulo 6</button>
+    <span class="proximo">A seguir, módulo 7<br><a href="modulo-7.html">Crédito rural</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+var MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+/* ===== Calendários de exemplo ===== */
+(function(){
+  var ATIV = {
+    'Soja': {ent:[0,0,0,190,60,0,0,0,0,0,0,0], sai:[8,8,8,10,8,8,8,8,30,60,40,8], cap:'Quase toda a entrada acontece na colheita, em abril e maio. Os gastos se concentram no plantio, de setembro a novembro. O saldo acumulado fica negativo durante boa parte do ano: é preciso capital de giro.'},
+    'Leite': {ent:[20,20,20,20,19,18,18,19,21,22,22,21], sai:[16,16,16,16,17,17,17,16,16,16,16,15], cap:'O leite entra todo mês e os gastos também. O saldo cresce devagar e quase nunca fica negativo. Em troca, o trabalho também é de todo dia.'},
+    'Gado de corte': {ent:[0,0,0,0,150,90,0,0,0,0,0,0], sai:[16,16,16,16,16,16,16,16,17,17,16,16], cap:'A venda dos terneiros acontece uma ou duas vezes por ano, no outono. Os gastos são distribuídos. O saldo fica negativo até a venda: o pecuarista precisa de reserva ou crédito para atravessar os meses sem entrada.'}
+  };
+  var svg = document.getElementById('cal-svg'), abas = document.getElementById('cal-abas'), cap = document.getElementById('cal-cap');
+  var W = 360, x0 = 30, bw = (W - x0 - 6) / 12, meio = 105, esc = 0.42;
+  var ORD = [6,7,8,9,10,11,0,1,2,3,4,5]; /* ano agrícola: julho a junho */
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(t, a){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  svg.appendChild(el('line', {x1:x0, x2:W - 4, y1:meio, y2:meio, stroke:'#D9D3C2'}));
+  var ent = [], sai = [];
+  for (var i = 0; i < 12; i++){
+    var x = x0 + i * bw + 3;
+    ent.push(svg.appendChild(el('rect', {x:x, width:bw - 6, y:meio, height:0, fill:'#9DB86A', class:'b'})));
+    sai.push(svg.appendChild(el('rect', {x:x, width:bw - 6, y:meio, height:0, fill:'#E59A72', class:'b'})));
+    var t = el('text', {x:x + (bw - 6) / 2, y:206, 'text-anchor':'middle'}); t.textContent = MESES[ORD[i]]; svg.appendChild(t);
+  }
+  var linha = svg.appendChild(el('polyline', {fill:'none', stroke:'#1A1A17', 'stroke-width':2.2, points:''}));
+  var pts = [];
+  for (var j = 0; j < 12; j++) pts.push(svg.appendChild(el('circle', {r:3, fill:'#1A1A17', cx:x0 + j * bw + bw / 2, cy:meio})));
+  function mostra(nome){
+    var a = ATIV[nome], acc = 0, p = [];
+    abas.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.textContent === nome); });
+    for (var i = 0; i < 12; i++){
+      var m = ORD[i], he = a.ent[m] * esc, hs = a.sai[m] * esc;
+      ent[i].setAttribute('y', meio - he); ent[i].setAttribute('height', he);
+      sai[i].setAttribute('y', meio); sai[i].setAttribute('height', hs);
+      acc += a.ent[m] - a.sai[m];
+      var cx = x0 + i * bw + bw / 2, cy = Math.max(8, Math.min(196, meio - acc * 0.42));
+      p.push(cx + ',' + cy); pts[i].setAttribute('cy', cy);
+    }
+    linha.setAttribute('points', p.join(' '));
+    cap.textContent = a.cap;
+  }
+  Object.keys(ATIV).forEach(function(n){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = n;
+    b.addEventListener('click', function(){ mostra(n); }); abas.appendChild(b);
+  });
+  mostra('Soja');
+})();
+
+/* ===== Fluxo de 12 meses ===== */
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  var hoje = new Date().getMonth();
+  var ordem = []; for (var i = 0; i < 12; i++) ordem.push((hoje + i) % 12);
+  ['f-plm','f-vm'].forEach(function(id){
+    var s = g(id);
+    ordem.forEach(function(m, i){ var o = document.createElement('option'); o.value = i; o.textContent = MESES[m] + (i === 0 ? ' (este mês)' : ''); s.appendChild(o); });
+  });
+  var nums = ['saldo','entm','saim','plv','vv'];
+  nums.forEach(function(k){ Curso.mascara(g('f-' + k)); });
+  var exemplo = false;
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(t, a){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+  function desenha(saldos, minI){
+    var svg = g('f-svg'); svg.innerHTML = '';
+    var W = 360, H = 190, x0 = 8, bw = (W - x0 - 4) / 12;
+    var mx = Math.max.apply(null, saldos.map(Math.abs).concat([1]));
+    var temNeg = saldos.some(function(s){ return s < 0; }), temPos = saldos.some(function(s){ return s > 0; });
+    var zero = temNeg && temPos ? 20 + (H - 44) * (Math.max.apply(null, saldos) / (Math.max.apply(null, saldos) - Math.min.apply(null, saldos))) : (temNeg ? 20 : H - 24);
+    var esc = (H - 44) / (temNeg && temPos ? (Math.max.apply(null, saldos) - Math.min.apply(null, saldos)) : mx);
+    svg.appendChild(el('line', {x1:0, x2:W, y1:zero, y2:zero, stroke:'rgba(250,247,240,.35)'}));
+    saldos.forEach(function(s, i){
+      var h = Math.abs(s) * esc, x = x0 + i * bw + 2;
+      var r = svg.appendChild(el('rect', {x:x, width:bw - 4, y:zero, height:0, fill:s >= 0 ? '#9DB86A' : '#E59A72', class:'bar', opacity:i === minI ? 1 : 0.8}));
+      if (i === minI){ r.setAttribute('stroke', '#E3C46E'); r.setAttribute('stroke-width', '2'); }
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        r.setAttribute('y', s >= 0 ? zero - h : zero); r.setAttribute('height', h);
+      }); });
+      var t = el('text', {x:x + (bw - 4) / 2, y:H - 4, 'text-anchor':'middle'}); t.textContent = MESES[ordem[i]]; svg.appendChild(t);
+    });
+  }
+
+  function calc(){
+    var v = {}; nums.forEach(function(k){ v[k] = Curso.num(g('f-' + k).value); });
+    var plm = +g('f-plm').value, pln = +g('f-pln').value, vm = +g('f-vm').value;
+    if (!v.saldo && !v.entm && !v.saim && !v.plv && !v.vv){ g('f-res').hidden = true; return; }
+    g('f-res').hidden = false;
+    var saldos = [], acc = v.saldo;
+    for (var i = 0; i < 12; i++){
+      acc += v.entm - v.saim;
+      if (i >= plm && i < plm + pln) acc -= v.plv / pln;
+      if (i === vm) acc += v.vv;
+      saldos.push(acc);
+    }
+    var minI = 0; saldos.forEach(function(s, i){ if (s < saldos[minI]) minI = i; });
+    desenha(saldos, minI);
+    g('f-fim').textContent = Curso.reais(saldos[11]);
+    g('f-minm').textContent = MESES[ordem[minI]];
+    g('f-min').textContent = Curso.reais(saldos[minI]);
+    var txt, cls, sobra = plm + pln > 12 ? ' Parte do gasto do plantio ficou fora dos 12 meses.' : '';
+    if (saldos[minI] < 0){
+      cls = 'alerta';
+      txt = 'Em ' + MESES[ordem[minI]] + ' o caixa fica ' + Curso.reais(-saldos[minI]) + ' no vermelho. Esse é o capital de giro a conseguir: com caixa próprio, custeio ou prazo do fornecedor. Planeje agora, para escolher a opção mais barata.';
+    } else if (saldos[minI] < v.saim * 2){
+      cls = '';
+      txt = 'O caixa não fica negativo, mas chega perto do zero em ' + MESES[ordem[minI]] + ', com ' + Curso.reais(saldos[minI]) + '. Qualquer imprevisto nesse mês aperta a conta. Vale ter uma reserva maior ou uma linha de crédito acertada antes.';
+    } else {
+      cls = 'ok';
+      txt = 'O caixa atravessa os 12 meses sem ficar negativo. O mês mais apertado é ' + MESES[ordem[minI]] + ', com ' + Curso.reais(saldos[minI]) + '. Uma parte do saldo final pode reforçar a reserva.';
+    }
+    txt += sobra;
+    g('f-ver').className = 'veredito ' + cls; g('f-ver').textContent = txt;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m6', {saldoInicial:v.saldo, entradasMes:v.entm, saidasMes:v.saim, plantio:v.plv, mesPlantio:MESES[ordem[plm]], mesesPlantio:pln, venda:v.vv, mesVenda:MESES[ordem[vm]], saldoFinal:saldos[11], menorSaldo:saldos[minI], mesMaisApertado:MESES[ordem[minI]], inicio:MESES[hoje]});
+      g('f-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else g('f-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+  }
+  nums.forEach(function(k){ g('f-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+  ['f-plm','f-pln','f-vm'].forEach(function(id){ g(id).addEventListener('change', function(){ exemplo = false; calc(); }); });
+  function idx(nomeMes){ var m = MESES.indexOf(nomeMes); return m < 0 ? 0 : ordem.indexOf(m); }
+  var c = Curso.caderno().m6;
+  if (c){
+    var mp = {saldo:c.saldoInicial, entm:c.entradasMes, saim:c.saidasMes, plv:c.plantio, vv:c.venda};
+    nums.forEach(function(k){ if (mp[k]) g('f-' + k).value = Math.round(mp[k]).toLocaleString('pt-BR'); });
+    g('f-plm').value = idx(c.mesPlantio); g('f-pln').value = c.mesesPlantio || 2; g('f-vm').value = idx(c.mesVenda);
+    calc();
+  }
+  g('f-exemplo').addEventListener('click', function(){
+    var ex = {saldo:40000, entm:0, saim:9000, plv:150000, vv:330000};
+    nums.forEach(function(k){ g('f-' + k).value = ex[k].toLocaleString('pt-BR'); });
+    g('f-plm').value = idx('out'); g('f-pln').value = 3; g('f-vm').value = idx('abr');
+    exemplo = true; calc();
+    g('f-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

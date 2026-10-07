@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7C3D1F">
+<meta name="robots" content="noindex">
+<title>Módulo 10 · Planejar o próximo passo</title>
+<meta name="description" content="Módulo 10 do curso de gestão para produtores: planejar o próximo passo, objetivos, metas, ações, acompanhamento e o retrato da propriedade para imprimir.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-10.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* metas: vaga x clara */
+.metas{display:grid;gap:10px;margin:20px 0}
+.meta-par{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--rule);background:#fff}
+@media (min-width:600px){.meta-par{grid-template-columns:1fr 1fr}}
+.meta-par div{padding:14px 16px;font-size:16px;line-height:1.45}
+.meta-par .vaga{color:var(--stone);text-decoration:line-through;text-decoration-color:rgba(168,85,46,.5);background:var(--paper-warm)}
+.meta-par .clara{color:var(--ink)}
+.meta-par small{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);margin-bottom:4px;text-decoration:none}
+
+/* indicadores */
+.inds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.ind{background:#fff;border:1px solid var(--rule);padding:14px}
+.ind b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin-bottom:3px}
+.ind span{font-size:14.5px;color:var(--ink-soft);line-height:1.4;display:block}
+
+/* retrato */
+.retrato{background:var(--paper);color:var(--ink);padding:22px 18px;margin-top:18px;border-top:6px solid var(--terra)}
+.retrato h3{font-family:'Fraunces',serif;font-weight:500;font-size:26px;line-height:1.15;margin-bottom:2px}
+.retrato .sub{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--stone);margin-bottom:16px}
+.ret-grid{display:grid;gap:10px}
+@media (min-width:600px){.ret-grid{grid-template-columns:1fr 1fr}}
+.rcard{border:1px solid var(--rule);background:#fff;padding:12px 14px;break-inside:avoid}
+.rcard h4{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:6px;font-weight:600}
+.rcard .l{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;padding:3px 0;border-bottom:1px dashed var(--rule-soft)}
+.rcard .l:last-child{border-bottom:0}
+.rcard .l b{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
+.rcard.vazio{border-style:dashed;background:transparent}
+.rcard.vazio p{font-size:14px;color:var(--stone);margin:0}
+.rcard.vazio a{color:var(--terra-deep)}
+.rcard p.txt{font-size:14.5px;color:var(--ink-soft);margin:4px 0 0;white-space:pre-wrap}
+.rcard.largo{grid-column:1/-1}
+.acoes-t{width:100%;border-collapse:collapse;font-size:14.5px}
+.acoes-t td{padding:5px 4px;border-bottom:1px dashed var(--rule-soft);vertical-align:top}
+.campo textarea{width:100%;min-height:68px;border:2px solid transparent;background:var(--paper);font:inherit;font-size:16px;padding:10px 12px;color:var(--ink);resize:vertical;outline:none}
+.campo textarea:focus{border-color:var(--mustard)}
+.acao-l{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;margin-bottom:6px}
+.acao-l input{min-width:0;border:2px solid transparent;background:var(--paper);font:inherit;font-size:15px;padding:10px;color:var(--ink);outline:none}
+.acao-l input:focus{border-color:var(--mustard)}
+.acao-h{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(250,247,240,.6);margin:16px 0 4px}
+.imprimir{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.imprimir .btn{background:var(--mustard);color:var(--mustard-ink)}
+.imprimir .btn-sec{background:transparent;color:var(--paper);border:1px solid rgba(250,247,240,.5)}
+.final-msg{text-align:center;padding:40px 0 10px}
+.final-msg h2{font-family:'Fraunces',serif;font-weight:500;font-size:30px;line-height:1.15;margin:12px auto 12px;max-width:20ch}
+.final-msg p{color:var(--ink-soft);max-width:48ch;margin:0 auto}
+
+@media print{
+  body{background:#fff}
+  .topbar,.mod-hero,.neste,.licao,.lembrar,.teste,.concluir,footer.rod,.final-msg,.sua .tag,.sua h2,.sua>.wrap>p,.perfil-sw,.campos,.acao-h,.acao-l,.imprimir,.salvo,.sua .so-ja,.sua .so-novo{display:none!important}
+  .sua{background:#fff;color:#000;margin:0}
+  .sua::before{display:none}
+  .sua .wrap{padding:0}
+  .retrato{margin:0;border-top:4px solid #A8552E;padding:0}
+  .rcard{border-color:#ccc}
+}
+</style>
+</head>
+<body class="arco-decidir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 10 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/lavoura-soja-rs.jpg')" role="img" aria-label="Lavoura de soja no Rio Grande do Sul"></div>
+  <div class="wrap">
+    <div class="num sobe">10</div>
+    <p class="arco">Decidir · o plano</p>
+    <h1>Planejar o próximo passo</h1>
+    <p class="pergunta">Com tudo o que você calculou, qual é o próximo passo?</p>
+    <div class="meta"><span>4 lições</span><span>cerca de 25 minutos</span></div>
+  </div>
+  <span class="credito">lavoura de soja no Rio Grande do Sul · CC BY-SA 3.0, Tiago Fioreze/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>O plano em uma página.</li>
+      <li>Metas que dá para medir.</li>
+      <li>Acompanhar sem complicar.</li>
+      <li>Onde buscar ajuda.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">O plano em uma página</h2>
+    <p class="rv">Ao longo do curso, você separou as contas, olhou o mercado, fez o inventário, calculou custos, sobras, caixa, crédito e riscos. Agora é hora de transformar os números em decisões. Um bom plano cabe numa página e responde a quatro perguntas:</p>
+    <ul class="lista rv">
+      <li><strong>Onde estamos:</strong> os números da propriedade hoje. O retrato no fim deste módulo junta tudo o que você preencheu.</li>
+      <li><strong>Onde queremos chegar:</strong> os objetivos da família, por prazo, como no módulo 1.</li>
+      <li><strong>O que vamos fazer:</strong> poucas ações, cada uma com prazo e responsável.</li>
+      <li><strong>Como vamos saber se deu certo:</strong> os números que vão ser acompanhados.</li>
+    </ul>
+    <p class="destaque rv">Um plano curto que a família inteira conhece vale mais do que um projeto grosso guardado na gaveta.</p>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      O seu plano é o plano de implantação: qual atividade, onde, com quanto capital, em que ordem fazer as coisas e quando a família deve estar vivendo do negócio. Para um projeto completo, com fluxo de vários anos e indicadores de viabilidade, use o <a href="../projeto.html">simulador de projetos</a> do site da disciplina.
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Metas que dá para medir</h2>
+    <p class="rv">"Melhorar a propriedade" é um desejo, não uma meta. Uma meta diz <strong>o quê</strong>, <strong>quanto</strong> e <strong>até quando</strong>. Assim, no fim do prazo, dá para saber se foi cumprida.</p>
+    <div class="metas">
+      <div class="meta-par rv d1"><div class="vaga"><small>vaga</small>Gastar menos com a lavoura.</div><div class="clara"><small>clara</small>Baixar o custo que sai do bolso da soja de R$ 65 para R$ 60 por saca na próxima safra.</div></div>
+      <div class="meta-par rv d2"><div class="vaga"><small>vaga</small>Organizar as contas.</div><div class="clara"><small>clara</small>Anotar todas as entradas e saídas, separando casa e propriedade, de janeiro a dezembro.</div></div>
+      <div class="meta-par rv d3"><div class="vaga"><small>vaga</small>Ter uma reserva.</div><div class="clara"><small>clara</small>Guardar R$ 30 mil até o fim da próxima safra, separando 10% de cada venda.</div></div>
+      <div class="meta-par rv d4"><div class="vaga"><small>vaga</small>Começar a produzir.</div><div class="clara"><small>clara</small>Arrendar 3 ha e vender as primeiras caixas de hortaliças na feira do município até setembro.</div></div>
+    </div>
+    <p class="rv">Prefira três metas que serão cumpridas a dez que ficarão no papel.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">Acompanhar sem complicar</h2>
+    <p class="rv">Não é preciso acompanhar tudo. Escolha poucos números, de quatro a seis, e olhe para eles sempre na mesma data, por exemplo no primeiro domingo de cada mês, em família. Algumas sugestões:</p>
+    <div class="inds">
+      <div class="ind rv d1"><b>Saldo do caixa</b><span>Quanto há, e quanto se espera para os próximos três meses.</span></div>
+      <div class="ind rv d2"><b>Custo por unidade</b><span>Por saca, por litro, por quilo. Comparado com o preço.</span></div>
+      <div class="ind rv d3"><b>Produtividade</b><span>Sacas por hectare, litros por vaca, terneiros por vaca.</span></div>
+      <div class="ind rv d4"><b>Dívidas</b><span>Quanto falta pagar e quando vencem as próximas parcelas.</span></div>
+      <div class="ind rv d1"><b>Relação de troca</b><span>Quanto do produto paga o principal insumo.</span></div>
+      <div class="ind rv d2"><b>Retirada da família</b><span>Se está dentro do combinado.</span></div>
+    </div>
+    <p class="rv">Uma vez por ano, no fim da safra, refaça o ciclo do módulo 1: o inventário, os custos, as sobras. Compare com o ano anterior. É assim que a gestão vira costume, e o costume vira resultado.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">Onde buscar ajuda</h2>
+    <p class="rv">Ninguém faz gestão sozinho. No Rio Grande do Sul, há uma rede que pode ajudar, muitas vezes sem custo:</p>
+    <ul class="lista rv">
+      <li><strong>EMATER/RS-ASCAR:</strong> assistência técnica e extensão rural em quase todos os municípios, projetos de crédito e acompanhamento da propriedade.</li>
+      <li><strong>Sindicatos rurais e de trabalhadores rurais:</strong> orientação sobre documentação, aposentadoria rural, CAF e crédito.</li>
+      <li><strong>SENAR-RS:</strong> cursos de formação profissional rural e programas de assistência técnica e gerencial.</li>
+      <li><strong>Cooperativas:</strong> assistência técnica, compra conjunta de insumos, armazenagem e venda.</li>
+      <li><strong>Universidades e institutos federais:</strong> dias de campo, análises de solo, cursos de extensão, como este.</li>
+      <li><strong>Secretaria municipal de agricultura:</strong> patrulha agrícola, programas municipais e informações locais.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>O seu plano e o retrato da propriedade</h2>
+    <p>Escreva os objetivos e as próximas ações. Abaixo, o retrato junta tudo o que você preencheu ao longo do curso, pronto para imprimir ou salvar em PDF.</p>
+
+    <div class="campos" style="grid-template-columns:1fr">
+      <div class="campo"><label for="p-nome">Nome da propriedade ou do projeto</label><div class="inp"><input id="p-nome" autocomplete="off" style="flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:17px;padding:12px;color:var(--ink);outline:none"></div></div>
+      <div class="campo"><label for="p-o1">Objetivo para esta safra</label><textarea id="p-o1"></textarea></div>
+      <div class="campo"><label for="p-o2">Objetivo para três a cinco anos</label><textarea id="p-o2"></textarea></div>
+      <div class="campo"><label for="p-o3">Objetivo para dez anos ou mais</label><textarea id="p-o3"></textarea></div>
+    </div>
+    <div class="acao-h"><span>Próxima ação</span><span>Até quando</span><span>Quem</span></div>
+    <div id="p-acoes"></div>
+    <p class="salvo" id="p-salvo"></p>
+
+    <div class="retrato" id="retrato">
+      <h3 id="r-nome">Retrato da propriedade</h3>
+      <p class="sub" id="r-data"></p>
+      <div class="ret-grid" id="r-grid"></div>
+    </div>
+
+    <div class="imprimir">
+      <button type="button" class="btn" id="p-print">Imprimir ou salvar em PDF</button>
+      <button type="button" class="btn btn-sec" id="p-limpar">Apagar o caderno deste aparelho</button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Um bom plano cabe numa página: onde estamos, onde queremos chegar, o que fazer e como medir.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Uma meta diz o quê, quanto e até quando. Poucas metas cumpridas valem mais que muitas no papel.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>Acompanhe poucos números, sempre na mesma data, em família.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>EMATER, sindicatos, SENAR, cooperativas e universidades formam uma rede de apoio. Use.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>Qual destas é uma meta bem escrita?</p>
+      <button type="button" class="alt">Melhorar a produtividade do leite.</button>
+      <button type="button" class="alt" data-certa>Passar de 18 para 21 litros por vaca por dia até dezembro.</button>
+      <button type="button" class="alt">Produzir o máximo possível.</button>
+      <p class="fb">Ela diz o quê, quanto e até quando. No fim do prazo, dá para saber se foi cumprida.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>Com que frequência vale olhar os principais números da propriedade?</p>
+      <button type="button" class="alt">Só quando aparece um problema.</button>
+      <button type="button" class="alt" data-certa>Todo mês, na mesma data, e um balanço completo no fim da safra.</button>
+      <button type="button" class="alt">Todo dia, todos os números.</button>
+      <p class="fb">Uma rotina mensal curta, mais um balanço anual, mantém a gestão viva sem tomar o tempo da produção.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>Quantas ações vale colocar no plano de curto prazo?</p>
+      <button type="button" class="alt">Todas as que a família conseguir imaginar.</button>
+      <button type="button" class="alt" data-certa>Poucas, cada uma com prazo e responsável.</button>
+      <button type="button" class="alt">Nenhuma: o importante são os objetivos.</button>
+      <p class="fb">Objetivo sem ação fica no papel. E ações demais dividem a atenção. Poucas, com prazo e responsável, acontecem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-msg">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">Fim da trilha</p>
+    <h2 class="rv">A gestão não termina no módulo 10.</h2>
+    <p class="rv">Ela recomeça a cada safra, com os números novos. Volte ao curso sempre que precisar refazer uma conta: o seu caderno continua salvo neste aparelho.</p>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="10">Concluir o módulo 10</button>
+    <span class="proximo">Fim da trilha<br><a href="index.html">Voltar ao início do curso</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  var cad = Curso.caderno(), plano = cad.m10 || {acoes:[]};
+  var R = Curso.reais;
+  var f2 = function(v){ return 'R$ ' + (+v).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+  /* campos do plano */
+  ['nome','o1','o2','o3'].forEach(function(k){ g('p-' + k).value = plano[k] || ''; });
+  var ac = g('p-acoes');
+  for (var i = 0; i < 3; i++){
+    var d = document.createElement('div'); d.className = 'acao-l';
+    var a = plano.acoes[i] || {};
+    d.innerHTML = '<input data-i="' + i + '" data-k="o" placeholder="ação ' + (i + 1) + '"><input data-i="' + i + '" data-k="q" placeholder="mês/ano"><input data-i="' + i + '" data-k="w" placeholder="quem">';
+    var ins = d.querySelectorAll('input'); ins[0].value = a.o || ''; ins[1].value = a.q || ''; ins[2].value = a.w || '';
+    ac.appendChild(d);
+  }
+  function salvar(){
+    var p = {acoes:[]};
+    ['nome','o1','o2','o3'].forEach(function(k){ p[k] = g('p-' + k).value; });
+    for (var i = 0; i < 3; i++){
+      var o = {}; ac.querySelectorAll('input[data-i="' + i + '"]').forEach(function(x){ o[x.dataset.k] = x.value; });
+      p.acoes.push(o);
+    }
+    plano = p;
+    g('p-salvo').textContent = Curso.salvarCaderno('m10', p) ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    retrato();
+  }
+  document.querySelectorAll('#sua textarea, #p-nome, #p-acoes input').forEach(function(x){ x.addEventListener('input', salvar); });
+
+  /* retrato */
+  function card(titulo, linhas, mod, largo){
+    if (!linhas || !linhas.length) return '<div class="rcard vazio' + (largo ? ' largo' : '') + '"><h4>' + titulo + '</h4><p>Ainda não preenchido. <a href="modulo-' + mod + '.html#sua">Ir ao módulo ' + mod + '</a></p></div>';
+    return '<div class="rcard' + (largo ? ' largo' : '') + '"><h4>' + titulo + '</h4>' + linhas.join('') + '</div>';
+  }
+  var L = function(a, b){ return '<div class="l"><span>' + a + '</span><b>' + b + '</b></div>'; };
+  function retrato(){
+    cad = Curso.caderno();
+    var novo = Curso.perfil() === 'novo', h = [];
+    g('r-nome').textContent = plano.nome ? plano.nome : 'Retrato da propriedade';
+    g('r-data').textContent = (novo ? 'Plano de início de atividade' : 'Retrato da propriedade') + ' · ' + new Date().toLocaleDateString('pt-BR');
+
+    var ob = [];
+    if (plano.o1) ob.push('<p class="txt"><strong>Nesta safra:</strong> ' + esc(plano.o1) + '</p>');
+    if (plano.o2) ob.push('<p class="txt"><strong>Em 3 a 5 anos:</strong> ' + esc(plano.o2) + '</p>');
+    if (plano.o3) ob.push('<p class="txt"><strong>Em 10 anos ou mais:</strong> ' + esc(plano.o3) + '</p>');
+    h.push(card('Objetivos', ob, 10, true));
+
+    var m1 = [];
+    if (!novo && cad.m1){ var c = cad.m1, pr = Math.max(c.gastosCasa - c.rendasFora, 0);
+      m1 = [L('Vendas por mês', R(c.vendas)), L('Gastos da produção por mês', R(c.gastosProducao)), L('A casa precisa tirar', R(pr)), L('Sobra depois da casa', R(c.vendas - c.gastosProducao - pr))]; }
+    if (novo && cad.m1novo){ var n = cad.m1novo, ft = Math.max(n.gastosCasa - n.rendasFora, 0);
+      m1 = [L('A família precisa cobrir por mês', R(ft)), L('Reserva para a família', R(n.reserva)), L('Meses até a 1ª venda', n.mesesAtePrimeiraVenda), L('Reserva necessária', R(ft * n.mesesAtePrimeiraVenda))]; }
+    h.push(card(novo ? 'Fôlego da família' : 'Casa e propriedade', m1, 1));
+
+    var m2 = [];
+    if (cad.m2troca){ var t = cad.m2troca; m2 = [L('1 ' + esc(t.unidadeInsumo) + ' de ' + esc(t.insumo), (+t.relacao).toLocaleString('pt-BR', {maximumFractionDigits:1}) + ' × ' + esc(t.produto)), L('Preço do produto', f2(t.precoProduto)), L('Calculado em', new Date(t.data + 'T12:00').toLocaleDateString('pt-BR'))]; }
+    h.push(card('Relação de troca', m2, 2));
+
+    var m3 = [];
+    if (cad.m3inv){ m3 = [L('Bens listados', cad.m3inv.bens.length), L('Valor total', R(cad.m3inv.valorTotal)), L('Desgaste por ano', R(cad.m3inv.depreciacaoAnual))]; }
+    h.push(card(novo ? 'O que vou comprar' : 'Inventário', m3, 3));
+
+    var m4 = [];
+    if (cad.m4){ var k = cad.m4, un = esc(k.unidade || 'unidade');
+      m4 = [L('Atividade', esc(k.atividade || '-')), L('COE por ' + un, k.producao ? f2(k.coe / k.producao) : R(k.coe)), L('COT por ' + un, k.producao ? f2(k.cot / k.producao) : R(k.cot)), L('CT por ' + un, k.producao ? f2(k.ct / k.producao) : R(k.ct))]; }
+    h.push(card('Custo de produção', m4, 4));
+
+    var m5 = [];
+    if (cad.m5){ var r = cad.m5; m5 = [L('Receita', R(r.receita)), L('Sobra sobre o COE', R(r.sobraCOE)), L('Sobra sobre o COT', R(r.sobraCOT)), L('Lucro', R(r.lucro)), L('Unidades que pagam o CT', (r.ct / r.preco).toLocaleString('pt-BR', {maximumFractionDigits:0}) + ' de ' + r.producao.toLocaleString('pt-BR'))]; }
+    h.push(card('Resultado', m5, 5));
+
+    var m6 = [];
+    if (cad.m6){ var f = cad.m6; m6 = [L('Mês mais apertado', f.mesMaisApertado), L('Saldo nesse mês', R(f.menorSaldo)), L('Saldo em 12 meses', R(f.saldoFinal))]; }
+    h.push(card('Caixa', m6, 6));
+
+    var m7 = [];
+    if (cad.m7){ var cr = cad.m7; m7 = [L('Valor simulado', R(cr.valor)), L('Maior parcela', R(cr.maiorParcela)), L('Sobra disponível', R(cr.sobra - cr.outrasParcelas)), L('Total de juros', R(cr.totalJuros))]; }
+    h.push(card('Crédito', m7, 7));
+
+    var m8 = [];
+    if (cad.m8 && cad.m8.prioridades) m8 = cad.m8.prioridades.map(function(p, i){ return '<div class="l"><span>' + (i + 1) + '. ' + esc(p) + '</span></div>'; });
+    h.push(card('Riscos prioritários', m8, 8));
+
+    var m9 = [];
+    if (cad.m9){ var e = cad.m9; m9 = [L('Terra', e.modoTerra === 'comprar' ? 'comprar' : (e.modoTerra === 'arrendar' ? 'arrendar' : 'própria')), L('Capital de entrada', R(e.total)), L('Recursos próprios', R(e.recursosProprios)), L('Falta', R(e.falta))]; }
+    h.push(card(novo ? 'Capital para começar' : 'Ampliação', m9, 9));
+
+    var acs = (plano.acoes || []).filter(function(a){ return a.o; });
+    var tb = acs.length ? ['<table class="acoes-t">' + acs.map(function(a){ return '<tr><td>' + esc(a.o) + '</td><td>' + esc(a.q) + '</td><td>' + esc(a.w) + '</td></tr>'; }).join('') + '</table>'] : [];
+    h.push(card('Próximas ações', tb, 10, true));
+
+    g('r-grid').innerHTML = h.join('');
+  }
+  retrato();
+  document.addEventListener('perfil', retrato);
+
+  g('p-print').addEventListener('click', function(){ window.print(); });
+  g('p-limpar').addEventListener('click', function(){
+    if (!confirm('Apagar todos os números do caderno guardados neste aparelho? Não dá para desfazer.')) return;
+    try{ localStorage.removeItem('gpr_caderno'); localStorage.removeItem('gpr_progresso'); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

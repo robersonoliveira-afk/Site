@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7C3D1F">
+<meta name="robots" content="noindex">
+<title>Módulo 8 · Riscos e venda</title>
+<meta name="description" content="Módulo 8 do curso de gestão para produtores: riscos da atividade rural, ZARC, PROAGRO, seguro rural, diversificação, venda escalonada, venda antecipada e armazenagem.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-8.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* riscos */
+.riscos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+@media (min-width:600px){.riscos{grid-template-columns:repeat(3,1fr)}}
+.risco{background:#fff;border:1px solid var(--rule);padding:14px}
+.risco svg{width:30px;height:30px;margin-bottom:6px}
+.risco h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin-bottom:3px}
+.risco p{font-size:14.5px;line-height:1.45;color:var(--ink-soft);margin:0}
+
+/* simulação de venda */
+.venda{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.venda .abas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.venda .abas button{font:inherit;font-size:14.5px;padding:8px 12px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.venda .abas button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
+.venda svg{width:100%;height:auto;display:block}
+.venda svg text{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:#6B6960}
+.venda .pts circle{transition:cy .6s cubic-bezier(.2,.7,.2,1)}
+.venda .res{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.venda .res div{padding:10px 12px;border:1px solid var(--rule);background:var(--paper)}
+.venda .res small{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.venda .res b{font-family:'IBM Plex Mono',monospace;font-size:19px}
+.venda .cap{font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
+
+/* mapa de riscos */
+.mapa{display:grid;grid-template-columns:auto 1fr;gap:6px;margin:12px 0}
+.mapa .eixo-y{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(250,247,240,.6);text-align:center;letter-spacing:.08em}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,72px);gap:3px}
+.cel{position:relative;padding:4px;display:flex;flex-wrap:wrap;gap:3px;align-content:flex-start}
+.cel .pin{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;background:var(--paper);color:var(--ink);padding:2px 5px;animation:fadein .4s ease}
+.eixo-x{grid-column:2;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(250,247,240,.6);letter-spacing:.08em}
+.rlist{display:grid;gap:8px;margin-top:16px}
+.ritem{display:grid;grid-template-columns:1fr;gap:6px;background:rgba(250,247,240,.05);border:1px solid rgba(250,247,240,.15);padding:10px 12px}
+.ritem .nome{font-size:15.5px}
+.ritem .nome b{font-family:'IBM Plex Mono',monospace;color:#E3C46E;margin-right:6px}
+.ritem .sel{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ritem select{font:inherit;font-size:14.5px;padding:8px;background:var(--paper);border:0;color:var(--ink)}
+.prior{margin-top:16px}
+.prior li{margin:0 0 8px 18px;font-size:15.5px;color:rgba(250,247,240,.9);line-height:1.5}
+.mini{font:inherit;font-size:13px;font-weight:600;padding:8px 12px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+</style>
+</head>
+<body class="arco-decidir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 8 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/silo-bag-armazenagem.jpg')" role="img" aria-label="Silos bolsa para armazenagem de grãos"></div>
+  <div class="wrap">
+    <div class="num sobe">8</div>
+    <p class="arco">Decidir · os riscos</p>
+    <h1>Riscos e venda</h1>
+    <p class="pergunta">Se a próxima safra quebrar pela metade, a propriedade aguenta?</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 25 minutos</span></div>
+  </div>
+  <span class="credito">silo bags para armazenagem, Buenos Aires/Argentina · CC BY-SA 3.0, Roblespepe/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Os tipos de risco do campo.</li>
+      <li>Proteger a produção: zoneamento, PROAGRO e seguro.</li>
+      <li>Proteger o preço: vender em partes, vender antes, guardar.</li>
+      <li>Diversificar sem se perder.</li>
+      <li>Montar o mapa de riscos da sua propriedade.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">O campo é uma atividade de risco</h2>
+    <p class="rv">Poucas atividades econômicas trabalham a céu aberto, com seres vivos, vendendo a um preço que não controlam. O risco faz parte do negócio. Gestão de risco não é eliminar o risco: é <strong>saber quais são, quanto podem custar e o que fazer antes que aconteçam</strong>.</p>
+    <div class="riscos">
+      <div class="risco rv d1"><svg viewBox="0 0 30 30" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><path d="M8 18a6 6 0 1 1 11-5 4.5 4.5 0 1 1 2 9H9a4 4 0 0 1-1-4z"/></svg><h4>Clima</h4><p>Estiagem, excesso de chuva, geada, granizo, enchente.</p></div>
+      <div class="risco rv d2"><svg viewBox="0 0 30 30" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><circle cx="15" cy="15" r="9"/><path d="M15 6v18M6 15h18"/></svg><h4>Pragas e doenças</h4><p>Na lavoura, no pomar e no rebanho.</p></div>
+      <div class="risco rv d3"><svg viewBox="0 0 30 30" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><path d="M4 22l7-8 5 5 10-11"/></svg><h4>Preço</h4><p>Queda do preço de venda ou alta dos insumos.</p></div>
+      <div class="risco rv d1"><svg viewBox="0 0 30 30" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><rect x="5" y="8" width="20" height="14"/><path d="M5 13h20"/></svg><h4>Financeiro</h4><p>Dívidas altas, juros, falta de capital de giro.</p></div>
+      <div class="risco rv d2"><svg viewBox="0 0 30 30" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><circle cx="15" cy="10" r="4"/><path d="M7 25c0-5 3.5-8 8-8s8 3 8 8"/></svg><h4>Pessoas</h4><p>Doença, acidente, falta de mão de obra, sucessão.</p></div>
+      <div class="risco rv d3"><svg viewBox="0 0 30 30" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><path d="M6 25V9l9-5 9 5v16"/><path d="M11 25v-8h8v8"/></svg><h4>Regras</h4><p>Mudanças em leis, exigências sanitárias e ambientais, mercados que fecham.</p></div>
+    </div>
+    <p class="rv">As estiagens recentes e a enchente de 2024 mostraram no Rio Grande do Sul que o risco climático não é hipótese. Mas o risco que mais quebra propriedades costuma ser a combinação: um ano ruim de produção sobre uma dívida alta e nenhuma reserva.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Proteger a produção</h2>
+    <ul class="lista rv">
+      <li><strong>Zoneamento agrícola (ZARC):</strong> o Ministério da Agricultura indica, para cada município, cultura e tipo de solo, as épocas de plantio com menor risco climático. Plantar dentro do zoneamento reduz o risco e costuma ser condição para o PROAGRO e para o seguro com apoio do governo.</li>
+      <li><strong>PROAGRO:</strong> programa do governo que cobre, total ou parcialmente, o financiamento de custeio quando a lavoura sofre perdas por eventos como estiagem, granizo ou pragas sem controle. Na agricultura familiar, há o PROAGRO Mais, ligado ao PRONAF.</li>
+      <li><strong>Seguro rural:</strong> contratado com seguradoras, pode cobrir lavouras, frutas, animais e benfeitorias. O governo federal paga parte do prêmio em várias modalidades, pelo programa de subvenção ao seguro rural.</li>
+      <li><strong>Manejo:</strong> irrigação onde é viável, cultivares adaptadas, plantio escalonado, cobertura do solo, vacinação e sanidade do rebanho. Muitas vezes é a proteção mais barata.</li>
+    </ul>
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>Leia o que o seguro ou o PROAGRO cobre e como a perda é medida antes de contratar. Em caso de sinistro, comunique logo e não colha a área sem a vistoria, quando ela for exigida.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">Proteger o preço</h2>
+    <p class="rv">O módulo 2 mostrou que o produtor não manda no preço. Mas manda na forma de vender. As principais estratégias:</p>
+    <ul class="lista rv">
+      <li><strong>Vender em partes:</strong> em vez de vender tudo de uma vez, dividir a venda em três ou quatro momentos. Nunca se acerta o pico, mas também nunca se vende tudo no fundo.</li>
+      <li><strong>Vender antes:</strong> fechar com a cooperativa ou a empresa compradora um preço para entregar depois, a chamada venda antecipada ou contrato a termo. Garante o preço, mas obriga a entregar, mesmo que a safra quebre, e abre mão de uma alta.</li>
+      <li><strong>Guardar e esperar:</strong> armazenar para vender fora da colheita, quando o preço costuma ser melhor. Tem custo: armazenagem, quebra e o dinheiro parado. Só vale se a alta esperada pagar esses custos.</li>
+      <li><strong>Usar o custo como régua:</strong> com o custo por unidade do módulo 4, dá para definir um preço-alvo. Vender uma parte sempre que o mercado atingir esse preço é uma regra simples e eficiente.</li>
+    </ul>
+    <p class="rv">Veja abaixo o efeito de vender em partes, em dois anos diferentes.</p>
+    <div class="venda rv">
+      <div class="abas" id="v-abas"></div>
+      <svg viewBox="0 0 360 160" id="v-svg" role="img" aria-label="Preço ao longo dos meses e momentos de venda"></svg>
+      <div class="res"><div><small>Vender tudo na colheita</small><b id="v-tudo"></b></div><div><small>Vender em quatro partes</small><b id="v-partes"></b></div></div>
+      <p class="cap" id="v-cap"></p>
+    </div>
+    <p class="rv" style="font-size:15px;color:var(--stone);margin-top:-8px">Preços de exemplo, em reais por saca.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">Diversificar sem se perder</h2>
+    <p class="rv">Ter mais de uma fonte de renda é uma das proteções mais antigas do campo. Quando a soja vai mal, o leite segura. Quando o preço do boi cai, a lavoura ajuda. A integração lavoura e pecuária, comum no Rio Grande do Sul, é um exemplo: o mesmo solo produz grão no verão e pasto no inverno.</p>
+    <p class="rv">Mas diversificar tem limite. Cada atividade exige conhecimento, tempo, equipamentos e mercado. Três atividades mal conduzidas costumam render menos do que uma bem feita. A pergunta certa não é "quantas atividades", e sim:</p>
+    <ul class="lista rv">
+      <li>As atividades <strong>sofrem riscos diferentes</strong>, ou caem todas juntas no mesmo ano ruim?</li>
+      <li>A família tem <strong>tempo e mão de obra</strong> para todas?</li>
+      <li>Cada uma <strong>paga o próprio custo</strong>, ou uma está sustentando a outra sem ninguém perceber?</li>
+    </ul>
+    <p class="rv">E não se esqueça das proteções que não são produção: a reserva do módulo 6, uma dívida sob controle, um seguro de vida para quem toca a propriedade, e uma conversa em família sobre quem vai continuar.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">O mapa de riscos</h2>
+    <p class="rv">Nenhuma propriedade consegue se proteger de tudo. Por isso, o primeiro passo é escolher. Para cada risco, faça duas perguntas: <strong>qual a chance de acontecer</strong> nos próximos anos? E <strong>qual o estrago</strong>, se acontecer?</p>
+    <p class="rv">Os riscos com chance alta e estrago grande pedem ação já. Os de chance baixa e estrago pequeno podem ser apenas acompanhados. É o que você monta agora.</p>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>O mapa de riscos</h2>
+    <p class="so-ja">Avalie cada risco pensando na sua propriedade, nos próximos três anos.</p>
+    <p class="so-novo">Avalie cada risco pensando na atividade e no lugar onde você pretende começar. Para quem começa, a falta de experiência aumenta a chance de vários deles.</p>
+
+    <div class="mapa">
+      <span class="eixo-y">estrago →</span>
+      <div class="grade" id="grade"></div>
+      <span></span>
+      <div class="eixo-x"><span>chance baixa</span><span>média</span><span>alta</span></div>
+    </div>
+    <div class="rlist" id="rlist"></div>
+    <div class="resultado" id="m-res" hidden style="margin-top:16px">
+      <p style="margin:0;font-size:15.5px">Prioridades da sua propriedade:</p>
+      <ol class="prior" id="m-prior"></ol>
+      <p class="salvo" id="m-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Gestão de risco é saber quais são, quanto custam e o que fazer antes de acontecerem.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Plantar no zoneamento, PROAGRO e seguro protegem a produção. Leia o que cada um cobre.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>Vender em partes, vender antes e guardar protegem o preço. O custo por unidade serve de régua.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>Diversificar ajuda quando as atividades têm riscos diferentes e cada uma paga o próprio custo.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>Por que plantar dentro do zoneamento agrícola (ZARC) é importante?</p>
+      <button type="button" class="alt">Porque garante uma produtividade mínima.</button>
+      <button type="button" class="alt" data-certa>Porque reduz o risco climático e costuma ser condição para o PROAGRO e o seguro subvencionado.</button>
+      <button type="button" class="alt">Porque é obrigatório para vender a produção.</button>
+      <p class="fb">O zoneamento indica as épocas de menor risco. Plantar fora dele pode deixar a lavoura sem cobertura.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>Qual a principal vantagem de vender a safra em várias partes?</p>
+      <button type="button" class="alt">Sempre vender pelo maior preço do ano.</button>
+      <button type="button" class="alt" data-certa>Evitar vender tudo no pior momento, ficando com um preço médio.</button>
+      <button type="button" class="alt">Pagar menos imposto.</button>
+      <p class="fb">Ninguém acerta o pico. Vender em partes garante um preço médio e reduz o risco de vender tudo no fundo.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>Um produtor fez uma venda antecipada de 1.000 sacas e a safra quebrou. O que acontece?</p>
+      <button type="button" class="alt">O contrato é cancelado automaticamente.</button>
+      <button type="button" class="alt" data-certa>Ele continua obrigado a entregar, e pode ter de comprar soja ou negociar a diferença.</button>
+      <button type="button" class="alt">O PROAGRO paga as sacas.</button>
+      <p class="fb">A venda antecipada é um compromisso de entrega. Por isso, nunca se vende antecipado toda a produção esperada.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="8">Concluir o módulo 8</button>
+    <span class="proximo">A seguir, módulo 9<br><a href="modulo-9.html">Começar ou ampliar</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* simulação de venda */
+(function(){
+  var M = ['abr','mai','jun','jul','ago','set','out','nov','dez'];
+  var ANOS = {
+    'Ano de alta': {p:[112,110,116,121,125,128,126,130,127], cap:'Quem vendeu tudo na colheita perdeu a alta. Quem vendeu em partes ficou com um preço médio melhor, sem precisar adivinhar o pico.'},
+    'Ano de queda': {p:[128,124,120,117,114,112,110,113,111], cap:'Agora a colheita foi o melhor momento. Quem vendeu em partes recebeu um pouco menos do que quem vendeu tudo, mas não ficou com toda a safra para vender no fundo.'}
+  };
+  var vendas = [0, 2, 4, 7]; /* meses em que cada parte é vendida */
+  var svg = document.getElementById('v-svg'), abas = document.getElementById('v-abas');
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(t, a){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  var W = 360, x0 = 30, dx = (W - x0 - 12) / (M.length - 1), ymin = 100, ymax = 135;
+  var Y = function(v){ return 10 + (ymax - v) / (ymax - ymin) * 125; };
+  [105, 115, 125].forEach(function(v){
+    svg.appendChild(el('line', {x1:x0, x2:W - 6, y1:Y(v), y2:Y(v), stroke:'#E8E3D3'}));
+    var t = el('text', {x:2, y:Y(v) + 3}); t.textContent = v; svg.appendChild(t);
+  });
+  M.forEach(function(m, i){ var t = el('text', {x:x0 + i * dx, y:156, 'text-anchor':'middle'}); t.textContent = m; svg.appendChild(t); });
+  var linha = svg.appendChild(el('polyline', {fill:'none', stroke:'#1A1A17', 'stroke-width':2, points:''}));
+  var g = svg.appendChild(el('g', {class:'pts'})), pts = [];
+  M.forEach(function(m, i){
+    var parte = vendas.indexOf(i) >= 0;
+    pts.push(g.appendChild(el('circle', {cx:x0 + i * dx, cy:Y(115), r:parte ? 6 : 2.5, fill:parte ? '#A8552E' : '#1A1A17', stroke:parte ? '#fff' : 'none', 'stroke-width':2})));
+  });
+  var reais = function(v){ return 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+  function mostra(nome){
+    var a = ANOS[nome];
+    abas.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.textContent === nome); });
+    linha.setAttribute('points', a.p.map(function(v, i){ return (x0 + i * dx) + ',' + Y(v); }).join(' '));
+    a.p.forEach(function(v, i){ pts[i].setAttribute('cy', Y(v)); });
+    var media = vendas.reduce(function(s, i){ return s + a.p[i]; }, 0) / vendas.length;
+    document.getElementById('v-tudo').textContent = reais(a.p[0]);
+    document.getElementById('v-partes').textContent = reais(media);
+    document.getElementById('v-cap').textContent = a.cap;
+  }
+  Object.keys(ANOS).forEach(function(n){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = n;
+    b.addEventListener('click', function(){ mostra(n); }); abas.appendChild(b);
+  });
+  mostra('Ano de alta');
+})();
+
+/* mapa de riscos */
+(function(){
+  var RISCOS = [
+    {id:'E', n:'Estiagem ou excesso de chuva', a:'Plantar no zoneamento, contratar PROAGRO ou seguro, escalonar o plantio, avaliar irrigação e reserva de água.'},
+    {id:'G', n:'Granizo, geada ou vendaval', a:'Seguro específico para a cultura, cultivares e épocas menos expostas, telas antigranizo em frutíferas.'},
+    {id:'P', n:'Queda forte do preço de venda', a:'Vender em partes, usar o custo como preço-alvo, venda antecipada de parte da produção, armazenagem quando compensa.'},
+    {id:'I', n:'Alta dos insumos', a:'Comprar em grupo ou pela cooperativa, acompanhar a relação de troca, comprar fora do pico de demanda.'},
+    {id:'S', n:'Doença no rebanho ou praga na lavoura', a:'Calendário sanitário, monitoramento de pragas, assistência técnica, quarentena na compra de animais.'},
+    {id:'D', n:'Dívida que não cabe no caixa', a:'Conferir a capacidade de pagamento antes de cada financiamento, renegociar cedo, formar reserva.'},
+    {id:'M', n:'Falta de mão de obra ou doença na família', a:'Seguro de vida e de acidentes, rede de vizinhos, mecanização onde compensa, organizar quem faz o quê.'},
+    {id:'U', n:'Falta de quem continue a propriedade', a:'Conversar sobre sucessão em família, envolver os jovens na gestão, planejar a passagem com antecedência.'}
+  ];
+  var CH = ['baixa','média','alta'], ES = ['pequeno','médio','grande'];
+  var g = function(id){ return document.getElementById(id); };
+  var grade = g('grade'), lista = g('rlist');
+  var CORES = [['#5E6B45','#7A7A45','#8E6A3A'],['#7A7A45','#8E6A3A','#9A4F2E'],['#8E6A3A','#9A4F2E','#A33B2A']];
+  var cels = [];
+  for (var es = 2; es >= 0; es--) for (var ch = 0; ch < 3; ch++){
+    var c = document.createElement('div'); c.className = 'cel'; c.style.background = CORES[es][ch];
+    c.dataset.k = ch + '-' + es; grade.appendChild(c); cels.push(c);
+  }
+  var estado = (Curso.caderno().m8 || {}).riscos || {};
+  RISCOS.forEach(function(r){
+    var d = document.createElement('div'); d.className = 'ritem';
+    d.innerHTML = '<span class="nome"><b>' + r.id + '</b>' + r.n + '</span><div class="sel">' +
+      '<select data-r="' + r.id + '" data-t="ch"><option value="">chance...</option>' + CH.map(function(x, i){ return '<option value="' + i + '">chance ' + x + '</option>'; }).join('') + '</select>' +
+      '<select data-r="' + r.id + '" data-t="es"><option value="">estrago...</option>' + ES.map(function(x, i){ return '<option value="' + i + '">estrago ' + x + '</option>'; }).join('') + '</select></div>';
+    lista.appendChild(d);
+  });
+  lista.querySelectorAll('select').forEach(function(s){
+    var e = estado[s.dataset.r]; if (e && e[s.dataset.t] !== undefined) s.value = e[s.dataset.t];
+    s.addEventListener('change', function(){
+      estado[s.dataset.r] = estado[s.dataset.r] || {};
+      estado[s.dataset.r][s.dataset.t] = s.value === '' ? undefined : +s.value;
+      calc(true);
+    });
+  });
+  function calc(salvar){
+    cels.forEach(function(c){ c.innerHTML = ''; });
+    var av = [];
+    RISCOS.forEach(function(r){
+      var e = estado[r.id];
+      if (e && e.ch !== undefined && e.es !== undefined){
+        var c = grade.querySelector('[data-k="' + e.ch + '-' + e.es + '"]');
+        var p = document.createElement('span'); p.className = 'pin'; p.textContent = r.id; p.title = r.n; c.appendChild(p);
+        av.push({r:r, s:(e.ch + 1) * (e.es + 1)});
+      }
+    });
+    if (!av.length){ g('m-res').hidden = true; return; }
+    g('m-res').hidden = false;
+    av.sort(function(a, b){ return b.s - a.s; });
+    g('m-prior').innerHTML = av.slice(0, 3).map(function(x){ return '<li><strong>' + x.r.n + '.</strong> ' + x.r.a + '</li>'; }).join('');
+    if (salvar){
+      var ok = Curso.salvarCaderno('m8', {riscos:estado, prioridades:av.slice(0, 3).map(function(x){ return x.r.n; })});
+      g('m-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    }
+  }
+  calc(false);
+})();
+</script>
+</body>
+</html>

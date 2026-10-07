@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3A2F08">
+<meta name="robots" content="noindex">
+<title>Módulo 5 · Quanto sobra</title>
+<meta name="description" content="Módulo 5 do curso de gestão para produtores: receita, margens, lucro, ponto de equilíbrio em sacas, produtividade mínima e preço mínimo.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-5.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* sacas */
+.sacas{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin:16px 0 8px}
+.saca{aspect-ratio:3/4;position:relative;opacity:0;transform:translateY(-10px) scale(.9);transition:opacity .3s,transform .4s cubic-bezier(.3,1.5,.5,1)}
+.saca svg{width:100%;height:100%;display:block}
+.on .saca,.saca.vis{opacity:1;transform:none}
+.leg-s{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--ink-soft);margin-top:8px}
+.leg-s span::before{content:"";display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.sua .leg-s{color:rgba(250,247,240,.85)}
+.caixa-sacas{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.caixa-sacas .cap{font-size:14.5px;color:var(--stone);margin-top:10px;line-height:1.45}
+
+/* semáforo das sobras */
+.sobras{display:grid;gap:10px;margin:22px 0}
+.sobra{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:#fff;border:1px solid var(--rule);padding:16px}
+.sobra .luz{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13px;color:#fff}
+.sobra h4{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin-bottom:2px}
+.sobra p{font-size:15.5px;line-height:1.5;color:var(--ink-soft);margin:0}
+.sobra .prazo{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
+
+/* resultado */
+.campo .inp input.txt{font-family:'IBM Plex Sans',sans-serif;font-size:17px}
+.mini{font:inherit;font-size:13px;font-weight:600;padding:8px 12px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+.tres{display:grid;gap:8px;margin:14px 0}
+.tres .t{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 12px;background:rgba(250,247,240,.05);border:1px solid rgba(250,247,240,.15)}
+.tres .t i{width:14px;height:14px;border-radius:50%;display:block}
+.tres .t span{font-size:15px}
+.tres .t b{font-family:'IBM Plex Mono',monospace;font-size:16px;white-space:nowrap}
+</style>
+</head>
+<body class="arco-medir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 5 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/lavoura-soja-novo-barreiro.jpg')" role="img" aria-label="Lavoura de soja no Rio Grande do Sul"></div>
+  <div class="wrap">
+    <div class="num sobe">5</div>
+    <p class="arco">Medir · o resultado</p>
+    <h1>Quanto sobra</h1>
+    <p class="pergunta">Das sacas que você colhe, quantas são só para pagar a conta?</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 25 minutos</span></div>
+  </div>
+  <span class="credito">lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>O que entra na receita, inclusive o que costuma ser esquecido.</li>
+      <li>As três sobras e o que cada uma diz.</li>
+      <li>O ponto de equilíbrio: quantas sacas pagam a conta.</li>
+      <li>Produtividade mínima e preço mínimo.</li>
+      <li>O que fazer quando o resultado é negativo.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">O que entra</h2>
+    <p class="rv">A <strong>receita</strong> de uma atividade é a produção vezes o preço. Parece óbvio, mas três coisas costumam ficar de fora da conta:</p>
+    <ul class="lista rv">
+      <li><strong>O autoconsumo:</strong> o leite, a carne e o milho que ficam na propriedade têm valor, como visto no módulo 1.</li>
+      <li><strong>Os subprodutos:</strong> no leite, a venda de terneiros e de vacas de descarte. Na lavoura, a palha vendida ou usada para o gado.</li>
+      <li><strong>O que ficou no estoque:</strong> a soja guardada no silo também é produção do ano, mesmo que ainda não tenha sido vendida. Conte pelo preço de hoje.</li>
+    </ul>
+    <p class="rv">E uma coisa que não deve entrar: dinheiro que não veio da atividade, como aposentadoria, empréstimo ou venda de uma máquina velha. Isso é aporte, crédito ou venda de patrimônio, não receita.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Três sobras</h2>
+    <p class="rv">Cada degrau do custo do módulo 4 gera uma sobra diferente quando é descontado da receita. Cada uma responde a uma pergunta, num prazo diferente.</p>
+    <div class="sobras">
+      <div class="sobra rv d1"><span class="luz" style="background:#B89233">1</span><div><span class="prazo">curto prazo</span><h4>Receita menos COE</h4><p>Sobra depois de pagar o que saiu do bolso. Se for negativa, a atividade não paga nem as contas do ano: cada unidade produzida aumenta o prejuízo.</p></div></div>
+      <div class="sobra rv d2"><span class="luz" style="background:#D9895E">2</span><div><span class="prazo">médio prazo</span><h4>Receita menos COT</h4><p>Sobra depois de repor os bens e pagar a família. Se for negativa, a atividade se mantém por um tempo, mas vai envelhecendo as máquinas ou apertando a família.</p></div></div>
+      <div class="sobra rv d3"><span class="luz" style="background:#3D4A2A">3</span><div><span class="prazo">longo prazo</span><h4>Receita menos CT: o lucro</h4><p>Sobra depois de pagar também a terra e o dinheiro empatados. Se for positiva, produzir rende mais do que arrendar a terra e aplicar o dinheiro.</p></div></div>
+    </div>
+    <p class="rv">Repare na régua do lucro: <strong>basta ele ser maior que zero</strong>. O custo total já inclui o que a terra e o dinheiro renderiam em outro uso. Lucro de R$ 1 já significa que a atividade ganhou dessas alternativas.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">Quantas sacas pagam a conta</h2>
+    <p class="rv">Um jeito muito visual de enxergar o resultado é pensar em sacas, e não em reais. Divida cada degrau do custo pelo preço da saca: o resultado é quantas sacas são necessárias para pagar aquele degrau. Esse número se chama <strong>ponto de equilíbrio</strong>.</p>
+
+    <div class="caixa-sacas rv" data-anima id="sacas-ex">
+      <div class="sacas" id="sacas-ex-grid"></div>
+      <div class="leg-s"><span style="--c:#B89233">pagam o bolso</span><span style="--c:#D9895E">pagam desgaste e família</span><span style="--c:#7E8B5E">pagam terra e capital</span><span style="--c:#9DB86A">lucro</span></div>
+      <p class="cap">O exemplo da soja do módulo 4, com a saca a R$ 120: das 3.000 sacas colhidas, cada desenho representa 1% da produção.</p>
+    </div>
+
+    <p class="rv">No exemplo, das 3.000 sacas, 1.567 pagam o que saiu do bolso, outras 467 pagam o desgaste e a família, 783 pagam a terra e o capital. Sobram 183 sacas de lucro, cerca de 6% da colheita.</p>
+    <p class="rv">Visto assim, fica claro por que pequenas variações importam tanto. Uma quebra de 10% na produção leva embora 300 sacas: mais do que todo o lucro.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">Produtividade mínima e preço mínimo</h2>
+    <p class="rv">O ponto de equilíbrio pode ser lido de dois jeitos, e os dois ajudam a decidir antes de plantar.</p>
+    <ul class="lista rv">
+      <li><strong>Produtividade mínima:</strong> com o preço esperado, quantas sacas por hectare (ou litros por vaca) são necessárias para pagar cada degrau do custo. Se a média dos últimos anos fica abaixo disso, a atividade está apertada.</li>
+      <li><strong>Preço mínimo:</strong> com a produção esperada, qual o menor preço que paga cada degrau. É exatamente o custo por unidade do módulo 4. Serve de referência para vender: abaixo do COE por saca, cada venda é prejuízo.</li>
+    </ul>
+    <div class="exemplo rv">
+      <p class="rot">Exemplo</p>
+      <p>No exemplo da soja, 50 hectares e custo total de R$ 338.000. Com a saca a R$ 120, são necessárias 2.817 sacas, ou 56,3 sacas por hectare, para pagar o custo total. Se a produtividade média da propriedade é 60 sacas por hectare, a folga é pequena: qualquer estiagem coloca a conta no vermelho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Quando o resultado é negativo</h2>
+    <p class="rv">Resultado negativo num ano ruim não é motivo para abandonar a atividade. O que importa é qual sobra ficou negativa, e por quanto tempo.</p>
+    <ul class="lista rv">
+      <li><strong>Só o lucro negativo:</strong> a atividade paga as contas e a família, mas rende menos que as alternativas. Vale procurar onde melhorar, e pensar se outra atividade usaria melhor a terra.</li>
+      <li><strong>A sobra sobre o COT negativa:</strong> as máquinas não estão sendo repostas ou a família está ganhando pouco. Se durar vários anos, a propriedade vai se descapitalizando.</li>
+      <li><strong>A sobra sobre o COE negativa:</strong> sinal de alerta. A atividade está consumindo dinheiro. Se não for um ano atípico, é preciso mudar algo já.</li>
+    </ul>
+    <p class="rv">Onde mexer? Há três alavancas, e o módulo 2 já mostrou que o preço é a mais difícil: <strong>produzir mais com o mesmo custo</strong>, <strong>gastar menos para produzir o mesmo</strong>, e <strong>vender melhor</strong>. Muitas vezes o ganho está em detalhes: um insumo comprado na hora certa, uma perda na colheita, um lote de animais com baixo desempenho.</p>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>Quantas unidades pagam a sua conta?</h2>
+    <p class="so-ja">Use os custos que você calculou no módulo 4 e o preço médio que recebeu, ou o esperado para esta safra.</p>
+    <p class="so-novo">Use os custos planejados do módulo 4 e um preço conservador: a média dos últimos anos, não o melhor preço que você viu.</p>
+    <p style="margin:4px 0 6px"><button type="button" class="mini" id="r-usa4" hidden>usar os números do meu módulo 4</button> <button type="button" class="mini" id="r-exemplo">ver o exemplo da soja</button></p>
+
+    <div class="campos">
+      <div class="campo"><label for="r-un">Unidade <small>saca, litro, kg, arroba</small></label><div class="inp"><input id="r-un" class="txt" autocomplete="off" placeholder="saca"></div></div>
+      <div class="campo"><label for="r-preco">Preço por unidade</label><div class="inp"><span>R$</span><input id="r-preco" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="r-prod">Produção no ano <small>na mesma unidade</small></label><div class="inp"><input id="r-prod" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="r-area">Área ou tamanho <small>opcional: hectares, número de vacas</small></label><div class="inp"><input id="r-area" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="r-coe">COE no ano</label><div class="inp"><span>R$</span><input id="r-coe" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="r-cot">COT no ano</label><div class="inp"><span>R$</span><input id="r-cot" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="r-ct">CT no ano</label><div class="inp"><span>R$</span><input id="r-ct" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="resultado" id="r-res" hidden>
+      <div class="sacas" id="r-grid"></div>
+      <div class="leg-s"><span style="--c:#B89233">pagam o bolso</span><span style="--c:#D9895E">desgaste e família</span><span style="--c:#7E8B5E">terra e capital</span><span style="--c:#9DB86A">lucro</span><span style="--c:#6E3A3A">faltam, em tracejado</span></div>
+      <div class="tres" id="r-tres"></div>
+      <div class="linha"><span>Receita no ano</span><b id="r-rec"></b></div>
+      <div class="linha" id="r-pe-area-w"><span id="r-pe-area-l"></span><b id="r-pe-area"></b></div>
+      <div class="veredito" id="r-ver"></div>
+      <p class="salvo" id="r-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>A receita inclui autoconsumo, subprodutos e estoque. Aposentadoria, empréstimo e venda de bens não são receita.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Três sobras, três prazos: sobre o COE, sobre o COT e o lucro, sobre o CT.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>Lucro acima de zero já significa ganhar das alternativas, porque o CT inclui arrendar a terra e aplicar o dinheiro.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>O ponto de equilíbrio mostra quantas unidades pagam cada degrau do custo. Dele saem a produtividade mínima e o preço mínimo.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>O custo operacional efetivo (COE) da lavoura foi de R$ 150.000 e a saca vale R$ 100. Quantas sacas pagam o que saiu do bolso?</p>
+      <button type="button" class="alt">150 sacas</button>
+      <button type="button" class="alt" data-certa>1.500 sacas</button>
+      <button type="button" class="alt">15.000 sacas</button>
+      <p class="fb">R$ 150.000 divididos por R$ 100 a saca dá 1.500 sacas.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>A receita paga o COE e o COT, mas não o CT. O que isso significa?</p>
+      <button type="button" class="alt">Que a atividade está consumindo dinheiro e deve parar já.</button>
+      <button type="button" class="alt" data-certa>Que a atividade se sustenta, mas rende menos do que arrendar a terra e aplicar o dinheiro.</button>
+      <button type="button" class="alt">Que a atividade tem lucro.</button>
+      <p class="fb">A atividade paga as contas, o desgaste e a família. Falta pagar o custo de oportunidade da terra e do capital.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>No ano, o produtor vendeu um trator velho por R$ 40.000. Na receita da lavoura, esse valor:</p>
+      <button type="button" class="alt">Entra, porque foi dinheiro que entrou.</button>
+      <button type="button" class="alt" data-certa>Não entra, porque é venda de patrimônio, não produção.</button>
+      <button type="button" class="alt">Entra só se o dinheiro for usado na lavoura.</button>
+      <p class="fb">Vender um bem transforma patrimônio em dinheiro, mas não é resultado da produção do ano.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="5">Concluir o módulo 5</button>
+    <span class="proximo">A seguir, módulo 6<br><a href="modulo-6.html">O dinheiro no tempo</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* desenha 100 sacas: a escala vai até o maior valor entre receita e custo total */
+function desenhaSacas(grid, rec, coe, cot, ct){
+  grid.innerHTML = '';
+  var base = Math.max(rec, ct);
+  for (var i = 0; i < 100; i++){
+    var x = (i + 0.5) / 100 * base, cor;
+    if (x > rec) cor = '#6E3A3A';
+    else if (x <= coe) cor = '#B89233';
+    else if (x <= cot) cor = '#D9895E';
+    else if (x <= ct) cor = '#7E8B5E';
+    else cor = '#9DB86A';
+    var d = document.createElement('div'); d.className = 'saca';
+    d.style.transitionDelay = (i * 0.012) + 's';
+    var vazia = x > rec;
+    d.innerHTML = '<svg viewBox="0 0 30 40"><path d="M8 4h14l-2 5c6 3 8 9 8 16 0 8-5 12-13 12S2 33 2 25c0-7 2-13 8-16z" fill="' + (vazia ? 'none' : cor) + '" stroke="' + cor + '" stroke-width="1.8" ' + (vazia ? 'stroke-dasharray="3 2"' : '') + '/><path d="M9 9h12" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/></svg>';
+    grid.appendChild(d);
+  }
+}
+
+/* exemplo da lição 3 */
+(function(){
+  desenhaSacas(document.getElementById('sacas-ex-grid'), 360000, 188000, 244000, 338000);
+})();
+
+/* calculadora */
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  var ids = ['un','preco','prod','area','coe','cot','ct'];
+  ['prod','coe','cot','ct'].forEach(function(k){ Curso.mascara(g('r-' + k)); });
+  var dec = function(s){ s = String(s || '').replace(/\./g, '').replace(',', '.'); var v = parseFloat(s); return isFinite(v) ? v : 0; };
+  var f1 = function(v){ return v.toLocaleString('pt-BR', {maximumFractionDigits: v >= 100 ? 0 : 1}); };
+  var plural = function(u){ return /^[a-zà-ú]+[aeiouã]$/i.test(u) ? u + 's' : u; };
+  var f2 = function(v){ return 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+  var exemplo = false;
+  function calc(){
+    var un = g('r-un').value.trim() || 'unidade', preco = dec(g('r-preco').value), prod = Curso.num(g('r-prod').value), area = dec(g('r-area').value);
+    var coe = Curso.num(g('r-coe').value), cot = Curso.num(g('r-cot').value) || coe, ct = Curso.num(g('r-ct').value) || cot;
+    if (!preco || !prod || !coe){ g('r-res').hidden = true; return; }
+    g('r-res').hidden = false;
+    var rec = preco * prod;
+    desenhaSacas(g('r-grid'), rec, coe, cot, ct);
+    requestAnimationFrame(function(){ g('r-grid').querySelectorAll('.saca').forEach(function(s){ s.classList.add('vis'); }); });
+    var linhas = [['#B89233', 'pagam o bolso (COE)', coe], ['#D9895E', 'pagam até o COT', cot], ['#7E8B5E', 'pagam o custo total (CT)', ct]];
+    g('r-tres').innerHTML = linhas.map(function(l){
+      return '<div class="t"><i style="background:' + l[0] + '"></i><span>' + l[1] + '</span><b>' + f1(l[2] / preco) + ' ' + plural(un) + '</b></div>';
+    }).join('');
+    g('r-rec').textContent = Curso.reais(rec);
+    if (area > 0){
+      g('r-pe-area-w').hidden = false;
+      g('r-pe-area-l').textContent = 'Produtividade mínima para pagar o CT, por unidade de área (a sua: ' + f1(prod / area) + ')';
+      g('r-pe-area').textContent = f1(ct / preco / area);
+    } else g('r-pe-area-w').hidden = true;
+    var s1 = rec - coe, s2 = rec - cot, s3 = rec - ct, txt, cls;
+    if (s1 < 0){ cls = 'alerta'; txt = 'A receita não paga nem o que sai do bolso: faltam ' + Curso.reais(-s1) + '. Se não foi um ano atípico, a atividade precisa de mudança. Preço mínimo para pagar o COE: ' + f2(coe / prod) + ' por ' + un + '.'; }
+    else if (s2 < 0){ cls = 'alerta'; txt = 'Paga o que sai do bolso e sobram ' + Curso.reais(s1) + ', mas não cobre o desgaste e o trabalho da família: faltam ' + Curso.reais(-s2) + '. A propriedade está se descapitalizando aos poucos.'; }
+    else if (s3 < 0){ cls = ''; txt = 'Paga o bolso, o desgaste e a família. Falta ' + Curso.reais(-s3) + ' para pagar a terra e o capital: a atividade se sustenta, mas rende menos do que arrendar e aplicar. Preço que paga tudo: ' + f2(ct / prod) + ' por ' + un + '.'; }
+    else { cls = 'ok'; txt = 'Paga todos os degraus do custo e sobra um lucro de ' + Curso.reais(s3) + ', ' + Math.round(s3 / rec * 100) + '% da receita. Produzir está rendendo mais do que arrendar a terra e aplicar o dinheiro.'; }
+    g('r-ver').className = 'veredito ' + cls; g('r-ver').textContent = txt;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m5', {unidade:un, preco:preco, producao:prod, area:area, receita:rec, coe:coe, cot:cot, ct:ct, sobraCOE:s1, sobraCOT:s2, lucro:s3});
+      g('r-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else g('r-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+  }
+  ids.forEach(function(k){ g('r-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+  function preenche(d){
+    g('r-un').value = d.un || ''; g('r-preco').value = d.preco ? String(d.preco).replace('.', ',') : '';
+    g('r-area').value = d.area ? String(d.area).replace('.', ',') : '';
+    ['prod','coe','cot','ct'].forEach(function(k){ g('r-' + k).value = d[k] ? Math.round(d[k]).toLocaleString('pt-BR') : ''; });
+  }
+  var cad = Curso.caderno();
+  if (cad.m4 && cad.m4.coe){
+    var b = g('r-usa4'); b.hidden = false;
+    b.addEventListener('click', function(){
+      preenche({un:cad.m4.unidade, preco:g('r-preco').value ? dec(g('r-preco').value) : '', prod:cad.m4.producao, area:dec(g('r-area').value), coe:cad.m4.coe, cot:cad.m4.cot, ct:cad.m4.ct});
+      exemplo = false; calc();
+    });
+  }
+  if (cad.m5){ var m = cad.m5; preenche({un:m.unidade, preco:m.preco, prod:m.producao, area:m.area, coe:m.coe, cot:m.cot, ct:m.ct}); calc(); }
+  g('r-exemplo').addEventListener('click', function(){
+    preenche({un:'saca', preco:120, prod:3000, area:50, coe:188000, cot:244000, ct:338000});
+    exemplo = true; calc();
+    g('r-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

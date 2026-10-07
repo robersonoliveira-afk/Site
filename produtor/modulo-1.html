@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2A331C">
+<meta name="robots" content="noindex">
+<title>Módulo 1 · A propriedade como negócio</title>
+<meta name="description" content="Módulo 1 do curso de gestão para produtores: separar a conta da casa da conta da propriedade, retirada da família, autoconsumo, patrimônio e o ciclo da gestão.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-1.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* carteira única: setas entrando e saindo */
+.carteira .seta-in,.carteira .seta-out{stroke-dasharray:6 6;stroke-dashoffset:60}
+.carteira.on .seta-in{animation:corre 2.4s linear infinite}
+.carteira.on .seta-out{animation:corre 2.4s linear infinite reverse}
+@keyframes corre{to{stroke-dashoffset:0}}
+.carteira .rotulo{font-family:'IBM Plex Sans',sans-serif;font-size:13px;fill:#3A3833}
+.carteira .rotulo.casa{fill:#A8552E}
+.carteira .bolso{font-family:'Fraunces',serif;font-size:17px;fill:#FAF7F0}
+
+/* duas caixas: moedas passando da propriedade para a casa */
+.duas .moeda{opacity:0}
+.duas.on .moeda{animation:passa 3s ease-in-out infinite}
+.duas.on .moeda.m2{animation-delay:1s}
+.duas.on .moeda.m3{animation-delay:2s}
+@keyframes passa{0%{opacity:0;transform:translateX(0)}12%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(124px)}}
+.duas .tit{font-family:'Fraunces',serif;font-size:17px}
+.duas .sub{font-family:'IBM Plex Sans',sans-serif;font-size:12px;fill:#6B6960}
+.duas .flecha-txt{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#A8552E;letter-spacing:.06em}
+
+/* jogo casa ou propriedade */
+.jogo{margin:24px 0;background:#fff;border:1px solid var(--rule)}
+.jogo .placar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--stone)}
+.jogo .placar b{color:var(--ink)}
+.jogo .carta{padding:26px 18px 20px;text-align:center;min-height:150px;display:flex;flex-direction:column;justify-content:center}
+.jogo .item{font-family:'Fraunces',serif;font-size:23px;line-height:1.25;transition:opacity .25s,transform .25s}
+.jogo .item.troca{opacity:0;transform:translateY(8px)}
+.jogo .botoes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule)}
+.jogo .botoes button{font:inherit;font-weight:600;font-size:16px;padding:16px 10px;border:0;background:var(--paper);cursor:pointer;color:var(--ink);transition:background .2s}
+.jogo .botoes button:hover:not([disabled]){background:var(--paper-warm)}
+.jogo .botoes button[disabled]{cursor:default;opacity:.5}
+.jogo .resp{display:none;padding:14px 16px;font-size:16px;line-height:1.5;border-top:1px solid var(--rule)}
+.jogo .resp.on{display:block;animation:fadein .35s ease}
+.jogo .resp.certo{background:var(--success-bg)}
+.jogo .resp.errado{background:var(--danger-bg)}
+.jogo .resp button{margin-top:10px;font:inherit;font-size:14px;font-weight:600;padding:8px 14px;border:1px solid var(--ink);background:transparent;cursor:pointer}
+.jogo .fim{display:none;padding:22px 18px;text-align:center}
+.jogo .fim.on{display:block}
+.jogo .fim b{font-family:'Fraunces',serif;font-size:24px;display:block;margin-bottom:6px}
+
+/* patrimônio: blocos empilhados */
+.pat .bloco{transform-origin:bottom;transform:scaleY(0);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.pat.on .bloco{transform:scaleY(1)}
+.pat.on .b2{transition-delay:.15s}.pat.on .b3{transition-delay:.3s}.pat.on .b4{transition-delay:.45s}.pat.on .b5{transition-delay:.6s}
+.pat text{font-family:'IBM Plex Sans',sans-serif;font-size:13px}
+
+/* ciclo da gestão */
+.ciclo .arco-c{fill:none;stroke:#E8E3D3;stroke-width:16}
+.ciclo .ponto{transition:fill .3s}
+.ciclo .roda{transform-origin:150px 130px}
+.ciclo.on .roda{animation:gira 8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.ciclo text{font-family:'Fraunces',serif;font-size:16px;fill:#1A1A17}
+.ciclo text.peq{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;fill:#6B6960}
+</style>
+</head>
+<body class="arco-olhar">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 1 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/trator-massey-ferguson-antigo.jpg')" role="img" aria-label="Trator antigo em uma propriedade rural"></div>
+  <div class="wrap">
+    <div class="num sobe">1</div>
+    <p class="arco">Olhar · a propriedade</p>
+    <h1>A propriedade como negócio</h1>
+    <p class="pergunta">No fim do ano, você sabe dizer se a propriedade deu lucro ou se foi a família que segurou a conta?</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 20 minutos</span></div>
+  </div>
+  <span class="credito">trator Massey Ferguson 50X, Mariana Pimentel/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Por que misturar o dinheiro da casa com o da propriedade esconde o resultado.</li>
+      <li>Como separar as duas contas sem complicar a vida.</li>
+      <li>O que a propriedade tem, e por que isso também entra na conta.</li>
+      <li>Gestão como um ciclo: planejar, fazer, anotar e avaliar.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">Uma carteira só</h2>
+    <p class="rv">Na maioria das propriedades familiares, o dinheiro corre por um caminho só. O que entra do leite, da soja ou do gado vai para a mesma conta, ou para a mesma gaveta, de onde sai o adubo, o diesel, o rancho do mês, a farmácia e a parcela da moto.</p>
+    <p class="rv">Não há nada de errado em a família viver da propriedade. É para isso que ela existe. O problema é outro: <strong>com tudo misturado, ninguém consegue saber se a atividade está dando resultado</strong>.</p>
+
+    <figure class="visual rv">
+      <svg class="carteira" data-anima viewBox="0 0 340 220" role="img" aria-label="Entradas da propriedade e gastos da casa e da propriedade passando pela mesma carteira">
+        <path class="seta-in" d="M20 50 C80 50 110 90 150 105" stroke="#3D4A2A" stroke-width="2.5" fill="none"/>
+        <path class="seta-in" d="M20 165 C80 165 110 125 150 115" stroke="#3D4A2A" stroke-width="2.5" fill="none"/>
+        <text class="rotulo" x="10" y="40">venda do leite</text>
+        <text class="rotulo" x="10" y="184">venda da soja</text>
+        <rect x="140" y="80" width="64" height="58" rx="4" fill="#2A331C"/>
+        <path d="M140 96h64" stroke="#B89233" stroke-width="2"/>
+        <text class="bolso" x="172" y="124" text-anchor="middle">R$</text>
+        <path class="seta-out" d="M204 98 C240 80 260 40 300 34" stroke="#A8552E" stroke-width="2.5" fill="none"/>
+        <path class="seta-out" d="M204 106 C250 100 270 82 300 80" stroke="#A8552E" stroke-width="2.5" fill="none"/>
+        <path class="seta-out" d="M204 114 C250 118 270 130 300 128" stroke="#A8552E" stroke-width="2.5" fill="none"/>
+        <path class="seta-out" d="M204 124 C240 150 260 178 300 184" stroke="#A8552E" stroke-width="2.5" fill="none"/>
+        <text class="rotulo" x="236" y="26">adubo</text>
+        <text class="rotulo casa" x="226" y="70">rancho do mês</text>
+        <text class="rotulo" x="252" y="146">diesel</text>
+        <text class="rotulo casa" x="214" y="204">parcela da moto</text>
+      </svg>
+      <figcaption>Tudo passa pela mesma carteira. Em verde, o que entra; em terra, o que sai, da propriedade e da casa juntos.</figcaption>
+    </figure>
+
+    <div class="exemplo rv">
+      <p class="rot">Exemplo</p>
+      <p>Seu Ari e Dona Lurdes produzem leite. Ele diz que "o leite não dá nada, no fim do mês não sobra um real". Pode ser verdade. Mas também pode ser que o leite dê uma sobra razoável e a família gaste um pouco mais do que essa sobra.</p>
+      <p>São dois problemas diferentes, com soluções diferentes. No primeiro, é preciso mexer na atividade. No segundo, nos gastos da casa ou na renda. <strong>Com uma carteira só, não dá para saber qual dos dois está acontecendo.</strong></p>
+    </div>
+
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      Quem está começando tem uma vantagem: pode separar as contas desde o primeiro dia, antes que o costume da carteira única se instale. Abra uma conta só para o negócio já na compra do primeiro insumo.
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Duas caixas</h2>
+    <p class="rv">A saída é enxergar duas caixas: a <strong>caixa da propriedade</strong> e a <strong>caixa da casa</strong>. A propriedade vende, paga os gastos de produção e, do que sobra, paga a família. É como se a propriedade pagasse um salário para quem trabalha nela.</p>
+
+    <figure class="visual rv">
+      <svg class="duas" data-anima viewBox="0 0 340 170" role="img" aria-label="A caixa da propriedade passa dinheiro para a caixa da casa por meio da retirada da família">
+        <rect x="14" y="40" width="120" height="96" fill="#fff" stroke="#3D4A2A" stroke-width="2"/>
+        <rect x="14" y="40" width="120" height="8" fill="#3D4A2A"/>
+        <text class="tit" x="74" y="84" text-anchor="middle" fill="#2A331C">Propriedade</text>
+        <text class="sub" x="74" y="104" text-anchor="middle">vende e paga</text>
+        <text class="sub" x="74" y="119" text-anchor="middle">a produção</text>
+        <rect x="206" y="40" width="120" height="96" fill="#fff" stroke="#A8552E" stroke-width="2"/>
+        <rect x="206" y="40" width="120" height="8" fill="#A8552E"/>
+        <text class="tit" x="266" y="84" text-anchor="middle" fill="#7C3D1F">Casa</text>
+        <text class="sub" x="266" y="104" text-anchor="middle">rancho, saúde,</text>
+        <text class="sub" x="266" y="119" text-anchor="middle">escola, lazer</text>
+        <path d="M138 88h62" stroke="#B89233" stroke-width="2" stroke-dasharray="4 4"/>
+        <path d="M194 82l8 6-8 6" stroke="#B89233" stroke-width="2" fill="none"/>
+        <text class="flecha-txt" x="170" y="30" text-anchor="middle">RETIRADA</text>
+        <text class="flecha-txt" x="170" y="160" text-anchor="middle">o "salário" da família</text>
+        <g class="moeda"><circle cx="146" cy="88" r="7" fill="#B89233"/></g>
+        <g class="moeda m2"><circle cx="146" cy="88" r="7" fill="#B89233"/></g>
+        <g class="moeda m3"><circle cx="146" cy="88" r="7" fill="#B89233"/></g>
+      </svg>
+      <figcaption>A propriedade paga a família por meio da retirada. Assim cada caixa mostra o seu próprio resultado.</figcaption>
+    </figure>
+
+    <p class="rv">Separar não exige contador nem programa de computador. Exige três costumes:</p>
+    <ul class="lista rv">
+      <li><strong>Anotar em lugares diferentes</strong> o que é gasto da produção e o que é gasto da casa. Um caderno com duas colunas já resolve.</li>
+      <li><strong>Definir uma retirada</strong>: um valor que a família tira da propriedade todo mês, como um salário. Pode ser ajustado, mas precisa ser conhecido.</li>
+      <li>Se der, <strong>usar uma conta no banco ou na cooperativa só para a propriedade</strong>. O extrato vira um registro pronto.</li>
+    </ul>
+
+    <h3 class="rv">Dois casos que confundem</h3>
+    <p class="rv"><strong>O que a família consome da própria produção.</strong> O leite que vai para a mesa, a carne do animal carneado, a lenha, as verduras da horta. Ninguém pagou por isso, mas tem valor: se a propriedade não produzisse, a família compraria. Na gestão, isso se chama <strong>autoconsumo</strong> e conta como parte da retirada da família.</p>
+    <p class="rv"><strong>O dinheiro de fora que entra na propriedade.</strong> A aposentadoria do pai que paga o adubo, o salário de um filho que trabalha na cidade e ajuda a comprar a novilha. Isso não é receita da propriedade, é um <strong>aporte</strong> da família. Se for contado como receita, a atividade parece melhor do que é.</p>
+
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>A aposentadoria rural sustenta muitas propriedades no Rio Grande do Sul. Não há problema nisso. O importante é saber que ela está ajudando, para não achar que a atividade se paga sozinha.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">Casa ou propriedade?</h2>
+    <p class="rv">Agora é com você. Para cada gasto ou entrada, escolha a qual caixa ele pertence.</p>
+
+    <div class="jogo rv" id="jogo">
+      <div class="placar"><span>Item <b id="j-pos">1</b> de <b id="j-tot">8</b></span><span>Acertos <b id="j-ac">0</b></span></div>
+      <div class="carta"><div class="item" id="j-item"></div></div>
+      <div class="botoes"><button type="button" data-r="casa">Casa</button><button type="button" data-r="prop">Propriedade</button></div>
+      <div class="resp" id="j-resp"><span id="j-txt"></span><br><button type="button" id="j-prox">Próximo</button></div>
+      <div class="fim" id="j-fim"><b id="j-fim-tit"></b><span>Os casos mais difíceis costumam ser o autoconsumo, o aporte e as contas divididas. Vale reler a lição 2 se algum deles pegou você.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">O que a propriedade tem</h2>
+    <p class="rv">Um negócio não é só o dinheiro que entra e sai no mês. É também tudo o que ele tem para produzir: a terra, as construções, as máquinas, os animais, os pomares, os estoques. Esse conjunto se chama <strong>patrimônio</strong>.</p>
+
+    <figure class="visual rv">
+      <svg class="pat" data-anima viewBox="0 0 340 210" role="img" aria-label="Blocos empilhados representando terra, construções, máquinas, animais e estoques">
+        <g class="bloco b1"><rect x="40" y="160" width="260" height="38" fill="#3D4A2A"/><text x="170" y="184" text-anchor="middle" fill="#FAF7F0">terra</text></g>
+        <g class="bloco b2"><rect x="60" y="124" width="220" height="34" fill="#6E7A4E"/><text x="170" y="146" text-anchor="middle" fill="#FAF7F0">construções e instalações</text></g>
+        <g class="bloco b3"><rect x="80" y="90" width="180" height="32" fill="#B89233"/><text x="170" y="111" text-anchor="middle" fill="#3A2F08">máquinas e equipamentos</text></g>
+        <g class="bloco b4"><rect x="100" y="58" width="140" height="30" fill="#D4AF5A"/><text x="170" y="78" text-anchor="middle" fill="#3A2F08">animais e pomares</text></g>
+        <g class="bloco b5"><rect x="120" y="28" width="100" height="28" fill="#A8552E"/><text x="170" y="47" text-anchor="middle" fill="#FAF7F0">estoques</text></g>
+      </svg>
+      <figcaption>O patrimônio da propriedade. Cada camada é dinheiro empatado na produção.</figcaption>
+    </figure>
+
+    <p class="rv">Por que isso importa para a gestão? Por dois motivos que vão aparecer de novo no curso:</p>
+    <ul class="lista rv">
+      <li><strong>O que tem, se gasta.</strong> O trator, a ordenhadeira, o galpão perdem valor com o uso e com o tempo. Um dia será preciso trocar. Se a conta da atividade não guarda um pouco para isso, o resultado parece maior do que é.</li>
+      <li><strong>O que tem, poderia render em outro lugar.</strong> O dinheiro empatado em máquinas e animais poderia estar aplicado, e a terra poderia ser arrendada. Uma atividade boa é aquela que paga mais do que essas alternativas.</li>
+    </ul>
+    <p class="rv">Os dois pontos viram números no módulo 4, quando calcularmos quanto custa produzir. Por enquanto, basta saber que o patrimônio também entra na conta.</p>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      Para quem vai começar, essa pilha é o <strong>capital de entrada</strong>: o que será preciso comprar ou arrendar antes da primeira venda. Muita gente calcula só a terra e esquece as outras camadas, principalmente o dinheiro para tocar a primeira safra e para a família viver até ela. O módulo 9 trata disso em detalhe.
+    </div>
+    <p class="rv">Do outro lado estão as <strong>dívidas</strong>: financiamentos, contas em aberto na cooperativa, empréstimos de parentes. O patrimônio menos as dívidas mostra o quanto da propriedade é, de fato, da família.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Gestão é um ciclo</h2>
+    <p class="rv">Fazer gestão não é preencher planilha. É uma roda que gira toda safra, todo ano: decidir o que fazer, fazer, acompanhar o que está acontecendo e, no fim, olhar o resultado para decidir melhor da próxima vez.</p>
+
+    <figure class="visual rv">
+      <svg class="ciclo" data-anima viewBox="0 0 300 260" role="img" aria-label="Ciclo da gestão: planejar, fazer, anotar e avaliar">
+        <circle class="arco-c" cx="150" cy="130" r="88"/>
+        <g class="roda"><circle cx="150" cy="42" r="9" fill="#B89233"/></g>
+        <circle class="ponto" cx="150" cy="42" r="6" fill="#3D4A2A"/>
+        <circle class="ponto" cx="238" cy="130" r="6" fill="#3D4A2A"/>
+        <circle class="ponto" cx="150" cy="218" r="6" fill="#3D4A2A"/>
+        <circle class="ponto" cx="62" cy="130" r="6" fill="#3D4A2A"/>
+        <text x="150" y="22" text-anchor="middle">Planejar</text>
+        <text class="peq" x="150" y="68" text-anchor="middle">o que, quanto, com que dinheiro</text>
+        <text x="270" y="126" text-anchor="middle">Fazer</text>
+        <text class="peq" x="270" y="142" text-anchor="middle">a safra</text>
+        <text x="150" y="248" text-anchor="middle">Anotar</text>
+        <text class="peq" x="150" y="200" text-anchor="middle">gastos, vendas, produção</text>
+        <text x="30" y="126" text-anchor="middle">Avaliar</text>
+        <text class="peq" x="30" y="142" text-anchor="middle">deu certo?</text>
+      </svg>
+      <figcaption>A roda da gestão. Quem pula a etapa de anotar fica sem ter o que avaliar, e o próximo planejamento volta a ser no chute.</figcaption>
+    </figure>
+
+    <p class="rv">E o planejamento começa por uma pergunta simples: <strong>onde a família quer chegar?</strong> Pagar uma dívida, trocar o trator, garantir a faculdade de um filho, preparar a passagem da propriedade para a próxima geração, trabalhar menos. Objetivos diferentes levam a decisões diferentes.</p>
+    <p class="destaque rv">Sem saber para onde quer ir, qualquer resultado parece bom ou ruim por acaso.</p>
+    <p class="rv">Um jeito prático de pensar os objetivos é separar por prazo: o que precisa acontecer <strong>nesta safra</strong>, o que se quer em <strong>três a cinco anos</strong> e o que se imagina para daqui a <strong>dez anos ou mais</strong>. Vale conversar isso em família, com quem vai ficar na propriedade.</p>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      A pergunta tem uma parte a mais: <strong>por que o campo?</strong> Viver no sítio, ter uma renda complementar, trocar de profissão, aproveitar uma terra herdada. Um sítio de fim de semana com algumas cabeças de gado e um negócio que precisa sustentar a família pedem decisões muito diferentes.
+    </div>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+
+    <div class="so-ja">
+    <h2>A propriedade sustenta a família?</h2>
+    <p>Coloque valores médios por mês. Como a renda do campo entra concentrada na safra, some o que entrou ou saiu no ano e divida por 12. Se não souber exato, use uma estimativa: o curso vai ajudar a afinar esses números.</p>
+
+    <p style="margin:4px 0 6px"><button type="button" class="btn btn-sec" id="c-exemplo" style="color:var(--paper);border-color:rgba(250,247,240,.5);padding:11px 18px;font-size:14px">Ver com os números do Seu Ari</button></p>
+    <div class="campos">
+      <div class="campo">
+        <label for="c-vendas">Vendas da propriedade <small>tudo o que a produção vende, por mês</small></label>
+        <div class="inp"><span>R$</span><input id="c-vendas" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="c-gprop">Gastos da produção <small>insumos, diesel, luz do galpão, mão de obra contratada</small></label>
+        <div class="inp"><span>R$</span><input id="c-gprop" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="c-gfam">Gastos da casa <small>rancho, saúde, escola, contas, lazer</small></label>
+        <div class="inp"><span>R$</span><input id="c-gfam" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="c-outras">Rendas de fora <small>aposentadoria, salário, aluguel</small></label>
+        <div class="inp"><span>R$</span><input id="c-outras" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+    </div>
+
+    <div class="resultado" id="res" hidden>
+      <div class="barras">
+        <div class="barra"><div class="rot"><span>Vendas da propriedade</span><b id="b-vendas-v"></b></div><div class="trilho"><div class="fill f-ent" id="b-vendas"></div></div></div>
+        <div class="barra"><div class="rot"><span>Gastos da produção</span><b id="b-gprop-v"></b></div><div class="trilho"><div class="fill f-prop" id="b-gprop"></div></div></div>
+        <div class="barra"><div class="rot"><span>O que a casa precisa tirar da propriedade</span><b id="b-ret-v"></b></div><div class="trilho"><div class="fill f-fam" id="b-ret"></div></div></div>
+      </div>
+      <div class="linha"><span>Sobra da produção</span><b id="r-sobra"></b></div>
+      <div class="linha"><span>Sobra depois de pagar a casa</span><b id="r-saldo"></b></div>
+      <div class="veredito" id="r-ver"></div>
+      <p class="salvo" id="r-salvo"></p>
+    </div>
+    </div>
+
+    <div class="so-novo">
+    <h2>Quanto tempo a família aguenta até o negócio pagar?</h2>
+    <p>Todo negócio rural leva um tempo entre o primeiro gasto e a primeira venda. Nesse intervalo, a família continua comendo, pagando luz e escola. Esta conta mostra se o fôlego guardado chega até lá.</p>
+
+    <p style="margin:4px 0 6px"><button type="button" class="btn btn-sec" id="n-exemplo" style="color:var(--paper);border-color:rgba(250,247,240,.5);padding:11px 18px;font-size:14px">Ver com os números da Carla</button></p>
+    <div class="campos">
+      <div class="campo">
+        <label for="n-gfam">Gastos da casa por mês <small>rancho, saúde, escola, contas, lazer</small></label>
+        <div class="inp"><span>R$</span><input id="n-gfam" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="n-outras">Rendas que vão continuar <small>salário de alguém da família, aposentadoria, aluguel</small></label>
+        <div class="inp"><span>R$</span><input id="n-outras" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="n-reserva">Reserva para a família viver <small>separada do dinheiro da terra e dos investimentos</small></label>
+        <div class="inp"><span>R$</span><input id="n-reserva" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="n-meses">Meses até a primeira venda <small>hortaliças: poucos meses; leite e grãos: perto de um ano; gado de corte e frutas: anos</small></label>
+        <div class="inp"><span>meses</span><input id="n-meses" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+      </div>
+    </div>
+
+    <div class="resultado" id="n-res" hidden>
+      <div class="barras">
+        <div class="barra"><div class="rot"><span>Meses de fôlego da reserva</span><b id="n-b-fol-v"></b></div><div class="trilho"><div class="fill f-ent" id="n-b-fol"></div></div></div>
+        <div class="barra"><div class="rot"><span>Meses até a primeira venda</span><b id="n-b-mes-v"></b></div><div class="trilho"><div class="fill f-fam" id="n-b-mes"></div></div></div>
+      </div>
+      <div class="linha"><span>A família precisa cobrir por mês</span><b id="n-r-falta"></b></div>
+      <div class="linha"><span>Reserva necessária até a primeira venda</span><b id="n-r-precisa"></b></div>
+      <div class="veredito" id="n-r-ver"></div>
+      <p class="salvo" id="n-r-salvo"></p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Com o dinheiro da casa e da propriedade misturado, não dá para saber se a atividade dá resultado.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>A propriedade paga a família por meio da retirada. O autoconsumo faz parte dela.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>Dinheiro de fora que entra na propriedade é aporte, não receita.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>O patrimônio também entra na conta: ele se desgasta e poderia render em outro lugar.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>Seu Ari usa uma carteira só e diz que "no fim do mês não sobra nada". O que dá para concluir?</p>
+      <button type="button" class="alt">Que o leite dá prejuízo.</button>
+      <button type="button" class="alt">Que a família gasta demais.</button>
+      <button type="button" class="alt" data-certa>Nada ainda: sem separar as contas, não se sabe se o problema é a atividade ou os gastos da casa.</button>
+      <p class="fb">Com tudo misturado, "não sobra nada" pode ter causas muito diferentes. Separar as duas caixas é o que permite descobrir qual é.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>A família toma por dia três litros do leite que a propriedade produz. Na gestão, isso é:</p>
+      <button type="button" class="alt">Algo que não entra na conta, porque ninguém pagou.</button>
+      <button type="button" class="alt" data-certa>Autoconsumo, que faz parte da retirada da família e tem valor.</button>
+      <button type="button" class="alt">Um gasto da produção.</button>
+      <p class="fb">O leite consumido em casa deixou de ser vendido. Ele tem valor e é parte do que a propriedade entrega à família.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>A aposentadoria do pai pagou o adubo da lavoura. Na conta da lavoura, esse dinheiro é:</p>
+      <button type="button" class="alt">Receita da lavoura.</button>
+      <button type="button" class="alt" data-certa>Aporte da família na propriedade.</button>
+      <button type="button" class="alt">Lucro da propriedade.</button>
+      <p class="fb">O dinheiro veio de fora da atividade. Contar como receita faria a lavoura parecer melhor do que é.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="1">Concluir o módulo 1</button>
+    <span class="proximo">A seguir, módulo 2<br><a href="modulo-2.html">De onde vem o preço</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* ===== Jogo: casa ou propriedade ===== */
+(function(){
+  var ITENS = [
+    {t:'Adubo para a lavoura de milho', r:'prop', e:'É insumo de produção. Gasto da propriedade.'},
+    {t:'Rancho do mês no mercado', r:'casa', e:'É consumo da família. Gasto da casa.'},
+    {t:'Diesel do trator', r:'prop', e:'É gasto de produção. Da propriedade.'},
+    {t:'Mensalidade do transporte escolar', r:'casa', e:'É gasto da família. Da casa.'},
+    {t:'Vacina contra aftosa do rebanho', r:'prop', e:'É sanidade do rebanho. Gasto da propriedade.'},
+    {t:'Leite que a família toma em casa', r:'casa', e:'Autoconsumo: sai da propriedade e vai para a casa. Conta como retirada da família, com o valor que o leite teria se fosse vendido.'},
+    {t:'Aposentadoria do pai usada para pagar o adubo', r:'casa', e:'O dinheiro é da casa. Ao pagar o adubo, a família faz um aporte na propriedade. Não é receita da atividade.'},
+    {t:'Conta de luz, com um relógio só para a casa e o galpão', r:'prop', e:'Pegadinha: são as duas coisas. O ideal é dividir por uma estimativa do uso, por exemplo, o resfriador de leite e a ordenha para a propriedade, o restante para a casa.', ambos:true}
+  ];
+  var i = 0, ac = 0;
+  var el = function(id){ return document.getElementById(id); };
+  var botoes = document.querySelectorAll('#jogo .botoes button');
+  el('j-tot').textContent = ITENS.length;
+  function mostra(){
+    var it = el('j-item'); it.classList.add('troca');
+    setTimeout(function(){ it.textContent = ITENS[i].t; it.classList.remove('troca'); }, 200);
+    el('j-pos').textContent = i + 1;
+    el('j-resp').className = 'resp';
+    botoes.forEach(function(b){ b.disabled = false; });
+  }
+  botoes.forEach(function(b){
+    b.addEventListener('click', function(){
+      var it = ITENS[i], certo = it.ambos || b.getAttribute('data-r') === it.r;
+      if (certo) ac++;
+      el('j-ac').textContent = ac;
+      el('j-txt').textContent = (it.ambos ? '' : (certo ? 'Certo. ' : 'Não exatamente. ')) + it.e;
+      el('j-resp').className = 'resp on ' + (certo ? 'certo' : 'errado');
+      el('j-prox').textContent = i < ITENS.length - 1 ? 'Próximo' : 'Ver resultado';
+      botoes.forEach(function(x){ x.disabled = true; });
+    });
+  });
+  el('j-prox').addEventListener('click', function(){
+    i++;
+    if (i < ITENS.length){ mostra(); return; }
+    document.querySelector('#jogo .carta').style.display = 'none';
+    document.querySelector('#jogo .botoes').style.display = 'none';
+    el('j-resp').className = 'resp';
+    el('j-fim-tit').textContent = ac + ' de ' + ITENS.length + ' acertos';
+    el('j-fim').className = 'fim on';
+  });
+  mostra();
+})();
+
+/* ===== Na sua propriedade ===== */
+(function(){
+  var ids = ['vendas','gprop','gfam','outras'];
+  var inp = {}; ids.forEach(function(k){ inp[k] = document.getElementById('c-' + k); Curso.mascara(inp[k]); });
+  var el = function(id){ return document.getElementById(id); };
+
+  function calc(salvar){
+    var v = {}; ids.forEach(function(k){ v[k] = Curso.num(inp[k].value); });
+    if (!v.vendas && !v.gprop && !v.gfam){ el('res').hidden = true; return; }
+    el('res').hidden = false;
+    var sobra = v.vendas - v.gprop;
+    var precisa = Math.max(v.gfam - v.outras, 0);
+    var saldo = sobra - precisa;
+    var max = Math.max(v.vendas, v.gprop, precisa, 1);
+    [['vendas', v.vendas], ['gprop', v.gprop], ['ret', precisa]].forEach(function(p){
+      el('b-' + p[0] + '-v').textContent = Curso.reais(p[1]);
+      requestAnimationFrame(function(){ el('b-' + p[0]).style.width = (p[1] / max * 100) + '%'; });
+    });
+    el('r-sobra').textContent = Curso.reais(sobra);
+    el('r-saldo').textContent = Curso.reais(saldo);
+    var ver = el('r-ver'), txt, cls;
+    if (sobra <= 0){
+      cls = 'alerta';
+      txt = 'Pelos números informados, a produção não está pagando nem os próprios gastos. Antes de olhar para a casa, vale entender a atividade: os módulos 4 e 5 ajudam a ver onde está o custo.';
+    } else if (saldo < 0){
+      cls = 'alerta';
+      txt = 'A produção sobra ' + Curso.reais(sobra) + ' por mês, mas a casa precisa de ' + Curso.reais(precisa) + '. Faltam ' + Curso.reais(-saldo) + ' por mês. Essa diferença está saindo de algum lugar: de uma dívida, da venda de um bem ou da manutenção que fica para depois.';
+    } else {
+      cls = 'ok';
+      txt = 'A propriedade paga os gastos da produção e a retirada da família, e ainda sobram ' + Curso.reais(saldo) + ' por mês. É desse valor que saem a troca das máquinas, os investimentos e a reserva para um ano ruim.';
+    }
+    if (v.outras > 0 && saldo >= 0 && sobra < v.gfam){
+      txt += ' Repare que, sem as rendas de fora, a conta não fecharia: elas estão ajudando a sustentar a família.';
+    }
+    ver.className = 'veredito ' + cls; ver.textContent = txt;
+    if (salvar !== false){
+      var ok = Curso.salvarCaderno('m1', {vendas:v.vendas, gastosProducao:v.gprop, gastosCasa:v.gfam, rendasFora:v.outras});
+      el('r-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    }
+  }
+  ids.forEach(function(k){ inp[k].addEventListener('input', function(){ calc(); }); });
+
+  var cad = Curso.caderno().m1;
+  if (cad){
+    var map = {vendas:cad.vendas, gprop:cad.gastosProducao, gfam:cad.gastosCasa, outras:cad.rendasFora};
+    ids.forEach(function(k){ if (map[k]) inp[k].value = Math.round(map[k]).toLocaleString('pt-BR'); });
+    calc(false);
+  }
+
+  el('c-exemplo').addEventListener('click', function(){
+    var ex = {vendas:18000, gprop:12500, gfam:7500, outras:1500};
+    ids.forEach(function(k){ inp[k].value = ex[k].toLocaleString('pt-BR'); });
+    calc(false);
+    el('r-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+    el('res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+<script>
+/* ===== Quero começar: fôlego até a primeira venda ===== */
+(function(){
+  var ids = ['gfam','outras','reserva','meses'];
+  var inp = {}; ids.forEach(function(k){ inp[k] = document.getElementById('n-' + k); if (k !== 'meses') Curso.mascara(inp[k]); });
+  var el = function(id){ return document.getElementById(id); };
+  function calc(salvar){
+    var v = {}; ids.forEach(function(k){ v[k] = Curso.num(inp[k].value); });
+    if (!v.gfam && !v.reserva){ el('n-res').hidden = true; return; }
+    el('n-res').hidden = false;
+    var falta = Math.max(v.gfam - v.outras, 0);
+    var folego = falta > 0 ? v.reserva / falta : Infinity;
+    var precisa = falta * v.meses;
+    var fTxt = isFinite(folego) ? (Math.floor(folego * 10) / 10).toLocaleString('pt-BR') + ' meses' : 'sem limite';
+    var max = Math.max(isFinite(folego) ? folego : v.meses * 1.5, v.meses, 1);
+    el('n-b-fol-v').textContent = fTxt;
+    el('n-b-mes-v').textContent = v.meses + ' meses';
+    requestAnimationFrame(function(){
+      el('n-b-fol').style.width = ((isFinite(folego) ? folego : max) / max * 100) + '%';
+      el('n-b-mes').style.width = (v.meses / max * 100) + '%';
+    });
+    el('n-r-falta').textContent = Curso.reais(falta);
+    el('n-r-precisa').textContent = Curso.reais(precisa);
+    var ver = el('n-r-ver'), txt, cls;
+    if (falta === 0){
+      cls = 'ok';
+      txt = 'As rendas que vão continuar cobrem os gastos da casa. O negócio pode crescer no ritmo dele, sem precisar sustentar a família desde o início. É a forma mais segura de começar.';
+    } else if (!v.meses){
+      cls = '';
+      txt = 'A reserva cobre ' + fTxt + ' de gastos da casa. Informe quantos meses a atividade leva até a primeira venda para comparar.';
+    } else if (folego >= v.meses * 1.5){
+      cls = 'ok';
+      txt = 'A reserva cobre o tempo até a primeira venda com folga. Lembre que a primeira venda raramente paga tudo: o começo costuma ter produtividade menor e custos de aprendizado.';
+    } else if (folego >= v.meses){
+      cls = '';
+      txt = 'A reserva chega até a primeira venda, mas sem folga. Um atraso no plantio, um problema sanitário ou um preço baixo já apertam a conta. Vale aumentar a reserva ou começar menor.';
+    } else {
+      cls = 'alerta';
+      txt = 'A reserva acaba ' + (Math.round((v.meses - folego) * 10) / 10).toLocaleString('pt-BR') + ' meses antes da primeira venda. Faltariam cerca de ' + Curso.reais(precisa - v.reserva) + '. Saídas possíveis: manter uma renda de fora no começo, escolher uma atividade de retorno mais rápido, ou começar menor e crescer com o que o negócio gerar.';
+    }
+    ver.className = 'veredito ' + cls; ver.textContent = txt;
+    if (salvar !== false){
+      var ok = Curso.salvarCaderno('m1novo', {gastosCasa:v.gfam, rendasFora:v.outras, reserva:v.reserva, mesesAtePrimeiraVenda:v.meses});
+      el('n-r-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    }
+  }
+  ids.forEach(function(k){
+    inp[k].addEventListener('input', function(){
+      if (k === 'meses') inp[k].value = inp[k].value.replace(/\D/g, '').slice(0, 3);
+      calc();
+    });
+  });
+  var cad = Curso.caderno().m1novo;
+  if (cad){
+    var map = {gfam:cad.gastosCasa, outras:cad.rendasFora, reserva:cad.reserva, meses:cad.mesesAtePrimeiraVenda};
+    ids.forEach(function(k){ if (map[k]) inp[k].value = k === 'meses' ? map[k] : Math.round(map[k]).toLocaleString('pt-BR'); });
+    calc(false);
+  }
+  el('n-exemplo').addEventListener('click', function(){
+    var ex = {gfam:'6.000', outras:'2.500', reserva:'30.000', meses:'12'};
+    ids.forEach(function(k){ inp[k].value = ex[k]; });
+    calc(false);
+    el('n-r-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+    el('n-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

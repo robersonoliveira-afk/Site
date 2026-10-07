@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2A331C">
+<meta name="robots" content="noindex">
+<title>Módulo 2 · De onde vem o preço</title>
+<meta name="description" content="Módulo 2 do curso de gestão para produtores: como se forma o preço dos produtos agrícolas, oferta e demanda, cadeia produtiva, mercado internacional, câmbio e insumos.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-2.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* medidor de preço */
+.medidor{background:#fff;border:1px solid var(--rule);margin:24px 0}
+.medidor svg{display:block;width:100%;max-width:340px;margin:0 auto;height:auto}
+.medidor .agulha{transform-origin:170px 150px;transition:transform 1s cubic-bezier(.3,1.4,.5,1)}
+.medidor .cen{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px;justify-content:center}
+.medidor .cen button{font:inherit;font-size:14.5px;padding:9px 12px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink);transition:background .2s,border-color .2s}
+.medidor .cen button.on{background:var(--olive-deep);color:var(--paper);border-color:var(--olive-deep)}
+.medidor .exp{min-height:96px;padding:16px 18px;border-top:1px solid var(--rule);font-size:16.5px;line-height:1.5;color:var(--ink-soft);background:var(--paper-warm)}
+.medidor .exp b{color:var(--ink)}
+.medidor text{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#6B6960}
+
+/* cadeia */
+.cadeia{list-style:none;position:relative;margin:26px 0;padding-left:34px}
+.cadeia::before{content:"";position:absolute;left:12px;top:14px;bottom:14px;width:2px;background:var(--rule)}
+.cadeia .vivo{position:absolute;left:12px;top:14px;width:2px;height:0;background:var(--olive);transition:height 2.4s ease}
+.cadeia.on .vivo{height:calc(100% - 28px)}
+.cadeia li{position:relative;background:#fff;border:1px solid var(--rule);padding:12px 14px;margin-bottom:10px;opacity:.25;transform:translateX(10px);transition:opacity .5s,transform .5s}
+.cadeia.on li{opacity:1;transform:none}
+.cadeia li::before{content:"";position:absolute;left:-28px;top:50%;margin-top:-7px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--olive)}
+.cadeia li.voce{border-color:var(--terra);border-left:4px solid var(--terra)}
+.cadeia li.voce::before{background:var(--terra);border-color:var(--terra)}
+.cadeia li b{font-family:'Fraunces',serif;font-weight:500;font-size:18.5px;display:block}
+.cadeia li span{font-size:15px;color:var(--stone);line-height:1.4;display:block}
+.cadeia.on li:nth-child(2){transition-delay:.3s}.cadeia.on li:nth-child(3){transition-delay:.6s}.cadeia.on li:nth-child(4){transition-delay:.9s}
+.cadeia.on li:nth-child(5){transition-delay:1.2s}.cadeia.on li:nth-child(6){transition-delay:1.5s}.cadeia.on li:nth-child(7){transition-delay:1.8s}
+
+/* formação do preço da soja */
+.formacao{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--olive);padding:18px 16px;margin:24px 0}
+.formacao .rot{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:12px}
+.slider{margin-bottom:16px}
+.slider .top{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;margin-bottom:4px}
+.slider .top b{font-family:'IBM Plex Mono',monospace;font-weight:600;white-space:nowrap}
+.slider small{display:block;font-size:13px;color:var(--stone);margin-top:2px;line-height:1.35}
+input[type=range]{width:100%;accent-color:var(--olive);height:28px}
+.escada{margin-top:14px;border-top:1px solid var(--rule);padding-top:12px}
+.escada .deg{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:15.5px;border-bottom:1px dashed var(--rule-soft)}
+.escada .deg b{font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.escada .final{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:10px;padding:12px 14px;background:var(--olive-deep);color:var(--paper)}
+.escada .final span{font-size:15px}
+.escada .final b{font-family:'IBM Plex Mono',monospace;font-size:24px;color:#E3C46E;white-space:nowrap}
+.pulse{animation:pulse .5s ease}
+@keyframes pulse{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+/* cartões de mercado */
+.mercados{display:grid;gap:12px;margin:22px 0}
+@media (min-width:600px){.mercados{grid-template-columns:1fr 1fr}}
+.mcard{background:#fff;border:1px solid var(--rule);padding:16px}
+.mcard h4{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:6px}
+.mcard p{font-size:15.5px;line-height:1.5;color:var(--ink-soft);margin:0}
+
+/* campos de texto livre */
+.campo textarea{width:100%;min-height:74px;border:2px solid transparent;background:var(--paper);font:inherit;font-size:16px;padding:10px 12px;color:var(--ink);resize:vertical;outline:none}
+.campo textarea:focus{border-color:var(--mustard)}
+.campo input.txt{font-family:'IBM Plex Sans',sans-serif;font-size:17px}
+</style>
+</head>
+<body class="arco-olhar">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 2 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/fila-caminhoes-soja.jpg')" role="img" aria-label="Fila de caminhões carregados de soja na estrada"></div>
+  <div class="wrap">
+    <div class="num sobe">2</div>
+    <p class="arco">Olhar · o mercado</p>
+    <h1>De onde vem o preço</h1>
+    <p class="pergunta">Por que o preço da sua soja muda quando chove nos Estados Unidos?</p>
+    <div class="meta"><span>6 lições</span><span>cerca de 25 minutos</span></div>
+  </div>
+  <span class="credito">fila de caminhões carregados de soja, Joviânia/GO · CC BY 3.0, Tiago Firmino Boaventura/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Por que o preço sobe e desce, e quem decide isso.</li>
+      <li>Por que o produtor não manda no preço, e no que ele manda.</li>
+      <li>O caminho do produto até a mesa, e quem fica com cada parte.</li>
+      <li>Como Chicago, o dólar e o porto chegam ao preço da sua cidade.</li>
+      <li>Por que os insumos também dependem do mundo lá fora.</li>
+      <li>Leite, boi, hortaliças e frutas: mercados com regras próprias.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">O preço é um cabo de guerra</h2>
+    <p class="rv">De um lado, quem quer vender: a <strong>oferta</strong>. Do outro, quem quer comprar: a <strong>demanda</strong>. Quando tem muito produto e pouca gente querendo, o preço cai. Quando falta produto e muita gente quer, o preço sobe. Ninguém decide o preço sozinho: ele é o ponto em que essa disputa se equilibra naquele dia.</p>
+    <p class="rv">Parece simples, e é. O difícil é que hoje esse cabo de guerra acontece no mundo inteiro ao mesmo tempo. Toque nos acontecimentos abaixo e veja para onde o preço da soja tende a ir.</p>
+
+    <div class="medidor rv">
+      <svg viewBox="0 0 340 175" role="img" aria-label="Medidor do preço: cai, estável, sobe">
+        <path d="M40 150 A130 130 0 0 1 300 150" fill="none" stroke="#E8E3D3" stroke-width="22"/>
+        <path d="M40 150 A130 130 0 0 1 105 37.4" fill="none" stroke="#E59A72" stroke-width="22"/>
+        <path d="M235 37.4 A130 130 0 0 1 300 150" fill="none" stroke="#9DB86A" stroke-width="22"/>
+        <text x="30" y="170">cai</text><text x="170" y="12" text-anchor="middle">estável</text><text x="310" y="170" text-anchor="end">sobe</text>
+        <g class="agulha" id="agulha"><path d="M170 150 L170 42" stroke="#1A1A17" stroke-width="3.5" stroke-linecap="round"/></g>
+        <circle cx="170" cy="150" r="9" fill="#1A1A17"/>
+      </svg>
+      <div class="cen" id="cenarios"></div>
+      <div class="exp" id="cen-exp">Escolha um acontecimento.</div>
+    </div>
+
+    <p class="rv">Repare que nenhum desses acontecimentos depende do produtor gaúcho. Ele sente o efeito, mas não controla a causa.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">Você não manda no preço</h2>
+    <p class="rv">Uma lavoura de soja de cem hectares, por maior que pareça, é um grão de areia no mercado mundial. Se o produtor pedir mais caro que o vizinho, o comprador vai no vizinho. Se pedir mais barato, perde dinheiro à toa. Na economia, quem está nessa posição se chama <strong>tomador de preço</strong>: aceita o preço que o mercado oferece.</p>
+    <p class="destaque rv">Você não manda no preço. Manda no custo, na qualidade e na hora e no jeito de vender.</p>
+    <p class="rv">É por isso que este curso dá tanta atenção ao custo. É a parte da conta que está nas suas mãos. Mas o preço não é só azar ou sorte: entender o que mexe nele ajuda a decidir <strong>quando</strong> vender, <strong>para quem</strong> vender e <strong>o que</strong> produzir.</p>
+    <ul class="lista rv">
+      <li><strong>Custo:</strong> produzir a saca, o litro ou a arroba por menos do que o vizinho é a defesa mais forte contra preço baixo.</li>
+      <li><strong>Qualidade:</strong> no leite, gordura, proteína e contagem bacteriana mudam o preço pago. No boi, o acabamento. Na fruta, o calibre e a aparência.</li>
+      <li><strong>Hora e jeito de vender:</strong> vender tudo no pico da colheita, quando todo mundo vende, costuma ser o pior momento. O módulo 8 trata disso.</li>
+    </ul>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      Algumas atividades deixam o produtor um pouco menos tomador de preço: venda direta ao consumidor, feiras, produtos com marca própria, orgânicos, agroindústria familiar. Em troca, exigem mais trabalho de venda. Vale pesar isso na escolha da atividade, assunto do módulo 9.
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">Da porteira até a mesa</h2>
+    <p class="rv">Nenhum produto sai da propriedade direto para o prato. Ele passa por uma <strong>cadeia</strong>: um caminho de empresas e pessoas, cada uma fazendo uma parte do serviço e ficando com uma parte do preço final.</p>
+
+    <ol class="cadeia" data-anima>
+      <span class="vivo"></span>
+      <li><b>Fornecedores de insumos</b><span>sementes, adubo, ração, defensivos, máquinas, combustível</span></li>
+      <li class="voce"><b>A propriedade</b><span>transforma insumo, terra e trabalho em produto. É aqui que você está.</span></li>
+      <li><b>Quem recebe e armazena</b><span>cooperativa, cerealista, laticínio, frigorífico, CEASA</span></li>
+      <li><b>Indústria</b><span>esmaga a soja, processa o leite, abate o boi, embala</span></li>
+      <li><b>Transporte e exportação</b><span>caminhão, trem, porto de Rio Grande, navio</span></li>
+      <li><b>Atacado e varejo</b><span>distribuidores, supermercados, açougues, fruteiras</span></li>
+      <li><b>Consumidor</b><span>no Brasil ou do outro lado do mundo</span></li>
+    </ol>
+
+    <p class="rv">Duas coisas importam para o produtor nessa cadeia.</p>
+    <p class="rv"><strong>Primeiro: ele está apertado dos dois lados.</strong> Compra insumos de poucas empresas grandes e vende para poucos compradores na região. Quem tem poucos concorrentes tem mais força para impor preço. Por isso cooperativas e associações existem: juntos, os produtores compram e vendem com mais força.</p>
+    <p class="rv"><strong>Segundo: cada elo cobra pelo serviço.</strong> Quando o preço do arroz sobe no supermercado, não quer dizer que subiu na mesma proporção para o produtor. Entre os dois estão frete, armazenagem, indústria, impostos e a margem de cada um.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">Chicago, o dólar e o porto</h2>
+    <p class="rv">A soja é o exemplo mais claro de produto com preço mundial. O preço de referência é formado na <strong>Bolsa de Chicago</strong>, nos Estados Unidos, em dólares por bushel (uma medida americana: uma saca de 60 kg tem cerca de 2,2 bushels). De lá até o preço da sua cidade, o caminho tem quatro passos:</p>
+    <ul class="lista rv">
+      <li><strong>Chicago:</strong> o preço de referência mundial, que muda todo dia.</li>
+      <li><strong>Prêmio de porto:</strong> um valor a mais ou a menos que o comprador paga pela soja brasileira, conforme a procura por ela naquele momento.</li>
+      <li><strong>Câmbio:</strong> transforma dólares em reais. Dólar alto, soja mais cara em reais.</li>
+      <li><strong>Frete e despesas:</strong> o custo de levar a soja da sua região até o porto. Quanto mais longe do porto, menor o preço no interior.</li>
+    </ul>
+    <p class="rv">Mexa nos controles e veja como cada parte chega ao seu bolso. Os valores iniciais são apenas um exemplo.</p>
+
+    <div class="formacao rv">
+      <p class="rot">Simulador · preço da soja no interior</p>
+      <div class="slider"><div class="top"><span>Chicago</span><b id="s-cbot-v"></b></div><input type="range" id="s-cbot" min="8" max="16" step="0.1" value="10.5"><small>dólares por bushel</small></div>
+      <div class="slider"><div class="top"><span>Prêmio de porto</span><b id="s-prem-v"></b></div><input type="range" id="s-prem" min="-1" max="2" step="0.05" value="0.5"><small>dólares por bushel, pode ser negativo</small></div>
+      <div class="slider"><div class="top"><span>Câmbio</span><b id="s-cambio-v"></b></div><input type="range" id="s-cambio" min="4" max="7" step="0.05" value="5.4"><small>reais por dólar</small></div>
+      <div class="slider"><div class="top"><span>Frete e despesas até o porto</span><b id="s-frete-v"></b></div><input type="range" id="s-frete" min="3" max="30" step="0.5" value="12"><small>reais por saca, maior quanto mais longe do porto</small></div>
+      <div class="escada">
+        <div class="deg"><span>Preço no porto, em dólares por saca</span><b id="e-usd"></b></div>
+        <div class="deg"><span>Preço no porto, em reais por saca</span><b id="e-porto"></b></div>
+        <div class="deg"><span>Menos frete e despesas</span><b id="e-frete"></b></div>
+        <div class="final"><span>Preço na sua região</span><b id="e-final"></b></div>
+      </div>
+    </div>
+
+    <p class="rv">Experimente subir só o dólar: a soja fica mais cara em reais sem que nada tenha mudado na lavoura. Agora suba o frete: o produtor que está longe do porto recebe menos pela mesma soja. É por isso que o preço em Passo Fundo não é o mesmo que em Rio Grande.</p>
+    <p class="rv">Milho, trigo, arroz e carnes seguem a mesma lógica, com mais ou menos peso do mercado interno. O arroz, por exemplo, depende muito mais da safra gaúcha e do consumo brasileiro do que de Chicago.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Os insumos também vêm de longe</h2>
+    <p class="rv">O mundo não chega só pelo preço do que você vende. Chega também pelo preço do que você compra.</p>
+    <ul class="lista rv">
+      <li><strong>Adubo:</strong> a maior parte do fertilizante usado no Brasil é importada. O preço acompanha o mercado mundial e o dólar.</li>
+      <li><strong>Diesel:</strong> segue o preço do petróleo, que depende de guerras, decisões de países produtores e do dólar.</li>
+      <li><strong>Defensivos e muitas peças de máquinas:</strong> têm matéria-prima ou fabricação no exterior.</li>
+      <li><strong>Ração:</strong> milho e farelo de soja são cotados como a soja. Quando o grão sobe, o leite, o frango e o porco ficam mais caros de produzir.</li>
+    </ul>
+    <p class="rv">Por isso o dólar alto é uma faca de dois gumes. Valoriza a soja, mas encarece o adubo. O que importa para o produtor não é só o preço do que vende, mas <strong>quanto do seu produto é preciso para pagar o que compra</strong>. Isso tem nome: <strong>relação de troca</strong>.</p>
+    <div class="exemplo rv">
+      <p class="rot">Exemplo</p>
+      <p>Se uma tonelada de adubo custa R$ 3.300 e a saca de soja vale R$ 120, são necessárias 27,5 sacas para pagar uma tonelada. Se no ano seguinte o adubo for para R$ 3.600 e a soja para R$ 140, a soja subiu mais: bastam 25,7 sacas. O produtor ficou em situação melhor, mesmo pagando mais caro pelo adubo.</p>
+    </div>
+    <p class="rv">A relação de troca é a forma mais simples de acompanhar se o momento é bom para comprar insumos. Você calcula a sua no fim deste módulo.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 6 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 6</p>
+    <h2 class="rv">Nem tudo é Chicago</h2>
+    <p class="rv">Cada produto tem o seu mercado, com regras próprias. Os principais da agricultura gaúcha:</p>
+    <div class="mercados">
+      <div class="mcard rv d1"><h4>Leite</h4><p>O preço é definido pelo laticínio, mês a mês, e varia com a época do ano: quando o pasto está bom e há muito leite, o preço tende a cair. A qualidade do leite e o volume entregue rendem bonificações. No RS, o Conseleite publica valores de referência.</p></div>
+      <div class="mcard rv d2"><h4>Boi</h4><p>Segue o ciclo pecuário: quando o preço está alto, os pecuaristas seguram as vacas para criar mais bezerros, a oferta de boi cai e o preço sobe mais ainda. Anos depois, a oferta volta e o preço cai. Exportação e câmbio também pesam.</p></div>
+      <div class="mcard rv d3"><h4>Hortaliças e frutas</h4><p>Perecíveis, não podem esperar preço melhor. O preço muda de uma semana para outra, conforme a oferta na CEASA. A entressafra paga melhor, por isso escalonar o plantio é uma estratégia de mercado.</p></div>
+      <div class="mcard rv d4"><h4>Venda direta e compras públicas</h4><p>Feiras, cestas, venda pela internet e programas como o PNAE, da merenda escolar, que destina parte das compras à agricultura familiar. O preço é mais estável, mas exige organização, regularidade e documentação.</p></div>
+    </div>
+    <h3 class="rv">Onde acompanhar os preços</h3>
+    <ul class="lista rv">
+      <li><strong>EMATER/RS-ASCAR:</strong> publica toda semana o Informativo Conjuntural, com os preços pagos ao produtor no estado.</li>
+      <li><strong>CEPEA (Esalq/USP):</strong> indicadores diários de soja, milho, boi, leite e outros.</li>
+      <li><strong>CONAB:</strong> preços, estimativas de safra e custos de produção.</li>
+      <li><strong>CEASA/RS:</strong> cotações de hortaliças e frutas no atacado de Porto Alegre.</li>
+      <li><strong>Sua cooperativa ou seu comprador:</strong> o preço que vale, no fim, é o oferecido na sua região.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>Quanto do seu produto paga o seu insumo?</h2>
+    <p class="so-ja">Escolha o insumo que mais pesa na sua conta e o produto que você vende. Use o preço que pagou e o preço que recebeu, ou os de hoje na sua região.</p>
+    <p class="so-novo">Pesquise o preço do principal insumo da atividade que você pensa em começar e o preço que o produto recebe na região. Ligue para a cooperativa, a agropecuária, o laticínio ou a EMATER do município.</p>
+
+    <p style="margin:4px 0 6px"><button type="button" class="btn btn-sec" id="t-exemplo" style="color:var(--paper);border-color:rgba(250,247,240,.5);padding:11px 18px;font-size:14px">Ver um exemplo com leite e ração</button></p>
+    <div class="campos">
+      <div class="campo">
+        <label for="t-ins">Insumo <small>exemplo: adubo, ração, diesel</small></label>
+        <div class="inp"><input id="t-ins" class="txt" autocomplete="off" placeholder="adubo"></div>
+      </div>
+      <div class="campo">
+        <label for="t-insu">Unidade do insumo <small>exemplo: tonelada, saco de 40 kg, litro</small></label>
+        <div class="inp"><input id="t-insu" class="txt" autocomplete="off" placeholder="tonelada"></div>
+      </div>
+      <div class="campo">
+        <label for="t-insp">Preço do insumo <small>por unidade</small></label>
+        <div class="inp"><span>R$</span><input id="t-insp" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="t-prod">Seu produto e a unidade de venda <small>exemplo: saca de soja, litro de leite, kg de boi</small></label>
+        <div class="inp"><input id="t-prod" class="txt" autocomplete="off" placeholder="saca de soja"></div>
+      </div>
+      <div class="campo">
+        <label for="t-prodp">Preço recebido pelo produto <small>por unidade</small></label>
+        <div class="inp"><span>R$</span><input id="t-prodp" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+      </div>
+      <div class="campo">
+        <label for="t-qtd">Quanto do insumo você usa no ano <small>opcional, na unidade do insumo</small></label>
+        <div class="inp"><input id="t-qtd" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+      </div>
+    </div>
+
+    <div class="resultado" id="t-res" hidden>
+      <div class="linha"><span id="t-l1"></span><b id="t-r1"></b></div>
+      <div class="linha" id="t-l2w"><span id="t-l2"></span><b id="t-r2"></b></div>
+      <div class="veredito" id="t-ver"></div>
+      <p class="salvo" id="t-salvo"></p>
+    </div>
+
+    <div class="so-novo" style="margin-top:34px">
+      <h2 style="font-size:24px">Antes de produzir, saiba para quem vender</h2>
+      <p>Muita gente escolhe a atividade pelo que gosta de produzir e só depois descobre que não tem para quem vender. Responda com calma: as respostas ficam no seu caderno.</p>
+      <div class="campos" style="grid-template-columns:1fr">
+        <div class="campo"><label for="v-quem">Quem compraria a sua produção na região? <small>cooperativa, laticínio, frigorífico, CEASA, feira, mercado local, merenda escolar</small></label><textarea id="v-quem"></textarea></div>
+        <div class="campo"><label for="v-dist">A que distância está esse comprador, e quem faz o transporte?</label><textarea id="v-dist"></textarea></div>
+        <div class="campo"><label for="v-preco">Quanto ele paga hoje, e quanto esse preço variou nos últimos anos?</label><textarea id="v-preco"></textarea></div>
+      </div>
+      <p class="salvo" id="v-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>O preço sai do encontro entre oferta e demanda, e hoje esse encontro é mundial.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>O produtor é tomador de preço: manda no custo, na qualidade e na hora e no jeito de vender.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>Na soja, o preço da sua região é Chicago mais o prêmio, vezes o dólar, menos o frete até o porto.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>Mais importante que o preço sozinho é a relação de troca: quanto do seu produto paga o seu insumo.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>Uma seca forte atinge a safra dos Estados Unidos. O que tende a acontecer com o preço da soja no RS?</p>
+      <button type="button" class="alt">Nada, porque a soja gaúcha não foi afetada.</button>
+      <button type="button" class="alt" data-certa>Tende a subir, porque a oferta mundial diminui.</button>
+      <button type="button" class="alt">Tende a cair, porque o Brasil vai vender mais.</button>
+      <p class="fb">O preço da soja é mundial. Menos soja no mundo significa preço maior em Chicago, e isso chega ao Brasil.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>O dólar subiu bastante. Para o produtor de soja, isso é:</p>
+      <button type="button" class="alt">Só bom, porque a soja vale mais em reais.</button>
+      <button type="button" class="alt">Só ruim, porque o adubo fica mais caro.</button>
+      <button type="button" class="alt" data-certa>Bom e ruim ao mesmo tempo: o que decide é a relação de troca.</button>
+      <p class="fb">O dólar alto valoriza a soja e encarece o adubo, o diesel e os defensivos. A conta que importa é quantas sacas pagam os insumos.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>Dois produtores vendem soja no mesmo dia. Um está perto do porto de Rio Grande, o outro no noroeste do estado. Quem tende a receber mais por saca?</p>
+      <button type="button" class="alt" data-certa>O que está perto do porto, porque paga menos frete.</button>
+      <button type="button" class="alt">O do noroeste, porque a região produz mais.</button>
+      <button type="button" class="alt">Os dois recebem igual, porque o preço é o de Chicago.</button>
+      <p class="fb">O frete até o porto é descontado do preço. Quanto mais longe, menor o preço no interior.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="2">Concluir o módulo 2</button>
+    <span class="proximo">A seguir, módulo 3<br><a href="modulo-3.html">Anotar para gerenciar</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* ===== Medidor: o que mexe no preço ===== */
+(function(){
+  var CEN = [
+    {t:'Safra recorde no Brasil', a:-55, e:'<b>Mais oferta.</b> Com muita soja colhida aqui, os compradores têm de onde escolher. O preço tende a cair, principalmente na época da colheita.'},
+    {t:'Seca nos Estados Unidos', a:55, e:'<b>Menos oferta no mundo.</b> Os Estados Unidos são um dos maiores produtores. Se a safra deles quebra, Chicago sobe e o preço chega mais alto aqui.'},
+    {t:'China compra mais', a:45, e:'<b>Mais demanda.</b> A China é a maior compradora da soja brasileira. Quando ela aumenta as compras, para alimentar porcos e aves, o preço sobe.'},
+    {t:'Dólar sobe', a:40, e:'<b>Mesmo preço em dólar, mais reais.</b> A soja é vendida em dólar. Com o dólar mais caro, cada saca rende mais reais. Mas atenção: o adubo importado também sobe.'},
+    {t:'Frete caro na colheita', a:-35, e:'<b>Mais desconto no interior.</b> Na colheita, todo mundo quer caminhão ao mesmo tempo. O frete sobe e é descontado do preço pago ao produtor.'},
+    {t:'Estoques altos no mundo', a:-45, e:'<b>Sobra produto guardado.</b> Com os armazéns cheios no mundo, ninguém tem pressa de comprar. O preço fica pressionado para baixo.'}
+  ];
+  var box = document.getElementById('cenarios'), ag = document.getElementById('agulha'), ex = document.getElementById('cen-exp');
+  CEN.forEach(function(c){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = c.t;
+    b.addEventListener('click', function(){
+      box.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      ag.style.transform = 'rotate(' + c.a + 'deg)';
+      ex.innerHTML = c.e;
+    });
+    box.appendChild(b);
+  });
+})();
+
+/* ===== Simulador do preço da soja ===== */
+(function(){
+  var BU_POR_SACA = 60 / 27.2155; /* um bushel de soja tem 27,2155 kg */
+  var g = function(id){ return document.getElementById(id); };
+  var fmt = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d}); };
+  var ult = null;
+  function calc(){
+    var cbot = +g('s-cbot').value, prem = +g('s-prem').value, cambio = +g('s-cambio').value, frete = +g('s-frete').value;
+    g('s-cbot-v').textContent = 'US$ ' + fmt(cbot, 2);
+    g('s-prem-v').textContent = (prem >= 0 ? '+ ' : '- ') + 'US$ ' + fmt(Math.abs(prem), 2);
+    g('s-cambio-v').textContent = 'R$ ' + fmt(cambio, 2);
+    g('s-frete-v').textContent = 'R$ ' + fmt(frete, 1);
+    var usd = (cbot + prem) * BU_POR_SACA, porto = usd * cambio, fim = porto - frete;
+    g('e-usd').textContent = 'US$ ' + fmt(usd, 2);
+    g('e-porto').textContent = 'R$ ' + fmt(porto, 2);
+    g('e-frete').textContent = '- R$ ' + fmt(frete, 2);
+    var f = g('e-final'); f.textContent = 'R$ ' + fmt(fim, 2);
+    if (ult !== null && Math.abs(fim - ult) > 0.01){ f.classList.remove('pulse'); void f.offsetWidth; f.classList.add('pulse'); }
+    ult = fim;
+  }
+  ['s-cbot','s-prem','s-cambio','s-frete'].forEach(function(id){ g(id).addEventListener('input', calc); });
+  calc();
+})();
+
+/* ===== Relação de troca ===== */
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  var ids = ['ins','insu','insp','prod','prodp','qtd'];
+  var dec = function(s){ s = String(s || '').replace(/\./g, '').replace(',', '.'); var v = parseFloat(s); return isFinite(v) ? v : 0; };
+  var fmt = function(v){ return v.toLocaleString('pt-BR', {maximumFractionDigits: v < 10 ? 2 : 1}); };
+  function calc(salvar){
+    var ins = g('t-ins').value.trim() || 'insumo', insu = g('t-insu').value.trim() || 'unidade';
+    var prod = g('t-prod').value.trim() || 'unidade do produto';
+    var insp = dec(g('t-insp').value), prodp = dec(g('t-prodp').value), qtd = dec(g('t-qtd').value);
+    if (!insp || !prodp){ g('t-res').hidden = true; return; }
+    g('t-res').hidden = false;
+    var rel = insp / prodp;
+    g('t-l1').textContent = 'Para pagar 1 ' + insu + ' de ' + ins;
+    g('t-r1').textContent = fmt(rel) + ' × ' + prod;
+    if (qtd > 0){
+      g('t-l2w').hidden = false;
+      g('t-l2').textContent = 'Para pagar o ' + ins + ' do ano';
+      g('t-r2').textContent = fmt(rel * qtd) + ' × ' + prod;
+    } else { g('t-l2w').hidden = true; }
+    var v = g('t-ver'); v.className = 'veredito';
+    v.textContent = 'Guarde esse número. Quando for comprar de novo, refaça a conta: se for preciso menos ' + prod + ' para pagar o mesmo ' + ins + ', o momento está melhor do que agora, mesmo que os preços em reais tenham subido.';
+    if (salvar !== false){
+      var ok = Curso.salvarCaderno('m2troca', {insumo:ins, unidadeInsumo:insu, precoInsumo:insp, produto:prod, precoProduto:prodp, qtdAno:qtd, relacao:rel, data:new Date().toISOString().slice(0,10)});
+      g('t-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    }
+  }
+  ids.forEach(function(k){ g('t-' + k).addEventListener('input', function(){ calc(); }); });
+  var c = Curso.caderno().m2troca;
+  if (c){
+    g('t-ins').value = c.insumo || ''; g('t-insu').value = c.unidadeInsumo || ''; g('t-prod').value = c.produto || '';
+    g('t-insp').value = c.precoInsumo ? String(c.precoInsumo).replace('.', ',') : '';
+    g('t-prodp').value = c.precoProduto ? String(c.precoProduto).replace('.', ',') : '';
+    g('t-qtd').value = c.qtdAno ? String(c.qtdAno).replace('.', ',') : '';
+    calc(false);
+  }
+  g('t-exemplo').addEventListener('click', function(){
+    var ex = {ins:'ração', insu:'saco de 40 kg', insp:'98', prod:'litro de leite', prodp:'2,45', qtd:'1200'};
+    ids.forEach(function(k){ g('t-' + k).value = ex[k]; });
+    calc(false);
+    g('t-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+    g('t-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  /* para quem vender (perfil quero começar) */
+  var vs = ['quem','dist','preco'], cv = Curso.caderno().m2venda || {};
+  vs.forEach(function(k){
+    var t = g('v-' + k); t.value = cv[k] || '';
+    t.addEventListener('input', function(){
+      var d = {}; vs.forEach(function(x){ d[x] = g('v-' + x).value; });
+      g('v-salvo').textContent = Curso.salvarCaderno('m2venda', d) ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    });
+  });
+})();
+</script>
+</body>
+</html>

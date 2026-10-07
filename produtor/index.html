@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2A331C">
+<meta name="robots" content="noindex">
+<title>Gestão da Propriedade Rural · curso para produtores</title>
+<meta name="description" content="Curso online e gratuito de gestão da propriedade rural para pequenos e médios produtores: custos, preços, crédito, riscos e planejamento, com os números da sua propriedade.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* ===== Capa ===== */
+.capa{position:relative;min-height:min(88vh,760px);min-height:min(88svh,760px);display:flex;align-items:flex-end;color:var(--paper);background:var(--olive-deep);overflow:hidden}
+.capa .bg{position:absolute;inset:0;background:url('../Aulas/gado-pastagem-mariana-pimentel.jpg') center 75%/cover;transform:scale(1.1);animation:slowzoom 22s ease-out forwards}
+.capa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,51,28,.25) 0%,rgba(42,51,28,.55) 45%,rgba(26,26,23,.92) 100%)}
+.capa .wrap{position:relative;z-index:1;padding-top:90px;padding-bottom:62px;width:100%}
+.capa .sobre{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E3C46E;margin-bottom:18px}
+.capa h1{font-family:'Fraunces',serif;font-weight:500;font-size:46px;line-height:1.02;letter-spacing:-.025em;max-width:13ch}
+.capa h1 em{font-style:italic;color:#E3C46E}
+.capa .lead{font-size:19px;line-height:1.55;margin-top:20px;max-width:34ch;color:rgba(250,247,240,.9)}
+.capa .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.capa .btn-prim{background:var(--mustard);color:var(--mustard-ink)}
+.capa .btn-prim:hover{background:#E3C46E;color:var(--mustard-ink)}
+.capa .btn-sec{color:var(--paper);border-color:rgba(250,247,240,.6)}
+.capa .credito{position:absolute;right:10px;bottom:6px;z-index:1;font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.55;text-align:right;max-width:70%;line-height:1.3}
+.sobe{opacity:0;transform:translateY(22px);animation:sobe .9s cubic-bezier(.2,.7,.2,1) forwards}
+.sobe.s2{animation-delay:.18s}.sobe.s3{animation-delay:.36s}.sobe.s4{animation-delay:.54s}
+@keyframes sobe{to{opacity:1;transform:none}}
+@media (min-width:600px){.capa h1{font-size:68px}.capa .lead{font-size:21px}}
+
+/* números da capa */
+.fatos{background:var(--olive-deep);color:var(--paper);border-top:1px solid rgba(250,247,240,.12)}
+.fatos .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:20px;padding-bottom:22px}
+.fato b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1;color:#E3C46E}
+.fato span{font-size:13.5px;line-height:1.35;color:rgba(250,247,240,.75);display:block;margin-top:6px}
+
+/* ===== Seções ===== */
+.sec{padding:56px 0 8px}
+.sec h2{font-family:'Fraunces',serif;font-weight:500;font-size:32px;line-height:1.12;letter-spacing:-.015em;margin:14px 0 14px}
+.sec h2 em{font-style:italic;color:var(--olive)}
+.sec .intro{color:var(--ink-soft);max-width:56ch}
+
+/* como funciona */
+.passos{display:grid;gap:14px;margin-top:24px}
+@media (min-width:600px){.passos{grid-template-columns:repeat(3,1fr)}}
+.passo{background:#fff;border:1px solid var(--rule);padding:20px 18px}
+.passo svg{width:42px;height:42px;margin-bottom:12px}
+.passo h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;margin-bottom:6px}
+.passo p{font-size:16px;color:var(--ink-soft);line-height:1.5}
+
+/* andamento */
+.andamento{margin-top:26px;background:var(--paper-warm);border:1px solid var(--rule);padding:18px}
+.andamento .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:16px}
+.andamento .top b{font-family:'IBM Plex Mono',monospace;font-weight:600}
+.andamento .trilho{height:10px;background:var(--rule-soft);margin-top:10px;overflow:hidden}
+.andamento .fill{height:100%;width:0;background:linear-gradient(90deg,var(--olive),var(--mustard),var(--terra));transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+
+/* ===== Trilha ===== */
+.arco{position:relative;margin-top:36px}
+.arco-cab{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.arco-cab .chip{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;background:var(--accent);color:var(--accent-ink)}
+.arco-cab h3{font-family:'Fraunces',serif;font-weight:500;font-style:italic;font-size:24px;color:var(--accent-deep)}
+.arco-medir .arco-cab h3{color:#8A6C1F}
+.arco-desc{font-size:16px;color:var(--stone);margin-bottom:16px;max-width:52ch}
+.mods{position:relative;display:grid;gap:12px;padding-left:28px}
+.mods::before{content:"";position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:var(--rule)}
+.mods .linha-viva{position:absolute;left:9px;top:10px;width:2px;height:0;background:var(--accent);transition:height 1.4s cubic-bezier(.2,.7,.2,1)}
+.mods.on .linha-viva{height:calc(100% - 20px)}
+.mod{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--rule);padding:16px;text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .2s,border-color .2s}
+.mod::before{content:"";position:absolute;left:-24px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.mod.feito::before{background:var(--accent)}
+a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px 0 0 var(--accent)}
+.mod .n{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:30px;line-height:1;color:var(--accent);min-width:34px;text-align:center}
+.arco-medir .mod .n{color:#A88326}
+.mod .t{font-family:'Fraunces',serif;font-weight:500;font-size:19.5px;line-height:1.2;display:block}
+.mod .s{font-size:14.5px;color:var(--stone);line-height:1.4;display:block;margin-top:4px}
+.mod .st{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);white-space:nowrap}
+.mod.breve{background:transparent;border-style:dashed}
+.mod.breve .t,.mod.breve .n{opacity:.55}
+.mod.feito .st{color:#5E7A2E}
+
+/* perfil */
+.perfil-cards{display:grid;gap:12px;margin-top:22px}
+@media (min-width:600px){.perfil-cards{grid-template-columns:1fr 1fr}}
+.pcard{position:relative;display:block;text-align:left;font:inherit;background:#fff;border:1px solid var(--rule);border-left:5px solid var(--rule);padding:20px 18px;cursor:pointer;color:var(--ink);transition:border-color .2s,transform .15s,box-shadow .2s}
+.pcard:hover{transform:translateY(-2px)}
+.pcard svg{width:44px;height:44px;color:var(--stone);margin-bottom:10px;transition:color .2s}
+.pcard .pt{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:23px;line-height:1.15}
+.pcard .ps{display:block;font-size:16px;color:var(--stone);line-height:1.45;margin-top:6px}
+.pcard .pmark{position:absolute;top:16px;right:16px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--olive);padding:4px 8px;opacity:0;transform:scale(.9);transition:opacity .2s,transform .2s}
+.pcard.on{border-color:var(--olive);border-left-color:var(--olive);box-shadow:0 6px 20px rgba(42,51,28,.1)}
+.pcard.on svg{color:var(--olive)}
+.pcard.on .pmark{opacity:1;transform:none}
+.pcard[data-perfil="novo"].on{border-color:var(--terra);border-left-color:var(--terra)}
+.pcard[data-perfil="novo"].on svg{color:var(--terra)}
+.pcard[data-perfil="novo"] .pmark{background:var(--terra)}
+
+/* para quem */
+.quem{display:grid;gap:10px;margin-top:20px}
+.quem div{display:flex;gap:12px;align-items:flex-start;font-size:17px;color:var(--ink-soft)}
+.quem svg{flex-shrink:0;margin-top:4px}
+
+/* faixa final */
+.faixa{margin-top:60px;background:var(--terra-deep);color:var(--paper);position:relative;overflow:hidden}
+.faixa .wrap{padding-top:44px;padding-bottom:46px;position:relative;z-index:1}
+.faixa h2{font-family:'Fraunces',serif;font-weight:500;font-size:30px;line-height:1.15;max-width:20ch}
+.faixa p{margin:12px 0 22px;color:rgba(250,247,240,.85);max-width:44ch}
+.faixa .btn-prim{background:var(--paper);color:var(--terra-deep)}
+.faixa svg.campo-linhas{position:absolute;right:-40px;bottom:-30px;width:300px;opacity:.12}
+</style>
+</head>
+<body class="arco-olhar">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag opc">curso para produtores</span>
+  </div>
+</header>
+
+<section class="capa">
+  <div class="bg" role="img" aria-label="Gado pastando em propriedade rural no Rio Grande do Sul"></div>
+  <div class="wrap">
+    <p class="sobre sobe">Curso online e gratuito · Colégio Politécnico da UFSM</p>
+    <h1 class="sobe s2">Quem produz bem também precisa <em>fazer a conta</em>.</h1>
+    <p class="lead sobe s3">Dez módulos curtos para entender quanto custa, quanto sobra e como decidir melhor. Para quem já produz e para quem quer começar. No seu ritmo, no celular, com os seus números.</p>
+    <div class="acoes sobe s4">
+      <a class="btn btn-prim" id="cta" href="modulo-1.html">Começar o curso</a>
+      <a class="btn btn-sec" href="#trilha">Ver os módulos</a>
+    </div>
+  </div>
+  <span class="credito">gado no pasto em propriedade rural, Mariana Pimentel/RS · CC BY-SA 4.0, Paulo RS Menezes/Wikimedia Commons</span>
+</section>
+
+<div class="fatos">
+  <div class="wrap">
+    <div class="fato"><b>10</b><span>módulos curtos</span></div>
+    <div class="fato"><b>20 min</b><span>em média cada um</span></div>
+    <div class="fato"><b>1</b><span>caderno da sua propriedade</span></div>
+  </div>
+</div>
+
+<main>
+<section class="sec perfis">
+  <div class="wrap">
+    <p class="eyebrow rv">Por onde você começa</p>
+    <h2 class="rv">Qual é o <em>seu caso</em>?</h2>
+    <p class="intro rv">O conteúdo é o mesmo, mas os exemplos e as contas de cada módulo se ajustam à sua situação. Dá para trocar a qualquer momento.</p>
+    <div class="perfil-cards">
+      <button type="button" class="pcard rv d1" data-perfil="ja">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 40h36M10 40V22l14-10 14 10v18"/><path d="M19 40V29h10v11"/><path d="M4 24l20-14 20 14"/></svg>
+        <span class="pt">Já produzo</span>
+        <span class="ps">Tenho uma propriedade ou uma atividade e quero organizar a gestão.</span>
+        <span class="pmark">selecionado</span>
+      </button>
+      <button type="button" class="pcard rv d2" data-perfil="novo">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M24 42V20"/><path d="M24 26c-8 0-12-5-12-12 8 0 12 5 12 12zM24 22c0-7 4-12 12-12 0 7-4 12-12 12z"/><path d="M12 42h24"/></svg>
+        <span class="pt">Quero começar</span>
+        <span class="ps">Penso em comprar ou arrendar um sítio, ou montar um negócio rural.</span>
+        <span class="pmark">selecionado</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Como funciona</p>
+    <h2 class="rv">Ler, fazer a conta, <em>guardar</em>.</h2>
+    <p class="intro rv">O curso não usa exemplos de uma fazenda imaginária do começo ao fim. A propriedade estudada é a sua.</p>
+    <div class="passos">
+      <div class="passo rv d1">
+        <svg viewBox="0 0 42 42" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-dasharray="3 2" aria-hidden="true"><path d="M8 7h20l6 6v22H8z"/><path d="M13 17h16M13 23h16M13 29h10"/></svg>
+        <h3>Leia</h3>
+        <p>Lições curtas, em linguagem do dia a dia, com exemplos do campo gaúcho.</p>
+      </div>
+      <div class="passo rv d2">
+        <svg viewBox="0 0 42 42" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-dasharray="3 2" aria-hidden="true"><rect x="9" y="5" width="24" height="32"/><path d="M13 10h16v7H13zM14 23h3M20 23h3M26 23h2M14 29h3M20 29h3M26 29h2"/></svg>
+        <h3>Faça a conta</h3>
+        <p>Ao fim de cada módulo, você coloca os números da sua propriedade e vê o resultado na hora.</p>
+      </div>
+      <div class="passo rv d3">
+        <svg viewBox="0 0 42 42" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-dasharray="3 2" aria-hidden="true"><path d="M9 6h22v31l-11-7-11 7z"/><path d="M15 15l4 4 8-8"/></svg>
+        <h3>Guarde</h3>
+        <p>Tudo fica salvo no seu aparelho. No último módulo, vira um retrato da propriedade para imprimir.</p>
+      </div>
+    </div>
+    <div class="andamento rv" id="andamento" hidden>
+      <div class="top"><span>Seu andamento</span><b id="and-txt">0 de 10</b></div>
+      <div class="trilho"><div class="fill" id="and-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="trilha">
+  <div class="wrap">
+    <p class="eyebrow rv">A trilha</p>
+    <h2 class="rv">Três etapas, <em>dez módulos</em>.</h2>
+    <p class="intro rv">Primeiro olhar a propriedade e o mercado em que ela está. Depois medir custos, sobras e o caixa. Por fim, decidir sobre crédito, riscos, começar ou ampliar, e o próximo passo.</p>
+    <div id="arcos"></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Para quem é</p>
+    <h2 class="rv">Feito para <em>quem está na lida</em>.</h2>
+    <div class="quem">
+      <div class="rv"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#A8552E" stroke-width="1.6"><path d="M3 8.5l3 3 7-7"/></svg>Pequenos e médios produtores, de grãos, leite, gado, frutas ou hortaliças.</div>
+      <div class="rv d1"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#A8552E" stroke-width="1.6"><path d="M3 8.5l3 3 7-7"/></svg>Filhos e filhas que estão assumindo a gestão da propriedade da família.</div>
+      <div class="rv d2"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#A8552E" stroke-width="1.6"><path d="M3 8.5l3 3 7-7"/></svg>Quem nunca anotou os gastos e quer começar, sem precisar de planilha complicada.</div>
+      <div class="rv d3"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#A8552E" stroke-width="1.6"><path d="M3 8.5l3 3 7-7"/></svg>Quem quer começar: comprar ou arrendar um sítio, sair da cidade, montar um negócio rural.</div>
+      <div class="rv d4"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#A8552E" stroke-width="1.6"><path d="M3 8.5l3 3 7-7"/></svg>Quem vai pegar um financiamento e quer saber se a conta fecha.</div>
+    </div>
+  </div>
+</section>
+
+<section class="faixa">
+  <svg class="campo-linhas" viewBox="0 0 300 200" fill="none" stroke="#FAF7F0" stroke-width="2" aria-hidden="true"><path d="M0 200L150 40 300 200M30 200L150 60 270 200M60 200L150 80 240 200M90 200L150 100 210 200M120 200L150 120 180 200"/></svg>
+  <div class="wrap">
+    <h2 class="rv">Não precisa saber matemática financeira para começar.</h2>
+    <p class="rv d1">Precisa de vontade de olhar para os números da propriedade com calma. O resto o curso ensina, um passo de cada vez.</p>
+    <a class="btn btn-prim rv d2" id="cta2" href="modulo-1.html">Ir para o módulo 1</a>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Sobre o curso</strong>
+    <p>Curso aberto, elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria, a partir do material da disciplina Gestão de Custos e Projetos Agropecuários. <a href="../index.html">Conheça o material para estudantes</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+var MODULOS = [
+  {n:1, arco:'olhar',   t:'A propriedade como negócio', s:'A conta da casa e a conta da propriedade', pronto:true},
+  {n:2, arco:'olhar',   t:'De onde vem o preço', s:'Mercado, cadeia, insumos e o mundo lá fora', pronto:true},
+  {n:3, arco:'olhar',   t:'Anotar para gerenciar', s:'O que anotar, como anotar e o que você tem', pronto:true},
+  {n:4, arco:'medir',   t:'Quanto custa produzir', s:'O que sai do bolso, o desgaste e o que se deixa de ganhar', pronto:true},
+  {n:5, arco:'medir',   t:'Quanto sobra', s:'Receita, margem e quantas sacas pagam a conta', pronto:true},
+  {n:6, arco:'medir',   t:'O dinheiro no tempo', s:'Quando o dinheiro entra e quando sai, mês a mês', pronto:true},
+  {n:7, arco:'decidir', t:'Crédito rural', s:'PRONAF, PRONAMP e quando o financiamento vale a pena', pronto:true},
+  {n:8, arco:'decidir', t:'Riscos e venda', s:'Clima, preço, seguro e a hora de vender', pronto:true},
+  {n:9, arco:'decidir', t:'Começar ou ampliar', s:'Comprar ou arrendar, escolher a atividade, capital de entrada', pronto:true},
+  {n:10, arco:'decidir', t:'Planejar o próximo passo', s:'A próxima safra ou o novo negócio, num plano só', pronto:true}
+];
+var ARCOS = {
+  olhar:   {nome:'Olhar',   d:'Entender a propriedade como um negócio e o mercado em que ela vende e compra.'},
+  medir:   {nome:'Medir',   d:'Fazer as contas: quanto custa, quanto sobra e como o dinheiro corre no ano.'},
+  decidir: {nome:'Decidir', d:'Usar as contas para escolher: crédito, riscos, venda e o plano da próxima safra.'}
+};
+(function(){
+  var cont = document.getElementById('arcos'), html = '';
+  ['olhar','medir','decidir'].forEach(function(a){
+    html += '<div class="arco arco-' + a + '"><div class="arco-cab rv"><span class="chip">' + ARCOS[a].nome + '</span></div>' +
+            '<p class="arco-desc rv">' + ARCOS[a].d + '</p><div class="mods" data-anima><span class="linha-viva"></span>';
+    MODULOS.filter(function(m){ return m.arco === a; }).forEach(function(m, i){
+      var feito = m.pronto && Curso.concluido(m.n);
+      var cls = 'mod rv d' + (i + 1) + (m.pronto ? '' : ' breve') + (feito ? ' feito' : '');
+      var st = feito ? 'concluído' : (m.pronto ? '20 min' : 'em breve');
+      var inner = '<span class="n">' + m.n + '</span><span><span class="t">' + m.t + '</span><span class="s">' + m.s + '</span></span><span class="st">' + st + '</span>';
+      html += m.pronto ? '<a class="' + cls + '" href="modulo-' + m.n + '.html">' + inner + '</a>' : '<div class="' + cls + '">' + inner + '</div>';
+    });
+    html += '</div></div>';
+  });
+  cont.innerHTML = html;
+
+  var feitos = MODULOS.filter(function(m){ return Curso.concluido(m.n); }).length;
+  if (feitos > 0){
+    var box = document.getElementById('andamento'); box.hidden = false;
+    document.getElementById('and-txt').textContent = feitos + ' de ' + MODULOS.length;
+    setTimeout(function(){ document.getElementById('and-fill').style.width = (feitos / MODULOS.length * 100) + '%'; }, 400);
+    var prox = MODULOS.filter(function(m){ return m.pronto && !Curso.concluido(m.n); })[0];
+    if (prox){
+      ['cta','cta2'].forEach(function(id){
+        var a = document.getElementById(id);
+        a.href = 'modulo-' + prox.n + '.html';
+        a.textContent = 'Continuar no módulo ' + prox.n;
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

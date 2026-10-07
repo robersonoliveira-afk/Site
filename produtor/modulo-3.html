@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2A331C">
+<meta name="robots" content="noindex">
+<title>Módulo 3 · Anotar para gerenciar</title>
+<meta name="description" content="Módulo 3 do curso de gestão para produtores: o que anotar, como anotar, caderno de caixa, caderno de campo, inventário de bens e documentos da propriedade.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-3.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* contador de pequenos gastos */
+.pingos{background:#fff;border:1px solid var(--rule);margin:24px 0;padding:18px 16px}
+.pingos ul{list-style:none;display:grid;gap:6px;margin-bottom:14px}
+.pingos li{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;padding:6px 0;border-bottom:1px dashed var(--rule-soft);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.pingos li b{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
+.pingos.on li{opacity:1;transform:none}
+.pingos .tot{display:flex;justify-content:space-between;align-items:baseline;gap:10px;background:var(--olive-deep);color:var(--paper);padding:12px 14px}
+.pingos .tot b{font-family:'IBM Plex Mono',monospace;font-size:24px;color:#E3C46E;white-space:nowrap}
+
+/* quatro registros */
+.regs{display:grid;gap:12px;margin:22px 0}
+@media (min-width:600px){.regs{grid-template-columns:1fr 1fr}}
+.reg{background:#fff;border:1px solid var(--rule);padding:16px;position:relative}
+.reg .ic{width:36px;height:36px;margin-bottom:8px}
+.reg h4{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:4px}
+.reg p{font-size:15.5px;line-height:1.5;color:var(--ink-soft);margin:0}
+
+/* modelo de caderno */
+.caderno-mod{background:#FFFDF6;border:1px solid var(--rule);margin:22px 0;overflow-x:auto;background-image:repeating-linear-gradient(transparent 0 37px,#E8E3D3 37px 38px)}
+.caderno-mod table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+.caderno-mod th{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);text-align:left;padding:10px;height:38px;border-bottom:2px solid var(--terra)}
+.caderno-mod td{padding:0 10px;height:38px;font-family:'IBM Plex Mono',monospace;font-size:14px}
+.caderno-mod td.r{text-align:right}
+.caderno-mod td.ent{color:#5E7A2E}.caderno-mod td.sai{color:var(--terra)}
+.caderno-mod tr{opacity:0;transition:opacity .4s}
+.caderno-mod.on tr{opacity:1}
+
+/* inventário */
+.inv{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:15px}
+.inv th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(250,247,240,.6);text-align:left;padding:6px 4px;font-weight:500}
+.inv td{padding:4px}
+.inv input{width:100%;min-width:0;border:2px solid transparent;background:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:15px;padding:9px 8px;color:var(--ink);outline:none}
+.inv input.nome{font-family:'IBM Plex Sans',sans-serif}
+.inv input:focus{border-color:var(--mustard)}
+.inv button.del{background:transparent;border:0;color:rgba(250,247,240,.55);font-size:20px;cursor:pointer;padding:4px 8px}
+.inv-wrap{overflow-x:auto}
+.inv-wrap table{min-width:560px}
+.add{font:inherit;font-size:14.5px;font-weight:600;padding:10px 16px;background:transparent;color:var(--paper);border:1px dashed rgba(250,247,240,.5);cursor:pointer}
+</style>
+</head>
+<body class="arco-olhar">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 3 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/ordenha-balde-ao-pe.jpg')" role="img" aria-label="Ordenha mecânica com balde ao pé"></div>
+  <div class="wrap">
+    <div class="num sobe">3</div>
+    <p class="arco">Olhar · os registros</p>
+    <h1>Anotar para gerenciar</h1>
+    <p class="pergunta">Quanto você gastou com a manutenção do trator no ano passado? De cabeça, sem olhar nenhum papel.</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 20 minutos</span></div>
+  </div>
+  <span class="credito">ordenha mecânica, balde ao pé · CC BY 3.0, Andrevruas</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>Por que a memória não serve para fazer gestão.</li>
+      <li>O que vale a pena anotar, e o que não precisa.</li>
+      <li>Caderno, planilha ou aplicativo: como escolher.</li>
+      <li>Fazer o inventário do que a propriedade tem.</li>
+      <li>Os papéis que precisam estar guardados.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">A memória engana</h2>
+    <p class="rv">Todo mundo lembra quanto pagou pela última colheitadeira ou pelo touro novo. Quase ninguém lembra das pequenas despesas: a peça que quebrou, o frete da ração, a consulta do veterinário, o conserto do arame. Uma por uma, parecem pouca coisa. Somadas no ano, são uma conta grande.</p>
+
+    <div class="pingos" data-anima id="pingos">
+      <ul>
+        <li><span>correia do trator</span><b>R$ 280</b></li>
+        <li><span>frete da ração, 12 viagens</span><b>R$ 1.440</b></li>
+        <li><span>duas visitas do veterinário</span><b>R$ 600</b></li>
+        <li><span>arame e grampos para cerca</span><b>R$ 520</b></li>
+        <li><span>conserto da bomba d'água</span><b>R$ 390</b></li>
+        <li><span>óleo e filtros</span><b>R$ 760</b></li>
+        <li><span>medicamentos para o rebanho</span><b>R$ 1.150</b></li>
+        <li><span>pneu da carreta</span><b>R$ 950</b></li>
+      </ul>
+      <div class="tot"><span>Total que "nem aparece"</span><b id="pingos-tot">R$ 0</b></div>
+    </div>
+
+    <p class="rv">Sem anotação, a gestão vira impressão: "o leite está dando", "a soja este ano foi mal". Impressões ajudam, mas não mostram onde está o problema nem quanto ele custa. <strong>Anotar é o que transforma a impressão em número.</strong></p>
+    <p class="destaque rv">O que não se anota, não se mede. O que não se mede, não se melhora.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">O que anotar</h2>
+    <p class="rv">Não é preciso anotar tudo. São quatro tipos de registro, e cada um responde a uma pergunta diferente.</p>
+    <div class="regs">
+      <div class="reg rv d1">
+        <svg class="ic" viewBox="0 0 36 36" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><rect x="4" y="9" width="28" height="19"/><circle cx="18" cy="18.5" r="4"/></svg>
+        <h4>Dinheiro</h4>
+        <p>Tudo o que entra e sai, com a data, o valor, a atividade e se é da casa ou da propriedade. Responde: <strong>sobrou ou faltou?</strong></p>
+      </div>
+      <div class="reg rv d2">
+        <svg class="ic" viewBox="0 0 36 36" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><path d="M6 30V18M14 30V10M22 30V14M30 30V6"/></svg>
+        <h4>Produção</h4>
+        <p>Litros entregues, sacas colhidas, quilos vendidos, nascimentos e mortes. Responde: <strong>quanto produzi?</strong></p>
+      </div>
+      <div class="reg rv d3">
+        <svg class="ic" viewBox="0 0 36 36" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><path d="M8 6h20v24H8z"/><path d="M12 12h12M12 18h12M12 24h7"/></svg>
+        <h4>Manejo</h4>
+        <p>O que foi aplicado, onde, quando e quanto: adubo, semente, defensivo, vacina. É o caderno de campo. Responde: <strong>o que eu fiz em cada lavoura ou lote?</strong></p>
+      </div>
+      <div class="reg rv d4">
+        <svg class="ic" viewBox="0 0 36 36" fill="none" stroke="#A8552E" stroke-width="1.5" stroke-dasharray="3 2"><path d="M4 30h28M8 30V16l10-8 10 8v14"/></svg>
+        <h4>Bens</h4>
+        <p>As máquinas, construções, animais e estoques, com o valor e o estado. É o inventário. Responde: <strong>o que eu tenho?</strong></p>
+      </div>
+    </div>
+    <p class="rv">Uma regra ajuda muito: <strong>marque cada gasto com a atividade a que ele pertence</strong>. Se a propriedade tem leite e soja, o adubo da soja vai para a soja e a ração vai para o leite. Os gastos que servem às duas, como a luz ou o conserto do trator, podem ser divididos no fim do mês. Assim, no fim do ano, dá para saber qual atividade paga a outra.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">Caderno, planilha ou aplicativo</h2>
+    <p class="rv">A melhor ferramenta é a que você vai usar todo dia. Um caderno bem feito vale mais do que um aplicativo abandonado em março.</p>
+
+    <div class="caderno-mod" data-anima>
+      <table>
+        <thead><tr><th>Data</th><th>O quê</th><th>Atividade</th><th>Casa ou prop.</th><th>Entrou</th><th>Saiu</th></tr></thead>
+        <tbody>
+          <tr><td>02/09</td><td>leite de agosto</td><td>leite</td><td>prop.</td><td class="r ent">14.820</td><td></td></tr>
+          <tr><td>04/09</td><td>ração, 40 sacos</td><td>leite</td><td>prop.</td><td></td><td class="r sai">3.920</td></tr>
+          <tr><td>06/09</td><td>rancho do mês</td><td>-</td><td>casa</td><td></td><td class="r sai">1.350</td></tr>
+          <tr><td>10/09</td><td>semente de milho</td><td>milho</td><td>prop.</td><td></td><td class="r sai">2.600</td></tr>
+          <tr><td>15/09</td><td>conserto do trator</td><td>dividir</td><td>prop.</td><td></td><td class="r sai">740</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rv" style="font-size:15px;color:var(--stone);margin-top:-8px">Modelo de caderno de caixa. Os valores são de exemplo.</p>
+
+    <ul class="lista rv">
+      <li><strong>Caderno:</strong> barato, sempre à mão, não depende de sinal. Exige somar no fim do mês.</li>
+      <li><strong>Planilha:</strong> soma sozinha e faz gráficos. Exige computador ou paciência no celular.</li>
+      <li><strong>Aplicativo:</strong> prático no celular e organiza por atividade. Escolha um que deixe exportar os dados, para não ficar preso a ele.</li>
+    </ul>
+    <h3 class="rv">Quatro costumes que fazem funcionar</h3>
+    <ul class="lista rv">
+      <li><strong>Anotar no mesmo dia.</strong> Deixar para o fim de semana é esquecer metade.</li>
+      <li><strong>Guardar as notas e recibos</strong> num envelope ou pasta por mês.</li>
+      <li><strong>Conferir com o extrato</strong> do banco ou da cooperativa uma vez por mês.</li>
+      <li><strong>Somar no fim do mês</strong>: entradas, saídas, quanto foi para cada atividade e quanto foi para a casa.</li>
+    </ul>
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>Muitas cooperativas e escritórios da EMATER/RS-ASCAR oferecem cadernos de registro e apoio para começar. Vale perguntar no seu município.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">O inventário</h2>
+    <p class="rv">O inventário é a lista de tudo o que a propriedade tem para produzir. Faça uma vez por ano, sempre na mesma época, por exemplo no fim da safra. Para cada bem, anote:</p>
+    <ul class="lista rv">
+      <li><strong>O que é</strong>, e o ano em que foi comprado ou construído.</li>
+      <li><strong>Quanto vale hoje</strong>: quanto você conseguiria vender, ou quanto pagaria por um igual, usado, no mesmo estado.</li>
+      <li><strong>Quantos anos ainda deve durar</strong> trabalhando na propriedade.</li>
+      <li><strong>Quanto deve valer no fim</strong>: o que se consegue vender quando for trocado, nem que seja como sucata.</li>
+    </ul>
+    <p class="rv">Com isso dá para fazer uma conta simples e muito importante: <strong>quanto a propriedade precisa guardar por ano para repor esse bem quando ele acabar</strong>. É o valor de hoje menos o valor no fim, dividido pelos anos que faltam.</p>
+    <div class="exemplo rv">
+      <p class="rot">Exemplo</p>
+      <p>Um trator vale hoje R$ 85.000, deve trabalhar mais 10 anos e no fim valerá uns R$ 25.000. A perda de valor é de R$ 60.000 em 10 anos: <strong>R$ 6.000 por ano</strong>. Esse dinheiro não sai do bolso todo ano, mas o trator está se gastando. Se a atividade não separa esse valor, no dia da troca não haverá dinheiro.</p>
+    </div>
+    <p class="rv">Esse desgaste se chama <strong>depreciação</strong>. Ele volta no módulo 4 como parte do custo de produzir. A terra não entra nessa conta: bem cuidada, ela não se gasta.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Os papéis da propriedade</h2>
+    <p class="rv">Além dos registros de gestão, há documentos que a lei exige ou que fazem falta na hora de pegar crédito, vender ou passar a propriedade adiante. Tenha uma pasta só para eles.</p>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead><tr><th>Documento</th><th>Para que serve</th></tr></thead>
+        <tbody>
+          <tr><td>Matrícula do imóvel</td><td>Prova de quem é o dono da terra. Fica no Registro de Imóveis.</td></tr>
+          <tr><td>CCIR</td><td>Certificado de cadastro do imóvel rural no INCRA. Pedido em financiamentos e na venda.</td></tr>
+          <tr><td>ITR</td><td>Imposto territorial rural, declarado todo ano à Receita Federal.</td></tr>
+          <tr><td>CAR</td><td>Cadastro ambiental rural: mostra as áreas de preservação e a reserva legal.</td></tr>
+          <tr><td>Inscrição estadual de produtor</td><td>Permite emitir a nota fiscal de produtor na venda.</td></tr>
+          <tr><td>CAF</td><td>Cadastro da agricultura familiar, que substituiu a antiga DAP. Dá acesso ao PRONAF e a programas como o PNAE.</td></tr>
+          <tr><td>Notas de compra e venda</td><td>Comprovam receitas e despesas da atividade rural, inclusive para o imposto de renda.</td></tr>
+          <tr><td>GTA</td><td>Guia de trânsito animal, obrigatória para transportar animais.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      Antes de comprar uma área, peça a matrícula atualizada, o CCIR, os comprovantes de ITR e o CAR. Eles mostram se a terra tem dono certo, dívidas, restrições ambientais ou problemas de divisa. O módulo 9 mostra o passo a passo para começar.
+    </div>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2 class="so-ja">O inventário da sua propriedade</h2>
+    <h2 class="so-novo">O que você vai precisar comprar</h2>
+    <p class="so-ja">Liste as máquinas, equipamentos, construções e animais de produção. Comece pelos mais caros. A terra fica de fora: ela entra no módulo 4.</p>
+    <p class="so-novo">Liste o que a atividade vai exigir: máquinas, equipamentos, construções, animais. Pesquise o preço de cada item, novo ou usado. A terra fica de fora: ela entra no módulo 9.</p>
+    <p style="margin:4px 0 12px"><button type="button" class="btn btn-sec" id="i-exemplo" style="color:var(--paper);border-color:rgba(250,247,240,.5);padding:11px 18px;font-size:14px">Ver o inventário de um tambo pequeno</button></p>
+
+    <div class="inv-wrap">
+      <table class="inv">
+        <thead><tr><th style="width:34%">Bem</th><th>Valor hoje (R$)</th><th>Anos que ainda dura</th><th>Valor no fim (R$)</th><th></th></tr></thead>
+        <tbody id="inv-corpo"></tbody>
+      </table>
+    </div>
+    <button type="button" class="add" id="inv-add">+ adicionar bem</button>
+
+    <div class="resultado" id="i-res" hidden style="margin-top:18px">
+      <div class="linha"><span>Valor total dos bens</span><b id="i-tot"></b></div>
+      <div class="linha"><span>Desgaste por ano, para guardar</span><b id="i-dep"></b></div>
+      <div class="linha"><span>O mesmo, por mês</span><b id="i-depm"></b></div>
+      <div class="veredito" id="i-ver"></div>
+      <p class="salvo" id="i-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>Os pequenos gastos esquecidos somam muito no ano. Anotar transforma impressão em número.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Quatro registros: dinheiro, produção, manejo e bens. Marque cada gasto com a sua atividade.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>A melhor ferramenta é a que você usa todo dia. Anote no mesmo dia e some no fim do mês.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>O inventário mostra o que a propriedade tem e quanto ela precisa guardar por ano para repor os bens.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>A propriedade tem leite e milho. O conserto do trator, usado nas duas atividades, deve ser anotado como:</p>
+      <button type="button" class="alt">Gasto do leite, porque o leite dá dinheiro todo mês.</button>
+      <button type="button" class="alt" data-certa>Gasto comum, dividido entre as duas atividades.</button>
+      <button type="button" class="alt">Não precisa anotar, porque é um gasto eventual.</button>
+      <p class="fb">Gastos que servem às duas atividades são divididos, por exemplo, pelas horas de uso do trator em cada uma.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>Uma ordenhadeira vale hoje R$ 20.000, deve durar mais 8 anos e no fim valerá R$ 4.000. Quanto a propriedade deveria guardar por ano para repô-la?</p>
+      <button type="button" class="alt">R$ 2.500</button>
+      <button type="button" class="alt" data-certa>R$ 2.000</button>
+      <button type="button" class="alt">R$ 4.000</button>
+      <p class="fb">R$ 20.000 menos R$ 4.000 dá R$ 16.000 de perda de valor. Dividido por 8 anos: R$ 2.000 por ano.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>Qual documento dá acesso ao PRONAF?</p>
+      <button type="button" class="alt">O CAR.</button>
+      <button type="button" class="alt">A GTA.</button>
+      <button type="button" class="alt" data-certa>O CAF, cadastro da agricultura familiar.</button>
+      <p class="fb">O CAF identifica o agricultor familiar e substituiu a antiga DAP. Sem ele, não há acesso ao PRONAF.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="3">Concluir o módulo 3</button>
+    <span class="proximo">A seguir, módulo 4<br><a href="modulo-4.html">Quanto custa produzir</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+/* ===== Contador dos pequenos gastos ===== */
+(function(){
+  var box = document.getElementById('pingos'), tot = document.getElementById('pingos-tot');
+  var itens = box.querySelectorAll('li'), soma = 0;
+  itens.forEach(function(li, i){
+    li.style.transitionDelay = (i * 0.18) + 's';
+    soma += Curso.num(li.querySelector('b').textContent);
+  });
+  var iniciado = false;
+  var obs = new MutationObserver(function(){
+    if (iniciado || !box.classList.contains('on')) return;
+    iniciado = true;
+    var dur = itens.length * 180 + 400, t0 = null;
+    function passo(t){
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      tot.textContent = Curso.reais(soma * p);
+      if (p < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  });
+  obs.observe(box, {attributes:true, attributeFilter:['class']});
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) tot.textContent = Curso.reais(soma);
+})();
+
+/* ===== Inventário ===== */
+(function(){
+  var corpo = document.getElementById('inv-corpo'), g = function(id){ return document.getElementById(id); };
+  var exemplo = false;
+  function linha(d){
+    d = d || {};
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td><input class="nome" placeholder="ex.: trator" value=""></td>' +
+      '<td><input class="v" inputmode="numeric" placeholder="0"></td>' +
+      '<td><input class="a" inputmode="numeric" placeholder="0"></td>' +
+      '<td><input class="f" inputmode="numeric" placeholder="0"></td>' +
+      '<td><button type="button" class="del" aria-label="remover">×</button></td>';
+    var ins = tr.querySelectorAll('input');
+    ins[0].value = d.bem || '';
+    ins[1].value = d.valor ? Math.round(d.valor).toLocaleString('pt-BR') : '';
+    ins[2].value = d.anos || '';
+    ins[3].value = d.fim ? Math.round(d.fim).toLocaleString('pt-BR') : '';
+    Curso.mascara(ins[1]); Curso.mascara(ins[3]);
+    ins.forEach(function(x){ x.addEventListener('input', function(){ exemplo = false; calc(); }); });
+    tr.querySelector('.del').addEventListener('click', function(){ tr.remove(); exemplo = false; calc(); });
+    corpo.appendChild(tr);
+  }
+  function ler(){
+    var lst = [];
+    corpo.querySelectorAll('tr').forEach(function(tr){
+      var ins = tr.querySelectorAll('input');
+      var d = {bem:ins[0].value.trim(), valor:Curso.num(ins[1].value), anos:Curso.num(ins[2].value), fim:Curso.num(ins[3].value)};
+      if (d.bem || d.valor) lst.push(d);
+    });
+    return lst;
+  }
+  function calc(){
+    var lst = ler();
+    if (!lst.length){ g('i-res').hidden = true; return; }
+    g('i-res').hidden = false;
+    var tot = 0, dep = 0, semVida = 0;
+    lst.forEach(function(d){
+      tot += d.valor;
+      if (d.anos > 0) dep += Math.max(d.valor - d.fim, 0) / d.anos; else if (d.valor) semVida++;
+    });
+    g('i-tot').textContent = Curso.reais(tot);
+    g('i-dep').textContent = Curso.reais(dep);
+    g('i-depm').textContent = Curso.reais(dep / 12);
+    var txt = 'Para repor esses bens quando acabarem, a propriedade precisa gerar cerca de ' + Curso.reais(dep) + ' por ano além dos gastos do dia a dia. Esse valor entra no custo de produção do módulo 4.';
+    if (semVida) txt += ' ' + semVida + (semVida > 1 ? ' bens estão' : ' bem está') + ' sem anos de duração: ' + (semVida > 1 ? 'eles não entram' : 'ele não entra') + ' na conta do desgaste.';
+    g('i-ver').className = 'veredito'; g('i-ver').textContent = txt;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m3inv', {bens:lst, valorTotal:tot, depreciacaoAnual:dep});
+      g('i-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else {
+      g('i-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+    }
+  }
+  g('inv-add').addEventListener('click', function(){ linha(); corpo.lastChild.querySelector('input').focus(); });
+  g('i-exemplo').addEventListener('click', function(){
+    corpo.innerHTML = '';
+    [{bem:'trator usado', valor:85000, anos:10, fim:25000},
+     {bem:'ordenhadeira', valor:18000, anos:8, fim:2000},
+     {bem:'resfriador de leite', valor:22000, anos:10, fim:3000},
+     {bem:'galpão e sala de ordenha', valor:60000, anos:20, fim:0},
+     {bem:'carreta e implementos', valor:15000, anos:10, fim:3000}].forEach(linha);
+    exemplo = true; calc();
+    g('i-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  var c = Curso.caderno().m3inv;
+  if (c && c.bens && c.bens.length){ c.bens.forEach(linha); calc(); }
+  else { linha(); linha(); linha(); }
+})();
+</script>
+</body>
+</html>

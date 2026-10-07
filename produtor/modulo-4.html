@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3A2F08">
+<meta name="robots" content="noindex">
+<title>Módulo 4 · Quanto custa produzir</title>
+<meta name="description" content="Módulo 4 do curso de gestão para produtores: quanto custa produzir, custo que sai do bolso, depreciação, trabalho da família, custo de oportunidade e custo por unidade.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-4.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+<style>
+/* escada do custo */
+.escada-c{margin:26px 0;background:#fff;border:1px solid var(--rule);padding:18px 16px}
+.escada-c .deg{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;margin-bottom:10px}
+.escada-c .bar{height:46px;transform-origin:left;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.7,.2,1);display:flex;align-items:center;padding:0 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;white-space:nowrap}
+.escada-c.on .bar{transform:scaleX(1)}
+.escada-c .d2 .bar{transition-delay:.5s}.escada-c .d3 .bar{transition-delay:1s}
+.escada-c .sig{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;min-width:38px}
+.escada-c .ex{font-size:14.5px;color:var(--stone);margin:-4px 0 12px 52px;line-height:1.4}
+
+/* calculadora */
+.grupo{margin:22px 0 6px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E3C46E;display:flex;align-items:center;gap:10px}
+.grupo::after{content:"";flex:1;height:1px;background:rgba(250,247,240,.2)}
+.campos.c3{margin-top:10px}
+.mini{font:inherit;font-size:13px;font-weight:600;padding:6px 10px;margin-top:6px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+.empilha{display:flex;height:34px;margin:16px 0 6px;background:rgba(250,247,240,.08);overflow:hidden}
+.empilha div{height:100%;width:0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:rgba(250,247,240,.8);margin-bottom:10px}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.porun{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.porun div{background:rgba(250,247,240,.06);border:1px solid rgba(250,247,240,.15);padding:10px;text-align:center}
+.porun small{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:rgba(250,247,240,.65)}
+.porun b{display:block;font-family:'IBM Plex Mono',monospace;font-size:18px;margin-top:4px;color:#E3C46E}
+.porun i{display:block;font-style:normal;font-size:12px;color:rgba(250,247,240,.6)}
+.campo .inp input.txt{font-family:'IBM Plex Sans',sans-serif;font-size:17px}
+</style>
+</head>
+<body class="arco-medir">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="home" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <span>Gestão da Propriedade Rural</span>
+    </a>
+    <span class="mod-tag">módulo 4 de 10</span>
+  </div>
+  <div class="readbar"></div>
+</header>
+
+<section class="mod-hero">
+  <div class="bg" style="background-image:url('../Aulas/milho-lavoura-rs.jpg')" role="img" aria-label="Lavoura de milho no Rio Grande do Sul"></div>
+  <div class="wrap">
+    <div class="num sobe">4</div>
+    <p class="arco">Medir · o custo</p>
+    <h1>Quanto custa produzir</h1>
+    <p class="pergunta">Quanto custa produzir uma saca, um litro ou um quilo na sua propriedade?</p>
+    <div class="meta"><span>5 lições</span><span>cerca de 25 minutos</span></div>
+  </div>
+  <span class="credito">lavoura de milho em Barão do Triunfo/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</span>
+</section>
+
+<section class="neste">
+  <div class="wrap">
+    <p class="eyebrow">Neste módulo</p>
+    <ol>
+      <li>As três perguntas que formam o custo.</li>
+      <li>O que sai do bolso: o custo operacional efetivo.</li>
+      <li>O que se gasta sem sair do bolso: desgaste e trabalho da família.</li>
+      <li>O que se deixa de ganhar: terra e dinheiro empatados.</li>
+      <li>Transformar tudo em custo por saca, litro ou quilo.</li>
+    </ol>
+  </div>
+</section>
+
+<main>
+<!-- ========== LIÇÃO 1 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <p class="tag rv">Lição 1</p>
+    <h2 class="rv">Três perguntas</h2>
+    <p class="rv">Quando se pergunta a um produtor quanto custa produzir, a resposta quase sempre é a soma do que ele pagou: adubo, semente, diesel, ração. Essa conta está certa, mas está incompleta. O custo de verdade responde a três perguntas, uma em cima da outra:</p>
+
+    <div class="escada-c rv" data-anima>
+      <div class="deg d1"><span class="sig" style="color:#8A6C1F">COE</span><div class="bar" style="width:55%;background:#B89233;color:#3A2F08">sai do bolso</div></div>
+      <p class="ex">Quanto eu paguei para produzir?</p>
+      <div class="deg d2"><span class="sig" style="color:#A8552E">COT</span><div class="bar" style="width:75%;background:#D9895E;color:#3A2F08">+ desgaste e família</div></div>
+      <p class="ex">Quanto eu gastei, mesmo sem tirar do bolso?</p>
+      <div class="deg d3"><span class="sig" style="color:#3D4A2A">CT</span><div class="bar" style="width:100%;background:#3D4A2A;color:#FAF7F0">+ o que deixo de ganhar</div></div>
+      <p class="ex" style="margin-bottom:0">Quanto eu ganharia se usasse a terra e o dinheiro de outro jeito?</p>
+    </div>
+
+    <p class="rv">As siglas são as mesmas usadas pela CNA, no projeto Campo Futuro, e pela CONAB nos custos de produção que publicam. Não precisa decorar: o importante é a ideia de cada degrau.</p>
+    <ul class="lista rv">
+      <li><strong>COE, custo operacional efetivo:</strong> o dinheiro que saiu do bolso.</li>
+      <li><strong>COT, custo operacional total:</strong> o COE mais o desgaste dos bens e o trabalho da família.</li>
+      <li><strong>CT, custo total:</strong> o COT mais o que a terra e o dinheiro empatados renderiam em outro uso.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 2 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 2</p>
+    <h2 class="rv">O que sai do bolso</h2>
+    <p class="rv">O primeiro degrau é o mais fácil de medir, se as anotações do módulo 3 estiverem em dia. Entra aqui tudo o que foi pago para produzir, naquela atividade, naquele ano:</p>
+    <ul class="lista rv">
+      <li><strong>Insumos:</strong> sementes, adubo, calcário, defensivos, ração, sal mineral, medicamentos.</li>
+      <li><strong>Operações:</strong> diesel, manutenção de máquinas, serviços contratados de plantio, colheita ou transporte.</li>
+      <li><strong>Mão de obra contratada:</strong> salários, diárias, encargos.</li>
+      <li><strong>Outros:</strong> energia, arrendamento pago, assistência técnica, seguro, juros do custeio, impostos e taxas sobre a produção.</li>
+    </ul>
+    <p class="rv">O COE responde a uma pergunta de curto prazo: <strong>a atividade paga as contas do ano?</strong> Se o preço não cobre nem o COE, cada saca produzida aumenta o prejuízo.</p>
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>Os gastos da casa não entram aqui. Eles são pagos com a retirada da família, que aparece no próximo degrau. É a separação das duas caixas do módulo 1.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 3 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 3</p>
+    <h2 class="rv">O que se gasta sem sair do bolso</h2>
+    <p class="rv">Dois custos não aparecem no extrato do banco, mas são reais.</p>
+    <h3 class="rv">O desgaste dos bens</h3>
+    <p class="rv">É a depreciação calculada no inventário do módulo 3. O trator, o galpão e a ordenhadeira perdem valor a cada ano. Se esse valor não for considerado, a atividade parece lucrativa até o dia em que for preciso trocar a máquina e não houver dinheiro.</p>
+    <h3 class="rv">O trabalho da família</h3>
+    <p class="rv">Quem trabalha na propriedade e não recebe salário também tem um custo: é o que a família receberia se fizesse o mesmo trabalho para outra pessoa. Na metodologia de custos, esse valor se chama <strong>pró-labore</strong>. Uma boa referência é o salário de um empregado rural na região, para cada pessoa da família que trabalha na atividade.</p>
+    <div class="exemplo rv">
+      <p class="rot">Por que contar o trabalho da família</p>
+      <p>Duas propriedades de leite produzem o mesmo e têm o mesmo COE. Uma contrata um empregado, a outra usa o trabalho do casal. Sem contar o pró-labore, a segunda parece muito mais lucrativa, mas a diferença é só que o casal está trabalhando de graça. Com o pró-labore, a comparação fica justa.</p>
+    </div>
+    <p class="rv">Somando o COE, a depreciação e o pró-labore, chega-se ao <strong>COT</strong>. Ele responde a uma pergunta de médio prazo: <strong>a atividade se sustenta, repondo as máquinas e pagando quem trabalha?</strong></p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 4 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 4</p>
+    <h2 class="rv">O que se deixa de ganhar</h2>
+    <p class="rv">O último degrau é o mais esquecido, e às vezes o mais pesado. Ele vem de uma pergunta simples: <strong>e se eu não produzisse?</strong></p>
+    <ul class="lista rv">
+      <li><strong>A terra própria</strong> poderia ser arrendada. O valor do arrendamento na região é quanto ela renderia sem nenhum trabalho.</li>
+      <li><strong>O dinheiro empatado</strong> em máquinas, animais e instalações poderia estar aplicado, rendendo juros.</li>
+    </ul>
+    <p class="rv">Esses valores se chamam <strong>custo de oportunidade</strong>: o que se deixa de ganhar por escolher produzir. Somados ao COT, formam o <strong>CT, custo total</strong>, que responde à pergunta de longo prazo: <strong>produzir vale mais a pena do que arrendar a terra e aplicar o dinheiro?</strong></p>
+    <p class="destaque rv">Se a atividade não cobre o custo total, a família trabalha para ganhar menos do que ganharia sem trabalhar.</p>
+    <p class="rv">Isso não quer dizer que se deva vender tudo no dia seguinte. Morar no campo, manter a terra na família e gostar do que faz também têm valor. Mas é uma decisão que precisa ser tomada sabendo o tamanho da conta.</p>
+    <div class="novo-box rv">
+      <p class="rot">Se você vai começar</p>
+      Se a terra for arrendada, o arrendamento é dinheiro que sai do bolso e entra no COE. Se for comprada, o arrendamento que ela renderia entra como custo de oportunidade no CT. Nos dois casos a terra tem custo: ela só muda de degrau.
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Custo por saca, por litro, por quilo</h2>
+    <p class="rv">O custo total de uma atividade, sozinho, diz pouco. R$ 300 mil é muito ou pouco? Depende de quanto se produziu. Por isso o passo final é dividir cada degrau pela produção: o resultado é o <strong>custo por unidade</strong>.</p>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead><tr><th>Exemplo: soja, 50 ha, 3.000 sacas</th><th>No ano</th><th>Por saca</th></tr></thead>
+        <tbody>
+          <tr><td>COE: o que saiu do bolso</td><td class="num">R$ 188.000</td><td class="num">R$ 62,67</td></tr>
+          <tr><td>+ depreciação e família</td><td class="num">R$ 56.000</td><td class="num">R$ 18,67</td></tr>
+          <tr><td>COT</td><td class="num">R$ 244.000</td><td class="num">R$ 81,33</td></tr>
+          <tr><td>+ terra e capital</td><td class="num">R$ 94.000</td><td class="num">R$ 31,33</td></tr>
+          <tr><td><strong>CT</strong></td><td class="num"><strong>R$ 338.000</strong></td><td class="num"><strong>R$ 112,67</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rv">Agora a comparação com o preço é direta. Se a saca vale R$ 120, a soja desse exemplo paga todos os degraus e ainda sobra um pouco. Se vale R$ 100, paga o bolso, o desgaste e a família, mas rende menos do que arrendar a terra e aplicar o dinheiro. O módulo 5 trabalha essa comparação.</p>
+    <p class="rv">O custo por unidade também permite comparar com outras propriedades e com as referências da CONAB e do Campo Futuro, e acompanhar a evolução de um ano para outro.</p>
+  </div>
+</section>
+
+<!-- ========== NA SUA PROPRIEDADE ========== -->
+<section class="sua" id="sua">
+  <div class="wrap">
+    <p class="tag">Na sua propriedade</p>
+    <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
+    <h2>Quanto custa a sua atividade?</h2>
+    <p class="so-ja">Escolha uma atividade e use os valores de um ano inteiro, de preferência da última safra. Se a propriedade tem mais de uma atividade, comece pela principal.</p>
+    <p class="so-novo">Use os valores planejados para um ano de produção normal, depois da implantação. Fontes para estimar: custos de produção da CONAB, do Campo Futuro, da EMATER e conversas com produtores da atividade.</p>
+    <p style="margin:4px 0 6px"><button type="button" class="btn btn-sec" id="k-exemplo" style="color:var(--paper);border-color:rgba(250,247,240,.5);padding:11px 18px;font-size:14px">Ver o exemplo da soja</button></p>
+
+    <div class="campos">
+      <div class="campo"><label for="k-ativ">Atividade</label><div class="inp"><input id="k-ativ" class="txt" autocomplete="off" placeholder="soja, leite, gado de corte"></div></div>
+      <div class="campo"><label for="k-un">Unidade de venda <small>saca, litro, kg, arroba, caixa</small></label><div class="inp"><input id="k-un" class="txt" autocomplete="off" placeholder="saca"></div></div>
+      <div class="campo"><label for="k-prod">Produção no ano <small>na unidade de venda</small></label><div class="inp"><input id="k-prod" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <p class="grupo">Sai do bolso · COE</p>
+    <div class="campos c3">
+      <div class="campo"><label for="k-ins">Insumos <small>semente, adubo, defensivos, ração, medicamentos</small></label><div class="inp"><span>R$</span><input id="k-ins" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="k-op">Máquinas e serviços <small>diesel, manutenção, serviços contratados, frete</small></label><div class="inp"><span>R$</span><input id="k-op" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="k-mo">Mão de obra contratada <small>salários, diárias, encargos</small></label><div class="inp"><span>R$</span><input id="k-mo" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="k-out">Outros <small>energia, arrendamento pago, seguro, juros, assistência, taxas</small></label><div class="inp"><span>R$</span><input id="k-out" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <p class="grupo">Sem sair do bolso · COT</p>
+    <div class="campos c3">
+      <div class="campo"><label for="k-dep">Desgaste dos bens por ano <small>a depreciação do inventário</small></label><div class="inp"><span>R$</span><input id="k-dep" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="k-usa-inv" hidden>usar o valor do meu inventário</button></div>
+      <div class="campo"><label for="k-fam">Trabalho da família por ano <small>pessoas × salário rural da região × 12</small></label><div class="inp"><span>R$</span><input id="k-fam" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <p class="grupo">O que deixa de ganhar · CT</p>
+    <div class="campos c3">
+      <div class="campo"><label for="k-terra">Arrendamento que a terra própria renderia <small>por ano. Deixe zero se a terra é arrendada</small></label><div class="inp"><span>R$</span><input id="k-terra" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="k-cap">Rendimento do dinheiro empatado <small>valor dos bens × juros de uma aplicação segura</small></label><div class="inp"><span>R$</span><input id="k-cap" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="k-usa-cap" hidden>calcular a 6% sobre o meu inventário</button></div>
+    </div>
+
+    <div class="resultado" id="k-res" hidden>
+      <div class="empilha"><div id="k-b1" style="background:#B89233"></div><div id="k-b2" style="background:#D9895E"></div><div id="k-b3" style="background:#9DB86A"></div></div>
+      <div class="leg"><span style="--c:#B89233">sai do bolso</span><span style="--c:#D9895E">desgaste e família</span><span style="--c:#9DB86A">terra e capital</span></div>
+      <div class="linha"><span>COE no ano</span><b id="k-coe"></b></div>
+      <div class="linha"><span>COT no ano</span><b id="k-cot"></b></div>
+      <div class="linha"><span>CT no ano</span><b id="k-ct"></b></div>
+      <div class="porun" id="k-porun"></div>
+      <div class="veredito" id="k-ver"></div>
+      <p class="salvo" id="k-salvo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARA LEMBRAR ========== -->
+<section class="lembrar">
+  <div class="wrap">
+    <p class="eyebrow">Para lembrar</p>
+    <h2>O essencial do módulo</h2>
+    <ol>
+      <li class="rv"><span class="n">1</span><span>COE é o que sai do bolso. Responde se a atividade paga as contas do ano.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>COT soma o desgaste dos bens e o trabalho da família. Responde se a atividade se sustenta.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>CT soma o que a terra e o dinheiro renderiam em outro uso. Responde se produzir vale a pena.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>Dividir pela produção dá o custo por unidade, que se compara direto com o preço.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== TESTE RÁPIDO ========== -->
+<section class="teste">
+  <div class="wrap">
+    <p class="eyebrow">Teste rápido</p>
+    <h2>Três perguntas</h2>
+    <p class="sub">Toque na resposta que achar certa.</p>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 1</span>O casal trabalha na própria atividade de leite e não tira salário. Na conta do custo, esse trabalho:</p>
+      <button type="button" class="alt">Não entra, porque não foi pago.</button>
+      <button type="button" class="alt" data-certa>Entra como pró-labore, no COT.</button>
+      <button type="button" class="alt">Entra como gasto da casa.</button>
+      <p class="fb">O trabalho da família tem valor. Sem ele, a atividade parece mais lucrativa do que é, e não dá para comparar com quem contrata.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 2</span>Um produtor colheu 2.500 sacas e o custo total (CT) foi de R$ 275.000. Qual o custo total por saca?</p>
+      <button type="button" class="alt">R$ 90</button>
+      <button type="button" class="alt" data-certa>R$ 110</button>
+      <button type="button" class="alt">R$ 275</button>
+      <p class="fb">R$ 275.000 divididos por 2.500 sacas dá R$ 110 por saca.</p>
+    </div>
+
+    <div class="q rv">
+      <p class="enun"><span class="qn">Pergunta 3</span>A terra é própria e poderia ser arrendada por R$ 60 mil ao ano. Esse valor é:</p>
+      <button type="button" class="alt">Um gasto que sai do bolso, no COE.</button>
+      <button type="button" class="alt" data-certa>Um custo de oportunidade, que entra no CT.</button>
+      <button type="button" class="alt">Nada, porque a terra já está paga.</button>
+      <p class="fb">Ninguém paga esse valor, mas o produtor deixa de recebê-lo ao usar a terra ele mesmo. É custo de oportunidade.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concluir">
+  <div class="wrap">
+    <button type="button" class="btn btn-prim" data-concluir="4">Concluir o módulo 4</button>
+    <span class="proximo">A seguir, módulo 5<br><a href="modulo-5.html">Quanto sobra</a></span>
+  </div>
+</section>
+</main>
+
+<footer class="rod">
+  <div class="wrap">
+    <strong>Gestão da Propriedade Rural</strong>
+    <p>Curso aberto elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria. <a href="index.html">Voltar ao início do curso</a>.</p>
+    <strong>Seus dados</strong>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <strong>Uso de inteligência artificial</strong>
+    <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script>
+(function(){
+  var g = function(id){ return document.getElementById(id); };
+  var num = ['prod','ins','op','mo','out','dep','fam','terra','cap'];
+  var txt = ['ativ','un'];
+  var exemplo = false;
+  num.forEach(function(k){ Curso.mascara(g('k-' + k)); });
+  var fmt2 = function(v){ return 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+
+  function calc(){
+    var v = {}; num.forEach(function(k){ v[k] = Curso.num(g('k-' + k).value); });
+    var un = g('k-un').value.trim() || 'unidade', ativ = g('k-ativ').value.trim();
+    var coe = v.ins + v.op + v.mo + v.out, cot = coe + v.dep + v.fam, ct = cot + v.terra + v.cap;
+    if (!ct){ g('k-res').hidden = true; return; }
+    g('k-res').hidden = false;
+    requestAnimationFrame(function(){
+      g('k-b1').style.width = (coe / ct * 100) + '%';
+      g('k-b2').style.width = ((cot - coe) / ct * 100) + '%';
+      g('k-b3').style.width = ((ct - cot) / ct * 100) + '%';
+    });
+    g('k-coe').textContent = Curso.reais(coe); g('k-cot').textContent = Curso.reais(cot); g('k-ct').textContent = Curso.reais(ct);
+    var pu = g('k-porun');
+    if (v.prod > 0){
+      pu.hidden = false;
+      pu.innerHTML = [['COE', coe], ['COT', cot], ['CT', ct]].map(function(p){
+        return '<div><small>' + p[0] + '</small><b>' + fmt2(p[1] / v.prod) + '</b><i>por ' + un + '</i></div>';
+      }).join('');
+    } else { pu.hidden = true; }
+    var t = 'Do custo total, ' + Math.round(coe / ct * 100) + '% sai do bolso, ' + Math.round((cot - coe) / ct * 100) + '% é desgaste e trabalho da família e ' + Math.round((ct - cot) / ct * 100) + '% é o que a terra e o dinheiro renderiam em outro uso.';
+    if (v.prod > 0) t += ' Para comparar com o preço, use os valores por ' + un + ': o módulo 5 faz essa conta.';
+    else t += ' Informe a produção do ano para ver o custo por unidade.';
+    g('k-ver').className = 'veredito'; g('k-ver').textContent = t;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m4', {atividade:ativ, unidade:un, producao:v.prod, coe:coe, cot:cot, ct:ct,
+        insumos:v.ins, operacoes:v.op, maoDeObra:v.mo, outros:v.out, depreciacao:v.dep, familia:v.fam, terra:v.terra, capital:v.cap});
+      g('k-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else g('k-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
+  }
+  num.concat(txt).forEach(function(k){ g('k-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+
+  var cad = Curso.caderno();
+  if (cad.m3inv && cad.m3inv.depreciacaoAnual){
+    var bi = g('k-usa-inv'); bi.hidden = false;
+    bi.addEventListener('click', function(){ g('k-dep').value = Math.round(cad.m3inv.depreciacaoAnual).toLocaleString('pt-BR'); exemplo = false; calc(); });
+    var bc = g('k-usa-cap'); bc.hidden = false;
+    bc.addEventListener('click', function(){ g('k-cap').value = Math.round(cad.m3inv.valorTotal * 0.06).toLocaleString('pt-BR'); exemplo = false; calc(); });
+  }
+  if (cad.m4){
+    var m = cad.m4, mapa = {prod:m.producao, ins:m.insumos, op:m.operacoes, mo:m.maoDeObra, out:m.outros, dep:m.depreciacao, fam:m.familia, terra:m.terra, cap:m.capital};
+    num.forEach(function(k){ if (mapa[k]) g('k-' + k).value = Math.round(mapa[k]).toLocaleString('pt-BR'); });
+    g('k-ativ').value = m.atividade || ''; g('k-un').value = m.unidade || '';
+    calc();
+  }
+  g('k-exemplo').addEventListener('click', function(){
+    var ex = {ativ:'soja', un:'saca', prod:3000, ins:140000, op:25000, mo:8000, out:15000, dep:20000, fam:36000, terra:70000, cap:24000};
+    txt.forEach(function(k){ g('k-' + k).value = ex[k]; });
+    num.forEach(function(k){ g('k-' + k).value = ex[k].toLocaleString('pt-BR'); });
+    exemplo = true; calc();
+    g('k-res').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>
