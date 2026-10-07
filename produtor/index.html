@@ -8,7 +8,7 @@
 <title>Gestão da Propriedade Rural · curso para produtores</title>
 <meta name="description" content="Curso online e gratuito de gestão da propriedade rural para pequenos e médios produtores: custos, preços, crédito, riscos e planejamento, com os números da sua propriedade.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%232A331C%22/><path d=%22M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12%22 stroke=%22%23FAF7F0%22 stroke-width=%222.2%22 fill=%22none%22/></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232A331C'/%3E%3Ccircle cx='40' cy='30' r='12' fill='%23B89233'/%3E%3Cpath d='M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z' fill='%233D4A2A'/%3E%3Cg stroke='%23FAF7F0' stroke-linecap='round' fill='none'%3E%3Cpath d='M14 13V53M50 13V53' stroke-width='6'/%3E%3Cpath d='M14 22H50M14 41H50M14 41L50 22' stroke-width='4.2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,8 +17,10 @@
 /* ===== Capa ===== */
 .capa{position:relative;min-height:min(88vh,760px);min-height:min(88svh,760px);display:flex;align-items:flex-end;color:var(--paper);background:var(--olive-deep);overflow:hidden}
 .capa .bg{position:absolute;inset:0;background:url('../Aulas/gado-pastagem-mariana-pimentel.jpg') center 75%/cover;transform:scale(1.1);animation:slowzoom 22s ease-out forwards}
-.capa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,51,28,.25) 0%,rgba(42,51,28,.55) 45%,rgba(26,26,23,.92) 100%)}
+.capa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,51,28,.5) 0%,rgba(42,51,28,.62) 45%,rgba(26,26,23,.92) 100%)}
 .capa .wrap{position:relative;z-index:1;padding-top:90px;padding-bottom:62px;width:100%}
+.capa-marca{width:64px;height:64px;display:block;margin-bottom:20px;box-shadow:0 6px 24px rgba(0,0,0,.3);border-radius:12px}
+@media (min-width:600px){.capa-marca{width:80px;height:80px}}
 .capa .sobre{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E3C46E;margin-bottom:18px}
 .capa h1{font-family:'Fraunces',serif;font-weight:500;font-size:46px;line-height:1.02;letter-spacing:-.025em;max-width:13ch}
 .capa h1 em{font-style:italic;color:#E3C46E}
@@ -28,9 +30,6 @@
 .capa .btn-prim:hover{background:#E3C46E;color:var(--mustard-ink)}
 .capa .btn-sec{color:var(--paper);border-color:rgba(250,247,240,.6)}
 .capa .credito{position:absolute;right:10px;bottom:6px;z-index:1;font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.55;text-align:right;max-width:70%;line-height:1.3}
-.sobe{opacity:0;transform:translateY(22px);animation:sobe .9s cubic-bezier(.2,.7,.2,1) forwards}
-.sobe.s2{animation-delay:.18s}.sobe.s3{animation-delay:.36s}.sobe.s4{animation-delay:.54s}
-@keyframes sobe{to{opacity:1;transform:none}}
 @media (min-width:600px){.capa h1{font-size:68px}.capa .lead{font-size:21px}}
 
 /* números da capa */
@@ -124,7 +123,7 @@ a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px
 <header class="topbar">
   <div class="wrap">
     <a class="home" href="index.html">
-      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#2A331C"/><path d="M6 9v15M26 9v15M6 12h20M6 20h20M6 20L26 12" stroke="#FAF7F0" stroke-width="2.2" fill="none"/></svg>
+      <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#2A331C"/><circle cx="40" cy="30" r="12" fill="#B89233"/><path d="M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z" fill="#3D4A2A"/><path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/><g stroke="#FAF7F0" stroke-linecap="round" fill="none"><path d="M14 15V51M50 15V51" stroke-width="4.2"/><path d="M14 22H50M14 31.5H50M14 41H50M14 41L50 22" stroke-width="2.7"/></g></svg>
       <span>Gestão da Propriedade Rural</span>
     </a>
     <span class="mod-tag opc">curso para produtores</span>
@@ -134,6 +133,7 @@ a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px
 <section class="capa">
   <div class="bg" role="img" aria-label="Gado pastando em propriedade rural no Rio Grande do Sul"></div>
   <div class="wrap">
+    <svg class="capa-marca sobe" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#2A331C"/><circle cx="40" cy="30" r="12" fill="#B89233"/><path d="M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z" fill="#3D4A2A"/><path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/><g stroke="#FAF7F0" stroke-linecap="round" fill="none"><path d="M14 15V51M50 15V51" stroke-width="4.2"/><path d="M14 22H50M14 31.5H50M14 41H50M14 41L50 22" stroke-width="2.7"/></g></svg>
     <p class="sobre sobe">Curso online e gratuito · Colégio Politécnico da UFSM</p>
     <h1 class="sobe s2">Quem produz bem também precisa <em>fazer a conta</em>.</h1>
     <p class="lead sobe s3">Dez módulos curtos para entender quanto custa, quanto sobra e como decidir melhor. Para quem já produz e para quem quer começar. No seu ritmo, no celular, com os seus números.</p>
@@ -185,7 +185,7 @@ a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px
       <div class="passo rv d1">
         <svg viewBox="0 0 42 42" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-dasharray="3 2" aria-hidden="true"><path d="M8 7h20l6 6v22H8z"/><path d="M13 17h16M13 23h16M13 29h10"/></svg>
         <h3>Leia</h3>
-        <p>Lições curtas, em linguagem do dia a dia, com exemplos do campo gaúcho.</p>
+        <p>Lições curtas, com exemplos práticos.</p>
       </div>
       <div class="passo rv d2">
         <svg viewBox="0 0 42 42" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-dasharray="3 2" aria-hidden="true"><rect x="9" y="5" width="24" height="32"/><path d="M13 10h16v7H13zM14 23h3M20 23h3M26 23h2M14 29h3M20 29h3M26 29h2"/></svg>

@@ -45,7 +45,7 @@ a{color:var(--accent-deep)}
 @media (max-width:420px){.topbar .mod-tag.opc{display:none}}
 .topbar .mod-tag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--stone);white-space:nowrap}
 .readbar{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:var(--accent);transition:width .1s linear}
-.logo-mark{width:26px;height:26px;flex-shrink:0}
+.logo-mark{width:32px;height:32px;flex-shrink:0;display:block}
 
 /* ===== Revelação ao rolar ===== */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
