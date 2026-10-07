@@ -84,6 +84,11 @@ a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px
 .mod.breve .t,.mod.breve .n{opacity:.55}
 .mod.feito .st{color:#5E7A2E}
 
+/* caderno */
+.caderno-box{margin-top:26px;background:#fff;border:1px solid var(--rule);border-left:5px solid var(--mustard);padding:18px 18px 6px}
+.caderno-box h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;margin-bottom:6px}
+.caderno-box p{font-size:16px;color:var(--ink-soft);line-height:1.55;margin-bottom:12px}
+
 /* perfil */
 .perfil-cards{display:grid;gap:12px;margin-top:22px}
 @media (min-width:600px){.perfil-cards{grid-template-columns:1fr 1fr}}
@@ -190,8 +195,13 @@ a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px
       <div class="passo rv d3">
         <svg viewBox="0 0 42 42" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-dasharray="3 2" aria-hidden="true"><path d="M9 6h22v31l-11-7-11 7z"/><path d="M15 15l4 4 8-8"/></svg>
         <h3>Guarde</h3>
-        <p>Tudo fica salvo no seu aparelho. No último módulo, vira um retrato da propriedade para imprimir.</p>
+        <p>Tudo fica salvo no seu aparelho, e você pode baixar uma cópia. No último módulo, vira um retrato da propriedade para imprimir.</p>
       </div>
+    </div>
+    <div class="caderno-box rv">
+      <h3>Seu caderno</h3>
+      <p>Os números ficam guardados no navegador deste aparelho, sem cadastro e sem enviar nada para a internet. Se você trocar de celular, limpar o navegador ou quiser continuar no computador, use uma cópia do caderno: baixe o arquivo, ou envie para você mesmo pelo WhatsApp ou e-mail, e carregue quando precisar.</p>
+      <div data-copia></div>
     </div>
     <div class="andamento rv" id="andamento" hidden>
       <div class="top"><span>Seu andamento</span><b id="and-txt">0 de 10</b></div>
@@ -238,7 +248,8 @@ a.mod:hover{transform:translateX(3px);border-color:var(--accent);box-shadow:-3px
     <strong>Sobre o curso</strong>
     <p>Curso aberto, elaborado por Róberson Oliveira, docente do Colégio Politécnico da Universidade Federal de Santa Maria, a partir do material da disciplina Gestão de Custos e Projetos Agropecuários. <a href="../index.html">Conheça o material para estudantes</a>.</p>
     <strong>Seus dados</strong>
-    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet.</p>
+    <p>Os números que você preenche ficam guardados apenas no navegador deste aparelho. Nada é enviado para a internet. Para não perder, ou para continuar em outro aparelho, baixe uma cópia do caderno e carregue quando precisar.</p>
+    <div data-copia></div>
     <strong>Uso de inteligência artificial</strong>
     <p>A redação e a programação deste material contaram com apoio de inteligência artificial (Claude, da Anthropic). O conteúdo é de responsabilidade do autor.</p>
   </div>

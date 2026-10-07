@@ -65,6 +65,8 @@ Arcos e cores: Olhar = oliva, Medir = mostarda, Decidir = terra (mesma lógica d
 
 As páginas de módulo são HTML estático: edite direto no arquivo. Cada módulo segue a mesma estrutura (abertura, "neste módulo", lições, "Na sua propriedade", "Para lembrar", teste rápido, concluir). Chaves do caderno: m1, m1novo, m2troca, m2venda, m3inv, m4, m5, m6, m7, m8, m9, m9check, m10. O módulo 10 lê todas para montar o retrato.
 
+Cópia do caderno: botões em `[data-copia]` (rodapé de todas as páginas, bloco "Seu caderno" na home, módulo 10). Baixar gera `caderno-propriedade-AAAA-MM-DD.json` com caderno, progresso e perfil; "Enviar para mim" usa o compartilhamento do celular quando disponível; "Carregar" valida o campo `curso` e substitui os dados. Lembrete fixo no rodapé da tela quando há números e nenhuma cópia há mais de 7 dias (`gpr_copia`), fechável por sessão.
+
 ## Arquivos
 
 - `curso.css`: tokens e componentes comuns.
@@ -79,4 +81,4 @@ Nada linkado a partir da home do aluno até o autor decidir lançar. Quando lan�
 
 ## Registro de trabalho
 
-- 07/10/2026: roteiro, curso.css, curso.js, index.html, modulo-1.html. Perfil "quero começar" e módulo 9 novo (trilha passa a 10). Módulos 2 a 10 escritos, testados em tela de celular e com teste de interação sem erros.
+- 07/10/2026: roteiro, curso.css, curso.js, index.html, modulo-1.html. Perfil "quero começar" e módulo 9 novo (trilha passa a 10). Módulos 2 a 10 escritos, testados em tela de celular e com teste de interação sem erros. Cópia do caderno (baixar, enviar, carregar) e lembrete de 7 dias.

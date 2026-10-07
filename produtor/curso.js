@@ -12,7 +12,9 @@
     concluir: function(n){ var p = ler(KEY_PROG); p['m' + n] = new Date().toISOString().slice(0,10); gravar(KEY_PROG, p); },
     concluido: function(n){ return !!ler(KEY_PROG)['m' + n]; },
     caderno: function(){ return ler(KEY_CAD); },
-    salvarCaderno: function(secao, dados){ var c = ler(KEY_CAD); c[secao] = dados; return gravar(KEY_CAD, c); },
+    salvarCaderno: function(secao, dados){
+      var c = ler(KEY_CAD); c[secao] = dados; return gravar(KEY_CAD, c);
+    },
     /* perfil: 'ja' (já produz) ou 'novo' (quer começar) */
     perfil: function(){ try{ return localStorage.getItem(KEY_PERFIL) || 'ja'; }catch(e){ return 'ja'; } },
     definirPerfil: function(p){
@@ -51,6 +53,87 @@
       b.addEventListener('click', function(){ Curso.definirPerfil(b.getAttribute('data-perfil')); });
     });
   }
+
+  /* ===== Cópia do caderno: baixar, enviar e carregar ===== */
+  var KEY_BKP = 'gpr_copia';
+  function temDados(){ var c = ler(KEY_CAD); return Object.keys(c).length > 0; }
+  function pacote(){
+    var perfil; try{ perfil = localStorage.getItem(KEY_PERFIL); }catch(e){}
+    return {curso:'gestao-propriedade-rural', versao:1, data:new Date().toISOString(), perfil:perfil || 'ja', progresso:ler(KEY_PROG), caderno:ler(KEY_CAD)};
+  }
+  function nomeArquivo(){ return 'caderno-propriedade-' + new Date().toISOString().slice(0,10) + '.json'; }
+  function marcarCopia(){ try{ localStorage.setItem(KEY_BKP, new Date().toISOString()); }catch(e){} }
+  function arquivo(){ return new Blob([JSON.stringify(pacote(), null, 1)], {type:'application/json'}); }
+
+  Curso.baixar = function(){
+    var url = URL.createObjectURL(arquivo()), a = document.createElement('a');
+    a.href = url; a.download = nomeArquivo(); document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
+    marcarCopia(); avisoCopia();
+  };
+  Curso.podeEnviar = function(){
+    try{ return !!(navigator.canShare && navigator.canShare({files:[new File(['{}'], 'x.json', {type:'application/json'})]})); }catch(e){ return false; }
+  };
+  Curso.enviar = function(){
+    var f = new File([arquivo()], nomeArquivo(), {type:'application/json'});
+    navigator.share({files:[f], title:'Caderno da propriedade', text:'Cópia do meu caderno do curso Gestão da Propriedade Rural. Para recuperar, use "Carregar caderno" no site do curso.'})
+      .then(function(){ marcarCopia(); avisoCopia(); }).catch(function(){});
+  };
+  Curso.carregar = function(file){
+    var r = new FileReader();
+    r.onload = function(){
+      var d;
+      try{ d = JSON.parse(r.result); }catch(e){ d = null; }
+      if (!d || d.curso !== 'gestao-propriedade-rural' || typeof d.caderno !== 'object'){
+        alert('Este arquivo não é um caderno do curso. Procure o arquivo que começa com "caderno-propriedade".'); return;
+      }
+      var quando = new Date(d.data).toLocaleDateString('pt-BR');
+      if (temDados() && !confirm('Substituir os números deste aparelho pelos do caderno de ' + quando + '?')) return;
+      gravar(KEY_CAD, d.caderno); gravar(KEY_PROG, d.progresso || {});
+      try{ localStorage.setItem(KEY_PERFIL, d.perfil || 'ja'); }catch(e){}
+      marcarCopia();
+      alert('Caderno de ' + quando + ' carregado.');
+      location.reload();
+    };
+    r.readAsText(file);
+  };
+
+  /* monta os botões em qualquer elemento com data-copia */
+  function botoesCopia(){
+    document.querySelectorAll('[data-copia]').forEach(function(box){
+      var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json'; inp.hidden = true;
+      inp.addEventListener('change', function(){ if (inp.files[0]) Curso.carregar(inp.files[0]); inp.value = ''; });
+      var h = '<button type="button" class="cp-b" data-a="baixar">Baixar meu caderno</button>';
+      if (Curso.podeEnviar()) h += '<button type="button" class="cp-b" data-a="enviar">Enviar para mim</button>';
+      h += '<button type="button" class="cp-b" data-a="carregar">Carregar caderno</button>';
+      box.classList.add('copia'); box.innerHTML = h; box.appendChild(inp);
+      box.querySelectorAll('.cp-b').forEach(function(b){
+        b.addEventListener('click', function(){
+          var a = b.getAttribute('data-a');
+          if (a === 'carregar') return inp.click();
+          if (!temDados()){ alert('O caderno ainda está vazio. Preencha a conta "Na sua propriedade" de algum módulo primeiro.'); return; }
+          if (a === 'baixar') Curso.baixar(); else Curso.enviar();
+        });
+      });
+    });
+  }
+
+  /* lembrete quando há números e nenhuma cópia nos últimos 7 dias */
+  function avisoCopia(){
+    var bar = document.getElementById('aviso-copia');
+    var ult; try{ ult = localStorage.getItem(KEY_BKP); }catch(e){}
+    var velho = !ult || (Date.now() - new Date(ult).getTime()) > 7 * 864e5;
+    var fechado; try{ fechado = sessionStorage.getItem('gpr_aviso_fechado'); }catch(e){}
+    if (!temDados() || !velho || fechado){ if (bar) bar.remove(); return; }
+    if (bar) return;
+    bar = document.createElement('div'); bar.id = 'aviso-copia'; bar.className = 'aviso-copia';
+    bar.innerHTML = '<span>Seus números estão guardados só neste aparelho. Baixe uma cópia para não perder.</span>' +
+      '<button type="button" class="ac-b">Baixar cópia</button><button type="button" class="ac-x" aria-label="fechar">×</button>';
+    bar.querySelector('.ac-b').addEventListener('click', function(){ Curso.podeEnviar() ? Curso.enviar() : Curso.baixar(); });
+    bar.querySelector('.ac-x').addEventListener('click', function(){ try{ sessionStorage.setItem('gpr_aviso_fechado', '1'); }catch(e){} bar.remove(); });
+    document.body.appendChild(bar);
+  }
+  Curso.avisoCopia = avisoCopia;
 
   /* revelação ao rolar */
   function revelar(){
@@ -119,6 +202,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function(){
-    perfil(); revelar(); animar(); barraLeitura(); teste(); concluir();
+    perfil(); revelar(); animar(); barraLeitura(); teste(); concluir(); botoesCopia();
+    setTimeout(avisoCopia, 1500);
   });
 })();
