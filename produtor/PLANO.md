@@ -8,7 +8,7 @@ Curso online, autoinstrucional, sem certificação, para pequeno e médio produt
 
 ## Princípios
 
-1. **A propriedade do aluno é o caso do curso inteiro.** Cada módulo termina com "Na sua propriedade": ele preenche números da realidade dele, que ficam salvos no navegador (`localStorage`, chave `gpr_caderno`). O módulo 11 junta tudo num retrato da propriedade, imprimível.
+1. **A propriedade do aluno é o caso do curso inteiro.** Cada módulo termina com "Na sua propriedade": ele preenche números da realidade dele, que ficam salvos no navegador (`localStorage`, chave `gpr_caderno`). O módulo 12 junta tudo num retrato da propriedade, imprimível.
 2. **Parte do que ele já sabe.** Pergunta antes do conceito. Sigla só depois da ideia em palavras simples (COE = "o dinheiro que sai do bolso").
 3. **Unidades do dia a dia**: saca, litro, cabeça, hectare, mês.
 4. **Curto e no celular.** Módulo de 20 a 30 minutos, lições curtas, fonte grande (base 18px).
@@ -35,7 +35,8 @@ Escolhido na página inicial e trocável em cada módulo (`gpr_perfil`: `ja` ou 
 | 8 | Decidir | Riscos e venda | `modulo-8.html` | parte-4 (parcial) | pronto |
 | 9 | Decidir | Saber lidar com gente | `modulo-9.html` | conteúdo novo | pronto |
 | 10 | Decidir | Começar ou ampliar | `modulo-10.html` | conteúdo novo | pronto |
-| 11 | Decidir | Planejar o próximo passo | `modulo-11.html` | projeto.html | pronto |
+| 11 | Decidir | Vender melhor e agregar valor | `modulo-11.html` | conteúdo novo | pronto |
+| 12 | Decidir | Planejar o próximo passo | `modulo-12.html` | projeto.html | pronto |
 
 Arcos e cores: Olhar = oliva, Medir = mostarda, Decidir = terra (mesma lógica dos movimentos do site do aluno).
 
@@ -51,7 +52,8 @@ Arcos e cores: Olhar = oliva, Medir = mostarda, Decidir = terra (mesma lógica d
 8. **Riscos e venda.** Clima, preço, saúde; PROAGRO, seguro rural, diversificação; vender em partes, venda antecipada, armazenagem. Na sua propriedade: mapa de riscos.
 9. **Saber lidar com gente.** Família e funcionários: cinco habilidades (ouvir, combinar, dar retorno, negociar, delegar), valorização, segurança e básico da lei (conceitual, conferir com sindicato/contador), família que trabalha junto, sucessão. Na sua propriedade: mapa de tarefas e custo real de um funcionário.
 10. **Começar ou ampliar.** Escolher a atividade, comprar x arrendar, capital de entrada, documentação (CAR, CCIR, ITR, matrícula, inscrição estadual, CAF), assistência técnica, começar pequeno.
-11. **Planejar o próximo passo.** Junta o caderno em um plano (próxima safra ou novo negócio); retrato imprimível; ponte para projeto.html.
+11. **Vender melhor e agregar valor.** Onde fica o dinheiro na cadeia, cooperativas e associações, agroindústria familiar e legalização (PEAF, selo Sabor Gaúcho), venda direta, PNAE (Lei 15.226/2025: mínimo de 45% da agricultura familiar a partir de 2026) e PAA, orgânico, indicação geográfica, marca. Na sua propriedade: vale a pena transformar?
+12. **Planejar o próximo passo.** Junta o caderno em um plano (próxima safra ou novo negócio); retrato imprimível; ponte para projeto.html.
 
 ## Estrutura de cada página de módulo
 
@@ -65,7 +67,7 @@ Arcos e cores: Olhar = oliva, Medir = mostarda, Decidir = terra (mesma lógica d
 
 ## Manutenção
 
-As páginas de módulo são HTML estático: edite direto no arquivo. Cada módulo segue a mesma estrutura (abertura, "neste módulo", lições, "Na sua propriedade", "Para lembrar", teste rápido, concluir). Chaves do caderno: m1, m1novo, m2troca, m2venda, m3inv, m4, m5, m6, m7, m8, pessoasTarefas e pessoasCusto (módulo 9), m9 e m9check (módulo 10, chaves mantidas da numeração antiga), m10 (módulo 11). O módulo 11 lê todas para montar o retrato.
+As páginas de módulo são HTML estático: edite direto no arquivo. Cada módulo segue a mesma estrutura (abertura, "neste módulo", lições, "Na sua propriedade", "Para lembrar", teste rápido, concluir). Chaves do caderno: m1, m1novo, m2troca, m2venda, m3inv, m4, m5, m6, m7, m8, pessoasTarefas e pessoasCusto (módulo 9), m9 e m9check (módulo 10, chaves mantidas da numeração antiga), m11valor (módulo 11), m10 (módulo 12). O módulo 12 lê todas para montar o retrato.
 
 Cópia do caderno: botões em `[data-copia]` (rodapé de todas as páginas, bloco "Seu caderno" na home, módulo 10). Baixar gera `caderno-propriedade-AAAA-MM-DD.json` com caderno, progresso e perfil; "Enviar para mim" usa o compartilhamento do celular quando disponível; "Carregar" valida o campo `curso` e substitui os dados. Lembrete fixo no rodapé da tela quando há números e nenhuma cópia há mais de 7 dias (`gpr_copia`), fechável por sessão.
 
@@ -74,7 +76,7 @@ Cópia do caderno: botões em `[data-copia]` (rodapé de todas as páginas, bloc
 - `curso.css`: tokens e componentes comuns.
 - `curso.js`: progresso, caderno, revelação ao rolar, quiz, barra de leitura.
 - `index.html`: página inicial do curso.
-- `modulo-N.html`: um por módulo, de 1 a 11.
+- `modulo-N.html`: um por módulo, de 1 a 12.
 - Imagens: reaproveitar `../Aulas/*.jpg` com o crédito já usado no site.
 
 ## Publicação
@@ -85,3 +87,4 @@ Nada linkado a partir da home do aluno até o autor decidir lançar. Quando lan�
 
 - 07/10/2026: roteiro, curso.css, curso.js, index.html, modulo-1.html. Perfil "quero começar" e módulo 9 novo (trilha passa a 10). Módulos 2 a 10 escritos, testados em tela de celular e com teste de interação sem erros. Cópia do caderno (baixar, enviar, carregar) e lembrete de 7 dias.
 - Módulo 9, Saber lidar com gente: trilha passa a 11 módulos; quadro Pessoas no retrato.
+- Módulo 11, Vender melhor e agregar valor; Planejar vira o 12. Lições novas: impostos e obrigações (módulo 3, lição 6) e solo e ambiente (módulo 8, lição 3). Curso fechado em 12 módulos.

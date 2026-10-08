@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#7C3D1F">
 <meta name="robots" content="noindex">
-<title>Módulo 11 · Planejar o próximo passo</title>
-<meta name="description" content="Módulo 10 do curso de gestão para produtores: planejar o próximo passo, objetivos, metas, ações, acompanhamento e o retrato da propriedade para imprimir.">
+<title>Módulo 11 · Vender melhor e agregar valor</title>
+<meta name="description" content="Módulo 11 do curso de gestão para produtores: vender melhor e agregar valor, cooperativismo, agroindústria familiar, venda direta, compras públicas, orgânicos, indicação geográfica e marca própria.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/produtor/modulo-11.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232A331C'/%3E%3Ccircle cx='40' cy='30' r='12' fill='%23B89233'/%3E%3Cpath d='M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z' fill='%233D4A2A'/%3E%3Cg stroke='%23FAF7F0' stroke-linecap='round' fill='none'%3E%3Cpath d='M14 13V53M50 13V53' stroke-width='6'/%3E%3Cpath d='M14 22H50M14 41H50M14 41L50 22' stroke-width='4.2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,113 +14,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="curso.css">
 <style>
-/* metas: vaga x clara */
-.metas{display:grid;gap:10px;margin:20px 0}
-.meta-par{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--rule);background:#fff}
-@media (min-width:600px){.meta-par{grid-template-columns:1fr 1fr}}
-.meta-par div{padding:14px 16px;font-size:16px;line-height:1.45}
-.meta-par .vaga{color:var(--stone);text-decoration:line-through;text-decoration-color:rgba(168,85,46,.5);background:var(--paper-warm)}
-.meta-par .clara{color:var(--ink)}
-.meta-par small{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);margin-bottom:4px;text-decoration:none}
+/* barra do preço final */
+.preco-final{background:#fff;border:1px solid var(--rule);padding:16px;margin:24px 0}
+.preco-final .tit{display:flex;justify-content:space-between;font-size:15px;margin-bottom:8px}
+.preco-final .tit b{font-family:'IBM Plex Mono',monospace}
+.pf-barra{display:flex;height:30px;overflow:hidden}
+.pf-barra div{width:0;transition:width .9s cubic-bezier(.2,.7,.2,1);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden}
+.preco-final.on .pf-barra div{width:var(--w)}
+.preco-final.on .pf-barra div:nth-child(2){transition-delay:.2s}.preco-final.on .pf-barra div:nth-child(3){transition-delay:.4s}.preco-final.on .pf-barra div:nth-child(4){transition-delay:.6s}.preco-final.on .pf-barra div:nth-child(5){transition-delay:.8s}
+.pf-leg{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-top:10px;font-size:14px;color:var(--ink-soft)}
+.pf-leg b{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
+.pf-leg span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.preco-final .cap{font-size:14.5px;color:var(--stone);margin-top:10px;line-height:1.45}
 
-/* indicadores */
-.inds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
-.ind{background:#fff;border:1px solid var(--rule);padding:14px}
-.ind b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin-bottom:3px}
-.ind span{font-size:14.5px;color:var(--ink-soft);line-height:1.4;display:block}
+/* comparador de caminhos */
+.comp{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.comp .abas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.comp .abas button{font:inherit;font-size:14px;padding:8px 11px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.comp .abas button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
+.crit{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-bottom:9px;font-size:14.5px}
+@media (max-width:420px){.crit{grid-template-columns:118px 1fr;font-size:13.5px}}
+.crit .tr{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.crit .tr i{height:14px;background:var(--rule-soft);transition:background .4s}
+.crit .tr i.on{background:var(--terra)}
+.comp .nota{font-size:15px;color:var(--ink-soft);margin-top:12px;line-height:1.5;min-height:46px}
 
-/* retrato */
-.retrato{background:#fff;color:var(--ink);padding:22px 18px 16px;margin-top:18px;border-top:6px solid var(--terra);font-size:15px}
-.retrato p{color:var(--ink-soft);margin-bottom:0}
-.retrato .ret-eyebrow{color:var(--terra)}
-.retrato .sub{color:var(--stone)}
-.ret-cab{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:14px}
-.ret-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin:0 0 4px}
-.retrato h3{font-family:'Fraunces',serif;font-weight:500;font-size:27px;line-height:1.1;margin:0}
-.retrato .sub{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--stone);margin:6px 0 0}
-.ret-marca{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.ret-marca svg{width:46px;height:46px;display:block}
-.ret-marca b{font-family:'Fraunces',serif;font-weight:500;font-size:15px;line-height:1.05;display:block;color:var(--ink)}
-.ret-marca b em{color:var(--olive)}
-.ret-marca small{display:block;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-top:4px}
-.ret-resumo{display:grid;gap:8px;margin-bottom:12px}
-@media (min-width:600px){.ret-resumo{grid-template-columns:repeat(3,1fr)}}
-.chip{padding:10px 12px;border-left:5px solid var(--stone);background:var(--paper-warm)}
-.chip small{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone)}
-.chip b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:17px;line-height:1.2;margin-top:2px}
-.chip.ok{border-left-color:#6E8A3A;background:#EEF2E2}.chip.meio{border-left-color:var(--mustard);background:#F6EFD9}.chip.alerta{border-left-color:var(--terra);background:#F6E4DA}
-.ret-grid{display:grid;gap:10px}
-@media (min-width:600px){.ret-grid{grid-template-columns:1fr 1fr}}
-.rcard{border:1px solid var(--rule);background:#fff;padding:12px 14px;break-inside:avoid;display:flex;flex-direction:column}
-.rcard h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:6px;font-weight:600;display:flex;align-items:center;gap:8px}
-.rcard h4 i{font-style:normal;color:var(--stone-light);font-weight:500}
-.rcard .l{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:3px 0;border-bottom:1px dashed var(--rule-soft)}
-.rcard .l:last-of-type{border-bottom:0}
-.rcard .l b{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
-.rcard .graf{margin:8px 0 2px}
-.rcard .graf svg{width:100%;height:auto;display:block}
-.rcard .graf text{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:#6B6960}
-.leit{margin-top:auto;padding:8px 0 0 10px;font-size:13.5px;line-height:1.4;color:var(--ink-soft);border-left:3px solid var(--stone-light);margin-left:0}
-.rcard .leit{margin-top:10px}
-.leit.ok{border-left-color:#6E8A3A}.leit.meio{border-left-color:var(--mustard)}.leit.alerta{border-left-color:var(--terra)}
-.rcard.vazio{border-style:dashed;background:transparent}
-.rcard.vazio p{font-size:13.5px;color:var(--stone);margin:0}
-.rcard.vazio a{color:var(--terra-deep)}
-.rcard p.txt{font-size:14px;color:var(--ink-soft);margin:3px 0 0;white-space:pre-wrap}
-.rcard.largo,.rcard.largo2{grid-column:1/-1}
-.acoes-t{width:100%;border-collapse:collapse;font-size:14px}
-.acoes-t th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);text-align:left;font-weight:500;padding:2px 4px}
-.acoes-t td{padding:5px 4px;border-bottom:1px dashed var(--rule-soft);vertical-align:top}
-.acoes-t td.n{font-family:'IBM Plex Mono',monospace;color:var(--terra);font-weight:600;width:18px}
-.ret-rod{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:10px;border-top:1px solid var(--rule);font-size:11px;line-height:1.4;color:var(--stone)}
-.ret-rod svg{width:24px;height:24px;flex-shrink:0}
-.campo textarea{width:100%;min-height:68px;border:2px solid transparent;background:var(--paper);font:inherit;font-size:16px;padding:10px 12px;color:var(--ink);resize:vertical;outline:none}
-.campo textarea:focus{border-color:var(--mustard)}
-.acao-l{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;margin-bottom:6px}
-.acao-l input{min-width:0;border:2px solid transparent;background:var(--paper);font:inherit;font-size:15px;padding:10px;color:var(--ink);outline:none}
-.acao-l input:focus{border-color:var(--mustard)}
-.acao-h{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(250,247,240,.6);margin:16px 0 4px}
-.imprimir{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.imprimir .btn{background:var(--mustard);color:var(--mustard-ink)}
-.imprimir .btn-sec{background:transparent;color:var(--paper);border:1px solid rgba(250,247,240,.5)}
-.final-msg{text-align:center;padding:40px 0 10px}
-.final-msg h2{font-family:'Fraunces',serif;font-weight:500;font-size:30px;line-height:1.15;margin:12px auto 12px;max-width:20ch}
-.final-msg p{color:var(--ink-soft);max-width:48ch;margin:0 auto}
-
-@page{size:A4;margin:8mm 10mm}
-@media print{
-  html,body{background:#fff}
-  body{font-size:9pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .topbar,.mod-hero,.neste,.licao,.lembrar,.teste,.concluir,footer.rod,.final-msg,.sua .tag,.sua h2,.sua>.wrap>p,.perfil-sw,.campos,.acao-h,#p-acoes,.imprimir,.salvo,.copia,.sua .so-ja,.sua .so-novo,.aviso-copia{display:none!important}
-  .sua{background:#fff;color:#000;margin:0}
-  .sua::before{display:none}
-  .sua .wrap{padding:0;max-width:none}
-  .retrato{margin:0;padding:8px 0 0;border-top:4px solid #A8552E;font-size:8pt}
-  .ret-cab{padding-bottom:8px;margin-bottom:8px}
-  .retrato h3{font-size:16pt}
-  .ret-eyebrow{font-size:7pt}
-  .retrato .sub{font-size:7.5pt;margin-top:3px}
-  .ret-marca svg{width:36px;height:36px}
-  .ret-marca b{font-size:11pt}
-  .ret-resumo{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
-  .chip{padding:5px 8px}
-  .chip small{font-size:6.5pt}
-  .chip b{font-size:9.5pt}
-  .ret-grid{grid-template-columns:repeat(3,1fr);gap:6px}
-  .rcard.largo2{grid-column:span 2}
-  .rcard{padding:6px 8px}
-  .rcard h4{font-size:7pt;margin-bottom:3px}
-  .rcard .l{font-size:7.6pt;padding:1px 0}
-  .rcard p.txt{font-size:7.6pt;margin-top:1px}
-  .leit{font-size:7.2pt;line-height:1.3;padding-top:3px}
-  .rcard .leit{margin-top:5px}
-  .rcard .graf{margin:4px 0 0}
-  .acoes-t{font-size:7.6pt}
-  .acoes-t td{padding:1.5px 4px}
-  .ret-grid,.ret-resumo{break-inside:auto}
-  .retrato{break-inside:avoid}
-  .ret-rod{font-size:7pt;margin-top:8px;padding-top:6px}
-}
+/* calculadora */
+.mini{font:inherit;font-size:13px;font-weight:600;padding:8px 12px;background:transparent;color:#E3C46E;border:1px solid rgba(227,196,110,.5);cursor:pointer}
+.grupo{margin:22px 0 6px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E3C46E;display:flex;align-items:center;gap:10px}
+.grupo::after{content:"";flex:1;height:1px;background:rgba(250,247,240,.2)}
+.campo .inp input.txt{font-family:'IBM Plex Sans',sans-serif;font-size:17px}
 </style>
 </head>
 <body class="arco-decidir">
@@ -131,31 +54,33 @@
       <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#2A331C"/><circle cx="40" cy="30" r="12" fill="#B89233"/><path d="M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z" fill="#3D4A2A"/><path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/><g stroke="#FAF7F0" stroke-linecap="round" fill="none"><path d="M14 15V51M50 15V51" stroke-width="4.2"/><path d="M14 22H50M14 31.5H50M14 41H50M14 41L50 22" stroke-width="2.7"/></g></svg>
       <span>Gestão da Propriedade Rural</span>
     </a>
-    <span class="mod-tag">módulo 11 de 11</span>
+    <span class="mod-tag">módulo 11 de 12</span>
   </div>
   <div class="readbar"></div>
 </header>
 
 <section class="mod-hero">
-  <div class="bg" style="background-image:url('../Aulas/lavoura-soja-rs.jpg')" role="img" aria-label="Lavoura de soja no Rio Grande do Sul"></div>
+  <div class="bg" style="background-image:url('../Aulas/soja-farelo-oleo.jpg')" role="img" aria-label="Grão, farelo e óleo de soja lado a lado"></div>
   <div class="wrap">
     <div class="num sobe">11</div>
-    <p class="arco">Decidir · o plano</p>
-    <h1>Planejar o próximo passo</h1>
-    <p class="pergunta">Com tudo o que você calculou, qual é o próximo passo?</p>
-    <div class="meta"><span>4 lições</span><span>cerca de 25 minutos</span></div>
+    <p class="arco">Decidir · o valor</p>
+    <h1>Vender melhor e agregar valor</h1>
+    <p class="pergunta">De cada real que o consumidor paga pelo que você produz, quanto chega até você?</p>
+    <div class="meta"><span>6 lições</span><span>cerca de 25 minutos</span></div>
   </div>
-  <span class="credito">lavoura de soja no Rio Grande do Sul · CC BY-SA 3.0, Tiago Fioreze/Wikimedia Commons</span>
+  <span class="credito">grão, farelo e óleo de soja · CC BY 2.0, United Soybean Board</span>
 </section>
 
 <section class="neste">
   <div class="wrap">
     <p class="eyebrow">Neste módulo</p>
     <ol>
-      <li>O plano em uma página.</li>
-      <li>Metas que dá para medir.</li>
-      <li>Acompanhar sem complicar.</li>
-      <li>Onde buscar ajuda.</li>
+      <li>Onde fica o dinheiro entre a porteira e a mesa.</li>
+      <li>Comprar e vender junto: cooperativas e associações.</li>
+      <li>Transformar a produção na própria propriedade.</li>
+      <li>Vender direto ao consumidor e às compras públicas.</li>
+      <li>Diferenciar: orgânico, origem e marca.</li>
+      <li>Escolher o caminho que cabe na sua propriedade.</li>
     </ol>
   </div>
 </section>
@@ -165,19 +90,23 @@
 <section class="licao">
   <div class="wrap">
     <p class="tag rv">Lição 1</p>
-    <h2 class="rv">O plano em uma página</h2>
-    <p class="rv">Ao longo do curso, você separou as contas, olhou o mercado, fez o inventário, calculou custos, sobras, caixa, crédito e riscos. Agora é hora de transformar os números em decisões. Um bom plano cabe numa página e responde a quatro perguntas:</p>
-    <ul class="lista rv">
-      <li><strong>Onde estamos:</strong> os números da propriedade hoje. O retrato no fim deste módulo junta tudo o que você preencheu.</li>
-      <li><strong>Onde queremos chegar:</strong> os objetivos da família, por prazo, como no módulo 1.</li>
-      <li><strong>O que vamos fazer:</strong> poucas ações, cada uma com prazo e responsável.</li>
-      <li><strong>Como vamos saber se deu certo:</strong> os números que vão ser acompanhados.</li>
-    </ul>
-    <p class="destaque rv">Um plano curto que a família inteira conhece vale mais do que um projeto grosso guardado na gaveta.</p>
-    <div class="novo-box rv">
-      <p class="rot">Se você vai começar</p>
-      O seu plano é o plano de implantação: qual atividade, onde, com quanto capital, em que ordem fazer as coisas e quando a família deve estar vivendo do negócio. Para um projeto completo, com fluxo de vários anos e indicadores de viabilidade, use o <a href="../projeto.html">simulador de projetos</a> do site da disciplina.
+    <h2 class="rv">Onde fica o dinheiro</h2>
+    <p class="rv">No módulo 2, a cadeia apareceu como um problema: o produtor aceita o preço que o mercado oferece. Este módulo olha a mesma cadeia pelo outro lado. Entre a porteira e a mesa, cada elo fica com uma parte do que o consumidor paga. <strong>Agregar valor é trazer para dentro da propriedade uma parte do trabalho, e do dinheiro, que hoje fica com outros elos.</strong></p>
+
+    <div class="preco-final rv" data-anima>
+      <div class="tit"><span>Preço pago pelo consumidor</span><b>R$ 10,00</b></div>
+      <div class="pf-barra">
+        <div style="--w:32%;background:#3D4A2A"></div>
+        <div style="--w:24%;background:#8A6C1F"></div>
+        <div style="--w:12%;background:#A88326"></div>
+        <div style="--w:14%;background:#D9895E"></div>
+        <div style="--w:18%;background:#A8552E"></div>
+      </div>
+      <div class="pf-leg"><span style="--c:#3D4A2A">produtor <b>R$ 3,20</b></span><span style="--c:#8A6C1F">indústria <b>R$ 2,40</b></span><span style="--c:#A88326">transporte e armazenagem <b>R$ 1,20</b></span><span style="--c:#D9895E">impostos <b>R$ 1,40</b></span><span style="--c:#A8552E">comércio <b>R$ 1,80</b></span></div>
+      <p class="cap">Valores de exemplo. A divisão real muda muito de um produto para outro: o produtor fica com uma parte maior nos produtos vendidos quase in natura e com uma parte menor nos muito processados.</p>
     </div>
+
+    <p class="rv">Há quatro caminhos para ficar com uma parte maior: <strong>se juntar</strong> a outros produtores, <strong>transformar</strong> a produção, <strong>vender direto</strong> e <strong>diferenciar</strong> o produto. Nenhum deles é de graça. Cada um traz trabalho, investimento e risco. As próximas lições mostram o que cada caminho pede e o que oferece.</p>
   </div>
 </section>
 
@@ -186,15 +115,14 @@
   <div class="wrap">
     <div class="sep"></div>
     <p class="tag rv" style="margin-top:34px">Lição 2</p>
-    <h2 class="rv">Metas que dá para medir</h2>
-    <p class="rv">"Melhorar a propriedade" é um desejo, não uma meta. Uma meta diz <strong>o quê</strong>, <strong>quanto</strong> e <strong>até quando</strong>. Assim, no fim do prazo, dá para saber se foi cumprida.</p>
-    <div class="metas">
-      <div class="meta-par rv d1"><div class="vaga"><small>vaga</small>Gastar menos com a lavoura.</div><div class="clara"><small>clara</small>Baixar o custo que sai do bolso da soja de R$ 65 para R$ 60 por saca na próxima safra.</div></div>
-      <div class="meta-par rv d2"><div class="vaga"><small>vaga</small>Organizar as contas.</div><div class="clara"><small>clara</small>Anotar todas as entradas e saídas, separando casa e propriedade, de janeiro a dezembro.</div></div>
-      <div class="meta-par rv d3"><div class="vaga"><small>vaga</small>Ter uma reserva.</div><div class="clara"><small>clara</small>Guardar R$ 30 mil até o fim da próxima safra, separando 10% de cada venda.</div></div>
-      <div class="meta-par rv d4"><div class="vaga"><small>vaga</small>Começar a produzir.</div><div class="clara"><small>clara</small>Arrendar 3 ha e vender as primeiras caixas de hortaliças na feira do município até setembro.</div></div>
-    </div>
-    <p class="rv">Prefira três metas que serão cumpridas a dez que ficarão no papel.</p>
+    <h2 class="rv">Juntos se vende melhor</h2>
+    <p class="rv">Um produtor sozinho tem pouca força diante de quem vende o adubo e de quem compra a produção. Cem produtores juntos têm outra conversa. É a ideia das <strong>cooperativas</strong> e <strong>associações</strong>, e o Rio Grande do Sul tem uma das tradições cooperativistas mais fortes do país.</p>
+    <ul class="lista rv">
+      <li><strong>Comprar junto:</strong> insumos em maior volume, com preço e prazo melhores.</li>
+      <li><strong>Vender junto:</strong> volume e regularidade que um produtor sozinho não consegue oferecer a um mercado, a uma indústria ou à merenda escolar.</li>
+      <li><strong>Usar junto:</strong> armazém, agroindústria, máquinas, assistência técnica. Um condomínio de máquinas entre vizinhos é uma forma simples de cooperação.</li>
+    </ul>
+    <p class="rv">Cooperar também tem deveres. A cooperativa é dos associados: funciona bem quando eles participam das assembleias, acompanham as contas e entregam a produção combinada, inclusive quando um atravessador oferece um pouco mais naquele dia. Quem só aparece na hora de cobrar enfraquece o que é de todos.</p>
   </div>
 </section>
 
@@ -203,17 +131,19 @@
   <div class="wrap">
     <div class="sep"></div>
     <p class="tag rv" style="margin-top:34px">Lição 3</p>
-    <h2 class="rv">Acompanhar sem complicar</h2>
-    <p class="rv">Não é preciso acompanhar tudo. Escolha poucos números, de quatro a seis, e olhe para eles sempre na mesma data, por exemplo no primeiro domingo de cada mês, em família. Algumas sugestões:</p>
-    <div class="inds">
-      <div class="ind rv d1"><b>Saldo do caixa</b><span>Quanto há, e quanto se espera para os próximos três meses.</span></div>
-      <div class="ind rv d2"><b>Custo por unidade</b><span>Por saca, por litro, por quilo. Comparado com o preço.</span></div>
-      <div class="ind rv d3"><b>Produtividade</b><span>Sacas por hectare, litros por vaca, terneiros por vaca.</span></div>
-      <div class="ind rv d4"><b>Dívidas</b><span>Quanto falta pagar e quando vencem as próximas parcelas.</span></div>
-      <div class="ind rv d1"><b>Relação de troca</b><span>Quanto do produto paga o principal insumo.</span></div>
-      <div class="ind rv d2"><b>Retirada da família</b><span>Se está dentro do combinado.</span></div>
+    <h2 class="rv">Transformar a produção</h2>
+    <p class="rv">Leite que vira queijo, porco que vira salame, uva que vira suco ou vinho, fruta que vira doce, cana que vira melado. A <strong>agroindústria familiar</strong> é um dos caminhos mais tradicionais de agregar valor no Rio Grande do Sul. Ela muda a natureza do negócio:</p>
+    <ul class="lista rv">
+      <li><strong>Mais trabalho:</strong> processar, embalar, vender e cuidar da higiene, todos os dias.</li>
+      <li><strong>Investimento:</strong> instalações adequadas, equipamentos, embalagens.</li>
+      <li><strong>Exigências:</strong> sanitárias, ambientais e fiscais. Produto de origem animal, por exemplo, precisa de inspeção sanitária.</li>
+    </ul>
+    <h3 class="rv">A legalização</h3>
+    <p class="rv">O serviço de inspeção define onde o produto pode ser vendido. Com a inspeção municipal, a venda é dentro do município. Com a estadual, no estado. Com a federal, ou com a adesão do serviço local ao sistema nacional de inspeção, em todo o país. Legalizar dá trabalho, mas é o que permite vender para mercados, restaurantes e a merenda escolar sem risco de apreensão.</p>
+    <div class="dica rv">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
+      <span>No Rio Grande do Sul, o Programa Estadual de Agroindústria Familiar apoia a legalização, a assistência técnica e a comercialização, e permite usar o selo Sabor Gaúcho nos produtos. Procure a EMATER ou a secretaria de agricultura do seu município para começar.</span>
     </div>
-    <p class="rv">Uma vez por ano, no fim da safra, refaça o ciclo do módulo 1: o inventário, os custos, as sobras. Compare com o ano anterior. É assim que a gestão vira costume, e o costume vira resultado.</p>
   </div>
 </section>
 
@@ -222,15 +152,53 @@
   <div class="wrap">
     <div class="sep"></div>
     <p class="tag rv" style="margin-top:34px">Lição 4</p>
-    <h2 class="rv">Onde buscar ajuda</h2>
-    <p class="rv">Ninguém faz gestão sozinho. No Rio Grande do Sul, há uma rede que pode ajudar, muitas vezes sem custo:</p>
+    <h2 class="rv">Vender direto</h2>
+    <p class="rv">Vender direto ao consumidor elimina elos da cadeia, e a parte deles fica com o produtor. Os caminhos mais comuns:</p>
     <ul class="lista rv">
-      <li><strong>EMATER/RS-ASCAR:</strong> assistência técnica e extensão rural em quase todos os municípios, projetos de crédito e acompanhamento da propriedade.</li>
-      <li><strong>Sindicatos rurais e de trabalhadores rurais:</strong> orientação sobre documentação, aposentadoria rural, CAF e crédito.</li>
-      <li><strong>SENAR-RS:</strong> cursos de formação profissional rural e programas de assistência técnica e gerencial.</li>
-      <li><strong>Cooperativas:</strong> assistência técnica, compra conjunta de insumos, armazenagem e venda.</li>
-      <li><strong>Universidades e institutos federais:</strong> dias de campo, análises de solo, cursos de extensão, como este.</li>
-      <li><strong>Secretaria municipal de agricultura:</strong> patrulha agrícola, programas municipais e informações locais.</li>
+      <li><strong>Feiras do produtor:</strong> contato direto, preço melhor, pagamento na hora. Exige estar lá toda semana, faça chuva ou sol.</li>
+      <li><strong>Cestas e entregas:</strong> pedidos por WhatsApp, entrega programada. Exige organização e regularidade.</li>
+      <li><strong>Venda na propriedade e turismo rural:</strong> colha e pague, café colonial, hospedagem, visitas. Vende a experiência, além do produto.</li>
+    </ul>
+    <h3 class="rv">Compras públicas</h3>
+    <p class="rv">O <strong>PNAE</strong>, programa da alimentação escolar, é obrigado por lei a comprar uma parte dos alimentos da agricultura familiar. A Lei 15.226, de 2025, elevou essa parte mínima de 30% para 45% dos recursos, a partir de 2026. O <strong>PAA</strong>, programa de aquisição de alimentos, também compra da agricultura familiar para doação e outros usos. Para vender a esses programas, em geral são exigidos o CAF, a nota fiscal e a capacidade de entregar com regularidade, muitas vezes por meio de uma cooperativa ou associação.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 5 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Diferenciar</h2>
+    <p class="rv">Quando o produto é igual ao de todo mundo, o preço é o de todo mundo. Diferenciar é dar ao consumidor um motivo para pagar mais pelo seu.</p>
+    <ul class="lista rv">
+      <li><strong>Orgânico:</strong> exige produção sem agrotóxicos e adubos químicos solúveis, e uma garantia de conformidade, que pode vir de certificação por auditoria, de sistema participativo ou, na venda direta, de uma organização de controle social cadastrada. A conversão leva tempo e a produtividade pode cair no início.</li>
+      <li><strong>Indicação geográfica:</strong> reconhece produtos ligados a um lugar. O Rio Grande do Sul tem exemplos como os vinhos do Vale dos Vinhedos e a carne do Pampa Gaúcho da Campanha Meridional.</li>
+      <li><strong>Marca própria e história:</strong> embalagem cuidada, nome da família, a história da propriedade. Para a venda direta, muitas vezes é o diferencial que mais pesa.</li>
+    </ul>
+    <p class="rv">Diferenciar tem custo: certificação, embalagem, tempo para construir a reputação. Vale fazer a conta do mesmo jeito que no módulo 5: quanto a mais o produto rende, e se isso paga o que custa a mais.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 6 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 6</p>
+    <h2 class="rv">Escolher o caminho</h2>
+    <p class="rv">Cada caminho cobra algo diferente. Compare abaixo. É uma comparação geral, que muda com o produto e a região.</p>
+
+    <div class="comp rv">
+      <div class="abas" id="comp-abas"></div>
+      <div id="comp-crit"></div>
+      <p class="nota" id="comp-nota"></p>
+    </div>
+    <p class="rv" style="font-size:15px;color:var(--stone);margin-top:-8px">Escala de 1 a 5, comparação qualitativa entre os caminhos.</p>
+
+    <ul class="lista rv">
+      <li><strong>Comece pequeno</strong> e sem abandonar o que já funciona. Uma parte da produção vai para o novo caminho, o resto segue para o comprador de sempre.</li>
+      <li><strong>Olhe para as pessoas:</strong> quem vai fazer o trabalho a mais? O mapa de tarefas do módulo 9 ajuda a responder.</li>
+      <li><strong>Agregar valor também é diversificar:</strong> uma nova fonte de renda, com riscos diferentes dos da produção, como visto no módulo 8.</li>
     </ul>
   </div>
 </section>
@@ -240,39 +208,41 @@
   <div class="wrap">
     <p class="tag">Na sua propriedade</p>
     <div class="perfil-sw" role="group" aria-label="Seu caso"><button type="button" data-perfil="ja">Já produzo</button><button type="button" data-perfil="novo">Quero começar</button></div>
-    <h2>O seu plano e o retrato da propriedade</h2>
-    <p>Escreva os objetivos e as próximas ações. Abaixo, o retrato junta tudo o que você preencheu ao longo do curso, pronto para imprimir ou salvar em PDF.</p>
+    <h2>Vale a pena transformar?</h2>
+    <p class="so-ja">Compare vender a matéria-prima como você vende hoje com transformá-la num produto. Use valores por mês.</p>
+    <p class="so-novo">Use a produção planejada e preços pesquisados na região: o que a matéria-prima vale vendida in natura e o que o produto transformado vale.</p>
+    <p style="margin:4px 0 6px"><button type="button" class="mini" id="v-exemplo">ver o exemplo de leite e queijo</button></p>
 
-    <div class="campos" style="grid-template-columns:1fr">
-      <div class="campo"><label for="p-nome">Nome da propriedade ou do projeto</label><div class="inp"><input id="p-nome" autocomplete="off" style="flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:17px;padding:12px;color:var(--ink);outline:none"></div></div>
-      <div class="campo"><label for="p-o1">Objetivo para esta safra</label><textarea id="p-o1"></textarea></div>
-      <div class="campo"><label for="p-o2">Objetivo para três a cinco anos</label><textarea id="p-o2"></textarea></div>
-      <div class="campo"><label for="p-o3">Objetivo para dez anos ou mais</label><textarea id="p-o3"></textarea></div>
+    <p class="grupo">Vender como hoje</p>
+    <div class="campos">
+      <div class="campo"><label for="v-mp">Matéria-prima <small>exemplo: leite, uva, porco</small></label><div class="inp"><input id="v-mp" class="txt" autocomplete="off" placeholder="leite"></div></div>
+      <div class="campo"><label for="v-qtd">Quantidade por mês <small>na unidade de venda</small></label><div class="inp"><input id="v-qtd" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="v-pmp">Preço in natura por unidade</label><div class="inp"><span>R$</span><input id="v-pmp" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
     </div>
-    <div class="acao-h"><span>Próxima ação</span><span>Até quando</span><span>Quem</span></div>
-    <div id="p-acoes"></div>
-    <p class="salvo" id="p-salvo"></p>
-
-    <div class="retrato" id="retrato">
-      <header class="ret-cab">
-        <div><p class="ret-eyebrow" id="r-tipo">Retrato da propriedade</p><h3 id="r-nome">Minha propriedade</h3><p class="sub" id="r-data"></p></div>
-        <div class="ret-marca"><svg class="m" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#2A331C"/><circle cx="40" cy="30" r="12" fill="#B89233"/><path d="M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z" fill="#3D4A2A"/><path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/><g stroke="#FAF7F0" stroke-linecap="round" fill="none"><path d="M14 15V51M50 15V51" stroke-width="4.2"/><path d="M14 22H50M14 31.5H50M14 41H50M14 41L50 22" stroke-width="2.7"/></g></svg><span><b>Gestão da<br><em>Propriedade Rural</em></b><small>curso para produtores</small></span></div>
-      </header>
-      <div class="ret-resumo" id="r-resumo"></div>
-      <div class="ret-grid" id="r-grid"></div>
-      <footer class="ret-rod"><svg class="m" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#2A331C"/><circle cx="40" cy="30" r="12" fill="#B89233"/><path d="M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z" fill="#3D4A2A"/><path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/><g stroke="#FAF7F0" stroke-linecap="round" fill="none"><path d="M14 15V51M50 15V51" stroke-width="4.2"/><path d="M14 22H50M14 31.5H50M14 41H50M14 41L50 22" stroke-width="2.7"/></g></svg><span>Gerado no curso Gestão da Propriedade Rural, do Colégio Politécnico da UFSM · robersonoliveira-afk.github.io/Site/produtor. Os valores foram informados pelo produtor e servem para apoiar decisões; não substituem um projeto técnico.</span></footer>
+    <p class="grupo">Transformar</p>
+    <div class="campos">
+      <div class="campo"><label for="v-prod">Produto <small>exemplo: queijo, suco, salame</small></label><div class="inp"><input id="v-prod" class="txt" autocomplete="off" placeholder="queijo"></div></div>
+      <div class="campo"><label for="v-qp">Quanto produto sai por mês <small>na unidade de venda, kg, litro, pote</small></label><div class="inp"><input id="v-qp" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="v-pp">Preço de venda do produto</label><div class="inp"><span>R$</span><input id="v-pp" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="v-ci">Custos a mais por mês <small>ingredientes, embalagem, energia, gás, análises</small></label><div class="inp"><span>R$</span><input id="v-ci" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="v-cv">Custos de venda por mês <small>frete, banca na feira, comissão</small></label><div class="inp"><span>R$</span><input id="v-cv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="v-inv">Investimento <small>instalações, equipamentos, legalização</small></label><div class="inp"><span>R$</span><input id="v-inv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="v-anos">Em quantos anos dividir o investimento</label><div class="inp"><input id="v-anos" inputmode="numeric" autocomplete="off" placeholder="10"><span style="padding-right:12px">anos</span></div></div>
+      <div class="campo"><label for="v-h">Horas de trabalho a mais por semana</label><div class="inp"><input id="v-h" inputmode="numeric" autocomplete="off" placeholder="0"><span style="padding-right:12px">h</span></div></div>
     </div>
 
-    <div class="imprimir">
-      <button type="button" class="btn" id="p-print">Imprimir ou salvar em PDF</button>
-      <button type="button" class="btn btn-sec" id="p-limpar">Apagar o caderno deste aparelho</button>
+    <div class="resultado" id="v-res" hidden>
+      <div class="barras">
+        <div class="barra"><div class="rot"><span id="v-l1">Vendendo in natura</span><b id="v-b1v"></b></div><div class="trilho"><div class="fill f-out" id="v-b1"></div></div></div>
+        <div class="barra"><div class="rot"><span id="v-l2">Transformando, já descontados os custos a mais</span><b id="v-b2v"></b></div><div class="trilho"><div class="fill f-ent" id="v-b2"></div></div></div>
+      </div>
+      <div class="linha"><span>Ganho a mais por mês</span><b id="v-ganho"></b></div>
+      <div class="linha"><span>Quanto rende cada hora de trabalho a mais</span><b id="v-hora"></b></div>
+      <div class="veredito" id="v-ver"></div>
+      <p class="salvo" id="v-salvo"></p>
     </div>
-    <p style="margin-top:22px">Guarde também uma cópia do caderno: com ela, você recupera os números se trocar de celular ou limpar o navegador.</p>
-    <div data-copia></div>
   </div>
 </section>
-
-
 
 <!-- ========== PARA LEMBRAR ========== -->
 <section class="lembrar">
@@ -280,10 +250,10 @@
     <p class="eyebrow">Para lembrar</p>
     <h2>O essencial do módulo</h2>
     <ol>
-      <li class="rv"><span class="n">1</span><span>Um bom plano cabe numa página: onde estamos, onde queremos chegar, o que fazer e como medir.</span></li>
-      <li class="rv d1"><span class="n">2</span><span>Uma meta diz o quê, quanto e até quando. Poucas metas cumpridas valem mais que muitas no papel.</span></li>
-      <li class="rv d2"><span class="n">3</span><span>Acompanhe poucos números, sempre na mesma data, em família.</span></li>
-      <li class="rv d3"><span class="n">4</span><span>EMATER, sindicatos, SENAR, cooperativas e universidades formam uma rede de apoio. Use.</span></li>
+      <li class="rv"><span class="n">1</span><span>Agregar valor é trazer para dentro da propriedade uma parte do trabalho, e do dinheiro, que hoje fica com outros elos da cadeia.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Quatro caminhos: se juntar, transformar, vender direto e diferenciar. Nenhum é de graça.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>A legalização define onde se pode vender. O PNAE compra, por lei, uma parte da merenda da agricultura familiar.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>A conta que decide: quanto rende cada hora de trabalho a mais, depois de pagar todos os custos a mais.</span></li>
     </ol>
   </div>
 </section>
@@ -296,43 +266,35 @@
     <p class="sub">Toque na resposta que achar certa.</p>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 1</span>Qual destas é uma meta bem escrita?</p>
-      <button type="button" class="alt">Melhorar a produtividade do leite.</button>
-      <button type="button" class="alt" data-certa>Passar de 18 para 21 litros por vaca por dia até dezembro.</button>
-      <button type="button" class="alt">Produzir o máximo possível.</button>
-      <p class="fb">Ela diz o quê, quanto e até quando. No fim do prazo, dá para saber se foi cumprida.</p>
+      <p class="enun"><span class="qn">Pergunta 1</span>Um queijo com inspeção apenas municipal pode ser vendido:</p>
+      <button type="button" class="alt">Em todo o Brasil.</button>
+      <button type="button" class="alt" data-certa>Dentro do município.</button>
+      <button type="button" class="alt">Em qualquer cidade do estado.</button>
+      <p class="fb">O serviço de inspeção define a área de venda: municipal, no município; estadual, no estado; federal ou com adesão ao sistema nacional, no país.</p>
     </div>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 2</span>Com que frequência vale olhar os principais números da propriedade?</p>
-      <button type="button" class="alt">Só quando aparece um problema.</button>
-      <button type="button" class="alt" data-certa>Todo mês, na mesma data, e um balanço completo no fim da safra.</button>
-      <button type="button" class="alt">Todo dia, todos os números.</button>
-      <p class="fb">Uma rotina mensal curta, mais um balanço anual, mantém a gestão viva sem tomar o tempo da produção.</p>
+      <p class="enun"><span class="qn">Pergunta 2</span>Transformar o leite em queijo aumenta a receita em R$ 6.000 por mês, mas os custos a mais somam R$ 2.500 e o trabalho a mais é de 100 horas por mês. Quanto rende cada hora a mais?</p>
+      <button type="button" class="alt">R$ 60</button>
+      <button type="button" class="alt" data-certa>R$ 35</button>
+      <button type="button" class="alt">R$ 25</button>
+      <p class="fb">R$ 6.000 menos R$ 2.500 dá R$ 3.500 de ganho a mais. Divididos por 100 horas, R$ 35 por hora.</p>
     </div>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 3</span>Quantas ações vale colocar no plano de curto prazo?</p>
-      <button type="button" class="alt">Todas as que a família conseguir imaginar.</button>
-      <button type="button" class="alt" data-certa>Poucas, cada uma com prazo e responsável.</button>
-      <button type="button" class="alt">Nenhuma: o importante são os objetivos.</button>
-      <p class="fb">Objetivo sem ação fica no papel. E ações demais dividem a atenção. Poucas, com prazo e responsável, acontecem.</p>
+      <p class="enun"><span class="qn">Pergunta 3</span>Numa cooperativa, o que mais fortalece o grupo?</p>
+      <button type="button" class="alt">Cada associado vender para quem pagar mais naquele dia.</button>
+      <button type="button" class="alt" data-certa>Os associados participarem das decisões e entregarem a produção combinada.</button>
+      <button type="button" class="alt">Deixar a gestão só com a diretoria.</button>
+      <p class="fb">A força da cooperativa vem do volume e da regularidade. Quem entrega para fora quando convém enfraquece o que é de todos.</p>
     </div>
-  </div>
-</section>
-
-<section class="final-msg">
-  <div class="wrap">
-    <p class="eyebrow" style="justify-content:center">Fim da trilha</p>
-    <h2 class="rv">A gestão não termina no módulo 11.</h2>
-    <p class="rv">Ela recomeça a cada safra, com os números novos. Volte ao curso sempre que precisar refazer uma conta: o seu caderno continua salvo neste aparelho.</p>
   </div>
 </section>
 
 <section class="concluir">
   <div class="wrap">
     <button type="button" class="btn btn-prim" data-concluir="11">Concluir o módulo 11</button>
-    <span class="proximo">Fim da trilha<br><a href="index.html">Voltar ao início do curso</a></span>
+    <span class="proximo">A seguir, módulo 12<br><a href="modulo-12.html">Planejar o próximo passo</a></span>
   </div>
 </section>
 </main>
@@ -351,247 +313,77 @@
 
 <script src="curso.js"></script>
 <script>
+/* comparador de caminhos */
 (function(){
-  var g = function(id){ return document.getElementById(id); };
-  var cad = Curso.caderno(), plano = cad.m10 || {acoes:[]};
-  var R = Curso.reais;
-  var f2 = function(v){ return 'R$ ' + (+v).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
-  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
-
-  /* campos do plano */
-  ['nome','o1','o2','o3'].forEach(function(k){ g('p-' + k).value = plano[k] || ''; });
-  var ac = g('p-acoes');
-  for (var i = 0; i < 3; i++){
-    var d = document.createElement('div'); d.className = 'acao-l';
-    var a = plano.acoes[i] || {};
-    d.innerHTML = '<input data-i="' + i + '" data-k="o" placeholder="ação ' + (i + 1) + '"><input data-i="' + i + '" data-k="q" placeholder="mês/ano"><input data-i="' + i + '" data-k="w" placeholder="quem">';
-    var ins = d.querySelectorAll('input'); ins[0].value = a.o || ''; ins[1].value = a.q || ''; ins[2].value = a.w || '';
-    ac.appendChild(d);
+  var CRIT = ['Trabalho a mais','Investimento','Ganho por unidade','Exigência de regularidade','Risco'];
+  var CAM = {
+    'Cooperativa': {v:[1,1,2,3,2], n:'O caminho de menor esforço individual. O ganho por unidade é moderado, mas vem com compra de insumos mais barata, assistência técnica e venda garantida.'},
+    'Agroindústria': {v:[5,4,5,4,3], n:'O maior ganho por unidade e também o maior compromisso: instalações, legalização e trabalho diário. Combina bem com venda direta ou com a merenda escolar.'},
+    'Feira e cestas': {v:[4,2,4,5,2], n:'Preço bom e pagamento na hora, pouco investimento. Exige presença toda semana e muito contato com o cliente.'},
+    'Compras públicas': {v:[2,2,3,5,1], n:'Preço estável e contrato definido. Exige documentação, regularidade de entrega e, muitas vezes, uma cooperativa ou associação.'},
+    'Orgânico': {v:[4,3,4,3,4], n:'Paga mais por unidade, mas a conversão leva tempo, a produtividade pode cair no início e é preciso uma garantia de conformidade.'},
+    'Turismo rural': {v:[4,4,4,3,3], n:'Vende a experiência junto com o produto. Exige receber bem, estrutura para visitantes e divulgação.'}
+  };
+  var abas = document.getElementById('comp-abas'), box = document.getElementById('comp-crit'), nota = document.getElementById('comp-nota');
+  CRIT.forEach(function(c){ var d = document.createElement('div'); d.className = 'crit'; d.innerHTML = '<span>' + c + '</span><span class="tr"><i></i><i></i><i></i><i></i><i></i></span>'; box.appendChild(d); });
+  function mostra(n){
+    abas.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.textContent === n); });
+    box.querySelectorAll('.crit').forEach(function(d, i){ d.querySelectorAll('i').forEach(function(x, k){ x.classList.toggle('on', k < CAM[n].v[i]); x.style.transitionDelay = (k * 0.06) + 's'; }); });
+    nota.textContent = CAM[n].n;
   }
-  function salvar(){
-    var p = {acoes:[]};
-    ['nome','o1','o2','o3'].forEach(function(k){ p[k] = g('p-' + k).value; });
-    for (var i = 0; i < 3; i++){
-      var o = {}; ac.querySelectorAll('input[data-i="' + i + '"]').forEach(function(x){ o[x.dataset.k] = x.value; });
-      p.acoes.push(o);
+  Object.keys(CAM).forEach(function(n){ var b = document.createElement('button'); b.type = 'button'; b.textContent = n; b.addEventListener('click', function(){ mostra(n); }); abas.appendChild(b); });
+  mostra('Cooperativa');
+})();
+
+/* vale a pena transformar */
+(function(){
+  var g = function(id){ return document.getElementById(id); }, exemplo = false;
+  var nums = ['qtd','qp','ci','cv','inv'];
+  nums.forEach(function(k){ Curso.mascara(g('v-' + k)); });
+  var dec = function(s){ s = String(s || '').replace(/\./g, '').replace(',', '.'); var v = parseFloat(s); return isFinite(v) ? v : 0; };
+  var f2 = function(v){ return 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+  var ids = ['mp','qtd','pmp','prod','qp','pp','ci','cv','inv','anos','h'];
+  function calc(){
+    var mp = g('v-mp').value.trim() || 'matéria-prima', prod = g('v-prod').value.trim() || 'produto';
+    var qtd = Curso.num(g('v-qtd').value), pmp = dec(g('v-pmp').value), qp = Curso.num(g('v-qp').value), pp = dec(g('v-pp').value);
+    var ci = Curso.num(g('v-ci').value), cv = Curso.num(g('v-cv').value), inv = Curso.num(g('v-inv').value), anos = dec(g('v-anos').value) || 10, h = dec(g('v-h').value);
+    if (!qtd || !pmp || !qp || !pp){ g('v-res').hidden = true; return; }
+    g('v-res').hidden = false;
+    var natura = qtd * pmp, transf = qp * pp - ci - cv - inv / (anos * 12), ganho = transf - natura, hmes = h * 52 / 12, hora = hmes ? ganho / hmes : 0;
+    var mx = Math.max(natura, transf, 1);
+    g('v-l1').textContent = 'Vendendo ' + mp + ' in natura'; g('v-l2').textContent = 'Transformando em ' + prod + ', já descontados os custos a mais';
+    g('v-b1v').textContent = Curso.reais(natura); g('v-b2v').textContent = Curso.reais(transf);
+    requestAnimationFrame(function(){ g('v-b1').style.width = (natura / mx * 100) + '%'; g('v-b2').style.width = (Math.max(transf, 0) / mx * 100) + '%'; });
+    g('v-ganho').textContent = Curso.reais(ganho); g('v-hora').textContent = hmes ? f2(hora) : 'informe as horas';
+    var ref = (Curso.caderno().pessoasCusto || {}).custoHora, txt, cls;
+    if (ganho <= 0){ cls = 'alerta'; txt = 'Com esses números, transformar rende menos do que vender ' + mp + ' in natura. Reveja o preço do produto, os custos ou o rendimento antes de investir.'; }
+    else if (!hmes){ cls = ''; txt = 'Transformar rende ' + Curso.reais(ganho) + ' a mais por mês. Informe as horas de trabalho a mais para saber se esse ganho paga o esforço.'; }
+    else {
+      cls = ref && hora < ref ? '' : 'ok';
+      txt = 'Transformar rende ' + Curso.reais(ganho) + ' a mais por mês, ou ' + f2(hora) + ' por hora de trabalho a mais.';
+      if (ref) txt += hora >= ref ? ' É mais do que o custo por hora de um funcionário que você calculou no módulo 9 (' + f2(ref) + '): o trabalho a mais se paga, e há espaço até para contratar ajuda.'
+                                  : ' É menos do que o custo por hora de um funcionário (' + f2(ref) + ', módulo 9): só vale se a família tiver tempo livre e gostar desse trabalho.';
+      else txt += ' Compare com quanto a família ganharia usando esse tempo de outra forma, ou com o custo de um funcionário (módulo 9).';
     }
-    plano = p;
-    g('p-salvo').textContent = Curso.salvarCaderno('m10', p) ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
-    retrato();
+    g('v-ver').className = 'veredito ' + cls; g('v-ver').textContent = txt;
+    if (!exemplo){
+      var ok = Curso.salvarCaderno('m11valor', {materiaPrima:mp, quantidade:qtd, precoNatura:pmp, produto:prod, qtdProduto:qp, precoProduto:pp, custosMes:ci, custosVenda:cv, investimento:inv, anos:anos, horasSemana:h, natura:natura, transformado:transf, ganhoMes:ganho, ganhoHora:hora});
+      g('v-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
+    } else g('v-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
   }
-  document.querySelectorAll('#sua textarea, #p-nome, #p-acoes input').forEach(function(x){ x.addEventListener('input', salvar); });
-
-  /* retrato */
-  var NS = 'http://www.w3.org/2000/svg';
-  var MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-  var MES_NOME = {jan:'janeiro',fev:'fevereiro',mar:'março',abr:'abril',mai:'maio',jun:'junho',jul:'julho',ago:'agosto',set:'setembro',out:'outubro',nov:'novembro',dez:'dezembro'};
-  var mil = function(v){ var a = Math.abs(v); return (v < 0 ? '- ' : '') + (a >= 10000 ? 'R$ ' + (a / 1000).toLocaleString('pt-BR', {maximumFractionDigits: a >= 100000 ? 0 : 1}) + ' mil' : R(a).replace('- ', '')); };
-  var plural = function(u){ return /^[a-zà-ú]+[aeiouã]$/i.test(u) ? u + 's' : u; };
-  var L = function(a, b){ return '<div class="l"><span>' + a + '</span><b>' + b + '</b></div>'; };
-  function leit(cls, t){ return '<p class="leit ' + cls + '">' + t + '</p>'; }
-  function card(titulo, n, corpo, largo){
-    var lc = largo === 2 ? ' largo2' : (largo ? ' largo' : '');
-    if (!corpo) return '<div class="rcard vazio' + lc + '"><h4>' + titulo + '</h4><p>Ainda não preenchido. <a href="modulo-' + n + '.html#sua">Ir ao módulo ' + n + '</a></p></div>';
-    return '<div class="rcard' + lc + '"><h4>' + titulo + (n ? ' <i>· módulo ' + n + '</i>' : '') + '</h4>' + corpo + '</div>';
+  ids.forEach(function(k){ g('v-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+  function preenche(d){
+    g('v-mp').value = d.mp || ''; g('v-prod').value = d.prod || '';
+    g('v-pmp').value = d.pmp ? String(d.pmp).replace('.', ',') : ''; g('v-pp').value = d.pp ? String(d.pp).replace('.', ',') : '';
+    ['qtd','qp','ci','cv','inv'].forEach(function(k){ g('v-' + k).value = d[k] ? Math.round(d[k]).toLocaleString('pt-BR') : ''; });
+    g('v-anos').value = d.anos || ''; g('v-h').value = d.h || '';
   }
-  function svg(w, h, conteudo){ return '<div class="graf"><svg viewBox="0 0 ' + w + ' ' + h + '" xmlns="' + NS + '">' + conteudo + '</svg></div>'; }
-
-  /* gráfico: custo por unidade x preço */
-  function grafCusto(coe, cot, ct, preco){
-    var mx = Math.max(ct, preco || 0) * 1.12, W = 220, x0 = 30, esc = (W - x0 - 4) / mx, s = '';
-    [['COE', coe, '#B89233'], ['COT', cot, '#D9895E'], ['CT', ct, '#3D4A2A']].forEach(function(b, i){
-      var y = 4 + i * 15;
-      s += '<text x="0" y="' + (y + 9) + '">' + b[0] + '</text><rect x="' + x0 + '" y="' + y + '" width="' + (b[1] * esc) + '" height="10" fill="' + b[2] + '"/>';
-    });
-    if (preco){ var xp = x0 + preco * esc; s += '<line x1="' + xp + '" x2="' + xp + '" y1="1" y2="50" stroke="#A8552E" stroke-width="1.4" stroke-dasharray="3 2"/><text x="' + xp + '" y="58" text-anchor="end" style="fill:#A8552E">preço de venda</text>'; }
-    return svg(W, 60, s);
-  }
-  /* gráfico: 100 sacas como quadradinhos */
-  function grafSacas(rec, coe, cot, ct){
-    var base = Math.max(rec, ct), s = '', sz = 9.2, gap = 1.6;
-    for (var i = 0; i < 100; i++){
-      var x = (i + 0.5) / 100 * base, c = x > rec ? 'none' : x <= coe ? '#B89233' : x <= cot ? '#D9895E' : x <= ct ? '#7E8B5E' : '#6E8A3A';
-      var cx = (i % 20) * (sz + gap), cy = Math.floor(i / 20) * (sz + gap);
-      s += '<rect x="' + cx + '" y="' + cy + '" width="' + sz + '" height="' + sz + '" rx="1.5" fill="' + c + '"' + (c === 'none' ? ' stroke="#A8552E" stroke-dasharray="2 1"' : '') + '/>';
-    }
-    return svg(20 * (sz + gap), 5 * (sz + gap), s);
-  }
-  /* gráfico: saldo de caixa em 12 meses, recalculado do módulo 6 */
-  function grafCaixa(f){
-    var ini = MESES.indexOf(f.inicio); if (ini < 0) return '';
-    var ordem = []; for (var i = 0; i < 12; i++) ordem.push((ini + i) % 12);
-    var pm = ordem.indexOf(MESES.indexOf(f.mesPlantio)), vm = ordem.indexOf(MESES.indexOf(f.mesVenda)), pn = f.mesesPlantio || 1;
-    var acc = f.saldoInicial, sal = [];
-    for (var k = 0; k < 12; k++){ acc += f.entradasMes - f.saidasMes; if (pm >= 0 && k >= pm && k < pm + pn) acc -= f.plantio / pn; if (k === vm) acc += f.venda; sal.push(acc); }
-    var mx = Math.max.apply(null, sal), mn = Math.min.apply(null, sal), top = Math.max(mx, 0), bot = Math.min(mn, 0), H = 46, W = 220, bw = W / 12;
-    var esc = H / ((top - bot) || 1), zero = 2 + top * esc, s = '<line x1="0" x2="' + W + '" y1="' + zero + '" y2="' + zero + '" stroke="#9B9890" stroke-width=".6"/>';
-    sal.forEach(function(v, i){
-      var h = Math.abs(v) * esc;
-      s += '<rect x="' + (i * bw + 1.5) + '" width="' + (bw - 3) + '" y="' + (v >= 0 ? zero - h : zero) + '" height="' + h + '" fill="' + (v >= 0 ? '#6E8A3A' : '#D9895E') + '"/>';
-      s += '<text x="' + (i * bw + bw / 2) + '" y="' + (H + 12) + '" text-anchor="middle" style="font-size:7px">' + MESES[ordem[i]].charAt(0) + '</text>';
-    });
-    return svg(W, H + 14, s);
-  }
-  /* gráfico: duas barras comparadas */
-  function grafDuas(a, b, la, lb, ca, cb){
-    var mx = Math.max(a, b, 1), W = 220, x0 = 74, esc = (W - x0 - 4) / mx;
-    return svg(W, 30, '<text x="0" y="10">' + la + '</text><rect x="' + x0 + '" y="2" width="' + (a * esc) + '" height="10" fill="' + ca + '"/>' +
-      '<text x="0" y="25">' + lb + '</text><rect x="' + x0 + '" y="17" width="' + (b * esc) + '" height="10" fill="' + cb + '"/>');
-  }
-
-  function retrato(){
-    cad = Curso.caderno();
-    var novo = Curso.perfil() === 'novo', h = [], chips = [];
-    g('r-nome').textContent = plano.nome ? plano.nome : (novo ? 'Meu novo negócio rural' : 'Minha propriedade');
-    g('r-tipo').textContent = novo ? 'Plano de início de atividade' : 'Retrato da propriedade';
-    g('r-data').textContent = 'Atualizado em ' + new Date().toLocaleDateString('pt-BR');
-
-    /* objetivos */
-    var ob = '';
-    if (plano.o1) ob += '<p class="txt"><strong>Nesta safra:</strong> ' + esc(plano.o1) + '</p>';
-    if (plano.o2) ob += '<p class="txt"><strong>Em 3 a 5 anos:</strong> ' + esc(plano.o2) + '</p>';
-    if (plano.o3) ob += '<p class="txt"><strong>Em 10 anos ou mais:</strong> ' + esc(plano.o3) + '</p>';
-    h.push(card('Objetivos da família', ob ? 0 : 11, ob, true));
-
-    /* módulo 1 */
-    var c1 = '';
-    if (!novo && cad.m1){
-      var c = cad.m1, pr = Math.max(c.gastosCasa - c.rendasFora, 0), sb = c.vendas - c.gastosProducao - pr;
-      c1 = L('Vendas por mês', R(c.vendas)) + L('Gastos da produção', R(c.gastosProducao)) + L('A casa precisa tirar', R(pr)) + L('Sobra depois da casa', R(sb));
-      c1 += sb >= 0 ? leit('ok', 'A propriedade sustenta a família e ainda sobram ' + R(sb) + ' por mês para reposição, investimento e reserva.')
-                    : leit('alerta', 'A casa tira ' + R(-sb) + ' por mês a mais do que a propriedade sobra. A diferença está saindo de dívida, venda de bens ou manutenção adiada.');
-      chips.push({t:'Família', v:sb >= 0 ? 'Sobram ' + mil(sb) + ' por mês depois da casa' : 'Faltam ' + mil(-sb) + ' por mês para a casa', c:sb >= 0 ? 'ok' : 'alerta'});
-    }
-    if (novo && cad.m1novo){
-      var n = cad.m1novo, ft = Math.max(n.gastosCasa - n.rendasFora, 0), fol = ft ? n.reserva / ft : Infinity, nec = ft * n.mesesAtePrimeiraVenda;
-      c1 = L('A família precisa cobrir por mês', R(ft)) + L('Reserva para a família', R(n.reserva)) + L('Meses até a 1ª venda', n.mesesAtePrimeiraVenda) + L('Reserva necessária', R(nec));
-      c1 += fol >= n.mesesAtePrimeiraVenda ? leit('ok', 'A reserva cobre o tempo até a primeira venda' + (fol >= n.mesesAtePrimeiraVenda * 1.5 ? ', com folga.' : ', mas sem folga para imprevistos.'))
-                                           : leit('alerta', 'A reserva acaba antes da primeira venda: faltam cerca de ' + R(nec - n.reserva) + '.');
-      chips.push({t:'Fôlego da família', v:isFinite(fol) ? (Math.floor(fol * 10) / 10).toLocaleString('pt-BR') + ' meses de reserva para ' + n.mesesAtePrimeiraVenda + ' até vender' : 'Rendas de fora cobrem a casa', c:fol >= n.mesesAtePrimeiraVenda ? 'ok' : 'alerta'});
-    }
-    h.push(card(novo ? 'Fôlego da família' : 'Casa e propriedade', 1, c1));
-
-    /* módulo 2 */
-    var c2 = '';
-    if (cad.m2troca){
-      var t = cad.m2troca, rel = (+t.relacao).toLocaleString('pt-BR', {maximumFractionDigits:1});
-      c2 = L('1 ' + esc(t.unidadeInsumo) + ' de ' + esc(t.insumo), rel + ' × ' + esc(t.produto)) + L('Preço do insumo', f2(t.precoInsumo)) + L('Preço do produto', f2(t.precoProduto));
-      if (t.qtdAno) c2 += L('Para o ' + esc(t.insumo) + ' do ano', ((+t.relacao) * t.qtdAno).toLocaleString('pt-BR', {maximumFractionDigits:0}) + ' × ' + esc(t.produto));
-      c2 += leit('meio', 'Na próxima compra, refaça a conta. Se for preciso menos produto para pagar o mesmo insumo, é um bom momento para comprar.');
-    }
-    h.push(card('Relação de troca', 2, c2));
-
-    /* módulo 3 */
-    var c3 = '';
-    if (cad.m3inv){
-      var iv = cad.m3inv;
-      c3 = L('Bens listados', iv.bens.length) + L('Valor dos bens', R(iv.valorTotal)) + L('Desgaste por ano', R(iv.depreciacaoAnual));
-      c3 += leit('meio', 'Para repor os bens quando acabarem, guardar ' + R(iv.depreciacaoAnual / 12) + ' por mês.');
-    }
-    h.push(card(novo ? 'O que vou comprar' : 'Inventário', 3, c3));
-
-    /* módulo 4 */
-    var c4 = '', preco = cad.m5 ? cad.m5.preco : 0;
-    if (cad.m4 && cad.m4.producao){
-      var k = cad.m4, un = esc(k.unidade || 'unidade'), pu = function(v){ return v / k.producao; };
-      c4 = L('Atividade', esc(k.atividade || '-')) + L('COE por ' + un, f2(pu(k.coe))) + L('COT por ' + un, f2(pu(k.cot))) + L('CT por ' + un, f2(pu(k.ct)));
-      c4 += grafCusto(pu(k.coe), pu(k.cot), pu(k.ct), preco);
-      if (preco) c4 += preco >= pu(k.ct) ? leit('ok', 'O preço de ' + f2(preco) + ' cobre o custo total, com margem de ' + f2(preco - pu(k.ct)) + ' por ' + un + '.')
-                    : preco >= pu(k.coe) ? leit('meio', 'O preço cobre o que sai do bolso, mas não o custo total. Faltam ' + f2(pu(k.ct) - preco) + ' por ' + un + '.')
-                    : leit('alerta', 'O preço não cobre nem o que sai do bolso.');
-    }
-    h.push(card('Custo de produção', 4, c4));
-
-    /* módulo 5 */
-    var c5 = '';
-    if (cad.m5){
-      var r = cad.m5, u5 = esc(r.unidade || 'unidade'), sacasLucro = r.lucro / r.preco;
-      c5 = L('Receita', R(r.receita)) + L('Sobra sobre o COE', R(r.sobraCOE)) + L('Sobra sobre o COT', R(r.sobraCOT)) + L('Lucro', R(r.lucro));
-      c5 += grafSacas(r.receita, r.coe, r.cot, r.ct);
-      c5 += r.lucro >= 0 ? leit('ok', 'De cada 100 ' + plural(u5) + ', ' + Math.round(r.ct / r.receita * 100) + ' pagam o custo total e ' + Math.round(r.lucro / r.receita * 100) + ' são lucro: ' + Math.round(sacasLucro).toLocaleString('pt-BR') + ' ' + plural(u5) + ' no ano.')
-                         : r.sobraCOT >= 0 ? leit('meio', 'Paga o bolso, o desgaste e a família, mas rende menos que arrendar a terra e aplicar o dinheiro.')
-                         : leit('alerta', 'A receita não cobre ' + (r.sobraCOE < 0 ? 'nem o que sai do bolso.' : 'o desgaste e o trabalho da família.'));
-      chips.push({t:'Resultado', v:r.lucro >= 0 ? 'Lucro de ' + mil(r.lucro) + ' no ano' : (r.sobraCOT >= 0 ? 'Se sustenta, sem lucro econômico' : 'Prejuízo de ' + mil(-r.sobraCOT) + ' sobre o COT'), c:r.lucro >= 0 ? 'ok' : (r.sobraCOT >= 0 ? 'meio' : 'alerta')});
-    }
-    h.push(card('Resultado do ano', 5, c5));
-
-    /* módulo 6 */
-    var c6 = '';
-    if (cad.m6){
-      var f = cad.m6;
-      var mesA = MES_NOME[f.mesMaisApertado] || f.mesMaisApertado;
-      c6 = L('Mês mais apertado', mesA) + L('Saldo nesse mês', R(f.menorSaldo)) + L('Saldo em 12 meses', R(f.saldoFinal));
-      c6 += grafCaixa(f);
-      c6 += f.menorSaldo < 0 ? leit('alerta', 'Em ' + mesA + ' faltam ' + R(-f.menorSaldo) + '. Esse capital de giro precisa vir do caixa, do custeio ou do prazo do fornecedor.')
-                             : leit('ok', 'O caixa atravessa os 12 meses sem ficar negativo.');
-      chips.push({t:'Caixa', v:f.menorSaldo < 0 ? 'Faltam ' + mil(-f.menorSaldo) + ' em ' + mesA : 'Sem mês negativo', c:f.menorSaldo < 0 ? 'alerta' : 'ok'});
-    }
-    h.push(card('Caixa em 12 meses', 6, c6));
-
-    /* módulo 7 */
-    var c7 = '';
-    if (cad.m7){
-      var cr = cad.m7, cabe = cr.sobra - cr.outrasParcelas;
-      c7 = L('Valor simulado', R(cr.valor)) + L('Juros ao ano', (+cr.jurosAno).toLocaleString('pt-BR') + '%') + L('Maior parcela', R(cr.maiorParcela)) + L('Total de juros', R(cr.totalJuros));
-      if (cabe > 0) c7 += grafDuas(cr.maiorParcela, cabe, 'maior parcela', 'sobra livre', '#D9895E', '#6E8A3A');
-      var pct = cabe > 0 ? cr.maiorParcela / cabe : 9;
-      c7 += pct <= 0.7 ? leit('ok', 'A maior parcela usa ' + Math.round(pct * 100) + '% da sobra livre. Há folga para um ano mais fraco.')
-          : pct <= 1 ? leit('meio', 'A maior parcela usa ' + Math.round(pct * 100) + '% da sobra livre. Cabe, mas com pouca folga.')
-          : leit('alerta', 'A maior parcela é maior do que a sobra livre. Só fecha se o investimento aumentar a renda.');
-    }
-    h.push(card('Crédito', 7, c7));
-
-    /* módulo 8 */
-    var c8 = '';
-    if (cad.m8 && cad.m8.prioridades && cad.m8.prioridades.length){
-      c8 = cad.m8.prioridades.map(function(p, i){ return '<div class="l"><span>' + (i + 1) + '. ' + esc(p) + '</span></div>'; }).join('');
-      c8 += leit('meio', 'Os riscos com mais chance e mais estrago. São os primeiros a receber proteção.');
-    }
-    h.push(card('Riscos prioritários', 8, c8));
-
-    /* pessoas (módulo 9) */
-    var cp = '', pt = cad.pessoasTarefas, pc = cad.pessoasCusto;
-    if (pt && pt.tarefas && pt.tarefas.length){
-      var nomesP = Object.keys(pt.horasPorPessoa).sort(function(a, b){ return pt.horasPorPessoa[b] - pt.horasPorPessoa[a]; });
-      cp += L('Tarefas mapeadas', pt.tarefas.length) + L('Maior carga', esc(nomesP[0]) + ', ' + pt.horasPorPessoa[nomesP[0]].toLocaleString('pt-BR') + ' h/sem') + L('Sem substituto', pt.semSubstituto.length);
-    }
-    if (pc && pc.salario) cp += L('Custo de um funcionário', R(pc.custoMes) + '/mês');
-    if (pt && pt.tarefas && pt.tarefas.length){
-      cp += pt.semSubstituto.length ? leit('alerta', 'Dependem de uma pessoa só: ' + pt.semSubstituto.slice(0, 3).map(esc).join(', ') + (pt.semSubstituto.length > 3 ? '...' : '') + '.')
-          : (pt.acima44 && pt.acima44.length ? leit('meio', 'Ninguém é insubstituível, mas há sobrecarga: ' + pt.acima44.map(esc).join(' e ') + '.') : leit('ok', 'Todas as tarefas têm substituto e ninguém está sobrecarregado.'));
-    } else if (cp) cp += leit('meio', 'O salário é só uma parte: o custo real inclui 13º, férias, encargos e benefícios.');
-    h.push(card('Pessoas', 9, cp));
-
-    /* módulo 10 */
-    var c9 = '';
-    if (cad.m9){
-      var e = cad.m9, tl = e.modoTerra === 'comprar' ? 'comprar' : (e.modoTerra === 'arrendar' ? 'arrendar' : 'própria');
-      c9 = L('Terra', tl) + L('Capital necessário', R(e.total)) + L('Recursos próprios', R(e.recursosProprios)) + L('Falta', R(e.falta));
-      if (e.total) c9 += grafDuas(Math.min(e.recursosProprios, e.total), e.falta, 'próprio', 'falta', '#6E8A3A', '#D9895E');
-      var pf = e.total ? e.falta / e.total : 0;
-      c9 += pf === 0 ? leit('ok', 'Os recursos próprios cobrem todo o capital, sem dívida.')
-          : pf < 0.4 ? leit('meio', 'Faltam ' + Math.round(pf * 100) + '% do capital. Pode vir de crédito, se a parcela couber na sobra.')
-          : leit('alerta', 'Faltam ' + Math.round(pf * 100) + '% do capital. ' + (novo ? 'Começar' : 'Ampliar') + ' com tanta dívida é arriscado.');
-    }
-    h.push(card(novo ? 'Capital para começar' : 'Ampliação', 10, c9));
-
-    /* ações */
-    var acs = (plano.acoes || []).filter(function(a){ return a.o; });
-    var tb = acs.length ? '<table class="acoes-t"><tr><th></th><th>Ação</th><th>Até quando</th><th>Quem</th></tr>' + acs.map(function(a, i){ return '<tr><td class="n">' + (i + 1) + '</td><td>' + esc(a.o) + '</td><td>' + esc(a.q) + '</td><td>' + esc(a.w) + '</td></tr>'; }).join('') + '</table>' : '';
-    h.push(card('Próximas ações', tb ? 0 : 11, tb, 2));
-
-    g('r-grid').innerHTML = h.join('');
-    g('r-resumo').innerHTML = chips.map(function(c){ return '<div class="chip ' + c.c + '"><small>' + c.t + '</small><b>' + c.v + '</b></div>'; }).join('');
-    g('r-resumo').hidden = !chips.length;
-  }
-  retrato();
-  document.addEventListener('perfil', retrato);
-
-  g('p-print').addEventListener('click', function(){ window.print(); });
-  g('p-limpar').addEventListener('click', function(){
-    if (!confirm('Apagar todos os números do caderno guardados neste aparelho? Não dá para desfazer.')) return;
-    try{ localStorage.removeItem('gpr_caderno'); localStorage.removeItem('gpr_progresso'); localStorage.removeItem('gpr_copia'); }catch(e){}
-    location.reload();
+  var c = Curso.caderno().m11valor;
+  if (c){ preenche({mp:c.materiaPrima, prod:c.produto, qtd:c.quantidade, pmp:c.precoNatura, qp:c.qtdProduto, pp:c.precoProduto, ci:c.custosMes, cv:c.custosVenda, inv:c.investimento, anos:c.anos, h:c.horasSemana}); calc(); }
+  g('v-exemplo').addEventListener('click', function(){
+    preenche({mp:'leite', prod:'queijo colonial', qtd:3000, pmp:2.45, qp:300, pp:45, ci:1500, cv:800, inv:60000, anos:10, h:25});
+    exemplo = true; calc();
+    g('v-res').scrollIntoView({behavior:'smooth', block:'center'});
   });
 })();
 </script>
