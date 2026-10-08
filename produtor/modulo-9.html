@@ -408,6 +408,7 @@
   g('s-tot').textContent = SIT.length;
   function mostra(){
     var s = SIT[i], caso = g('s-caso'); caso.classList.add('troca');
+    for (var k = s.o.length - 1; k > 0; k--){ var r = Math.floor(Math.random() * (k + 1)), tmp = s.o[k]; s.o[k] = s.o[r]; s.o[r] = tmp; }
     setTimeout(function(){ caso.textContent = s.c; caso.classList.remove('troca'); }, 180);
     g('s-pos').textContent = i + 1; g('s-com').className = 'com';
     var ops = g('s-ops'); ops.innerHTML = '';

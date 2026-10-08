@@ -132,6 +132,7 @@ figure.visual svg{width:100%;height:auto;display:block}
 .sua p{color:rgba(250,247,240,.85);margin-bottom:14px}
 .campos{display:grid;gap:14px;margin:22px 0}
 @media (min-width:600px){.campos{grid-template-columns:1fr 1fr}}
+.campo{min-width:0}
 .campo label{display:block;font-size:15px;color:rgba(250,247,240,.9);margin-bottom:6px;line-height:1.35}
 .campo label small{display:block;font-size:13px;color:rgba(250,247,240,.6)}
 .campo .inp{display:flex;align-items:center;background:var(--paper);border:2px solid transparent;transition:border-color .2s}
@@ -139,7 +140,7 @@ figure.visual svg{width:100%;height:auto;display:block}
 .campo .inp span{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--stone);padding:0 0 0 12px}
 .campo input{flex:1;min-width:0;border:0;background:transparent;font-family:'IBM Plex Mono',monospace;font-size:20px;padding:12px;color:var(--ink);outline:none}
 .resultado{background:rgba(250,247,240,.06);border:1px solid rgba(250,247,240,.18);padding:20px 18px;margin-top:8px}
-.resultado .linha{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px dashed rgba(250,247,240,.15);font-size:16px}
+.resultado .linha{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;align-items:baseline;padding:6px 0;border-bottom:1px dashed rgba(250,247,240,.15);font-size:16px}
 .resultado .linha:last-of-type{border-bottom:0}
 .resultado .linha b{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:18px;white-space:nowrap}
 .veredito{margin-top:16px;padding:14px 16px;font-size:16.5px;line-height:1.5;border-left:4px solid var(--mustard);background:rgba(184,146,51,.14)}

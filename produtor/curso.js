@@ -172,6 +172,10 @@
   /* teste rápido: .q com botões .alt; a certa tem data-certa */
   function teste(){
     document.querySelectorAll('.q').forEach(function(q){
+      /* embaralha as alternativas, para a certa não cair sempre na mesma posição */
+      var lista = Array.prototype.slice.call(q.querySelectorAll('button.alt')), fb = q.querySelector('.fb');
+      for (var i = lista.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)), t = lista[i]; lista[i] = lista[j]; lista[j] = t; }
+      lista.forEach(function(b){ q.insertBefore(b, fb); });
       var alts = q.querySelectorAll('button.alt');
       alts.forEach(function(b){
         b.addEventListener('click', function(){

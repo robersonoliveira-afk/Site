@@ -251,7 +251,7 @@ details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8
     </div>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 3</span>A propriedade sobra, num ano normal, R$ 40 mil. A maior parcela do financiamento seria R$ 38 mil. A decisão mais prudente é:</p>
+      <p class="enun"><span class="qn">Pergunta 3</span>Num ano normal, sobram R$ 40 mil na propriedade. A maior parcela do financiamento seria de R$ 38 mil. A decisão mais prudente é:</p>
       <button type="button" class="alt">Contratar, porque cabe.</button>
       <button type="button" class="alt" data-certa>Rever o valor ou o prazo, porque não sobra folga para um ano ruim.</button>
       <button type="button" class="alt">Contratar e torcer por preços melhores.</button>
@@ -309,7 +309,9 @@ details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8
     var car = Math.round(dec(g('c-car').value)), sobra = Curso.num(g('c-sobra').value), outras = Curso.num(g('c-outras').value);
     if (!valor || !prazo){ g('c-res').hidden = true; return; }
     g('c-res').hidden = false;
-    car = Math.min(car, prazo - 1);
+    var limitado = prazo > 30;
+    prazo = Math.min(prazo, 30);
+    car = Math.max(Math.min(car, prazo - 1), 0);
     var nAm = prazo - car, amort = valor / nAm, saldo = valor, parc = [], totJ = 0;
     for (var a = 1; a <= prazo; a++){
       var jur = saldo * j, am = a > car ? amort : 0;
@@ -351,6 +353,7 @@ details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8
     else if (maior > cabe){ cls = 'alerta'; txt = 'A maior parcela (' + Curso.reais(maior) + ') é maior do que a sobra disponível (' + Curso.reais(cabe) + '). Só fecha se o investimento aumentar a sobra. Caso contrário, financie menos, alongue o prazo ou espere.'; }
     else if (maior > cabe * 0.7){ cls = ''; txt = 'A maior parcela usa ' + Math.round(maior / cabe * 100) + '% da sobra disponível. Cabe num ano normal, mas com pouca folga para um ano ruim. Vale considerar um prazo maior ou um valor menor.'; }
     else { cls = 'ok'; txt = 'A maior parcela usa ' + Math.round(maior / cabe * 100) + '% da sobra disponível. Há folga para enfrentar um ano mais fraco. Agora confira se o investimento vai gerar renda suficiente para valer a pena.'; }
+    if (limitado) txt += ' O simulador considera no máximo 30 anos de prazo.';
     g('c-ver').className = 'veredito ' + cls; g('c-ver').textContent = txt;
     if (!exemplo){
       var ok = Curso.salvarCaderno('m7', {valor:valor, jurosAno:j * 100, prazo:prazo, carencia:car, sobra:sobra, outrasParcelas:outras, maiorParcela:maior, totalPago:valor + totJ, totalJuros:totJ});
