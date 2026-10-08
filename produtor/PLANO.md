@@ -69,7 +69,7 @@ Arcos e cores: Olhar = oliva, Medir = mostarda, Decidir = terra (mesma lógica d
 
 As páginas de módulo são HTML estático: edite direto no arquivo. Cada módulo segue a mesma estrutura (abertura, "neste módulo", lições, "Na sua propriedade", "Para lembrar", teste rápido, concluir). Chaves do caderno: m1, m1novo, m2troca, m2venda, m3inv, m4, m5, m6, m7, m8, pessoasTarefas e pessoasCusto (módulo 9), m9 e m9check (módulo 10, chaves mantidas da numeração antiga), m11valor (módulo 11), m10 (módulo 12). O módulo 12 lê todas para montar o retrato.
 
-Cópia do caderno: botões em `[data-copia]` (rodapé de todas as páginas, bloco "Seu caderno" na home, módulo 10). Baixar gera `caderno-propriedade-AAAA-MM-DD.json` com caderno, progresso e perfil; "Enviar para mim" usa o compartilhamento do celular quando disponível; "Carregar" valida o campo `curso` e substitui os dados. Lembrete fixo no rodapé da tela quando há números e nenhuma cópia há mais de 7 dias (`gpr_copia`), fechável por sessão.
+Cópia do caderno: botões em `[data-copia]` (rodapé de todas as páginas, bloco "Seu caderno" na home, módulo 10). Baixar gera `caderno-propriedade-AAAA-MM-DD.txt` (conteúdo JSON) com caderno, progresso e perfil; "Carregar" aceita .txt e .json e valida o campo `curso` e substitui os dados. Lembrete fixo no rodapé da tela ao concluir um módulo (se não houve cópia nas últimas 24 h) e ao abrir páginas quando a última cópia tem mais de 7 dias (`gpr_copia`), fechável por sessão.
 
 ## Arquivos
 

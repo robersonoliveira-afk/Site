@@ -54,14 +54,14 @@
     });
   }
 
-  /* ===== Cópia do caderno: baixar, enviar e carregar ===== */
+  /* ===== Cópia do caderno: baixar e carregar ===== */
   var KEY_BKP = 'gpr_copia';
   function temDados(){ var c = ler(KEY_CAD); return Object.keys(c).length > 0; }
   function pacote(){
     var perfil; try{ perfil = localStorage.getItem(KEY_PERFIL); }catch(e){}
     return {curso:'gestao-propriedade-rural', versao:1, data:new Date().toISOString(), perfil:perfil || 'ja', progresso:ler(KEY_PROG), caderno:ler(KEY_CAD)};
   }
-  /* .txt é aceito pelo compartilhamento de todos os celulares e pelo WhatsApp; o conteúdo continua em JSON */
+  /* .txt abre em qualquer aparelho e passa pelo WhatsApp e pelo e-mail; o conteúdo continua em JSON */
   function nomeArquivo(){ return 'caderno-propriedade-' + new Date().toISOString().slice(0,10) + '.txt'; }
   function marcarCopia(){ try{ localStorage.setItem(KEY_BKP, new Date().toISOString()); }catch(e){} }
   function arquivo(){ return new Blob([JSON.stringify(pacote(), null, 1)], {type:'text/plain'}); }
@@ -78,19 +78,6 @@
     setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
     marcarCopia(); avisoCopia();
     toast('Cópia salva como ' + a.download + ', na pasta de downloads do aparelho.');
-  };
-  /* "Enviar para mim" só aparece em celular e tablet, onde o compartilhamento abre o WhatsApp, o e-mail etc. */
-  Curso.podeEnviar = function(){
-    try{
-      var toque = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-      return !!(toque && navigator.canShare && navigator.canShare({files:[new File(['{}'], 'x.txt', {type:'text/plain'})]}));
-    }catch(e){ return false; }
-  };
-  Curso.enviar = function(){
-    var f = new File([arquivo()], nomeArquivo(), {type:'text/plain'});
-    navigator.share({files:[f], title:'Caderno da propriedade'})
-      .then(function(){ marcarCopia(); avisoCopia(); toast('Cópia enviada. Para recuperar, use "Carregar caderno" e escolha esse arquivo.'); })
-      .catch(function(e){ if (!e || e.name !== 'AbortError') Curso.baixar(); });
   };
   Curso.carregar = function(file){
     var r = new FileReader();
@@ -117,7 +104,6 @@
       var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.txt,.json,text/plain,application/json'; inp.hidden = true;
       inp.addEventListener('change', function(){ if (inp.files[0]) Curso.carregar(inp.files[0]); inp.value = ''; });
       var h = '<button type="button" class="cp-b" data-a="baixar">Baixar meu caderno</button>';
-      if (Curso.podeEnviar()) h += '<button type="button" class="cp-b" data-a="enviar">Enviar para mim</button>';
       h += '<button type="button" class="cp-b" data-a="carregar">Carregar caderno</button>';
       box.classList.add('copia'); box.innerHTML = h; box.appendChild(inp);
       box.querySelectorAll('.cp-b').forEach(function(b){
@@ -125,7 +111,7 @@
           var a = b.getAttribute('data-a');
           if (a === 'carregar') return inp.click();
           if (!temDados()){ alert('O caderno ainda está vazio. Preencha a conta "Na sua propriedade" de algum módulo primeiro.'); return; }
-          if (a === 'baixar') Curso.baixar(); else Curso.enviar();
+          Curso.baixar();
         });
       });
     });
@@ -142,11 +128,8 @@
     if (bar) bar.remove();
     bar = document.createElement('div'); bar.id = 'aviso-copia'; bar.className = 'aviso-copia';
     bar.innerHTML = '<span>' + (aoConcluir === true ? 'Módulo concluído. ' : '') + 'Seus números estão guardados só neste aparelho. Guarde uma cópia do caderno para não perder.</span>' +
-      (Curso.podeEnviar() ? '<button type="button" class="ac-b" data-a="enviar">Enviar para mim</button>' : '') +
       '<button type="button" class="ac-b" data-a="baixar">Baixar cópia</button><button type="button" class="ac-x" aria-label="fechar">×</button>';
-    bar.querySelectorAll('.ac-b').forEach(function(b){
-      b.addEventListener('click', function(){ b.getAttribute('data-a') === 'enviar' ? Curso.enviar() : Curso.baixar(); });
-    });
+    bar.querySelector('.ac-b').addEventListener('click', Curso.baixar);
     bar.querySelector('.ac-x').addEventListener('click', function(){ try{ sessionStorage.setItem('gpr_aviso_fechado', '1'); }catch(e){} bar.remove(); });
     document.body.appendChild(bar);
   }
