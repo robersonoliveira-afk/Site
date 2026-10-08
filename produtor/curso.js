@@ -61,23 +61,36 @@
     var perfil; try{ perfil = localStorage.getItem(KEY_PERFIL); }catch(e){}
     return {curso:'gestao-propriedade-rural', versao:1, data:new Date().toISOString(), perfil:perfil || 'ja', progresso:ler(KEY_PROG), caderno:ler(KEY_CAD)};
   }
-  function nomeArquivo(){ return 'caderno-propriedade-' + new Date().toISOString().slice(0,10) + '.json'; }
+  /* .txt é aceito pelo compartilhamento de todos os celulares e pelo WhatsApp; o conteúdo continua em JSON */
+  function nomeArquivo(){ return 'caderno-propriedade-' + new Date().toISOString().slice(0,10) + '.txt'; }
   function marcarCopia(){ try{ localStorage.setItem(KEY_BKP, new Date().toISOString()); }catch(e){} }
-  function arquivo(){ return new Blob([JSON.stringify(pacote(), null, 1)], {type:'application/json'}); }
+  function arquivo(){ return new Blob([JSON.stringify(pacote(), null, 1)], {type:'text/plain'}); }
+  function toast(msg){
+    var t = document.getElementById('toast-copia');
+    if (!t){ t = document.createElement('div'); t.id = 'toast-copia'; t.className = 'toast-copia'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('on');
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 6000);
+  }
 
   Curso.baixar = function(){
     var url = URL.createObjectURL(arquivo()), a = document.createElement('a');
     a.href = url; a.download = nomeArquivo(); document.body.appendChild(a); a.click();
     setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
     marcarCopia(); avisoCopia();
+    toast('Cópia salva como ' + a.download + ', na pasta de downloads do aparelho.');
   };
+  /* "Enviar para mim" só aparece em celular e tablet, onde o compartilhamento abre o WhatsApp, o e-mail etc. */
   Curso.podeEnviar = function(){
-    try{ return !!(navigator.canShare && navigator.canShare({files:[new File(['{}'], 'x.json', {type:'application/json'})]})); }catch(e){ return false; }
+    try{
+      var toque = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+      return !!(toque && navigator.canShare && navigator.canShare({files:[new File(['{}'], 'x.txt', {type:'text/plain'})]}));
+    }catch(e){ return false; }
   };
   Curso.enviar = function(){
-    var f = new File([arquivo()], nomeArquivo(), {type:'application/json'});
-    navigator.share({files:[f], title:'Caderno da propriedade', text:'Cópia do meu caderno do curso Gestão da Propriedade Rural. Para recuperar, use "Carregar caderno" no site do curso.'})
-      .then(function(){ marcarCopia(); avisoCopia(); }).catch(function(){});
+    var f = new File([arquivo()], nomeArquivo(), {type:'text/plain'});
+    navigator.share({files:[f], title:'Caderno da propriedade'})
+      .then(function(){ marcarCopia(); avisoCopia(); toast('Cópia enviada. Para recuperar, use "Carregar caderno" e escolha esse arquivo.'); })
+      .catch(function(e){ if (!e || e.name !== 'AbortError') Curso.baixar(); });
   };
   Curso.carregar = function(file){
     var r = new FileReader();
@@ -101,7 +114,7 @@
   /* monta os botões em qualquer elemento com data-copia */
   function botoesCopia(){
     document.querySelectorAll('[data-copia]').forEach(function(box){
-      var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json'; inp.hidden = true;
+      var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.txt,.json,text/plain,application/json'; inp.hidden = true;
       inp.addEventListener('change', function(){ if (inp.files[0]) Curso.carregar(inp.files[0]); inp.value = ''; });
       var h = '<button type="button" class="cp-b" data-a="baixar">Baixar meu caderno</button>';
       if (Curso.podeEnviar()) h += '<button type="button" class="cp-b" data-a="enviar">Enviar para mim</button>';
@@ -119,17 +132,21 @@
   }
 
   /* lembrete quando há números e nenhuma cópia nos últimos 7 dias */
-  function avisoCopia(){
+  function avisoCopia(aoConcluir){
     var bar = document.getElementById('aviso-copia');
     var ult; try{ ult = localStorage.getItem(KEY_BKP); }catch(e){}
-    var velho = !ult || (Date.now() - new Date(ult).getTime()) > 7 * 864e5;
+    var idade = ult ? Date.now() - new Date(ult).getTime() : Infinity;
+    var precisa = aoConcluir === true ? idade > 864e5 : idade > 7 * 864e5;
     var fechado; try{ fechado = sessionStorage.getItem('gpr_aviso_fechado'); }catch(e){}
-    if (!temDados() || !velho || fechado){ if (bar) bar.remove(); return; }
-    if (bar) return;
+    if (!temDados() || !precisa || (fechado && aoConcluir !== true)){ if (bar) bar.remove(); return; }
+    if (bar) bar.remove();
     bar = document.createElement('div'); bar.id = 'aviso-copia'; bar.className = 'aviso-copia';
-    bar.innerHTML = '<span>Seus números estão guardados só neste aparelho. Baixe uma cópia para não perder.</span>' +
-      '<button type="button" class="ac-b">Baixar cópia</button><button type="button" class="ac-x" aria-label="fechar">×</button>';
-    bar.querySelector('.ac-b').addEventListener('click', function(){ Curso.podeEnviar() ? Curso.enviar() : Curso.baixar(); });
+    bar.innerHTML = '<span>' + (aoConcluir === true ? 'Módulo concluído. ' : '') + 'Seus números estão guardados só neste aparelho. Guarde uma cópia do caderno para não perder.</span>' +
+      (Curso.podeEnviar() ? '<button type="button" class="ac-b" data-a="enviar">Enviar para mim</button>' : '') +
+      '<button type="button" class="ac-b" data-a="baixar">Baixar cópia</button><button type="button" class="ac-x" aria-label="fechar">×</button>';
+    bar.querySelectorAll('.ac-b').forEach(function(b){
+      b.addEventListener('click', function(){ b.getAttribute('data-a') === 'enviar' ? Curso.enviar() : Curso.baixar(); });
+    });
     bar.querySelector('.ac-x').addEventListener('click', function(){ try{ sessionStorage.setItem('gpr_aviso_fechado', '1'); }catch(e){} bar.remove(); });
     document.body.appendChild(bar);
   }
@@ -198,7 +215,7 @@
     var n = btn.getAttribute('data-concluir');
     function marcar(){ btn.classList.add('feito'); btn.textContent = 'Módulo concluído'; }
     if (Curso.concluido(n)) marcar();
-    btn.addEventListener('click', function(){ Curso.concluir(n); marcar(); });
+    btn.addEventListener('click', function(){ Curso.concluir(n); marcar(); avisoCopia(true); });
   }
 
   document.addEventListener('DOMContentLoaded', function(){
