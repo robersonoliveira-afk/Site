@@ -15,6 +15,14 @@
 .dd-btn[disabled]{opacity:.4;cursor:default}
 .dd-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 
+/* controles deslizantes e mensagens, comuns às peças */
+.dd .ctrl{margin-top:8px}
+.dd .ctrl .top{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+.dd .ctrl .top b{font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.dd input[type=range]{width:100%;accent-color:var(--dd);height:28px}
+.dd .msg-dd{font-size:15.5px;line-height:1.5;margin:12px 0 0}
+.block-content .dd p.msg-dd{font-size:15.5px;line-height:1.5;margin:12px 0 0}
+
 /* ===== Cascata: do caixa ao resultado econômico ===== */
 .cascata .linha{display:grid;grid-template-columns:1fr;gap:4px;padding:8px 0;border-bottom:1px dashed var(--rule-soft);opacity:.18;transition:opacity .5s}
 .cascata .linha.vis{opacity:1}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Parte IV: Contexto operacional · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Parte IV: Contexto operacional: crédito rural, Pronaf, Proagro, ZARC e análise de solo. Como o ambiente normativo e financeiro condiciona o projeto agropecuário.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/parte-4.html">
@@ -254,6 +254,35 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 .go-dash .gd-title{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.2}
 .go-dash .gd-arrow{margin-left:auto;font-size:20px;flex-shrink:0}
 </style>
+<link rel="stylesheet" href="leitura-partes.css">
+<link rel="stylesheet" href="didatica.css">
+<style>
+.juros-dd .lin{margin-top:10px}
+.juros-dd .lin .rot{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+.juros-dd .lin .rot b{font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.juros-dd .lin .rot small{color:var(--stone);font-size:12.5px}
+.juros-dd .lin .tr{height:16px;background:var(--paper-warm);margin-top:3px}
+.juros-dd .lin .tr i{display:block;height:100%;width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.enq-dd .opcao{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.enq-dd .opcao button{font:inherit;font-size:14.5px;padding:9px 12px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.enq-dd .opcao button.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.enq-dd .res{margin-top:14px;padding:14px 16px;border-left:5px solid var(--terra);background:var(--paper-warm)}
+.enq-dd .res b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:21px;line-height:1.2;margin-bottom:4px}
+.enq-dd .res span{font-size:15.5px;line-height:1.5;color:var(--ink-soft)}
+.degraus-dd .grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:end;height:190px;margin-top:6px}
+.degraus-dd .col{display:flex;flex-direction:column;justify-content:flex-end;height:100%;text-align:center}
+.degraus-dd .col .bar{background:var(--terra);height:0;transition:height .8s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;padding-top:4px;overflow:hidden}
+.degraus-dd .col small{display:block;font-size:12.5px;line-height:1.25;color:var(--ink-soft);margin-top:6px;min-height:32px}
+.degraus-dd .col b{display:block;font-family:'IBM Plex Mono',monospace;font-size:13.5px;margin-top:2px}
+.caixa-dd .abas{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.caixa-dd .abas button{font:inherit;font-size:14.5px;padding:8px 12px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
+.caixa-dd .abas button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
+.caixa-dd .leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13.5px;color:var(--ink-soft);margin-top:4px}
+.caixa-dd .leg span::before{content:"";display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.caixa-dd .leg span.ln::before{height:3px;vertical-align:3px}
+.caixa-dd .liga{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:15px;cursor:pointer}
+.caixa-dd .liga input{width:20px;height:20px;accent-color:var(--terra)}
+</style>
 </head>
 <body>
 
@@ -284,7 +313,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <p class="subtitle">O projeto não opera no vácuo: ele vive num calendário de caixa, depende de crédito e vende a um preço regional que não é a cotação nacional. As três condições que tornam um bom cálculo um projeto exequível.</p>
   <div class="meta">
     <span>Parte IV de VI</span>
-    <span>4 aulas</span>
+    <span>3 aulas</span>
       </div>
 </header>
 
@@ -326,6 +355,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td><strong>Agricultura Familiar (Pronaf)</strong></td><td class="num">0,5 a 7,5%</td><td class="ok">Fortemente subsidiado: MDA</td></tr>
     </table>
     </div>
+
+    <figure class="dd juros-dd" id="dd-juros" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">O peso dos juros</div>
+      <div class="dd-corpo">
+        <div class="ctrl"><div class="top"><span>Valor financiado</span><b data-v="valor"></b></div><input type="range" data-i="valor" min="10000" max="500000" step="10000" value="100000" aria-label="Valor financiado"></div>
+        <div class="ctrl"><div class="top"><span>Prazo</span><b data-v="prazo"></b></div><input type="range" data-i="prazo" min="1" max="12" step="1" value="6" aria-label="Prazo em meses"></div>
+        <div class="linhas"></div>
+      </div>
+      <figcaption>Juros simples, como no exemplo do texto. Para as faixas da tabela, usa o meio de cada faixa; o Pronaf aparece com a taxa de alimento básico (2% a.a.).</figcaption>
+    </figure>
     <div class="callout success">
       <strong>O crédito rural não é gratuito, mas é regulado</strong>
       Para uma família que financia R$ 100 mil por 6 meses: Pronaf alimento básico a 2% a.a. = R$ 1.000 em juros; cheque especial a 134% a.a. = R$ 67.000 no mesmo período. A linha subsidiada pode ser a diferença entre viabilidade e inviabilidade do projeto.
@@ -333,7 +372,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
     <div class="callout">
       <strong>Atenção · dados anuais</strong>
-      Taxas, limites e faixas de renda desta aula referem-se ao Plano Safra 2026/27 (publicado em junho/2026 pelo MAPA e pelo MDA). São revistos a cada ano-safra. Sempre confirmar os valores vigentes no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank" rel="noopener">MCR - Manual do Crédito Agrícola</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
+      Taxas, limites e faixas de renda desta aula referem-se ao Plano Safra 2026/27 (publicado em junho/2026 pelo MAPA e pelo MDA). São revistos a cada ano-safra. Sempre confirmar os valores vigentes no <a href="https://manuais.bcb.gov.br/app/manual/mcr/publico" target="_blank" rel="noopener">MCR (Manual de Crédito Rural)</a> do ano antes de fechar o orçamento do projeto. Importante: o plano safra tem vigência anual, com o período do ciclo correndo sempre de 1º de julho de um ano a 30 de junho do ano seguinte.
     </div>
 
     <h3>O Brasil tem dois Planos Safra</h3>
@@ -361,6 +400,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="plano-faixa">Faixa de juros 26/27: <b>0,5% a 7,5% a.a.</b></div>
       </div>
     </div>
+
+    <figure class="dd enq-dd" id="dd-enq" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Em qual programa o produtor se enquadra?</div>
+      <div class="dd-corpo">
+        <div class="ctrl"><div class="top"><span>Renda bruta anual</span><b data-v="renda"></b></div><input type="range" data-i="renda" min="0" max="9" step="1" value="3" aria-label="Renda bruta anual"></div>
+        <div class="opcao" role="group" aria-label="Unidade familiar com CAF"><button type="button" data-f="1" class="on">Agricultura familiar, com CAF</button><button type="button" data-f="0">Sem CAF</button></div>
+        <div class="res"><b></b><span></span></div>
+      </div>
+      <figcaption>Faixas do Plano Safra 2026/27, conforme esta aula. O enquadramento real tem outros critérios (área, mão de obra, origem da renda): confirme sempre com a EMATER ou o banco.</figcaption>
+    </figure>
 
     <h3>Modalidades (comuns aos dois planos)</h3>
     <ul class="bullets">
@@ -429,6 +478,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <strong>A lógica da taxa de juros no Pronaf</strong>
       Observe a hierarquia de juros no Pronaf: <em>agroecologia 1% · alimento básico 2% · demais produtos 5,5% · soja e boi 7,5%</em>. É uma política deliberada de preço do crédito: quanto mais o sistema produtivo contribui para a segurança alimentar e a sustentabilidade, menor a taxa. Para o técnico, isso é premissa direta do orçamento: <em>a mesma família pode ter dois custos financeiros bem diferentes conforme escolha produzir feijão ou soja.</em>
     </div>
+
+    <figure class="dd degraus-dd" id="dd-degraus" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Mesma família, R$ 100 mil de custeio por 6 meses</div>
+      <div class="dd-corpo"><div class="grade"></div></div>
+      <figcaption>Juros do custeio conforme o que a família produz, com as taxas do Pronaf 2026/27 citadas acima.</figcaption>
+    </figure>
 
     <h3>Como o produtor acessa o crédito</h3>
     <p>O crédito não é automático: o produtor precisa estar <em>enquadrado</em>, apresentar uma proposta tecnicamente consistente e oferecer garantia. É exatamente aqui que entra o técnico: a proposta de custeio ou de investimento que ele elabora é o documento que o banco analisa.</p>
@@ -528,7 +583,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <ul class="bullets">
       <li>O técnico monta o projeto em três camadas: planejamento da <em>produção</em>, de <em>mercado</em> (cenários pessimista, realista e otimista) e <em>financeiro</em> (o orçamento de custeio ou de investimento).</li>
       <li>É aqui que entram a janela do <strong>ZARC</strong>, os laudos de <strong>análise de solo</strong> e o enquadramento na linha certa: custeio, Mais Alimentos (investimento), Agroecologia, Mulher ou Jovem.</li>
-      <li>Quanto mais detalhado o orçamento, menor a chance de o banco recusar. A planilha de custos é o coração da análise.</li>
+      <li>Quanto mais detalhado o orçamento, menor a chance de o banco recusar.</li>
     </ul>
 
     <p><strong>Passo 3: Levar ao banco</strong></p>
@@ -556,6 +611,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <strong>Crédito não é receita</strong>
       O financiamento entra no caixa, mas não é resultado: vai sair com juros. Um erro frequente em projetos de alunos é lançar o crédito recebido como receita, superestimando o resultado e escondendo o déficit. No fluxo de caixa, o crédito entra como <em>entrada de financiamento</em>; as parcelas + juros saem como <em>despesa financeira</em>. Só o que ficou com o produtor no fim do ciclo é resultado.
     </div>
+
+    <figure class="dd classif" id="dd-receita" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Receita, financiamento ou despesa financeira?</div>
+    </figure>
 
     <div class="callout success">
       <strong>O ciclo se fecha no controle</strong>
@@ -607,6 +666,18 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <li><strong>Pecuária leiteira:</strong> desembolso diário, receita mensal. Fluxo de caixa mais equilibrado.</li>
       <li><strong>Fruticultura:</strong> anos de investimento sem receita na formação. Capital de giro de longo prazo, financiado por linha específica de implantação de perenes.</li>
     </ul>
+    <figure class="dd caixa-dd" id="dd-caixa4" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">O calendário do caixa · julho a junho</div>
+      <div class="dd-corpo">
+        <div class="abas"></div>
+        <svg role="img" aria-label="Entradas, saídas e saldo acumulado mês a mês"></svg>
+        <div class="leg"><span style="--c:#6E8A3A">entradas</span><span style="--c:#D9895E">saídas</span><span class="ln" style="--c:#1A1A17">saldo acumulado</span><span class="ln" style="--c:#7C3D1F" data-legcred hidden>saldo com custeio</span></div>
+        <label class="liga" data-liga><input type="checkbox"> Financiar o vale com custeio (R$ 100 mil em outubro, 9% a.a., quitado em março)</label>
+        <p data-msg class="msg-dd"></p>
+      </div>
+      <figcaption>Valores de exemplo, em R$ mil, para mostrar o ritmo de cada atividade.</figcaption>
+    </figure>
+
     <div class="callout">
       <strong>O erro que quebra projeto viável</strong>
       Calcular só o resultado do ciclo e ignorar o calendário. Sem identificar o mês de maior déficit, o produtor descobre tarde que falta caixa para a próxima aplicação, e precisa vender mal, antecipado, para fechar o mês.
@@ -635,6 +706,17 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="example">
       <p>Se a soja é cotada a R$ 130/sc na TV, o preço posto cooperativa em São Gabriel pode ficar perto de <span class="calc">R$ 120/sc</span> depois do frete e das deduções. É esse o número que sustenta a receita do projeto. Usar a cotação cheia <em>superestima</em> a viabilidade.</p>
     </div>
+
+    <figure class="dd cascata" id="dd-porteira4" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Da cotação ao preço na porteira · soja, por saca</div>
+      <div class="dd-corpo">
+        <div class="lista"></div>
+        <div class="total"><span>Preço que entra na planilha</span><b></b></div>
+        <p class="msg msg-dd"></p>
+        <div class="dd-acoes"><button type="button" class="dd-btn prim" data-passo>Descontar o próximo item</button><button type="button" class="dd-btn" data-recomeca>Recomeçar</button></div>
+      </div>
+      <figcaption>Valores de exemplo, por saca. Se a soja ficar no armazém esperando preço, entra mais um desconto: a armazenagem de cada mês.</figcaption>
+    </figure>
 
     <h3>Onde consultar (RS)</h3>
     <div class="tbl-wrap">
@@ -752,22 +834,22 @@ const QUIZ = [
 
 const PROFILES = {
   op: {
-    name: "🚜 Operador",
+    name: "Operador",
     msg: "Você fecha o cálculo, mas ainda o trata como se o projeto existisse no vácuo: sem calendário de caixa, sem a linha de crédito certa, com o preço cheio do porto e sem a regularização. O próximo passo é encaixar o número no mundo real: o mês em que falta caixa, o preço na porteira, o CAR como porta do crédito.",
     revise: "Aulas IV.2 (fluxo de caixa e capital de giro) e IV.3 (o preço que entra na planilha é o regional, não a cotação)."
   },
   tr: {
-    name: "🌱 Em transição",
+    name: "Em transição",
     msg: "Você percebe que há mais a verificar (o caixa, a linha, o preço), mas tende a aproximar valores e adiar a checagem. O salto seguinte é fechar cada premissa na fonte: o Plano Safra vigente, o boletim da cooperativa, o status do CAR. Premissa aproximada vira projeto frágil na defesa.",
     revise: "Aula IV.1 (enquadramento e custo do crédito) e Parte II, bloco II.2 (croqui e CAR como exigência do financiamento)."
   },
   ge: {
-    name: "📋 Gestor",
+    name: "Gestor",
     msg: "Você trata o crédito como custo do projeto e reconhece o custo de oportunidade do capital próprio. O produtor que conta com você não confunde dívida com prejuízo nem capital próprio com dinheiro de graça. O próximo passo é a visão estratégica completa: caixa, preço regional e regularização tratados como premissas que se defendem com fonte.",
     revise: "Reforce a aula IV.2 (fluxo de caixa) e avance para a Parte V, onde o método se aplica a pecuária, fruticultura e precisão."
   },
   es: {
-    name: "🎯 Técnico estratégico",
+    name: "Técnico estratégico",
     msg: "Você opera no nível que o mercado demanda: lê o calendário de caixa, enquadra a linha de crédito na fonte vigente, adota o preço posto cooperativa e trata o CAR como condição do financiamento. Vê o projeto como um sistema que precisa funcionar no tempo, no território e no mercado real. Mantenha esse rigor: é o que faz o projeto sobreviver fora da planilha.",
     revise: "Você domina a Parte IV. Aplique-a a um caso real (uma propriedade conhecida) e avance para a Parte V, módulos aplicados por atividade."
   }
@@ -828,7 +910,7 @@ function showResult(){
   document.getElementById('reviseBlocks').textContent = profile.revise;
   const tallyEl = document.getElementById('resultTally');
   tallyEl.innerHTML = '';
-  const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
+  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Técnico estratégico'};
   for(const k of ['op','tr','ge','es']){
     const row = document.createElement('div');
     row.className = 'tally-row' + (k === topKey ? ' winner' : '');
@@ -886,6 +968,126 @@ window.addEventListener('scroll', () => {
 backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 </script>
 
+<script src="didatica.js"></script>
+<script>
+var R = Didatica.reais;
+var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits:d||0, maximumFractionDigits:d||0}); };
+
+/* 1. o peso dos juros */
+(function(){
+  var el = document.getElementById('dd-juros'), q = function(s){ return el.querySelector(s); };
+  var M = [['Cartão de crédito rotativo', 440, '#7C3D1F'], ['Cheque especial', 134, '#A8552E'], ['Crédito rural: demais produtores', 16, '#B89233'], ['Agricultura Empresarial', 10.25, '#6E7A4E'], ['Pronaf, alimento básico', 2, '#3D4A2A']];
+  q('.linhas').innerHTML = M.map(function(m, i){ return '<div class="lin" data-k="' + i + '"><div class="rot"><span>' + m[0] + ' <small>' + f1(m[1], m[1] % 1 ? 2 : 0) + '% a.a.</small></span><b></b></div><div class="tr"><i style="background:' + m[2] + '"></i></div></div>'; }).join('');
+  function calc(){
+    var v = +q('[data-i=valor]').value, p = +q('[data-i=prazo]').value;
+    q('[data-v=valor]').textContent = R(v); q('[data-v=prazo]').textContent = p + (p > 1 ? ' meses' : ' mês');
+    var jr = M.map(function(m){ return v * m[1] / 100 * p / 12; }), mx = Math.max.apply(null, jr);
+    el.querySelectorAll('.lin').forEach(function(l, i){ l.querySelector('b').textContent = R(jr[i]); l.querySelector('i').style.width = Math.max(jr[i] / mx * 100, 0.6) + '%'; });
+  }
+  el.querySelectorAll('input').forEach(function(i){ i.addEventListener('input', calc); }); calc();
+})();
+
+/* 2. enquadramento */
+(function(){
+  var el = document.getElementById('dd-enq'), q = function(s){ return el.querySelector(s); };
+  var RENDAS = [30000, 60000, 100000, 300000, 500000, 800000, 1500000, 3600000, 5000000, 10000000];
+  var fam = true;
+  var nome = function(v){ return v >= 1000000 ? 'R$ ' + f1(v / 1000000, 1) + ' mi' : 'R$ ' + f1(v / 1000) + ' mil'; };
+  function calc(){
+    var r = RENDAS[+q('[data-i=renda]').value], t, d;
+    q('[data-v=renda]').textContent = (r >= 10000000 ? 'acima de ' : 'até ') + nome(r);
+    if (fam && r <= 60000){ t = 'Pronaf B (Microcrédito)'; d = 'Renda familiar até R$ 60 mil por ano. Juros de 0,5% a.a. e bônus de adimplência.'; }
+    else if (fam && r <= 500000){ t = 'Pronaf, demais grupos'; d = 'Agricultura familiar com renda até R$ 500 mil. Juros de 1% a 7,5% a.a., conforme o que se produz.'; }
+    else if (r <= 3600000){ t = 'Pronamp'; d = 'Médio produtor: renda até cerca de R$ 3,6 mi por ano, com pelo menos 80% vinda do agro. Custeio a 9% a.a.' + (fam && r > 500000 ? ' Acima de R$ 500 mil, a família sai do Pronaf.' : '') + (!fam && r <= 500000 ? ' Sem CAF, não há acesso ao Pronaf, mesmo com renda baixa.' : ''); }
+    else { t = 'Agricultura Empresarial, demais produtores'; d = 'Grande produtor, fora do Pronamp. Custeio Empresarial a 12,5% a.a.'; }
+    q('.res b').textContent = t; q('.res span').textContent = d;
+  }
+  el.querySelectorAll('.opcao button').forEach(function(b){ b.addEventListener('click', function(){ fam = b.dataset.f === '1'; el.querySelectorAll('.opcao button').forEach(function(x){ x.classList.toggle('on', x === b); }); calc(); }); });
+  q('input').addEventListener('input', calc); calc();
+})();
+
+/* 3. degraus do Pronaf */
+(function(){
+  var el = document.getElementById('dd-degraus');
+  var D = [['Agroecologia, orgânicos', 1], ['Alimento básico', 2], ['Demais produtos', 5.5], ['Soja e boi', 7.5]];
+  el.querySelector('.grade').innerHTML = D.map(function(d){ var j = 100000 * d[1] / 100 * 6 / 12; return '<div class="col"><div class="bar" data-h="' + (d[1] / 7.5 * 100) + '">' + f1(d[1], d[1] % 1 ? 1 : 0) + '%</div><small>' + d[0] + '</small><b>' + R(j) + '</b></div>'; }).join('');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ el.querySelectorAll('.bar').forEach(function(b){ b.style.height = b.dataset.h + '%'; }); }); });
+})();
+
+/* 4. receita, financiamento ou despesa financeira */
+(function(){
+  var el = document.getElementById('dd-receita');
+  el.insertAdjacentHTML('beforeend', Didatica.htmlClassificador());
+  Didatica.classificador(el, {
+    categorias:[{id:'r', t:'Receita'},{id:'f', t:'Financiamento'},{id:'d', t:'Despesa financeira'}],
+    itens:[
+      {t:'Venda da safra de soja', c:'r', e:'Resultado da produção: receita.'},
+      {t:'Venda de vacas de descarte', c:'r', e:'Subproduto da atividade: receita.'},
+      {t:'Arrendamento de pastagem para o vizinho', c:'r', e:'Outra receita da propriedade.'},
+      {t:'Crédito de custeio liberado pelo banco', c:'f', e:'Entra no caixa, mas vai sair de volta: entrada de financiamento, não receita.'},
+      {t:'Financiamento do Mais Alimentos para o trator', c:'f', e:'Dinheiro emprestado para investir: entrada de financiamento.'},
+      {t:'Parcela do custeio paga na colheita', c:'d', e:'Devolução do empréstimo com juros: sai como despesa financeira.'},
+      {t:'Juros do custeio', c:'d', e:'Custo do dinheiro emprestado: despesa financeira.'},
+      {t:'IOF da operação de crédito', c:'d', e:'Encargo do financiamento: despesa financeira.'}
+    ],
+    fim:'Só o que ficou com o produtor no fim do ciclo é resultado. Crédito lançado como receita esconde o déficit.'
+  });
+})();
+
+/* 7. calendário do caixa */
+(function(){
+  var el = document.getElementById('dd-caixa4'), svg = el.querySelector('svg'), q = function(s){ return el.querySelector(s); };
+  var MES = ['jul','ago','set','out','nov','dez','jan','fev','mar','abr','mai','jun'];
+  var A = {
+    'Grãos': {e:[0,0,0,0,0,0,0,60,90,20,0,0], s:[2,2,6,40,30,15,10,8,6,2,2,2], cred:true, m:'O vale vai de outubro a fevereiro e só vira em março, com a venda. Esse buraco precisa ser coberto por capital próprio ou custeio.'},
+    'Confinamento': {e:[0,0,0,0,0,0,0,0,0,0,0,125], s:[1,1,1,1,1,1,1,1,60,12,12,18], m:'Compra do boi magro em março e ração por 90 a 120 dias. O dinheiro só volta na venda, no fim do ciclo.'},
+    'Leite': {e:[19,19,20,22,23,23,22,21,20,19,18,18], s:[17,17,17,17,18,18,18,17,17,17,17,17], m:'Receita mensal e desembolso diário: o caixa é mais equilibrado e quase não precisa de capital de giro.'},
+    'Fruticultura': {e:[0,0,0,0,0,0,0,0,0,0,0,0], s:[40,6,3,3,4,4,3,3,3,2,2,2], m:'Ano de formação do pomar: só saídas. A receita só chega depois de 2 a 5 anos, por isso o capital de giro é de longo prazo.'}
+  };
+  var NS = 'http://www.w3.org/2000/svg', atual = 'Grãos';
+  q('.abas').innerHTML = Object.keys(A).map(function(n){ return '<button type="button">' + n + '</button>'; }).join('');
+  function desenha(){
+    var a = A[atual], cred = a.cred && q('[data-liga] input').checked;
+    q('.abas').querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.textContent === atual); });
+    q('[data-liga]').hidden = !a.cred; q('[data-legcred]').hidden = !cred;
+    var sal = [], salc = [], acc = 0, accc = 0;
+    for (var i = 0; i < 12; i++){
+      acc += a.e[i] - a.s[i]; sal.push(acc);
+      var extra = 0; if (cred){ if (i === 3) extra = 100; if (i === 8) extra = -104.5; }
+      accc += a.e[i] - a.s[i] + extra; salc.push(accc);
+    }
+    var vals = sal.concat(salc, a.e, a.s.map(function(v){ return -v; }));
+    var mx = Math.max.apply(null, vals.concat([10])), mn = Math.min.apply(null, vals.concat([-10]));
+    var W = 340, H = 210, L = 34, Rr = 6, T = 10, B = 26, bw = (W - L - Rr) / 12;
+    var Y = function(v){ return T + (mx - v) / (mx - mn) * (H - T - B); }, X = function(i){ return L + i * bw + bw / 2; };
+    var h = '<line x1="' + L + '" x2="' + (W - Rr) + '" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="#9B9890"/>';
+    [mx, 0, mn].forEach(function(v){ h += '<text x="' + (L - 4) + '" y="' + (Y(v) + 4) + '" text-anchor="end" font-size="10.5" fill="#6B6960">' + f1(v) + '</text>'; });
+    for (var k = 0; k < 12; k++){
+      var x0 = L + k * bw + 3, w = bw - 6;
+      if (a.e[k]) h += '<rect x="' + x0 + '" y="' + Y(a.e[k]) + '" width="' + w + '" height="' + (Y(0) - Y(a.e[k])) + '" fill="#6E8A3A" opacity=".85"/>';
+      if (a.s[k]) h += '<rect x="' + x0 + '" y="' + Y(0) + '" width="' + w + '" height="' + (Y(-a.s[k]) - Y(0)) + '" fill="#D9895E" opacity=".85"/>';
+      h += '<text x="' + X(k) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + MES[k] + '</text>';
+    }
+    h += '<polyline points="' + sal.map(function(v, i){ return X(i) + ',' + Y(v); }).join(' ') + '" fill="none" stroke="#1A1A17" stroke-width="2.2"/>';
+    if (cred) h += '<polyline points="' + salc.map(function(v, i){ return X(i) + ',' + Y(v); }).join(' ') + '" fill="none" stroke="#7C3D1F" stroke-width="2.2" stroke-dasharray="5 3"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
+    var minS = Math.min.apply(null, sal), minC = Math.min.apply(null, salc);
+    var msg = a.m + ' Pior mês do saldo: ' + R(minS * 1000) + '.';
+    if (cred) msg += ' Com o custeio, o pior mês passa a ' + R(minC * 1000) + ', e os juros de R$ 4.500 entram como despesa financeira.';
+    q('[data-msg]').textContent = msg;
+  }
+  q('.abas').querySelectorAll('button').forEach(function(b){ b.addEventListener('click', function(){ atual = b.textContent; desenha(); }); });
+  q('[data-liga] input').addEventListener('change', desenha);
+  desenha();
+})();
+
+/* 8. da cotação ao preço na porteira */
+Didatica.cascata(document.getElementById('dd-porteira4'), {
+  inicio:{t:'Cotação vista na TV', v:130},
+  itens:[{t:'Frete até a cooperativa', v:5},{t:'Descontos de umidade e impureza', v:3},{t:'Funrural (1,63%)', v:2}],
+  msgs:['A cotação nacional é o ponto de partida, não o preço que o produtor recebe.','O frete da propriedade até a cooperativa sai do preço. Quanto mais longe, maior o desconto.','Soja acima de 14% de umidade ou com impureza sofre desconto por ponto percentual.','O Funrural é descontado sobre a receita bruta, no momento da venda. Chega-se aos cerca de R$ 120 por saca do exemplo de São Gabriel.']
+});
+</script>
 </body>
 </html>
 

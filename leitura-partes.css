@@ -78,6 +78,13 @@ ul.bullets li::before{top:7px}
 .q-restart{font-size:13.5px}
 .block-content small{font-size:14px}
 
+/* comparação dos Planos Safra */
+.plano-tag{font-size:12px}
+.plano-cifra-label{font-size:12.5px}
+.plano-linha{font-size:14.5px;line-height:1.5}
+.plano-faixa{font-size:12.5px}
+.tally-row{font-size:13.5px}
+
 /* figuras */
 .fig-zoom figcaption{font-size:12px}
 
