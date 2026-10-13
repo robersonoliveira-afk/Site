@@ -6,12 +6,25 @@
 
   /* elementos com data-anima ganham .on quando aparecem na tela (inclusive ao abrir uma aula) */
   function animar(){
-    var els = document.querySelectorAll('[data-anima]');
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-anima]'));
     if (!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('on'); }); return; }
     var io = new IntersectionObserver(function(ents){
       ents.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('on'); io.unobserve(en.target); } });
     }, {threshold:.3});
     els.forEach(function(e){ io.observe(e); });
+    /* verificação extra ao rolar e ao abrir uma aula, para não depender só do observador */
+    function checa(){
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      els.forEach(function(e){
+        if (e.classList.contains('on')) return;
+        var r = e.getBoundingClientRect();
+        if (r.height > 0 && r.top < h * 0.85 && r.bottom > h * 0.1) e.classList.add('on');
+      });
+    }
+    window.addEventListener('scroll', checa, {passive:true});
+    window.addEventListener('resize', checa);
+    document.addEventListener('click', function(){ setTimeout(checa, 450); });
+    checa();
   }
   document.addEventListener('DOMContentLoaded', animar);
 
@@ -97,6 +110,50 @@
       '<div class="item"></div><div class="opcoes"></div>' +
       '<div class="resp"><span class="resp-txt"></span><br><button type="button" class="dd-btn prox">Próximo</button></div>' +
       '<div class="fim"><b></b><span></span></div>';
+  };
+
+  /* ===== Fluxo em etapas com abas: cfg {abas:[{t, etapas:[{r, v}]}]} (a última etapa é destacada) ===== */
+  D.fluxo = function(el, cfg){
+    var abas = el.querySelector('.abas'), lista = el.querySelector('.etapas'), tm = [];
+    function mostra(k){
+      abas.querySelectorAll('button').forEach(function(b, i){ b.classList.toggle('on', i === k); });
+      tm.forEach(clearTimeout); tm = [];
+      var et = cfg.abas[k].etapas;
+      lista.innerHTML = et.map(function(e, i){
+        return '<li class="etapa' + (i === et.length - 1 ? ' final' : '') + '"><span class="n">' + (i + 1) + '</span><small>' + e.r + '</small><span>' + e.v + '</span></li>';
+      }).join('');
+      lista.querySelectorAll('.etapa').forEach(function(li, i){ tm.push(setTimeout(function(){ li.classList.add('vis'); }, 120 + i * 380)); });
+    }
+    abas.innerHTML = cfg.abas.map(function(a){ return '<button type="button">' + a.t + '</button>'; }).join('');
+    abas.querySelectorAll('button').forEach(function(b, i){ b.addEventListener('click', function(){ mostra(i); }); });
+    var iniciou = false;
+    function inicia(){ if (!iniciou){ iniciou = true; mostra(0); } }
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting){ inicia(); io.disconnect(); } }, {threshold:.25});
+      io.observe(el);
+    } else inicia();
+  };
+
+  /* ===== Camadas de custo e a receita: cfg {coe, cot, ct, rbMax, unidade, linhas: elemento da escada .hierarchy} ===== */
+  D.camadas = function(el, cfg){
+    var g = function(s){ return el.querySelector(s); }, top = cfg.rbMax;
+    var pos = function(v){ return v / top * 100; };
+    var segs = [[0, cfg.coe, '#B89233', '#3A2F08', 'COE'], [cfg.coe, cfg.cot, '#D9895E', '#3A2F08', '+ COT'], [cfg.cot, cfg.ct, '#3D4A2A', '#FAF7F0', '+ CT']];
+    var tr = g('.trilho');
+    tr.innerHTML = segs.map(function(s){ return '<div class="seg" style="left:' + pos(s[0]) + '%;--w:' + (pos(s[1]) - pos(s[0])) + '%;background:' + s[2] + ';color:' + s[3] + '">' + s[4] + '</div>'; }).join('') + '<div class="rb"><span></span></div>';
+    el.classList.add('on');
+    var rows = cfg.linhas ? cfg.linhas.querySelectorAll('.hier-row') : [];
+    var r = g('input[type=range]'), fmt = function(v){ return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); };
+    function calc(){
+      var rb = +r.value, k = rb < cfg.coe ? 0 : rb < cfg.cot ? 1 : rb < cfg.ct ? 2 : 3;
+      g('.rb').style.left = pos(rb) + '%'; g('.rb span').textContent = 'RB ' + fmt(rb);
+      g('[data-rb]').textContent = fmt(rb) + cfg.unidade;
+      rows.forEach(function(row, i){ row.classList.toggle('aceso', i === k); });
+      var est = g('.estado'), row = rows[k];
+      est.style.background = row ? getComputedStyle(row).backgroundColor : '';
+      est.innerHTML = row ? '<b>' + row.querySelector('.hier-tag').textContent + '</b> · ' + row.querySelector('span:last-child').textContent : '';
+    }
+    r.addEventListener('input', calc); calc();
   };
 
   /* ===== Curva de resposta a um insumo: máximo técnico x ótimo econômico =====

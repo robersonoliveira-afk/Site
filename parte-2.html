@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Parte II: Estrutura de custos · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Parte II, Estrutura de custos: COE, COT, CT e depreciação. Como classificar, medir e interpretar os custos de uma atividade agropecuária.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/parte-2.html">
@@ -225,6 +225,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   h1.title{font-size:36px}
 }
 </style>
+<link rel="stylesheet" href="leitura-partes.css">
+<link rel="stylesheet" href="didatica.css">
 </head>
 <body>
 
@@ -255,7 +257,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   <p class="subtitle">Como o gasto vira informação econômica: delimitar a área no mapa, classificar os custos, organizá-los nas camadas COE, COT e CT, e trazer o dado real do campo para a planilha.</p>
   <div class="meta">
     <span>Parte II de VI</span>
-    <span>4 aulas</span>
+    <span>5 aulas</span>
       </div>
 </header>
 
@@ -292,6 +294,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       diagnóstico técnico → <b>coeficientes técnicos</b> → insumos e recursos → custos
     </div>
 
+    <figure class="dd fluxo-dd" id="dd-fluxo" style="--dd:#8A6C1F;--dd-deep:#5E4A12">
+      <div class="dd-cab">A mesma lógica nas três atividades</div>
+      <div class="dd-corpo"><div class="abas"></div><ol class="etapas"></ol></div>
+      <figcaption>Valores de exemplo, para mostrar o caminho. Na prática, os coeficientes vêm do laudo, do Manual da CQFS-RS/SC e das recomendações técnicas de cada atividade.</figcaption>
+    </figure>
+
     <h3>Agricultura: o laudo de solo</h3>
     <p>
   Nenhuma lavoura séria começa sem diagnóstico do solo. O laudo descreve as características químicas e físicas da gleba e é a 
@@ -312,17 +320,17 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
 
     <div class="example">
-      <p>A análise de solo é o <strong>primeiro item</strong> da planilha (cerca de <span class="calc">R$ 65/150 amostra</span>), justamente porque é a base de todos os outros. Sem ela, calagem e adubação são chute; com ela, são cálculo. Importante destacar que a análise química e física são requisitos para o crédito rural. Mais detalhes você encontra na parte IV.2 Crédito rural e financiamento agrícola.</p>
+      <p>A análise de solo é o <strong>primeiro item</strong> da planilha (cerca de <span class="calc">R$ 65 a 150 por amostra</span>), justamente porque é a base de todos os outros. Sem ela, calagem e adubação são chute; com ela, são cálculo. Importante destacar que a análise química e física são requisitos para o crédito rural. Mais detalhes você encontra na parte IV.2 Crédito rural e financiamento agrícola.</p>
     </div>
 
-    <h3>🐄 Zootecnia: estrutura e evolução do rebanho</h3>
+    <h3><svg class="ico-dd" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6 5 3M17 6l2-3M3.5 8.5 7 9M20.5 8.5 17 9"/><path d="M7 8c0-2 2.2-3 5-3s5 1 5 3v6c0 3.5-2.2 6-5 6s-5-2.5-5-6z"/><path d="M10 16.5h4M10.5 12h.01M13.5 12h.01"/></svg>Zootecnia: estrutura e evolução do rebanho</h3>
     <p>Na pecuária, o equivalente ao laudo é responder: <em>quantos animais de cada categoria existem, e como esse número evolui no tempo?</em> A estrutura do rebanho define ração por animal/dia, vacinas por categoria e sal mineral por cabeça/mês, cada um um coeficiente técnico que alimenta o orçamento.</p>
     <div class="callout">
       <strong>Erro frequente</strong>
       Tratar o rebanho como número único ("100 animais") e calcular alimentação e sanidade como se todos fossem iguais. As categorias têm perfis de custo completamente diferentes. Experimente a ferramenta interativa que calcula a estrutura do rebanho leiteiro por categoria, e veja como o resultado muda.
     </div>
     <a class="go-link" href="rebanho.html">
-      <span class="go-link-icon">🐄</span>
+      <span class="go-link-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6 5 3M17 6l2-3M3.5 8.5 7 9M20.5 8.5 17 9"/><path d="M7 8c0-2 2.2-3 5-3s5 1 5 3v6c0 3.5-2.2 6-5 6s-5-2.5-5-6z"/><path d="M10 16.5h4M10.5 12h.01M13.5 12h.01"/></svg></span>
       <span class="go-link-body">
         <span class="go-link-eyebrow">Ferramenta interativa</span>
         <span class="go-link-title">Calcular a estrutura do rebanho leiteiro: por categoria</span>
@@ -330,14 +338,14 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <span class="go-link-arrow">&#8594;</span>
     </a>
 
-    <h3>🍇 Fruticultura: sistema de produção e implantação</h3>
+    <h3><svg class="ico-dd" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 6V3M12 4c2-1.5 4.5-1 5.5.5"/><circle cx="9" cy="9" r="2.4"/><circle cx="15" cy="9" r="2.4"/><circle cx="12" cy="12.6" r="2.4"/><circle cx="7.6" cy="13.4" r="2.2"/><circle cx="16.4" cy="13.4" r="2.2"/><circle cx="10" cy="17" r="2.2"/><circle cx="14" cy="17" r="2.2"/><circle cx="12" cy="20.6" r="1.8"/></svg>Fruticultura: sistema de produção e implantação</h3>
     <p>No pomar, o diagnóstico é a definição do <strong>sistema de produção</strong>: decisões agronômicas de longo prazo que fixam os custos por 15 a 20 anos. O espaçamento define o número de mudas/ha, o coeficiente central. E há uma particularidade que nenhuma outra atividade do curso tem: a <em>fase de formação</em>, 2 a 5 anos em que os custos ocorrem por inteiro e a receita é nula.</p>
     <div class="callout">
       <strong>Erro frequente</strong>
       Confundir custo de implantação (investimento amortizável) com custo de custeio anual (COE recorrente do pomar em produção). O Módulo B aprofunda payback e VPL.
     </div>
     <a class="go-link" href="vinhedo.html">
-      <span class="go-link-icon">🍇</span>
+      <span class="go-link-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 6V3M12 4c2-1.5 4.5-1 5.5.5"/><circle cx="9" cy="9" r="2.4"/><circle cx="15" cy="9" r="2.4"/><circle cx="12" cy="12.6" r="2.4"/><circle cx="7.6" cy="13.4" r="2.2"/><circle cx="16.4" cy="13.4" r="2.2"/><circle cx="10" cy="17" r="2.2"/><circle cx="14" cy="17" r="2.2"/><circle cx="12" cy="20.6" r="1.8"/></svg></span>
       <span class="go-link-body">
         <span class="go-link-eyebrow">Ferramenta interativa</span>
         <span class="go-link-title">Calcular mudas, postes e fios para implantação de vinhedo em espaldeira</span>
@@ -374,6 +382,31 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <strong>Conformidade legal</strong>
       Projetos em área de APP ou reserva legal são ilegais e não recebem crédito. O croqui deve confirmar que a área produtiva está regularizada no CAR.
     </div>
+    <figure class="dd mapa-dd" id="dd-croqui" style="--dd:#8A6C1F;--dd-deep:#5E4A12">
+      <div class="dd-cab">Croqui esquemático · 100 ha</div>
+      <div class="dd-corpo">
+        <svg viewBox="0 0 340 232" role="img" aria-label="Croqui esquemático de uma propriedade com talhões, pastagem, reserva legal, área de preservação ao longo do rio e benfeitorias">
+          <rect x="1" y="1" width="338" height="230" fill="#FAF7F0"/>
+          <g class="cam" data-cam="rl"><polygon points="14,14 150,12 142,96 16,100" fill="#5E6B45"/>
+            <g fill="#3D4A2A"><circle cx="40" cy="36" r="9"/><circle cx="66" cy="52" r="10"/><circle cx="98" cy="34" r="9"/><circle cx="120" cy="66" r="10"/><circle cx="44" cy="76" r="9"/><circle cx="84" cy="80" r="8"/></g>
+            <text x="78" y="62" text-anchor="middle" font-size="12" fill="#FAF7F0" font-weight="600">Reserva legal</text></g>
+          <g class="cam" data-cam="prod">
+            <polygon points="156,14 326,16 324,92 150,96" fill="#E3C46E"/><text x="238" y="58" text-anchor="middle" font-size="12" fill="#3A2F08">Talhão 1 · soja</text>
+            <polygon points="16,106 140,102 136,146 16,150" fill="#D9C27A"/><text x="76" y="130" text-anchor="middle" font-size="12" fill="#3A2F08">Talhão 2 · milho</text>
+            <polygon points="148,102 286,100 284,148 144,150" fill="#B5C48A"/><text x="214" y="129" text-anchor="middle" font-size="12" fill="#2A331C">Pastagem</text></g>
+          <g class="cam" data-cam="app"><path d="M10,176 C80,158 140,204 210,184 S300,170 330,192" fill="none" stroke="#B9D3C2" stroke-width="34" stroke-linecap="round"/>
+            <text x="300" y="218" text-anchor="end" font-size="11.5" fill="#2A331C">APP ao longo do rio</text></g>
+          <path d="M10,176 C80,158 140,204 210,184 S300,170 330,192" fill="none" stroke="#5C8FA8" stroke-width="6" stroke-linecap="round"/>
+          <g class="cam" data-cam="benf"><path d="M146,99 L330,96" stroke="#A8552E" stroke-width="3" stroke-dasharray="6 4"/>
+            <rect x="292" y="104" width="14" height="12" fill="#fff" stroke="#7C3D1F" stroke-width="1.6"/><path d="M290,105 l9,-7 9,7" fill="none" stroke="#7C3D1F" stroke-width="1.6"/>
+            <rect x="310" y="108" width="14" height="10" fill="#fff" stroke="#7C3D1F" stroke-width="1.6"/><rect x="296" y="124" width="24" height="14" fill="none" stroke="#7C3D1F" stroke-width="1.6" stroke-dasharray="3 2"/></g>
+          <polygon points="10,10 330,14 330,222 10,224" fill="none" stroke="#1A1A17" stroke-width="2"/>
+        </svg>
+        <div class="abas"><button type="button" data-c="prod">Área produtiva</button><button type="button" data-c="rl">Reserva legal</button><button type="button" data-c="app">APP</button><button type="button" data-c="benf">Benfeitorias</button></div>
+        <p class="info">Toque numa camada para destacá-la. Área total do exemplo: <b>100 ha</b>.</p>
+      </div>
+      <figcaption>Croqui esquemático, com áreas de exemplo. No croqui de verdade, cada polígono é desenhado e medido no Google Earth.</figcaption>
+    </figure>
     <div class="callout success">
       <strong>Acesso ao crédito</strong>
       Bancos exigem o CAR ativo e sem pendências para liberar crédito rural (Parte IV). Propriedade irregular fica impedida de acessar financiamento subsidiado, a regularização ambiental é, na prática, porta de entrada do financiamento. <strong>Importante:</strong> o acesso ao crédito tem exigido profissionalismo e você técnico tem papel determinante.
@@ -406,6 +439,22 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       </tr>
     </table>
     </div>
+
+    <figure class="dd linhas-dd" id="dd-fixo" style="--dd:#8A6C1F;--dd-deep:#5E4A12">
+      <div class="dd-cab">O fixo se dilui com a escala</div>
+      <div class="dd-corpo">
+        <svg viewBox="0 0 340 210" role="img" aria-label="Custo fixo constante, custo variável e custo total crescendo com a área"></svg>
+        <div class="leg"><span style="--c:#A8552E">custo fixo</span><span style="--c:#B89233">custo variável</span><span style="--c:#1A1A17">custo total</span></div>
+        <div class="ctrl"><div class="top"><span>Área plantada</span><b data-ha></b></div><input type="range" min="10" max="200" step="5" value="40" aria-label="Área plantada"></div>
+        <div class="res"><div>Custo total no ano<b data-ct></b></div><div>Custo por hectare<b data-cha></b></div></div>
+        <p data-msg style="font-size:15.5px;margin:12px 0 0"></p>
+      </div>
+      <figcaption>Valores de exemplo: custo fixo de R$ 120 mil por ano e custo variável de R$ 3.000 por hectare.</figcaption>
+    </figure>
+
+    <figure class="dd classif" id="dd-varfixo" style="--dd:#8A6C1F;--dd-deep:#5E4A12">
+      <div class="dd-cab">Variável ou fixo?</div>
+    </figure>
 
     <h3>Diretos × indiretos</h3>
     <p>Importa quando a propriedade tem mais de uma atividade ao mesmo tempo (soja e milho, lavoura e pecuária). <strong>Diretos</strong> atribuem-se a uma atividade específica: o adubo da lavoura de milho é custo direto do milho. <strong>Indiretos</strong> são compartilhados e exigem rateio: o salário do gerente que cuida de lavoura e pecuária divide-se por algum critério (horas, área, nº de funcionários).</p>
@@ -479,6 +528,17 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <div class="hier-row ok"><span class="hier-tag">RB ≥ COT</span><span>Sustentabilidade mínima: paga custos, repõe patrimônio, remunera o gestor.</span></div>
       <div class="hier-row best"><span class="hier-tag">RB ≥ CT</span><span>Viabilidade econômica plena: gera riqueza acima da melhor alternativa.</span></div>
     </div>
+
+    <figure class="dd camadas-dd" id="dd-camadas" style="--dd:#8A6C1F;--dd-deep:#5E4A12">
+      <div class="dd-cab">Mova a receita e veja a camada</div>
+      <div class="dd-corpo">
+        <div class="trilho"></div>
+        <div class="eixo"><span>R$ 0</span><span>R$ 8.000/ha</span></div>
+        <div class="ctrl"><div class="top"><span>Receita bruta por hectare</span><b data-rb></b></div><input type="range" min="2000" max="8000" step="100" value="4500" aria-label="Receita bruta por hectare"></div>
+        <div class="estado"></div>
+      </div>
+      <figcaption>Valores de exemplo por hectare: COE de R$ 4.000, COT de R$ 5.000 e CT de R$ 6.200. A linha correspondente da escada acima também se destaca.</figcaption>
+    </figure>
 
     <div class="example">
       <p>Qualquer atividade cultivo ou criação, a sequência de perguntas é sempre a mesma: a receita cobre o COE? cobre o COT? cobre o CT? <strong>A rentabilidade do projeto é sempre medida sobre o CT</strong>, é o padrão deste curso, porque só o CT incorpora o custo de oportunidade da terra e do capital.</p>
@@ -617,22 +677,22 @@ const QUIZ = [
 
 const PROFILES = {
   op: {
-    name: "🚜 Operador",
+    name: "Operador",
     msg: "Você ainda raciocina como executor: domina o lado agronômico, mas o econômico ainda é abstrato. A planilha parece exigência, não ferramenta de decisão. O próximo passo é enxergar cada decisão técnica como uma escolha financeira com consequência mensurável.",
     revise: "Aulas II.2 (classificação, em especial explícitos × implícitos) e II.3 (as três camadas de custo). São a base que falta para sair do operacional."
   },
   tr: {
-    name: "🌱 Em transição",
+    name: "Em transição",
     msg: "Você já entende o vocabulário dos custos, mas hesita quando a decisão envolve incerteza e tende a oferecer meio-termos. O salto seguinte está em assumir posição com base em cálculo, e em distinguir com firmeza o que é desembolso do que é custo econômico.",
     revise: "Aula II.3 (COE × COT × CT e suas leituras críticas) e II.4 (por que o registro sustenta a decisão)."
   },
   ge: {
-    name: "📋 Gestor",
+    name: "Gestor",
     msg: "Você raciocina como gestor: classifica corretamente, lê as camadas de custo e entende para que serve o registro. O produtor que conta com você atravessa uma safra ruim sem comprometer o patrimônio. O próximo passo é o lado estratégico: conectar custo, mercado e crédito.",
     revise: "Siga para a Parte III (análise econômica) e a Parte IV (contexto operacional), que ampliam a leitura do contexto em que o projeto opera."
   },
   es: {
-    name: "🎯 Técnico estratégico",
+    name: "Técnico estratégico",
     msg: "Você opera no nível que o mercado demanda: separa caixa de patrimônio, custo explícito de implícito, e lê as três camadas como o médico lê um hemograma. Continua medindo o custo econômico real, não só o financeiro. Mantenha esse rigor: é o que sustenta a confiança do produtor em decisões de longo prazo.",
     revise: "Você domina a Parte II. Reforce a leitura das camadas com casos novos a cada safra e avance com segurança para a análise econômica (Parte III)."
   }
@@ -693,7 +753,7 @@ function showResult(){
   document.getElementById('reviseBlocks').textContent = profile.revise;
   const tallyEl = document.getElementById('resultTally');
   tallyEl.innerHTML = '';
-  const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
+  const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Técnico estratégico'};
   for(const k of ['op','tr','ge','es']){
     const row = document.createElement('div');
     row.className = 'tally-row' + (k === topKey ? ' winner' : '');
@@ -753,5 +813,93 @@ window.addEventListener('scroll', () => {
 backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 </script>
 
+<script src="didatica.js"></script>
+<script>
+Didatica.fluxo(document.getElementById('dd-fluxo'), {abas:[
+  {t:'Agricultura', etapas:[
+    {r:'Diagnóstico', v:'Laudo de solo da gleba de 20 ha: pH 5,2 e fósforo baixo.'},
+    {r:'Coeficientes técnicos', v:'Pelo Manual: 2 t de calcário e 300 kg de adubo por hectare.'},
+    {r:'Insumos', v:'20 ha → 40 t de calcário e 6 t de adubo.'},
+    {r:'Custos', v:'40 t × R$ 180 + 6 t × R$ 3.300 = R$ 27.000 no orçamento.'}]},
+  {t:'Pecuária', etapas:[
+    {r:'Diagnóstico', v:'Estrutura do rebanho leiteiro: 30 vacas em lactação, 8 secas e 12 novilhas.'},
+    {r:'Coeficientes técnicos', v:'6 kg de concentrado por vaca em lactação por dia.'},
+    {r:'Insumos', v:'30 vacas × 6 kg × 30 dias = 5.400 kg de concentrado por mês.'},
+    {r:'Custos', v:'5.400 kg × R$ 1,90 = R$ 10.260 por mês, só nas vacas em lactação.'}]},
+  {t:'Fruticultura', etapas:[
+    {r:'Diagnóstico', v:'Sistema de produção: vinhedo em espaldeira, espaçamento de 2,5 m × 1,2 m.'},
+    {r:'Coeficientes técnicos', v:'10.000 m² ÷ (2,5 × 1,2) ≈ 3.333 mudas por hectare.'},
+    {r:'Insumos', v:'2 ha → cerca de 6.667 mudas.'},
+    {r:'Custos', v:'6.667 mudas × R$ 12 ≈ R$ 80.000 em mudas, na implantação.'}]}
+]});
+
+(function(){
+  var el = document.getElementById('dd-croqui'), info = el.querySelector('.info');
+  var T = {
+    prod:'<b>68 ha</b> · talhões de lavoura (48 ha) e pastagem (20 ha). É a base de cálculo do projeto: insumos, produção e custos por hectare.',
+    rl:'<b>20 ha</b> · vegetação nativa que todo imóvel rural mantém. No RS, 20% da área do imóvel, pelo Código Florestal.',
+    app:'<b>7 ha</b> · faixa protegida ao longo do rio. Fica fora da área produtiva; projeto em APP não recebe crédito.',
+    benf:'<b>5 ha</b> · sede, galpão, mangueira e estradas internas. Entram no projeto como estrutura, não como área de cultivo.'
+  };
+  el.querySelectorAll('.abas button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var c = b.getAttribute('data-c'), ja = b.classList.contains('on');
+      el.querySelectorAll('.abas button').forEach(function(x){ x.classList.remove('on'); });
+      el.querySelectorAll('.cam').forEach(function(g){ g.classList.toggle('on', !ja && g.getAttribute('data-cam') === c); });
+      el.classList.toggle('foco', !ja);
+      if (!ja){ b.classList.add('on'); info.innerHTML = T[c]; }
+      else info.innerHTML = 'Toque numa camada para destacá-la. Área total do exemplo: <b>100 ha</b>.';
+    });
+  });
+})();
+
+(function(){
+  var el = document.getElementById('dd-fixo'), svg = el.querySelector('svg'), r = el.querySelector('input');
+  var CF = 120000, CVHA = 3000, HMAX = 200, YMAX = CF + CVHA * HMAX;
+  var W = 340, H = 210, L = 48, R = 10, T = 10, B = 28;
+  var X = function(h){ return L + h / HMAX * (W - L - R); }, Y = function(v){ return T + (1 - v / YMAX) * (H - T - B); };
+  var mil = function(v){ return Math.round(v / 1000) + ' mil'; };
+  var h = '';
+  [0, 360000, 720000].forEach(function(v){ h += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#E8E3D3"/><text x="' + (L - 6) + '" y="' + (Y(v) + 4) + '" font-size="11" fill="#6B6960" text-anchor="end">' + (v ? mil(v) : '0') + '</text>'; });
+  [[0,'start'],[100,'middle'],[200,'end']].forEach(function(p){ h += '<text x="' + X(p[0]) + '" y="' + (H - 10) + '" font-size="11" fill="#6B6960" text-anchor="' + p[1] + '">' + p[0] + ' ha</text>'; });
+  h += '<line x1="' + X(0) + '" y1="' + Y(CF) + '" x2="' + X(HMAX) + '" y2="' + Y(CF) + '" stroke="#A8552E" stroke-width="2.5"/>';
+  h += '<line x1="' + X(0) + '" y1="' + Y(0) + '" x2="' + X(HMAX) + '" y2="' + Y(CVHA * HMAX) + '" stroke="#B89233" stroke-width="2.5"/>';
+  h += '<line x1="' + X(0) + '" y1="' + Y(CF) + '" x2="' + X(HMAX) + '" y2="' + Y(YMAX) + '" stroke="#1A1A17" stroke-width="2.5"/>';
+  h += '<line id="fx-v" y1="' + T + '" y2="' + (H - B) + '" stroke="#1A1A17" stroke-dasharray="4 3"/><circle id="fx-p" r="5" fill="#1A1A17"/>';
+  svg.innerHTML = h;
+  function calc(){
+    var ha = +r.value, ct = CF + CVHA * ha;
+    el.querySelector('#fx-v').setAttribute('x1', X(ha)); el.querySelector('#fx-v').setAttribute('x2', X(ha));
+    el.querySelector('#fx-p').setAttribute('cx', X(ha)); el.querySelector('#fx-p').setAttribute('cy', Y(ct));
+    el.querySelector('[data-ha]').textContent = ha + ' ha';
+    el.querySelector('[data-ct]').textContent = Didatica.reais(ct);
+    el.querySelector('[data-cha]').textContent = Didatica.reais(ct / ha);
+    el.querySelector('[data-msg]').textContent = 'Com ' + ha + ' ha, cada hectare carrega ' + Didatica.reais(CF / ha) + ' de custo fixo, além dos R$ 3.000 de variável. Quanto maior a área, menor o peso do fixo em cada hectare.';
+  }
+  r.addEventListener('input', calc); calc();
+})();
+
+(function(){
+  var el = document.getElementById('dd-varfixo');
+  el.insertAdjacentHTML('beforeend', Didatica.htmlClassificador());
+  Didatica.classificador(el, {
+    colunas:2,
+    categorias:[{id:'v', t:'Variável'},{id:'f', t:'Fixo'}],
+    itens:[
+      {t:'Sementes', c:'v', e:'Mais área plantada, mais semente: custo variável.'},
+      {t:'Combustível das operações', c:'v', e:'Cresce com a área trabalhada: variável.'},
+      {t:'Mão de obra temporária', c:'v', e:'Contratada conforme o volume de serviço: variável.'},
+      {t:'Ração do rebanho', c:'v', e:'Acompanha o número de animais: variável.'},
+      {t:'Depreciação das máquinas', c:'f', e:'O trator se desgasta mesmo em ano sem safra: fixo.'},
+      {t:'Arrendamento com valor fixo', c:'f', e:'Pago igual, produza muito ou pouco: fixo.'},
+      {t:'ITR', c:'f', e:'Imposto sobre a terra, independe da produção: fixo.'},
+      {t:'Mão de obra permanente', c:'f', e:'Remunera a estrutura, não o volume: fixo.'}
+    ],
+    fim:'Classificar certo é o que permite calcular o ponto de equilíbrio na Parte III.'
+  });
+})();
+
+Didatica.camadas(document.getElementById('dd-camadas'), {coe:4000, cot:5000, ct:6200, rbMax:8000, unidade:'/ha', linhas:document.querySelector('#coe-cot-ct .hierarchy')});
+</script>
 </body>
 </html>

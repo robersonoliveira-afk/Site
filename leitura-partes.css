@@ -52,6 +52,32 @@ ul.bullets li::before{top:7px}
 .ntable td{padding:10px 10px}
 .ntable td .cat{font-size:11.5px}
 
+/* tabela larga */
+.tbl{font-size:15.5px}
+.tbl th{font-size:12px}
+.tbl td.num{font-size:14.5px}
+
+/* atalho para ferramenta */
+.go-link-eyebrow{font-size:12px}
+.go-link-title{font-size:17.5px;line-height:1.3}
+
+/* escada de camadas */
+.hier-row{font-size:15.5px;line-height:1.45}
+.hier-tag{font-size:12px}
+
+/* autoavaliação */
+.quiz-eyebrow{font-size:26px}
+.quiz-intro{font-size:17px;line-height:1.6}
+.q-counter{font-size:12px}
+.q-text{font-size:20px;line-height:1.35}
+.q-option{font-size:16.5px;line-height:1.45}
+.result-eyebrow{font-size:12px}
+.result-message{font-size:17px;line-height:1.6}
+.result-revise{font-size:15.5px}
+.result-revise strong{font-size:12px}
+.q-restart{font-size:13.5px}
+.block-content small{font-size:14px}
+
 /* figuras */
 .fig-zoom figcaption{font-size:12px}
 
