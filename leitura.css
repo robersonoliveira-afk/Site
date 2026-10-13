@@ -1,0 +1,53 @@
+/* Ajustes de leitura (tipografia e espaçamento), carregados depois do estilo de cada página.
+   Referência: o curso para produtores (produtor/curso.css). Texto corrido de 17 a 18px,
+   nenhum rótulo abaixo de 12px, títulos maiores e mais respiro entre as seções. */
+
+/* ===== Página inicial ===== */
+body{font-size:17px}
+
+.header-bar{padding:20px 22px;flex-wrap:wrap;gap:14px 18px}
+.header-text{flex:1 1 230px;min-width:0}
+.header-text h1{font-size:21px;line-height:1.15}
+.header-text p{font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;letter-spacing:0;text-transform:none;line-height:1.5;margin-top:8px;overflow-wrap:anywhere}
+
+.intro{padding:40px 22px 34px}
+.intro .eyebrow{font-size:12.5px;margin-bottom:18px}
+.intro h2{font-size:31px;line-height:1.12;margin-bottom:16px}
+.intro p{font-size:18px;line-height:1.65;color:var(--ink-soft);max-width:60ch}
+
+.coursemap{padding:34px 22px 28px}
+.coursemap .cm-eyebrow{font-size:12.5px;margin-bottom:18px}
+.cm-grid{gap:10px}
+.cm-item{padding:13px 12px;gap:8px;min-width:0}
+.cm-item .cm-num{font-size:20px;min-width:35px}
+.cm-item .cm-title{font-size:16px;line-height:1.2;overflow-wrap:break-word}
+.cm-item .cm-sub{font-size:13px;margin-top:4px}
+
+.movement{padding:40px 22px 10px}
+.movement-head{margin-bottom:10px}
+.movement-num{font-size:14px;padding:5px 10px}
+.movement-name{font-size:26px;line-height:1.15}
+.movement-desc{font-size:17px;line-height:1.6;color:var(--ink-soft);margin-bottom:18px}
+.parts{gap:12px}
+.part-card{padding:18px 16px;gap:16px}
+.part-card .pn{font-size:30px;min-width:46px}
+.part-card .pbody .ptitle{font-size:21px}
+.part-card .pbody .psub{font-size:15px;line-height:1.45;margin-top:5px}
+
+.vidcard .vc-eyebrow{font-size:12px}
+.vidcard .vc-title{font-size:23px}
+.vidcard .vc-desc{font-size:16px}
+.vidcard .vc-cta{font-size:13px}
+
+footer{padding:40px 22px 48px;font-size:12.5px;line-height:1.6}
+footer strong{font-size:12.5px;margin-bottom:8px}
+footer p{font-size:15px;line-height:1.6}
+
+@media (min-width:720px){
+  /* mantém o conteúdo centralizado em telas largas, como na página original */
+  .header-bar,.intro,.coursemap,.movement,.vidcard-wrap,footer{padding-left:max(22px,calc(50% - 340px));padding-right:max(22px,calc(50% - 340px))}
+  .cm-item{padding:14px 16px;gap:12px}
+  .cm-item .cm-title{font-size:17.5px}
+  .intro h2{font-size:38px}
+  .header-text h1{font-size:23px}
+}
