@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Parte I: Fundamentos · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Parte I, Fundamentos: custo de produção, formação de preço e tomada de decisão na agropecuária. Material didático do Colégio Politécnico da UFSM.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/parte-1.html">
@@ -173,6 +173,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   h1.title{font-size:36px}
 }
 </style>
+<link rel="stylesheet" href="leitura-partes.css">
+<link rel="stylesheet" href="didatica.css">
 </head>
 <body>
 
@@ -247,6 +249,17 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       Ver dinheiro na conta no fim da safra e achar que lucrou. Sem contabilizar o próprio salário, o desgaste do trator, das mangueiras e o custo de oportunidade do capital, o produtor pode ter ficado mais pobre. <strong>Caixa positivo não é lucro econômico.</strong>
     </div>
 
+    <figure class="dd cascata" id="dd-caixa">
+      <div class="dd-cab">Exemplo · fim da safra</div>
+      <div class="dd-corpo">
+        <div class="lista"></div>
+        <div class="total"><span>Resultado econômico</span><b></b></div>
+        <p class="msg" style="font-size:15.5px;margin:10px 0 0"></p>
+        <div class="dd-acoes"><button type="button" class="dd-btn prim" data-passo>Descontar o próximo custo</button><button type="button" class="dd-btn" data-recomeca>Recomeçar</button></div>
+      </div>
+      <figcaption>Valores de exemplo. O caixa fechou positivo; os custos que não saem do caixa revelam o resultado econômico.</figcaption>
+    </figure>
+
     <h3>A propriedade é um sistema, não um amontoado</h3>
     <p>Antes de medir custos, vale enxergar como as partes se encaixam. A abordagem sistêmica (Miguel et al., 2022) descreve a propriedade como uma <strong>Unidade de Produção Agrícola (UPA)</strong>: o resultado da interação entre o sistema social (os objetivos da família) e o sistema natural. Dentro dela operam, de forma encadeada, os <strong>sistemas de cultivo</strong> (o que se planta, em que sucessão, com qual itinerário técnico) e os <strong>sistemas de criação</strong> (como se conduz cada categoria do rebanho). A consequência prática é direta: nenhuma decisão é isolada. Mudar a época de plantio mexe na janela da pastagem; trocar a categoria do rebanho muda a exigência de área e de capital de giro. Quem gere custo precisa ver o sistema, não a soma de itens soltos.</p>
 
@@ -256,6 +269,28 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <h3>O técnico como agente de gestão</h3>
     <p>O técnico agrícola não é só profissional de campo. É chamado a opinar sobre custos, recomendar insumos, elaborar projetos de financiamento e justificar escolhas em termos econômicos. Entender a linguagem dos números deixou de ser tarefa só do contador: é competência essencial para responder perguntas como <em>vale a pena mais uma aplicação de fungicida? compensa arrendar mais terra? com que preço do terneiro começar a vender?</em></p>
     <p>É também quem conduz o <strong>ciclo de gestão</strong> (Kay et al., 2014): planejamento → implementação → controle → ajuste. Não é uma linha que termina na colheita, é um ciclo que se repete a cada safra. E a qualidade de uma decisão não se mede só pelo resultado. Uma estiagem pode estragar uma boa decisão. O que distingue o bom gestor é o <em>processo</em>: decide com base em informação, em dado registrado e em cenários, não em intuição, memória e otimismo.</p>
+    <figure class="dd ciclo-dd" data-anima>
+      <div class="dd-cab">Ciclo de gestão</div>
+      <div class="dd-corpo">
+        <svg viewBox="0 0 340 300" role="img" aria-label="Ciclo de gestão: planejamento, implementação, controle e ajuste, em roda">
+          <circle cx="170" cy="150" r="100" fill="none" stroke="#E8E3D3" stroke-width="14"/>
+          <g fill="#3D4A2A">
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(240.7,79.3) rotate(45)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(240.7,220.7) rotate(135)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(99.3,220.7) rotate(225)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(99.3,79.3) rotate(315)"/>
+          </g>
+          <g class="roda"><circle cx="170" cy="50" r="8" fill="#B89233"/></g>
+          <g class="no n1"><rect x="112" y="34" width="116" height="32" rx="16" fill="#fff" stroke="#3D4A2A" stroke-width="2"/><text x="170" y="55" text-anchor="middle" font-size="14" fill="#1A1A17">Planejamento</text></g>
+          <g class="no n2"><rect x="212" y="134" width="120" height="32" rx="16" fill="#fff" stroke="#3D4A2A" stroke-width="2"/><text x="272" y="155" text-anchor="middle" font-size="14" fill="#1A1A17">Implementação</text></g>
+          <g class="no n3"><rect x="122" y="234" width="96" height="32" rx="16" fill="#fff" stroke="#3D4A2A" stroke-width="2"/><text x="170" y="255" text-anchor="middle" font-size="14" fill="#1A1A17">Controle</text></g>
+          <g class="no n4"><rect x="20" y="134" width="84" height="32" rx="16" fill="#fff" stroke="#3D4A2A" stroke-width="2"/><text x="62" y="155" text-anchor="middle" font-size="14" fill="#1A1A17">Ajuste</text></g>
+          <text x="170" y="146" text-anchor="middle" font-size="13" fill="#6B6960">a cada</text>
+          <text x="170" y="164" text-anchor="middle" font-size="13" fill="#6B6960">safra</text>
+        </svg>
+      </div>
+      <figcaption>O ciclo de gestão (Kay et al., 2014) não termina na colheita: recomeça a cada safra.</figcaption>
+    </figure>
   </div></div>
 </section>
 
@@ -276,6 +311,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <li><strong>Dentro da porteira</strong>: a produção propriamente dita: preparo de solo, plantio, tratos, colheita, manejo do rebanho até o animal pronto.</li>
       <li><strong>Depois da porteira</strong> (a jusante): armazenagem, indústria, abate, logística, distribuição, varejo, consumo.</li>
     </ul>
+
+    <figure class="dd classif" id="dd-porteira">
+      <div class="dd-cab">Antes, dentro ou depois da porteira?</div>
+    </figure>
     <p>Na pecuária de corte do Pampa isso é tangível: o produtor compra a montante (suplemento, sanidade, genética), produz dentro (cria, recria, engorda no campo nativo) e entrega a jusante (frigorífico, desossa, varejo, mesa do consumidor). Cada elo retém uma fatia do valor, e quase sempre a menor fica com quem produz.</p>
 
     <figure class="fig-zoom">
@@ -294,7 +333,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>O mapa abaixo, da organização Nourish Life (EUA), representa o sistema alimentar como uma rede de conexões: cada nó é um ator ou processo, cada seta é uma relação de influência. O ponto a perceber não é decorar os nós, é enxergar que a decisão de um afeta todos os outros.</p>
 
     <figure class="fig-zoom">
-      <img src="https://www.nourishlife.org/wp-content/uploads/2020/10/food_system_map-01.jpg"
+      <img src="Aulas/mapa-sistema-alimentar-nourish.jpg"
            alt="Mapa de sistemas alimentares da Nourish Life: representação em rede das conexões entre produção agrícola, processamento, distribuição, consumo e descarte de alimentos, com destaque para impactos em saúde, meio ambiente, economia e comunidade. O diagrama mostra atores como agricultores, indústria, varejo, governo e consumidores interligados por setas de influência mútua."
            loading="lazy">
       <figcaption>Mapa do sistema alimentar: Nourish Life. Toque para ampliar.</figcaption>
@@ -302,6 +341,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
     <h3>O que controlamos e o que só monitoramos</h3>
     <p>Quanto do resultado está, de fato, nas mãos do gestor? Um estudo de simulação no Cinturão do Milho dos EUA decompôs a variabilidade da <strong>dose econômica ótima de nitrogênio</strong> no milho em três fontes (Baum et al., 2024):</p>
+
+    <figure class="dd empilhada" data-anima>
+      <div class="dd-cab">Quanto do resultado está nas mãos do gestor</div>
+      <div class="dd-corpo">
+        <div class="barra"><div style="--w:41%;background:#9B9890">41%</div><div style="--w:31%;background:#3D4A2A">31%</div><div style="--w:27%;background:#6E7A4E">27%</div></div>
+        <div class="chave"><span class="colch" style="left:41%;width:58%"></span><span class="txt" style="right:0">≈ 59% sob decisão humana</span></div>
+        <div class="leg"><span style="--c:#9B9890">Ambiente: só monitorar</span><span style="--c:#3D4A2A">Manejo: decisão do produtor</span><span style="--c:#6E7A4E">Genética: escolha do híbrido</span></div>
+      </div>
+      <figcaption>Fontes de variação da dose ótima de nitrogênio no milho, em simulação para os EUA (Baum et al., 2024). Valores arredondados.</figcaption>
+    </figure>
     <table class="ntable">
       <caption>Fontes de variação da dose ótima de N no milho</caption>
       <thead>
@@ -355,6 +404,18 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <strong>Não esquecer!</strong>
       Eficiência não é produzir mais aumentando tudo proporcionalmente. É otimizar a relação entre o que se aplica e o que se colhe. A gestão busca o ponto ótimo de cada insumo, não o máximo.
     </div>
+
+    <figure class="dd curva-dd" id="dd-curva" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Ponto ótimo, não o máximo · dose de nitrogênio no milho</div>
+      <div class="dd-corpo">
+        <svg role="img" aria-label="Curva de resposta da produção à dose de nitrogênio, com o máximo técnico e o ótimo econômico"></svg>
+        <div class="ctrl"><div class="top"><span>Preço do nitrogênio</span><b data-pi-v></b></div><input type="range" data-pi min="4" max="12" step="0.5" value="6.5" aria-label="Preço do nitrogênio"></div>
+        <div class="ctrl"><div class="top"><span>Preço do milho</span><b data-pp-v></b></div><input type="range" data-pp min="40" max="100" step="5" value="60" aria-label="Preço do milho"></div>
+        <div class="res"><div class="ot">Ótimo econômico<b data-xo></b></div><div>Máximo técnico<b data-xm></b></div></div>
+        <p data-msg style="font-size:15.5px;margin:12px 0 0"></p>
+      </div>
+      <figcaption>Curva hipotética, só para ilustrar a ideia. A dose ótima de cada lavoura depende do solo, do clima e dos preços do ano; a Parte III mostra como calcular.</figcaption>
+    </figure>
   </div></div>
 </section>
 
@@ -386,6 +447,11 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <ul><li>Previsão de seca (La Niña)</li><li>Alta do dólar</li><li>Pragas invasoras na região</li></ul>
       </div>
     </div>
+
+    <figure class="dd classif" id="dd-swot">
+      <div class="dd-cab">Monte a SWOT</div>
+      <div class="swot-viva"><div class="q qf" data-q="f"><h5>Forças</h5></div><div class="q qfr" data-q="fr"><h5>Fraquezas</h5></div><div class="q qo" data-q="o"><h5>Oportunidades</h5></div><div class="q qa" data-q="a"><h5>Ameaças</h5></div></div>
+    </figure>
 
     <h3>Perguntas para orientar o diagnóstico</h3>
     <p>Não basta listar. É preciso investigar. Algumas perguntas úteis para cada quadrante (Zoller, 2024):</p>
@@ -485,6 +551,53 @@ document.querySelectorAll('.fig-zoom img').forEach(img=>{
     ov.classList.add('open');
   });
 });
+</script>
+<script src="didatica.js"></script>
+<script>
+Didatica.cascata(document.getElementById('dd-caixa'), {
+  inicio:{t:'Sobrou no caixa ao fim da safra', v:60000},
+  itens:[{t:'Depreciação de máquinas e benfeitorias', v:22000},{t:'Pró-labore: o trabalho da família', v:36000},{t:'Custo de oportunidade do capital', v:18000}],
+  msgs:['O caixa fechou com R$ 60 mil. Parece lucro.','O trator, as mangueiras e o galpão se desgastaram. Um dia, esse valor será gasto na troca.','A família trabalhou a safra inteira sem salário. Esse trabalho tem valor.','O capital empatado renderia em outra aplicação. Com todos os custos na conta, a propriedade ficou mais pobre, apesar do caixa positivo.']
+});
+(function(){
+  var el = document.getElementById('dd-porteira');
+  el.insertAdjacentHTML('beforeend', Didatica.htmlClassificador());
+  Didatica.classificador(el, {
+    categorias:[{id:'antes', t:'Antes'},{id:'dentro', t:'Dentro'},{id:'depois', t:'Depois'}],
+    itens:[
+      {t:'Sementes e fertilizantes', c:'antes', e:'Insumos comprados de fora: antes da porteira, a montante.'},
+      {t:'Crédito rural', c:'antes', e:'Serviço financeiro que chega à propriedade para produzir: antes da porteira.'},
+      {t:'Assistência técnica', c:'antes', e:'Serviço que vem de fora, junto com a pesquisa: antes da porteira.'},
+      {t:'Ordenha das vacas', c:'dentro', e:'Manejo do rebanho: produção, dentro da porteira.'},
+      {t:'Colheita da soja', c:'dentro', e:'Operação da lavoura: dentro da porteira.'},
+      {t:'Frigorífico', c:'depois', e:'Abate e processamento: depois da porteira, a jusante.'},
+      {t:'Supermercado', c:'depois', e:'Varejo: o último elo antes da mesa do consumidor.'},
+      {t:'Transporte da safra até o porto', c:'depois', e:'Logística e distribuição: depois da porteira.'}
+    ],
+    fim:'Cada elo retém uma fatia do valor, e quase sempre a menor fica com quem produz.'
+  });
+})();
+(function(){
+  var el = document.getElementById('dd-swot'), quad = el.querySelector('.swot-viva');
+  el.querySelector('.dd-cab').insertAdjacentHTML('afterend', Didatica.htmlClassificador());
+  Didatica.classificador(el, {
+    colunas:2,
+    categorias:[{id:'f', t:'Força'},{id:'fr', t:'Fraqueza'},{id:'o', t:'Oportunidade'},{id:'a', t:'Ameaça'}],
+    itens:[
+      {t:'Rebanho com boa genética', c:'f', e:'É da propriedade e joga a favor: força, ambiente interno.'},
+      {t:'Galpão e silo próprios', c:'f', e:'Ativo da propriedade que dá vantagem: força.'},
+      {t:'Ninguém anota os custos', c:'fr', e:'Depende só da gestão da propriedade: fraqueza, ambiente interno.'},
+      {t:'Máquinas velhas, com manutenção atrasada', c:'fr', e:'Problema da porteira para dentro: fraqueza.'},
+      {t:'Cooperativa abriu compra de leite na região', c:'o', e:'Vem de fora e pode ser aproveitada: oportunidade, ambiente externo.'},
+      {t:'Nova linha de crédito para irrigação', c:'o', e:'Condição externa que a propriedade pode usar: oportunidade.'},
+      {t:'Previsão de estiagem para o verão', c:'a', e:'Clima: fora do controle do produtor, ameaça externa.'},
+      {t:'Alta do dólar encarecendo o adubo', c:'a', e:'Mercado: a propriedade não muda, mas sente. Ameaça externa.'}
+    ],
+    aoAcertar:function(it){ var q = quad.querySelector('[data-q="' + it.c + '"]'); var sp = document.createElement('span'); sp.textContent = it.t; q.appendChild(sp); },
+    fim:'Interno é o que está sob controle da propriedade; externo é o que ela não muda, mas precisa enfrentar.'
+  });
+})();
+Didatica.curva(document.getElementById('dd-curva'), {a:100, b:0.9, c:0.0025, xmax:250, ymin:80, eixoX:'kg de N por hectare', eixoY:'sacas por hectare', uX:'kg de N/ha', uY:'sc/ha', uIns:'/kg de N', uProd:'/saca'});
 </script>
 
 </body>
