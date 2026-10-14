@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#2e7d4f">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
-<title>Ponto de equilíbrio da soja: regiões do RS (protótipo) · Gestão de Custos Agropecuários</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
+<title>Ponto de equilíbrio da soja: regiões do RS · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Ponto de equilíbrio da soja por região do RS: produtividade histórica, custo de produção (CONAB e proxy SICOR), calculadora de custo de plantio com insumos reais e relação de troca. Material do Colégio Politécnico da UFSM.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/equilibrio-soja.html">
 <style>
@@ -103,13 +103,13 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
 <div class="wrap">
   <a href="parte-3.html" class="back-link">&#8592; voltar à Parte III · Análise econômica</a>
   <header>
-    <h1>🌱 Ponto de equilíbrio da soja: regiões do RS</h1>
-    <p class="sub">Protótipo: quantas sacas de soja são necessárias para pagar o custeio, por região e ao longo dos anos</p>
+    <h1>Ponto de equilíbrio da soja: regiões do RS</h1>
+    <p class="sub">Quantas sacas de soja são necessárias para pagar o custeio, por região e ao longo dos anos</p>
     <p class="meta" id="meta"></p>
   </header>
 
   <section class="panel">
-    <h2>⚙️ Parâmetros</h2>
+    <h2>Parâmetros</h2>
     <div class="controls">
       <div class="field">
         <label for="selCorede">Região (COREDE)</label>
@@ -131,7 +131,7 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
   </section>
 
   <section class="panel">
-    <h2>🗺️ Mapa das regiões (COREDE)</h2>
+    <h2>Mapa das regiões (COREDE)</h2>
     <p class="hint">Clique numa região do mapa para selecioná-la (mesmo efeito do menu "Região" acima). Cor = potencial produtivo médio de soja (2015–2024).</p>
     <div class="chart-wrap" style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center">
       <svg id="mapaSvg" width="360" height="360" style="flex:0 0 360px"></svg>
@@ -146,36 +146,36 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
   </section>
 
   <section class="panel">
-    <h2>📈 Produtividade real vs. ponto de equilíbrio histórico (por região, 2015–2024)</h2>
-    <p class="hint">Ponto de equilíbrio de cada ano = custo (R$/ha) daquele ano ÷ preço médio da saca daquele ano. Quando a barra de produtividade fica <b>abaixo</b> da linha, a região não cobriu aquele custo naquele ano com a produtividade média observada. A linha marrom de custo total fica <b>acima</b> da vermelha de custeio: cobrir só o custeio não significa lucro de verdade, falta depreciação, terra e capital. Regiões marcadas com ★ usam custo real da CONAB (praça de referência, linha sólida); as demais usam a proxy de crédito de custeio (SICOR) para o custeio, e uma estimativa (linha tracejada) para o custo total. O ícone 💧 sob o ano indica seca no período crítico da soja (dez-mar), medida pelo SIMAGRO; a maioria coincide com anos de La Niña.</p>
+    <h2>Produtividade real vs. ponto de equilíbrio histórico (por região, 2015–2024)</h2>
+    <p class="hint">Ponto de equilíbrio de cada ano = custo (R$/ha) daquele ano ÷ preço médio da saca daquele ano. Quando a barra de produtividade fica <b>abaixo</b> da linha, a região não cobriu aquele custo naquele ano com a produtividade média observada. A linha marrom de custo total fica <b>acima</b> da vermelha de custeio: cobrir só o custeio não significa lucro de verdade, falta depreciação, terra e capital. Regiões marcadas com ★ usam custo real da CONAB (praça de referência, linha sólida); as demais usam a proxy de crédito de custeio (SICOR) para o custeio, e uma estimativa (linha tracejada) para o custo total. O ponto azul sob o ano indica seca no período crítico da soja (dez-mar), medida pelo SIMAGRO; a maioria coincide com anos de La Niña.</p>
     <div class="chart-wrap"><svg id="chartAno" width="1120" height="340"></svg></div>
     <div class="legend">
       <span><span class="dot" style="background:var(--accent)"></span> Produtividade real (sc/ha)</span>
       <span><span class="dot" style="background:var(--bad)"></span> Equilíbrio: custo variável / custeio (sc/ha)</span>
       <span id="legendCot"><span class="dot" style="background:#7a4a10"></span> Equilíbrio: custo total, inclui terra e capital (sc/ha)</span>
-      <span>💧 Seca severa/extrema no período crítico (SIMAGRO, dez-mar): anos tipicamente de La Niña</span>
+      <span><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="vertical-align:0;margin-right:5px"><circle cx="5" cy="5" r="4.5" fill="#2e6da4"/></svg>Seca severa/extrema no período crítico (SIMAGRO, dez-mar): anos tipicamente de La Niña</span>
     </div>
   </section>
 
   <section class="panel two-col">
     <div>
-      <h2>🏆 Municípios com maior produtividade média (2015–2024)</h2>
+      <h2>Municípios com maior produtividade média (2015–2024)</h2>
       <table id="tblTop"><thead><tr><th>#</th><th>Município</th><th>COREDE</th><th>sc/ha</th></tr></thead><tbody></tbody></table>
     </div>
     <div>
-      <h2>🔻 Municípios com menor produtividade média (2015–2024)</h2>
+      <h2>Municípios com menor produtividade média (2015–2024)</h2>
       <table id="tblBottom"><thead><tr><th>#</th><th>Município</th><th>COREDE</th><th>sc/ha</th></tr></thead><tbody></tbody></table>
     </div>
   </section>
 
   <section class="panel">
-    <h2>🔄 Relação de troca: sacas de soja por tonelada de insumo</h2>
+    <h2>Relação de troca: sacas de soja por tonelada de insumo</h2>
     <div class="insumo-grid" id="insumoGrid"></div>
     <p class="hint" style="margin-top:10px">Quanto <b>menor</b> o número de sacas, mais barato está o insumo em relação à soja (melhor relação de troca para quem compra insumo e vende grão).</p>
   </section>
 
   <section class="panel">
-    <h2>🧮 Calculadora de custo de plantio: soja (estimativa por hectare)</h2>
+    <h2>Calculadora de custo de plantio: soja (estimativa por hectare)</h2>
     <p class="hint">Sementes, fertilizantes, herbicida, fungicida, inseticida, adjuvante e diesel usam preços reais da CONAB (API "Consulta de Preços de Insumos", RS) e da ANP. Escolha a região, o produto de cada categoria e informe a quantidade por hectare. A calculadora começa zerada: vá lançando o que você pratica, ou use "Carregar exemplo" para preencher com um pacote de referência. Só tratamento de sementes, cobertura do solo e outros custos ficam sem fonte pública (preço de revenda/cooperativa muito variável): preencha com o que você pratica.</p>
 
     <div class="controls" style="margin-bottom:6px">
@@ -183,7 +183,7 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
         <label for="selCoredeCalc">Região (COREDE)</label>
         <select id="selCoredeCalc"></select>
       </div>
-      <button type="button" id="btnCarregarExemplo" class="btn-exemplo">🔄 Carregar exemplo</button>
+      <button type="button" id="btnCarregarExemplo" class="btn-exemplo">Carregar exemplo</button>
     </div>
 
     <table id="tblCalc">
@@ -203,11 +203,11 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
   </section>
 
   <div class="note">
-    <b>Limitações desta versão (protótipo):</b> (1) A CONAB só publica custo de produção detalhado (COE/COT) para 6 "praças de referência" no RS: Cruz Alta (Alto Jacuí), São Luiz Gonzaga e São Gabriel (ainda ativas), e Ijuí, Santa Rosa (descontinuadas). Nessas regiões (marcadas ★) o custeio vem direto da CONAB; nas demais 22 regiões usamos uma <i>proxy</i> via crédito rural de custeio contratado por hectare (SICOR/BCB), que na comparação direta com a CONAB mostrou variação de -40% a +31% ano a ano: é só uma aproximação, não um substituto. (2) A produtividade é uma média histórica municipal (2015-2024, municípios com ≥1.000 ha médios de área colhida), não é uma previsão de safra. (3) Esta ferramenta não modela uma curva de resposta agronômica a insumos: "maximização de lucro" aqui é sensibilidade preço × custo × produtividade, não a dose ótima de um insumo específico. (4) Na calculadora de plantio, o preço do diesel é a média de revenda (bomba) ANP para o RS; cooperativas costumam negociar preço de atacado mais baixo. Os demais insumos (sementes, fertilizantes, herbicida, fungicida, inseticida, adjuvante) vêm da API pública da CONAB "Consulta de Preços de Insumos" (por produto comercial, RS); cada categoria mostra só uma amostra de produtos (ex: um herbicida, um fungicida), não o mix completo que uma lavoura real usa; o preço de cada produto é o mês mais recente disponível, que varia por produto (nem todos têm dado do mesmo mês).
+    <b>Limitações dos dados:</b> (1) A CONAB só publica custo de produção detalhado (COE/COT) para 6 "praças de referência" no RS: Cruz Alta (Alto Jacuí), São Luiz Gonzaga e São Gabriel (ainda ativas), e Ijuí, Santa Rosa e Passo Fundo (descontinuadas). Nessas regiões (marcadas ★) o custeio vem direto da CONAB; nas demais 22 regiões usamos uma <i>proxy</i> via crédito rural de custeio contratado por hectare (SICOR/BCB), que na comparação direta com a CONAB mostrou variação de -40% a +31% ano a ano: é só uma aproximação, não um substituto. (2) A produtividade é uma média histórica municipal (2015-2024, municípios com ≥1.000 ha médios de área colhida), não é uma previsão de safra. (3) Esta ferramenta não modela uma curva de resposta agronômica a insumos: "maximização de lucro" aqui é sensibilidade preço × custo × produtividade, não a dose ótima de um insumo específico. (4) Na calculadora de plantio, o preço do diesel é a média de revenda (bomba) ANP para o RS; cooperativas costumam negociar preço de atacado mais baixo. Os demais insumos (sementes, fertilizantes, herbicida, fungicida, inseticida, adjuvante) vêm da API pública da CONAB "Consulta de Preços de Insumos" (por produto comercial, RS); cada categoria mostra só uma amostra de produtos (ex: um herbicida, um fungicida), não o mix completo que uma lavoura real usa; o preço de cada produto é o mês mais recente disponível, que varia por produto (nem todos têm dado do mesmo mês).
   </div>
 
   <footer>
-    Fonte dos dados: RS_database.duckdb (CONAB, IBGE-PAM, BCB/SICOR) · Gerado em <span id="footDate"></span> · Uso didático, não constitui recomendação de investimento.
+    Fonte dos dados: CONAB, IBGE-PAM e BCB/SICOR · Gerado em <span id="footDate"></span> · Uso didático, não constitui recomendação de investimento.
   </footer>
 </div>
 
@@ -7281,7 +7281,7 @@ function drawChart(c, s){
     svgContent += `<text x="${x(i)}" y="${H-padB+18}" font-size="11" fill="#5b6b63" text-anchor="middle">${a}</text>`;
     const secaInfo = secaCorede[a];
     if(secaInfo && secaInfo.pct_severa_extrema >= 20){
-      svgContent += `<text x="${x(i)}" y="${H-padB+34}" font-size="13" text-anchor="middle"><title>Seca severa/extrema em ${secaInfo.pct_severa_extrema}% dos municípios-mês (dez-mar)</title>💧</text>`;
+      svgContent += `<text x="${x(i)}" y="${H-padB+34}" font-size="13" text-anchor="middle"><title>Seca severa/extrema em ${secaInfo.pct_severa_extrema}% dos municípios-mês (dez-mar)</title>&#9679;</text>`.replace('<text ', '<text fill="#2e6da4" ');
     }
   });
   svgContent += lineFrom(equilibrioCoe, '#b3261e', false);

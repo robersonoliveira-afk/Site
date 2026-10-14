@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Avaliação geral · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Avaliação geral de Gestão de Custos e Projetos Agropecuários: perguntas sobre custo de produção, viabilidade e crédito rural. Colégio Politécnico da UFSM.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/quiz-geral.html">
@@ -449,22 +449,22 @@ const QUIZ_G = [
 
 const PROFILES_G = {
   op: {
-    name: "🚜 Operador",
+    name: "Operador",
     msg: "Você executa, mas ainda trata cada número como uma ilha: o custo que se sente no fim do ano, o preço que o mercado dita, o caixa que 'se resolve'. O salto é enxergar o projeto como sistema: custo por unidade, lucro econômico (não só caixa), preço regional e calendário de caixa amarrados num só raciocínio. Comece pelos fundamentos.",
     revise: "Partes I e II: o que é custo, investimento e despesa, e como se monta COE, COT e CT."
   },
   tr: {
-    name: "🌱 Em transição",
+    name: "Em transição",
     msg: "Você já desconfia que falta fechar premissa (o custo real, o preço certo, o caixa do mês), mas tende a aproximar valores e adiar a conta. O próximo passo é fechar cada número na fonte e na fórmula: rentabilidade ÷ CT, preço de nivelamento, fluxo de caixa mês a mês. Premissa aproximada vira projeto frágil na apresentação.",
     revise: "Parte III (indicadores e cenários) e Parte IV (fluxo de caixa, crédito e preço regional)."
   },
   ge: {
-    name: "📋 Gestor",
+    name: "Gestor",
     msg: "Você trata depreciação, pró-labore, juros e custo de oportunidade como custos reais, e é isso que separa o gestor do operador. Falta consolidar a leitura estratégica: ler IEE, margem de segurança e cenários como um único quadro de risco, e adotar sempre o preço regional e o calendário de caixa como premissas que se defendem com fonte.",
     revise: "Parte III: IEE, margem de segurança, cenários e VPL/TIR para projetos plurianuais."
   },
   es: {
-    name: "🎯 Técnico estratégico",
+    name: "Técnico estratégico",
     msg: "Você lê o projeto como sistema: custo por unidade, lucro econômico sobre o CT, preço posto cooperativa, fluxo de caixa mês a mês e crédito enquadrado na fonte vigente. É o nível que o mercado demanda do técnico. Mantenha o rigor das premissas: é o que faz o projeto sobreviver fora da planilha e resistir às perguntas.",
     revise: "Você domina as Partes I a V. Avance para a Parte VI: monte o projeto da disciplina e prepare a apresentação."
   }
@@ -529,7 +529,7 @@ function buildQuiz(sfx, QUIZ, PROFILES){
     document.getElementById('reviseBlocks'+sfx).textContent = profile.revise;
     const tallyEl = document.getElementById('resultTally'+sfx);
     tallyEl.innerHTML = '';
-    const labels = {op:'🚜 Operador', tr:'🌱 Em transição', ge:'📋 Gestor', es:'🎯 Técnico estratégico'};
+    const labels = {op:'Operador', tr:'Em transição', ge:'Gestor', es:'Técnico estratégico'};
     for(const k of ['op','tr','ge','es']){
       const row = document.createElement('div');
       row.className = 'tally-row' + (k === topKey ? ' winner' : '');

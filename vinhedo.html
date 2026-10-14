@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#3D4A2A">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍇</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Planejador de Vinhedo: Espaldeira · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Calculadora de implantação de vinhedo em espaldeira: informe as dimensões do talhão e obtenha mudas, postes, rabichos e fios para o orçamento.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/vinhedo.html">
@@ -238,7 +238,7 @@ svg.diagrama{width:100%;height:auto;display:block}
   <!-- RESULTADOS -->
   <div class="result-area" id="result-area">
     <div class="empty" id="empty-state">
-      <div class="empty-icon">🍇</div>
+      <div class="empty-icon"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block;margin:0 auto"><path d="M12 6V3M12 4c2-1.5 4.5-1 5.5.5"/><circle cx="9" cy="9" r="2.4"/><circle cx="15" cy="9" r="2.4"/><circle cx="12" cy="12.6" r="2.4"/><circle cx="7.6" cy="13.4" r="2.2"/><circle cx="16.4" cy="13.4" r="2.2"/><circle cx="10" cy="17" r="2.2"/><circle cx="14" cy="17" r="2.2"/><circle cx="12" cy="20.6" r="1.8"/></svg></div>
       <p>Informe as dimensões do talhão e clique em <strong>Calcular materiais</strong>.</p>
     </div>
   </div>
@@ -384,7 +384,7 @@ function calcular(){
           <tr><td colspan="4" class="sep">Referência de carga</td></tr>
           <tr>
             <td colspan="2">Gemas/ha estimadas <span style="font-size:11px;color:var(--stone-light)">(2 varas × 3 gemas/vara × plantas/ha)</span></td>
-            <td colspan="2" style="text-align:right;color:${gemaOk?'var(--olive-mid)':'var(--terra)'}"><strong>${fmt(gemas_ha)}</strong> <span style="font-size:11px">${gemaOk?'✓ faixa ideal (65–80 mil/ha)':'⚠ '+gemaWarn+', meta: 65–80 mil/ha'}</span></td>
+            <td colspan="2" style="text-align:right;color:${gemaOk?'var(--olive-mid)':'var(--terra)'}"><strong>${fmt(gemas_ha)}</strong> <span style="font-size:11px">${gemaOk?'✓ faixa ideal (65–80 mil/ha)':''+gemaWarn+', meta: 65–80 mil/ha'}</span></td>
           </tr>
         </tbody>
       </table>
