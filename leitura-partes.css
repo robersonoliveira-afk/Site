@@ -39,6 +39,7 @@ ul.bullets li::before{top:7px}
 .calc{font-size:15px}
 .callout{font-size:16.5px;line-height:1.6;padding:16px 18px}
 .callout strong{font-size:12px}
+.callout .btn{font-size:13px}
 
 /* SWOT */
 .swot-cell{padding:14px 12px;font-size:15px}
@@ -50,7 +51,7 @@ ul.bullets li::before{top:7px}
 .ntable caption{font-size:12px}
 .ntable th{font-size:12px}
 .ntable td{padding:10px 10px}
-.ntable td .cat{font-size:11.5px}
+.ntable td .cat{font-size:12px}
 
 /* tabela larga */
 .tbl{font-size:15.5px}

@@ -28,6 +28,30 @@
   }
   document.addEventListener('DOMContentLoaded', animar);
 
+  /* piso de legibilidade dos gráficos: no celular o desenho encolhe e a letra junto;
+     aqui a letra é aumentada até ficar com pelo menos 11px reais na tela */
+  var PISO = 11;
+  function piso(svg){
+    var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width;
+    if (!vb || !vb.width || !w) return;
+    var esc = w / vb.width;
+    svg.querySelectorAll('text').forEach(function(t){
+      if (!t.dataset.fs) t.dataset.fs = parseFloat(t.getAttribute('font-size') || window.getComputedStyle(t).fontSize) || 12;
+      var f0 = +t.dataset.fs, f = Math.max(f0, PISO / esc);
+      t.setAttribute('font-size', f === f0 ? f0 : f.toFixed(1));
+    });
+  }
+  function pisoTodos(){ document.querySelectorAll('.dd svg[viewBox]').forEach(piso); }
+  document.addEventListener('DOMContentLoaded', function(){
+    pisoTodos();
+    if ('MutationObserver' in window){
+      var mo = new MutationObserver(function(ms){ ms.forEach(function(m){ var s = m.target.closest ? m.target.closest('svg') : null; if (s) piso(s); }); });
+      document.querySelectorAll('.dd svg[viewBox]').forEach(function(s){ mo.observe(s, {childList:true, subtree:true}); });
+    }
+    window.addEventListener('resize', pisoTodos);
+    document.addEventListener('click', function(){ setTimeout(pisoTodos, 60); setTimeout(pisoTodos, 500); });
+  });
+
   /* ===== Cascata: parte de um valor e desconta itens, um por toque =====
      cfg: {inicio:{t, v}, itens:[{t, v}], fim:'texto do total', msgs:[...]} */
   D.cascata = function(el, cfg){
@@ -173,7 +197,7 @@
     h += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#3D4A2A" stroke-width="2.6"/>';
     h += '<g><line x1="' + X(xMaxTec) + '" x2="' + X(xMaxTec) + '" y1="' + Y(ymax) + '" y2="' + (H - B) + '" stroke="#6B6960" stroke-dasharray="4 3"/>' +
          '<circle cx="' + X(xMaxTec) + '" cy="' + Y(ymax) + '" r="5" fill="#6B6960"/>' +
-         '<text x="' + (X(xMaxTec) + 7) + '" y="' + (Y(ymax) - 6) + '" font-size="11.5" fill="#3A3833">máximo técnico</text></g>';
+         '<text x="' + (X(xMaxTec) + 7) + '" y="' + (Y(ymax) - 6) + '" font-size="11.5" fill="#3A3833">máx. técnico</text></g>';
     h += '<g class="marca" id="' + el.id + '-ot"><line class="ln" x1="0" x2="0" y1="0" y2="0" stroke="#A8552E" stroke-width="2"/><circle class="pt" r="6" fill="#A8552E"/>' +
          '<text class="tx" font-size="11.5" fill="#A8552E" font-weight="600" text-anchor="end">ótimo econômico</text></g>';
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);

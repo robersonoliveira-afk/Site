@@ -856,7 +856,7 @@ Didatica.fluxo(document.getElementById('dd-fluxo'), {abas:[
 (function(){
   var el = document.getElementById('dd-fixo'), svg = el.querySelector('svg'), r = el.querySelector('input');
   var CF = 120000, CVHA = 3000, HMAX = 200, YMAX = CF + CVHA * HMAX;
-  var W = 340, H = 210, L = 48, R = 10, T = 10, B = 28;
+  var W = 340, H = 210, L = 60, R = 10, T = 10, B = 28;
   var X = function(h){ return L + h / HMAX * (W - L - R); }, Y = function(v){ return T + (1 - v / YMAX) * (H - T - B); };
   var mil = function(v){ return Math.round(v / 1000) + ' mil'; };
   var h = '';

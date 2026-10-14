@@ -440,7 +440,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td><svg class="line-ico" viewBox="0 0 24 24"><path d="M4 20h16M6 20V10l6-5 6 5v10M10 20v-6h4v6"/></svg><strong>Invest. Empresarial</strong></td><td>Investimento sem programa específico. Limite ampliado para R$ 1,5 mi/ano.</td><td class="num j-alto">11,5%</td></tr>
     </table>
     </div>
-    <p style="font-size:11.5px;color:var(--stone);margin-top:8px">* Redução de até 1 ponto percentual na finalidade custeio para produtores com adicionais de sustentabilidade.</p>
+    <p style="font-size:14px;color:var(--stone);margin-top:8px">* Redução de até 1 ponto percentual na finalidade custeio para produtores com adicionais de sustentabilidade.</p>
 
     <div class="callout success">
       <strong>Novidades do 26/27 · Empresarial</strong>
@@ -1066,7 +1066,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
       var x0 = L + k * bw + 3, w = bw - 6;
       if (a.e[k]) h += '<rect x="' + x0 + '" y="' + Y(a.e[k]) + '" width="' + w + '" height="' + (Y(0) - Y(a.e[k])) + '" fill="#6E8A3A" opacity=".85"/>';
       if (a.s[k]) h += '<rect x="' + x0 + '" y="' + Y(0) + '" width="' + w + '" height="' + (Y(-a.s[k]) - Y(0)) + '" fill="#D9895E" opacity=".85"/>';
-      h += '<text x="' + X(k) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + MES[k] + '</text>';
+      if (k % 2 === 0) h += '<text x="' + X(k) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + MES[k] + '</text>';
     }
     h += '<polyline points="' + sal.map(function(v, i){ return X(i) + ',' + Y(v); }).join(' ') + '" fill="none" stroke="#1A1A17" stroke-width="2.2"/>';
     if (cred) h += '<polyline points="' + salc.map(function(v, i){ return X(i) + ',' + Y(v); }).join(' ') + '" fill="none" stroke="#7C3D1F" stroke-width="2.2" stroke-dasharray="5 3"/>';

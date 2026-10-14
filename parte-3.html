@@ -417,7 +417,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="formula">
       <span class="label">Função de produção</span>
       Q = f(X₁, X₂, …, Xₙ)<br>
-      <span style="font-size:11px;opacity:0.75">Q = produto obtido · X = quantidade de cada insumo (terra, N, ração, mão de obra…)</span>
+      <span style="font-size:13px;opacity:0.75">Q = produto obtido · X = quantidade de cada insumo (terra, N, ração, mão de obra…)</span>
     </div>
     <p>Na prática, fixa-se a maioria dos fatores (área, máquinas, mão de obra) e varia-se <strong>um insumo por vez</strong>. Isso revela como o produto responde àquele fator mantendo os demais constantes: a curva do Produto Total.</p>
 
@@ -893,13 +893,13 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 (function(){
   var el = document.getElementById('dd-funcao'), svg = el.querySelector('svg');
   var X = [0, 30, 60, 90, 120, 150, 180, 210], PT = [70, 91, 120, 145, 163, 175, 180, 175];
-  var W = 340, H = 236, L = 40, Rr = 10, T = 14, B = 40, xmax = 210, ymin = 60, ymax = 195;
+  var W = 340, H = 236, L = 50, Rr = 18, T = 14, B = 40, xmax = 210, ymin = 60, ymax = 195;
   var px = function(x){ return L + x / xmax * (W - L - Rr); }, py = function(y){ return T + (ymax - y) / (ymax - ymin) * (H - T - B); };
   var fases = [[0, 60, '#E4EAD2', 'Fase I', '#3D4A2A'], [60, 180, '#F5EBC9', 'Fase II', '#8A6E1A'], [180, 210, '#F5E4D8', 'Fase III', '#A8552E']];
   var h = '';
   fases.forEach(function(f){ h += '<rect x="' + px(f[0]) + '" y="' + T + '" width="' + (px(f[1]) - px(f[0])) + '" height="' + (H - T - B) + '" fill="' + f[2] + '"/><text x="' + ((px(f[0]) + px(f[1])) / 2) + '" y="' + (H - B - 8) + '" text-anchor="middle" font-size="12" font-weight="600" fill="' + f[4] + '">' + f[3] + '</text>'; });
   [70, 100, 130, 160, 190].forEach(function(v){ h += '<text x="' + (L - 6) + '" y="' + (py(v) + 4) + '" text-anchor="end" font-size="11" fill="#6B6960">' + v + '</text>'; });
-  X.forEach(function(x){ h += '<text x="' + px(x) + '" y="' + (H - B + 15) + '" text-anchor="middle" font-size="11" fill="#6B6960">' + x + '</text>'; });
+  X.forEach(function(x, i){ h += '<text x="' + px(x) + '" y="' + (H - B + 15) + '" text-anchor="' + (i === X.length - 1 ? 'end' : 'middle') + '" font-size="11" fill="#6B6960">' + x + '</text>'; });
   h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">N, nitrogênio (kg/ha)</text>';
   h += '<text x="11" y="' + ((H - B + T) / 2) + '" text-anchor="middle" font-size="12" fill="#3A3833" transform="rotate(-90 11 ' + ((H - B + T) / 2) + ')">PT (sc/ha)</text>';
   h += '<line x1="' + L + '" y1="' + (H - B) + '" x2="' + (W - Rr) + '" y2="' + (H - B) + '" stroke="#3A3833"/>';
@@ -943,8 +943,9 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
       var x = L + i * bw + 6, ok = v > pu; if (!ok && corte < 0) corte = i;
       h += '<rect x="' + x + '" y="' + py(v) + '" width="' + (bw - 12) + '" height="' + (py(0) - py(v)) + '" fill="' + (ok ? '#3D4A2A' : '#A8552E') + '"/>';
       h += '<text x="' + (x + (bw - 12) / 2) + '" y="' + (py(v) - 4) + '" text-anchor="middle" font-size="11" fill="#1A1A17">' + f1(v, 1) + '</text>';
-      h += '<text x="' + (x + (bw - 12) / 2) + '" y="' + (H - B + 15) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + U[i] + '–' + U[i + 1] + '</text>';
+      h += '<text x="' + (L + i * bw) + '" y="' + (H - B + 15) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + U[i] + '</text>';
     });
+    h += '<text x="' + (L + rm.length * bw) + '" y="' + (H - B + 15) + '" text-anchor="end" font-size="10.5" fill="#6B6960">' + U[U.length - 1] + '</text>';
     h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">faixa de ureia (kg/ha) · RM em R$ por kg</text>';
     h += '<line x1="' + L + '" y1="' + py(pu) + '" x2="' + (W - Rr) + '" y2="' + py(pu) + '" stroke="#1A1A17" stroke-width="2.2" stroke-dasharray="6 4"/>';
     h += '<line x1="' + L + '" y1="' + py(0) + '" x2="' + (W - Rr) + '" y2="' + py(0) + '" stroke="#3A3833"/>';

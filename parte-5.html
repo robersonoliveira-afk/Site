@@ -1220,7 +1220,7 @@ peca('dd-vpl', function(q, v, put, el){
   var an = [], ad = [], s1 = 0, s2 = 0;
   for (t = 0; t <= H; t++){ s1 += c[t]; s2 += cd[t]; an.push(s1); ad.push(s2); }
   var mx = Math.max.apply(null, an.concat(ad, [0])), mn = Math.min.apply(null, an.concat(ad, [0])), pad = (mx - mn) * 0.08; mx += pad; mn -= pad;
-  var W = 340, Hh = 210, Lm = 42, Rm = 10, T = 12, B = 26;
+  var W = 340, Hh = 210, Lm = 48, Rm = 10, T = 12, B = 26;
   var X = function(t){ return Lm + t / H * (W - Lm - Rm); }, Y = function(y){ return T + (mx - y) / (mx - mn) * (Hh - T - B); };
   var h = '';
   if (F > 0) h += '<rect x="' + X(0) + '" y="' + T + '" width="' + (X(F) - X(0)) + '" height="' + (Hh - T - B) + '" fill="#D9895E" opacity=".14"/><text x="' + (X(0) + 4) + '" y="' + (T + 13) + '" font-size="12" fill="#7C3D1F">formação</text>';
