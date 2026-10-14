@@ -90,6 +90,11 @@ ul.bullets li::before{top:7px}
 .go-dash .gd-eyebrow{font-size:12px}
 .toc-list li.mod-head{font-size:12.5px}
 
+/* cartão de fechamento do curso */
+.closing .ce{font-size:12px}
+.closing .cd{font-size:16px;line-height:1.6}
+.closing .cgo{font-size:13px}
+
 /* figuras */
 .fig-zoom figcaption{font-size:12px}
 
@@ -111,6 +116,8 @@ footer p{font-size:14px;line-height:1.6}
   .block-content{padding:20px 16px 26px}
   .partnav{margin:30px 12px}
   footer{padding:36px 18px 90px}
+  .closing{margin:26px 12px 8px}
+  body > .go-dash{margin:8px 12px 14px}
 }
 
 @media (min-width:720px){

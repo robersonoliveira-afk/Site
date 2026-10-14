@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Parte VI: Projeto final · Gestão de Custos Agropecuários</title>
-<meta name="description" content="Parte VI: Projeto final: como estruturar, defender e apresentar um projeto de viabilidade agropecuária. Roteiro, simulador e dossiê.">
+<meta name="description" content="Parte VI: Projeto final: como estruturar e apresentar um projeto de viabilidade agropecuária. Roteiro, simulador e dossiê.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/parte-6.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,6 +234,35 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 .go-dash .gd-title{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.2}
 .go-dash .gd-arrow{margin-left:auto;font-size:20px;flex-shrink:0}
 </style>
+<link rel="stylesheet" href="leitura-partes.css">
+<link rel="stylesheet" href="didatica.css">
+<style>
+.hier-row.neu{background:var(--paper-warm)}
+.hier-row.neu .hier-tag{background:var(--olive)}
+.prem-dd .grupo{margin-top:12px}
+.prem-dd .grupo > span{display:block;font-size:15px;margin-bottom:6px}
+.prem-dd .opcao{display:flex;flex-wrap:wrap;gap:8px}
+.prem-dd .opcao button{font:inherit;font-size:14.5px;padding:9px 12px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
+.prem-dd .opcao button.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.prem-dd .barras{margin-top:16px}
+.prem-dd .barras .rot{display:flex;justify-content:space-between;gap:10px;font-size:15px;margin-top:8px}
+.prem-dd .barras .rot b{font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.prem-dd .barras .tr{height:18px;background:var(--paper-warm);margin-top:3px}
+.prem-dd .barras .tr i{display:block;height:100%;width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.mapa-ns .secs{display:flex;flex-wrap:wrap;gap:6px}
+.mapa-ns .secs button{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
+.mapa-ns .secs button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
+.mapa-ns .slides{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
+.mapa-ns .slide{position:relative;aspect-ratio:16/10;border:1px solid var(--rule);background:var(--paper);padding:6px 7px;font-size:12.5px;line-height:1.2;color:var(--stone);transition:background .3s,color .3s,border-color .3s,transform .3s}
+.mapa-ns .slide b{display:block;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.mapa-ns .slide.on{background:var(--terra);border-color:var(--terra);color:#fff;transform:scale(1.04)}
+.mapa-ns .slide.on b{color:#fff}
+.mapa-ns .info{margin-top:12px;padding:12px 14px;background:var(--paper-warm);font-size:16px;line-height:1.5}
+.treino-btn{margin:4px 0 10px}
+.tbl.treino td.resp{color:transparent;text-shadow:0 0 9px rgba(26,26,23,.45);cursor:pointer;user-select:none}
+.tbl.treino td.resp.ver{color:inherit;text-shadow:none;cursor:default}
+.treino-dica{font-size:15px;color:var(--stone);margin:0 0 8px}
+</style>
 </head>
 <body>
 
@@ -261,7 +290,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <h1 class="title">Projeto <em>final</em></h1>
     </div>
   </div>
-  <p class="subtitle">Tudo converge aqui: o cálculo vira um documento que conclui, o Projeto Final, e uma defesa em que você sustenta cada número diante dos professores. O produto final não é a planilha; é a sua capacidade de dizer, com fundamento, se o projeto é viável.</p>
+  <p class="subtitle">Nesta parte, o cálculo vira um documento que conclui, o projeto da disciplina, e uma apresentação em aula em que você sustenta cada número. O que se avalia não é a planilha preenchida, mas a capacidade de dizer, com fundamento, se o projeto é viável.</p>
   <div class="meta">
     <span>Parte VI de VI</span>
     <span>2 aulas</span>
@@ -276,8 +305,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
   </button>
   <div class="toc-list">
     <ol>
-      <li><a href="#projeto-final"><span class="toc-num">VI.1</span> Nota Técnica: o documento de conclusão</a></li>
-      <li><a href="#defesa"><span class="toc-num">VI.2</span> Defesa do projeto: sustentar as escolhas</a></li>
+      <li><a href="#projeto-final"><span class="toc-num">VI.1</span> Projeto da disciplina: o documento de conclusão</a></li>
+      <li><a href="#defesa"><span class="toc-num">VI.2</span> Apresentação do projeto: sustentar as escolhas</a></li>
       <li class="quiz-link"><a href="quiz-geral.html"><span class="toc-num">→</span> Avaliação geral · Partes I a V</a></li>
     </ol>
   </div>
@@ -297,11 +326,11 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 <section class="block" id="projeto-final">
   <button class="block-header" aria-expanded="false">
     <span class="block-num">VI.1</span>
-    <span class="block-title">Projeto final: o documento de conclusão</span>
+    <span class="block-title">Projeto da disciplina: o documento de conclusão</span>
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>O projeto final é o documento que <strong>fecha a disciplina</strong>. Ele traduz a planilha em texto: clara, objetiva, suficiente para que qualquer pessoa entenda o projeto e julgue sua viabilidade <em>sem precisar abrir o arquivo de cálculo</em>. Se a planilha é o motor, a Nota Técnica é o laudo.</p>
+    <p>O projeto da disciplina é o documento que <strong>fecha a disciplina</strong>. Ele traduz a planilha em texto: clara, objetiva, suficiente para que qualquer pessoa entenda o projeto e julgue sua viabilidade <em>sem precisar abrir o arquivo de cálculo</em>. Se a planilha é o motor, o documento é o laudo.</p>
 
     <h3>As nove seções</h3>
     <p>A estrutura é fixa. Cada seção responde a uma pergunta que os professores, ou o produtor, farão:</p>
@@ -323,9 +352,23 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <h3>A regra do preço e da produtividade</h3>
     <p>Duas premissas decidem a viabilidade na seção 2 e voltam na apresentação. O preço é o <strong>regional, posto cooperativa</strong>, não a cotação cheia do porto. A produtividade é a <strong>média histórica</strong> da região (CONAB/EMATER), não o melhor ano. Premissa otimista infla a viabilidade e cai na primeira pergunta dos professores.</p>
     <div class="example">
-      <p>Exemplo: Soja, 50 ha, São Gabriel/RS, safra 2025/26. Produtividade de <span class="calc">60 sc/ha</span> (média histórica) e preço posto cooperativa de <span class="calc">R$ 120/sc</span> . Produção esperada: 3.000 sc.</p>
+      <p>Exemplo: Soja, 50 ha, São Gabriel/RS, safra 2025/26. Produtividade de <span class="calc">60 sc/ha</span> (média histórica) e preço posto cooperativa de <span class="calc">R$ 120/sc</span>. Produção esperada: 3.000 sc.</p>
       <p>Receita Bruta = <span class="calc">60 × 50 × 120 = R$ 360.000</span>. É esse o número que abre a seção 5, com a fonte e a data da consulta registradas na seção 2.</p>
     </div>
+
+    <figure class="dd prem-dd" id="dd-prem" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Soja, 50 ha: o que a premissa faz com a receita</div>
+      <div class="dd-corpo">
+        <div class="grupo"><span>Preço de venda</span><div class="opcao" data-g="preco"><button type="button" data-v="120" class="on">Posto cooperativa, R$ 120/sc</button><button type="button" data-v="130">Cotação cheia, R$ 130/sc</button></div></div>
+        <div class="grupo"><span>Produtividade</span><div class="opcao" data-g="prod"><button type="button" data-v="60" class="on">Média histórica, 60 sc/ha</button><button type="button" data-v="70">Melhor ano, 70 sc/ha</button></div></div>
+        <div class="barras">
+          <div class="rot"><span>Receita com premissas conservadoras</span><b>R$ 360.000</b></div><div class="tr"><i data-b="base" style="background:var(--olive)"></i></div>
+          <div class="rot"><span>Receita com as premissas escolhidas</span><b data-r="rb"></b></div><div class="tr"><i data-b="rb" style="background:var(--terra)"></i></div>
+        </div>
+        <p data-msg class="msg-dd"></p>
+      </div>
+      <figcaption>Receita bruta = produtividade × área × preço. A cotação cheia é a da Parte IV, antes de frete, descontos e Funrural; o "melhor ano" é um valor de exemplo.</figcaption>
+    </figure>
 
     <h3>A conclusão (seção 9)</h3>
     <p>É o objetivo final que todos queremos saber. Não é "o projeto parece bom": é uma sentença fundamentada nos indicadores das seções anteriores.</p>
@@ -335,8 +378,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
     <div class="callout">
       <strong>A conclusão que não defende</strong>
-      Frase ambígua ("acredito que seja viável"), sem citar indicador, ou que contraria os próprios números da Nota. Apresente uma leitura honesta do que a planilha mostra.
+      Frase ambígua ("acredito que seja viável"), sem citar indicador, ou que contraria os próprios números do projeto. Apresente uma leitura honesta do que a planilha mostra.
     </div>
+
+    <figure class="dd classif" id="dd-concl" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Esta conclusão se sustenta?</div>
+    </figure>
   </div></div>
 </section>
 
@@ -348,13 +395,13 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>A apresentação pública do trabalho é a defesa do projeto. O objetivo <strong>não é mostrar que a planilha está preenchida</strong>: é demonstrar que você entende o que os números significam e consegue justificar cada escolha diante de uma banca técnica, composta pelos professores.</p>
+    <p>A apresentação é feita em aula, para dois professores; depois, os colegas fazem perguntas e a turma discute o projeto. O objetivo <strong>não é mostrar que a planilha está preenchida</strong>: é demonstrar que você entende o que os números significam e consegue justificar cada escolha.</p>
 
-    <h3>O que a banca avalia</h3>
+    <h3>O que os professores avaliam</h3>
     <div class="hierarchy">
-      <div class="hier-row ok"><span class="hier-tag">Técnica</span><span>Correção dos cálculos e os processos envolvidos: os números estão certos e os manejos?</span></div>
-      <div class="hier-row warn"><span class="hier-tag">Análise</span><span>Raciocínio: você entende o que calculou e o que decorre disso?</span></div>
-      <div class="hier-row danger"><span class="hier-tag">Comunicação</span><span>Clareza e segurança: consegue explicar sem ler o slide?</span></div>
+      <div class="hier-row neu"><span class="hier-tag">Técnica</span><span>Correção dos cálculos e os processos envolvidos: os números estão certos e os manejos?</span></div>
+      <div class="hier-row neu"><span class="hier-tag">Análise</span><span>Raciocínio: você entende o que calculou e o que decorre disso?</span></div>
+      <div class="hier-row neu"><span class="hier-tag">Comunicação</span><span>Clareza e segurança: consegue explicar sem ler o slide?</span></div>
     </div>
 
     <h3>Roteiro de 12 slides</h3>
@@ -372,15 +419,27 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td><strong>9 · Cenários</strong></td><td>Pessimista/realista/otimista: lucro ou prejuízo em cada.</td><td>Concluir: "viável em X dos 3 cenários".</td></tr>
       <tr><td><strong>10 · Fluxo de caixa</strong></td><td>Entradas e saídas por mês; saldo acumulado.</td><td>Mostrar o mês de maior déficit: justifica o custeio.</td></tr>
       <tr><td><strong>11 · Conclusão</strong></td><td>Viabilidade, principais riscos, recomendação final.</td><td>Frase direta, sem ambiguidade. Domínio do resultado.</td></tr>
-      <tr><td><strong>12 · Obrigado</strong></td><td>Nome completo dos integrantes, curso, turma, contato (e-mail ou telefone) e orientador/professor.</td><td>Deixar visível durante as perguntas da banca: facilita a identificação de quem responde cada questão.</td></tr>
+      <tr><td><strong>12 · Obrigado</strong></td><td>Nome completo dos integrantes, curso, turma, contato (e-mail ou telefone) e orientador/professor.</td><td>Deixar visível durante as perguntas: facilita a identificação de quem responde cada questão.</td></tr>
     </table>
     </div>
 
-    <h3>As perguntas que os professores(as) costumam fazer</h3>
+    <figure class="dd mapa-ns" id="dd-mapa" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Do documento aos slides</div>
+      <div class="dd-corpo">
+        <div class="secs" role="group" aria-label="Seções do documento"></div>
+        <div class="slides"></div>
+        <div class="info"></div>
+      </div>
+      <figcaption>Toque numa seção do documento para ver em que slide ela aparece. A apresentação é o mesmo projeto, em outra forma.</figcaption>
+    </figure>
+
+    <h3>As perguntas que professores e colegas costumam fazer</h3>
     <p>São previsíveis. Cada uma testa se você conhece a origem de um número. Prepare a resposta com o dado na mão, não com "acho que":</p>
+    <button type="button" class="dd-btn treino-btn" id="treino-btn">Treinar: esconder as respostas</button>
+    <p class="treino-dica" id="treino-dica" hidden>Leia a pergunta, pense na resposta e toque no texto borrado para conferir.</p>
     <div class="tbl-wrap">
-    <table class="tbl">
-      <tr><th>Pergunta da banca</th><th>Como responder</th></tr>
+    <table class="tbl" id="tbl-perguntas">
+      <tr><th>Pergunta</th><th>Como responder</th></tr>
       <tr><td>"Por que esse preço de venda?"</td><td>Citar a fonte (cotação da cooperativa), a data da consulta e por que é representativo da safra planejada.</td></tr>
       <tr><td>"Por que essa produtividade?"</td><td>É a média histórica da região (CONAB/EMATER), não o melhor ano: premissa conservadora.</td></tr>
       <tr><td>"Se o preço cair 10%, ainda é viável?"</td><td>Responder pelo cenário pessimista e pelo preço de nivelamento, com os números, não com "acho que sim".</td></tr>
@@ -390,17 +449,17 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </table>
     </div>
 
-    <h3>Postura na defesa</h3>
+    <h3>Postura na apresentação</h3>
     <ul class="bullets">
-      <li><strong>Conheça cada número.</strong> Se você não sabe de onde veio um valor, a banca percebe.</li>
+      <li><strong>Conheça cada número.</strong> Se você não sabe de onde veio um valor, quem pergunta percebe.</li>
       <li><strong>Errou? Assuma e corrija.</strong> Mostrar que entende o erro vale mais do que escondê-lo.</li>
       <li><strong>Não leia o slide.</strong> Fale claro e pausado; explique com suas palavras.</li>
       <li><strong>Use linguagem técnica correta:</strong> COE, margem de segurança, ponto de equilíbrio, custo de oportunidade. Você estudou esses conceitos: use-os com precisão.</li>
-      <li><strong>Seja direto na conclusão:</strong> viável ou não. A banca espera resposta clara, fundamentada, sem rodeios.</li>
+      <li><strong>Seja direto na conclusão:</strong> viável ou não. Espera-se resposta clara, fundamentada, sem rodeios.</li>
     </ul>
     <div class="callout success">
       <strong>O fio que liga todo o curso</strong>
-      Cada pergunta remete a uma Parte: preço e produtividade (IV), COE/COT/CT e depreciação (II), indicadores e cenários (III), custo de oportunidade da terra e do capital (III e IV). Defender o projeto é demonstrar que as seis Partes viraram uma única leitura coerente. <strong>Não esqueça: estude a parte agronômica ou zootécnica do projeto.</strong>
+      Cada pergunta remete a uma Parte: preço e produtividade (IV), COE/COT/CT e depreciação (II), indicadores e cenários (III), custo de oportunidade da terra e do capital (III e IV). Sustentar o projeto é demonstrar que as seis Partes viraram uma única leitura coerente. <strong>Não esqueça: estude a parte agronômica ou zootécnica do projeto.</strong>
     </div>
   </div></div>
 </section>
@@ -408,8 +467,8 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 <!-- ===== CARD DE FECHAMENTO ===== -->
 <a class="closing" href="quiz-geral.html">
   <div class="ce">Fechamento do curso</div>
-  <div class="ct">Você consegue defender cada escolha?</div>
-  <p class="cd">A Parte VI não tem quiz próprio: sua autoavaliação é a defesa acima. O passo final é a Avaliação geral, questões que percorrem as Partes I a V e medem se o método virou raciocínio, não decoreba.</p>
+  <div class="ct">Você consegue sustentar cada escolha?</div>
+  <p class="cd">A Parte VI não tem quiz próprio: sua autoavaliação é a apresentação do projeto. O passo final é a Avaliação geral, questões que percorrem as Partes I a V e medem se o método virou raciocínio, não decoreba.</p>
   <span class="cgo">Ir para a avaliação geral</span>
 </a>
 
@@ -473,5 +532,72 @@ window.addEventListener('scroll', () => {
 backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 </script>
 
+<script src="didatica.js"></script>
+<script>
+var R = Didatica.reais;
+
+/* 1. premissa otimista */
+(function(){
+  var el = document.getElementById('dd-prem'), q = function(s){ return el.querySelector(s); }, BASE = 60 * 50 * 120, MX = 70 * 50 * 130;
+  function calc(){
+    var p = +q('[data-g=preco] .on').dataset.v, y = +q('[data-g=prod] .on').dataset.v, rb = y * 50 * p, d = rb - BASE;
+    q('[data-r=rb]').textContent = R(rb);
+    q('[data-b=base]').style.width = BASE / MX * 100 + '%'; q('[data-b=rb]').style.width = rb / MX * 100 + '%';
+    q('[data-msg]').textContent = d === 0 ? 'Preço posto cooperativa e média histórica: a receita que abre a seção 5.'
+      : 'A receita sobe ' + R(d) + ' (' + Math.round(d / BASE * 100) + '%) sem que nada mude na lavoura. Esse valor não vai entrar no caixa, e a viabilidade calculada com ele cai na primeira pergunta.';
+  }
+  el.querySelectorAll('.opcao button').forEach(function(b){ b.addEventListener('click', function(){ b.parentNode.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); }); calc(); }); });
+  calc();
+})();
+
+/* 2. esta conclusão se sustenta? */
+(function(){
+  var el = document.getElementById('dd-concl');
+  el.insertAdjacentHTML('beforeend', Didatica.htmlClassificador());
+  Didatica.classificador(el, {
+    categorias:[{id:'d', t:'Se sustenta'},{id:'a', t:'Ambígua'},{id:'c', t:'Contradiz os números'}],
+    itens:[
+      {t:'"O projeto é viável: IEE de 1,18, lucro econômico positivo e rentabilidade acima do custo de oportunidade."', c:'d', e:'Conclui e cita os indicadores que sustentam a conclusão.'},
+      {t:'"Acredito que o projeto seja viável."', c:'a', e:'Opinião sem indicador. Não diz por que nem em que condições.'},
+      {t:'"O projeto parece bom e tem potencial."', c:'a', e:'Não conclui nada: bom em quê, medido por qual indicador?'},
+      {t:'"O projeto é viável, apesar do lucro econômico negativo."', c:'c', e:'Lucro econômico negativo significa que o projeto não cobre o custo total: a frase contraria o próprio número.'},
+      {t:'"Viável nos cenários realista e otimista; no pessimista, o preço cai abaixo do preço de nivelamento."', c:'d', e:'Conclui e diz em que condição a viabilidade se perde.'},
+      {t:'"Com IEE de 0,92, o projeto não cobre o custo total: não é viável nas condições previstas."', c:'d', e:'Concluir pela inviabilidade também é conclusão defensável, quando os números mostram isso.'},
+      {t:'"O projeto deve dar certo se o clima ajudar."', c:'a', e:'Transfere a conclusão para o acaso, sem número nem risco medido.'},
+      {t:'"O projeto é viável, com margem de segurança de −5%."', c:'c', e:'Margem negativa: o preço esperado já está abaixo do nivelamento. A frase contraria o número.'}
+    ],
+    fim:'Conclusão que se sustenta cita os indicadores e acompanha os números, seja o projeto viável ou não.'
+  });
+})();
+
+/* 3. do documento aos slides */
+(function(){
+  var el = document.getElementById('dd-mapa'), q = function(s){ return el.querySelector(s); };
+  var SL = ['Capa','Identificação','Premissas','Laudo de solo ou rebanho','Manejo','Estrutura de custos','Receita e margens','Indicadores','Cenários','Fluxo de caixa','Conclusão','Obrigado'];
+  var SE = [['1. Identificação',[2]],['2. Premissas',[3]],['3. Manejo',[4,5]],['4. Estrutura de custos',[6]],['5. Receita e margens',[7]],['6. Indicadores',[8]],['7. Cenários',[9]],['8. Fluxo de caixa',[10]],['9. Conclusão',[11]]];
+  q('.secs').innerHTML = SE.map(function(x, i){ return '<button type="button" data-k="' + i + '">' + x[0] + '</button>'; }).join('');
+  q('.slides').innerHTML = SL.map(function(t, i){ return '<div class="slide" data-s="' + (i + 1) + '"><b>' + (i + 1) + '</b>' + t + '</div>'; }).join('');
+  function mostra(k){
+    var x = SE[k];
+    el.querySelectorAll('.secs button').forEach(function(b, i){ b.classList.toggle('on', i === k); });
+    el.querySelectorAll('.slide').forEach(function(d){ d.classList.toggle('on', x[1].indexOf(+d.dataset.s) >= 0); });
+    q('.info').textContent = 'A seção ' + x[0] + ' vira ' + (x[1].length > 1 ? 'os slides ' + x[1].join(' e ') : 'o slide ' + x[1][0]) + '. Capa e "Obrigado" são da apresentação; o resto sai do documento.';
+  }
+  el.querySelectorAll('.secs button').forEach(function(b){ b.addEventListener('click', function(){ mostra(+b.dataset.k); }); });
+  mostra(0);
+})();
+
+/* 4. treino das perguntas */
+(function(){
+  var btn = document.getElementById('treino-btn'), tb = document.getElementById('tbl-perguntas'), dica = document.getElementById('treino-dica');
+  tb.querySelectorAll('tr').forEach(function(tr){ var c = tr.querySelectorAll('td'); if (c.length > 1){ c[1].classList.add('resp'); c[1].addEventListener('click', function(){ if (tb.classList.contains('treino')) c[1].classList.add('ver'); }); } });
+  btn.addEventListener('click', function(){
+    var on = tb.classList.toggle('treino');
+    tb.querySelectorAll('td.resp').forEach(function(c){ c.classList.remove('ver'); });
+    btn.textContent = on ? 'Mostrar todas as respostas' : 'Treinar: esconder as respostas';
+    dica.hidden = !on;
+  });
+})();
+</script>
 </body>
 </html>
