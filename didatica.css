@@ -23,6 +23,20 @@
 .dd .msg-dd{font-size:15.5px;line-height:1.5;margin:12px 0 0}
 .block-content .dd p.msg-dd{font-size:15.5px;line-height:1.5;margin:12px 0 0}
 
+/* quadro de resultados, legenda e estado, comuns às peças */
+.dd .res-dd{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.dd .res-dd div{padding:10px 12px;background:var(--paper-warm);font-size:14px;line-height:1.35;color:var(--ink-soft)}
+.dd .res-dd b{display:block;font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--ink);margin-top:2px}
+.dd .res-dd .real b{color:var(--dd-deep)}
+.dd .res-dd .alerta{background:var(--critical-bg)}
+.dd .leg-dd{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13.5px;color:var(--ink-soft);margin-top:6px}
+.dd .leg-dd span::before{content:"";display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.dd .leg-dd span.ln::before{height:3px;vertical-align:3px}
+.dd .leg-dd span.tr::before{height:0;border-top:3px dashed var(--c);background:none;vertical-align:3px}
+.dd .estado-dd{margin-top:12px;padding:12px 14px;font-size:16px;line-height:1.5;background:var(--paper-warm);transition:background .3s}
+.dd .estado-dd.ok{background:var(--success-bg)}
+.dd .estado-dd.danger{background:var(--critical-bg)}
+
 /* ===== Cascata: do caixa ao resultado econômico ===== */
 .cascata .linha{display:grid;grid-template-columns:1fr;gap:4px;padding:8px 0;border-bottom:1px dashed var(--rule-soft);opacity:.18;transition:opacity .5s}
 .cascata .linha.vis{opacity:1}

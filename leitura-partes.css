@@ -85,6 +85,11 @@ ul.bullets li::before{top:7px}
 .plano-faixa{font-size:12.5px}
 .tally-row{font-size:13.5px}
 
+/* divisória de módulo e atalhos para painéis */
+.module-divider .me{font-size:12px}
+.go-dash .gd-eyebrow{font-size:12px}
+.toc-list li.mod-head{font-size:12.5px}
+
 /* figuras */
 .fig-zoom figcaption{font-size:12px}
 
