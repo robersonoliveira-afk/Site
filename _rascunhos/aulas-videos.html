@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<title>Aulas em vídeo · Gestão de Custos Agropecuários</title>
+<meta name="description" content="Aulas em vídeo de Gestão de Custos e Projetos Agropecuários, Colégio Politécnico da UFSM. Assista por parte ou por assunto.">
+<link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/aulas.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;
+  --paper-warm:#F4EFE2;
+  --ink:#1A1A17;
+  --ink-soft:#3A3833;
+  --stone:#6B6960;
+  --stone-light:#9B9890;
+  --olive:#3D4A2A;
+  --olive-deep:#2A331C;
+  --terra:#A8552E;
+  --terra-deep:#7C3D1F;
+  --mustard:#B89233;
+  --mustard-ink:#3A2F08;
+  --rule:#D9D3C2;
+  --rule-soft:#E8E3D3;
+  --highlight:#F2E8C9;
+  --critical-bg:#F5E4D8;
+  --success-bg:#E4EAD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:54px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-feature-settings:'ss01','cv11';
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV TOPO — movimentos pedagógicos ===== */
+nav.toptabs{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--rule-soft) transparent}
+nav.toptabs::-webkit-scrollbar{height:6px}
+nav.toptabs::-webkit-scrollbar-track{background:transparent}
+nav.toptabs::-webkit-scrollbar-thumb{background:var(--rule-soft);border-radius:3px;border:2px solid transparent;background-clip:padding-box}
+.toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
+.toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;border-right:1px solid var(--rule-soft);position:relative}
+.toptabs a .rn{font-size:13px;font-weight:600;color:var(--stone-light)}
+.toptabs a.home{color:var(--ink)}
+.toptabs a.home .rn{color:var(--olive)}
+.toptabs a.current{color:var(--paper);background:var(--terra);font-weight:600}
+.toptabs a.current .rn{color:var(--paper)}
+.toptabs a.mov1{box-shadow:inset 0 -3px 0 var(--olive)}
+.toptabs a.mov2{box-shadow:inset 0 -3px 0 var(--mustard)}
+.toptabs a.mov3{box-shadow:inset 0 -3px 0 var(--terra)}
+.toptabs a.mov3.current{box-shadow:inset 0 -3px 0 var(--terra-deep)}
+
+/* ===== MASTHEAD ===== */
+header.masthead{padding:30px 22px 24px;border-bottom:1px solid var(--rule);position:relative;background:var(--paper)}
+.masthead::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--terra)}
+.part-mark{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px}
+.part-numeral{font-family:'IBM Plex Mono',monospace;font-size:58px;font-weight:600;line-height:0.82;color:var(--terra);letter-spacing:-0.02em}
+.part-movement{padding-top:4px}
+.part-movement .mv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
+.part-movement .mv b{color:var(--terra-deep);font-weight:600}
+.eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+h1.title{font-family:'Fraunces', serif;font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:'opsz' 144}
+h1.title em{font-style:italic;color:var(--terra);font-weight:500}
+.subtitle{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);text-transform:uppercase}
+.meta span{display:flex;align-items:center;gap:7px}
+.meta span::before{content:"";width:5px;height:5px;background:var(--terra);border-radius:50%}
+
+/* ===== TOC ===== */
+.toc{margin:18px 22px 8px;border:1px solid var(--rule);background:var(--paper-warm)}
+.toc-toggle{width:100%;padding:16px 18px;background:none;border:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase}
+.toc-toggle:hover{background:rgba(168,85,46,0.06)}
+.toc-toggle-label{display:flex;align-items:center;gap:12px}
+.toc-toggle-label::before{content:"§";font-family:'Fraunces',serif;font-size:22px;color:var(--terra);font-weight:500;line-height:1}
+.toc-icon{width:14px;height:14px;border:1.5px solid var(--ink);position:relative;transition:transform 0.3s ease}
+.toc-icon::before,.toc-icon::after{content:"";position:absolute;background:var(--ink);transition:opacity 0.2s}
+.toc-icon::before{top:50%;left:2px;right:2px;height:1.5px;transform:translateY(-50%)}
+.toc-icon::after{left:50%;top:2px;bottom:2px;width:1.5px;transform:translateX(-50%)}
+.toc.open .toc-icon::after{opacity:0}
+.toc-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.toc.open .toc-list{max-height:420px}
+.toc-list ol{list-style:none;padding:4px 0 18px;border-top:1px solid var(--rule)}
+.toc-list li a{display:flex;align-items:baseline;gap:12px;padding:9px 22px;text-decoration:none;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.toc-list li a:hover{background:rgba(168,85,46,0.08);border-left-color:var(--terra);color:var(--ink)}
+.toc-num{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--terra);font-weight:600;min-width:32px}
+.toc-list li.quiz-link a{border-top:1px solid var(--rule);margin-top:6px;padding-top:14px;font-weight:600;color:var(--terra)}
+.toc-list li.quiz-link .toc-num{color:var(--terra)}
+
+/* ===== BLOCO ACORDEÃO ===== */
+.block{margin:0 22px 14px;border:1px solid var(--rule);background:#fff;position:relative;transition:border-color 0.2s;scroll-margin-top:54px}
+.block.open{border-color:var(--terra)}
+.block-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:18px 18px 18px 16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit}
+.block-header:hover{background:rgba(168,85,46,0.04)}
+.block-num{font-family:'IBM Plex Mono', monospace;font-size:10.5px;font-weight:600;letter-spacing:0.08em;color:var(--stone);padding:5px 8px;border:1px solid var(--rule);background:var(--paper-warm);line-height:1}
+.block.open .block-num{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+.block-title{font-family:'Fraunces', serif;font-size:18px;font-weight:500;line-height:1.2;color:var(--ink);letter-spacing:-0.01em;font-variation-settings:'opsz' 36}
+.block-chevron{width:20px;height:20px;position:relative}
+.block-chevron::before{content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:translate(-50%,-65%) rotate(45deg);transition:transform 0.3s ease}
+.block.open .block-chevron::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.block.open .block-body{max-height:6000px}
+.block-content{padding:0 18px 24px;border-top:1px solid var(--rule-soft);padding-top:18px}
+.block-content p{margin-bottom:14px;font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.block-content p strong{color:var(--ink);font-weight:600}
+.block-content p em{color:var(--terra);font-style:italic;font-weight:500}
+.block-content h3{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.block-content h3::before{content:"";width:14px;height:1.5px;background:var(--terra)}
+
+/* ===== COMPONENTES ===== */
+.formula{margin:16px 0;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--olive);font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.55;color:var(--ink);overflow-x:auto}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--olive);display:block;margin-bottom:6px}
+.formula b{font-weight:600;color:var(--terra)}
+
+.example{margin:18px 0;padding:18px 16px 14px 18px;background:#FCFAF3;border:1px solid var(--rule);border-left:3px solid var(--terra);position:relative}
+.example::before{content:"exemplo · lavoura de soja";position:absolute;top:-9px;left:14px;background:var(--paper);padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.example p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.example p:last-child{margin-bottom:0}
+.calc{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);background:rgba(168,85,46,0.10);padding:2px 6px;white-space:nowrap}
+
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.tbl th{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--rule);background:var(--paper-warm)}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+.tbl-wrap .tbl{margin:0}
+.tbl td.ok{color:var(--olive);font-weight:600}
+.tbl td.no{color:var(--terra);font-weight:600}
+
+ul.bullets{list-style:none;margin:10px 0 16px}
+ul.bullets li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:4px;top:5px;color:var(--terra);font-weight:600}
+
+.callout{margin:18px 0;padding:14px 16px;background:var(--critical-bg);border-left:3px solid var(--terra);font-size:14px;line-height:1.55;color:var(--ink)}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:10.5px;letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:4px}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.hierarchy{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.hier-row{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 12px;font-size:13px;align-items:center;line-height:1.4}
+.hier-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.04em;padding:3px 7px;color:#fff;text-align:center;white-space:nowrap}
+.hier-row.danger{background:#F5E4D8}
+.hier-row.danger .hier-tag{background:var(--terra)}
+.hier-row.warn{background:#F5EBC9}
+.hier-row.warn .hier-tag{background:#8A6E1A}
+.hier-row.ok{background:#E4EAD2}
+.hier-row.ok .hier-tag{background:var(--olive)}
+
+/* ===== QUIZ (dentro de bloco acordeão) ===== */
+.block-quiz.open{border-color:var(--olive-deep)}
+.block-quiz.open .block-num{background:var(--olive-deep);color:var(--mustard);border-color:var(--olive-deep)}
+.block-quiz.open .block-body{max-height:4200px}
+.quiz-inner{background:var(--olive-deep);color:var(--paper);padding:26px 22px 30px;position:relative}
+.quiz-inner::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
+.quiz-eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;color:var(--paper);margin-bottom:12px}
+.quiz-intro{font-size:14.5px;color:rgba(250,247,240,0.78);margin-bottom:20px;line-height:1.6}
+.quiz-question{margin-top:22px;padding-top:22px;border-top:1px solid rgba(184,146,51,0.3)}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.35;margin-bottom:18px;color:var(--paper)}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{background:rgba(250,247,240,0.06);border:1px solid rgba(250,247,240,0.18);color:var(--paper);padding:13px 14px;text-align:left;font-family:inherit;font-size:14px;line-height:1.45;cursor:pointer;transition:all 0.18s}
+.q-option:hover{background:rgba(184,146,51,0.15);border-color:var(--mustard)}
+.q-option:active{transform:scale(0.99)}
+.q-progress{margin-top:24px;height:2px;background:rgba(250,247,240,0.12);position:relative}
+.q-progress-bar{height:100%;background:var(--mustard);width:0;transition:width 0.3s ease}
+.quiz-result{display:none}
+.quiz-result.active{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--mustard);text-transform:uppercase;margin-bottom:12px}
+.result-profile{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:18px;color:var(--paper)}
+.result-message{font-size:15px;line-height:1.6;color:rgba(250,247,240,0.88);margin-bottom:24px}
+.result-tally{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:20px 0}
+.tally-row{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 10px;background:rgba(250,247,240,0.05);border-left:2px solid rgba(184,146,51,0.4);display:flex;justify-content:space-between;color:rgba(250,247,240,0.75)}
+.tally-row.winner{background:rgba(184,146,51,0.18);border-left-color:var(--mustard);color:var(--paper);font-weight:600}
+.result-revise{margin-top:20px;padding:14px 16px;background:rgba(250,247,240,0.06);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:rgba(250,247,240,0.85)}
+.result-revise strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard);font-weight:600;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.q-restart{margin-top:22px;background:var(--mustard);color:var(--olive-deep);border:none;padding:13px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.q-restart:hover{background:var(--paper)}
+
+/* ===== NAV RODAPÉ ENTRE PARTES ===== */
+.partnav{margin:30px 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partnav a{text-decoration:none;border:1px solid var(--rule);padding:16px 16px;background:#fff;transition:border-color 0.2s,background 0.2s;display:flex;flex-direction:column;gap:5px}
+.partnav a:hover{border-color:var(--terra);background:var(--paper-warm)}
+.partnav a.next{text-align:right;align-items:flex-end}
+.partnav .dir{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone)}
+.partnav .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);line-height:1.2}
+.partnav .pn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 22px 90px;border-top:1px solid var(--rule);margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
+footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
+footer .sources{margin-bottom:14px}
+footer .src-item{margin-bottom:3px}
+footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
+
+.back-to-top{position:fixed;bottom:20px;right:20px;width:42px;height:42px;background:var(--terra);border:none;color:var(--paper);cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s, transform 0.2s;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,0.18)}
+.back-to-top.visible{opacity:0.92;pointer-events:auto}
+.back-to-top:hover{transform:translateY(-2px);opacity:1}
+.back-to-top::before{content:"";position:absolute;top:50%;left:50%;width:10px;height:10px;border-top:2px solid var(--paper);border-left:2px solid var(--paper);transform:translate(-50%,-30%) rotate(45deg)}
+
+.toptabs a.vid .rn{color:var(--stone-light)}
+.toptabs a.vid.current .rn{color:var(--paper)}
+
+/* ===== AVISO DE CONSTRUÇÃO ===== */
+.build-note{margin:18px 22px 4px;padding:14px 16px;background:var(--highlight);border-left:3px solid var(--mustard);font-size:13.5px;line-height:1.55;color:var(--mustard-ink)}
+.build-note strong{display:block;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8A6E1A;font-weight:600;margin-bottom:5px}
+
+/* ===== BANNERS DE MOVIMENTO ===== */
+.mov-banner{margin:22px 22px 6px;padding:14px 16px;display:flex;align-items:center;gap:14px;border-left:4px solid}
+.mov-banner.mov1{border-color:var(--olive);background:#EEF1E7}
+.mov-banner.mov2{border-color:var(--mustard);background:#F5EDD1}
+.mov-banner.mov3{border-color:var(--terra);background:#F5E4D8}
+.mov-banner-emoji{font-size:20px;line-height:1}
+.mov-banner-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);display:block}
+.mov-banner-sub{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);font-style:italic;margin-top:2px;display:block}
+
+/* Acento dos blocos por movimento */
+.block.mov1.open{border-color:var(--olive)}
+.block.mov1.open .block-num{background:var(--olive);border-color:var(--olive)}
+.block.mov2.open{border-color:var(--mustard)}
+.block.mov2.open .block-num{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+
+/* ===== LINHAS DE VÍDEO ===== */
+.serie-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--stone);font-weight:500;white-space:nowrap}
+.vid-row{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;padding:13px 0;border-bottom:1px solid var(--rule-soft)}
+.vid-row:last-child{border-bottom:none}
+.vid-row .vn{grid-row:1 / span 2;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--terra);font-weight:600;padding-top:4px}
+.vt-btn{background:none;border:none;padding:0;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:600;line-height:1.35;color:var(--ink);text-align:left;cursor:pointer;width:100%}
+.vt-btn:hover{color:var(--terra)}
+.vt-btn[aria-expanded="true"]{color:var(--terra)}
+.vid-row .vmeta{margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vstatus{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:3px 8px}
+.vstatus.soon{color:var(--stone-light);border:1px solid var(--rule)}
+.vstatus.go{color:var(--paper);background:var(--terra);text-decoration:none}
+.vstatus.go:hover{background:var(--terra-deep)}
+.vstatus.live-now{color:var(--paper);background:var(--terra)}
+.vid-foco{grid-column:1 / -1;margin-top:8px;padding:12px 14px;background:var(--paper-warm);border-left:3px solid var(--terra);font-size:13.5px;line-height:1.6;color:var(--ink-soft);display:none}
+.vid-foco.open{display:block}
+.vid-foco-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra);font-weight:600;display:block;margin-bottom:6px}
+.vid-embed{grid-column:1 / -1;margin-top:10px;position:relative;width:100%;aspect-ratio:16 / 9;background:#000;border:1px solid var(--rule)}
+.vid-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+@media (min-width: 720px){
+  .build-note{margin-left:auto;margin-right:auto;max-width:680px}
+  .block, .toc, .partnav{margin-left:auto;margin-right:auto;max-width:680px}
+  header.masthead{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  footer{padding-left:max(22px, calc(50% - 340px));padding-right:max(22px, calc(50% - 340px))}
+  h1.title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV TOPO ===== -->
+<nav class="toptabs">
+  <div class="toptabs-inner">
+    <a href="index.html" class="home"><span class="rn">§</span> Início</a>
+    <a href="parte-1.html" class="mov1"><span class="rn">I</span> Fundamentos</a>
+    <a href="parte-2.html" class="mov2"><span class="rn">II</span> Estrutura de custos</a>
+    <a href="parte-3.html" class="mov3"><span class="rn">III</span> Análise econômica</a>
+    <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
+    <a href="parte-5.html" class="mov3"><span class="rn">V</span> Módulos aplicados</a>
+    <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
+    <a href="aulas.html" class="vid current"><span class="rn">&#9655;</span> Vídeos</a>
+  </div>
+</nav>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
+  <div class="part-mark">
+    <div class="part-numeral">&#9655;</div>
+    <div class="part-movement">
+      <div class="mv">Complemento · <b>vídeos</b></div>
+      <h1 class="title">Aulas em <em>vídeo</em></h1>
+    </div>
+  </div>
+  <p class="subtitle">Você já sabe produzir. Aqui você aprende a calcular se está ganhando dinheiro com isso. Vídeos curtos (3 a 5 min), conceito mais exemplo com números reais do RS: soja, arroz, videira, Hereford, Angus, leite, integrados.</p>
+  <div class="meta">
+    <span>6 séries</span>
+    <span>12 vídeos</span>
+    <span>Em construção</span>
+  </div>
+</header>
+
+<div class="build-note">
+  <strong>Página em construção</strong>
+  Os vídeos serão publicados gradualmente. Onde já houver gravação, o item mostra <em>assistir</em>; os demais aparecem como <em>em breve</em>. Os marcados com <em>comece aqui</em> são a porta de entrada recomendada.
+</div>
+
+<!-- ===== SÉRIES (geradas via JS a partir do array VIDEOS) ===== -->
+<div id="series"></div>
+
+<footer>
+  <strong>Sobre as aulas em vídeo</strong>
+  <p style="margin-bottom:14px">Complemento em vídeo da disciplina, com identidade gaúcha: exemplos da Campanha, Serra, Planalto, Missões e Fronteira Oeste. Referências regionais: IRGA, EMATER/RS, CQFS-RS/SC, CONAB, EMBRAPA e cooperativas. Base: apostila Gestão de Custos e Projetos Agropecuários.</p>
+  <p>Material organizado com auxílio de inteligência artificial (Claude, Anthropic, 2026). <a href="index.html#ia" style="color:var(--olive);text-decoration:underline">Declaração completa de uso de IA</a>.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"></button>
+
+<script>
+/* =====================================================================
+   COMO PUBLICAR UM VÍDEO:
+   Cole o link embed do YouTube no campo url e defina embed:true.
+   Ex.: url:'https://www.youtube.com/embed/XXXXXXXXXXX', embed:true
+   Sem url = "em breve". Com url sem embed = link externo "assistir".
+   ===================================================================== */
+const MOVIMENTOS = {
+  1: { emoji:"🟢", label:"Movimento 1 · Entender", sub:"A Base Estrutural",        cls:"mov1" },
+  2: { emoji:"🟡", label:"Movimento 2 · Medir",    sub:"A Realidade dos Números",  cls:"mov2" },
+  3: { emoji:"🔴", label:"Movimento 3 · Decidir",  sub:"O Futuro do Negócio",      cls:"mov3" }
+};
+
+const VIDEOS = [
+  { s:1, mov:1, nome:"Parte 1 · Fundamentos de Gestão Agropecuária", videos:[
+    { n:"1", t:"Por que trabalhar 12 meses no campo pode não sobrar lucro?",
+      foco:"A diferença prática entre resultado de caixa e lucro econômico. Introdução aos três custos invisíveis (pró-labore, depreciação e custo de oportunidade), ilustrados através de um cenário prático de produção de soja.",
+      url:"https://www.youtube.com/embed/v7UmQ8v7_Eo", embed:true, comeceAqui:true },
+    { n:"2", t:"Classificação de Custos: O Desafio na Pecuária de Leite",
+      foco:"Desmistificação de Custos Fixos vs. Variáveis e Diretos vs. Indiretos. Como separar na prática o custo do concentrado (variável/direto) da manutenção estrutural da sala de ordenha (fixo/indireto).",
+      url:"" }
+  ]},
+  { s:2, mov:1, nome:"Parte 2 · Estrutura de Custos", videos:[
+    { n:"3", t:"O Custo Operacional na Lavoura de Arroz Irrigado",
+      foco:"A metodologia oficial de mercado (CONAB/EMATER-RS). O cálculo prático do COE (Custo Operacional Efetivo), COT e CT, evidenciando o peso de itens específicos, como o bombeamento de água e o diesel, na planilha da safra.",
+      url:"" },
+    { n:"4", t:"Máquinas e Tecnologia: A Conta da Depreciação",
+      foco:"O cálculo real do desgaste das máquinas e do capital investido em implementos e tecnologias de precisão. O impacto direto da modernização da frota na conta de depreciação ao final do ano.",
+      url:"" }
+  ]},
+  { s:3, mov:2, nome:"Parte 3 · Análise Econômica", videos:[
+    { n:"5", t:"Margens de Resultado em Culturas Perenes (Fruticultura)",
+      foco:"A diferença entre Margem Bruta, Margem Líquida e Lucro Real em pomares. O desafio financeiro de analisar a viabilidade em atividades que exigem anos de investimento antes de gerar o primeiro retorno comercial.",
+      url:"" },
+    { n:"6", t:"Ponto de Equilíbrio na Pecuária de Corte (Recria e Gorda)",
+      foco:"A aplicação do Ponto de Equilíbrio e da Margem de Contribuição. O cálculo de quantos quilos de carcaça por hectare o produtor precisa entregar apenas para \"empatar\" o custo fixo da estância.",
+      url:"" }
+  ]},
+  { s:4, mov:2, nome:"Parte 4 · Contexto Operacional e Gestão de Riscos", videos:[
+    { n:"7", t:"Economia de Escala: Pequena Propriedade vs. Grandes Áreas",
+      foco:"A dinâmica da diluição de custos fixos. A quebra do mito do tamanho da terra: como é possível ter alta rentabilidade e ser competitivo em pequenas áreas aumentando a eficiência dos fatores de produção.",
+      url:"" },
+    { n:"8", t:"Gestão de Riscos e Competitividade na Avicultura de Postura Colonial 🥚",
+      foco:"O desafio diário da agricultura familiar na produção de ovos coloniais e galinhas livres de gaiola (cage-free). Como gerenciar a oscilação de preços da ração (milho/soja), os custos de biosseguridade e como justificar um custo unitário maior para competir com a escala dos grandes aviários industriais através da agregação de valor.",
+      url:"" }
+  ]},
+  { s:5, mov:3, nome:"Parte 5 · Módulos Aplicados", videos:[
+    { n:"9", t:"Sistemas Integrados: A Complexidade dos Custos na ILP",
+      foco:"O desafio contábil da Integração Lavoura-Pecuária. Como ratear corretamente os custos de fertilidade e o uso da terra entre a lavoura de verão e a pastagem de inverno sem mascarar o resultado financeiro de nenhuma das duas atividades.",
+      url:"" },
+    { n:"10", t:"Crédito Rural e Plano Safra na Prática Gaúcha",
+      foco:"Estratégias para captação inteligente de recursos. A leitura correta das taxas de juros, o impacto das contrapartidas exigidas pelos bancos e o efeito do pagamento de parcelas no fluxo de caixa da propriedade.",
+      url:"" }
+  ]},
+  { s:6, mov:3, nome:"Parte 6 · Projeto Final e Viabilidade", videos:[
+    { n:"11", t:"Investindo em Infraestrutura: O Retorno de um Pivô de Irrigação",
+      foco:"A aplicação prática dos indicadores de viabilidade: VPL, TIR e Payback. Como fundamentar matematicamente a decisão de imobilizar alto capital em infraestrutura para mitigar o risco climático, calculando o tempo exato de retorno do investimento.",
+      url:"" },
+    { n:"12", t:"Estruturando um Projeto Agropecuário",
+      foco:"A aplicação final do conhecimento. Como transformar a necessidade da fazenda em um documento formal para captação de recursos. As diferenças entre estruturar projetos de custeio (ciclo), investimento (bens duráveis) e comercialização, comprovando a capacidade técnica e de pagamento do produtor.",
+      url:"" }
+  ]}
+];
+
+/* ===== Render organizado por movimento ===== */
+const wrap = document.getElementById('series');
+function esc(str){ const d=document.createElement('div'); d.textContent=str; return d.innerHTML; }
+
+let currentMov = 0;
+VIDEOS.forEach(serie => {
+  if(serie.mov !== currentMov){
+    currentMov = serie.mov;
+    const m = MOVIMENTOS[currentMov];
+    const banner = document.createElement('div');
+    banner.className = `mov-banner ${m.cls}`;
+    banner.innerHTML = `<span class="mov-banner-emoji">${m.emoji}</span><div><span class="mov-banner-label">${esc(m.label)}</span><span class="mov-banner-sub">${esc(m.sub)}</span></div>`;
+    wrap.appendChild(banner);
+  }
+
+  const m = MOVIMENTOS[serie.mov];
+  const sec = document.createElement('section');
+  sec.className = `block ${m.cls}`;
+  sec.id = 'serie-' + serie.s;
+
+  const total = serie.videos.length;
+  const prontos = serie.videos.filter(v => v.url).length;
+  let rows = '';
+
+  serie.videos.forEach((v, idx) => {
+    const live = !!v.url;
+    const embed = live && v.embed;
+    const focoId = `foco-${serie.s}-${idx}`;
+
+    const status = embed
+      ? (v.comeceAqui ? `<span class="vstatus live-now">comece aqui</span>` : `<span class="vstatus live-now">no ar</span>`)
+      : live
+      ? `<a class="vstatus go" href="${esc(v.url)}" target="_blank" rel="noopener">assistir &rarr;</a>`
+      : `<span class="vstatus soon">em breve</span>`;
+
+    const player = embed
+      ? `<div class="vid-embed"><iframe src="${esc(v.url)}" title="${esc(v.t)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
+      : '';
+
+    rows += `
+      <div class="vid-row">
+        <span class="vn">${esc(v.n)}</span>
+        <button class="vt-btn" aria-expanded="false" aria-controls="${focoId}">${esc(v.t)}</button>
+        <span class="vmeta">${status}</span>
+        <div class="vid-foco" id="${focoId}"><span class="vid-foco-label">Foco</span>${esc(v.foco)}</div>
+        ${player}
+      </div>`;
+  });
+
+  sec.innerHTML = `
+    <button class="block-header" aria-expanded="false">
+      <span class="block-num">${serie.s}</span>
+      <span class="block-title">${esc(serie.nome)}</span>
+      <span class="block-chevron"></span>
+    </button>
+    <div class="block-body"><div class="block-content">
+      <p class="serie-meta">${total} vídeo${total > 1 ? 's' : ''}${prontos ? ' · ' + prontos + ' no ar' : ''}</p>
+      ${rows}
+    </div></div>`;
+  wrap.appendChild(sec);
+});
+
+/* ===== Acordeão de série + toggle foco + back-to-top ===== */
+document.addEventListener('click', (e) => {
+  const header = e.target.closest('.block-header');
+  if(header){
+    const block = header.closest('.block');
+    const open = block.classList.toggle('open');
+    header.setAttribute('aria-expanded', open);
+    return;
+  }
+  const btn = e.target.closest('.vt-btn');
+  if(btn){
+    const focoId = btn.getAttribute('aria-controls');
+    const foco = document.getElementById(focoId);
+    if(!foco) return;
+    const open = foco.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  }
+});
+window.addEventListener('load', () => {
+  if(location.hash){
+    const t = document.querySelector(location.hash);
+    if(t && t.classList.contains('block')){ t.classList.add('open'); t.scrollIntoView(); }
+  }
+});
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 600) backBtn.classList.add('visible');
+  else backBtn.classList.remove('visible');
+});
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>
