@@ -22,6 +22,8 @@
   · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
     com apenas o <figure class="foto"> dentro.
   · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+  · Gravação: tecla G alterna normal, guia da câmera (canto inferior direito)
+    e gravação (sem guia). Slides com data-curto formam o vídeo curto do produtor.
 ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -192,6 +194,12 @@ ul.check li::before{content:"";position:absolute;left:0.2em;top:1.35vh;width:0.7
 
 a{color:var(--accent-text)}
 
+/* gravação: G alterna normal / guia da câmera / gravação */
+.cam-guia{position:fixed;right:1.5vw;bottom:2vh;width:20vw;height:20vh;border:2px dashed var(--terra);display:none;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--terra);letter-spacing:0.1em;text-transform:uppercase;pointer-events:none;z-index:12}
+body.guia .cam-guia{display:flex}
+body.guia .hud,body.gravar .hud{justify-content:flex-start;gap:2vw}
+body.guia .hint,body.gravar .hint{display:none}
+
 /* ===== impressão: apostila ===== */
 @media print{
   @page{size:A4 landscape;margin:0}
@@ -235,7 +243,7 @@ a{color:var(--accent-text)}
 <!-- ============ ATO 2 · CONCEITO ============ -->
 
 <!-- 4 · pergunta da aula -->
-<section class="slide" data-act="Conceito">
+<section class="slide" data-act="Conceito" data-curto>
   <div class="eyebrow"><b>Conceito</b> · a pergunta da aula</div>
   <h2>A receita paga as contas, <em>todas</em> elas?</h2>
   <p class="lead">Depende de quais contas você enxerga. O boleto do adubo é visível; o desgaste do trator e o próprio salário do produtor, não.</p>
@@ -485,7 +493,7 @@ a{color:var(--accent-text)}
 <!-- ============ ATO 3 · EXEMPLO RS ============ -->
 
 <!-- 17 · o caso -->
-<section class="slide com-foto" data-act="Exemplo RS">
+<section class="slide com-foto" data-act="Exemplo RS" data-curto>
   <div class="txt">
     <div class="eyebrow"><b>Exemplo RS</b> · trator 75 cv</div>
     <h2>O trator da propriedade familiar</h2>
@@ -504,7 +512,7 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 18 · depreciação anual e por hora -->
-<section class="slide" data-act="Exemplo RS">
+<section class="slide" data-act="Exemplo RS" data-curto>
   <div class="eyebrow"><b>Exemplo RS</b> · o cálculo</div>
   <h2>Quanto custa o trator por ano e por hora</h2>
   <div class="formula">
@@ -581,7 +589,7 @@ a{color:var(--accent-text)}
 </section>
 
 <!-- 20b · a cascata fechada -->
-<section class="slide com-foto foto-g" data-act="Exemplo RS">
+<section class="slide com-foto foto-g" data-act="Exemplo RS" data-curto>
   <div class="txt">
     <div class="eyebrow"><b>Exemplo RS</b> · a conta fechada</div>
     <h2>Onde o sinal vira</h2>
@@ -636,6 +644,95 @@ a{color:var(--accent-text)}
   <p>A safra fraca é o ano da conta anterior: sobra de caixa de R$ 40.000 e resultado de − R$ 18.000 sobre o COT. Vinte e uma sacas separam a primeira linha da última, e elas atravessam os quatro degraus da escada.</p>
 </section>
 
+<!-- 20e · leite · o caso -->
+<section class="slide com-foto" data-act="Exemplo RS" data-curto>
+  <div class="txt">
+    <div class="eyebrow"><b>Exemplo RS</b> · a propriedade de leite</div>
+    <h2>O mesmo trator, agora no leite</h2>
+    <p>Uma propriedade familiar de leite usa o mesmo trator de 75 cv para fazer silagem e tratar o gado. Premissas do caso:</p>
+    <ul class="bullets">
+      <li><strong>25 vacas em lactação</strong>, cerca de 410 litros por dia: <strong>150.000 litros no ano</strong>.</li>
+      <li><strong>Leite a R$ 2,40/L</strong>: receita de R$ 360.000 no ano.</li>
+      <li><strong>Sobra de caixa</strong> (receita − COE): R$ 70.000.</li>
+      <li>O casal tira o leite e retira <strong>R$ 4.500 por mês</strong> para viver.</li>
+    </ul>
+    <p class="note">Valores de exemplo, declarados como premissa. No projeto, cada um precisa de fonte e data.</p>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/resfriador-tanque-leite.jpg" alt="Tanque resfriador de leite a granel, de aço inoxidável, instalado na sala de leite de uma propriedade" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>resfriador de leite a granel · CC BY-SA 3.0, Fotonovela/Wikimedia Commons</figcaption>
+  </figure>
+</section>
+
+<!-- 20f · leite · inventário em branco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o inventário do leite</div>
+  <h2>O que se desgasta tirando leite</h2>
+  <table class="tbl">
+    <thead><tr><th>Bem</th><th class="num">Valor</th><th class="num">Residual</th><th class="num">Vida útil</th><th class="num">Depreciação/ano</th></tr></thead>
+    <tbody>
+      <tr><td>Trator 75 cv</td><td class="num">200.000</td><td class="num">40.000</td><td class="num">10 anos</td><td class="num">16.000</td></tr>
+      <tr><td>Ordenhadeira canalizada</td><td class="num">45.000</td><td class="num">5.000</td><td class="num">10 anos</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>Resfriador 2.000 L</td><td class="num">40.000</td><td class="num">4.000</td><td class="num">12 anos</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>Sala de ordenha e galpão</td><td class="num">200.000</td><td class="num">0</td><td class="num">25 anos</td><td class="num"><span class="gap"></span></td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="4">Depreciação anual da propriedade</td><td class="num"><span class="gap"></span></td></tr></tfoot>
+  </table>
+  <p class="note">A mesma fórmula do trator: (valor − residual) ÷ vida útil. O exemplo considera só máquinas e benfeitorias. Como tratar o rebanho na conta fica para a aula de pecuária.</p>
+</section>
+
+<!-- 20g · leite · a cascata fechada -->
+<section class="slide" data-act="Exemplo RS" data-curto>
+  <div class="eyebrow"><b>Exemplo RS</b> · a conta fechada do leite</div>
+  <h2>O leite também esconde o sinal</h2>
+  <div class="cascade">
+    <div class="row total"><span>Sobra de caixa (RB − COE)</span><span>R$ 70.000</span></div>
+    <div class="row minus"><span>− depreciação: trator 16.000 + ordenhadeira 4.000 + resfriador 3.000 + sala 8.000</span><span>R$ 31.000</span></div>
+    <div class="row minus"><span>− pró-labore do casal (12 × R$ 4.500)</span><span>R$ 54.000</span></div>
+    <div class="row final"><span>Resultado sobre o COT</span><span>− R$ 15.000</span></div>
+  </div>
+  <p>Entrou dinheiro todo mês e as contas foram pagas. Mesmo assim, a atividade consumiu patrimônio e pagou ao casal menos do que o trabalho vale.</p>
+  <p class="note">No leite, o pró-labore pesa mais do que na lavoura: a ordenha costuma ser duas vezes por dia, todos os dias do ano.</p>
+</section>
+
+<!-- 20h · leite · por litro em branco -->
+<section class="slide" data-act="Exemplo RS">
+  <div class="eyebrow"><b>Exemplo RS</b> · o custo por litro</div>
+  <h2>Quanto o litro precisava valer</h2>
+  <div class="formula">
+    <span class="label">As três camadas da propriedade de leite, por litro (150.000 L/ano)</span>
+    COE <b>1,93</b> · COT <b>2,50</b> · CT <b>2,70</b>
+  </div>
+  <p>A estrutura de custo é a mesma o ano todo. O que muda é o preço que a indústria paga no mês:</p>
+  <table class="tbl">
+    <thead><tr><th>Preço do litro</th><th class="num">Receita no ano</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td class="num">R$ 2,80</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td class="num">R$ 2,60</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td class="num">R$ 2,10</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td class="num">R$ 1,80</td><td class="num"><span class="gap"></span></td><td><span class="gap wide"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">COE de R$ 290.000; COT soma R$ 31.000 de depreciação e R$ 54.000 de pró-labore; CT acrescenta R$ 30.000 de remuneração da terra e do capital. Tudo dividido por 150.000 litros.</p>
+</section>
+
+<!-- 20i · leite · os veredictos -->
+<section class="slide" data-act="Exemplo RS" data-curto>
+  <div class="eyebrow"><b>Exemplo RS</b> · quatro preços, quatro respostas</div>
+  <h2>Na soja muda a colheita; no leite, o preço do mês</h2>
+  <table class="tbl">
+    <thead><tr><th>Preço do litro</th><th class="num">Receita no ano</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td class="num">R$ 2,80</td><td class="num"><b>420.000</b></td><td>RB ≥ CT: viabilidade plena, folga de R$ 0,10/L</td></tr>
+      <tr><td class="num">R$ 2,60</td><td class="num">390.000</td><td>RB ≥ COT: sustentabilidade mínima, não remunera terra e capital</td></tr>
+      <tr><td class="num">R$ 2,10</td><td class="num">315.000</td><td>RB ≥ COE: paga o caixa e consome patrimônio</td></tr>
+      <tr><td class="num">R$ 1,80</td><td class="num">270.000</td><td>RB &lt; COE: prejuízo em caixa, parar ou reformular</td></tr>
+    </tbody>
+  </table>
+  <p>Em 2026, o valor de referência do Conseleite-RS foi de cerca de <strong>R$ 2,06 em janeiro</strong> a <strong>R$ 2,53 em abril</strong>. A mesma propriedade passou, em poucos meses, por mais de um degrau da escada.</p>
+  <p class="note">Valores projetados divulgados pelo Conseleite-RS (cálculo da Universidade de Passo Fundo). O preço pago a cada produtor varia com volume e qualidade.</p>
+</section>
+
 <!-- 21 · lições -->
 <section class="slide com-diagrama" data-act="Exemplo RS">
   <div class="txt">
@@ -643,8 +740,8 @@ a{color:var(--accent-text)}
     <h2>Três lições do caso</h2>
     <ul class="bullets">
       <li><strong>Depreciação se calcula em minutos</strong>: três números e uma divisão, escolha do produtor, não limitação técnica.</li>
-      <li><strong>Custo fixo depende da escala</strong>: "quantos hectares essa máquina atende?" vale para cada bem do inventário.</li>
-      <li><strong>Sobra de caixa não é lucro</strong>: só o resultado sobre o COT, e depois sobre o CT, diz se a atividade se sustenta.</li>
+      <li><strong>Custo fixo depende da escala</strong>: "quantos hectares essa máquina atende?" ou "quantos litros essa sala de ordenha produz?" vale para cada bem do inventário.</li>
+      <li><strong>Sobra de caixa não é lucro</strong>, na lavoura e no leite: só o resultado sobre o COT, e depois sobre o CT, diz se a atividade se sustenta.</li>
     </ul>
     <div class="callout success">
       <strong>Para o projeto de vocês</strong>
@@ -771,6 +868,8 @@ a{color:var(--accent-text)}
 
 </main>
 
+<div class="cam-guia" aria-hidden="true">câmera</div>
+
 <div class="hud">
   <span class="act-label" id="actLabel">T4 · COE, COT e Custo Total</span>
   <span class="counter" id="counter">1 / 1</span>
@@ -812,6 +911,7 @@ a{color:var(--accent-text)}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
     else if(e.key==='Home'){e.preventDefault();go(0)}
     else if(e.key==='End'){e.preventDefault();go(total-1)}
+    else if(e.key==='g'||e.key==='G'){const b=document.body;if(b.classList.contains('guia')){b.classList.replace('guia','gravar')}else if(b.classList.contains('gravar')){b.classList.remove('gravar')}else{b.classList.add('guia')}}
   });
 
   document.addEventListener('click',e=>{
