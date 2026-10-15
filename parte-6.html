@@ -249,15 +249,75 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 .prem-dd .barras .rot b{font-family:'IBM Plex Mono',monospace;white-space:nowrap}
 .prem-dd .barras .tr{height:18px;background:var(--paper-warm);margin-top:3px}
 .prem-dd .barras .tr i{display:block;height:100%;width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
-.mapa-ns .secs{display:flex;flex-wrap:wrap;gap:6px}
-.mapa-ns .secs button{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
-.mapa-ns .secs button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
-.mapa-ns .slides{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
-.mapa-ns .slide{position:relative;aspect-ratio:16/10;border:1px solid var(--rule);background:var(--paper);padding:6px 7px;font-size:12.5px;line-height:1.2;color:var(--stone);transition:background .3s,color .3s,border-color .3s,transform .3s}
-.mapa-ns .slide b{display:block;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
-.mapa-ns .slide.on{background:var(--terra);border-color:var(--terra);color:#fff;transform:scale(1.04)}
-.mapa-ns .slide.on b{color:#fff}
-.mapa-ns .info{margin-top:12px;padding:12px 14px;background:var(--paper-warm);font-size:16px;line-height:1.5}
+.apres-dd .palco{container-type:inline-size;max-width:520px;margin:0 auto;touch-action:pan-y}
+.apres-dd .sl{position:relative;aspect-ratio:4/3;background:#fff;border:1px solid var(--rule);box-shadow:0 8px 22px rgba(26,26,23,.13);padding:6% 6% 5% 8%;font-size:13px;font-size:max(13px,4.2cqw);line-height:1.3;color:var(--ink);display:flex;flex-direction:column}
+.apres-dd .sl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2.2%;background:var(--terra)}
+.apres-dd .sl.entra{animation:sl-entra .35s ease}
+@keyframes sl-entra{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.apres-dd .sl h4{font-family:'Fraunces',serif;font-weight:600;font-size:1.4em;line-height:1.12;margin:0 0 .55em;color:var(--ink)}
+.apres-dd .sl .num{position:absolute;right:4%;top:4.5%;font-family:'IBM Plex Mono',monospace;font-size:.9em;color:var(--stone)}
+.apres-dd .sl .pe{margin-top:auto;font-size:.9em;color:var(--stone)}
+.apres-dd .sl .mono{font-family:'IBM Plex Mono',monospace}
+.apres-dd .sl .pos{color:#3D6B2A}.apres-dd .sl .neg{color:var(--terra)}
+.apres-dd .capa small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.9em;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);margin-bottom:.6em}
+.apres-dd .capa h4{font-size:1.75em}
+.apres-dd .capa p{margin:0 0 .3em}
+.apres-dd .lavoura{display:block;margin:auto -6.6% -5.4% -8.8%;width:auto;height:3.4em}
+.apres-dd .duas{display:grid;grid-template-columns:1fr 1fr;gap:.8em;align-items:center}
+.apres-dd .kv{display:grid;grid-template-columns:auto 1fr;gap:.3em .6em;margin:0}
+.apres-dd .kv dt{color:var(--stone);font-size:.9em}
+.apres-dd .kv dd{margin:0;font-weight:600;font-size:.95em}
+.apres-dd .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.45em}
+.apres-dd .cards div{background:var(--paper-warm);padding:.5em .45em;font-size:.9em;line-height:1.25}
+.apres-dd .cards b{display:block;font-family:'IBM Plex Mono',monospace;font-size:1.1em;color:var(--ink);margin-bottom:.15em}
+.apres-dd .laudo{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--rule);margin-bottom:.5em}
+.apres-dd .laudo div{padding:.3em .2em;text-align:center;font-size:.9em;border-right:1px solid var(--rule)}
+.apres-dd .laudo div:last-child{border-right:0}
+.apres-dd .laudo b{display:block;font-family:'IBM Plex Mono',monospace;font-size:1.1em}
+.apres-dd .seta{font-size:.9em;color:var(--stone);text-align:center;margin:.1em 0 .45em}
+.apres-dd .linha-t{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:.3em;margin-top:.4em}
+.apres-dd .linha-t::before{content:"";position:absolute;left:6%;right:6%;top:.45em;height:2px;background:var(--olive)}
+.apres-dd .linha-t div{position:relative;text-align:center;font-size:.9em;line-height:1.2;padding-top:1.3em}
+.apres-dd .linha-t div::before{content:"";position:absolute;left:50%;top:0;width:.9em;height:.9em;margin-left:-.45em;border-radius:50%;background:var(--olive)}
+.apres-dd .linha-t b{display:block;font-family:'IBM Plex Mono',monospace;color:var(--terra);margin-bottom:.15em}
+.apres-dd .destaque{margin-top:.8em;padding:.45em .6em;background:var(--paper-warm);border-left:.25em solid var(--terra);font-size:.92em}
+.apres-dd .barras{display:grid;gap:.35em}
+.apres-dd .barras div{display:grid;grid-template-columns:2.4em 1fr auto;align-items:center;gap:.4em;font-size:.92em}
+.apres-dd .barras i{display:block;height:.95em;background:var(--c,var(--olive));width:0;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.apres-dd .barras b{font-family:'IBM Plex Mono',monospace;text-align:right;white-space:nowrap}
+.apres-dd .ind{display:grid;gap:.3em;font-size:.92em}
+.apres-dd .ind div{border-bottom:1px dashed var(--rule);padding-bottom:.25em}
+.apres-dd .ind b{font-family:'IBM Plex Mono',monospace}
+.apres-dd .ind span{color:var(--ink-soft)}
+.apres-dd .cen{display:grid;grid-template-columns:repeat(3,1fr);gap:.45em}
+.apres-dd .cen div{padding:.5em .4em;text-align:center;font-size:.9em;background:var(--paper-warm);border-top:.25em solid var(--c)}
+.apres-dd .cen b{display:block;font-family:'IBM Plex Mono',monospace;font-size:1.05em;margin:.25em 0}
+.apres-dd .fluxo{display:grid;gap:.25em;align-items:stretch;height:5.6em;position:relative}
+.apres-dd .fluxo::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--stone)}
+.apres-dd .fluxo div{position:relative}
+.apres-dd .fluxo i{position:absolute;left:12%;right:12%;background:var(--c);transition:height .6s cubic-bezier(.2,.7,.2,1);height:0}
+.apres-dd .meses{display:grid;gap:.25em;text-align:center;font-size:.9em;color:var(--stone);margin-top:.2em}
+.apres-dd .meses .min{color:var(--terra);font-weight:600}
+.apres-dd .frase{font-family:'Fraunces',serif;font-size:1.05em;line-height:1.35;border-left:.25em solid var(--olive);padding-left:.6em}
+.apres-dd .fim h4{font-size:2em;margin-bottom:.4em}
+.apres-dd .fim ul{list-style:none;margin:0;padding:0;font-size:.95em}
+.apres-dd .fim li{padding:.22em 0;border-bottom:1px dashed var(--rule)}
+.apres-dd .fim li span{color:var(--stone)}
+.apres-dd .nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:14px auto 0;max-width:520px}
+.apres-dd .nav .cont{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-soft);text-align:center;white-space:nowrap}
+.apres-dd .nav .dd-btn{padding:10px 14px}
+.apres-dd .miniat{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px auto 0;max-width:520px}
+.apres-dd .miniat button{font:inherit;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;aspect-ratio:4/3;border:1px solid var(--rule);background:#fff;color:var(--ink-soft);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.apres-dd .miniat button.on{background:var(--terra);border-color:var(--terra);color:#fff;transform:translateY(-2px)}
+.apres-dd .info{margin:14px auto 0;max-width:520px;padding:12px 14px;background:var(--paper-warm);font-size:15.5px;line-height:1.5}
+.apres-dd .info b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin-bottom:4px}
+.apres-dd .info p{margin:6px 0 0;font-size:15.5px;line-height:1.5;color:var(--ink-soft)}
+.apres-dd .info .perg{color:var(--terra-deep)}
+.apres-dd .info .nota{margin-top:10px;padding:10px 12px;background:#fff;border-left:4px solid var(--olive);color:var(--ink)}
+.apres-dd .exs{display:flex;flex-wrap:wrap;gap:6px;margin:0 auto 14px;max-width:520px}
+.apres-dd .exs button{font:inherit;font-size:15px;padding:9px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
+.apres-dd .exs button.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.apres-dd .fim p{margin:0;font-size:1em;color:var(--ink-soft)}
 .treino-btn{margin:4px 0 10px}
 .tbl.treino td.resp{color:transparent;text-shadow:0 0 9px rgba(26,26,23,.45);cursor:pointer;user-select:none}
 .tbl.treino td.resp.ver{color:inherit;text-shadow:none;cursor:default}
@@ -423,14 +483,16 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </table>
     </div>
 
-    <figure class="dd mapa-ns" id="dd-mapa" style="--dd:var(--terra);--dd-deep:#7C3D1F">
-      <div class="dd-cab">Do documento aos slides</div>
+    <figure class="dd apres-dd" id="dd-apres" style="--dd:var(--terra);--dd-deep:#7C3D1F">
+      <div class="dd-cab">Os 12 slides, com um exemplo</div>
       <div class="dd-corpo">
-        <div class="secs" role="group" aria-label="Seções do documento"></div>
-        <div class="slides"></div>
+        <div class="exs" role="group" aria-label="Escolher o exemplo"><button type="button" data-ex="soja" class="on">Soja</button><button type="button" data-ex="boi">Bovinos de corte</button></div>
+        <div class="palco"><div class="sl" aria-live="polite"></div></div>
+        <div class="nav"><button type="button" class="dd-btn" data-ant>&larr; anterior</button><span class="cont"></span><button type="button" class="dd-btn prim" data-prox>próximo &rarr;</button></div>
+        <div class="miniat" role="group" aria-label="Escolher o slide"></div>
         <div class="info"></div>
       </div>
-      <figcaption>Toque numa seção do documento para ver em que slide ela aparece. A apresentação é o mesmo projeto, em outra forma.</figcaption>
+      <figcaption>Soja: 50 ha, com receita, margens, indicadores e cenários da Parte III. Bovinos: o lote de 100 bois da Parte V, com o custo do kg produzido e a margem de segurança de lá. Laudo, grupos de custo, fluxo de caixa e, nos bovinos, a compra dos animais e os cenários são valores de exemplo. No celular, também dá para passar os slides arrastando o dedo.</figcaption>
     </figure>
 
     <h3>As perguntas que professores e colegas costumam fazer</h3>
@@ -570,20 +632,94 @@ var R = Didatica.reais;
   });
 })();
 
-/* 3. do documento aos slides */
+/* 3. os 12 slides, com um exemplo de lavoura e um de pecuária */
 (function(){
-  var el = document.getElementById('dd-mapa'), q = function(s){ return el.querySelector(s); };
-  var SL = ['Capa','Identificação','Premissas','Laudo de solo ou rebanho','Manejo','Estrutura de custos','Receita e margens','Indicadores','Cenários','Fluxo de caixa','Conclusão','Obrigado'];
-  var SE = [['1. Identificação',[2]],['2. Premissas',[3]],['3. Manejo',[4,5]],['4. Estrutura de custos',[6]],['5. Receita e margens',[7]],['6. Indicadores',[8]],['7. Cenários',[9]],['8. Fluxo de caixa',[10]],['9. Conclusão',[11]]];
-  q('.secs').innerHTML = SE.map(function(x, i){ return '<button type="button" data-k="' + i + '">' + x[0] + '</button>'; }).join('');
-  q('.slides').innerHTML = SL.map(function(t, i){ return '<div class="slide" data-s="' + (i + 1) + '"><b>' + (i + 1) + '</b>' + t + '</div>'; }).join('');
-  function mostra(k){
-    var x = SE[k];
-    el.querySelectorAll('.secs button').forEach(function(b, i){ b.classList.toggle('on', i === k); });
-    el.querySelectorAll('.slide').forEach(function(d){ d.classList.toggle('on', x[1].indexOf(+d.dataset.s) >= 0); });
-    q('.info').textContent = 'A seção ' + x[0] + ' vira ' + (x[1].length > 1 ? 'os slides ' + x[1].join(' e ') : 'o slide ' + x[1][0]) + '. Capa e "Obrigado" são da apresentação; o resto sai do documento.';
+  var el = document.getElementById('dd-apres'), q = function(x){ return el.querySelector(x); };
+  var ROWS = '', CERCA = '';
+  for (var r = 0; r < 9; r++) ROWS += '<line x1="100" y1="0" x2="' + (r * 25) + '" y2="40" stroke="#3D4A2A" stroke-width="1.6"/>';
+  for (var c = 6; c < 200; c += 22) CERCA += '<line x1="' + c + '" y1="8" x2="' + c + '" y2="24" stroke="#5A4630" stroke-width="2"/>';
+  var LAV = '<svg class="lavoura" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><rect width="200" height="40" fill="#9DB26A"/>' + ROWS + '<rect width="200" height="3" fill="#E4EAD2"/></svg>';
+  var PAS = '<svg class="lavoura" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><rect width="200" height="40" fill="#9DB26A"/><rect y="26" width="200" height="14" fill="#7E9A4E"/>' + CERCA + '<line x1="0" y1="12" x2="200" y2="12" stroke="#5A4630" stroke-width="1.2"/><line x1="0" y1="19" x2="200" y2="19" stroke="#5A4630" stroke-width="1.2"/></svg>';
+  var M = [
+    {n:'Capa', sec:null, dica:'Simples e profissional; foto da cultura/região.'},
+    {n:'Identificação', sec:1, dica:'Incluir o croqui do Google Earth: mostra planejamento espacial.'},
+    {n:'Premissas', sec:2, dica:'Citar a fonte da cotação: o preço não foi inventado.', perg:'"Por que esse preço de venda?" e "Por que essa produtividade?"'},
+    {n:'Laudo de solo ou rebanho', sec:3, dica:'Tabela sintética: laudo → cálculo → custo.'},
+    {n:'Manejo', sec:3, dica:'Linha do tempo ou tabela de operações; destacar a decisão técnica central; evidenciar como cada operação alimenta o custeio.',
+     nota:'Este tópico costuma precisar de mais de um slide. É aqui que o grupo explica a parte agronômica do projeto (na pecuária, a zootécnica): cultivar, adubação, pragas e doenças, ou dieta, sanidade e reprodução. Os professores perguntam sobre ela.'},
+    {n:'Estrutura de custos', sec:4, dica:'Gráfico de pizza/barras é mais eficiente que tabela.', perg:'"Por que o COT é maior que o COE?" e "Contabilizou o custo de oportunidade da terra?"'},
+    {n:'Receita e margens', sec:5, dica:'Sinal claro: verde positivo, vermelho negativo.'},
+    {n:'Indicadores', sec:6, dica:'Formato: Indicador = Valor | interpretação em uma linha.'},
+    {n:'Cenários', sec:7, dica:'Concluir: "viável em X dos 3 cenários".', perg:'"Se o preço cair 10%, ainda é viável?"'},
+    {n:'Fluxo de caixa', sec:8, dica:'Mostrar o mês de maior déficit: justifica o custeio.'},
+    {n:'Conclusão', sec:9, dica:'Frase direta, sem ambiguidade. Domínio do resultado.', perg:'"Qual o maior risco do projeto?"'},
+    {n:'Obrigado', sec:null, dica:'Deixar visível durante as perguntas: facilita a identificação de quem responde cada questão.'}
+  ];
+  var FIM = '<div class="fim"><h4>Obrigado</h4><p>Contato do grupo: e-mail ou telefone</p></div>';
+  var EX = {
+    soja:{fl:[-10, -35, -95, -125, -155, -175, -183, 172], meses:['set','out','nov','dez','jan','fev','mar','abr'], mx:190, s:[
+      '<div class="capa"><small>Projeto da disciplina · Gestão de Custos</small><h4>Viabilidade da soja em São Gabriel/RS</h4><p>50 ha · safra 2025/26</p><p style="color:var(--stone)">Integrantes do grupo</p></div>' + LAV,
+      '<h4>Identificação</h4><div class="duas"><dl class="kv"><dt>Propriedade</dt><dd>área do grupo</dd><dt>Município</dt><dd>São Gabriel/RS</dd><dt>Área</dt><dd>50 ha de soja</dd><dt>Ciclo</dt><dd>safra 2025/26</dd></dl><svg viewBox="0 0 100 82" data-sem-piso aria-label="Croqui"><path d="M4 8 L92 4 L96 74 L8 78 Z" fill="#F4EFE2" stroke="#3A3833" stroke-width="1.2"/><path d="M10 12 L62 10 L64 56 L12 58 Z" fill="#E2C46A"/><text x="37" y="39" text-anchor="middle" font-size="13" font-weight="600" fill="#3A3833">soja</text><path d="M66 10 L90 9 L92 40 L68 41 Z" fill="#5E7A3A"/><text x="79" y="30" text-anchor="middle" font-size="11" fill="#fff">RL</text><rect x="72" y="52" width="9" height="7" fill="none" stroke="#3A3833"/><path d="M8 68 C30 62 55 74 94 64" stroke="#5B8DB8" stroke-width="3" fill="none"/></svg></div>',
+      '<h4>Premissas</h4><div class="cards"><div><b>60 sc/ha</b>média histórica (CONAB/EMATER)</div><div><b>R$ 120/sc</b>posto cooperativa</div><div><b>3.000 sc</b>produção esperada</div></div><p class="pe">Fonte da cotação: cooperativa da região, consulta em set/2025. Safra de referência: 2025/26.</p>',
+      '<h4>Laudo de solo</h4><div class="laudo"><div>pH<b>5,1</b></div><div>V%<b>48</b></div><div>P<b>7</b></div><div>K<b>90</b></div><div>MO<b>2,2%</b></div></div><div class="seta">laudo &rarr; cálculo &rarr; custo</div><div class="cards"><div><b>2,5 t/ha</b>calcário</div><div><b>R$ 375</b>por hectare</div><div><b>R$ 18.750</b>nos 50 ha</div></div>',
+      '<h4>Manejo</h4><div class="linha-t"><div><b>set</b>dessecação</div><div><b>nov</b>semeadura</div><div><b>dez–fev</b>3 aplicações</div><div><b>abr</b>colheita</div></div><div class="destaque">Decisão central: semear na janela do zoneamento (ZARC), no início de novembro.</div>',
+      '<h4>Estrutura de custos</h4><div class="barras"><div><span>COE</span><i data-w="55.6" style="--c:#B89233"></i><b>R$ 188 mil</b></div><div><span>COT</span><i data-w="72.2" style="--c:#A8552E"></i><b>R$ 244 mil</b></div><div><span>CT</span><i data-w="100" style="--c:#3A3833"></i><b>R$ 338 mil</b></div></div><p class="pe">Maiores grupos do COE: fertilizantes 28% · defensivos 27% · operações com máquinas 18%.</p>',
+      '<h4>Receita e margens</h4><div class="barras"><div><span>RB</span><i data-w="100" style="--c:#6B6960"></i><b>R$ 360.000</b></div><div><span>MB</span><i data-w="47.8" style="--c:#3D6B2A"></i><b class="pos">R$ 172.000</b></div><div><span>ML</span><i data-w="32.2" style="--c:#3D6B2A"></i><b class="pos">R$ 116.000</b></div><div><span>LE</span><i data-w="6.1" style="--c:#3D6B2A"></i><b class="pos">R$ 22.000</b></div></div><p class="pe">As três margens são positivas: a receita cobre o custo total.</p>',
+      '<h4>Indicadores</h4><div class="ind"><div><b>IEE = 1,07</b> <span>| a receita cobre o CT</span></div><div><b>Lucratividade = 6,1%</b> <span class="neg">| abaixo de 15 a 20%</span></div><div><b>Rentabilidade = 6,5%</b> <span>| acima de zero</span></div><div><b>Preço de niv. = R$ 62,67</b> <span>| bem abaixo de R$ 120</span></div><div><b>Prod. de niv. = 31,3 sc/ha</b> <span>| bem abaixo de 60</span></div></div>',
+      '<h4>Cenários</h4><div class="cen"><div style="--c:#A8552E">Pessimista<b class="neg">- R$ 79,5 mil</b>51 sc · R$ 108</div><div style="--c:#B89233">Realista<b class="pos">R$ 22 mil</b>60 sc · R$ 120</div><div style="--c:#3D6B2A">Otimista<b class="pos">R$ 97,6 mil</b>66 sc · R$ 132</div></div><div class="destaque">Viável em 2 dos 3 cenários. No pessimista, o prejuízo passa de 25% da receita.</div>',
+      '<h4>Fluxo de caixa</h4><div class="fluxo"></div><div class="meses"></div><p class="pe">Saldo acumulado. Maior déficit em março: <span class="neg mono">- R$ 183 mil</span>, coberto com custeio ou capital próprio até a venda em abril.</p>',
+      '<h4>Conclusão</h4><p class="frase">Viável no cenário realista: IEE de 1,07 e lucro econômico de R$ 22 mil. A margem é estreita (lucratividade de 6,1%) e, no pessimista, o prejuízo é de R$ 79,5 mil.</p><div class="destaque">Principal risco: quebra de safra somada à queda de preço. Recomendação: seguro da produção e venda antecipada de parte da safra.</div>',
+      FIM]},
+    boi:{fl:[-421, -450, -480, 44], meses:['abr','mai','jun','jul'], mx:500, s:[
+      '<div class="capa"><small>Projeto da disciplina · Gestão de Custos</small><h4>Viabilidade do confinamento de bovinos em São Gabriel/RS</h4><p>100 bois · 90 dias · 2026</p><p style="color:var(--stone)">Integrantes do grupo</p></div>' + PAS,
+      '<h4>Identificação</h4><div class="duas"><dl class="kv"><dt>Propriedade</dt><dd>área do grupo</dd><dt>Município</dt><dd>São Gabriel/RS</dd><dt>Lote</dt><dd>100 bois de 280 kg</dd><dt>Ciclo</dt><dd>90 dias, abril a julho</dd></dl><svg viewBox="0 0 100 82" data-sem-piso aria-label="Croqui"><path d="M4 8 L92 4 L96 74 L8 78 Z" fill="#F4EFE2" stroke="#3A3833" stroke-width="1.2"/><path d="M10 12 L60 10 L62 48 L12 50 Z" fill="#B5C77E"/><text x="36" y="35" text-anchor="middle" font-size="12" font-weight="600" fill="#3A3833">pasto</text><rect x="12" y="54" width="40" height="19" fill="#D9B98A" stroke="#7C5A2E"/><text x="32" y="68" text-anchor="middle" font-size="11" fill="#3A3833">curral</text><path d="M66 10 L90 9 L92 40 L68 41 Z" fill="#5E7A3A"/><text x="79" y="30" text-anchor="middle" font-size="11" fill="#fff">RL</text><rect x="72" y="52" width="9" height="7" fill="none" stroke="#3A3833"/><circle cx="56" cy="64" r="4" fill="#5B8DB8"/></svg></div>',
+      '<h4>Premissas</h4><div class="cards"><div><b>1,2 kg/dia</b>GMD esperado no confinamento</div><div><b>R$ 13,50/kg</b>boi gordo, peso vivo</div><div><b>388 kg</b>peso de saída (280 + 108)</div></div><p class="pe">Fonte da cotação: frigorífico da região, consulta em mar/2026. Compra dos bois magros a R$ 14,00/kg.</p>',
+      '<h4>Estrutura do lote</h4><div class="laudo"><div>cabeças<b>100</b></div><div>entrada<b>280 kg</b></div><div>saída<b>388 kg</b></div><div>UA<b>62&rarr;86</b></div><div>RC<b>52%</b></div></div><div class="seta">lote &rarr; cálculo &rarr; receita</div><div class="cards"><div><b>25,9 @</b>vivas por boi</div><div><b>13,5 @</b>de carcaça</div><div><b>10.800 kg</b>produzidos no lote</div></div>',
+      '<h4>Manejo</h4><div class="linha-t"><div><b>abr</b>chegada e adaptação</div><div><b>abr–jul</b>dieta de terminação</div><div><b>mensal</b>pesagem e sanidade</div><div><b>jul</b>venda</div></div><div class="destaque">Decisão central: a dieta. Cada 0,1 kg/dia de GMD vale 9 kg a mais por boi em 90 dias.</div>',
+      '<h4>Estrutura de custos</h4><div class="barras"><div><span>COE</span><i data-w="97.4" style="--c:#B89233"></i><b>R$ 480 mil</b></div><div><span>COT</span><i data-w="98.8" style="--c:#A8552E"></i><b>R$ 487 mil</b></div><div><span>CT</span><i data-w="100" style="--c:#3A3833"></i><b>R$ 493 mil</b></div></div><p class="pe">Maiores grupos do COE: compra dos bois 82% · alimentação 13% · sanidade e mão de obra 5%.</p>',
+      '<h4>Receita e margens</h4><div class="barras"><div><span>RB</span><i data-w="100" style="--c:#6B6960"></i><b>R$ 523.800</b></div><div><span>MB</span><i data-w="8.4" style="--c:#3D6B2A"></i><b class="pos">R$ 43.800</b></div><div><span>ML</span><i data-w="7" style="--c:#3D6B2A"></i><b class="pos">R$ 36.800</b></div><div><span>LE</span><i data-w="5.9" style="--c:#3D6B2A"></i><b class="pos">R$ 30.800</b></div></div><p class="pe">RB = 100 bois × 388 kg × R$ 13,50. As três margens são positivas.</p>',
+      '<h4>Indicadores</h4><div class="ind"><div><b>Custo do kg = R$ 9,35</b> <span>| abaixo do preço de R$ 13,50</span></div><div><b>PE de preço = R$ 8,15/kg</b> <span>| preço mínimo do kg</span></div><div><b>Margem de segurança = 40%</b> <span>| sobre o preço do kg</span></div><div><b>PE de GMD = 0,72 kg/dia</b> <span>| abaixo do 1,2 esperado</span></div><div><b>IEE = 1,06</b> <span>| o lote todo, com a compra</span></div></div>',
+      '<h4>Cenários</h4><div class="cen"><div style="--c:#A8552E">Pessimista<b class="neg">- R$ 43,5 mil</b>1,0 kg/dia · R$ 12,15</div><div style="--c:#B89233">Realista<b class="pos">R$ 30,8 mil</b>1,2 kg/dia · R$ 13,50</div><div style="--c:#3D6B2A">Otimista<b class="pos">R$ 96,5 mil</b>1,3 kg/dia · R$ 14,85</div></div><div class="destaque">Viável em 2 dos 3 cenários. No pessimista, a venda não paga a compra dos bois e o custo do ciclo.</div>',
+      '<h4>Fluxo de caixa</h4><div class="fluxo"></div><div class="meses"></div><p class="pe">Saldo acumulado. Maior déficit em junho: <span class="neg mono">- R$ 480 mil</span>. A compra dos bois concentra o desembolso no início; o dinheiro só volta na venda.</p>',
+      '<h4>Conclusão</h4><p class="frase">Viável no cenário realista: IEE de 1,06 e lucro econômico de R$ 30,8 mil. O custo do kg produzido (R$ 9,35) fica bem abaixo do preço, mas a compra dos bois é 82% do COE e, no pessimista, o prejuízo é de R$ 43,5 mil.</p><div class="destaque">Principal risco: preço do boi gordo na venda. Recomendação: travar parte do preço e comprar os bois magros com relação de troca favorável.</div>',
+      FIM]}
+  };
+  var ex = 'soja', atual = 0;
+  q('.miniat').innerHTML = M.map(function(x, i){ return '<button type="button" aria-label="Slide ' + (i + 1) + ': ' + x.n + '">' + (i + 1) + '</button>'; }).join('');
+  function mostra(i){
+    atual = Math.max(0, Math.min(M.length - 1, i));
+    var x = M[atual], E = EX[ex], sl = q('.sl');
+    sl.innerHTML = E.s[atual] + '<span class="num">' + (atual + 1) + '</span>';
+    sl.classList.remove('entra'); void sl.offsetWidth; sl.classList.add('entra');
+    var fx = sl.querySelector('.fluxo');
+    if (fx){
+      var mn = Math.min.apply(null, E.fl), col = 'repeat(' + E.fl.length + ',1fr)';
+      fx.style.gridTemplateColumns = col; sl.querySelector('.meses').style.gridTemplateColumns = col;
+      fx.innerHTML = E.fl.map(function(v){ return '<div><i style="--c:' + (v < 0 ? (v === mn ? '#7C3D1F' : '#D9895E') : '#3D6B2A') + ';' + (v < 0 ? 'top:50%' : 'bottom:50%') + '" data-h="' + (Math.abs(v) / E.mx * 50) + '"></i></div>'; }).join('');
+      sl.querySelector('.meses').innerHTML = E.meses.map(function(m, k){ return '<span' + (E.fl[k] === mn ? ' class="min"' : '') + '>' + m + '</span>'; }).join('');
+    }
+    setTimeout(function(){
+      sl.querySelectorAll('.barras i').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+      sl.querySelectorAll('.fluxo i').forEach(function(b){ b.style.height = b.dataset.h + '%'; });
+    }, 60);
+    el.querySelectorAll('.miniat button').forEach(function(b, k){ b.classList.toggle('on', k === atual); });
+    q('.cont').textContent = (atual + 1) + ' de 12';
+    q('[data-ant]').disabled = atual === 0; q('[data-prox]').disabled = atual === M.length - 1;
+    var nome = atual === 3 ? (ex === 'soja' ? 'Laudo de solo' : 'Estrutura do lote') : x.n;
+    q('.info').innerHTML = '<b>Slide ' + (atual + 1) + ' · ' + nome + '</b>' +
+      (x.sec ? 'Vem da seção ' + x.sec + ' do projeto escrito.' : 'Só existe na apresentação; não tem seção no projeto escrito.') +
+      '<p>Dica: ' + x.dica + '</p>' + (x.perg ? '<p class="perg">Pergunta que costuma vir: ' + x.perg + ' A resposta está na tabela de perguntas, mais abaixo.</p>' : '') +
+      (x.nota ? '<p class="nota">' + x.nota + '</p>' : '');
   }
-  el.querySelectorAll('.secs button').forEach(function(b){ b.addEventListener('click', function(){ mostra(+b.dataset.k); }); });
+  el.querySelectorAll('.exs button').forEach(function(b){ b.addEventListener('click', function(){
+    ex = b.dataset.ex; el.querySelectorAll('.exs button').forEach(function(o){ o.classList.toggle('on', o === b); }); mostra(atual);
+  }); });
+  el.querySelectorAll('.miniat button').forEach(function(b, k){ b.addEventListener('click', function(){ mostra(k); }); });
+  q('[data-ant]').addEventListener('click', function(){ mostra(atual - 1); });
+  q('[data-prox]').addEventListener('click', function(){ mostra(atual + 1); });
+  var x0 = null, palco = q('.palco');
+  palco.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  palco.addEventListener('touchend', function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) mostra(atual + (dx < 0 ? 1 : -1)); x0 = null; });
   mostra(0);
 })();
 

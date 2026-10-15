@@ -32,6 +32,7 @@
      aqui a letra é aumentada até ficar com pelo menos 11px reais na tela */
   var PISO = 11;
   function piso(svg){
+    if (svg.hasAttribute('data-sem-piso')) return;
     var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width;
     if (!vb || !vb.width || !w) return;
     var esc = w / vb.width;
