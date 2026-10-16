@@ -336,20 +336,20 @@ a{color:var(--accent-text)}
   <p class="note">Aplicar além desse ponto reduz o lucro, mesmo com a produção ainda subindo.</p>
 </section>
 
-<!-- 10 · milho × ureia -->
+<!-- 10 · milho × nitrogênio -->
 <section class="slide" data-act="Conceito">
-  <div class="eyebrow"><b>Conceito</b> · milho e ureia no RS</div>
+  <div class="eyebrow"><b>Conceito</b> · milho e nitrogênio</div>
   <h2>Máximo lucro ≠ máxima produção</h2>
-  <p class="note">Milho a R$ 78/sc, ureia a R$ 4,20/kg (insumo + aplicação): exemplo didático (Parte III.3 do site).</p>
+  <p class="note">Milho a R$ 61/sc, N a R$ 7,00/kg (ureia a R$ 3.220/t): exemplo didático, a curva da Parte III.2 do site.</p>
   <div class="cols2 asym">
     <table class="tbl">
-      <thead><tr><th class="num">Ureia (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">RM (R$/kg)</th><th class="num">CM (R$/kg)</th><th>Leitura</th></tr></thead>
+      <thead><tr><th class="num">N (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">RM (R$/kg N)</th><th class="num">CM (R$/kg N)</th><th>Leitura</th></tr></thead>
       <tbody>
-        <tr><td class="num">40</td><td class="num">118</td><td class="num"><span class="gap"><span data-p="1">54,60</span></span></td><td class="num">4,20</td><td><span data-p="1">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">80</td><td class="num">138</td><td class="num"><span class="gap"><span data-p="2">39,00</span></span></td><td class="num">4,20</td><td><span data-p="2">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">120</td><td class="num">152</td><td class="num"><span class="gap"><span data-p="3">27,30</span></span></td><td class="num">4,20</td><td><span data-p="3">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">160</td><td class="num">160</td><td class="num"><span class="gap"><span data-p="4">15,60</span></span></td><td class="num">4,20</td><td><span data-p="4">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">200</td><td class="num">163</td><td class="num"><span class="gap"><span data-p="5">5,85</span></span></td><td class="num">4,20</td><td><strong data-p="5">RM &gt; CM, perto do limite</strong></td></tr>
+        <tr><td class="num">40</td><td class="num">130</td><td class="num"><span class="gap"><span data-p="1">61,00</span></span></td><td class="num">7,00</td><td><span data-p="1">RM &gt; CM: seguir</span></td></tr>
+        <tr><td class="num">80</td><td class="num">160</td><td class="num"><span class="gap"><span data-p="2">45,75</span></span></td><td class="num">7,00</td><td><span data-p="2">RM &gt; CM: seguir</span></td></tr>
+        <tr><td class="num">120</td><td class="num">182</td><td class="num"><span class="gap"><span data-p="3">33,55</span></span></td><td class="num">7,00</td><td><span data-p="3">RM &gt; CM: seguir</span></td></tr>
+        <tr><td class="num">160</td><td class="num">196</td><td class="num"><span class="gap"><span data-p="4">21,35</span></span></td><td class="num">7,00</td><td><span data-p="4">RM &gt; CM: seguir</span></td></tr>
+        <tr><td class="num">200</td><td class="num">200</td><td class="num"><span class="gap"><span data-p="5">6,10</span></span></td><td class="num">7,00</td><td><strong data-p="5">RM &lt; CM: não compensa</strong></td></tr>
       </tbody>
     </table>
     <figure class="foto side">
@@ -357,7 +357,27 @@ a{color:var(--accent-text)}
       <figcaption>lavoura de milho em Barão do Triunfo/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
     </figure>
   </div>
-  <p class="note" data-p="6">A RM cai de R$ 54,60 para R$ 5,85, mas segue acima do CM em todas as faixas: o ponto RM = CM está além de 200 kg/ha, que é só a maior dose testada. Na propriedade, uma tabela assim só existe se alguém <strong>anotar dose e produção</strong> safra a safra. Sem registro, não há análise marginal, apenas estimativa.</p>
+  <p class="note" data-p="6">De 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00: a RM cruzou o CM. Pela curva, o ótimo fica perto de 180 kg/ha; a máxima produção, em 200. Na propriedade, uma tabela assim só existe se alguém <strong>anotar dose e produção</strong> safra a safra.</p>
+</section>
+
+<!-- 10b · caso real Epagri -->
+<section class="slide" data-act="Conceito">
+  <div class="eyebrow"><b>Conceito</b> · caso real · média ou alta tecnologia</div>
+  <h2>35 sacas a mais, lucro menor</h2>
+  <p class="note">Custo referencial do milho, plantio direto e semente transgênica · Epagri/Cepa (SC), julho de 2026 · COT = COE + depreciação · milho a R$ 61/sc.</p>
+  <table class="tbl">
+    <thead><tr><th></th><th class="num">Média tecnologia</th><th class="num">Alta tecnologia</th><th class="num">Diferença</th></tr></thead>
+    <tbody>
+      <tr><td>Rendimento esperado (sc/ha)</td><td class="num">165</td><td class="num">200</td><td class="num"><span class="gap"><span data-p="1">+35</span></span></td></tr>
+      <tr><td>COT (R$/ha)</td><td class="num">9.512</td><td class="num">11.829</td><td class="num"><span class="gap"><span data-p="2">+2.317</span></span></td></tr>
+      <tr><td>Receita (R$/ha)</td><td class="num">10.065</td><td class="num">12.200</td><td class="num"><span class="gap"><span data-p="3">+2.135</span></span></td></tr>
+      <tr><td><strong>Lucro operacional (R$/ha)</strong></td><td class="num"><span class="gap"><span data-p="4">+553</span></span></td><td class="num"><span class="gap"><span data-p="4">+371</span></span></td><td class="num"><span class="gap"><span data-p="4"><b>−182</b></span></span></td></tr>
+    </tbody>
+  </table>
+  <div class="formula" data-p="5">
+    <span class="label">Preço que vira a decisão</span>
+    2.317 ÷ 35 sc = <b>R$ 66,20/sc</b>: abaixo disso, a média tecnologia lucra mais
+  </div>
 </section>
 
 <!-- 11 · gancho AP -->

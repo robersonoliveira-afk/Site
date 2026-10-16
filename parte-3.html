@@ -239,7 +239,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 .inds div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:17px;margin-top:2px;color:var(--ink)}
 .inds div.ok{border-left-color:#6E8A3A}.inds div.no{border-left-color:var(--terra)}
 .inds div small{display:block;font-size:12px;color:var(--stone);margin-top:2px}
-.funcao-dd .doses{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin-top:8px}
+.funcao-dd .doses{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px}
 .funcao-dd .doses button{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:8px 0;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
 .funcao-dd .doses button.on{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:600}
 .leit-dd{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
@@ -432,7 +432,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>Gráfico da função de produção: milho e nitrogênio</h3>
-    <p>O gráfico mostra como o Produto Total (sc/ha) responde ao aumento da dose de N, revelando as três fases. Dados representativos de milho irrigado no Alto Uruguaí/RS:</p>
+    <p>O gráfico mostra como o Produto Total (sc/ha) responde ao aumento da dose de N, revelando as três fases. Dados ilustrativos de milho em plantio direto, com o teto calibrado no custo referencial de alta tecnologia da Epagri/Cepa:</p>
 
     <figure class="dd funcao-dd" id="dd-funcao" style="--dd:var(--terra);--dd-deep:#7C3D1F">
       <div class="dd-cab">Função de produção · milho e nitrogênio</div>
@@ -441,8 +441,9 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="doses" aria-label="Escolha a dose de nitrogênio"></div>
         <div class="leit-dd"></div>
       </div>
-      <figcaption>Milho irrigado, Alto Uruguaí/RS, dados ilustrativos. Toque numa dose para ver o produto total, o produto médio e o produto marginal.</figcaption>
+      <figcaption>Milho em plantio direto, dados ilustrativos: 90 sc/ha sem N (o N do próprio solo) e teto de 200 sc/ha, o rendimento esperado no custo referencial de alta tecnologia da Epagri/Cepa (SC, jul/2026). Toque numa dose para ver o produto total, o produto médio e o produto marginal.</figcaption>
     </figure>
+    <p>Repare que o gráfico começa na Fase II. Sem adubação, o milho já colhe 90 sc/ha com o nitrogênio do solo: a Fase I, em que o PM ainda sobe, fica antes do zero do gráfico. Por isso lavouras reais respondem ao N já na Fase II, que é justamente onde a decisão econômica acontece.</p>
 
     <h3>As três fases da produção</h3>
     <div class="hierarchy">
@@ -455,7 +456,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>O padrão tem nome formal: <strong>Lei dos Rendimentos Decrescentes</strong>. Os rendimentos decrescentes começam quando o PMg atinge o máximo e passa a cair, ainda na Fase I; a Fase II é a região em que eles já atuam e o PMg segue positivo. A lei afirma que, mantidos os demais fatores constantes, <em>a partir de certo ponto, cada unidade adicional do insumo variável gera incrementos de produto cada vez menores</em>. É uma regularidade empírica, observada em milho, soja, leite, carne, aves, não uma exceção.</p>
     <div class="callout">
       <strong>Ponto ótimo econômico ≠ máxima produção</strong>
-      O gráfico mostra que a máxima produção ocorre em ~180 kg/ha de N (PT = 180 sc/ha). O máximo lucro está antes, em ~120 kg/ha, onde RM = CM. Avançar de 120 para 180 kg acrescenta apenas 17 sc/ha ao custo de 60 kg de N a mais. A aula III.3 mostra como calcular exatamente esse ponto com os dados reais da propriedade.
+      O gráfico mostra que a máxima produção ocorre em 200 kg/ha de N (PT = 200 sc/ha). O máximo lucro está antes, perto de 180 kg/ha, onde RM = CM, com milho a R$ 61/sc e N a R$ 7,00/kg. Os últimos 20 kg de N rendem cerca de 1 sc/ha e custam perto de R$ 145. A aula III.3 mostra como calcular esse ponto dose a dose.
     </div>
   </div></div>
 </section>
@@ -484,32 +485,45 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       ponto de máximo lucro → <b>RM = CM</b><br>(RM &gt; CM: aplicar mais · RM &lt; CM: já passou do ponto)
     </div>
 
-    <h3><svg class="ico-dd" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2.6 0 4 3 4 7.5S14.6 19 12 19s-4-4-4-8.5S9.4 3 12 3z"/><path d="M10 7h4M9.5 10.5h5M10 14h4M12 3v16"/><path d="M8 13c-2 1-3.5 3.5-3.5 7.5 2.5 0 5.5-1.5 7.5-4M16 13c2 1 3.5 3.5 3.5 7.5-2.5 0-5.5-1.5-7.5-4"/></svg>Exemplo: milho e ureia no RS</h3>
-    <p>Milho a R$ 78/sc, ureia a R$ 4,20/kg (insumo + aplicação), em um exemplo didático:</p>
+    <h3><svg class="ico-dd" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2.6 0 4 3 4 7.5S14.6 19 12 19s-4-4-4-8.5S9.4 3 12 3z"/><path d="M10 7h4M9.5 10.5h5M10 14h4M12 3v16"/><path d="M8 13c-2 1-3.5 3.5-3.5 7.5 2.5 0 5.5-1.5 7.5-4M16 13c2 1 3.5 3.5 3.5 7.5-2.5 0-5.5-1.5-7.5-4"/></svg>Exemplo: milho e nitrogênio</h3>
+    <p>A mesma curva da aula III.2, em um exemplo didático. Milho a R$ 61/sc e nitrogênio a R$ 7,00 por kg de N, o que equivale a ureia a R$ 3.220/t (as cotações de ureia nos portos variam de R$ 2.890 a 3.800/t, ou R$ 6,28 a 8,26 por kg de N):</p>
     <div class="tbl-wrap">
     <table class="tbl">
-      <tr><th>Ureia (kg/ha)</th><th>Milho (sc/ha)</th><th>RM (R$/kg)</th><th>CM (R$/kg)</th><th></th></tr>
+      <tr><th>N (kg/ha)</th><th>Milho (sc/ha)</th><th>RM (R$/kg N)</th><th>CM (R$/kg N)</th><th></th></tr>
       <tr><td class="num">0</td><td class="num">90</td><td class="num">n/d</td><td class="num">n/d</td><td>partida</td></tr>
-      <tr><td class="num">40</td><td class="num">118</td><td class="num">54,60</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">80</td><td class="num">138</td><td class="num">39,00</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">120</td><td class="num">152</td><td class="num">27,30</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">160</td><td class="num">160</td><td class="num">15,60</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">200</td><td class="num">163</td><td class="num">5,85</td><td class="num">4,20</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">40</td><td class="num">130</td><td class="num">61,00</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">80</td><td class="num">160</td><td class="num">45,75</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">120</td><td class="num">182</td><td class="num">33,55</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">160</td><td class="num">196</td><td class="num">21,35</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
+      <tr><td class="num">200</td><td class="num">200</td><td class="num">6,10</td><td class="num">7,00</td><td class="no">RM &lt; CM</td></tr>
+      <tr><td class="num">240</td><td class="num">196</td><td class="num">−6,10</td><td class="num">7,00</td><td class="no">Fase III</td></tr>
     </table>
     </div>
-    <p>A <strong>máxima produção</strong> testada está em 200 kg/ha (163 sc/ha). O RM cai a cada faixa (de 54,60 para 5,85), mas segue acima do CM (R$ 4,20/kg) em todo o intervalo testado: mesmo em 200 kg/ha, cada kg extra de ureia ainda rende mais do que custa. Isso significa que as doses testadas não chegam alto o suficiente para encontrar o ponto exato em que RM = CM. A tendência de queda mostra que esse ponto está logo além de 200 kg/ha, não em 120 kg/ha. <em>Enquanto RM for maior que CM, ainda compensa aplicar mais.</em></p>
+    <p>A RM cai a cada faixa e cruza o CM entre 160 e 200 kg/ha: de 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00. Pela curva, o ponto exato em que RM = CM fica perto de 180 kg/ha de N (199 sc/ha), antes da <strong>máxima produção</strong>, em 200 kg/ha. Com o N a R$ 6,28 ou a R$ 8,26, o ótimo fica entre 175 e 181 kg/ha: a conclusão não muda. Perto do topo a curva é quase plana: os últimos 40 kg de N rendem 4 sc/ha (R$ 244) e custam R$ 280. <em>Enquanto RM for maior que CM, compensa aplicar mais; passado o cruzamento, cada kg a mais tira lucro, mesmo com a produção subindo.</em></p>
 
     <figure class="dd rmcm-dd" id="dd-rmcm" style="--dd:var(--terra);--dd-deep:#7C3D1F">
       <div class="dd-cab">RM × CM por faixa de dose</div>
       <div class="dd-corpo">
-        <svg role="img" aria-label="Receita marginal por faixa de dose de ureia comparada ao custo marginal"></svg>
-        <div class="leg"><span style="--c:#3D4A2A">RM maior que CM</span><span style="--c:#A8552E">RM menor que CM</span><span style="--c:#1A1A17">CM: preço da ureia</span></div>
-        <div class="ctrl"><div class="top"><span>Preço do milho</span><b data-v="milho"></b></div><input type="range" data-i="milho" min="50" max="110" step="1" value="78" aria-label="Preço do milho"></div>
-        <div class="ctrl"><div class="top"><span>Ureia, insumo e aplicação</span><b data-v="ureia"></b></div><input type="range" data-i="ureia" min="2" max="14" step="0.1" value="4.2" aria-label="Preço da ureia"></div>
+        <svg role="img" aria-label="Receita marginal por faixa de dose de nitrogênio comparada ao custo marginal"></svg>
+        <div class="leg"><span style="--c:#3D4A2A">RM maior que CM</span><span style="--c:#A8552E">RM menor que CM</span><span style="--c:#1A1A17">CM: preço do kg de N</span></div>
+        <div class="ctrl"><div class="top"><span>Preço do milho</span><b data-v="milho"></b></div><input type="range" data-i="milho" min="50" max="100" step="1" value="61" aria-label="Preço do milho"></div>
+        <div class="ctrl"><div class="top"><span>Nitrogênio, R$ por kg de N</span><b data-v="ureia"></b></div><input type="range" data-i="ureia" min="3" max="14" step="0.1" value="7" aria-label="Preço do kg de nitrogênio"></div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Os dados da tabela acima. Suba o preço da ureia ou baixe o do milho para ver onde o RM cruza o CM.</figcaption>
+      <figcaption>Os dados da tabela acima, de 0 a 200 kg/ha. Mude o preço do N ou do milho para ver onde o RM cruza o CM.</figcaption>
     </figure>
+    <h3>Caso real: média ou alta tecnologia no milho</h3>
+    <p>A análise marginal não serve só para a dose de um insumo. Serve também para escolher entre pacotes inteiros. A Epagri/Cepa publica o custo referencial do milho em plantio direto com semente transgênica em dois níveis de tecnologia (Santa Catarina, julho de 2026). O COT da planilha é COE + depreciação:</p>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th></th><th>Média tecnologia</th><th>Alta tecnologia</th><th>Diferença</th></tr>
+      <tr><td>Rendimento esperado (sc/ha)</td><td class="num">165</td><td class="num">200</td><td class="num">+35</td></tr>
+      <tr><td>COT (R$/ha)</td><td class="num">9.512</td><td class="num">11.829</td><td class="num">+2.317</td></tr>
+      <tr><td>Receita a R$ 61/sc (R$/ha)</td><td class="num">10.065</td><td class="num">12.200</td><td class="num">+2.135</td></tr>
+      <tr><td>Lucro operacional (R$/ha)</td><td class="num">+553</td><td class="num">+371</td><td class="num no">−182</td></tr>
+    </table>
+    </div>
+    <p>Subir de pacote acrescenta 35 sc/ha e R$ 2.317/ha de custo. As 35 sacas a mais rendem R$ 2.135: na margem, RM &lt; CM, e a lavoura que colhe mais lucra menos. O pacote de alta tecnologia só compensa com o milho acima de <strong>R$ 66,20/sc</strong> (2.317 ÷ 35). Com o preço usado na própria planilha, R$ 58,92/sc, o resultado é o mesmo: −R$ 45/ha na alta tecnologia contra +R$ 210/ha na média.</p>
     <div class="callout">
       <strong>Por que isso exige registro de campo</strong>
       Na propriedade, uma tabela assim só existe se o produtor anotar produção e dose safra a safra (aula II.5). Sem histórico, não há análise marginal, só chute. O mesmo vale para o exemplo do leite: 8 kg de concentrado/vaca/dia lucra mais do que 12 kg, embora produza menos leite.
@@ -674,10 +688,10 @@ const QUIZ = [
     ]
   },
   {
-    q: "Pedem sua opinião sobre subir a dose de ureia no milho de 120 para 200 kg/ha, já que 'rende mais saca'. Você:",
+    q: "Pedem sua opinião sobre subir a dose de N no milho de 160 para 200 kg/ha, já que 'rende mais saca'. Você:",
     a: [
       {t:"Concorda: mais insumo, mais produção, mais receita.", p:"op"},
-      {t:"Calcula RM e CM: mesmo em 200 kg o RM ainda supera o CM, então vale testar doses maiores antes de fixar a dose ótima.", p:"es"},
+      {t:"Calcula RM e CM: de 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00, então a dose maior colhe mais e lucra menos.", p:"es"},
       {t:"Sugere testar um pouco mais e ver no fim da safra.", p:"tr"}
     ]
   },
@@ -892,20 +906,20 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 /* ===== III.2 função de produção ===== */
 (function(){
   var el = document.getElementById('dd-funcao'), svg = el.querySelector('svg');
-  var X = [0, 30, 60, 90, 120, 150, 180, 210], PT = [70, 91, 120, 145, 163, 175, 180, 175];
-  var W = 340, H = 236, L = 50, Rr = 18, T = 14, B = 40, xmax = 210, ymin = 60, ymax = 195;
+  var X = [0, 40, 80, 120, 160, 200, 240], PT = [90, 130, 160, 182, 196, 200, 196];
+  var W = 340, H = 236, L = 50, Rr = 18, T = 14, B = 40, xmax = 240, ymin = 80, ymax = 212;
   var px = function(x){ return L + x / xmax * (W - L - Rr); }, py = function(y){ return T + (ymax - y) / (ymax - ymin) * (H - T - B); };
-  var fases = [[0, 60, '#E4EAD2', 'Fase I', '#3D4A2A'], [60, 180, '#F5EBC9', 'Fase II', '#8A6E1A'], [180, 210, '#F5E4D8', 'Fase III', '#A8552E']];
+  var fases = [[0, 200, '#F5EBC9', 'Fase II', '#8A6E1A'], [200, 240, '#F5E4D8', 'Fase III', '#A8552E']];
   var h = '';
   fases.forEach(function(f){ h += '<rect x="' + px(f[0]) + '" y="' + T + '" width="' + (px(f[1]) - px(f[0])) + '" height="' + (H - T - B) + '" fill="' + f[2] + '"/><text x="' + ((px(f[0]) + px(f[1])) / 2) + '" y="' + (H - B - 8) + '" text-anchor="middle" font-size="12" font-weight="600" fill="' + f[4] + '">' + f[3] + '</text>'; });
-  [70, 100, 130, 160, 190].forEach(function(v){ h += '<text x="' + (L - 6) + '" y="' + (py(v) + 4) + '" text-anchor="end" font-size="11" fill="#6B6960">' + v + '</text>'; });
+  [90, 120, 150, 180, 210].forEach(function(v){ h += '<text x="' + (L - 6) + '" y="' + (py(v) + 4) + '" text-anchor="end" font-size="11" fill="#6B6960">' + v + '</text>'; });
   X.forEach(function(x, i){ h += '<text x="' + px(x) + '" y="' + (H - B + 15) + '" text-anchor="' + (i === X.length - 1 ? 'end' : 'middle') + '" font-size="11" fill="#6B6960">' + x + '</text>'; });
   h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">N, nitrogênio (kg/ha)</text>';
   h += '<text x="11" y="' + ((H - B + T) / 2) + '" text-anchor="middle" font-size="12" fill="#3A3833" transform="rotate(-90 11 ' + ((H - B + T) / 2) + ')">PT (sc/ha)</text>';
   h += '<line x1="' + L + '" y1="' + (H - B) + '" x2="' + (W - Rr) + '" y2="' + (H - B) + '" stroke="#3A3833"/>';
   h += '<polyline points="' + X.map(function(x, i){ return px(x) + ',' + py(PT[i]); }).join(' ') + '" fill="none" stroke="#2A331C" stroke-width="2.6" stroke-linejoin="round"/>';
-  h += '<line x1="' + px(120) + '" y1="' + py(163) + '" x2="' + px(120) + '" y2="' + (H - B) + '" stroke="#8A6E1A" stroke-dasharray="3 3"/><text x="' + (px(120) - 4) + '" y="' + py(100) + '" text-anchor="end" font-size="11" font-weight="600" fill="#8A6E1A">RM = CM</text><text x="' + (px(120) - 4) + '" y="' + (py(100) + 14) + '" text-anchor="end" font-size="11" fill="#8A6E1A">≈ 120 kg/ha</text>';
-  h += '<text x="' + (px(180) - 4) + '" y="' + (py(180) - 8) + '" text-anchor="end" font-size="11" font-weight="600" fill="#A8552E">PT máx · 180 kg/ha</text>';
+  h += '<line x1="' + px(179) + '" y1="' + py(198.8) + '" x2="' + px(179) + '" y2="' + (H - B) + '" stroke="#8A6E1A" stroke-dasharray="3 3"/><text x="' + (px(179) - 4) + '" y="' + py(110) + '" text-anchor="end" font-size="11" font-weight="600" fill="#8A6E1A">RM = CM</text><text x="' + (px(179) - 4) + '" y="' + (py(110) + 14) + '" text-anchor="end" font-size="11" fill="#8A6E1A">≈ 180 kg/ha</text>';
+  h += '<text x="' + (px(200) + 4) + '" y="' + (py(200) - 10) + '" text-anchor="middle" font-size="11" font-weight="600" fill="#A8552E">PT máx · 200</text>';
   X.forEach(function(x, i){ h += '<circle data-p="' + i + '" cx="' + px(x) + '" cy="' + py(PT[i]) + '" r="4.5" fill="#fff" stroke="#2A331C" stroke-width="2"/>'; });
   svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
   var doses = el.querySelector('.doses'), leit = el.querySelector('.leit-dd'), rows = document.querySelectorAll('#fatores-producao .hierarchy .hier-row');
@@ -915,10 +929,10 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
     svg.querySelectorAll('circle[data-p]').forEach(function(c, i){ c.setAttribute('r', i === k ? 7 : 4.5); c.setAttribute('fill', i === k ? '#A8552E' : '#fff'); });
     var pm = X[k] ? f1(PT[k] / X[k], 2) : 'n/d';
     var pmg = k ? (PT[k] - PT[k - 1]) / (X[k] - X[k - 1]) : null;
-    var fz = X[k] <= 60 ? 0 : X[k] <= 180 ? 1 : 2;
+    var fz = X[k] <= 200 ? 1 : 2;
     var nomes = ['Fase I: o PM ainda sobe', 'Fase II: PMg positivo, a zona racional', 'Fase III: PMg negativo'];
     leit.innerHTML = '<div>PT<b>' + PT[k] + ' sc/ha</b></div><div>PM = PT ÷ X<b>' + pm + '</b></div><div>PMg<b>' + (pmg === null ? 'n/d' : f1(pmg, 2)) + '</b></div>' +
-      '<div class="fase" style="background:' + fases[fz][2] + '"><b style="display:inline;font-family:inherit;font-size:inherit;color:' + fases[fz][4] + '">' + nomes[fz] + '.</b> ' + (pmg === null ? 'Sem nitrogênio, o milho produz ' + PT[k] + ' sc/ha.' : 'Os últimos ' + (X[k] - X[k - 1]) + ' kg de N ' + (PT[k] >= PT[k - 1] ? 'acrescentaram ' + (PT[k] - PT[k - 1]) : 'reduziram a produção em ' + (PT[k - 1] - PT[k])) + ' sc/ha.') + '</div>';
+      '<div class="fase" style="background:' + fases[fz - 1][2] + '"><b style="display:inline;font-family:inherit;font-size:inherit;color:' + fases[fz - 1][4] + '">' + nomes[fz] + '.</b> ' + (pmg === null ? 'Sem nitrogênio, o milho produz ' + PT[k] + ' sc/ha.' : 'Os últimos ' + (X[k] - X[k - 1]) + ' kg de N ' + (PT[k] >= PT[k - 1] ? 'acrescentaram ' + (PT[k] - PT[k - 1]) : 'reduziram a produção em ' + (PT[k - 1] - PT[k])) + ' sc/ha.') + '</div>';
     rows.forEach(function(r, i){ r.classList.toggle('aceso', i === fz); });
   }
   doses.querySelectorAll('button').forEach(function(b){ b.addEventListener('click', function(){ mostra(+b.dataset.k); }); });
@@ -929,11 +943,11 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 /* ===== III.3 RM x CM ===== */
 (function(){
   var el = document.getElementById('dd-rmcm'), svg = el.querySelector('svg'), q = function(s){ return el.querySelector(s); };
-  var U = [0, 40, 80, 120, 160, 200], M = [90, 118, 138, 152, 160, 163];
+  var U = [0, 40, 80, 120, 160, 200], M = [90, 130, 160, 182, 196, 200];
   var W = 340, H = 200, L = 40, Rr = 10, T = 12, B = 40;
   function calc(){
     var pm = +q('[data-i=milho]').value, pu = +q('[data-i=ureia]').value;
-    q('[data-v=milho]').textContent = 'R$ ' + pm + '/sc'; q('[data-v=ureia]').textContent = 'R$ ' + f1(pu, 2) + '/kg';
+    q('[data-v=milho]').textContent = 'R$ ' + pm + '/sc'; q('[data-v=ureia]').textContent = 'R$ ' + f1(pu, 2) + '/kg N';
     var rm = []; for (var i = 1; i < U.length; i++) rm.push((M[i] - M[i - 1]) * pm / (U[i] - U[i - 1]));
     var ymax = Math.max.apply(null, rm.concat([pu])) * 1.15, bw = (W - L - Rr) / rm.length;
     var py = function(v){ return T + (1 - v / ymax) * (H - T - B); }, h = '';
@@ -946,13 +960,13 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
       h += '<text x="' + (L + i * bw) + '" y="' + (H - B + 15) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + U[i] + '</text>';
     });
     h += '<text x="' + (L + rm.length * bw) + '" y="' + (H - B + 15) + '" text-anchor="end" font-size="10.5" fill="#6B6960">' + U[U.length - 1] + '</text>';
-    h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">faixa de ureia (kg/ha) · RM em R$ por kg</text>';
+    h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">faixa de N (kg/ha) · RM em R$ por kg</text>';
     h += '<line x1="' + L + '" y1="' + py(pu) + '" x2="' + (W - Rr) + '" y2="' + py(pu) + '" stroke="#1A1A17" stroke-width="2.2" stroke-dasharray="6 4"/>';
     h += '<line x1="' + L + '" y1="' + py(0) + '" x2="' + (W - Rr) + '" y2="' + py(0) + '" stroke="#3A3833"/>';
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
     q('[data-msg]').textContent = corte < 0
-      ? 'Em todas as faixas testadas, RM > CM: cada kg extra de ureia ainda rende mais do que custa. O ponto RM = CM está além de 200 kg/ha.'
-      : 'A partir da faixa de ' + U[corte] + '–' + U[corte + 1] + ' kg/ha, o RM fica abaixo do CM: cada kg a mais custa mais do que rende. Com esses preços, parar perto de ' + U[corte] + ' kg/ha.';
+      ? 'Em todas as faixas, RM > CM: cada kg extra de N ainda rende mais do que custa. Com esses preços, o ponto RM = CM está além de 200 kg/ha.'
+      : 'A partir da faixa de ' + U[corte] + '–' + U[corte + 1] + ' kg/ha, o RM fica abaixo do CM: na média da faixa, cada kg a mais custa mais do que rende. Com esses preços, o ponto RM = CM está entre ' + U[corte] + ' e ' + U[corte + 1] + ' kg/ha.';
   }
   el.querySelectorAll('input').forEach(function(i){ i.addEventListener('input', calc); }); calc();
 })();
