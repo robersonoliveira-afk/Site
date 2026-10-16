@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
 <title>Extra: decisão do produtor e desempenho</title>
-<meta name="description" content="Aula extra: como as decisões do produtor se ligam ao desempenho da propriedade, a partir de uma revisão de 24 estudos. Colégio Politécnico da UFSM.">
+<meta name="description" content="Aula extra: os fatores que pesam na decisão do produtor e dez princípios de gestão com o estado da evidência, a partir de uma revisão de 24 estudos. Colégio Politécnico da UFSM.">
 <meta name="robots" content="noindex">
 <!-- ============================================================
   GUIA RÁPIDO DE EDIÇÃO (para o professor)
@@ -19,8 +19,9 @@
       <figcaption>Legenda da foto · fonte</figcaption>
     </figure>
 
-  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
-    com apenas o <figure class="foto"> dentro.
+  · Slide de fator: <section class="slide com-foto foto-p fator"> com a explicação,
+    os blocos .pesq (na pesquisa), .exemplo (exemplo no RS) e .caso-q
+    (para discutir) dentro de <div class="txt">, e a foto ao lado.
   · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
   · Gravação: tecla G alterna normal, guia da câmera (canto inferior direito)
     e gravação (sem guia).
@@ -67,29 +68,6 @@ ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch;font-size:var(--f
 ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
 ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
 ul.bullets li strong{color:var(--ink);font-weight:600}
-ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
-
-.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(15px,min(1.8vw,3.2vh),28px);line-height:1.55;color:var(--ink);max-width:64ch}
-.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
-.formula b{font-weight:600;color:var(--terra)}
-
-.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
-.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
-.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
-.callout.success strong{color:var(--olive)}
-
-.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
-.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
-.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
-.panel h3.alt{color:var(--olive)}
-.panel p,.panel li{font-size:var(--fs-small)}
-.panel p:last-child{margin-bottom:0}
-
-/* quatro estratégias */
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6vh 1.4vw;max-width:100%;margin:1.5vh 0 2.5vh}
-.grid4 .panel{padding:1.8vh 1.4vw;border-top:4px solid var(--accent)}
-.grid4 .panel b{display:block;font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-body);color:var(--ink);line-height:1.2;margin-bottom:0.6vh}
-.grid4 .panel span{font-size:var(--fs-small);color:var(--ink-soft)}
 
 .tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
 .tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
@@ -111,10 +89,6 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .ev.d{border-color:var(--stone-light)}
 .ev-legend{display:flex;flex-wrap:wrap;gap:0.8vh 1.6vw;margin:0.5vh 0 0.5vh;font-size:var(--fs-mono)}
 .ev-legend .ev{font-size:1em}
-
-/* celula a preencher no quadro */
-.gap{display:inline-block;min-width:6.5ch;height:1.05em;border-bottom:2px solid var(--accent);vertical-align:-0.15em}
-.gap.wide{min-width:15ch}
 
 /* capa */
 .cover{justify-content:center}
@@ -148,14 +122,21 @@ ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom
 .slide.com-diagrama.diag-g.on{grid-template-columns:0.75fr 1.25fr}
 
 .slide.com-foto,.slide.com-diagrama{padding-top:5.5vh;padding-bottom:8.5vh}
-.slide.com-foto .txt .lead,.slide.com-diagrama .txt .lead{margin-bottom:1.1vh}
 .slide.com-foto .txt ul.bullets,.slide.com-diagrama .txt ul.bullets{margin:0.3vh 0 1vh}
 .slide.com-foto .txt ul.bullets li,.slide.com-diagrama .txt ul.bullets li{padding:0.55vh 0 0.55vh 1.6em}
-.slide.com-foto .txt .callout{margin:1.3vh 0;padding:1.2vh 1.4vw}
 
-/* caso em grupo */
-.caso-q{margin-top:1.2vh;padding:1.4vh 1.3vw;background:var(--highlight);border-left:4px solid var(--mustard);font-size:var(--fs-small);color:var(--ink);max-width:60ch}
-.caso-q b{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard-ink);margin-bottom:0.4vh}
+/* slide de fator: na pesquisa, exemplo no RS, para discutir */
+.slide.fator h2{margin-bottom:1.6vh}
+.slide.fator .txt>p{margin-bottom:1.2vh}
+.pesq,.exemplo,.caso-q{margin-top:1vh;padding:1.1vh 1.2vw;font-size:var(--fs-small);line-height:1.45;color:var(--ink);max-width:64ch}
+.pesq b,.exemplo b,.caso-q b{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3vh}
+.pesq{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--olive)}
+.pesq b{color:var(--olive)}
+.pesq .cit{color:var(--stone)}
+.exemplo{background:var(--paper-warm);border-left:4px solid var(--terra)}
+.exemplo b{color:var(--accent-text)}
+.caso-q{background:var(--highlight);border-left:4px solid var(--mustard)}
+.caso-q b{color:var(--mustard-ink)}
 
 /* diagramas */
 .diagrama text{font-family:'IBM Plex Sans',sans-serif}
@@ -249,10 +230,10 @@ body.guia .hint,body.gravar .hint{display:none}
     <li>Metade estuda pecuária, sobretudo leite. A outra metade, lavouras e frutas: arroz, café, trigo, batata, citros, cacau, hortaliças.</li>
     <li>Um terço vem da África. Da América do Sul, há estudos do Brasil e da Argentina.</li>
   </ul>
-  <p class="note">A revisão também organiza os fatores que pesam na decisão em seis grupos, vistos mais adiante.</p>
+  <p class="note">A revisão organiza em seis grupos os fatores que pesam na decisão. Eles são o centro desta aula.</p>
 </section>
 
-<!-- ============ DECIDIR É UM PROCESSO ============ -->
+<!-- ============ DECISÃO ============ -->
 
 <!-- 4 · o ciclo -->
 <section class="slide com-diagrama" data-act="Decisão">
@@ -290,64 +271,28 @@ body.guia .hint,body.gravar .hint{display:none}
 <!-- 5 · eficiência -->
 <section class="slide" data-act="Decisão">
   <div class="eyebrow"><b>Decisão</b> · como medir o resultado</div>
-  <h2>Eficiência técnica e eficiência econômica</h2>
-  <div class="cols2">
-    <div class="panel">
-      <h3 class="alt">Técnica</h3>
-      <p>Tirar o máximo de produto dos insumos usados, ou usar o mínimo de insumo para colher o mesmo.</p>
-      <p class="note">Dois vizinhos com a mesma adubação e a mesma semente: quem colhe mais sacas foi mais eficiente tecnicamente.</p>
-    </div>
-    <div class="panel">
-      <h3>Econômica</h3>
-      <p>Considera também o preço dos insumos e do produto: escolher a combinação que dá o melhor resultado em dinheiro.</p>
-      <p class="note">Colher mais nem sempre compensa: se cada saca a mais custa mais do que vale, o resultado cai.</p>
-    </div>
-  </div>
-  <p class="note">Os estudos da revisão medem o desempenho dos dois jeitos: produtividade e eficiência técnica de um lado, lucro e margem do outro.</p>
-</section>
-
-<!-- 6 · as vizinhas em números · em branco -->
-<section class="slide" data-act="Decisão">
-  <div class="eyebrow"><b>Decisão</b> · as duas vizinhas em números</div>
-  <h2>Quem foi mais eficiente?</h2>
-  <div class="formula">
-    <span class="label">Soja a R$ 130,00 por saca</span>
-    custo por saca = custo/ha ÷ sc/ha · margem/ha = receita/ha − custo/ha
-  </div>
+  <h2>Colher mais não é o mesmo que ganhar mais</h2>
+  <p><strong>Eficiência técnica</strong>: tirar o máximo de produto dos insumos usados. <strong>Eficiência econômica</strong>: considerar também os preços e escolher a combinação que dá o melhor resultado em dinheiro.</p>
   <table class="tbl">
-    <thead><tr><th>Propriedade</th><th class="num">sc/ha</th><th class="num">Custo/ha</th><th class="num">Receita/ha</th><th class="num">Custo por saca</th><th class="num">Margem/ha</th></tr></thead>
-    <tbody>
-      <tr><td>A</td><td class="num">62</td><td class="num">6.200,00</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td>B</td><td class="num">55</td><td class="num">4.950,00</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td></tr>
-    </tbody>
-  </table>
-  <p class="note">Valores de exemplo, em R$. O custo por hectare das duas segue o mesmo método.</p>
-</section>
-
-<!-- 7 · as vizinhas · revelação -->
-<section class="slide" data-act="Decisão">
-  <div class="eyebrow"><b>Decisão</b> · a conta fechada</div>
-  <h2>A colheu mais. <em>B ganhou mais.</em></h2>
-  <table class="tbl">
-    <thead><tr><th>Propriedade</th><th class="num">sc/ha</th><th class="num">Custo/ha</th><th class="num">Receita/ha</th><th class="num">Custo por saca</th><th class="num">Margem/ha</th></tr></thead>
+    <thead><tr><th>Vizinha</th><th class="num">sc/ha</th><th class="num">Custo/ha</th><th class="num">Receita/ha</th><th class="num">Custo por saca</th><th class="num">Margem/ha</th></tr></thead>
     <tbody>
       <tr><td>A</td><td class="num"><b>62</b></td><td class="num">6.200,00</td><td class="num">8.060,00</td><td class="num">100,00</td><td class="num">1.860,00</td></tr>
       <tr><td>B</td><td class="num">55</td><td class="num">4.950,00</td><td class="num">7.150,00</td><td class="num"><b>90,00</b></td><td class="num"><b>2.200,00</b></td></tr>
     </tbody>
   </table>
-  <p>A tem a maior produtividade. B produz cada saca R$ 10,00 mais barata e fica com <strong>R$ 340,00 a mais por hectare</strong>. Produtividade alta e eficiência econômica não são a mesma coisa.</p>
-  <p class="note">Para dizer qual das duas foi mais eficiente tecnicamente, seria preciso saber quanto de cada insumo cada uma usou.</p>
+  <p>A colheu mais. B produz cada saca R$ 10,00 mais barata e fica com <strong>R$ 340,00 a mais por hectare</strong>.</p>
+  <p class="note">Soja a R$ 130,00 por saca; valores de exemplo, em R$. Os estudos da revisão medem o desempenho dos dois jeitos: produtividade e eficiência técnica de um lado, lucro e margem do outro.</p>
 </section>
 
-<!-- ============ O QUE PESA NA DECISÃO ============ -->
+<!-- ============ FATORES ============ -->
 
-<!-- 8 · os seis grupos -->
+<!-- 6 · os seis grupos -->
 <section class="slide com-diagrama diag-g" data-act="Fatores">
   <div class="txt">
     <div class="eyebrow"><b>Fatores</b> · o modelo da revisão</div>
     <h2>Seis grupos de fatores pesam na decisão</h2>
     <p>Os autores juntam o que influencia a decisão do produtor em seis grupos. Todos passam pelo processo de decisão antes de chegar ao resultado da propriedade.</p>
-    <p class="note">Adaptado da Fig. 1 de Taramuel-Taramuel, Montoya-Restrepo e Barrios (2023).</p>
+    <p class="note">A seguir, um grupo de cada vez, com um exemplo do RS. Adaptado da Fig. 1 de Taramuel-Taramuel, Montoya-Restrepo e Barrios (2023).</p>
   </div>
   <svg class="diagrama" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seis grupos de fatores, três de cada lado, ligados ao processo de decisão no centro, que por sua vez leva ao desempenho da propriedade">
     <defs>
@@ -369,17 +314,17 @@ body.guia .hint,body.gravar .hint{display:none}
       <rect x="516" y="155" width="242" height="70" rx="6"/>
       <rect x="516" y="275" width="242" height="70" rx="6"/>
     </g>
-    <text class="lbl" x="123" y="65" text-anchor="middle">Características</text>
+    <text class="lbl" x="123" y="65" text-anchor="middle">1 · Características</text>
     <text class="lbl" x="123" y="89" text-anchor="middle">da propriedade</text>
-    <text class="lbl" x="123" y="185" text-anchor="middle">Atributos pessoais</text>
+    <text class="lbl" x="123" y="185" text-anchor="middle">2 · Atributos pessoais</text>
     <text class="lbl" x="123" y="209" text-anchor="middle">e comportamentais</text>
-    <text class="lbl" x="123" y="305" text-anchor="middle">Gestão da</text>
+    <text class="lbl" x="123" y="305" text-anchor="middle">3 · Gestão da</text>
     <text class="lbl" x="123" y="329" text-anchor="middle">informação</text>
-    <text class="lbl" x="637" y="65" text-anchor="middle">Ambiente</text>
+    <text class="lbl" x="637" y="65" text-anchor="middle">4 · Ambiente</text>
     <text class="lbl" x="637" y="89" text-anchor="middle">biofísico</text>
-    <text class="lbl" x="637" y="185" text-anchor="middle">Condições socio-</text>
+    <text class="lbl" x="637" y="185" text-anchor="middle">5 · Condições socio-</text>
     <text class="lbl" x="637" y="209" text-anchor="middle">econômicas e políticas</text>
-    <text class="lbl" x="637" y="305" text-anchor="middle">Restrições econômicas</text>
+    <text class="lbl" x="637" y="305" text-anchor="middle">6 · Restrições econômicas</text>
     <text class="lbl" x="637" y="329" text-anchor="middle">e incentivos financeiros</text>
     <rect x="290" y="135" width="180" height="110" rx="8" fill="var(--terra)"/>
     <text class="lbl-c" x="380" y="183" text-anchor="middle">Processo de</text>
@@ -391,142 +336,15 @@ body.guia .hint,body.gravar .hint{display:none}
   </svg>
 </section>
 
-<!-- 9 · o que o produtor controla · em branco -->
-<section class="slide" data-act="Fatores">
-  <div class="eyebrow"><b>Fatores</b> · o que está na mão do produtor</div>
-  <h2>O produtor controla?</h2>
-  <table class="tbl tbl-wide dense">
-    <thead><tr><th>Grupo</th><th>Exemplos</th><th>Controla?</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Características da propriedade</strong></td><td>tamanho, localização, tecnologia, dependência da renda da propriedade</td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Atributos pessoais e comportamentais</strong></td><td>objetivos, atitudes, experiência, escolaridade, intuição</td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Gestão da informação</strong></td><td>fontes consultadas, registros, avaliação dos resultados</td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Ambiente biofísico</strong></td><td>clima, pragas, processos biológicos</td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Condições socioeconômicas e políticas</strong></td><td>preços, assistência técnica, cooperativas, programas de governo</td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Restrições econômicas e incentivos</strong></td><td>custo e acesso ao crédito, subsídios</td><td><span class="gap wide"></span></td></tr>
-    </tbody>
-  </table>
-  <p class="note">Respostas possíveis: sim, em parte, não.</p>
-</section>
-
-<!-- 10 · o que o produtor controla · revelação -->
-<section class="slide" data-act="Fatores">
-  <div class="eyebrow"><b>Fatores</b> · uma classificação para discussão</div>
-  <h2>Quatro dos seis grupos estão, ao menos em parte, na mão dele</h2>
-  <table class="tbl tbl-wide dense">
-    <thead><tr><th>Grupo</th><th>Controla?</th><th>Por quê</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Características da propriedade</strong></td><td>em parte</td><td>muda devagar: comprar, arrendar, investir</td></tr>
-      <tr><td><strong>Atributos pessoais e comportamentais</strong></td><td>em grande parte</td><td>objetivos e atitudes se escolhem; idade não</td></tr>
-      <tr><td><strong>Gestão da informação</strong></td><td>sim</td><td>quem consultar, o que anotar, como avaliar</td></tr>
-      <tr><td><strong>Ambiente biofísico</strong></td><td>não</td><td>escolhe só como se proteger</td></tr>
-      <tr><td><strong>Condições socioeconômicas e políticas</strong></td><td>não</td><td>mas escolhe usar: cooperativa, assistência, programas</td></tr>
-      <tr><td><strong>Restrições econômicas e incentivos</strong></td><td>em parte</td><td>escolhe se e como se endividar</td></tr>
-    </tbody>
-  </table>
-  <p class="note">O artigo aponta como fora do controle do produtor o clima, os processos biológicos, as pragas e a variação de preços. A divisão dos seis grupos em sim, em parte e não é uma leitura para discussão.</p>
-</section>
-
-<!-- ============ O QUE A PESQUISA ENCONTROU ============ -->
-
-<!-- 11 · objetivos e plano -->
-<section class="slide" data-act="Evidências">
-  <div class="eyebrow"><b>Evidências</b> · objetivos e planejamento</div>
-  <h2>Objetivo claro e plano andam junto com resultado melhor</h2>
-  <ul class="bullets">
-    <li><strong>Leiterias da Finlândia</strong>: visão clara do negócio, com plano de negócio e de investimento, ligada a melhor resultado financeiro (Mäkinen, 2013).</li>
-    <li><strong>862 propriedades da Inglaterra</strong>: planejamento do negócio com efeito positivo no resultado financeiro (Vanhuyse, Bailey e Tranter, 2021).</li>
-    <li><strong>80 leiterias da Grã-Bretanha</strong>: objetivos de negócio e mentalidade de crescimento associados ao lucro de três anos (O'Leary et al., 2018).</li>
-  </ul>
-  <p class="note">Os três estudos medem associação: mostram que as coisas andam juntas, não que uma causa a outra.</p>
-</section>
-
-<!-- 12 · registros -->
-<section class="slide" data-act="Evidências">
-  <div class="eyebrow"><b>Evidências</b> · registros</div>
-  <h2>Registro: a pesquisa ainda não fechou a questão</h2>
-  <div class="cols2">
-    <div class="panel">
-      <h3 class="alt">A favor</h3>
-      <p>Entre 26 floricultores, mais qualidade no monitoramento e na avaliação, mais eficiência (Trip et al., 2002).</p>
-      <p>Em 98 citricultores de São Paulo, usar sistema de informação gerencial se ligou a mais eficiência técnica (Carrer et al., 2015).</p>
-    </div>
-    <div class="panel">
-      <h3>Sem ligação</h3>
-      <p>Em leiterias da Finlândia, a efetividade do processo de gestão não se ligou ao lucro (Mäkinen, 2013).</p>
-      <p>Em leiterias da Grã-Bretanha, as práticas de gestão não entraram no modelo final que explica o lucro (O'Leary et al., 2018).</p>
-    </div>
-  </div>
-  <div class="callout">
-    <strong>Na revisão</strong>
-    Os autores classificam como não conclusiva a ligação entre registro e desempenho.
-  </div>
-</section>
-
-<!-- 13 · instituições -->
-<section class="slide" data-act="Evidências">
-  <div class="eyebrow"><b>Evidências</b> · assistência técnica, crédito e cooperativas</div>
-  <h2>O que está em volta da propriedade também decide</h2>
-  <ul class="bullets">
-    <li>Acesso a <strong>assistência técnica</strong> e a <strong>crédito</strong> molda as decisões do produtor. Programas de governo também.</li>
-    <li><strong>Organizações de produtores</strong>, como cooperativas, associações e sindicatos, são fonte importante de informação.</li>
-    <li>Em leiterias da Suécia, técnicos e outros produtores foram as fontes de informação mais importantes, com efeito positivo na eficiência econômica (Hansson, 2008).</li>
-  </ul>
-  <div class="callout success">
-    <strong>No Rio Grande do Sul</strong>
-    EMATER/RS-Ascar, cooperativas de produção e de crédito, sindicatos rurais, Pronaf e Pronamp.
-  </div>
-</section>
-
-<!-- 14 · apego ao negócio -->
-<section class="slide" data-act="Evidências">
-  <div class="eyebrow"><b>Evidências</b> · apego ao negócio</div>
-  <h2>Ficar no negócio mesmo ganhando pouco</h2>
-  <p>Em 20 leiterias familiares do Reino Unido, as famílias que seguiam com retorno mínimo usavam quatro estratégias (Glover e Reay, 2015):</p>
-  <div class="grid4">
-    <div class="panel"><b>Diversificar</b><span>abrir outras fontes de renda no negócio</span></div>
-    <div class="panel"><b>Endividar-se ao máximo</b><span>aumentar a dívida para manter a atividade</span></div>
-    <div class="panel"><b>Sacrificar a família</b><span>abrir mão de necessidades da família</span></div>
-    <div class="panel"><b>Ceder</b><span>aceitar resultado abaixo do possível</span></div>
-  </div>
-  <p class="note">Cada estratégia mantém a propriedade de pé e cobra seu preço da família, do negócio ou dos dois. O apego emocional pesa na decisão.</p>
-</section>
-
-<!-- 15 · ineficiência racional -->
-<section class="slide" data-act="Evidências">
-  <div class="eyebrow"><b>Evidências</b> · ineficiência racional</div>
-  <h2>Nem toda ineficiência é erro</h2>
-  <p class="lead">Em 421 leiterias da Suécia, parte da ineficiência medida vinha de <em>decisões racionais</em> dos produtores (Hansson, Manevska-Tasevska e Asmild, 2018).</p>
-  <ul class="bullets">
-    <li>Exemplo: o produtor que prioriza o bem-estar animal em vez de levar a vaca à produção máxima.</li>
-    <li>Outros objetivos que não são dinheiro: qualidade de vida, tempo livre, tempo com a família, reputação entre os vizinhos.</li>
-  </ul>
-  <p class="note">Quando o resultado é menor por escolha, a pergunta de gestão passa a ser outra: quanto custa essa escolha, e quem decide se vale a pena?</p>
-</section>
-
-<!-- ============ CASOS EM GRUPO ============ -->
-
-<!-- 16 · a tarefa -->
-<section class="slide" data-act="Casos">
-  <div class="eyebrow"><b>Casos</b> · a tarefa</div>
-  <h2>Quatro propriedades gaúchas, quatro grupos</h2>
-  <p>Cada grupo recebe um caso: uva, gado de corte, lavoura ou horta. Leiam e respondam:</p>
-  <ul class="bullets">
-    <li>Qual dos <strong>seis grupos de fatores</strong> mais pesa nessa decisão?</li>
-    <li>O que está <strong>na mão do produtor</strong> e o que não está?</li>
-    <li>Qual <strong>achado da pesquisa</strong> ajuda a pensar o caso?</li>
-  </ul>
-  <p class="note">Depois, cada grupo conta o caso e a resposta para a turma em dois minutos.</p>
-</section>
-
-<!-- 17 · caso uva -->
-<section class="slide com-foto" data-act="Casos">
+<!-- 7 · fator 1 · características da propriedade -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
   <div class="txt">
-    <div class="eyebrow"><b>Caso 1</b> · fruticultura · Serra Gaúcha</div>
-    <h2>O parreiral do pai</h2>
-    <p>Seu Arno e dona Lurdes têm 5 ha de parreiral na Serra e entregam a uva para uma cooperativa vinícola. Metade do parreiral é velho e produz menos a cada safra. Replantar custa caro, e o parreiral novo leva alguns anos para dar a primeira safra cheia.</p>
-    <p>O filho trabalha na cidade e ainda não decidiu se volta. Seu Arno quer replantar: o parreiral era do pai dele.</p>
-    <div class="caso-q"><b>Para o grupo</b>Replantar é decisão de negócio, de família ou das duas? O que precisaria estar definido antes?</div>
+    <div class="eyebrow"><b>Fator 1</b> · características da propriedade</div>
+    <h2>O que a propriedade é muda devagar</h2>
+    <p>Tamanho, localização, tecnologia disponível e quanto a família depende da renda da propriedade.</p>
+    <div class="pesq"><b>Na pesquisa</b>Propriedades maiores ganham escala e adotam mais tecnologia de precisão. Longe de mercados e serviços, a adoção de práticas novas cai. Quem vive só da propriedade pode se dedicar mais e decidir melhor <span class="cit">(Taramuel-Taramuel et al., 2023)</span>.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>Na Serra, metade dos 5 ha de parreiral de Seu Arno é de plantas velhas, que produzem menos a cada safra. Replantar muda a propriedade, mas o parreiral novo leva alguns anos para produzir.</div>
+    <div class="caso-q"><b>Para discutir</b>O que dá para mudar na propriedade, e em quanto tempo?</div>
   </div>
   <figure class="foto">
     <img src="Aulas/parreiral-bento-goncalves.jpg" alt="Produtor entre fileiras de videira carregadas de cachos, no parreiral" loading="lazy" onerror="this.style.display='none'">
@@ -534,29 +352,15 @@ body.guia .hint,body.gravar .hint{display:none}
   </figure>
 </section>
 
-<!-- 18 · caso bovinos -->
-<section class="slide com-foto" data-act="Casos">
+<!-- 8 · fator 2 · atributos pessoais e comportamentais -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
   <div class="txt">
-    <div class="eyebrow"><b>Caso 2</b> · bovinos de corte · Campanha</div>
-    <h2>O gado que sempre deu</h2>
-    <p>Seu Getúlio cria gado de corte em 300 ha de campo nativo perto de Bagé e vende os terneiros em remate no outono. O vizinho, com campo parecido, desmama mais terneiros por vaca: faz diagnóstico de prenhez e ajusta a lotação com orientação técnica.</p>
-    <p>Seu Getúlio diz que o gado sempre deu e que o rebanho é a poupança da família. Ele não sabe quanto custa produzir um terneiro.</p>
-    <div class="caso-q"><b>Para o grupo</b>É ineficiência ou é escolha? O que mudaria se ele soubesse o custo do terneiro?</div>
-  </div>
-  <figure class="foto">
-    <img src="Aulas/rebanho-pampa-bage.jpg" alt="Rebanho de gado de corte pastando em campo nativo aberto do Pampa" loading="lazy" onerror="this.style.display='none'">
-    <figcaption>rebanho de corte no Pampa, Bagé/RS · CC BY-SA 3.0, Paula Cavalheiro</figcaption>
-  </figure>
-</section>
-
-<!-- 19 · caso lavoura -->
-<section class="slide com-foto" data-act="Casos">
-  <div class="txt">
-    <div class="eyebrow"><b>Caso 3</b> · lavoura · Planalto</div>
-    <h2>Recuperar o prejuízo</h2>
-    <p>Marcos planta 180 ha de soja e milho perto de Cruz Alta, metade em área arrendada, e entrega a produção na cooperativa. Saiu de duas estiagens seguidas com o custeio renegociado.</p>
-    <p>Para a próxima safra, a cooperativa oferece fixar o preço de parte da soja. Marcos pensa em devolver uma área arrendada. O irmão quer o contrário: plantar mais para recuperar o prejuízo.</p>
-    <div class="caso-q"><b>Para o grupo</b>Plantar mais recupera o prejuízo? O que pesa a favor de cada um dos irmãos?</div>
+    <div class="eyebrow"><b>Fator 2</b> · atributos pessoais e comportamentais</div>
+    <h2>Objetivos, atitudes, experiência</h2>
+    <p>O que o produtor quer, como encara o risco, o que já viveu e quanto confia na intuição.</p>
+    <div class="pesq"><b>Na pesquisa</b>Visão clara, plano e objetivos definidos aparecem ligados a melhor resultado <span class="cit">(Mäkinen, 2013)</span>. Objetivos de negócio e mentalidade de crescimento se associaram ao lucro de três anos <span class="cit">(O'Leary et al., 2018)</span>.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>Marcos e o irmão plantam juntos 180 ha de soja e milho perto de Cruz Alta. Depois de duas estiagens, Marcos quer devolver uma área arrendada. O irmão quer plantar mais para recuperar o prejuízo.</div>
+    <div class="caso-q"><b>Para discutir</b>Mesma lavoura, objetivos opostos. O que cada um está priorizando?</div>
   </div>
   <figure class="foto">
     <img src="Aulas/lavoura-soja-novo-barreiro.jpg" alt="Lavoura de soja em fileiras, em propriedade do norte gaúcho" loading="lazy" onerror="this.style.display='none'">
@@ -564,14 +368,31 @@ body.guia .hint,body.gravar .hint{display:none}
   </figure>
 </section>
 
-<!-- 20 · caso horta -->
-<section class="slide com-foto" data-act="Casos">
+<!-- 9 · fator 2 · objetivos que não são dinheiro -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
   <div class="txt">
-    <div class="eyebrow"><b>Caso 4</b> · olericultura · Região Central</div>
-    <h2>Eu sei de cabeça</h2>
-    <p>Dona Neiva e o marido cultivam hortaliças em 2 ha em Santa Maria. Vendem na feira duas vezes por semana e entregam para a alimentação escolar do município. Plantam o que vendeu bem no ano anterior.</p>
-    <p>Não anotam nada: "eu sei de cabeça quanto sai". O técnico da EMATER ofereceu um caderno de campo e uma planilha. Ela achou que dá trabalho e não vê para quê.</p>
-    <div class="caso-q"><b>Para o grupo</b>Para uma horta desse tamanho, registrar compensa? O que faria dona Neiva mudar de ideia?</div>
+    <div class="eyebrow"><b>Fator 2</b> · quando o objetivo não é só dinheiro</div>
+    <h2>Nem todo objetivo é dinheiro</h2>
+    <p>Bem-estar animal, qualidade de vida, tempo livre, tempo com a família e reputação entre os vizinhos também pesam.</p>
+    <div class="pesq"><b>Na pesquisa</b>Em 421 leiterias da Suécia, parte da ineficiência medida vinha de decisões racionais dos produtores <span class="cit">(Hansson, Manevska-Tasevska e Asmild, 2018)</span>. Em 20 leiterias familiares do Reino Unido, as famílias seguiam com retorno mínimo diversificando, endividando-se, sacrificando necessidades da família ou aceitando resultado abaixo do possível <span class="cit">(Glover e Reay, 2015)</span>.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>Seu Getúlio cria gado de corte em 300 ha de campo nativo perto de Bagé. O vizinho desmama mais terneiros por vaca, mas ele diz que o gado sempre deu e que o rebanho é a poupança da família.</div>
+    <div class="caso-q"><b>Para discutir</b>É ineficiência ou é escolha? E quanto custa essa escolha?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/rebanho-pampa-bage.jpg" alt="Rebanho de gado de corte pastando em campo nativo aberto do Pampa" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>rebanho de corte no Pampa, Bagé/RS · CC BY-SA 3.0, Paula Cavalheiro</figcaption>
+  </figure>
+</section>
+
+<!-- 10 · fator 3 · gestão da informação -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
+  <div class="txt">
+    <div class="eyebrow"><b>Fator 3</b> · gestão da informação</div>
+    <h2>De onde vem a informação, e o que se faz com ela</h2>
+    <p>Quem o produtor consulta, o que anota e como avalia o resultado das decisões.</p>
+    <div class="pesq"><b>Na pesquisa</b>Técnicos e outros produtores foram as fontes mais importantes, com efeito positivo na eficiência econômica <span class="cit">(Hansson, 2008)</span>. Mais registro e mais avaliação dos resultados, mais eficiência <span class="cit">(Trip et al., 2002)</span>. A revisão, porém, considera não conclusiva a ligação entre registro e desempenho.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>Dona Neiva cultiva hortaliças em 2 ha em Santa Maria e vende na feira. Não anota nada: "eu sei de cabeça quanto sai". O técnico da EMATER ofereceu um caderno de campo; ela achou que dá trabalho.</div>
+    <div class="caso-q"><b>Para discutir</b>Para uma horta desse tamanho, registrar compensa?</div>
   </div>
   <figure class="foto">
     <img src="Aulas/produtor-rural-horta-planaltina.jpg" alt="Produtor rural de chapéu empurra carrinho de mão com caixas de verdura por entre canteiros de alface" loading="lazy" onerror="this.style.display='none'">
@@ -579,47 +400,98 @@ body.guia .hint,body.gravar .hint{display:none}
   </figure>
 </section>
 
-<!-- 21 · síntese dos casos · em branco -->
-<section class="slide" data-act="Casos">
-  <div class="eyebrow"><b>Casos</b> · o que os grupos encontraram</div>
-  <h2>Quatro casos, lado a lado</h2>
-  <table class="tbl tbl-wide">
-    <thead><tr><th>Caso</th><th>Fator que mais pesa</th><th>Na mão do produtor</th><th>Achado da pesquisa</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Uva</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Gado de corte</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Lavoura</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
-      <tr><td><strong>Horta</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
-    </tbody>
-  </table>
+<!-- 11 · fator 4 · ambiente biofísico -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
+  <div class="txt">
+    <div class="eyebrow"><b>Fator 4</b> · ambiente biofísico</div>
+    <h2>O que não se controla, mas se enfrenta</h2>
+    <p>Clima, pragas e processos biológicos. A revisão os põe entre os fatores fora do controle do produtor.</p>
+    <div class="pesq"><b>Na pesquisa</b>Na seca de 2006 e 2007, na Austrália, as fazendas que resistiram gastaram com prudência e mantiveram alguma diversidade de atividades, o que reduziu a dívida em relação à renda <span class="cit">(Lawes e Kingwell, 2012)</span>.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>Duas estiagens seguidas no Planalto quebraram a safra de quem fez tudo certo no manejo. Marcos saiu delas com o custeio renegociado.</div>
+    <div class="caso-q"><b>Para discutir</b>Se o clima não se controla, o que se controla?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/milho-lavoura-rs.jpg" alt="Lavoura de milho em fase vegetativa, plantada em relevo ondulado, com mata e morros ao fundo, no interior do Rio Grande do Sul" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>lavoura de milho em Barão do Triunfo/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
+  </figure>
 </section>
 
-<!-- ============ FECHAMENTO ============ -->
+<!-- 12 · fator 5 · condições socioeconômicas e políticas -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
+  <div class="txt">
+    <div class="eyebrow"><b>Fator 5</b> · condições socioeconômicas e políticas</div>
+    <h2>O que está em volta da propriedade</h2>
+    <p>Preços, assistência técnica, cooperativas e programas de governo. No RS: EMATER/RS-Ascar, cooperativas de produção e de crédito, sindicatos rurais, Pronaf e Pronamp.</p>
+    <div class="pesq"><b>Na pesquisa</b>Acesso a assistência técnica e a crédito molda as decisões, e as organizações de produtores são fonte importante de informação <span class="cit">(Taramuel-Taramuel et al., 2023)</span>. Na Índia, informação de preço e um canal de venda alternativo elevaram o preço recebido pela soja <span class="cit">(Goyal, 2010)</span>.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>O vizinho de Seu Getúlio faz diagnóstico de prenhez e ajusta a lotação com orientação técnica. Em Cruz Alta, a cooperativa oferece a Marcos fixar o preço de parte da soja.</div>
+    <div class="caso-q"><b>Para discutir</b>O que muda na decisão quando há assistência técnica e cooperativa por perto?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/silos-armazenagem-rs.jpg" alt="Bateria de silos metálicos de armazenagem de grãos com correias transportadoras elevadas, à beira de uma estrada no interior do Rio Grande do Sul" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>silos de armazenagem em Rio Pardo/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
+  </figure>
+</section>
 
-<!-- 22 · dez princípios · votação -->
-<section class="slide" data-act="Fechamento">
-  <div class="eyebrow"><b>Fechamento</b> · dez princípios de gestão</div>
+<!-- 13 · fator 6 · restrições econômicas e incentivos -->
+<section class="slide com-foto foto-p fator" data-act="Fatores">
+  <div class="txt">
+    <div class="eyebrow"><b>Fator 6</b> · restrições econômicas e incentivos financeiros</div>
+    <h2>O dinheiro que falta e o que é oferecido</h2>
+    <p>Custo do crédito, acesso a financiamento, subsídios e incentivos.</p>
+    <div class="pesq"><b>Na pesquisa</b>Custo, disponibilidade e acesso ao financiamento podem travar ou estimular a adoção de tecnologia. Mas o custo nem sempre é o que limita a escolha <span class="cit">(Taramuel-Taramuel et al., 2023)</span>.</div>
+    <div class="exemplo"><b>Exemplo no RS</b>Seu Arno quer replantar o parreiral com financiamento. O filho trabalha na cidade e ainda não decidiu se volta.</div>
+    <div class="caso-q"><b>Para discutir</b>Vale assumir uma dívida de vários anos sem saber quem vai continuar?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/cooperativa-credito-sertao-santana.jpg" alt="Agência de cooperativa de crédito em rua de cidade pequena, prédio térreo de esquina com fachada branca e marquise verde" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>agência de cooperativa de crédito, Sertão Santana/RS · CC BY-SA 3.0 BR, Paulo rsmenezes/Wikimedia Commons</figcaption>
+  </figure>
+</section>
+
+<!-- 14 · o que está na mão do produtor -->
+<section class="slide" data-act="Fatores">
+  <div class="eyebrow"><b>Fatores</b> · o que está na mão do produtor</div>
+  <h2>Quatro dos seis grupos estão, ao menos em parte, na mão dele</h2>
+  <table class="tbl tbl-wide dense">
+    <thead><tr><th>Grupo</th><th>Controla?</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 · Características da propriedade</strong></td><td>em parte</td><td>muda devagar: comprar, arrendar, investir</td></tr>
+      <tr><td><strong>2 · Atributos pessoais e comportamentais</strong></td><td>em grande parte</td><td>objetivos e atitudes se escolhem; idade não</td></tr>
+      <tr><td><strong>3 · Gestão da informação</strong></td><td>sim</td><td>quem consultar, o que anotar, como avaliar</td></tr>
+      <tr><td><strong>4 · Ambiente biofísico</strong></td><td>não</td><td>escolhe só como se proteger</td></tr>
+      <tr><td><strong>5 · Condições socioeconômicas e políticas</strong></td><td>não</td><td>mas escolhe usar: cooperativa, assistência, programas</td></tr>
+      <tr><td><strong>6 · Restrições econômicas e incentivos</strong></td><td>em parte</td><td>escolhe se e como se endividar</td></tr>
+    </tbody>
+  </table>
+  <p class="note">O artigo aponta como fora do controle do produtor o clima, os processos biológicos, as pragas e a variação de preços. A divisão dos seis grupos em sim, em parte e não é uma leitura para discussão.</p>
+</section>
+
+<!-- ============ PRINCÍPIOS ============ -->
+
+<!-- 15 · dez princípios · votação -->
+<section class="slide" data-act="Princípios">
+  <div class="eyebrow"><b>Princípios</b> · dez princípios de gestão</div>
   <h2>Quais três vocês poriam no topo?</h2>
   <table class="tbl tbl-wide dense">
     <thead><tr><th></th><th>Princípio</th><th class="num">Votos</th></tr></thead>
     <tbody>
-      <tr><td class="n">1</td><td>Ter objetivos e um plano para o negócio</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">2</td><td>Registrar e usar o registro para decidir</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">3</td><td>Conferir o resultado de cada decisão</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">4</td><td>Decidir olhando o lucro, não só a produção</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">5</td><td>Proteger o caixa contra o ano ruim</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">6</td><td>Acompanhar o mercado e garantir onde vender</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">7</td><td>Comparar-se com outros produtores</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">8</td><td>Aprender com técnicos e com outros produtores</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">9</td><td>Ter sucessor definido</td><td class="num"><span class="gap"></span></td></tr>
-      <tr><td class="n">10</td><td>Conhecer o custo completo de cada atividade</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">1</td><td>Ter objetivos e um plano para o negócio</td><td class="num"></td></tr>
+      <tr><td class="n">2</td><td>Registrar e usar o registro para decidir</td><td class="num"></td></tr>
+      <tr><td class="n">3</td><td>Conferir o resultado de cada decisão</td><td class="num"></td></tr>
+      <tr><td class="n">4</td><td>Decidir olhando o lucro, não só a produção</td><td class="num"></td></tr>
+      <tr><td class="n">5</td><td>Proteger o caixa contra o ano ruim</td><td class="num"></td></tr>
+      <tr><td class="n">6</td><td>Acompanhar o mercado e garantir onde vender</td><td class="num"></td></tr>
+      <tr><td class="n">7</td><td>Comparar-se com outros produtores</td><td class="num"></td></tr>
+      <tr><td class="n">8</td><td>Aprender com técnicos e com outros produtores</td><td class="num"></td></tr>
+      <tr><td class="n">9</td><td>Ter sucessor definido</td><td class="num"></td></tr>
+      <tr><td class="n">10</td><td>Conhecer o custo completo de cada atividade</td><td class="num"></td></tr>
     </tbody>
   </table>
 </section>
 
-<!-- 23 · o que a pesquisa diz · 1 a 5 -->
-<section class="slide" data-act="Fechamento">
-  <div class="eyebrow"><b>Fechamento</b> · o que a pesquisa diz · 1 a 5</div>
+<!-- 16 · o que a pesquisa diz · 1 a 5 -->
+<section class="slide" data-act="Princípios">
+  <div class="eyebrow"><b>Princípios</b> · o que a pesquisa diz · 1 a 5</div>
   <div class="ev-legend">
     <span class="ev a">vários estudos, mesma direção</span>
     <span class="ev b">poucos estudos, mesma direção</span>
@@ -638,9 +510,9 @@ body.guia .hint,body.gravar .hint{display:none}
   </table>
 </section>
 
-<!-- 24 · o que a pesquisa diz · 6 a 10 -->
-<section class="slide" data-act="Fechamento">
-  <div class="eyebrow"><b>Fechamento</b> · o que a pesquisa diz · 6 a 10</div>
+<!-- 17 · o que a pesquisa diz · 6 a 10 -->
+<section class="slide" data-act="Princípios">
+  <div class="eyebrow"><b>Princípios</b> · o que a pesquisa diz · 6 a 10</div>
   <div class="ev-legend">
     <span class="ev a">vários estudos, mesma direção</span>
     <span class="ev b">poucos estudos, mesma direção</span>
@@ -659,7 +531,9 @@ body.guia .hint,body.gravar .hint{display:none}
   </table>
 </section>
 
-<!-- 25 · limites -->
+<!-- ============ FECHAMENTO ============ -->
+
+<!-- 18 · limites -->
 <section class="slide" data-act="Fechamento">
   <div class="eyebrow"><b>Fechamento</b> · limites da evidência</div>
   <h2>O que esses estudos ainda não conseguem dizer</h2>
@@ -672,7 +546,7 @@ body.guia .hint,body.gravar .hint{display:none}
   <p class="note">A revisão buscou artigos em inglês, publicados de 2013 a 2022, nas bases Scopus e Web of Science.</p>
 </section>
 
-<!-- 26 · a pergunta que fica -->
+<!-- 19 · a pergunta que fica -->
 <section class="slide" data-act="Fechamento">
   <div class="eyebrow"><b>Fechamento</b> · a pergunta em aberto</div>
   <h2>Por que tantos produtores <em>não registram nada?</em></h2>
@@ -685,7 +559,7 @@ body.guia .hint,body.gravar .hint{display:none}
   <p class="note">E na propriedade de vocês, o que se anota, e o que se faz com o que é anotado?</p>
 </section>
 
-<!-- 27 · referências 1 -->
+<!-- 20 · referências 1 -->
 <section class="slide" data-act="Referências">
   <div class="eyebrow"><b>Referências</b> · artigo base e estudos citados</div>
   <ul class="refs">
@@ -703,7 +577,7 @@ body.guia .hint,body.gravar .hint{display:none}
   </ul>
 </section>
 
-<!-- 28 · referências 2 e declaração de IA -->
+<!-- 21 · referências 2 e declaração de IA -->
 <section class="slide" data-act="Referências">
   <div class="eyebrow"><b>Referências</b> · estudos citados</div>
   <ul class="refs">
