@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A8552E">
+<title>Extra: decisão do produtor e desempenho</title>
+<meta name="description" content="Aula extra: como as decisões do produtor se ligam ao desempenho da propriedade, a partir de uma revisão de 24 estudos. Colégio Politécnico da UFSM.">
+<meta name="robots" content="noindex">
+<!-- ============================================================
+  GUIA RÁPIDO DE EDIÇÃO (para o professor)
+  · Cada slide é um <section class="slide">. Para reordenar, mova o bloco inteiro.
+  · Texto: edite direto dentro de <p>, <li>, <h2>. Salvar e recarregar (F5).
+  · Foto: copie o bloco abaixo para dentro de qualquer slide
+    (a imagem deve estar na mesma pasta do site):
+
+    <figure class="foto">
+      <img src="minha-foto.jpg" alt="descreva a imagem">
+      <figcaption>Legenda da foto · fonte</figcaption>
+    </figure>
+
+  · Foto ocupando o slide inteiro: use <section class="slide foto-cheia">
+    com apenas o <figure class="foto"> dentro.
+  · Navegação, contador e impressão se ajustam sozinhos ao nº de slides.
+  · Gravação: tecla G alterna normal, guia da câmera (canto inferior direito)
+    e gravação (sem guia).
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--mustard-ink:#3A2F08;--rule:#D9D3C2;
+  --rule-soft:#E8E3D3;--highlight:#F2E8C9;--critical-bg:#F5E4D8;--success-bg:#E4EAD2;
+  --accent:var(--terra);
+  --accent-text:#8A4322;
+  --accent-deep:#93492A;
+  --fs-body:clamp(17px,min(1.9vw,3.38vh),30px);
+  --fs-small:clamp(14px,min(1.45vw,2.58vh),22px);
+  --fs-mono:clamp(12px,min(1.2vw,2.13vh),18px);
+  --fs-h2:clamp(28px,min(3.8vw,6.76vh),58px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 8vw 11vh;background:var(--paper);cursor:default}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2.6vh;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow b{color:var(--accent-text);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.8vh;font-variation-settings:'opsz' 144;max-width:26ch}
+h2 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.slide p{font-size:var(--fs-body);color:var(--ink-soft);max-width:60ch;margin-bottom:1.6vh}
+.slide p strong{color:var(--ink);font-weight:600}
+.slide p em{color:var(--accent-text);font-style:italic;font-weight:500}
+.lead{font-size:clamp(19px,min(2.3vw,4.09vh),36px)!important;line-height:1.45}
+.note{font-size:var(--fs-small)!important;color:var(--stone)!important}
+
+ul.bullets{list-style:none;margin:0.5vh 0 1.5vh;max-width:64ch;font-size:var(--fs-body)}
+ul.bullets li{padding:0.85vh 0 0.85vh 1.6em;position:relative;font-size:var(--fs-body);line-height:1.5;color:var(--ink-soft)}
+ul.bullets li::before{content:"›";position:absolute;left:0.3em;color:var(--accent-text);font-weight:600}
+ul.bullets li strong{color:var(--ink);font-weight:600}
+ul.bullets.compact li{font-size:var(--fs-small);padding-top:0.6vh;padding-bottom:0.6vh}
+
+.formula{margin:2vh 0;padding:1.8vh 1.6vw;background:var(--paper-warm);border-left:4px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:clamp(15px,min(1.8vw,3.2vh),28px);line-height:1.55;color:var(--ink);max-width:64ch}
+.formula .label{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-text);display:block;margin-bottom:0.8vh}
+.formula b{font-weight:600;color:var(--terra)}
+
+.callout{margin:2vh 0;padding:1.6vh 1.5vw;background:var(--critical-bg);border-left:4px solid var(--terra);font-size:var(--fs-small);line-height:1.5;color:var(--ink);max-width:62ch}
+.callout strong{color:var(--terra);text-transform:uppercase;font-size:var(--fs-mono);letter-spacing:0.1em;font-weight:600;display:block;margin-bottom:0.5vh}
+.callout.success{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.success strong{color:var(--olive)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:start;max-width:100%}
+.panel{border:1px solid var(--rule);background:#fff;padding:2vh 1.5vw}
+.panel h3{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:1.2vh}
+.panel h3.alt{color:var(--olive)}
+.panel p,.panel li{font-size:var(--fs-small)}
+.panel p:last-child{margin-bottom:0}
+
+/* quatro estratégias */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6vh 1.4vw;max-width:100%;margin:1.5vh 0 2.5vh}
+.grid4 .panel{padding:1.8vh 1.4vw;border-top:4px solid var(--accent)}
+.grid4 .panel b{display:block;font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-body);color:var(--ink);line-height:1.2;margin-bottom:0.6vh}
+.grid4 .panel span{font-size:var(--fs-small);color:var(--ink-soft)}
+
+.tbl{border-collapse:collapse;width:100%;max-width:70ch;font-size:var(--fs-small);margin:1.5vh 0}
+.tbl th{background:var(--paper-warm);text-align:left;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1vw;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.1vh 1vw;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+.tbl th.num,.tbl td.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+.tbl td.num b{color:var(--terra)}
+.tbl td.n{font-family:'IBM Plex Mono',monospace;color:var(--stone);width:2.5ch}
+.tbl td strong{color:var(--ink);font-weight:600}
+.tbl.tbl-wide{max-width:92ch}
+.tbl.dense td{padding:0.8vh 0.9vw;line-height:1.38}
+.tbl.dense th{padding:0.8vh 0.9vw}
+.tbl .cit{display:block;font-size:0.82em;color:var(--stone);margin-top:0.3vh}
+
+/* força da evidência */
+.ev{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.82em;line-height:1.3;padding:0.4vh 0.6vw;border-left:4px solid;background:var(--paper-warm);color:var(--ink)}
+.ev.a{border-color:var(--olive)}
+.ev.b{border-color:var(--mustard)}
+.ev.c{border-color:var(--terra)}
+.ev.d{border-color:var(--stone-light)}
+.ev-legend{display:flex;flex-wrap:wrap;gap:0.8vh 1.6vw;margin:0.5vh 0 0.5vh;font-size:var(--fs-mono)}
+.ev-legend .ev{font-size:1em}
+
+/* celula a preencher no quadro */
+.gap{display:inline-block;min-width:6.5ch;height:1.05em;border-bottom:2px solid var(--accent);vertical-align:-0.15em}
+.gap.wide{min-width:15ch}
+
+/* capa */
+.cover{justify-content:center}
+.cover .t-mark{display:flex;align-items:flex-start;gap:2.2vw;margin-bottom:3vh}
+.cover .t-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(48px,min(7vw,12.4vh),110px);font-weight:600;line-height:0.82;color:var(--accent);letter-spacing:-0.02em}
+.cover .mv{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600;padding-top:1vh;margin-bottom:1.2vh}
+.cover .mv b{color:var(--ink)}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,min(5vw,8.9vh),78px);line-height:1.05;letter-spacing:-0.02em;max-width:22ch;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent-text);font-weight:500}
+.cover .cred{margin-top:3vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:clamp(34px,6vh,54px);width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-small);color:var(--stone);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase}
+.hint{position:absolute;bottom:4.5vh;right:8vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light)}
+
+/* foto */
+.foto{margin:2vh 0;max-width:70vw}
+.foto img{max-width:100%;max-height:55vh;display:block;border:1px solid var(--rule)}
+.foto figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);margin-top:0.8vh}
+
+/* foto ao lado do texto: <section class="slide com-foto"> com <div class="txt"> e <figure class="foto"> */
+.slide.com-foto.on{display:grid;grid-template-columns:1.35fr 1fr;column-gap:3.2vw;align-content:center;align-items:center}
+.slide.com-foto .txt{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.slide.com-foto .foto{margin:0;max-width:100%}
+.slide.com-foto .foto img{width:100%;max-width:100%;max-height:60vh;object-fit:cover}
+.slide.com-foto.foto-p.on{grid-template-columns:1.85fr 1fr}
+
+/* com-diagrama: texto + grafico SVG lado a lado */
+.slide.com-diagrama.on{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;align-content:center;align-items:center}
+.slide.com-diagrama .txt{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.slide.com-diagrama svg.diagrama{width:100%;height:auto;max-height:78vh;display:block}
+.slide.com-diagrama.diag-g.on{grid-template-columns:0.75fr 1.25fr}
+
+.slide.com-foto,.slide.com-diagrama{padding-top:5.5vh;padding-bottom:8.5vh}
+.slide.com-foto .txt .lead,.slide.com-diagrama .txt .lead{margin-bottom:1.1vh}
+.slide.com-foto .txt ul.bullets,.slide.com-diagrama .txt ul.bullets{margin:0.3vh 0 1vh}
+.slide.com-foto .txt ul.bullets li,.slide.com-diagrama .txt ul.bullets li{padding:0.55vh 0 0.55vh 1.6em}
+.slide.com-foto .txt .callout{margin:1.3vh 0;padding:1.2vh 1.4vw}
+
+/* caso em grupo */
+.caso-q{margin-top:1.2vh;padding:1.4vh 1.3vw;background:var(--highlight);border-left:4px solid var(--mustard);font-size:var(--fs-small);color:var(--ink);max-width:60ch}
+.caso-q b{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--mustard-ink);margin-bottom:0.4vh}
+
+/* diagramas */
+.diagrama text{font-family:'IBM Plex Sans',sans-serif}
+.diagrama .no-t{font-size:22px;font-weight:700}
+.diagrama .lbl{font-size:18.5px;fill:var(--ink)}
+.diagrama .lbl-c{font-size:21px;font-weight:700;fill:var(--paper)}
+.diagrama .mid{font-size:19px;fill:var(--stone)}
+.diagrama .lig{stroke:var(--stone-light);stroke-width:2;fill:none}
+.diagrama .seta{stroke:var(--stone);stroke-width:2.5;fill:none}
+
+/* referências */
+.refs{list-style:none;max-width:96ch;columns:2;column-gap:3vw}
+.refs li{font-size:clamp(12px,min(1.12vw,2vh),17px);line-height:1.45;color:var(--ink-soft);margin-bottom:1vh;break-inside:avoid;padding-left:1.2em;text-indent:-1.2em}
+.refs li b{color:var(--ink);font-weight:600}
+.ia{font-size:var(--fs-small)!important;max-width:72ch!important;margin-top:1.5vh}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);pointer-events:none;z-index:10}
+.hud .act-label{letter-spacing:0.1em;text-transform:uppercase}
+.hud .counter{letter-spacing:0.08em}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--accent-deep);z-index:11;transition:width 0.25s ease;max-width:100%}
+
+a{color:var(--accent-text)}
+
+/* gravação: G alterna normal / guia da câmera / gravação */
+.cam-guia{position:fixed;right:1.5vw;bottom:2vh;width:20vw;height:20vh;border:2px dashed var(--terra);display:none;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--terra);letter-spacing:0.1em;text-transform:uppercase;pointer-events:none;z-index:12}
+body.guia .cam-guia{display:flex}
+body.guia .hud,body.gravar .hud{justify-content:flex-start;gap:2vw}
+body.guia .hint,body.gravar .hint{display:none}
+
+/* ===== impressão: apostila ===== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .hud,.progress,.hint,.cam-guia{display:none!important}
+  .slide{position:relative;inset:auto;display:flex!important;width:100%;height:209mm;page-break-after:always;break-after:page;padding:16mm 20mm 18mm;overflow:hidden}
+  .slide::before{height:3mm}
+  .slide.com-foto,.slide.com-diagrama{display:grid!important}
+  .slide.com-foto .foto img{max-height:120mm}
+  .foto{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ ABERTURA ============ -->
+
+<!-- 1 · capa -->
+<section class="slide cover" data-act="Abertura">
+  <div class="eyebrow">Aula extra · eixo Recursos Naturais</div>
+  <div class="t-mark">
+    <div class="t-num">Extra</div>
+    <div>
+      <div class="mv">Gestão da propriedade · <b>Decidir</b></div>
+      <h1>Decisão do produtor e <em>desempenho</em> da propriedade</h1>
+    </div>
+  </div>
+  <div class="cred">
+    <img src="logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span>Colégio Politécnico da UFSM</span></div>
+  </div>
+  <div class="hint">→ avançar · ← voltar</div>
+</section>
+
+<!-- 2 · a pergunta -->
+<section class="slide com-foto" data-act="Abertura">
+  <div class="txt">
+    <div class="eyebrow"><b>Abertura</b> · a pergunta da aula</div>
+    <h2>Duas vizinhas, <em>dois resultados</em></h2>
+    <p class="lead">Duas propriedades lado a lado, separadas por uma cerca. Mesmo solo, mesmo clima, mesma safra.</p>
+    <p>No fim do ano, os resultados não se parecem. <strong>O que explica a diferença?</strong></p>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/lavoura-soja-rs.jpg" alt="Lavoura de soja verde se estendendo até o horizonte, sob céu aberto, no Rio Grande do Sul" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>lavoura de soja no Rio Grande do Sul · CC BY-SA 3.0, Tiago Fioreze/Wikimedia Commons</figcaption>
+  </figure>
+</section>
+
+<!-- 3 · a revisão -->
+<section class="slide" data-act="Abertura">
+  <div class="eyebrow"><b>Abertura</b> · o que a pesquisa olhou</div>
+  <h2>24 estudos sobre decisão e desempenho</h2>
+  <p>Uma revisão sistemática reuniu os estudos empíricos publicados entre 2013 e 2022 que ligam <strong>a forma como o produtor decide</strong> ao <strong>resultado da propriedade</strong> (Taramuel-Taramuel, Montoya-Restrepo e Barrios, 2023).</p>
+  <ul class="bullets">
+    <li>Busca nas bases Scopus e Web of Science: 1.764 documentos, dos quais <strong>24</strong> atenderam aos critérios.</li>
+    <li>Metade estuda pecuária, sobretudo leite. A outra metade, lavouras e frutas: arroz, café, trigo, batata, citros, cacau, hortaliças.</li>
+    <li>Um terço vem da África. Da América do Sul, há estudos do Brasil e da Argentina.</li>
+  </ul>
+  <p class="note">A revisão também organiza os fatores que pesam na decisão em seis grupos, vistos mais adiante.</p>
+</section>
+
+<!-- ============ DECIDIR É UM PROCESSO ============ -->
+
+<!-- 4 · o ciclo -->
+<section class="slide com-diagrama" data-act="Decisão">
+  <div class="txt">
+    <div class="eyebrow"><b>Decisão</b> · as três etapas</div>
+    <h2>Decidir é um processo, não um momento</h2>
+    <ul class="bullets">
+      <li><strong>Planejar</strong>: definir o problema e analisar as alternativas.</li>
+      <li><strong>Executar</strong>: pôr em prática o caminho escolhido.</li>
+      <li><strong>Avaliar e controlar</strong>: comparar o que aconteceu com o plano e corrigir os desvios.</li>
+    </ul>
+    <p class="note">Na prática o processo nem sempre segue essa ordem. O produtor busca informação e escolhe com base nela, na experiência, nos objetivos e na intuição.</p>
+  </div>
+  <svg class="diagrama" viewBox="0 0 600 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ciclo de três etapas: planejar, executar, avaliar e controlar, com setas ligando uma etapa à seguinte e de volta ao início">
+    <defs>
+      <marker id="ponta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="#6B6960"/>
+      </marker>
+    </defs>
+    <rect x="190" y="40" width="220" height="70" rx="8" fill="var(--olive)"/>
+    <text class="no-t" x="300" y="83" text-anchor="middle" fill="var(--paper)">Planejar</text>
+    <rect x="360" y="310" width="220" height="70" rx="8" fill="var(--mustard)"/>
+    <text class="no-t" x="470" y="353" text-anchor="middle" fill="var(--mustard-ink)">Executar</text>
+    <rect x="20" y="310" width="220" height="70" rx="8" fill="var(--terra)"/>
+    <text class="no-t" x="130" y="342" text-anchor="middle" fill="var(--paper)">Avaliar e</text>
+    <text class="no-t" x="130" y="368" text-anchor="middle" fill="var(--paper)">controlar</text>
+    <path class="seta" d="M 415 82 Q 520 120 490 302" marker-end="url(#ponta)"/>
+    <path class="seta" d="M 355 360 Q 300 410 245 360" marker-end="url(#ponta)"/>
+    <path class="seta" d="M 110 302 Q 80 120 185 82" marker-end="url(#ponta)"/>
+    <text class="mid" x="300" y="215" text-anchor="middle">a cada safra,</text>
+    <text class="mid" x="300" y="238" text-anchor="middle">o ciclo recomeça</text>
+  </svg>
+</section>
+
+<!-- 5 · eficiência -->
+<section class="slide" data-act="Decisão">
+  <div class="eyebrow"><b>Decisão</b> · como medir o resultado</div>
+  <h2>Eficiência técnica e eficiência econômica</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3 class="alt">Técnica</h3>
+      <p>Tirar o máximo de produto dos insumos usados, ou usar o mínimo de insumo para colher o mesmo.</p>
+      <p class="note">Dois vizinhos com a mesma adubação e a mesma semente: quem colhe mais sacas foi mais eficiente tecnicamente.</p>
+    </div>
+    <div class="panel">
+      <h3>Econômica</h3>
+      <p>Considera também o preço dos insumos e do produto: escolher a combinação que dá o melhor resultado em dinheiro.</p>
+      <p class="note">Colher mais nem sempre compensa: se cada saca a mais custa mais do que vale, o resultado cai.</p>
+    </div>
+  </div>
+  <p class="note">Os estudos da revisão medem o desempenho dos dois jeitos: produtividade e eficiência técnica de um lado, lucro e margem do outro.</p>
+</section>
+
+<!-- 6 · as vizinhas em números · em branco -->
+<section class="slide" data-act="Decisão">
+  <div class="eyebrow"><b>Decisão</b> · as duas vizinhas em números</div>
+  <h2>Quem foi mais eficiente?</h2>
+  <div class="formula">
+    <span class="label">Soja a R$ 130,00 por saca</span>
+    custo por saca = custo/ha ÷ sc/ha · margem/ha = receita/ha − custo/ha
+  </div>
+  <table class="tbl">
+    <thead><tr><th>Propriedade</th><th class="num">sc/ha</th><th class="num">Custo/ha</th><th class="num">Receita/ha</th><th class="num">Custo por saca</th><th class="num">Margem/ha</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td class="num">62</td><td class="num">6.200,00</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td>B</td><td class="num">55</td><td class="num">4.950,00</td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td><td class="num"><span class="gap"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Valores de exemplo, em R$. O custo por hectare das duas segue o mesmo método.</p>
+</section>
+
+<!-- 7 · as vizinhas · revelação -->
+<section class="slide" data-act="Decisão">
+  <div class="eyebrow"><b>Decisão</b> · a conta fechada</div>
+  <h2>A colheu mais. <em>B ganhou mais.</em></h2>
+  <table class="tbl">
+    <thead><tr><th>Propriedade</th><th class="num">sc/ha</th><th class="num">Custo/ha</th><th class="num">Receita/ha</th><th class="num">Custo por saca</th><th class="num">Margem/ha</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td class="num"><b>62</b></td><td class="num">6.200,00</td><td class="num">8.060,00</td><td class="num">100,00</td><td class="num">1.860,00</td></tr>
+      <tr><td>B</td><td class="num">55</td><td class="num">4.950,00</td><td class="num">7.150,00</td><td class="num"><b>90,00</b></td><td class="num"><b>2.200,00</b></td></tr>
+    </tbody>
+  </table>
+  <p>A tem a maior produtividade. B produz cada saca R$ 10,00 mais barata e fica com <strong>R$ 340,00 a mais por hectare</strong>. Produtividade alta e eficiência econômica não são a mesma coisa.</p>
+  <p class="note">Para dizer qual das duas foi mais eficiente tecnicamente, seria preciso saber quanto de cada insumo cada uma usou.</p>
+</section>
+
+<!-- ============ O QUE PESA NA DECISÃO ============ -->
+
+<!-- 8 · os seis grupos -->
+<section class="slide com-diagrama diag-g" data-act="Fatores">
+  <div class="txt">
+    <div class="eyebrow"><b>Fatores</b> · o modelo da revisão</div>
+    <h2>Seis grupos de fatores pesam na decisão</h2>
+    <p>Os autores juntam o que influencia a decisão do produtor em seis grupos. Todos passam pelo processo de decisão antes de chegar ao resultado da propriedade.</p>
+    <p class="note">Adaptado da Fig. 1 de Taramuel-Taramuel, Montoya-Restrepo e Barrios (2023).</p>
+  </div>
+  <svg class="diagrama" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seis grupos de fatores, três de cada lado, ligados ao processo de decisão no centro, que por sua vez leva ao desempenho da propriedade">
+    <defs>
+      <marker id="ponta2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="#6B6960"/>
+      </marker>
+    </defs>
+    <line class="lig" x1="244" y1="70" x2="290" y2="185"/>
+    <line class="lig" x1="244" y1="190" x2="290" y2="190"/>
+    <line class="lig" x1="244" y1="310" x2="290" y2="195"/>
+    <line class="lig" x1="516" y1="70" x2="470" y2="185"/>
+    <line class="lig" x1="516" y1="190" x2="470" y2="190"/>
+    <line class="lig" x1="516" y1="310" x2="470" y2="195"/>
+    <g fill="#fff" stroke="var(--rule)" stroke-width="2">
+      <rect x="2" y="35" width="242" height="70" rx="6"/>
+      <rect x="2" y="155" width="242" height="70" rx="6"/>
+      <rect x="2" y="275" width="242" height="70" rx="6"/>
+      <rect x="516" y="35" width="242" height="70" rx="6"/>
+      <rect x="516" y="155" width="242" height="70" rx="6"/>
+      <rect x="516" y="275" width="242" height="70" rx="6"/>
+    </g>
+    <text class="lbl" x="123" y="65" text-anchor="middle">Características</text>
+    <text class="lbl" x="123" y="89" text-anchor="middle">da propriedade</text>
+    <text class="lbl" x="123" y="185" text-anchor="middle">Atributos pessoais</text>
+    <text class="lbl" x="123" y="209" text-anchor="middle">e comportamentais</text>
+    <text class="lbl" x="123" y="305" text-anchor="middle">Gestão da</text>
+    <text class="lbl" x="123" y="329" text-anchor="middle">informação</text>
+    <text class="lbl" x="637" y="65" text-anchor="middle">Ambiente</text>
+    <text class="lbl" x="637" y="89" text-anchor="middle">biofísico</text>
+    <text class="lbl" x="637" y="185" text-anchor="middle">Condições socio-</text>
+    <text class="lbl" x="637" y="209" text-anchor="middle">econômicas e políticas</text>
+    <text class="lbl" x="637" y="305" text-anchor="middle">Restrições econômicas</text>
+    <text class="lbl" x="637" y="329" text-anchor="middle">e incentivos financeiros</text>
+    <rect x="290" y="135" width="180" height="110" rx="8" fill="var(--terra)"/>
+    <text class="lbl-c" x="380" y="183" text-anchor="middle">Processo de</text>
+    <text class="lbl-c" x="380" y="209" text-anchor="middle">decisão</text>
+    <line class="seta" x1="380" y1="247" x2="380" y2="368" marker-end="url(#ponta2)"/>
+    <rect x="270" y="375" width="220" height="70" rx="8" fill="var(--olive)"/>
+    <text class="lbl-c" x="380" y="404" text-anchor="middle">Desempenho da</text>
+    <text class="lbl-c" x="380" y="430" text-anchor="middle">propriedade</text>
+  </svg>
+</section>
+
+<!-- 9 · o que o produtor controla · em branco -->
+<section class="slide" data-act="Fatores">
+  <div class="eyebrow"><b>Fatores</b> · o que está na mão do produtor</div>
+  <h2>O produtor controla?</h2>
+  <table class="tbl tbl-wide dense">
+    <thead><tr><th>Grupo</th><th>Exemplos</th><th>Controla?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Características da propriedade</strong></td><td>tamanho, localização, tecnologia, dependência da renda da propriedade</td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Atributos pessoais e comportamentais</strong></td><td>objetivos, atitudes, experiência, escolaridade, intuição</td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Gestão da informação</strong></td><td>fontes consultadas, registros, avaliação dos resultados</td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Ambiente biofísico</strong></td><td>clima, pragas, processos biológicos</td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Condições socioeconômicas e políticas</strong></td><td>preços, assistência técnica, cooperativas, programas de governo</td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Restrições econômicas e incentivos</strong></td><td>custo e acesso ao crédito, subsídios</td><td><span class="gap wide"></span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Respostas possíveis: sim, em parte, não.</p>
+</section>
+
+<!-- 10 · o que o produtor controla · revelação -->
+<section class="slide" data-act="Fatores">
+  <div class="eyebrow"><b>Fatores</b> · uma classificação para discussão</div>
+  <h2>Quatro dos seis grupos estão, ao menos em parte, na mão dele</h2>
+  <table class="tbl tbl-wide dense">
+    <thead><tr><th>Grupo</th><th>Controla?</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Características da propriedade</strong></td><td>em parte</td><td>muda devagar: comprar, arrendar, investir</td></tr>
+      <tr><td><strong>Atributos pessoais e comportamentais</strong></td><td>em grande parte</td><td>objetivos e atitudes se escolhem; idade não</td></tr>
+      <tr><td><strong>Gestão da informação</strong></td><td>sim</td><td>quem consultar, o que anotar, como avaliar</td></tr>
+      <tr><td><strong>Ambiente biofísico</strong></td><td>não</td><td>escolhe só como se proteger</td></tr>
+      <tr><td><strong>Condições socioeconômicas e políticas</strong></td><td>não</td><td>mas escolhe usar: cooperativa, assistência, programas</td></tr>
+      <tr><td><strong>Restrições econômicas e incentivos</strong></td><td>em parte</td><td>escolhe se e como se endividar</td></tr>
+    </tbody>
+  </table>
+  <p class="note">O artigo aponta como fora do controle do produtor o clima, os processos biológicos, as pragas e a variação de preços. A divisão dos seis grupos em sim, em parte e não é uma leitura para discussão.</p>
+</section>
+
+<!-- ============ O QUE A PESQUISA ENCONTROU ============ -->
+
+<!-- 11 · objetivos e plano -->
+<section class="slide" data-act="Evidências">
+  <div class="eyebrow"><b>Evidências</b> · objetivos e planejamento</div>
+  <h2>Objetivo claro e plano andam junto com resultado melhor</h2>
+  <ul class="bullets">
+    <li><strong>Leiterias da Finlândia</strong>: visão clara do negócio, com plano de negócio e de investimento, ligada a melhor resultado financeiro (Mäkinen, 2013).</li>
+    <li><strong>862 propriedades da Inglaterra</strong>: planejamento do negócio com efeito positivo no resultado financeiro (Vanhuyse, Bailey e Tranter, 2021).</li>
+    <li><strong>80 leiterias da Grã-Bretanha</strong>: objetivos de negócio e mentalidade de crescimento associados ao lucro de três anos (O'Leary et al., 2018).</li>
+  </ul>
+  <p class="note">Os três estudos medem associação: mostram que as coisas andam juntas, não que uma causa a outra.</p>
+</section>
+
+<!-- 12 · registros -->
+<section class="slide" data-act="Evidências">
+  <div class="eyebrow"><b>Evidências</b> · registros</div>
+  <h2>Registro: a pesquisa ainda não fechou a questão</h2>
+  <div class="cols2">
+    <div class="panel">
+      <h3 class="alt">A favor</h3>
+      <p>Entre 26 floricultores, mais qualidade no monitoramento e na avaliação, mais eficiência (Trip et al., 2002).</p>
+      <p>Em 98 citricultores de São Paulo, usar sistema de informação gerencial se ligou a mais eficiência técnica (Carrer et al., 2015).</p>
+    </div>
+    <div class="panel">
+      <h3>Sem ligação</h3>
+      <p>Em leiterias da Finlândia, a efetividade do processo de gestão não se ligou ao lucro (Mäkinen, 2013).</p>
+      <p>Em leiterias da Grã-Bretanha, as práticas de gestão não entraram no modelo final que explica o lucro (O'Leary et al., 2018).</p>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Na revisão</strong>
+    Os autores classificam como não conclusiva a ligação entre registro e desempenho.
+  </div>
+</section>
+
+<!-- 13 · instituições -->
+<section class="slide" data-act="Evidências">
+  <div class="eyebrow"><b>Evidências</b> · assistência técnica, crédito e cooperativas</div>
+  <h2>O que está em volta da propriedade também decide</h2>
+  <ul class="bullets">
+    <li>Acesso a <strong>assistência técnica</strong> e a <strong>crédito</strong> molda as decisões do produtor. Programas de governo também.</li>
+    <li><strong>Organizações de produtores</strong>, como cooperativas, associações e sindicatos, são fonte importante de informação.</li>
+    <li>Em leiterias da Suécia, técnicos e outros produtores foram as fontes de informação mais importantes, com efeito positivo na eficiência econômica (Hansson, 2008).</li>
+  </ul>
+  <div class="callout success">
+    <strong>No Rio Grande do Sul</strong>
+    EMATER/RS-Ascar, cooperativas de produção e de crédito, sindicatos rurais, Pronaf e Pronamp.
+  </div>
+</section>
+
+<!-- 14 · apego ao negócio -->
+<section class="slide" data-act="Evidências">
+  <div class="eyebrow"><b>Evidências</b> · apego ao negócio</div>
+  <h2>Ficar no negócio mesmo ganhando pouco</h2>
+  <p>Em 20 leiterias familiares do Reino Unido, as famílias que seguiam com retorno mínimo usavam quatro estratégias (Glover e Reay, 2015):</p>
+  <div class="grid4">
+    <div class="panel"><b>Diversificar</b><span>abrir outras fontes de renda no negócio</span></div>
+    <div class="panel"><b>Endividar-se ao máximo</b><span>aumentar a dívida para manter a atividade</span></div>
+    <div class="panel"><b>Sacrificar a família</b><span>abrir mão de necessidades da família</span></div>
+    <div class="panel"><b>Ceder</b><span>aceitar resultado abaixo do possível</span></div>
+  </div>
+  <p class="note">Cada estratégia mantém a propriedade de pé e cobra seu preço da família, do negócio ou dos dois. O apego emocional pesa na decisão.</p>
+</section>
+
+<!-- 15 · ineficiência racional -->
+<section class="slide" data-act="Evidências">
+  <div class="eyebrow"><b>Evidências</b> · ineficiência racional</div>
+  <h2>Nem toda ineficiência é erro</h2>
+  <p class="lead">Em 421 leiterias da Suécia, parte da ineficiência medida vinha de <em>decisões racionais</em> dos produtores (Hansson, Manevska-Tasevska e Asmild, 2018).</p>
+  <ul class="bullets">
+    <li>Exemplo: o produtor que prioriza o bem-estar animal em vez de levar a vaca à produção máxima.</li>
+    <li>Outros objetivos que não são dinheiro: qualidade de vida, tempo livre, tempo com a família, reputação entre os vizinhos.</li>
+  </ul>
+  <p class="note">Quando o resultado é menor por escolha, a pergunta de gestão passa a ser outra: quanto custa essa escolha, e quem decide se vale a pena?</p>
+</section>
+
+<!-- ============ CASOS EM GRUPO ============ -->
+
+<!-- 16 · a tarefa -->
+<section class="slide" data-act="Casos">
+  <div class="eyebrow"><b>Casos</b> · a tarefa</div>
+  <h2>Quatro propriedades gaúchas, quatro grupos</h2>
+  <p>Cada grupo recebe um caso: uva, gado de corte, lavoura ou horta. Leiam e respondam:</p>
+  <ul class="bullets">
+    <li>Qual dos <strong>seis grupos de fatores</strong> mais pesa nessa decisão?</li>
+    <li>O que está <strong>na mão do produtor</strong> e o que não está?</li>
+    <li>Qual <strong>achado da pesquisa</strong> ajuda a pensar o caso?</li>
+  </ul>
+  <p class="note">Depois, cada grupo conta o caso e a resposta para a turma em dois minutos.</p>
+</section>
+
+<!-- 17 · caso uva -->
+<section class="slide com-foto" data-act="Casos">
+  <div class="txt">
+    <div class="eyebrow"><b>Caso 1</b> · fruticultura · Serra Gaúcha</div>
+    <h2>O parreiral do pai</h2>
+    <p>Seu Arno e dona Lurdes têm 5 ha de parreiral na Serra e entregam a uva para uma cooperativa vinícola. Metade do parreiral é velho e produz menos a cada safra. Replantar custa caro, e o parreiral novo leva alguns anos para dar a primeira safra cheia.</p>
+    <p>O filho trabalha na cidade e ainda não decidiu se volta. Seu Arno quer replantar: o parreiral era do pai dele.</p>
+    <div class="caso-q"><b>Para o grupo</b>Replantar é decisão de negócio, de família ou das duas? O que precisaria estar definido antes?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/parreiral-bento-goncalves.jpg" alt="Produtor entre fileiras de videira carregadas de cachos, no parreiral" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>produtor no parreiral, Bento Gonçalves/RS · CC BY 3.0 BR, Daniel Isaia/Agência Brasil</figcaption>
+  </figure>
+</section>
+
+<!-- 18 · caso bovinos -->
+<section class="slide com-foto" data-act="Casos">
+  <div class="txt">
+    <div class="eyebrow"><b>Caso 2</b> · bovinos de corte · Campanha</div>
+    <h2>O gado que sempre deu</h2>
+    <p>Seu Getúlio cria gado de corte em 300 ha de campo nativo perto de Bagé e vende os terneiros em remate no outono. O vizinho, com campo parecido, desmama mais terneiros por vaca: faz diagnóstico de prenhez e ajusta a lotação com orientação técnica.</p>
+    <p>Seu Getúlio diz que o gado sempre deu e que o rebanho é a poupança da família. Ele não sabe quanto custa produzir um terneiro.</p>
+    <div class="caso-q"><b>Para o grupo</b>É ineficiência ou é escolha? O que mudaria se ele soubesse o custo do terneiro?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/rebanho-pampa-bage.jpg" alt="Rebanho de gado de corte pastando em campo nativo aberto do Pampa" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>rebanho de corte no Pampa, Bagé/RS · CC BY-SA 3.0, Paula Cavalheiro</figcaption>
+  </figure>
+</section>
+
+<!-- 19 · caso lavoura -->
+<section class="slide com-foto" data-act="Casos">
+  <div class="txt">
+    <div class="eyebrow"><b>Caso 3</b> · lavoura · Planalto</div>
+    <h2>Recuperar o prejuízo</h2>
+    <p>Marcos planta 180 ha de soja e milho perto de Cruz Alta, metade em área arrendada, e entrega a produção na cooperativa. Saiu de duas estiagens seguidas com o custeio renegociado.</p>
+    <p>Para a próxima safra, a cooperativa oferece fixar o preço de parte da soja. Marcos pensa em devolver uma área arrendada. O irmão quer o contrário: plantar mais para recuperar o prejuízo.</p>
+    <div class="caso-q"><b>Para o grupo</b>Plantar mais recupera o prejuízo? O que pesa a favor de cada um dos irmãos?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/lavoura-soja-novo-barreiro.jpg" alt="Lavoura de soja em fileiras, em propriedade do norte gaúcho" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</figcaption>
+  </figure>
+</section>
+
+<!-- 20 · caso horta -->
+<section class="slide com-foto" data-act="Casos">
+  <div class="txt">
+    <div class="eyebrow"><b>Caso 4</b> · olericultura · Região Central</div>
+    <h2>Eu sei de cabeça</h2>
+    <p>Dona Neiva e o marido cultivam hortaliças em 2 ha em Santa Maria. Vendem na feira duas vezes por semana e entregam para a alimentação escolar do município. Plantam o que vendeu bem no ano anterior.</p>
+    <p>Não anotam nada: "eu sei de cabeça quanto sai". O técnico da EMATER ofereceu um caderno de campo e uma planilha. Ela achou que dá trabalho e não vê para quê.</p>
+    <div class="caso-q"><b>Para o grupo</b>Para uma horta desse tamanho, registrar compensa? O que faria dona Neiva mudar de ideia?</div>
+  </div>
+  <figure class="foto">
+    <img src="Aulas/produtor-rural-horta-planaltina.jpg" alt="Produtor rural de chapéu empurra carrinho de mão com caixas de verdura por entre canteiros de alface" loading="lazy" onerror="this.style.display='none'">
+    <figcaption>produtor rural leva a colheita para comercializar, Planaltina/DF · CC BY-SA 2.0, Sergio Amaral/Ministério do Desenvolvimento Social/Wikimedia Commons</figcaption>
+  </figure>
+</section>
+
+<!-- 21 · síntese dos casos · em branco -->
+<section class="slide" data-act="Casos">
+  <div class="eyebrow"><b>Casos</b> · o que os grupos encontraram</div>
+  <h2>Quatro casos, lado a lado</h2>
+  <table class="tbl tbl-wide">
+    <thead><tr><th>Caso</th><th>Fator que mais pesa</th><th>Na mão do produtor</th><th>Achado da pesquisa</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Uva</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Gado de corte</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Lavoura</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
+      <tr><td><strong>Horta</strong></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td><td><span class="gap wide"></span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ FECHAMENTO ============ -->
+
+<!-- 22 · dez princípios · votação -->
+<section class="slide" data-act="Fechamento">
+  <div class="eyebrow"><b>Fechamento</b> · dez princípios de gestão</div>
+  <h2>Quais três vocês poriam no topo?</h2>
+  <table class="tbl tbl-wide dense">
+    <thead><tr><th></th><th>Princípio</th><th class="num">Votos</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Ter objetivos e um plano para o negócio</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">2</td><td>Registrar e usar o registro para decidir</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">3</td><td>Conferir o resultado de cada decisão</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">4</td><td>Decidir olhando o lucro, não só a produção</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">5</td><td>Proteger o caixa contra o ano ruim</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">6</td><td>Acompanhar o mercado e garantir onde vender</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">7</td><td>Comparar-se com outros produtores</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">8</td><td>Aprender com técnicos e com outros produtores</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">9</td><td>Ter sucessor definido</td><td class="num"><span class="gap"></span></td></tr>
+      <tr><td class="n">10</td><td>Conhecer o custo completo de cada atividade</td><td class="num"><span class="gap"></span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 23 · o que a pesquisa diz · 1 a 5 -->
+<section class="slide" data-act="Fechamento">
+  <div class="eyebrow"><b>Fechamento</b> · o que a pesquisa diz · 1 a 5</div>
+  <div class="ev-legend">
+    <span class="ev a">vários estudos, mesma direção</span>
+    <span class="ev b">poucos estudos, mesma direção</span>
+    <span class="ev c">resultados divergentes</span>
+    <span class="ev d">evidência indireta</span>
+  </div>
+  <table class="tbl tbl-wide dense">
+    <thead><tr><th></th><th>Princípio</th><th>O que os estudos encontraram</th><th>Base</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>Objetivos e plano</strong></td><td>Ligados a resultado melhor em leiterias da Finlândia e da Grã-Bretanha e em propriedades inglesas.<span class="cit">Mäkinen, 2013; Vanhuyse, Bailey e Tranter, 2021; O'Leary et al., 2018</span></td><td><span class="ev a">vários</span></td></tr>
+      <tr><td class="n">2</td><td><strong>Registrar e usar</strong></td><td>A favor entre floricultores e em citros de SP. A revisão chama a ligação de não conclusiva.<span class="cit">Trip et al., 2002; Carrer et al., 2015</span></td><td><span class="ev c">divergentes</span></td></tr>
+      <tr><td class="n">3</td><td><strong>Conferir o resultado</strong></td><td>Monitorar e avaliar foram as etapas que mais pesaram entre floricultores. Na Finlândia, a efetividade da gestão não se ligou ao lucro.<span class="cit">Trip et al., 2002; Mäkinen, 2013</span></td><td><span class="ev c">divergentes</span></td></tr>
+      <tr><td class="n">4</td><td><strong>Olhar o lucro</strong></td><td>Ter noção da lucratividade se ligou a mais eficiência na Suécia; objetivos de negócio, ao lucro na Grã-Bretanha.<span class="cit">Hansson, 2008; O'Leary et al., 2018</span></td><td><span class="ev b">poucos</span></td></tr>
+      <tr><td class="n">5</td><td><strong>Proteger o caixa</strong></td><td>Na seca de 2006 e 2007, as fazendas que resistiram gastaram com prudência e mantiveram diversidade, que reduziu a dívida em relação à renda. 123 fazendas australianas acompanhadas de 2004 a 2009.<span class="cit">Lawes e Kingwell, 2012</span></td><td><span class="ev b">poucos</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 24 · o que a pesquisa diz · 6 a 10 -->
+<section class="slide" data-act="Fechamento">
+  <div class="eyebrow"><b>Fechamento</b> · o que a pesquisa diz · 6 a 10</div>
+  <div class="ev-legend">
+    <span class="ev a">vários estudos, mesma direção</span>
+    <span class="ev b">poucos estudos, mesma direção</span>
+    <span class="ev c">resultados divergentes</span>
+    <span class="ev d">evidência indireta</span>
+  </div>
+  <table class="tbl tbl-wide dense">
+    <thead><tr><th></th><th>Princípio</th><th>O que os estudos encontraram</th><th>Base</th></tr></thead>
+    <tbody>
+      <tr><td class="n">6</td><td><strong>Mercado e onde vender</strong></td><td>Informação de preço e um canal alternativo elevaram o preço da soja na Índia. Contrato de longo prazo se ligou a mais eficiência em citros de SP.<span class="cit">Goyal, 2010; Carrer et al., 2015</span></td><td><span class="ev b">poucos</span></td></tr>
+      <tr><td class="n">7</td><td><strong>Comparar-se</strong></td><td>Em 5.945 leiterias da Irlanda, quem usou a comparação financeira em mais anos teve o maior aumento de lucro de 2010 a 2018.<span class="cit">Ramsbottom, Läpple e Pierce, 2021; Vanhuyse, Bailey e Tranter, 2021</span></td><td><span class="ev b">poucos</span></td></tr>
+      <tr><td class="n">8</td><td><strong>Aprender com outros</strong></td><td>Assistência técnica ligada a menor custo em granjas de frango de Gana. Grupos de discussão ligados a margem e lucro maiores na Irlanda, mas os melhores produtores entram mais nos grupos.<span class="cit">Dziwornu, 2017; Hennessy, Läpple e Newman, 2011; Hennessy e Heanue, 2012; Hansson, 2008</span></td><td><span class="ev a">vários</span></td></tr>
+      <tr><td class="n">9</td><td><strong>Sucessor definido</strong></td><td>Mais investimento na Nova Zelândia e mais estratégias na Europa. Na Itália, o desempenho por capital caiu nos primeiros anos após a passagem.<span class="cit">Wright e Brown, 2019; Bertolozzi-Caredio, 2024; Bertoni, Cavicchioli e Latruffe, 2017</span></td><td><span class="ev c">divergentes</span></td></tr>
+      <tr><td class="n">10</td><td><strong>Custo completo</strong></td><td>Nenhum estudo localizado testa isso diretamente. Usar relatórios contábeis para decidir se ligou a resultado melhor na Catalunha; o tipo de sistema contábil, à lucratividade em Nova York.<span class="cit">Argilés-Bosch e Slof, 2003; Gloy, Hyde e LaDue, 2002</span></td><td><span class="ev d">indireta</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 25 · limites -->
+<section class="slide" data-act="Fechamento">
+  <div class="eyebrow"><b>Fechamento</b> · limites da evidência</div>
+  <h2>O que esses estudos ainda não conseguem dizer</h2>
+  <ul class="bullets">
+    <li>A maioria é <strong>transversal</strong>: olha as propriedades num momento só. Poucos acompanham as mesmas propriedades ao longo dos anos.</li>
+    <li>Quase nenhum é <strong>experimental</strong>. Sem experimento, fica difícil separar causa de coincidência.</li>
+    <li>Quem entra num grupo de discussão já tende a ser um produtor melhor (Hennessy, Läpple e Newman, 2011). O grupo melhora o produtor, ou o bom produtor procura o grupo?</li>
+    <li>Onde não há registro, o desempenho é medido pelo que o próprio produtor declara.</li>
+  </ul>
+  <p class="note">A revisão buscou artigos em inglês, publicados de 2013 a 2022, nas bases Scopus e Web of Science.</p>
+</section>
+
+<!-- 26 · a pergunta que fica -->
+<section class="slide" data-act="Fechamento">
+  <div class="eyebrow"><b>Fechamento</b> · a pergunta em aberto</div>
+  <h2>Por que tantos produtores <em>não registram nada?</em></h2>
+  <p class="lead">A revisão aponta essa pergunta como lacuna: ainda falta entender por que produtores não mantêm registros.</p>
+  <ul class="bullets">
+    <li>Registrar dá trabalho, e o retorno demora a aparecer.</li>
+    <li>Na Catalunha, usar relatórios contábeis compensou na propriedade média, mas não nas muito pequenas (Argilés-Bosch e Slof, 2003).</li>
+    <li>O registro sozinho não decide: precisa virar comparação e avaliação (Trip et al., 2002).</li>
+  </ul>
+  <p class="note">E na propriedade de vocês, o que se anota, e o que se faz com o que é anotado?</p>
+</section>
+
+<!-- 27 · referências 1 -->
+<section class="slide" data-act="Referências">
+  <div class="eyebrow"><b>Referências</b> · artigo base e estudos citados</div>
+  <ul class="refs">
+    <li><b>TARAMUEL-TARAMUEL, J. P.; MONTOYA-RESTREPO, I. A.; BARRIOS, D.</b> Drivers linking farmers' decision-making with farm performance: a systematic review and future research agenda. <i>Heliyon</i>, v. 9, n. 10, e20820, 2023. DOI: 10.1016/j.heliyon.2023.e20820.</li>
+    <li><b>ARGILÉS-BOSCH, J. M.; SLOF, J.</b> The use of financial accounting information and firm performance: an empirical quantification for farms. <i>Accounting and Business Research</i>, v. 33, n. 4, p. 251-273, 2003. DOI: 10.1080/00014788.2003.9729653.</li>
+    <li><b>BERTOLOZZI-CAREDIO, D.</b> The farm succession effect on farmers' management choices. <i>Land Use Policy</i>, v. 137, 107014, 2024. DOI: 10.1016/j.landusepol.2023.107014.</li>
+    <li><b>BERTONI, D.; CAVICCHIOLI, D.; LATRUFFE, L.</b> Performance post succession on Italian family farms. In: XV EAAE Congress, Parma, 2017. Disponível em: AgEcon Search, registro 261435.</li>
+    <li><b>CARRER, M. J.; SOUZA FILHO, H. M.; BATALHA, M. O.; ROSSI, F. R.</b> Farm Management Information Systems (FMIS) and technical efficiency: an analysis of citrus farms in Brazil. <i>Computers and Electronics in Agriculture</i>, v. 119, p. 105-111, 2015. DOI: 10.1016/j.compag.2015.10.013.</li>
+    <li><b>DZIWORNU, R. K.</b> Does managerial ability really drive cost efficiency? Evidence from broiler businesses. <i>Managerial and Decision Economics</i>, v. 38, n. 6, p. 731-741, 2017. DOI: 10.1002/mde.2810.</li>
+    <li><b>GLOVER, J. L.; REAY, T.</b> Sustaining the family business with minimal financial rewards: how do family farms continue? <i>Family Business Review</i>, v. 28, n. 2, p. 163-177, 2015. DOI: 10.1177/0894486513511814.</li>
+    <li><b>GLOY, B. A.; HYDE, J.; LADUE, E. L.</b> Dairy farm management and long-term farm financial performance. <i>Agricultural and Resource Economics Review</i>, v. 31, n. 2, p. 233-247, 2002. DOI: 10.1017/S1068280500004032.</li>
+    <li><b>GOYAL, A.</b> Information, direct access to farmers, and rural market performance in Central India. <i>American Economic Journal: Applied Economics</i>, v. 2, n. 3, p. 22-45, 2010. DOI: 10.1257/app.2.3.22.</li>
+    <li><b>HANSSON, H.</b> How can farmer managerial capacity contribute to improved farm performance? A study of dairy farms in Sweden. <i>Food Economics: Acta Agriculturae Scandinavica, Section C</i>, v. 5, n. 1, p. 44-61, 2008. DOI: 10.1080/16507540802172808.</li>
+    <li><b>HANSSON, H.; MANEVSKA-TASEVSKA, G.; ASMILD, M.</b> Rationalising inefficiency in agricultural production: the case of Swedish dairy agriculture. <i>European Review of Agricultural Economics</i>, 2018. DOI: 10.1093/erae/jby042.</li>
+  </ul>
+</section>
+
+<!-- 28 · referências 2 e declaração de IA -->
+<section class="slide" data-act="Referências">
+  <div class="eyebrow"><b>Referências</b> · estudos citados</div>
+  <ul class="refs">
+    <li><b>HENNESSY, T.; HEANUE, K.</b> Quantifying the effect of discussion group membership on technology adoption and farm profit on dairy farms. <i>The Journal of Agricultural Education and Extension</i>, v. 18, n. 1, p. 41-54, 2012. DOI: 10.1080/1389224X.2012.638784.</li>
+    <li><b>HENNESSY, T.; LÄPPLE, D.; NEWMAN, C.</b> The economic returns to membership of a dairy discussion group: evidence from the Irish National Farm Survey. In: 85th Annual Conference of the Agricultural Economics Society, Coventry, 2011. Disponível em: AgEcon Search, registro 108784.</li>
+    <li><b>LAWES, R. A.; KINGWELL, R. S.</b> A longitudinal examination of business performance indicators for drought-affected farms. <i>Agricultural Systems</i>, v. 106, n. 1, p. 94-101, 2012. DOI: 10.1016/j.agsy.2011.10.006.</li>
+    <li><b>MÄKINEN, H.</b> Farmers' managerial thinking and management process effectiveness as factors of financial success on Finnish dairy farms. <i>Agricultural and Food Science</i>, v. 22, n. 4, p. 452-465, 2013. DOI: 10.23986/afsci.8147.</li>
+    <li><b>O'LEARY, N. W.; BENNETT, R. M.; TRANTER, R. B.; JONES, P. J.</b> The extent that certain dairy farmer attitudes and behaviors are associated with farm business profitability. <i>Journal of Dairy Science</i>, v. 101, n. 12, p. 11275-11284, 2018. DOI: 10.3168/jds.2017-14307.</li>
+    <li><b>RAMSBOTTOM, G.; LÄPPLE, D.; PIERCE, K. M.</b> Financial benchmarking on dairy farms: exploring the relationship between frequency of use and farm performance. <i>Journal of Dairy Science</i>, v. 104, n. 3, p. 3169-3180, 2021. DOI: 10.3168/jds.2020-18843.</li>
+    <li><b>TRIP, G.; THIJSSEN, G. J.; RENKEMA, J. A.; HUIRNE, R. B. M.</b> Measuring managerial efficiency: the case of commercial greenhouse growers. <i>Agricultural Economics</i>, v. 27, n. 2, p. 175-181, 2002. DOI: 10.1016/S0169-5150(02)00035-X.</li>
+    <li><b>VANHUYSE, F.; BAILEY, A.; TRANTER, R.</b> Management practices and the financial performance of farms. <i>Agricultural Finance Review</i>, v. 81, n. 3, p. 415-429, 2021. DOI: 10.1108/AFR-08-2020-0126.</li>
+    <li><b>WRIGHT, W.; BROWN, P.</b> Succession and investment in New Zealand farming. <i>New Zealand Economic Papers</i>, v. 53, n. 2, p. 203-214, 2019. DOI: 10.1080/00779954.2017.1419501.</li>
+  </ul>
+  <p class="ia">Material didático elaborado pelo Prof. Róberson Macedo de Oliveira, Colégio Politécnico da UFSM, com apoio de inteligência artificial (Claude, Anthropic) na busca e conferência das referências, na organização didática e na diagramação. O conteúdo pedagógico, a metodologia e as decisões de planejamento são de responsabilidade do docente.</p>
+  <p class="note">Versão impressa deste material: Ctrl+P.</p>
+</section>
+
+</main>
+
+<div class="cam-guia" aria-hidden="true">câmera</div>
+
+<div class="hud">
+  <span class="act-label" id="actLabel">Extra · Decisão do produtor</span>
+  <span class="counter" id="counter">1 / 1</span>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const counter=document.getElementById('counter');
+  const actLabel=document.getElementById('actLabel');
+  const progress=document.getElementById('progress');
+  let cur=0;
+
+  function go(n,push){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    slides[cur].classList.add('on');
+    counter.textContent=(cur+1)+' / '+total;
+    const act=slides[cur].dataset.act||'';
+    actLabel.textContent='Extra · '+act;
+    progress.style.width=((cur+1)/total*100)+'%';
+    if(push!==false)history.replaceState(null,'','#'+(cur+1));
+  }
+  function next(){go(cur+1)} function prev(){go(cur-1)}
+
+  const h=parseInt(location.hash.slice(1),10);
+  go(isNaN(h)?0:h-1,false);
+  if(!isNaN(h))history.replaceState(null,'','#'+(cur+1));
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.slice(1),10);
+    if(!isNaN(n)&&n-1!==cur)go(n-1,false);
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();go(0)}
+    else if(e.key==='End'){e.preventDefault();go(total-1)}
+    else if(e.key==='g'||e.key==='G'){const b=document.body;if(b.classList.contains('guia')){b.classList.replace('guia','gravar')}else if(b.classList.contains('gravar')){b.classList.remove('gravar')}else{b.classList.add('guia')}}
+  });
+
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
