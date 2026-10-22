@@ -12,6 +12,9 @@
   - O passo 5 (implantação) só aparece quando TEMPLATES[template].perene === true (fruta, ervamate, madeira).
   - estadoCanonico(): adapta o ESTADO para o schema que o projeto final (passo 7) consome.
 
+  VERSÃO: ao publicar qualquer mudança neste arquivo, atualizar <meta name="versao-simulador">
+  (aaaa-mm-dd; duas no mesmo dia: 2026-10-22b). É ela que avisa as cópias baixadas que há versão nova.
+
   O QUE EDITAR COM FREQUÊNCIA:
   - TEMPLATES (rótulos/unidades por atividade) · FUNRURAL (1,63% PF / 2,23% PJ) ·
     MODOS (campos de manejo) · CATEGORIAS (custeio) · CULTURAS (perenes).
@@ -20,6 +23,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="versao-simulador" content="2026-10-22">
 <title>Simulador de Projeto Agropecuário · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Simulador de projeto agropecuário: preencha em 8 etapas e gere o projeto final com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/projeto.html">
@@ -69,9 +73,20 @@
   .prog.completo .prog-meta #prog-pct{color:var(--verde-ok)}
 
   /* botão salvar + sinal de estado (topo) */
-  .savebar{display:flex;align-items:center;gap:12px;margin:10px 0 2px}
-  .btn-save{font-family:var(--sans);font-size:.82rem;font-weight:500;color:#fff;background:var(--oliva);border:none;border-radius:7px;padding:7px 16px;cursor:pointer}
+  .savebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:10px 0 2px}
+  .btn-save{font-family:var(--sans);font-size:.82rem;font-weight:500;color:#fff;background:var(--oliva);border:1px solid var(--oliva);border-radius:7px;padding:7px 16px;cursor:pointer}
   .btn-save:hover{background:#2A331C}
+  .btn-save.sec{background:#fff;color:var(--oliva);border-color:var(--linha)}
+  .btn-save.sec:hover{background:var(--papel-2);border-color:var(--oliva)}
+  .savenote{font-size:.76rem;color:#8a8270;margin:6px 0 0}
+  .versao-linha{font-family:var(--mono);font-size:.72rem;color:#8a8270;margin:8px 0 0}
+  .versao-linha a{color:var(--terra)}
+  .aviso-novo{background:#F7EDE6;border:1px solid #e4c4ad;border-radius:7px;padding:8px 12px;margin:10px 0 0;font-size:.84rem;color:var(--terra)}
+  .aviso-novo button{font-family:var(--sans);font-size:.82rem;font-weight:500;color:#fff;background:var(--terra);border:none;border-radius:6px;padding:5px 12px;margin-left:6px;cursor:pointer}
+  .guia{margin:8px 0 0;font-size:.84rem;color:#4a4536}
+  .guia summary{cursor:pointer;color:var(--oliva);font-weight:500;font-size:.82rem}
+  .guia ol{background:var(--papel-2);border:1px solid var(--linha);border-left:3px solid var(--mostarda);border-radius:7px;padding:12px 14px 12px 34px;margin:8px 0 0;line-height:1.55}
+  .guia li{margin-bottom:6px} .guia li:last-child{margin-bottom:0}
   .save-status{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.72rem;color:#8a8270}
   .save-status .dot{width:9px;height:9px;border-radius:50%;background:#c9c1ab;flex:none;transition:background-color .3s,box-shadow .3s}
   .save-status.ok .dot{background:var(--verde-ok);box-shadow:0 0 0 3px rgba(61,107,46,.18)}
@@ -89,7 +104,8 @@
   .field{margin-bottom:14px}
   input,select,textarea{font-family:var(--sans);font-size:.95rem;color:var(--tinta);background:var(--papel);border:1px solid var(--linha);border-radius:7px;padding:9px 11px;width:100%}
   input:focus,select:focus,textarea:focus{outline:2px solid var(--mostarda);outline-offset:1px}
-  input[type=number]{font-family:var(--mono)}
+  input[inputmode=decimal]{font-family:var(--mono)}
+  input.invalido{border-color:var(--vermelho);outline:2px solid rgba(156,53,40,.25)}
   textarea{min-height:90px;resize:vertical;line-height:1.5}
 
   /* trio do passo 1 */
@@ -237,7 +253,7 @@
   }
   @media print{
     body{background:#fff}
-    .top,.prog,.savebar,.steps,.nav,.toolbar,.no-print{display:none!important}
+    .top,.prog,.savebar,.savenote,.steps,.nav,.toolbar,.no-print{display:none!important}
     .wrap{max-width:none;padding:0}
     section[data-step]{display:none!important}
     section[data-step="7"]{display:block!important}
@@ -302,6 +318,8 @@
     <p class="eyebrow">Simulador</p>
     <h1 id="titulo-topo">Projeto Agropecuário</h1>
     <p class="sub" id="sub-topo">Preencha em etapas; cada número se justifica e propaga para o relatório de viabilidade.</p>
+    <p class="versao-linha no-print"><span id="versao-txt"></span><span id="baixar-sim-grupo"> · <a href="projeto.html" download="simulador-projeto-agropecuario.html">baixar o simulador para usar no computador</a></span></p>
+    <p class="aviso-novo no-print" id="aviso-novo" hidden>Há uma versão mais nova do simulador (<span id="versao-nova"></span>). <button type="button" id="baixar-nova">Baixar a versão nova</button></p>
   </div>
 
   <div class="prog" id="prog">
@@ -314,10 +332,25 @@
 
   <div class="savebar" id="savebar">
     <button type="button" class="btn-save" id="btn-salvar">Salvar</button>
+    <button type="button" class="btn-save sec" id="btn-baixar">Baixar arquivo do projeto</button>
+    <button type="button" class="btn-save sec" id="btn-abrir">Abrir arquivo</button>
+    <input type="file" id="arquivo-abrir" accept=".json,application/json" hidden>
     <span class="save-status" id="save-status">
       <span class="dot"></span><span id="save-quando">salvamento automático ativo</span>
     </span>
   </div>
+  <p class="savenote">O salvamento automático fica só neste navegador, neste computador. Para continuar em outro computador ou enviar ao professor, use <b>Baixar arquivo do projeto</b> e depois <b>Abrir arquivo</b>.</p>
+  <details class="guia no-print" id="guia">
+    <summary>Como salvar, guardar versões e atualizar o simulador</summary>
+    <ol>
+      <li><b>Abrir o simulador baixado.</b> Salve o arquivo numa pasta do computador (Documentos, por exemplo) e abra com dois cliques: ele abre no navegador. Não abra pela visualização do WhatsApp ou do e-mail, porque ali nada fica salvo.</li>
+      <li><b>Onde o projeto fica salvo.</b> Enquanto você preenche, o projeto é salvo sozinho neste navegador, neste computador. Use sempre o mesmo navegador (Chrome ou Edge). Em janela anônima, ou se o histórico do navegador for apagado, o que foi salvo se perde.</li>
+      <li><b>Guardar versões.</b> Ao fim de cada aula, clique em <b>Baixar arquivo do projeto</b>. Cada clique gera um arquivo .json com a data e a hora no nome. Guarde no pendrive, no Drive ou mande por e-mail para você.</li>
+      <li><b>Continuar em outro computador ou voltar a uma versão.</b> Abra o simulador, clique em <b>Abrir arquivo</b> e escolha o .json. Para voltar a uma versão anterior, abra o .json daquela data.</li>
+      <li><b>Atualizar o simulador.</b> Quando houver versão nova, baixe o simulador de novo no site (com internet, o aviso aparece no topo desta página). O projeto continua salvo no navegador, e os arquivos .json abrem em qualquer versão.</li>
+      <li><b>Pedir ajuda.</b> Se travar ou algo der errado, baixe o arquivo do projeto e envie ao professor, dizendo a versão do simulador que aparece no topo.</li>
+    </ol>
+  </details>
 
   <nav class="steps" id="steps"></nav>
 
@@ -341,7 +374,7 @@
           <label class="lbl-aj" for="id-area-total">Área total da propriedade (ha)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-area-total">?</button>
           </label>
-          <input type="number" id="id-area-total" min="0" step="any" placeholder="ex.: 80">
+          <input type="text" inputmode="decimal" id="id-area-total" placeholder="ex.: 80">
           <div class="ajuda-box" id="aj-area-total" hidden>
             <p>Área total do imóvel rural, não a área do talhão da atividade avaliada (essa é informada no passo 1). Usada só para calcular os módulos fiscais.</p>
           </div>
@@ -350,7 +383,7 @@
           <label class="lbl-aj" for="id-modulo-fiscal">Módulo fiscal do município (ha)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-modulo-fiscal">?</button>
           </label>
-          <input type="number" id="id-modulo-fiscal" min="0" step="any" placeholder="ex.: 20">
+          <input type="text" inputmode="decimal" id="id-modulo-fiscal" placeholder="ex.: 20">
           <div class="ajuda-box" id="aj-modulo-fiscal" hidden>
             <p>Varia por município (definido pelo INCRA). Para município do RS reconhecido no campo acima, este campo é preenchido automaticamente (fonte: INCRA, IE 20/1980 e IN 45/1995, conferida em ago/2026); edite se souber de um valor mais atual. Fora do RS, consulte e informe manualmente em hectares: o simulador calcula os módulos fiscais e preenche o campo no passo Crédito.</p>
             <a href="https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/modulo-fiscal" target="_blank" rel="noopener">consultar no INCRA →</a>
@@ -444,7 +477,7 @@
             <label class="lbl-aj" for="cred-mf">Módulos fiscais
               <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-mf">?</button>
             </label>
-            <input type="number" id="cred-mf" min="0" step="any" placeholder="ex.: 3">
+            <input type="text" inputmode="decimal" id="cred-mf" placeholder="ex.: 3">
             <div class="ajuda-box" id="aj-mf" hidden>
               <p>Medida da área do imóvel, definida por município (INCRA). Importa para o enquadramento (Pronaf vai até 4 módulos fiscais).</p>
               <a href="https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/modulo-fiscal" target="_blank" rel="noopener">ver em INCRA →</a>
@@ -507,13 +540,13 @@
       </div>
       <div class="trio-row">
         <div><label id="lbl-qtd">Unidades de produção</label>
-          <input type="number" id="qtd" min="0" step="any" placeholder="ex.: 50"></div>
+          <input type="text" inputmode="decimal" id="qtd" placeholder="ex.: 50"></div>
         <div class="unidade"><label>unidade</label>
           <input type="text" id="un-qtd" aria-label="unidade da quantidade"></div>
       </div>
       <div class="trio-row">
         <div><label id="lbl-prod">Produtividade</label>
-          <input type="number" id="prod" min="0" step="any" placeholder="ex.: 60"></div>
+          <input type="text" inputmode="decimal" id="prod" placeholder="ex.: 60"></div>
         <div class="unidade"><label>unidade</label>
           <input type="text" id="un-prod" aria-label="unidade da produtividade"></div>
       </div>
@@ -522,7 +555,7 @@
           <label class="lbl-aj" id="lbl-preco">Preço
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-preco">?</button>
           </label>
-          <input type="number" id="preco" min="0" step="any" placeholder="ex.: 120">
+          <input type="text" inputmode="decimal" id="preco" placeholder="ex.: 120">
           <div class="ajuda-box" id="aj-preco" hidden>
             <p>Use o preço na porteira (já líquido de frete e classificação), não a cotação de bolsa. Confira na cooperativa, sindicato ou EMATER.</p>
             <a href="parte-4.html#preco" target="_blank" rel="noopener">ver no site →</a>
@@ -550,7 +583,7 @@
           </div>
         </div>
         <div class="field"><label for="sec-valor">Valor (R$)</label>
-          <input type="number" id="sec-valor" min="0" step="any" placeholder="0"></div>
+          <input type="text" inputmode="decimal" id="sec-valor" placeholder="0"></div>
       </div>
       <p class="hint" id="hint-sec"></p>
     </div>
@@ -562,7 +595,7 @@
           <label class="lbl-aj" for="comerc">Comercialização (% sobre a receita)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-deducoes">?</button>
           </label>
-          <input type="number" id="comerc" min="0" step="any" placeholder="ex.: 3">
+          <input type="text" inputmode="decimal" id="comerc" placeholder="ex.: 3">
           <div class="ajuda-box" id="aj-deducoes" hidden>
             <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE): isso é o passo seguinte.</p>
             <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
@@ -651,7 +684,7 @@
           <label class="lbl-aj" for="seguro">Seguro (%)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-seguro">?</button>
           </label>
-          <input type="number" id="seguro" min="0" step="any" placeholder="ex.: 2">
+          <input type="text" inputmode="decimal" id="seguro" placeholder="ex.: 2">
           <div class="ajuda-box" id="aj-seguro" hidden>
             <p>Seguro da produção (ex.: Proagro). Se não contratou, coloque 0.</p>
             <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
@@ -661,7 +694,7 @@
           <label class="lbl-aj" for="ater">Assistência técnica (%)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-ater">?</button>
           </label>
-          <input type="number" id="ater" min="0" step="any" placeholder="ex.: 2">
+          <input type="text" inputmode="decimal" id="ater" placeholder="ex.: 2">
           <div class="ajuda-box" id="aj-ater" hidden>
             <p>Honorário do técnico que elabora e acompanha o projeto: 0,5% a 2% do valor financiado. A taxa de 2% é a mais comum e geralmente aplicada quando o profissional também presta assistência técnica contínua na aplicação dos recursos durante a safra.</p>
             <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
@@ -671,7 +704,7 @@
           <label class="lbl-aj" for="juros">Juros de custeio (%)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-juros">?</button>
           </label>
-          <input type="number" id="juros" min="0" step="any" placeholder="ex.: 8">
+          <input type="text" inputmode="decimal" id="juros" placeholder="ex.: 8">
           <div class="ajuda-box" id="aj-juros" hidden>
             <p>Custo do crédito tomado. Sem crédito, coloque 0.</p>
             <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
@@ -720,20 +753,20 @@
       <h2><span class="n">2</span>Outros fixos e remuneração dos fatores</h2>
       <div class="grid2">
         <div class="field"><label for="prolabore">Pró-labore anual (R$)</label>
-          <input type="number" id="prolabore" min="0" step="any" placeholder="0"></div>
+          <input type="text" inputmode="decimal" id="prolabore" placeholder="0"></div>
         <div class="field"><label for="outros">Outros fixos (R$)</label>
-          <input type="number" id="outros" min="0" step="any" placeholder="0"></div>
+          <input type="text" inputmode="decimal" id="outros" placeholder="0"></div>
       </div>
       <p class="note">Remuneração dos fatores é custo de oportunidade (opcional). Em geral
       basta a mais perceptível; não precisa somar as duas.</p>
       <div class="grid2" style="margin-top:6px">
         <div class="field"><label for="taxa-cap">Remuneração do capital: taxa (% a.a.)</label>
-          <input type="number" id="taxa-cap" min="0" step="any" placeholder="ex.: 6 (poupança)"></div>
+          <input type="text" inputmode="decimal" id="taxa-cap" placeholder="ex.: 6 (poupança)"></div>
         <div class="field"><label for="arrend">Remuneração da terra: arrendamento (R$/ha)</label>
-          <input type="number" id="arrend" min="0" step="any" placeholder="0"></div>
+          <input type="text" inputmode="decimal" id="arrend" placeholder="0"></div>
       </div>
       <div class="field"><label for="area">Área para arrendamento (ha)</label>
-        <input type="number" id="area" min="0" step="any" placeholder="0"></div>
+        <input type="text" inputmode="decimal" id="area" placeholder="0"></div>
     </div>
     <div class="card destaque">
       <h2 class="lbl-aj"><span class="n">=</span>COE → COT → CT
@@ -768,14 +801,14 @@
           <label class="lbl-aj" for="form">Anos de formação (até produzir)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-perene">?</button>
           </label>
-          <input type="number" id="form" min="0" step="1" placeholder="ex.: 3">
+          <input type="text" inputmode="decimal" id="form" placeholder="ex.: 3">
           <div class="ajuda-box" id="aj-perene" hidden>
             <p>Perenes têm anos de formação antes de produzir. O investimento do ano 0 entra na análise plurianual (VPL/TIR/payback). A depreciação da formação flui automaticamente para o passo de custos fixos.</p>
             <a href="parte-5.html#perenes" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
         <div class="field"><label for="vida">Vida útil produtiva (anos)</label>
-          <input type="number" id="vida" min="1" step="1" placeholder="ex.: 20"></div>
+          <input type="text" inputmode="decimal" id="vida" placeholder="ex.: 20"></div>
       </div>
       <div class="timeline" id="timeline"></div>
       <p class="tl-leg" id="tl-leg"></p>
@@ -786,7 +819,7 @@
       <button class="btn" id="add-imp">+ adicionar item</button>
       <div class="subtotal"><span>Investimento por ha</span><span class="v" id="sub-ha">R$ 0,00</span></div>
       <div class="field" style="margin-top:14px"><label for="area5">Área implantada (ha)</label>
-        <input type="number" id="area5" min="0" step="any" placeholder="ex.: 5"></div>
+        <input type="text" inputmode="decimal" id="area5" placeholder="ex.: 5"></div>
     </div>
     <div class="card destaque">
       <h2><span class="n">=</span>Investimento total</h2>
@@ -839,9 +872,9 @@
       </div>
       <div class="grid2">
         <div class="field"><label for="custoform">Custo de formação anual (R$)</label>
-          <input type="number" id="custoform" min="0" step="any" placeholder="0"></div>
+          <input type="text" inputmode="decimal" id="custoform" placeholder="0"></div>
         <div class="field"><label for="taxa">Taxa de desconto (% a.a.)</label>
-          <input type="number" id="taxa" min="0" step="any" placeholder="ex.: 6"></div>
+          <input type="text" inputmode="decimal" id="taxa" placeholder="ex.: 6"></div>
       </div>
       <p class="note" id="dica-form"></p>
       <div class="kpis">
@@ -886,6 +919,7 @@
       </div>
     </div>
     <span class="sp"></span>
+    <button class="btn ghost" id="recuperar" hidden>recuperar projeto anterior</button>
     <button class="btn ghost" id="reiniciar">reiniciar</button>
     <span class="saved" id="saved"></span>
   </div>
@@ -899,10 +933,19 @@
 const el  = id => document.getElementById(id);
 const brl = v => (Number(v)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const pct = v => (v*100).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
-const num = v => {const n=Number(v); return isNaN(n)?0:n;};
-const numv= v => {const n=parseFloat(v); return isNaN(n)||n<0?0:n;};
+// lê número como o aluno digita: "9,5", "1.364,80", "180.000", "R$ 115", "2%" (e "9.5" dos exemplos)
+function paraNumero(v){
+  if(typeof v==='number') return v;
+  let s=String(v==null?'':v).replace(/[R$%\s]/g,'');
+  if(s==='') return NaN;
+  if(s.includes(',')) s=s.replace(/\./g,'').replace(',','.');      // vírgula decimal, ponto de milhar
+  else if(/^-?[1-9]\d{0,2}(\.\d{3})+$/.test(s)) s=s.replace(/\./g,''); // só ponto de milhar: 180.000
+  return /^-?(\d+\.?\d*|\.\d+)$/.test(s)?Number(s):NaN;
+}
+const num = v => {const n=paraNumero(v); return isNaN(n)?0:n;};
+const numv= v => {const n=paraNumero(v); return isNaN(n)||n<0?0:n;};
 const inteiro = v => {const n=parseInt(v,10); return isNaN(n)?0:n;};
-const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 // ===========================================================================
 // TEMPLATES — objeto único fundido (passos 1+2+3+4).
@@ -1149,7 +1192,7 @@ const MODULO_FISCAL_RS = {
 };
 function normalizarMunicipio(s){
   return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()
-    .replace(/\s*[\/,]\s*rs\s*$/i,'').trim();
+    .replace(/\s*[\/,\-–]?\s*rs\s*$/i,'').replace(/\s+/g,' ').trim();
 }
 const MODULO_FISCAL_RS_NORM = {};
 for(const [nome,ha] of Object.entries(MODULO_FISCAL_RS)){
@@ -1311,7 +1354,7 @@ function montarFluxos(form,vida,inv,cf,rl,ct){
 // --- persistência ---
 let saveTimer=null;
 function marcarSalvo(hora){
-  const txt = 'salvo · ' + hora;
+  const txt = 'salvo neste navegador · ' + hora;
   el('saved').textContent = txt;                       // carimbo da barra de baixo
   const s = el('save-status');                         // sinal do topo
   s.classList.remove('pendente','erro'); s.classList.add('ok');
@@ -1334,6 +1377,52 @@ function persistir(E){
 function carregarSalvo(){
   try{ const t=localStorage.getItem(KEY); return t?JSON.parse(t):null; }catch(e){ return null; }
 }
+// arquivo do projeto (.json): leva o trabalho para outro computador ou para o professor
+function baixarArquivo(){
+  const E=coletarTudo();
+  const nome=(E.identificacao.projeto||'projeto').normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^\w]+/g,'-').replace(/^-+|-+$/g,'').toLowerCase().slice(0,50)||'projeto';
+  const d=new Date(), dd=x=>String(x).padStart(2,'0');
+  const dia=d.getFullYear()+'-'+dd(d.getMonth()+1)+'-'+dd(d.getDate())+'_'+dd(d.getHours())+'h'+dd(d.getMinutes());
+  const blob=new Blob([JSON.stringify({app:'simulador-projeto-agropecuario',versao:1,simulador:VERSAO,salvoEm:d.toISOString(),estado:E},null,1)],{type:'application/json'});
+  baixarBlob(blob, nome+'-'+dia+'.json');
+}
+function baixarBlob(blob,nome){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=nome;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+
+// versão do simulador (meta no <head>) e aviso de versão nova nas cópias baixadas
+const SITE='https://robersonoliveira-afk.github.io/Site/';
+const VERSAO=(document.querySelector('meta[name="versao-simulador"]')||{}).content||'';
+const dataVersao=v=>{const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(v); return m?m[3]+'/'+m[2]+'/'+m[1]:v;};
+function verificarVersaoNova(){
+  if(location.protocol!=='file:'||!window.fetch) return;
+  fetch(SITE+'projeto.html',{cache:'no-store'}).then(r=>r.ok?r.text():Promise.reject()).then(txt=>{
+    const m=/<meta name="versao-simulador" content="([^"]+)">/.exec(txt);
+    if(!m||!(m[1]>VERSAO)) return;
+    el('versao-nova').textContent='de '+dataVersao(m[1]);
+    el('aviso-novo').hidden=false;
+    el('baixar-nova').onclick=()=>baixarBlob(new Blob([txt],{type:'text/html'}),'simulador-projeto-agropecuario.html');
+  }).catch(()=>{});   // sem internet: segue sem aviso
+}
+function abrirArquivo(file){
+  const r=new FileReader();
+  r.onload=()=>{
+    let E;
+    try{ const j=JSON.parse(r.result); E=(j&&j.estado)?j.estado:j; }catch(e){ E=null; }
+    if(!E||typeof E!=='object'||!(E.p1||E.identificacao)){
+      alert('Este arquivo não é um projeto do simulador. Escolha o arquivo .json baixado em "Baixar arquivo do projeto".');
+      return;
+    }
+    if(!confirm('Abrir o projeto "'+((E.identificacao&&E.identificacao.projeto)||file.name)+'"? Isso substitui o que está preenchido.')) return;
+    trocarProjeto(E);
+  };
+  r.onerror=()=>alert('Não foi possível ler o arquivo.');
+  r.readAsText(file);
+}
 
 // ===========================================================================
 // PROGRESSO — quanto do projeto já está preenchido (0–100%)
@@ -1344,31 +1433,36 @@ function progresso(E){
   const ok  = v => String(v==null?'':v).trim()!=='';
   const pos = v => numv(v)>0;
   const perene = ehPerene(E.template);
-  const c = [];
+  const c = [];   // [rótulo do que falta, preenchido?]
   // 0 · identificação
-  c.push(ok(E.identificacao.projeto), ok(E.identificacao.produtor),
-         ok(E.identificacao.municipio), ok(E.identificacao.unidade));
+  c.push(['título do projeto (passo 0)',ok(E.identificacao.projeto)], ['produtor (passo 0)',ok(E.identificacao.produtor)],
+         ['município (passo 0)',ok(E.identificacao.municipio)], ['unidade de produção (passo 0)',ok(E.identificacao.unidade)]);
   // 1 · receita
-  c.push(ok(E.p1.produto), pos(E.p1.qtd), pos(E.p1.prod), pos(E.p1.preco));
-  // 2 · manejo
-  const nCampos = Object.values(E.p2.campos).filter(ok).length;
-  c.push(ok(E.p2.observacoes), nCampos>=1, nCampos>=3);
+  c.push(['produto (passo 1)',ok(E.p1.produto)], ['quantidade (passo 1)',pos(E.p1.qtd)],
+         ['produtividade (passo 1)',pos(E.p1.prod)], ['preço (passo 1)',pos(E.p1.preco)]);
+  // 2 · manejo ("-" é o mês não escolhido)
+  const nCampos = Object.values(E.p2.campos).filter(v=>ok(v)&&v!=='-').length;
+  c.push(['observações de manejo (passo 2)',ok(E.p2.observacoes)], ['campos de manejo (passo 2)',nCampos>=1],
+         ['mais campos de manejo (passo 2)',nCampos>=3]);
   // 3 · custeio
   const nCoe = E.p3.itens.filter(it=>ok(it.desc)&&pos(it.preco)).length;
-  c.push(nCoe>=1, nCoe>=3);
-  // 4 · fixos
+  c.push(['um item de custeio com preço (passo 3)',nCoe>=1], ['ao menos 3 itens de custeio (passo 3)',nCoe>=3]);
+  // 4 · fixos (no perene, a formação já deprecia sozinha)
   const nBens = E.p4.bens.filter(b=>ok(b.desc)&&pos(b.aq)).length;
-  c.push(nBens>=1, pos(E.p4.prolabore)||pos(E.p4.outros));
+  const depForm = perene && pos(E.p5.vida) && E.p5.itens.some(it=>pos(it.qtd)&&pos(it.preco)) && pos(E.p5.area);
+  c.push(['um bem depreciável (passo 4)',nBens>=1||depForm], ['pró-labore ou outros fixos (passo 4)',pos(E.p4.prolabore)||pos(E.p4.outros)]);
   // 5 · implantação (só perenes)
   if(perene){
     const nImp = E.p5.itens.filter(it=>ok(it.desc)&&pos(it.preco)).length;
-    c.push(pos(E.p5.form), pos(E.p5.vida), nImp>=1, pos(E.p5.area), pos(E.p6.taxaDesconto));
+    c.push(['anos de formação (implantação)',pos(E.p5.form)], ['vida útil (implantação)',pos(E.p5.vida)],
+           ['item de implantação (implantação)',nImp>=1], ['área implantada (implantação)',pos(E.p5.area)],
+           ['taxa de desconto (resultado)',pos(E.p6.taxaDesconto)]);
   }
-  const feitos = c.filter(Boolean).length, total = c.length;
-  return {pct: Math.round(feitos/total*100), feitos, total};
+  const feitos = c.filter(x=>x[1]).length, total = c.length;
+  return {pct: Math.round(feitos/total*100), feitos, total, faltam:c.filter(x=>!x[1]).map(x=>x[0])};
 }
 function atualizarProgresso(E){
-  const {pct, feitos, total} = progresso(E);
+  const {pct, feitos, total, faltam} = progresso(E);
   el('prog-fill').style.width = pct + '%';
   el('prog-fill').style.backgroundColor = 'hsl(' + Math.round(pct*1.2) + ' 55% 42%)'; // 0=vermelho → 120=verde
   el('prog-pct').textContent = pct + '%';
@@ -1377,7 +1471,7 @@ function atualizarProgresso(E){
   if(pct===0)      msg = 'comece pela identificação';
   else if(pct<34)  msg = 'começo de projeto, siga preenchendo';
   else if(pct<67)  msg = feitos + ' de ' + total + ' campos-chave preenchidos';
-  else if(pct<100) msg = 'quase lá, falta(m) ' + (total-feitos) + ' campo(s) para fechar';
+  else if(pct<100) msg = 'falta: ' + faltam.slice(0,3).join(', ') + (faltam.length>3?' e mais '+(faltam.length-3):'');
   else             msg = 'projeto completo · gere o relatório';
   el('prog-msg').textContent = msg;
 }
@@ -1421,7 +1515,7 @@ function montarCampo(c){
   if(c.tipo==='select'){
     controle='<select id="m-'+c.id+'" data-campo="'+c.id+'">'+c.opcoes.map(o=>'<option value="'+esc(o)+'">'+esc(o)+'</option>').join('')+'</select>';
   }else if(c.tipo==='num'){
-    controle='<input type="number" id="m-'+c.id+'" data-campo="'+c.id+'" min="0" step="any" placeholder="'+esc(c.ph||'0')+'">';
+    controle='<input type="text" inputmode="decimal" id="m-'+c.id+'" data-campo="'+c.id+'" placeholder="'+esc(c.ph||'0')+'">';
   }else{
     controle='<input type="text" id="m-'+c.id+'" data-campo="'+c.id+'" placeholder="'+esc(c.ph||'')+'">';
   }
@@ -1472,8 +1566,8 @@ function addCoe(desc='',cat='',un='',qtd='',preco=''){
     '<div class="quad">'+
     '<div><label>Categoria</label><input type="text" class="i-cat" list="cats" value="'+esc(cat)+'" placeholder="categoria"></div>'+
     '<div><label>Unidade</label><input type="text" class="i-un" value="'+esc(un)+'" placeholder="kg, L, dose, h-máq..."></div>'+
-    '<div><label class="lbl-qtd">qtd por '+un_base+'</label><input type="number" class="i-qtd" min="0" step="any" value="'+qtd+'" placeholder="0"></div>'+
-    '<div><label>Preço unitário (R$)</label><input type="number" class="i-preco" min="0" step="any" value="'+preco+'" placeholder="0"></div></div>'+
+    '<div><label class="lbl-qtd">qtd por '+un_base+'</label><input type="text" inputmode="decimal" class="i-qtd" value="'+esc(qtd)+'" placeholder="0"></div>'+
+    '<div><label>Preço unitário (R$)</label><input type="text" inputmode="decimal" class="i-preco" value="'+esc(preco)+'" placeholder="0"></div></div>'+
     '<div class="total-item">custo por '+un_base+': <b class="v-und">R$ 0,00</b> · custo total: <b class="v-tot">R$ 0,00</b></div>';
   el('itens-coe').appendChild(div);
   div.querySelector('.rm').addEventListener('click',()=>{div.remove();recalc();});
@@ -1485,9 +1579,9 @@ function addDep(desc='',aq='',res='',vida=''){
     '<input type="text" class="i-desc" value="'+esc(desc)+'" placeholder="ex.: trator, galpão, matrizes, pomar..."></div>'+
     '<button class="rm" type="button">remover</button></div>'+
     '<div class="triq">'+
-    '<div><label>Valor de aquisição (R$)</label><input type="number" class="i-aq" min="0" step="any" value="'+aq+'" placeholder="0"></div>'+
-    '<div><label>Valor residual (R$)</label><input type="number" class="i-res" min="0" step="any" value="'+res+'" placeholder="0"></div>'+
-    '<div><label>Vida útil (anos)</label><input type="number" class="i-vida" min="0" step="any" value="'+vida+'" placeholder="ex.: 10"></div></div>'+
+    '<div><label>Valor de aquisição (R$)</label><input type="text" inputmode="decimal" class="i-aq" value="'+esc(aq)+'" placeholder="0"></div>'+
+    '<div><label>Valor residual (R$)</label><input type="text" inputmode="decimal" class="i-res" value="'+esc(res)+'" placeholder="0"></div>'+
+    '<div><label>Vida útil (anos)</label><input type="text" inputmode="decimal" class="i-vida" value="'+esc(vida)+'" placeholder="ex.: 10"></div></div>'+
     '<div class="total-item">depreciação anual: <b class="v-dep">R$ 0,00</b></div>';
   el('itens-dep').appendChild(div);
   div.querySelector('.rm').addEventListener('click',()=>{div.remove();recalc();});
@@ -1500,8 +1594,8 @@ function addImp(desc='',un='',qtd='',preco=''){
     '<button class="rm" type="button">remover</button></div>'+
     '<div class="tri">'+
     '<div><label>Unidade</label><input type="text" class="i-un" value="'+esc(un)+'" placeholder="muda, m, h-máq..."></div>'+
-    '<div><label>Qtd por ha</label><input type="number" class="i-qtd" min="0" step="any" value="'+qtd+'" placeholder="0"></div>'+
-    '<div><label>Preço unitário (R$)</label><input type="number" class="i-preco" min="0" step="any" value="'+preco+'" placeholder="0"></div></div>'+
+    '<div><label>Qtd por ha</label><input type="text" inputmode="decimal" class="i-qtd" value="'+esc(qtd)+'" placeholder="0"></div>'+
+    '<div><label>Preço unitário (R$)</label><input type="text" inputmode="decimal" class="i-preco" value="'+esc(preco)+'" placeholder="0"></div></div>'+
     '<div class="total-item">custo por ha: <b class="v-ha">R$ 0,00</b></div>';
   el('itens-imp').appendChild(div);
   div.querySelector('.rm').addEventListener('click',()=>{div.remove();recalc();});
@@ -1995,7 +2089,7 @@ const EXEMPLO = {
     ameacas:"Veranicos e irregularidade de chuvas no período crítico da cultura; oscilação do câmbio e do preço internacional da commodity; pragas e doenças com resistência crescente (percevejo, ferrugem-asiática); alta do custo de fertilizantes e defensivos importados.",
   },
   p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"115", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:""},
-  p2:{campos:{sistema:"Plantio direto (cobertura de inverno: azevém ou aveia-preta)", cultivar:"Variedade precoce, ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
+  p2:{campos:{sistema:"Plantio direto", cultivar:"Variedade precoce, ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
     observacoes:"Antes de semear, analise o solo e corrija o pH para 6,0–6,5 com calcário. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo, em R1 (floração), R3 (início de grão) e R5 (enchimento de grão), alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
   p3:{itens:[
     {desc:"Fertilizantes: NPK base + ureia cobertura", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"2000"},
@@ -2140,7 +2234,7 @@ function atualizarModulosFiscais(){
   const hint=el('hint-modulos-fiscais');
   if(areaTotal>0 && moduloHa>0){
     const n=areaTotal/moduloHa;
-    el('cred-mf').value=n.toFixed(2);
+    el('cred-mf').value=n.toLocaleString('pt-BR',{maximumFractionDigits:2});
     hint.innerHTML='≈ <b>'+n.toLocaleString('pt-BR',{maximumFractionDigits:2})+'</b> módulos fiscais ('+
       areaTotal.toLocaleString('pt-BR')+' ha ÷ '+moduloHa.toLocaleString('pt-BR')+' ha por módulo). '+
       'Preenchido automaticamente em "Módulos fiscais" (passo Crédito); edite lá se precisar ajustar.';
@@ -2177,7 +2271,14 @@ function toggleCredito(){
 
 const wrapEl=document.querySelector('.wrap');
 wrapEl.addEventListener('input',e=>{
+  if(e.target.type==='file') return;
   marcarPendente();
+  // número que não dá para ler (ex.: letras) fica marcado em vermelho em vez de virar zero calado
+  if(e.target.getAttribute('inputmode')==='decimal'){
+    const v=e.target.value.trim();
+    e.target.classList.toggle('invalido', v!=='' && isNaN(paraNumero(v)));
+    e.target.title=e.target.classList.contains('invalido')?'Use só números, com vírgula nos decimais: 1364,80 ou 1.364,80':'';
+  }
   if(e.target.id==='template'){ aplicarTemplate(true); if(!passosAtivos().includes(passoAtual)) irPara(0); else renderSteps(); }
   if(e.target.id==='usa-credito') toggleCredito();
   if(e.target.id==='id-municipio'){
@@ -2200,6 +2301,13 @@ el('btn-salvar').addEventListener('click',()=>{
   persistir(coletarTudo());
   const s=el('save-status'); s.classList.add('flash'); setTimeout(()=>s.classList.remove('flash'),650);
 });
+el('btn-baixar').addEventListener('click',()=>{ clearTimeout(saveTimer); persistir(coletarTudo()); baixarArquivo(); });
+el('btn-abrir').addEventListener('click',()=>el('arquivo-abrir').click());
+el('arquivo-abrir').addEventListener('change',e=>{ const f=e.target.files[0]; if(f) abrirArquivo(f); e.target.value=''; });
+// Ctrl+P em qualquer passo imprime o relatório com os números atuais
+window.addEventListener('beforeprint',()=>{ const E=coletarTudo(); montarDossie(estadoCanonico(E,derivar(E))); });
+// fechar a aba logo depois de digitar não perde a última alteração
+window.addEventListener('pagehide',()=>{ clearTimeout(saveTimer); persistir(coletarTudo()); });
 el('add-coe').addEventListener('click',()=>{addCoe();recalc();});
 el('add-dep').addEventListener('click',()=>{addDep();recalc();});
 el('add-imp').addEventListener('click',()=>{addImp();recalc();});
@@ -2210,25 +2318,58 @@ el('next').addEventListener('click',()=>{
   else vizinho(1);
 });
 el('print').addEventListener('click',()=>window.print());
-el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel (soja)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO); renderSteps(); recalc(); irPara(0); }});
-el('exemplo-uva').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Uva BRS Magna (Campanha Gaúcha)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_UVA); renderSteps(); recalc(); irPara(0); }});
-el('exemplo-bovinos').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Recria de bovinos de corte (Braford)? Isso substitui o que está preenchido.')){ aplicarEstado(EXEMPLO_BOVINOS); renderSteps(); recalc(); irPara(0); }});
+// antes de trocar o projeto (exemplo, abrir arquivo, reiniciar), o atual fica guardado para recuperar
+const KEY_ANT = KEY+'_anterior';
+function guardarAnterior(){
+  const E=coletarTudo(); if(progresso(E).feitos===0) return;
+  try{ localStorage.setItem(KEY_ANT, JSON.stringify(E)); }catch(e){}
+  mostrarRecuperar();
+}
+function mostrarRecuperar(){
+  let tem=false; try{ tem=!!localStorage.getItem(KEY_ANT); }catch(e){}
+  el('recuperar').hidden=!tem;
+}
+function trocarProjeto(E){ guardarAnterior(); aplicarEstado(E); renderSteps(); recalc(); irPara(0); }
+const AVISO_TROCA=' Isso substitui o que está preenchido; o projeto atual pode ser recuperado depois em "recuperar projeto anterior".';
+el('exemplo').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de São Gabriel (soja)?'+AVISO_TROCA)) trocarProjeto(EXEMPLO); });
+el('exemplo-uva').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Uva BRS Magna (Campanha Gaúcha)?'+AVISO_TROCA)) trocarProjeto(EXEMPLO_UVA); });
+el('exemplo-bovinos').addEventListener('click',()=>{ if(confirm('Carregar o exemplo de Recria de bovinos de corte (Braford)?'+AVISO_TROCA)) trocarProjeto(EXEMPLO_BOVINOS); });
 el('reiniciar').addEventListener('click',()=>{
-  if(confirm('Reiniciar o projeto? Tudo será apagado.')){
-    try{localStorage.removeItem(KEY);}catch(e){}
-    aplicarEstado(estadoVazio()); renderSteps(); recalc(); irPara(0);
-  }
+  if(confirm('Reiniciar o projeto? Tudo será apagado; o projeto atual pode ser recuperado depois em "recuperar projeto anterior".')) trocarProjeto(estadoVazio());
+});
+el('recuperar').addEventListener('click',()=>{
+  let A=null; try{ A=JSON.parse(localStorage.getItem(KEY_ANT)); }catch(e){}
+  if(!A){ mostrarRecuperar(); return; }
+  if(!confirm('Voltar ao projeto anterior "'+((A.identificacao&&A.identificacao.projeto)||'sem título')+'"? O que está na tela agora passa a ser o anterior.')) return;
+  trocarProjeto(A);
 });
 
 // ===========================================================================
 // INIT
 // ===========================================================================
 (function init(){
+  // arquivo aberto do computador (file://): os links "ver no site" apontam para o site publicado
+  if(location.protocol==='file:'){
+    document.querySelectorAll('a[href]').forEach(a=>{
+      const h=a.getAttribute('href');
+      if(!/^(https?:|mailto:|#)/.test(h)) a.href=SITE+h;
+    });
+    el('baixar-sim-grupo').hidden=true;   // já é a cópia baixada
+  }
+  el('versao-txt').textContent='versão de '+dataVersao(VERSAO);
+  verificarVersaoNova();
   const salvo=carregarSalvo();
-  aplicarEstado(salvo||estadoVazio());
+  try{ aplicarEstado(salvo||estadoVazio()); }
+  catch(e){
+    // projeto salvo ilegível: guarda uma cópia e abre em branco, em vez de travar a página
+    try{ localStorage.setItem(KEY+'_backup',JSON.stringify(salvo)); }catch(_){}
+    aplicarEstado(estadoVazio());
+    alert('Não foi possível abrir o projeto salvo neste navegador. Uma cópia foi guardada; o simulador abriu em branco.');
+  }
   renderSteps();
   recalc();
   irPara(0);
+  mostrarRecuperar();
 })();
 </script>
 </body>
