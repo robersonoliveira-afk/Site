@@ -1,793 +1,156 @@
 <!DOCTYPE html>
+<!--
+  Capa do site (entrada única): a porteira se abre e leva aos dois ambientes,
+  a disciplina (disciplina.html) e o curso para produtores (produtor/).
+  A animação roda na primeira visita; nas seguintes a porteira já aparece aberta
+  (localStorage "pnb_capa"). Com "reduzir movimento" no sistema, nada se move.
+-->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#A8552E">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
-<title>Gestão de Custos e Projetos Agropecuários · Colégio Politécnico da UFSM</title>
-<meta name="description" content="Material de apoio em Gestão de Custos e Projetos Agropecuários do Colégio Politécnico da UFSM: 6 partes, simulador de viabilidade e painel de crédito rural do RS.">
+<meta name="theme-color" content="#2A331C">
+<title>Produzir Não Basta · gestão de custos e projetos no campo</title>
+<meta name="description" content="Gestão de custos e projetos agropecuários para quem estuda e para quem produz: a disciplina do Colégio Politécnico da UFSM e o curso Gestão da Propriedade Rural, para produtores.">
 <link rel="canonical" href="https://robersonoliveira-afk.github.io/Site/">
+<link rel="icon" href="produtor/marca.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Produzir Não Basta">
+<meta property="og:title" content="Produzir Não Basta">
+<meta property="og:description" content="Gestão de custos e projetos no campo, para quem estuda e para quem produz.">
+<meta property="og:url" content="https://robersonoliveira-afk.github.io/Site/">
+<meta property="og:image" content="https://robersonoliveira-afk.github.io/Site/og-produzir-nao-basta.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  // visita de volta: porteira já aberta, sem animação
+  try{ if(localStorage.getItem('pnb_capa')) document.documentElement.classList.add('direto');
+       localStorage.setItem('pnb_capa','1'); }catch(e){}
+</script>
 <style>
 :root{
-  --paper:#FAF7F0;
-  --paper-warm:#F4EFE2;
-  --ink:#1A1A17;
-  --ink-soft:#3A3833;
-  --stone:#6B6960;
-  --stone-light:#9B9890;
-  --olive:#3D4A2A;
-  --olive-deep:#2A331C;
-  --terra:#A8552E;
-  --mustard:#B89233;
-  --mustard-ink:#3A2F08;
-  --rule:#D9D3C2;
-  --rule-soft:#E8E3D3;
-  --highlight:#F2E8C9;
-  --success-bg:#E4EAD2;
+  --paper:#FAF7F0; --paper-warm:#F4EFE2; --ink:#1A1A17; --ink-soft:#3A3833; --stone:#6B6960;
+  --olive:#3D4A2A; --olive-deep:#2A331C; --terra:#A8552E; --terra-deep:#7C3D1F;
+  --mustard:#B89233; --mustard-soft:#E3C46E; --rule:#D9D3C2;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;font-feature-settings:'ss01','cv11';-webkit-font-smoothing:antialiased}
+html,body{min-height:100%}
+body{background:var(--olive-deep);background-image:radial-gradient(ellipse 90% 60% at 50% 0%,#3B4A27 0%,var(--olive-deep) 70%);
+  color:var(--paper);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;min-height:100vh}
+a{color:inherit}
 
-/* ===== TOPO: banner + barra com logo ===== */
-.header-banner{display:block;width:100%;height:auto;border-bottom:3px solid var(--olive)}
-.hero-wrap{position:relative}
-.hero-hotspot{position:absolute;left:0;top:0;width:20%;height:100%;cursor:pointer;outline:none;
-  -webkit-tap-highlight-color:transparent}
-.hero-hotspot:hover,.hero-hotspot:focus-visible{box-shadow:inset 0 0 0 1px rgba(250,247,240,.55);
-  background:radial-gradient(ellipse at 35% 45%,rgba(250,247,240,.14),transparent 70%)}
-.hero-hotspot-familia{left:82.5%;top:42%;width:9%;height:15%}
-.header-bar{display:flex;align-items:center;gap:18px;padding:18px 22px;background:var(--olive-deep);color:var(--paper)}
-.header-logo-chip{flex-shrink:0;background:var(--paper);padding:9px 13px;border-radius:3px;display:flex;align-items:center}
-.header-logo{height:44px;width:auto;display:block}
-.header-text h1{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.15;letter-spacing:-0.01em;color:var(--paper)}
-.header-text p{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;color:rgba(250,247,240,0.7);margin-top:5px;text-transform:uppercase}
-.header-text a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.capa{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 18px 36px;max-width:960px;margin:0 auto;width:100%}
 
-/* ===== INTRO ===== */
-.intro{padding:34px 22px 26px;border-bottom:1px solid var(--rule)}
-.intro .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.intro .eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
-.intro h2{font-family:'Fraunces',serif;font-weight:500;font-size:25px;line-height:1.15;letter-spacing:-0.015em;color:var(--ink);margin-bottom:14px}
-.intro h2 em{font-style:italic;color:var(--olive)}
-.intro p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;max-width:62ch}
+/* porteira */
+.porteira{width:min(52vw,220px);height:auto;display:block;border-radius:22%;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.porteira .sol{transform-box:view-box;transform-origin:40px 30px;transform:translateY(-2.5px)}
+.porteira .halo{opacity:.28}
 
-/* ===== MOVIMENTO ===== */
-.movement{padding:30px 22px 8px}
-.movement-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
-.movement-num{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.1em;padding:4px 9px;color:#fff;line-height:1}
-.movement-name{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-0.01em;color:var(--ink)}
-.movement-name em{font-style:italic}
-.movement-desc{font-size:13.5px;color:var(--stone);line-height:1.55;margin:0 0 16px 0;max-width:58ch}
-.mov-entender .movement-num{background:var(--olive)}
-.mov-entender .movement-name em{color:var(--olive)}
-.mov-medir .movement-num{background:var(--mustard);color:var(--mustard-ink)}
-.mov-medir .movement-name em{color:var(--mustard-ink)}
-.mov-decidir .movement-num{background:var(--terra)}
-.mov-decidir .movement-name em{color:var(--terra)}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(38px,8vw,64px);line-height:1.02;letter-spacing:-.02em;margin:30px 0 12px}
+.sub{font-size:clamp(17px,2.4vw,20px);color:rgba(250,247,240,.82);max-width:34ch}
 
-/* ===== CARDS DE PARTE ===== */
-.parts{display:flex;flex-direction:column;gap:10px}
-.part-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:16px 16px;background:#fff;border:1px solid var(--rule);text-decoration:none;transition:border-color 0.2s,transform 0.15s,box-shadow 0.2s}
-.part-card:hover{border-color:var(--mustard);transform:translateX(2px);box-shadow:-3px 0 0 var(--mustard)}
-.part-card .pn{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;line-height:1;letter-spacing:-0.02em;min-width:42px;text-align:center}
-.mov-entender .pn{color:var(--olive)}
-.mov-medir .pn{color:var(--mustard)}
-.mov-decidir .pn{color:var(--terra)}
-.part-card .pbody{min-width:0}
-.part-card .pbody .ptitle{display:block;font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--ink);line-height:1.2;letter-spacing:-0.01em}
-.part-card .pbody .psub{display:block;font-size:12.5px;color:var(--stone);line-height:1.4;margin-top:4px}
-.part-card .parrow{width:18px;height:18px;position:relative;flex-shrink:0}
-.part-card .parrow::before{content:"";position:absolute;top:50%;left:30%;width:8px;height:8px;border-top:1.5px solid var(--stone);border-right:1.5px solid var(--stone);transform:translateY(-50%) rotate(45deg);transition:left 0.2s}
-.part-card:hover .parrow::before{left:45%;border-color:var(--mustard)}
+/* as duas portas */
+.portas{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;margin-top:40px;text-align:left}
+.porta{display:flex;flex-direction:column;gap:8px;background:var(--paper);color:var(--ink);text-decoration:none;
+  padding:24px 24px 22px;border-top:5px solid var(--terra);position:relative;transition:transform .15s,box-shadow .2s}
+.porta.prod{border-top-color:var(--mustard)}
+.porta:hover,.porta:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.porta:focus-visible{outline:3px solid var(--mustard-soft);outline-offset:3px}
+.porta .quem{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
+.porta.prod .quem{color:#8A6A1C}
+.porta .nome{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:24px;line-height:1.15}
+.porta .desc{font-size:16px;color:var(--ink-soft);line-height:1.5}
+.porta .ir{margin-top:auto;padding-top:10px;font-weight:600;font-size:16px;color:var(--terra-deep)}
+.porta.prod .ir{color:#6E5416}
 
-/* ===== CARD QUIZ GERAL ===== */
-.quizcard-wrap{padding:34px 22px 10px}
-.quizcard{display:block;text-decoration:none;background:var(--olive-deep);color:var(--paper);padding:26px 22px;position:relative;transition:transform 0.15s}
-.quizcard:hover{transform:translateY(-2px)}
-.quizcard::before{content:"";position:absolute;top:0;left:0;width:60px;height:4px;background:var(--mustard)}
-.quizcard .qc-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mustard);margin-bottom:12px}
-.quizcard .qc-title{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.1;letter-spacing:-0.01em;margin-bottom:10px;color:var(--paper)}
-.quizcard .qc-desc{font-size:14px;color:rgba(250,247,240,0.8);line-height:1.55;margin-bottom:16px}
-.quizcard .qc-note{display:flex;align-items:flex-start;gap:9px;padding:11px 13px;background:rgba(184,146,51,0.14);border-left:3px solid var(--mustard);font-size:12.5px;line-height:1.5;color:rgba(250,247,240,0.92)}
-.quizcard .qc-note::before{content:"!";font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--mustard);flex-shrink:0}
-.quizcard .qc-cta{margin-top:18px;display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mustard)}
-.quizcard .qc-cta::after{content:"→";font-size:15px}
+footer{padding:22px 18px 28px;text-align:center;font-size:14px;color:rgba(250,247,240,.62);line-height:1.6}
+footer a{color:rgba(250,247,240,.82)}
+footer .ia{max-width:70ch;margin:8px auto 0;font-size:13px}
 
-/* ===== MAPA DO CURSO ===== */
-.coursemap{padding:28px 22px 22px;border-bottom:1px solid var(--rule)}
-.coursemap .cm-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.coursemap .cm-eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
-.cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cm-item{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;background:#fff;border:1px solid var(--rule);border-left:3px solid transparent;text-decoration:none;transition:border-left-color 0.2s}
-.cm-item:hover{border-left-color:var(--mustard)}
-.cm-item .cm-num{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;line-height:1;min-width:24px;padding-top:1px}
-.cm-item .cm-title{display:block;font-family:'Fraunces',serif;font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.2}
-.cm-item .cm-sub{display:block;font-size:11px;color:var(--stone);line-height:1.3;margin-top:3px}
-.cm-item.mov-e .cm-num{color:var(--olive)}
-.cm-item.mov-m .cm-num{color:var(--mustard)}
-.cm-item.mov-d .cm-num{color:var(--terra)}
-
-/* ===== FOOTER ===== */
-footer{padding:34px 22px 40px;border-top:1px solid var(--rule);margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--stone);line-height:1.6}
-footer strong{display:block;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;font-weight:600}
-footer .sources{margin-bottom:14px}
-footer .src-item{margin-bottom:3px}
-footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--stone)}
-
-@media (min-width:720px){
-.vidcard-wrap{padding:6px 22px 10px}
-.vidcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--rule);border-left:4px solid var(--terra);padding:22px 20px;transition:transform 0.15s,box-shadow 0.2s}
-.vidcard:hover{transform:translateX(2px);box-shadow:-3px 0 0 var(--terra)}
-.vidcard .vc-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
-.vidcard .vc-title{font-family:'Fraunces',serif;font-weight:500;font-size:20px;line-height:1.15;letter-spacing:-0.01em;color:var(--ink);margin-bottom:8px}
-.vidcard .vc-desc{font-size:13.5px;color:var(--stone);line-height:1.5;margin-bottom:14px}
-.vidcard .vc-cta{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--terra)}
-.vidcard .vc-cta::after{content:"\2192";font-size:15px}
-  .header-bar,.intro,.coursemap,.movement,.vidcard-wrap,footer{padding-left:max(22px,calc(50% - 340px));padding-right:max(22px,calc(50% - 340px))}
-  .cm-grid{grid-template-columns:repeat(3,1fr)}
-  .header-banner{max-height:460px;object-fit:cover;object-position:center}
-  .intro h2{font-size:30px}
+@media(max-width:680px){
+  .capa{padding-top:40px}
+  .portas{grid-template-columns:1fr;gap:14px;margin-top:30px}
+  .porta{padding:20px 18px 18px}
+  .porta .nome{font-size:22px}
 }
+
+/* abertura (só na primeira visita e sem "reduzir movimento") */
+@media (prefers-reduced-motion:no-preference){
+  html:not(.direto) .porteira{animation:chega .5s ease-out both}
+  html:not(.direto) .porteira .sol{animation:nasce 1s ease-out .6s both}
+  html:not(.direto) .porteira .halo{animation:brilha 1s ease-out .7s both}
+  html:not(.direto) h1,html:not(.direto) .sub,html:not(.direto) .porta{animation:sobe .6s ease-out both}
+  html:not(.direto) h1{animation-delay:.9s}
+  html:not(.direto) .sub{animation-delay:1.02s}
+  html:not(.direto) .porta{animation-delay:1.15s}
+  html:not(.direto) .porta.prod{animation-delay:1.27s}
+}
+@keyframes chega{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes nasce{from{transform:none}to{transform:translateY(-2.5px)}}
+@keyframes brilha{from{opacity:0}to{opacity:.28}}
+@keyframes sobe{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 </style>
-<link rel="stylesheet" href="leitura.css">
 </head>
 <body>
 
-<div class="hero-wrap">
-  <img class="header-banner" src="baixados.png" alt="Banner: Gestão de Custos e Projetos Agropecuários">
-  <a class="hero-hotspot" href="fruticultura/index.html" aria-label="Vivências em Fruticultura I" title="Vivências em Fruticultura I"></a>
-  <a class="hero-hotspot hero-hotspot-familia" href="agricultura/index.html" aria-label="Sistematização de Experiências em Agricultura" title="Sistematização de Experiências em Agricultura"></a>
-</div>
-<div class="header-bar">
-  <div class="header-logo-chip">
-    <a href="https://www.ufsm.br/unidades-universitarias/politecnico" target="_blank" rel="noopener">
-      <svg class="header-logo" role="img" aria-label="Colégio Politécnico da UFSM" version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 841.9 262" style="enable-background:new 0 0 841.9 262;" xml:space="preserve">
-        <style type="text/css">
-	.st0{fill:#004D84;}
-	.st1{fill:#EF7D00;}
-	.st2{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#2B2523;}
-	.st3{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#D29B08;}
-	.st4{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;}
-	.st5{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#A87019;}
-	.st6{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#074C81;}
-	.st7{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#EEEDEF;}
-	.st8{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#C6C5C7;}
-	.st9{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#EF7C00;}
-</style>
-<g>
-	<path class="st0" d="M275.9,92.7h30.3c6.1,0,11,1.7,14.9,5c3.9,3.3,5.9,9.9,5.9,19.7c0,9.9-1.9,16.6-5.8,20.1
-		c-3.8,3.5-8.6,5.2-14.3,5.2c-2.7,0-5.7-0.3-9.1-0.8c-3.3-0.5-5.2-0.8-5.6-0.9v22h-16.4V92.7z M304.4,128c2.1,0,3.7-0.8,4.7-2.5
-		c1-1.7,1.5-4.3,1.5-8c0-6.7-2.1-10.1-6.2-10.1h-12.2V128H304.4z"/>
-	<path class="st0" d="M343,160.7c-4.2-1.9-7.4-5.4-9.5-10.6c-2.1-5.1-3.2-12.6-3.2-22.3c0-9.7,1.1-17.2,3.2-22.3
-		c2.1-5.2,5.3-8.7,9.5-10.6c4.2-1.9,9.8-2.8,16.8-2.8s12.6,0.9,16.8,2.8c4.2,1.9,7.4,5.4,9.5,10.6c2.1,5.2,3.2,12.6,3.2,22.3
-		c0,9.7-1.1,17.1-3.2,22.3c-2.1,5.1-5.3,8.7-9.5,10.6c-4.2,1.9-9.8,2.8-16.8,2.8S347.2,162.6,343,160.7z M367.9,147.2
-		c1.8-1.1,3.1-3.1,3.9-6.1c0.8-3,1.1-7.4,1.1-13.2c0-6.1-0.4-10.6-1.1-13.5c-0.8-3-2-5-3.8-6c-1.8-1-4.5-1.6-8.2-1.6
-		c-3.6,0-6.3,0.5-8.1,1.6c-1.8,1-3.1,3-3.9,6c-0.8,3-1.2,7.5-1.2,13.5c0,5.9,0.4,10.3,1.1,13.2c0.8,3,2,5,3.9,6.1
-		c1.8,1.1,4.5,1.7,8.1,1.7C363.4,148.9,366.1,148.3,367.9,147.2z"/>
-	<path class="st0" d="M401.6,158.8c-2.8-2.8-4.3-7.2-4.3-13.3V92.7h16.4v50c0,3.7,1.8,5.6,5.5,5.6h21.3v14.7h-25.6
-		C408.9,162.9,404.5,161.6,401.6,158.8z"/>
-	<path class="st0" d="M446.8,92.7h16.4v70.2h-16.4V92.7z"/>
-	<path class="st0" d="M487.3,107.4h-18.5V92.7h53.2v14.7h-18.5v55.5h-16.3V107.4z"/>
-	<path class="st0" d="M525.9,147.3v-37.8c0-6,1.7-10.3,5-12.9c3.3-2.6,7.3-3.9,11.9-3.9c10.5,0.1,20.7,0.5,30.7,1.3v13.8h-25.7
-		c-1.7,0-3,0.4-4,1.2c-0.9,0.8-1.4,2.1-1.4,3.7v7.8l26.5,0.9v12.9l-26.5,0.9v7.4c0,1.9,0.5,3.3,1.4,4.2c0.9,0.9,2.1,1.4,3.5,1.4
-		h26.2v13.7c-7.6,0.9-17.4,1.5-29.6,1.6C531.9,163.5,525.9,158.1,525.9,147.3z M553,74.7h13.1l-10.5,13.4h-9.7L553,74.7z"/>
-	<path class="st0" d="M591.1,160.7c-3.7-1.9-6.5-5.4-8.5-10.6c-2-5.2-3-12.7-3-22.4c0-9.4,1-16.7,3.1-21.9c2-5.2,4.9-8.8,8.7-10.7
-		c3.7-2,8.4-3,14-3c4.8,0,9.1,0.3,13,1c3.8,0.7,7,1.5,9.6,2.6v12.7c-5.8-1.1-12.1-1.6-19-1.6c-3.4,0-6,0.5-7.8,1.6
-		c-1.8,1-3.1,3-3.9,6c-0.8,3-1.2,7.4-1.2,13.4c0,5.9,0.3,10.3,1,13.2c0.7,2.9,2,5,3.8,6.2c1.8,1.2,4.5,1.8,8.1,1.8
-		c8.5,0,14.8-0.3,18.9-0.9v12.7c-5.4,2-12.9,2.9-22.6,2.9C599.5,163.5,594.8,162.6,591.1,160.7z"/>
-	<path class="st0" d="M636.1,92.7h13l26.9,42.5V92.7h16.4v70.2h-13.1l-26.9-42.4v42.4h-16.3V92.7z"/>
-	<path class="st0" d="M701.8,92.7h16.4v70.2h-16.4V92.7z"/>
-	<path class="st0" d="M737.7,160.7c-3.7-1.9-6.5-5.4-8.5-10.6c-2-5.2-3-12.7-3-22.4c0-9.4,1-16.7,3.1-21.9c2-5.2,4.9-8.8,8.7-10.7
-		c3.7-2,8.4-3,14-3c4.8,0,9.1,0.3,13,1c3.8,0.7,7,1.5,9.6,2.6v12.7c-5.8-1.1-12.1-1.6-19-1.6c-3.4,0-6,0.5-7.8,1.6
-		c-1.8,1-3.1,3-3.9,6c-0.8,3-1.2,7.4-1.2,13.4c0,5.9,0.3,10.3,1,13.2c0.7,2.9,2,5,3.8,6.2c1.8,1.2,4.5,1.8,8.1,1.8
-		c8.5,0,14.8-0.3,18.9-0.9v12.7c-5.4,2-12.9,2.9-22.6,2.9C746.1,163.5,741.4,162.6,737.7,160.7z"/>
-	<path class="st0" d="M791.4,160.7c-4.2-1.9-7.4-5.4-9.5-10.6c-2.1-5.1-3.2-12.6-3.2-22.3c0-9.7,1.1-17.2,3.2-22.3
-		c2.1-5.2,5.3-8.7,9.5-10.6c4.2-1.9,9.8-2.8,16.8-2.8s12.6,0.9,16.8,2.8c4.2,1.9,7.4,5.4,9.5,10.6c2.1,5.2,3.2,12.6,3.2,22.3
-		c0,9.7-1.1,17.1-3.2,22.3c-2.1,5.1-5.3,8.7-9.5,10.6c-4.2,1.9-9.8,2.8-16.8,2.8S795.6,162.6,791.4,160.7z M816.3,147.2
-		c1.8-1.1,3.1-3.1,3.9-6.1c0.8-3,1.1-7.4,1.1-13.2c0-6.1-0.4-10.6-1.1-13.5c-0.8-3-2-5-3.8-6c-1.8-1-4.5-1.6-8.2-1.6
-		c-3.6,0-6.3,0.5-8.1,1.6c-1.8,1-3.1,3-3.9,6c-0.8,3-1.2,7.5-1.2,13.5c0,5.9,0.4,10.3,1.1,13.2c0.8,3,2,5,3.9,6.1
-		c1.8,1.1,4.5,1.7,8.1,1.7C811.8,148.9,814.5,148.3,816.3,147.2z"/>
-</g>
-<g>
-	<path class="st1" d="M277.9,82c-2-2.2-3-5.4-3-9.6c0-2.3,0.2-4.8,0.6-7.6c0.9-6.2,2.6-10.7,5-13.7c2.4-3,5.9-4.4,10.5-4.4
-		c4.4,0,8.3,0.7,11.9,2.2l-0.9,6c-3.3-0.9-6.5-1.3-9.6-1.3c-1.9,0-3.4,0.3-4.5,1c-1.2,0.7-2.1,1.9-3,3.8c-0.8,1.8-1.5,4.5-2.1,7.9
-		c-0.4,2.7-0.6,4.8-0.6,6.3c0,2.2,0.5,3.7,1.5,4.6s2.7,1.4,5.2,1.4c2.1,0,3.7-0.1,5.1-0.2c1.3-0.1,2.8-0.3,4.5-0.5l-0.9,6
-		c-2.8,1-6.3,1.5-10.6,1.5C282.9,85.3,279.9,84.2,277.9,82z"/>
-	<path class="st1" d="M308.5,84.3c-1.8-0.7-3.2-1.9-4.3-3.6c-1-1.8-1.5-4.2-1.5-7.4c0-2.2,0.2-5,0.7-8.3c0.7-4.8,1.8-8.5,3.2-11.1
-		c1.4-2.6,3.3-4.5,5.6-5.6c2.3-1.1,5.4-1.6,9.1-1.6c2.7,0,4.9,0.3,6.8,1c1.8,0.7,3.3,2,4.3,3.8s1.6,4.4,1.6,7.8c0,2.3-0.3,5-0.8,8.2
-		c-0.7,4.8-1.8,8.5-3.2,11.1c-1.4,2.6-3.3,4.3-5.6,5.3c-2.3,1-5.3,1.4-9.1,1.4C312.6,85.3,310.3,85,308.5,84.3z M321.2,77.3
-		c1.2-0.8,2.2-2,2.9-3.7c0.7-1.7,1.3-4.1,1.8-7.1c0.5-2.9,0.7-5.2,0.7-7.1c0-1.6-0.2-2.8-0.7-3.6c-0.5-0.8-1.1-1.4-2-1.7
-		c-0.9-0.3-2.1-0.5-3.6-0.5c-2,0-3.5,0.4-4.7,1.1c-1.2,0.7-2.1,1.9-2.9,3.7c-0.7,1.8-1.4,4.4-1.9,7.7c-0.5,3-0.7,5.3-0.7,6.9
-		c0,2.2,0.5,3.6,1.5,4.4c1,0.8,2.7,1.2,5,1.2C318.5,78.4,320,78,321.2,77.3z"/>
-	<path class="st1" d="M338.5,83.3c-1.3-1.1-1.9-2.9-1.9-5.2c0-0.8,0-1.5,0.1-2.4l4.4-28.8h7.3l-4.2,27.8c-0.1,0.2-0.1,0.6-0.1,1
-		c0,0.9,0.2,1.5,0.7,1.9c0.5,0.4,1.2,0.6,2.2,0.6h11.6l-1.1,6.8h-13.7C341.6,85,339.8,84.4,338.5,83.3z"/>
-	<path class="st1" d="M364.8,83.9c-1.6-1-2.3-2.7-2.3-5.2c0-0.6,0-1.3,0.1-1.9l3.2-21c0.9-5.8,4.1-8.7,9.8-8.7c4.4,0,9.4,0.2,15,0.7
-		l-1,6.4h-13c-1.2,0-2,0.3-2.6,0.9c-0.6,0.6-1,1.5-1.2,2.7l-0.7,4.9l13.8,0.5l-0.9,6l-13.9,0.4l-0.8,5.3c-0.1,0.5-0.1,0.8-0.1,1
-		c0,0.9,0.2,1.5,0.7,1.9c0.5,0.4,1.3,0.6,2.3,0.6H386l-0.9,6.4c-6.2,0.5-11.1,0.7-14.7,0.8C368.1,85.3,366.3,84.8,364.8,83.9z
-		 M381.6,37.1h6.3l-6.5,7.2h-4.7L381.6,37.1z"/>
-	<path class="st1" d="M394,82.5c-1.5-1.9-2.2-4.9-2.2-9.1c0-2.3,0.3-5.2,0.8-8.9c0.9-5.9,2.6-10.4,5.3-13.3c2.6-3,6.2-4.4,10.8-4.4
-		c2.8,0,5.1,0.2,7,0.5c1.9,0.3,3.8,0.8,5.6,1.3l-0.9,5.9c-3-0.6-6.6-0.9-10.9-0.9c-2.1,0-3.8,0.4-5,1.2c-1.2,0.8-2.2,2.1-2.9,3.9
-		c-0.7,1.8-1.3,4.3-1.8,7.5c-0.4,2.8-0.6,5-0.6,6.6c0,1.9,0.4,3.2,1.1,4.2s1.9,1.4,3.5,1.4c1.1,0,2.4-0.1,3.9-0.4
-		c1.5-0.2,2.7-0.5,3.5-0.7l1.1-7.5h-6.6l0.9-6c0.2,0,1.1-0.1,2.7-0.3c1.6-0.1,3.4-0.2,5.6-0.2c2.1,0,3.9,0,5.4,0.1L417.3,85h-5.6
-		l-0.6-2.6c-1.1,0.7-2.6,1.3-4.6,1.9c-2,0.6-3.7,1-5.1,1C397.9,85.3,395.5,84.4,394,82.5z"/>
-	<path class="st1" d="M428.4,47h7.3l-5.8,38h-7.3L428.4,47z"/>
-	<path class="st1" d="M442.8,84.3c-1.8-0.7-3.2-1.9-4.3-3.6c-1-1.8-1.5-4.2-1.5-7.4c0-2.2,0.2-5,0.7-8.3c0.7-4.8,1.8-8.5,3.2-11.1
-		c1.4-2.6,3.3-4.5,5.6-5.6s5.4-1.6,9.1-1.6c2.7,0,4.9,0.3,6.8,1c1.8,0.7,3.3,2,4.3,3.8c1.1,1.9,1.6,4.4,1.6,7.8c0,2.3-0.3,5-0.8,8.2
-		c-0.7,4.8-1.8,8.5-3.2,11.1s-3.3,4.3-5.6,5.3c-2.3,1-5.3,1.4-9.1,1.4C446.9,85.3,444.7,85,442.8,84.3z M455.6,77.3
-		c1.2-0.8,2.2-2,2.9-3.7c0.7-1.7,1.3-4.1,1.8-7.1c0.5-2.9,0.7-5.2,0.7-7.1c0-1.6-0.2-2.8-0.7-3.6c-0.5-0.8-1.1-1.4-2-1.7
-		c-0.9-0.3-2.1-0.5-3.6-0.5c-2,0-3.5,0.4-4.7,1.1c-1.2,0.7-2.1,1.9-2.9,3.7c-0.7,1.8-1.4,4.4-1.9,7.7c-0.5,3-0.7,5.3-0.7,6.9
-		c0,2.2,0.5,3.6,1.5,4.4s2.7,1.2,5,1.2C452.8,78.4,454.4,78,455.6,77.3z"/>
-</g>
-<g>
-	<path class="st1" d="M278.4,207.3c-2-1.8-3-4.7-3-8.7c0-1.8,0.2-3.9,0.6-6.4l3.1-20.5h7.3l-3.3,21.6c-0.3,2.3-0.5,3.9-0.5,4.7
-		c0,1.8,0.4,3.1,1.3,4c0.9,0.8,2.3,1.3,4.3,1.3c1.6,0,2.9-0.3,3.9-0.8c1-0.5,1.9-1.5,2.6-2.9c0.7-1.4,1.2-3.5,1.6-6.2l3.3-21.6h7.3
-		l-3.5,22.7c-0.7,4.3-1.7,7.6-3.1,9.9c-1.4,2.3-3.1,3.8-5.2,4.6c-2.1,0.8-4.8,1.2-8,1.2C283.4,210,280.4,209.1,278.4,207.3z"/>
-	<path class="st1" d="M311.5,180.3c0.9-5.8,4.1-8.6,9.7-8.6c4.8,0,9.8,0.2,15,0.7l-0.9,6.4h-13c-1.2,0-2,0.3-2.6,0.9s-1,1.5-1.1,2.7
-		l-0.9,6.1l13.8,0.4l-0.9,6l-13.9,0.4l-2.2,14.5h-7.3L311.5,180.3z"/>
-	<path class="st1" d="M340,209.7c-2.1-0.2-3.9-0.5-5.4-0.9l0.9-6c3.2,0.3,6.9,0.4,11.1,0.4c2.2,0,3.8-0.3,4.8-0.8
-		c1-0.5,1.6-1.5,1.9-3l0.2-1.3c0.1-0.5,0.1-0.8,0.1-1c0-1-0.3-1.6-1-2.1c-0.7-0.4-1.7-0.6-3.2-0.6h-2.9c-2.7,0-4.9-0.7-6.5-2.2
-		c-1.6-1.5-2.3-3.4-2.3-5.8c0-0.7,0-1.4,0.1-2.2l0.5-3.1c0.5-3.5,1.9-6,4.1-7.5s5.2-2.3,9-2.3c1.7,0,3.6,0.1,5.6,0.3
-		c2,0.2,3.9,0.5,5.6,1l-0.9,6c-3.1-0.3-6.8-0.4-11.2-0.4c-1.6,0-2.9,0.3-3.7,0.8c-0.9,0.5-1.4,1.5-1.6,2.9l-0.2,1.3
-		c-0.1,0.5-0.1,0.9-0.1,1.1c0,1,0.3,1.7,0.8,2.1c0.5,0.4,1.4,0.6,2.5,0.6h3.1c3,0,5.3,0.7,6.9,2.2c1.6,1.5,2.4,3.4,2.4,5.8
-		c0,0.6,0,1.3-0.1,2.1l-0.5,3.5c-0.5,3.2-1.8,5.6-3.8,7c-2.1,1.5-5.2,2.2-9.5,2.2C344.4,210,342.1,209.9,340,209.7z"/>
-	<path class="st1" d="M371.9,171.7h6.9l4.1,29l13-29h6.9l-1.5,38h-7.1l1-24.5l-10.2,24.5H378l-2.8-24.2l-6.4,24.2h-7.3L371.9,171.7z
-		"/>
-</g>
-<g>
-	<defs>
-		<rect id="SVGID_1_" width="841.9" height="262"/>
-	</defs>
-	<clipPath id="SVGID_2_">
-		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
-	</clipPath>
-	<path class="st2" d="M133.4,182.6l-0.1,2.7c-0.2-0.2-0.6-0.4-0.9-0.4c-0.6-0.1-1.4-0.1-2.2-0.1c-0.4,0.8-0.3,1.6,1.1,2.2
-		c0.7,0.3,1.2,0.9,0.9,2c0,0.2,0,0.6,0,0.7c0.2,0.4,0.5,0.6,1.2,0.7c0.1,0.7,0.7,1.6,2.1,1.7c1.3,0,2-0.8,2.1-1.4
-		c1.1,0,1.5-0.4,1.5-1.1c-0.1-0.5-0.1-0.7,0-1c0.1-0.4,0.4-0.7,0.7-0.9c0.3-0.2,0.4-0.2,0.7-0.3c1-0.4,1.3-1.3,0.9-2
-		c-0.4,0-1.9-0.1-2.2,0c-0.5,0.1-0.7,0.2-0.9,0.3l0.1-1.8c0,0,0,0,0,0c5.6,1,10.4,0.4,13.4-2.5c4.3-5.1,5-13.3,5.1-14.5
-		c0.5-3.4-3.1-5.4-7.3-6.6c0.3-2.1,3.5-6.2,4.6-8.6c-4.5-1-10,1.1-10.8,1.7l4.8-45.2h-4.6l0.2-3.4h0.9c0.7-0.1,0.9-0.6,0.9-0.9v-1
-		c0.4,0,0.8-0.1,1.1-0.2c0.6-0.2,1-0.4,1.2-1c0.2-0.7,0.2-1.9,0.1-2.6c-0.1-0.5-0.3-0.9-0.8-1.1c-0.4-0.2-0.9-0.3-1.6-0.4v-0.9
-		c0-0.1-0.1-1-1.3-0.9c-3.2,0-6.4,0-9.6,0c-0.6,0-1.1,0.4-1.1,1.1l0,0.7c-0.7,0.1-1.3,0.2-1.7,0.3c-0.5,0.3-0.8,0.7-0.9,1.3
-		c0,0.7-0.1,1.3,0,2.2c0.2,0.5,0.4,1,1.3,1.2c0.5,0.1,0.8,0.2,1.3,0.2v1c0.1,0.5,0.4,0.8,1,0.9l0.8,0l-0.1,3.4h-12.5l0.1-3.4h0.7
-		c0.7-0.1,0.9-0.6,0.9-0.9v-1c0.4,0,0.9-0.1,1.2-0.2c0.6-0.2,1-0.4,1.2-1c0.2-0.7,0.2-1.9,0.1-2.6c-0.1-0.5-0.3-0.9-0.8-1.1
-		c-0.4-0.2-1-0.3-1.7-0.4v-0.9c0-0.1-0.1-1-1.3-0.9h-4.5h-0.1h-0.1h-0.1h-4.5c-1.2-0.1-1.3,0.8-1.3,0.9v0.9
-		c-0.7,0.1-1.3,0.2-1.7,0.4c-0.4,0.2-0.7,0.6-0.8,1.1c-0.1,0.7-0.1,1.9,0.1,2.6c0.2,0.5,0.6,0.8,1.2,1c0.3,0.1,0.8,0.1,1.3,0.2v1
-		c0,0.3,0.3,0.8,0.9,0.9h0.7l0.1,3.4h-12.5l-0.1-3.4l0.8,0c0.5-0.1,0.9-0.4,1-0.9v-1c0.5,0,0.7-0.1,1.3-0.2c0.8-0.2,1.1-0.7,1.3-1.2
-		c0.2-0.8,0.1-1.5,0-2.2c-0.1-0.7-0.4-1-0.9-1.3c-0.4-0.1-1-0.3-1.7-0.3l0-0.7c0-0.7-0.5-1.1-1.1-1.1c-3.2,0-6.4,0-9.6,0
-		c-1.2-0.1-1.3,0.8-1.3,0.9v0.9c-0.7,0.1-1.2,0.2-1.6,0.4c-0.4,0.2-0.7,0.6-0.8,1.1c-0.1,0.7-0.2,1.9,0.1,2.6c0.2,0.5,0.6,0.8,1.2,1
-		c0.3,0.1,0.7,0.1,1.1,0.2v1c0,0.3,0.3,0.8,0.9,0.9h0.9l0.2,3.4h-4.6l4.8,45.2c-0.7-0.6-6.2-2.7-10.7-1.7c1.1,2.4,4.3,6.4,4.6,8.6
-		c-4.1,1.3-7.7,3.3-7.3,6.6c0.2,1.2,0.8,9.5,5.1,14.5c3,2.9,7.8,3.5,13.3,2.5c0,0,0,0,0,0l0.1,1.8c-0.2-0.1-0.4-0.2-0.9-0.3
-		c-0.3,0-1.8,0-2.2,0c-0.4,0.7-0.1,1.6,0.9,2c0.3,0.1,0.4,0.1,0.7,0.3c0.4,0.2,0.6,0.5,0.7,0.9c0.1,0.4,0,0.5,0,1
-		c0,0.7,0.4,1.1,1.5,1.1c0.2,0.6,0.8,1.4,2.1,1.4c1.3-0.1,1.9-1,2.1-1.7c0.7-0.1,1-0.3,1.3-0.7c0.1-0.1,0.1-0.5,0-0.7
-		c-0.3-1,0.2-1.7,0.9-2c1.4-0.6,1.5-1.4,1.1-2.2c-0.8,0.1-1.6,0-2.2,0.1c-0.3,0.1-0.6,0.3-0.9,0.4l-0.1-2.7c4.9-0.9,8.1-1.2,12-1.3
-		l0.1,2.5c-0.1-0.1-0.2-0.4-0.9-0.5c-0.3-0.1-1.8-0.1-2.2-0.1c-0.4,0.7-0.3,1.5,0.7,2c0.2,0.1,0.4,0.2,0.7,0.3
-		c0.3,0.2,0.6,0.5,0.7,0.9c0.1,0.3,0,0.5-0.1,1c0,0.7,0.4,1.1,1.4,1.2c0.1,0.2,0.2,0.5,0.4,0.8c0.3,0.4,0.9,0.7,1.7,0.8
-		c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1,0c0.8,0,1.4-0.4,1.7-0.8c0.2-0.2,0.3-0.5,0.4-0.8c1.1-0.1,1.5-0.5,1.4-1.2
-		c-0.1-0.5-0.1-0.7-0.1-1c0.1-0.4,0.4-0.7,0.7-0.9c0.3-0.2,0.5-0.3,0.7-0.3c1-0.4,1.2-1.3,0.7-2c-0.4,0-1.9,0-2.2,0.1
-		c-0.7,0.1-0.8,0.4-0.9,0.5l0.1-2.5C125.3,181.3,128.5,181.7,133.4,182.6 M140,163.5l-0.5,6.9c3.6,0.5,6.5,0.7,8,0.4
-		c-0.1-1.1-1.1-2.8-2.4-3.8C143.4,165.5,141.2,164.2,140,163.5 M97.4,163.5l0.5,6.9c-3.6,0.5-6.5,0.7-8,0.4c0.1-1.1,1.1-2.8,2.4-3.8
-		C94,165.5,96.3,164.2,97.4,163.5 M103.5,165.8l0.1,3.8c3.1-0.5,6.3-0.9,9.8-1.3C109.8,167.9,106.7,167.2,103.5,165.8 M133.9,165.8
-		l-0.1,3.8c-3.2-0.5-6.3-0.9-9.8-1.3C127.7,167.9,130.8,167.2,133.9,165.8 M148.4,75.6c-2.3,1.2-5.2,0.1-6.9,2.5
-		c-1.1,1.3-1.5,4.1-3.1,4.8c-2,1.1-5.6,2.2-6,4.7c-0.4,2.4,0.5,5.3,3,6.5c0.2,0.1,0.6-0.1,0.4-0.5c-0.5-1.3-0.4-3.1,0.3-4.2
-		c0.1,1.8,0.5,2.9,1.5,3.9c0.1,0.1,0.3,0.1,0.4,0c0.1-0.1,0.2-0.2,0.1-0.4c-0.2-1.6,0.1-4.4,2.4-6.6c-0.7,2.9-0.4,4.7,0.7,6.8
-		c0.1,0.3,0.5,0.3,0.6-0.1c0-0.1,0-0.2,0-0.4c0.1-1.2,0.6-2.5,2.1-3.7c-0.3,0.7-1.2,3-0.1,4.8c0.1,0.1,0.1,0.2,0.3,0.3
-		c0.1,0,0.4,0,0.6-0.1c1.1-0.3,1.7-1,2-2c0.3-1.4,0.4-2.2,1.6-4c1.4-2.6,0.4-4.3,0-6.9c0-0.3-0.5-0.4-0.6,0
-		c-0.1,0.3-0.7,3.6-3.6,4.1c1-1.3,1.4-1.8,1.6-3.4c0.5-2.4,1.9-3.7,3.1-5.6C149.4,75.6,148.8,75.3,148.4,75.6 M105.6,75.6
-		c-2.3,1.2-5.2,0.1-6.9,2.5c-1.1,1.3-1.5,4.1-3.1,4.8c-2,1.1-5.6,2.2-6,4.7c-0.4,2.4,0.5,5.3,3,6.5c0.2,0.1,0.6-0.1,0.4-0.5
-		c-0.5-1.3-0.4-3.1,0.3-4.2c0.1,1.8,0.5,2.9,1.5,3.9c0.1,0.1,0.3,0.1,0.4,0c0.1-0.1,0.2-0.2,0.1-0.4c-0.2-1.6,0.1-4.4,2.4-6.6
-		c-0.8,2.9-0.4,4.7,0.7,6.8c0.1,0.3,0.5,0.3,0.6-0.1c0-0.1,0-0.2,0-0.4c0.1-1.2,0.6-2.5,2.1-3.7c-0.3,0.7-1.2,3-0.1,4.8
-		c0.1,0.1,0.1,0.2,0.3,0.3c0.1,0,0.4,0,0.6-0.1c1.1-0.3,1.7-1,2-2c0.3-1.4,0.3-2.2,1.5-4c1.4-2.6,0.4-4.3,0-6.9c0-0.3-0.5-0.4-0.6,0
-		c-0.1,0.3-0.7,3.6-3.6,4.1c1-1.3,1.4-1.8,1.6-3.4c0.5-2.4,1.9-3.7,3.1-5.6C106.6,75.6,106,75.3,105.6,75.6 M126.7,75.6
-		c-2.3,1.2-5.2,0.1-6.9,2.5c-1.1,1.3-1.5,4.1-3.1,4.8c-2,1.1-5.6,2.2-6,4.7c-0.4,2.4,0.5,5.3,3,6.5c0.2,0.1,0.6-0.1,0.4-0.5
-		c-0.5-1.3-0.4-3.1,0.3-4.2c0.1,1.8,0.5,2.9,1.5,3.9c0.1,0.1,0.3,0.1,0.4,0c0.1-0.1,0.2-0.2,0.1-0.4c-0.2-1.6,0.1-4.4,2.4-6.6
-		c-0.7,2.9-0.4,4.7,0.7,6.8c0.1,0.3,0.5,0.3,0.6-0.1c0-0.1,0-0.2,0-0.4c0.1-1.2,0.6-2.5,2.1-3.7c-0.3,0.7-1.2,3-0.1,4.8
-		c0.1,0.1,0.1,0.2,0.3,0.3c0.1,0,0.4,0,0.6-0.1c1.1-0.3,1.7-1,2-2c0.3-1.4,0.3-2.2,1.6-4c1.4-2.6,0.4-4.3,0-6.9c0-0.3-0.5-0.4-0.7,0
-		c-0.1,0.3-0.7,3.6-3.6,4.1c1-1.3,1.4-1.8,1.6-3.4c0.5-2.4,1.9-3.7,3.1-5.6C127.7,75.6,127.1,75.3,126.7,75.6"/>
-	<path class="st2" d="M105.6,110.4c0.1-0.3,0.3-0.3,0.6-0.1c0.6,0.6,1.1,1.2,1.3,1.9c0.2,0.8-0.1,1.8-1.4,4
-		c-0.5,1.2-0.6,1.5-0.7,2.1c0.3-0.6,1.2-1.3,2-2.1c0.3-0.4,0.6-0.8,0.8-1.3c0.1-0.5,0.4-0.6,0.7-0.2c1.7,1.9,1.2,3.2,1.1,3.9
-		c-0.7,2-1.4,3.2-1,4.4c0.1,0.3-0.1,0.5-0.4,0.4c-1.2-0.3-1.8-1.2-2.2-2.4c-0.5,1-0.3,1.9,0.3,2.8c0.2,0.3,0.1,0.6-0.3,0.5
-		c-1.5-0.3-2.5-1.3-2.9-2.4c-0.2,1.2,0.3,2.4,1.4,3.3c0.5,0.4,0.2,0.6-0.3,0.6c-1.7,0-2.5-0.6-3.1-1.1c0.2,0.8,0.6,1.5,1.9,2.2
-		c0.1,0,0.1,0.1,0.2,0.1c0.2,0.1,0.2,0.4-0.2,0.5c-1.4,0.4-2.5,0.2-3.6,0c-2.7-0.8-4.2-2.2-5-4.1c-0.7-2.1-0.2-3.9,1.1-4.9
-		c1-0.7,2-0.7,2.9-1c0.8-0.3,1.6-0.9,2.3-2.2c0.5-1.2,1.3-2.1,2.3-2.7c0.7-0.4,1.2-0.7,1.5-1C105.3,111.3,105.5,110.9,105.6,110.4
-		 M111.8,123.4c-0.8-1-1.6-0.8-2.4,0l-2.8,2.5l-2.8,2.5c-0.9,0.8-1.1,1.6-0.2,2.4c-0.7,0.8-1,1.4-0.5,2.1c0.3,0.4,0.8,0.9,1.2,1.3
-		c0.5,0.3,1,0.4,2-0.4c0.7,0.8,1.5,0.6,2.3-0.1l5.1,4.5c-1.6-0.5-2.8-0.8-4.6-1.2c-2.3-0.3-4.5-0.1-6.3,0.6
-		c-2.8,1.3-4.6,2.8-5.1,4.4c-0.8,2.5,0.5,5.7,3.2,7.5c1.3,0.9,2.9,1.7,4.3,2.4c2.2,1.2,3.9,2.4,5.1,4.1c0.3,0.5,0.6,0.1,0.7-0.1
-		c0.4-0.9,0.6-2.2,0.2-4c-0.2-0.9-0.5-1.4-0.8-1.7c-0.4-0.5-0.8-0.7-1-1.2c-0.3-0.6-0.5-1.4-0.2-2.4c0.5-2.1,2.3-2.4,4-2.2
-		c2.6,0.5,5.1,1.9,7,3.2l0.7,3.1c0,0.2,0.1,0.2,0.3,0.3l3,0.9c0.3,0.4,0.7,0.9,0.9,1.5c0.1,0.4,0.2,0.7,0,1.6
-		c-0.4,0.9-2.5,0.9-3.4,1.1c-0.3,0.1-0.7,0.2-0.9,0.3c-0.6,0.3-1,0.7-1.2,1.2c-0.2,0.6,0,1.2,0.2,2c0,0.2,0.3,0.3,0.5,0.1
-		c0.2-0.4,0.7-0.9,1.2-1c0.9-0.2,1.6,0,2,0.2c1.7,0.7,3,1.4,4,1.4c0.7,0,1.3-0.2,1.7-0.6c0.4-0.4,0.8-0.9,0.9-1.4
-		c0.9,0.6,1.7,0.8,3.5,1.1c1.1,0.1,2.4,0.3,3.5,0.3c0.2,0,0.3,0,0.4,0c0,0,0,0,0,0c0.1-0.1,0.1-0.2,0.1-0.4c0-1.1,0-2.4,0-3.5
-		c-0.1-1.8-0.3-2.6-0.8-3.6c0.6-0.1,1.1-0.4,1.5-0.8c0.4-0.4,0.7-1,0.8-1.7c0.1-1.1-0.4-2.4-1-4.2c-0.1-0.4-0.3-1.1,0-2
-		c0.1-0.5,0.7-0.9,1.1-1.1c0.2-0.1,0.1-0.4-0.1-0.5c-0.8-0.3-1.4-0.5-2-0.4c-0.5,0.1-1,0.5-1.3,1.1c-0.1,0.3-0.3,0.6-0.4,0.9
-		c-0.3,0.8-0.6,3-1.5,3.2c-1,0.2-1.4,0-1.7-0.1c-0.5-0.2-1-0.6-1.3-1l-0.7-3.1c0-0.2,0-0.3-0.3-0.3l-3.1-1c-1.1-2-2.3-4.6-2.5-7.3
-		c-0.1-1.8,0.4-3.5,2.5-3.8c1-0.1,1.7,0.1,2.3,0.5c0.5,0.3,0.7,0.7,1.1,1.1c0.3,0.3,0.8,0.7,1.7,1c1.7,0.6,3.1,0.5,4,0.2
-		c0.3-0.1,0.7-0.3,0.2-0.7c-1.6-1.3-2.6-3.2-3.6-5.4c-0.6-1.5-1.2-3.1-2-4.5c-1.6-2.9-4.6-4.4-7.2-3.9c-1.7,0.3-3.3,2-4.8,4.6
-		c-0.9,1.7-1.3,3.9-1.2,6.2c0.2,1.9,0.4,3,0.7,4.7l-4-5.5c0.8-0.7,1-1.4,0.3-2.2c0.8-0.9,0.8-1.5,0.6-2c-0.4-0.5-0.7-0.9-1.2-1.3
-		C113.2,122.6,112.7,122.8,111.8,123.4"/>
-	<path class="st3" d="M144.9,96.6h-10c-0.1,0-0.1,0-0.1,0.1v0.8c3.2-0.1,6.9-0.1,10.3,0v-0.8C145,96.7,145,96.6,144.9,96.6
-		 M135.6,191.5c-0.9-0.1-1.6-0.7-1.6-1.5c0.1-0.8,0.8-1.4,1.7-1.3c0.9,0.1,1.6,0.7,1.6,1.5C137.3,191,136.5,191.6,135.6,191.5
-		 M118.7,189.7c-1,0-1.8-0.6-1.8-1.4c0-0.8,0.8-1.4,1.8-1.4c1,0,1.8,0.6,1.8,1.4C120.5,189,119.7,189.7,118.7,189.7 M101.8,191.5
-		c0.9-0.1,1.6-0.7,1.6-1.5c0-0.8-0.8-1.4-1.7-1.3c-0.9,0-1.6,0.7-1.6,1.5C100.2,191,100.9,191.6,101.8,191.5 M106.8,185.2
-		c0,0-0.2,0-0.6,0c-0.2,0-0.3,0-0.5,0c-0.4,0-0.7,0.1-0.9,0.2c-0.2,0.1-0.4,0.2-0.5,0.3c-0.2,0.3-0.4,0.6-0.6,0.9
-		c-0.3,0.3-0.5,0.6-0.8,0.8l-0.4-0.3c0.2-0.6,0.5-1.6,0.6-2.2c-0.1-0.3-0.4-0.5-0.8-0.7c-0.3-0.1-0.6-0.3-0.9-0.4
-		c-0.3,0.1-0.6,0.3-0.9,0.5c-0.3,0.3-0.5,0.5-0.6,0.8c0.2,0.6,0.5,1.5,0.8,2l-0.3,0.3c-0.3-0.2-0.6-0.4-0.9-0.7
-		c-0.2-0.3-0.5-0.5-0.7-0.8c-0.1,0-0.3-0.1-0.5-0.2c-0.2-0.1-0.5-0.1-0.9-0.1c-0.2,0-0.4,0-0.6,0c-0.4,0-0.6,0-0.6,0
-		c-0.1,0.6,0.7,1,0.8,1c0.4,0.1,0.9,0.4,1.1,0.5c0.6,0.5,0.8,1.2,0.7,2.1c0,0.2,0,0.5,0.4,0.6c0.1,0,0.2,0.1,0.5,0.1
-		c0-0.4,0.2-0.8,0.4-1.1c0.4-0.5,0.9-0.8,1.6-0.9c0.7,0,1.3,0.2,1.7,0.6c0.2,0.3,0.4,0.6,0.5,1c0.2,0,0.4-0.1,0.5-0.1
-		c0.4-0.2,0.3-0.4,0.3-0.7c-0.2-0.8-0.1-1.5,0.4-2.1c0.1-0.2,0.6-0.5,1-0.7C106.2,186.3,107,185.8,106.8,185.2 M103.2,182.8l0,1.4
-		c-0.2-0.2-0.5-0.4-0.9-0.5c-0.3-0.1-0.6-0.2-0.8-0.3h-0.2c-0.3,0.1-0.5,0.2-0.8,0.4c-0.3,0.2-0.5,0.4-0.7,0.7l0-0.9
-		C100.9,183.3,102,183,103.2,182.8 M113.3,183.6c0,0,0.5,0,0.9,0c0.2,0,0.3,0,0.5,0c0.4,0,0.6,0.1,0.8,0.2c0.2,0.1,0.3,0.3,0.4,0.4
-		c0.2,0.3,0.4,0.5,0.6,0.7c0.3,0.3,0.5,0.6,0.8,0.7l0.4-0.3c-0.3-0.6-0.5-1.3-0.7-1.9c0.1-0.3,0.3-0.5,0.7-0.8
-		c0.3-0.2,0.6-0.4,1-0.5h0h0c0.4,0.1,0.8,0.3,1,0.4c0.4,0.3,0.6,0.6,0.7,0.9c-0.1,0.6-0.4,1.3-0.7,1.9l0.3,0.3
-		c0.3-0.2,0.6-0.4,0.9-0.8c0.2-0.3,0.5-0.6,0.7-0.9c0.1,0,0.3-0.1,0.5-0.2c0.2-0.1,0.5-0.1,0.9-0.1c0.2,0,0.4,0,0.6,0h0.6
-		c0.2,0.6-0.6,1.1-0.7,1.1c-0.4,0.1-0.9,0.4-1.1,0.6c-0.6,0.6-0.7,1.2-0.5,2.1c0,0.2,0.1,0.4-0.3,0.5c-0.1,0.1-0.3,0.1-0.5,0.1
-		c0-0.4-0.2-0.7-0.4-1c-0.4-0.5-1-0.7-1.7-0.8c-0.6,0-1.2,0.1-1.8,0.6c-0.2,0.3-0.4,0.6-0.5,1c-0.2,0-0.4-0.1-0.5-0.1
-		c-0.4-0.2-0.3-0.4-0.3-0.6c0.2-0.8,0.1-1.3-0.5-1.9c-0.2-0.2-0.5-0.5-0.9-0.6C114,184.7,113.2,184.2,113.3,183.6 M116.9,181.3
-		c0.6,0,1.2,0,1.8-0.1h0h0h0c0.6,0,1.2,0.1,1.8,0.1l0,1.4c-0.4-0.5-0.8-0.7-1.8-1c-1,0.3-1.4,0.6-1.8,1.1
-		C116.9,182.7,116.9,181.3,116.9,181.3 M130.7,185.2c0,0,0.2,0,0.6,0c0.2,0,0.3,0,0.6,0c0.4,0,0.7,0.1,0.9,0.2
-		c0.2,0.1,0.4,0.2,0.5,0.3c0.2,0.3,0.4,0.6,0.6,0.9c0.3,0.3,0.5,0.6,0.8,0.8l0.4-0.3c-0.2-0.6-0.5-1.6-0.6-2.2
-		c0.1-0.3,0.4-0.5,0.8-0.7c0.3-0.1,0.5-0.3,0.9-0.4c0.3,0.1,0.6,0.3,0.9,0.5c0.3,0.3,0.5,0.5,0.6,0.8c-0.2,0.6-0.5,1.5-0.8,2
-		l0.3,0.3c0.3-0.2,0.6-0.4,0.9-0.7c0.3-0.3,0.5-0.5,0.7-0.8c0.1,0,0.3-0.1,0.5-0.2c0.2-0.1,0.5-0.1,0.9-0.1c0.2,0,0.4,0,0.5,0
-		c0.4,0,0.6,0,0.6,0c0.1,0.6-0.6,1-0.8,1c-0.4,0.1-0.9,0.4-1.1,0.5c-0.6,0.5-0.8,1.2-0.7,2.1c0,0.2,0,0.5-0.4,0.6
-		c-0.1,0-0.3,0.1-0.5,0.1c0-0.4-0.2-0.8-0.4-1.1c-0.4-0.5-0.9-0.8-1.6-0.9h0c-0.7,0-1.3,0.2-1.7,0.6c-0.2,0.3-0.4,0.6-0.5,1
-		c-0.2,0-0.4-0.1-0.5-0.1c-0.4-0.2-0.3-0.4-0.3-0.7c0.2-0.8,0.1-1.5-0.4-2.1c-0.1-0.2-0.6-0.5-1-0.7
-		C131.2,186.3,130.5,185.8,130.7,185.2 M134.3,182.8l0,1.5c0.1-0.2,0.5-0.5,0.9-0.7c0.2-0.1,0.5-0.2,0.8-0.3h0.2
-		c0.3,0.1,0.5,0.2,0.8,0.4c0.3,0.2,0.5,0.4,0.7,0.7l0.1-0.9C136.6,183.3,135.4,183,134.3,182.8 M138.8,162.7l0.5,0.4l-0.6,7.3
-		c-1.3-0.2-2.7-0.4-4-0.6l0.1-4.4C136.3,164.6,137.5,163.8,138.8,162.7 M98.6,162.6l-0.4,0.3l0.5,7.4c1.3-0.2,2.7-0.4,4-0.6
-		l-0.1-4.4c-1.2-0.6-2.4-1.4-3.5-2.3C98.9,162.9,98.8,162.8,98.6,162.6 M143.3,104.6h-6.8l-0.1,3.5h6.6L143.3,104.6z M115.4,104.6
-		h6.8l-0.1,3.4h-6.7L115.4,104.6z M94.1,104.6h6.8l0.1,3.4h-6.7L94.1,104.6z M92.7,103.7h10.1c0.1,0,0.1,0,0.1-0.1v-0.8
-		c-3.2,0.1-6.9,0.1-10.3,0v0.8C92.6,103.6,92.6,103.7,92.7,103.7 M113.6,103.7h10.1c0.1,0,0.1,0,0.1-0.1v-0.8
-		c-3.2,0.1-6.9,0.1-10.3,0v0.8C113.5,103.6,113.6,103.7,113.6,103.7 M144.9,103.7h-10.1c-0.1,0-0.1,0-0.1-0.1v-0.8
-		c3.2,0.1,6.8,0.1,10.3,0v0.8C145.1,103.7,145,103.7,144.9,103.7 M142.4,98.3h-5.5c-0.5,0-3.3,0-4.1,0.3c-0.7,0.2-0.6,0.6-0.7,1
-		c0,0.5,0,0.9,0,1.4c0,0.6,0.3,0.7,1.1,0.9c0.9,0.1,2.7,0.2,3.7,0.2h5.6c0.8,0,2.9,0,3.9-0.2c1-0.2,1-0.3,1.1-0.9c0-0.5,0-1,0-1.5
-		c0-0.6-0.2-0.8-1-0.9C145.8,98.3,143,98.3,142.4,98.3 M116.1,98.3h5.5c0.5,0,3.3,0,4.1,0.3c0.7,0.2,0.6,0.6,0.7,1
-		c0,0.5,0,0.9,0,1.4c0,0.6-0.3,0.7-1.1,0.9c-0.9,0.1-2.7,0.2-3.7,0.2H116c-0.8,0-2.9,0-3.9-0.2c-1-0.2-1-0.3-1.1-0.9
-		c0-0.5,0-1,0-1.5c0-0.6,0.2-0.8,1-0.9C112.7,98.3,115.5,98.3,116.1,98.3 M95,98.3h5.5c0.5,0,3.3,0,4.1,0.3c0.7,0.2,0.6,0.6,0.7,1
-		c0,0.5,0,0.9,0,1.4c0,0.6-0.3,0.7-1.1,0.9c-0.9,0.1-2.7,0.2-3.7,0.2h-5.6c-0.8,0-2.9,0-3.9-0.2c-1-0.2-1.1-0.3-1.1-0.9
-		c0-0.5,0-1,0-1.5c0-0.6,0.2-0.8,1-0.9C91.7,98.3,94.4,98.3,95,98.3 M92.7,96.6h10.1c0.1,0,0.1,0,0.1,0.1v0.8
-		c-3.2-0.1-6.9-0.1-10.3,0v-0.8C92.6,96.6,92.6,96.6,92.7,96.6 M113.7,96.6h10c0.1,0,0.1,0,0.1,0.1v0.8c-3.2-0.1-6.9-0.1-10.3,0
-		v-0.8C113.5,96.6,113.6,96.6,113.7,96.6"/>
-	<path class="st4" d="M106.2,209.9c0.1-1.2,0.1-2.4,0.1-3.6c0-1.2,0-2.3,0-3.5c0-0.4,0-0.8,0-1.2c0-0.4,0-0.8,0-1.1l-2.3,1.4
-		c-0.1-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.2-0.2-0.3-0.3c0.6-0.2,1.2-0.4,1.8-0.8c0.7-0.3,1.5-0.7,2.4-1.2c0,0.9-0.1,2-0.1,3.3
-		c0,1.2,0,2.8,0,4.7v1.6c0,0.4,0,0.7,0,1.1c-0.1,0-0.2,0-0.3,0c-0.1,0-0.2,0-0.4,0c-0.1,0-0.2,0-0.4,0
-		C106.4,209.8,106.3,209.9,106.2,209.9 M175.9,85.3c0.8-0.2,1.5-0.4,2.1-0.8c-2.1,3,0.6,7.3,4,5.1c3.2-2.1-1.6-6.8,2.2-9.3
-		c3.5-2.3,6.5,1.3,6.9,4.7c-0.6,0.1-1.1,0.2-1.7,0.4c2.1-5-5.7-6.5-4.8-0.9c0.4,2.3,1.1,4.6-1.3,6.2C179.7,93,175.6,89.1,175.9,85.3
-		 M188.4,97.8c-0.9-1.2-2.3-3.7-4.2-2.8c-2.7,1.3-0.1,4.9,1.8,3.9L188.4,97.8z M184.8,99.5c-2.5-0.8-4.6-4.5-1.6-5.9
-		c3.5-1.7,3.9,3,6,3.9c1.6-0.8,2.8-1.6,1.9-3.5c-0.6-1.3-2.4-1.6-2.6-1.9l1-0.4c1.1,0.5,2,1.4,2.5,2.6c2.7,5.7-8,5-6.5,8.1l-0.3,0.2
-		C184.4,101.6,183.4,100.5,184.8,99.5 M186,104.9c3.2-0.7,6.5-1.6,9.6-2.7c0,0.5,0.2,1.2,0.4,1.6c-0.6,0.2-1.2,0.3-1.8,0.5
-		c3.8,1,4.3,5.7,0.1,6.9c-2.1,0.6-4.1,1.1-6.1,1.7c0-0.6-0.2-1.1-0.5-1.7c1.9-0.4,3.9-1,5.8-1.5c3.7-1,2.9-5.1-0.3-5
-		c-2,0.1-4.9,1.1-6.8,1.8C186.4,105.9,186.3,105.4,186,104.9 M197.8,113.9c0.3,0,0.6-0.1,0.9-0.1c0,0.4,0.1,0.9,0.1,1.3
-		c0.8-0.1,1.6-0.2,2.4-0.4c0.2,0.6,0.4,1.1,0.8,1.6c-1,0.1-2,0.3-3,0.4c0.1,0.9,0.3,1.8,0.5,2.7c-0.3,0-0.6,0-0.9,0.1
-		c-0.1-0.9-0.1-1.8-0.4-2.6c-1.9,0.2-4,0.5-5.9,0.8c-4.5,0.7-0.8,3.1-2.1,3.8c-1.7-1.9-1.7-4.8,1.4-5.2c2.1-0.3,4.3-0.5,6.4-0.9
-		C198,114.8,197.9,114.3,197.8,113.9 M195.5,128c-0.3-1.5-0.7-4.3-2.8-4.2c-3,0.2-1.9,4.5,0.2,4.3L195.5,128z M191.5,128.2
-		c-2-1.6-2.6-5.9,0.8-6.1c3.8-0.2,2.4,4.3,4.1,5.9c1.8-0.1,3.2-0.4,3.1-2.5c-0.1-1.5-1.6-2.4-1.7-2.8l1.1,0c0.8,0.9,1.3,2.1,1.4,3.3
-		c0.4,6.3-9.2,1.7-9,5.1l-0.4,0.1C190.3,129.9,189.8,128.6,191.5,128.2 M190.1,138.7c4.3,2.3,9,4.1,13.6,6l-0.1,0.3
-		c-4.2,0.8-8.4,1.7-12.6,2.7c3.1,3.1,6.2,6.1,9.4,9l-0.1,0.3c-4.9-0.8-9.7-1.5-14.6-2.3c0.3-0.6,0.4-1.2,0.5-1.8
-		c3.4,0.7,7,1.5,10.4,1.7c-2.6-2.7-5.6-5.8-8.7-8l0.1-0.3c3.7,0,8-1.5,11.5-2.3c-3.2-1.4-6.5-2.8-9.8-3.8
-		C190,139.8,190.1,139.3,190.1,138.7 M186.8,165.3c0.4-1.5,1.5-4.8-0.5-5.7c-3-1.4-3.8,3.7-1.9,4.6L186.8,165.3z M183.2,163.5
-		c-0.9-2.4,0.2-7.3,3.6-5.7c3.5,1.6,0.1,5.5,0.7,7.8c2.8,1.3,5.2-2,3.7-4.6l0.1-0.2l1,0.5c0.8,3-1.8,7.3-5.2,5.7
-		c-0.5-0.3-4-2.3-4.9-2.2c-0.4,0.1-0.5,0.5-0.7,0.9l-0.4-0.1C181.3,164.4,181.5,163.1,183.2,163.5 M179.4,167.6
-		c2.6,1.9,5.4,4,8.2,5.6c-0.4,0.4-0.8,0.9-1,1.5c-0.6-0.5-1.2-1-1.8-1.4c0.9,1.5,1.3,2.9,0,4.1c-0.4-0.4-0.8-0.7-1.3-1l0-0.2
-		c3.9-2.2-3.2-6.1-5-7.2C178.8,168.6,179.2,168.1,179.4,167.6 M175.1,173.8c2.4,2.2,4.9,4.4,7.6,6.4c-0.5,0.4-0.8,0.8-1.1,1.3
-		c-2.4-2.2-5-4.4-7.6-6.4C174.5,174.7,174.8,174.4,175.1,173.8 M185.6,182.5c1.1,0.9-0.3,2.5-1.4,1.6
-		C183.1,183.2,184.5,181.5,185.6,182.5 M171.3,184.8c0.9-1.2,2.8-3.4,1.3-4.9c-2.1-2.2-4.6,1.5-3.1,3L171.3,184.8z M168.5,181.9
-		c-0.1-4.4,5.7-6.2,5.9-1c0.1,1.2-2.5,3.1-2.6,4.5c1.4,1.4,3.9,2.7,4.7,0c0.1-0.5,0-1.5,0.2-1.7l0.8,0.8c-0.1,1.2-0.7,2.4-1.6,3.2
-		c-3.7,3.6-7.6-6.4-9.8-4.2l-0.4-0.2C166.4,182.1,167.1,180.9,168.5,181.9 M143.8,63.5c2.1-4.6,4.2-9.9,5.6-14.7
-		c0.6,0.3,1.1,0.4,1.6,0.6c-2.1,4.7-4,9.8-5.6,14.7C145,63.8,144.4,63.6,143.8,63.5 M162.1,62.3c-3.6-2.2-8.2,5.2-4.8,7.3
-		C160.9,71.8,165.7,64.5,162.1,62.3 M159.7,71.8c0.4-0.5,0.8-1.1,1.1-1.7c-2.4,1.4-5.7,0.2-6.1-2.8c-1-6.7,9.4-9.1,9.4-2.4
-		c1.3-2.1,2.7-4.3,4-6.5c0.5,0.5,0.9,0.8,1.5,1c-3,4.3-5.7,8.9-8.3,13.4C160.7,72.3,160.2,72,159.7,71.8 M170.6,79.3
-		c-4.3-0.5-6.9-5.2-3.6-8.7c4.4-4.8,11.7,0.8,6.7,6.1l-5.3-4.9c-3,3.2-1.3,6.9,2.9,6.8C171.1,78.8,170.8,79.1,170.6,79.3 M169,71.2
-		l4,3.8C176.5,71.3,172.3,67.9,169,71.2 M58,189.2c-0.1-0.1-0.2-0.2-0.3-0.4c-0.1-0.1-0.2-0.2-0.3-0.4c-0.1-0.2-0.3-0.3-0.4-0.4
-		c-0.1-0.1-0.2-0.2-0.4-0.3c1.4-1.2,2.6-2.2,3.6-3.2c1-0.9,1.8-1.6,2.1-1.9c1-0.9,1.6-1.6,2-2.1c0.4-0.6,0.6-1.1,0.7-1.7
-		c0.1-0.6,0-1.2-0.2-1.8c-0.2-0.6-0.6-1.2-1.1-1.7c-0.5-0.5-1-0.9-1.6-1.2c-0.6-0.3-1.2-0.4-1.8-0.4c-0.6,0-1.2,0.3-1.9,0.6
-		c-0.7,0.4-1.6,1.2-3,2.4c-0.9,0.8-1.7,1.6-2.5,2.3c-0.8,0.7-1.6,1.5-2.3,2.2c0-0.1-0.1-0.2-0.2-0.3c-0.1-0.1-0.1-0.2-0.2-0.3
-		c-0.1-0.1-0.2-0.2-0.3-0.3c-0.1-0.1-0.2-0.1-0.3-0.2c0.6-0.5,1.2-1,1.8-1.5c0.5-0.5,0.9-0.8,1.2-1l0.4-0.4c2-1.8,3.4-3,4.2-3.5
-		c0.8-0.6,1.5-0.9,2.2-1c0.9-0.2,1.9-0.1,2.8,0.2c0.9,0.3,1.7,1,2.6,1.9c1.4,1.5,2,3,1.9,4.4c-0.1,1.4-1,2.8-2.6,4.3
-		c-0.1,0.1-0.5,0.4-1.2,1c-0.7,0.6-1.4,1.2-2.1,1.8c-0.5,0.4-1.3,1.2-2.5,2.3C58.2,188.9,58.1,189.1,58,189.2 M58.6,167.2
-		c-0.4,0.2-0.8,0.4-1.2,0.6c-0.4,0.2-1.1,0.6-2,1.1l-1.3,0.7c-1.2,0.6-2.1,1.1-2.7,1.4c-0.6,0.3-1.1,0.6-1.5,0.9
-		c0-0.1-0.1-0.3-0.1-0.4c-0.1-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.2-0.3-0.2-0.4c-0.1-0.1-0.2-0.2-0.2-0.3c0,0,0,0,0.1,0
-		c0.4-0.2,0.7-0.3,0.9-0.4c0.1,0,0.2-0.1,0.3-0.2c0.1-0.1,0.3-0.2,0.3-0.2c-0.8,0-1.5-0.2-2-0.5c-0.6-0.3-1-0.8-1.3-1.4
-		c-0.5-1-0.6-1.9-0.4-2.7c0.3-0.8,1-1.5,2.1-2.1c0.3-0.2,0.8-0.4,1.4-0.7c0.6-0.3,1.1-0.5,1.3-0.7c0.5-0.2,0.9-0.5,1.4-0.8
-		c0.5-0.3,1-0.5,1.5-0.8c0,0.2,0.1,0.3,0.1,0.4c0,0.1,0.1,0.3,0.2,0.4c0.1,0.1,0.1,0.2,0.2,0.3c0.1,0.1,0.2,0.2,0.3,0.4
-		c-0.7,0.3-1.5,0.7-2.3,1.1c-0.9,0.5-1.9,1-3,1.6c-0.9,0.5-1.5,1-1.8,1.6c-0.3,0.6-0.2,1.2,0.2,1.9c0.2,0.4,0.4,0.7,0.7,0.9
-		c0.3,0.2,0.6,0.4,1,0.4c0.4,0.1,0.9,0.1,1.3-0.1c0.5-0.1,1.1-0.4,1.9-0.8l0.8-0.4c1.1-0.6,1.8-1,2.3-1.2c0.4-0.3,0.8-0.5,1.2-0.7
-		c0,0.2,0.1,0.3,0.1,0.5c0.1,0.1,0.1,0.2,0.2,0.4c0.1,0.1,0.1,0.2,0.2,0.4C58.4,166.9,58.5,167.1,58.6,167.2 M53.2,156.2
-		c-0.9,0.3-1.8,0.6-2.6,1c-0.8,0.3-1.6,0.6-2.3,0.9c-0.7,0.3-1.4,0.5-2.1,0.9c-0.7,0.3-1.5,0.6-2.2,1c0-0.1-0.1-0.3-0.1-0.4
-		c0-0.1-0.1-0.3-0.1-0.4c-0.1-0.2-0.1-0.3-0.2-0.4c-0.1-0.1-0.1-0.2-0.2-0.4c0.8-0.3,1.6-0.6,2.3-0.9c0.7-0.3,1.4-0.5,2.1-0.8
-		c0.7-0.3,1.5-0.6,2.3-0.9c0.8-0.3,1.6-0.7,2.5-1.1c0,0.1,0.1,0.3,0.1,0.4c0,0.1,0.1,0.3,0.1,0.4c0.1,0.1,0.1,0.2,0.2,0.4
-		C53.1,156,53.1,156.1,53.2,156.2 M40.7,161.5c-0.3,0.1-0.5,0.1-0.8,0c-0.3-0.1-0.4-0.3-0.6-0.6c-0.1-0.3-0.1-0.5,0-0.8
-		c0.1-0.3,0.3-0.5,0.6-0.6c0.3-0.1,0.6-0.1,0.8,0c0.3,0.1,0.5,0.3,0.6,0.6c0.1,0.3,0.1,0.6,0,0.8C41.2,161.2,41,161.4,40.7,161.5
-		 M50.6,148.5c-0.9,0.5-2,1.3-3.3,2.4c-1.3,1-3.1,2.4-5.2,4.2c0-0.2,0-0.3-0.1-0.5c0-0.1-0.1-0.3-0.1-0.5c0-0.2-0.1-0.3-0.2-0.5
-		c-0.1-0.2-0.1-0.3-0.2-0.4c0.8-0.5,1.7-1.1,2.9-1.9c1.1-0.8,2.5-1.9,4-3.1c-1.4-0.3-2.8-0.5-4.3-0.7c-1.4-0.1-2.8-0.2-4.2-0.2
-		c0-0.1,0-0.2,0-0.3c0-0.1,0-0.2-0.1-0.4c0-0.1-0.1-0.2-0.1-0.3c0-0.1-0.1-0.2-0.1-0.3c2.5,0.4,4.8,0.7,6.7,1c1.9,0.3,3.3,0.4,4,0.4
-		c0,0.1,0,0.2,0,0.3c0,0.1,0.1,0.2,0.1,0.4c0,0.2,0.1,0.3,0.1,0.3C50.5,148.4,50.5,148.4,50.6,148.5 M47.1,133.6
-		c0.4,0.5,0.8,1.1,1,1.6c0.2,0.6,0.4,1.2,0.5,1.8c0.1,1.5-0.2,2.7-1.1,3.7c-0.9,1-2.1,1.6-3.6,1.7c-1.6,0.1-2.9-0.2-3.9-1
-		c-1-0.8-1.6-1.9-1.7-3.4c-0.1-1.3,0.2-2.4,0.9-3.2c0.7-0.8,1.8-1.3,3.3-1.4c0,0,0.1,0,0.2,0c0.1,0,0.2,0,0.2,0l0.6,7.2l0.1,0
-		c1.4-0.1,2.5-0.5,3.2-1.2c0.7-0.7,1-1.6,0.9-2.7c-0.1-0.6-0.2-1.2-0.5-1.7c-0.3-0.5-0.7-1-1.2-1.4c0.2,0,0.4,0,0.5,0
-		c0.1,0,0.2,0,0.3,0L47.1,133.6z M42.9,140.7l-0.5-5.5l-0.4,0c-1,0.1-1.8,0.4-2.4,0.9c-0.6,0.5-0.8,1.2-0.7,2
-		c0.1,0.8,0.5,1.5,1.2,1.9C40.9,140.5,41.8,140.7,42.9,140.7 M48.1,130c-0.7,0-1.6,0-2.7-0.1c-1.1,0-2.5,0-4.2,0c-0.9,0-1.6,0-2,0
-		c-0.4,0-0.8,0-1.1,0.1c0-0.1,0.1-0.3,0.1-0.4c0-0.1,0-0.3,0-0.5c0-0.2,0-0.3,0-0.5c0-0.1,0-0.3-0.1-0.4c0.3,0,0.7,0.1,1.1,0.1
-		c0.4,0,0.8,0,1.2,0c-0.8-0.4-1.4-0.8-1.8-1.2c-0.4-0.4-0.6-0.9-0.6-1.4c0-0.1,0-0.2,0-0.3c0-0.1,0-0.3,0.1-0.5
-		c0.2,0,0.4,0.1,0.7,0.1c0.2,0,0.6,0,0.9,0l0.1,0.2c-0.1,0.2-0.2,0.3-0.2,0.5c0,0.2-0.1,0.3-0.1,0.5c0,0.8,0.3,1.3,1,1.7
-		c0.7,0.4,1.8,0.5,3.2,0.5c0.9,0,1.7,0,2.4,0c0.7,0,1.3,0,1.9-0.1c0,0.1,0,0.3-0.1,0.4c0,0.2,0,0.3,0,0.5c0,0.1,0,0.3,0,0.4
-		C48,129.7,48,129.9,48.1,130 M46.2,122.9c0.6-0.3,1-0.6,1.3-1c0.3-0.4,0.5-0.8,0.6-1.3c0.1-0.6,0-1.2-0.3-1.6
-		c-0.3-0.4-0.7-0.6-1.3-0.7c-0.5-0.1-0.8,0-1.1,0.2c-0.3,0.2-0.6,0.6-0.8,1.2l-0.4,0.9c-0.3,0.8-0.7,1.3-1.2,1.6
-		c-0.5,0.3-1.1,0.4-1.8,0.3c-0.9-0.1-1.5-0.5-2-1.1c-0.5-0.7-0.6-1.5-0.5-2.4c0.1-0.5,0.2-0.9,0.3-1.4c0.2-0.4,0.4-0.8,0.7-1.1
-		c0.2,0.1,0.4,0.2,0.6,0.3c0.2,0.1,0.4,0.2,0.6,0.3c-0.5,0.3-0.9,0.7-1.2,1.1c-0.3,0.4-0.4,0.8-0.5,1.2c-0.1,0.5,0,1,0.3,1.3
-		c0.3,0.4,0.7,0.6,1.2,0.7c0.5,0.1,0.8,0,1.1-0.2c0.3-0.2,0.6-0.6,0.8-1.1l0.6-1.4c0.3-0.7,0.6-1.2,1.1-1.4c0.4-0.3,1-0.4,1.6-0.3
-		c1,0.1,1.7,0.6,2.2,1.3c0.5,0.8,0.7,1.7,0.6,2.8c-0.1,0.5-0.2,1-0.4,1.5c-0.2,0.4-0.4,0.8-0.7,1.1c-0.2-0.1-0.5-0.3-0.8-0.4
-		C46.7,123.1,46.5,123,46.2,122.9 M49.8,114.5c-0.9-0.2-1.8-0.5-2.7-0.7c-0.8-0.2-1.6-0.4-2.4-0.5c-0.7-0.2-1.4-0.3-2.2-0.4
-		c-0.8-0.1-1.6-0.3-2.4-0.4c0.1-0.1,0.1-0.3,0.1-0.4c0-0.1,0.1-0.3,0.1-0.4c0-0.2,0.1-0.3,0.1-0.5c0-0.2,0-0.3,0-0.4
-		c0.9,0.2,1.7,0.4,2.4,0.6c0.7,0.2,1.5,0.3,2.2,0.5c0.8,0.2,1.6,0.3,2.4,0.5c0.8,0.2,1.7,0.3,2.7,0.5c-0.1,0.1-0.1,0.3-0.2,0.4
-		c0,0.1-0.1,0.3-0.1,0.4c0,0.1,0,0.3-0.1,0.4C49.8,114.2,49.8,114.3,49.8,114.5 M36.4,111.9c-0.3-0.1-0.5-0.2-0.7-0.5
-		c-0.2-0.2-0.2-0.5-0.1-0.8c0-0.3,0.2-0.5,0.5-0.7c0.2-0.2,0.5-0.2,0.8-0.1c0.3,0.1,0.5,0.2,0.7,0.5c0.2,0.2,0.2,0.5,0.2,0.8
-		c-0.1,0.3-0.2,0.5-0.5,0.7C37,111.9,36.7,112,36.4,111.9 M43.8,102.5c-0.3,0.9-0.2,1.8,0.4,2.6c0.6,0.8,1.5,1.4,2.8,1.8
-		c1.3,0.4,2.3,0.5,3.2,0.3c0.9-0.2,1.4-0.8,1.7-1.7c0.3-1,0.2-1.8-0.4-2.6c-0.6-0.8-1.6-1.4-3-1.9c-1.2-0.4-2.3-0.5-3.1-0.2
-		C44.6,101,44.1,101.6,43.8,102.5 M53.6,102.7c-0.3-0.1-0.5-0.2-0.7-0.3c-0.2-0.1-0.3-0.1-0.5-0.2c-0.2-0.1-0.4-0.1-0.5-0.1
-		c-0.1,0-0.2-0.1-0.3-0.1c0.6,0.6,1,1.3,1.1,1.9c0.2,0.7,0.1,1.4-0.2,2.2c-0.4,1.2-1.2,2-2.3,2.5c-1.1,0.4-2.4,0.4-3.8-0.1
-		c-1.5-0.5-2.6-1.3-3.2-2.4c-0.7-1.1-0.8-2.3-0.3-3.5c0.2-0.7,0.6-1.2,1.1-1.7c0.5-0.4,1.1-0.7,1.8-0.9l-3.6-1.2
-		c-0.6-0.2-1.2-0.4-1.9-0.6c-0.6-0.2-1.2-0.4-1.8-0.6c0.1-0.2,0.2-0.3,0.3-0.4c0.1-0.1,0.1-0.2,0.1-0.4c0.1-0.1,0.1-0.2,0.1-0.4
-		c0-0.1,0.1-0.3,0.1-0.5c0.8,0.3,1.6,0.6,2.7,1c1,0.4,2.2,0.8,3.7,1.3c1.4,0.5,2.9,1,4.3,1.4c1.4,0.5,2.8,0.9,4.3,1.4
-		c-0.1,0.1-0.1,0.3-0.2,0.4c-0.1,0.1-0.1,0.3-0.2,0.4c-0.1,0.1-0.1,0.3-0.1,0.4C53.6,102.4,53.6,102.5,53.6,102.7 M53.6,90.9
-		c-0.6,1.8-0.9,2.9-0.9,3.6c0,0.6,0.4,1.1,1,1.5c0.6,0.3,1.1,0.4,1.5,0.3c0.5-0.1,0.8-0.4,1.1-1c0.2-0.3,0.3-0.7,0.3-1.1
-		c0-0.4,0-0.8-0.1-1.2c-0.1-0.2-0.1-0.3-0.2-0.4c-0.1-0.1-0.2-0.2-0.4-0.3l-0.1,0L53.6,90.9z M57.1,92.8c0.2,0.6,0.3,1.2,0.2,1.8
-		c-0.1,0.6-0.2,1.1-0.5,1.6c-0.4,0.8-1,1.3-1.6,1.6c-0.6,0.2-1.3,0.1-2-0.3c-0.7-0.4-1.1-0.8-1.3-1.4c-0.2-0.6-0.2-1.3,0.1-2.1
-		c0.1-0.3,0.3-0.8,0.4-1.4c0.4-1.2,0.6-2,0.5-2.3l-0.4-0.2c-0.8-0.5-1.6-0.7-2.1-0.5c-0.6,0.1-1,0.5-1.4,1.2c-0.3,0.5-0.4,1-0.4,1.5
-		c0,0.5,0.2,1.1,0.4,1.6l-0.1,0.1l-1-0.6c-0.1-0.6-0.1-1.2,0-1.8c0.1-0.6,0.3-1.2,0.6-1.8c0.6-1,1.2-1.6,2-1.8
-		c0.7-0.2,1.7,0,2.7,0.6l0.2,0.1l3.1,1.8l0.5,0.3c0.5,0.3,0.9,0.4,1.1,0.4c0.2,0,0.4-0.2,0.6-0.5c0.1-0.1,0.1-0.2,0.1-0.2
-		c0,0,0-0.1,0.1-0.1l0.4,0.1l0,0.1c-0.1,0.7-0.3,1.3-0.5,1.6c-0.2,0.3-0.4,0.5-0.6,0.6C57.9,93,57.5,93,57.1,92.8 M56.7,79.5
-		C56,80.2,55.8,81.1,56,82c0.2,0.9,0.9,1.9,1.9,2.8c1,0.9,2,1.4,2.9,1.5c0.9,0.1,1.6-0.2,2.2-0.9c0.7-0.8,0.9-1.6,0.6-2.6
-		c-0.2-0.9-0.9-1.9-2.1-2.9c-1-0.8-1.9-1.3-2.8-1.4C58,78.5,57.3,78.8,56.7,79.5 M65.6,83.4c-0.2-0.2-0.4-0.4-0.5-0.5
-		c-0.1-0.1-0.3-0.2-0.4-0.3c-0.2-0.1-0.3-0.3-0.4-0.3c-0.1-0.1-0.2-0.1-0.2-0.2c0.3,0.8,0.4,1.5,0.3,2.2c-0.1,0.7-0.4,1.3-1,2
-		c-0.8,1-1.9,1.4-3.1,1.4c-1.2,0-2.4-0.5-3.5-1.5c-1.2-1-1.9-2.2-2.1-3.5c-0.2-1.3,0.1-2.4,1-3.4c0.5-0.6,1-0.9,1.6-1.1
-		c0.6-0.2,1.3-0.2,2-0.1l-2.9-2.5c-0.5-0.4-1-0.9-1.5-1.3c-0.5-0.4-1-0.8-1.4-1.2c0.2-0.1,0.3-0.2,0.4-0.3c0.1-0.1,0.2-0.2,0.3-0.3
-		c0.1-0.1,0.2-0.2,0.2-0.3c0.1-0.1,0.2-0.3,0.3-0.5c0.6,0.6,1.3,1.2,2.1,1.9c0.8,0.7,1.8,1.6,2.9,2.6c1.1,1,2.3,2,3.4,2.9
-		c1.1,1,2.3,1.9,3.5,2.9c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.2,0.2-0.3,0.3C66,82.7,66,82.9,65.9,83C65.8,83.1,65.7,83.2,65.6,83.4
-		 M74.3,73.4c-0.1,0.7-0.4,1.3-0.7,1.8c-0.3,0.5-0.7,1-1.2,1.5c-1.1,1-2.3,1.4-3.6,1.3c-1.3-0.1-2.5-0.7-3.5-1.8
-		c-1.1-1.2-1.6-2.4-1.5-3.7c0-1.3,0.6-2.4,1.7-3.4c1-0.9,2-1.3,3.1-1.2c1.1,0.1,2.1,0.7,3.1,1.8c0,0,0.1,0.1,0.2,0.2
-		c0.1,0.1,0.1,0.1,0.1,0.2l-5.4,4.8l0,0.1c1,1.1,1.9,1.7,2.9,1.8c1,0.2,1.9-0.2,2.7-0.9c0.4-0.4,0.8-0.9,1-1.4
-		c0.2-0.5,0.4-1.1,0.4-1.8c0.1,0.2,0.2,0.3,0.3,0.4c0.1,0.1,0.1,0.2,0.2,0.2L74.3,73.4z M66.1,74.3l4.1-3.7L70,70.4
-		c-0.7-0.8-1.4-1.2-2.2-1.3c-0.7-0.1-1.4,0.1-2,0.6c-0.6,0.6-0.9,1.3-0.8,2.1C65,72.7,65.4,73.5,66.1,74.3 M83.1,68.8
-		c-0.3-0.7-0.6-1.4-1-2.2c-0.4-0.8-0.8-1.7-1.3-2.6c-0.7-1.3-1.4-2.7-2.2-4c-0.7-1.3-1.5-2.6-2.2-3.9c0.2-0.1,0.5-0.2,0.9-0.4
-		c0.3-0.2,0.9-0.5,1.7-0.9c0.9-0.5,1.7-0.9,2.3-1.2c0.6-0.3,1.2-0.7,1.8-1c0,0.1,0.1,0.2,0.2,0.3c0.1,0.1,0.1,0.2,0.1,0.3
-		c0,0.1,0.1,0.2,0.2,0.3c0.1,0.1,0.1,0.2,0.2,0.3c-0.4,0.1-1,0.3-1.8,0.7c-0.7,0.3-1.7,0.8-2.9,1.4l-0.4,0.2
-		c0.2,0.4,0.4,0.7,0.6,1.1c0.2,0.4,0.5,1,0.9,1.7l0.7,1.3l0.3,0.6l1.5-0.8c0.6-0.3,1.1-0.6,1.6-0.9c0.5-0.3,1-0.6,1.4-0.9
-		c0,0.1,0.1,0.1,0.1,0.2c0,0.1,0.1,0.2,0.2,0.4c0.1,0.1,0.1,0.2,0.2,0.3c0,0.1,0.1,0.1,0.1,0.2c-1,0.5-1.9,0.9-2.6,1.2
-		c-0.7,0.3-1.2,0.6-1.6,0.8l-0.5,0.3l2.3,4.3c0.4,0.7,0.6,1.1,0.8,1.4c0.2,0.3,0.3,0.5,0.4,0.6c-0.2,0.1-0.3,0.1-0.5,0.2
-		c-0.2,0.1-0.3,0.2-0.5,0.2c-0.1,0.1-0.3,0.2-0.4,0.3C83.3,68.7,83.2,68.7,83.1,68.8 M98.9,60.7c-0.4,0.6-0.8,1-1.3,1.4
-		c-0.5,0.4-1,0.7-1.6,1c-1.4,0.5-2.7,0.5-3.8,0c-1.2-0.6-2.1-1.5-2.6-3c-0.6-1.5-0.6-2.8-0.1-4c0.5-1.2,1.4-2.1,2.8-2.6
-		c1.3-0.5,2.4-0.5,3.3,0c1,0.5,1.7,1.4,2.2,2.8c0,0,0,0.1,0.1,0.2c0,0.1,0.1,0.2,0.1,0.2l-6.7,2.6l0,0.1c0.5,1.3,1.2,2.2,2,2.7
-		c0.8,0.5,1.8,0.5,2.9,0.1c0.6-0.2,1.1-0.5,1.5-0.9c0.4-0.4,0.8-0.9,1-1.5c0.1,0.2,0.1,0.4,0.2,0.5c0,0.1,0.1,0.2,0.1,0.3L98.9,60.7
-		z M90.9,58.6l5.2-2l-0.1-0.3c-0.4-1-0.9-1.6-1.5-2c-0.6-0.4-1.3-0.4-2.1-0.1c-0.8,0.3-1.3,0.9-1.5,1.7
-		C90.5,56.6,90.5,57.6,90.9,58.6 M104.8,51.1c-1,0.2-1.6,0.7-2,1.6c-0.4,0.9-0.4,2-0.2,3.4c0.3,1.3,0.7,2.3,1.4,2.9
-		c0.6,0.6,1.4,0.9,2.3,0.7c1-0.2,1.7-0.7,2.1-1.6c0.4-0.9,0.4-2.1,0.2-3.5c-0.3-1.3-0.7-2.2-1.3-2.8
-		C106.5,51.1,105.7,50.9,104.8,51.1 M109.4,59.7c0-0.3-0.1-0.5-0.1-0.7c0-0.2-0.1-0.3-0.1-0.5c0-0.2-0.1-0.4-0.1-0.5
-		c0-0.1-0.1-0.2-0.1-0.3c-0.2,0.8-0.6,1.5-1.1,1.9c-0.5,0.5-1.2,0.8-2,0.9c-1.2,0.2-2.3,0-3.3-0.8c-0.9-0.7-1.5-1.9-1.8-3.3
-		c-0.3-1.6-0.1-2.9,0.5-4c0.6-1.1,1.6-1.8,2.9-2.1c0.7-0.1,1.4-0.1,2,0.1c0.6,0.2,1.2,0.6,1.7,1.2l-0.7-3.7
-		c-0.1-0.6-0.3-1.3-0.4-1.9c-0.1-0.6-0.3-1.2-0.4-1.8c0.2,0,0.4,0,0.5,0c0.1,0,0.3,0,0.4,0c0.1,0,0.2-0.1,0.4-0.1
-		c0.1-0.1,0.3-0.1,0.5-0.2c0.1,0.8,0.3,1.7,0.5,2.8c0.2,1,0.4,2.3,0.7,3.9c0.3,1.5,0.6,3,0.9,4.4c0.3,1.5,0.6,2.9,0.9,4.4
-		c-0.2,0-0.3,0-0.4,0c-0.1,0-0.3,0-0.4,0c-0.1,0-0.3,0.1-0.4,0.1C109.7,59.6,109.6,59.6,109.4,59.7 M122.6,58
-		c-0.6,0.4-1.1,0.7-1.7,0.9c-0.6,0.2-1.2,0.3-1.9,0.3c-1.5,0-2.7-0.5-3.6-1.4c-0.9-0.9-1.4-2.2-1.4-3.7c0-1.6,0.4-2.8,1.3-3.8
-		c0.9-1,2.1-1.4,3.5-1.4c1.3,0,2.4,0.4,3.1,1.2c0.7,0.8,1.1,1.9,1.1,3.4c0,0.1,0,0.1,0,0.2c0,0.1,0,0.2,0,0.2l-7.2,0V54
-		c0,1.4,0.3,2.5,0.9,3.3c0.6,0.7,1.5,1.1,2.6,1.1c0.6,0,1.2-0.1,1.7-0.4c0.5-0.2,1-0.6,1.5-1.1c0,0.2,0,0.4,0,0.5v0.3V58z
-		 M115.9,53.2h5.5v-0.4c0-1-0.2-1.8-0.7-2.4c-0.5-0.6-1.1-0.9-1.9-0.9c-0.8,0-1.5,0.3-2,1C116.2,51.2,115.9,52.1,115.9,53.2
-		 M126.3,59.5c0.1-0.7,0.2-1.6,0.4-2.7c0.2-1.1,0.3-2.5,0.5-4.2c0.1-0.9,0.2-1.5,0.2-1.9c0-0.4,0.1-0.8,0.1-1.1
-		c0.1,0,0.3,0.1,0.4,0.1c0.1,0,0.3,0.1,0.5,0.1c0.2,0,0.3,0,0.5,0c0.1,0,0.3,0,0.4,0c-0.1,0.3-0.2,0.7-0.2,1.1
-		c-0.1,0.4-0.1,0.8-0.2,1.2c0.5-0.8,1-1.3,1.4-1.7c0.5-0.3,1-0.5,1.4-0.4c0.1,0,0.2,0,0.3,0.1c0.1,0,0.3,0.1,0.5,0.1
-		c-0.1,0.2-0.1,0.4-0.2,0.6c0,0.3-0.1,0.6-0.1,0.9L132,52c-0.2-0.1-0.3-0.2-0.5-0.3c-0.2-0.1-0.3-0.1-0.5-0.1
-		c-0.8-0.1-1.3,0.2-1.8,0.8c-0.4,0.6-0.7,1.7-0.9,3.1c-0.1,0.9-0.2,1.7-0.3,2.4c-0.1,0.7-0.1,1.3-0.1,1.9c-0.1-0.1-0.3-0.1-0.4-0.1
-		c-0.1,0-0.3-0.1-0.5-0.1c-0.1,0-0.3,0-0.4,0C126.5,59.5,126.4,59.5,126.3,59.5 M139.9,56.8c-1.9-0.2-3.1-0.2-3.7,0
-		c-0.6,0.2-1,0.6-1.2,1.3c-0.2,0.6-0.1,1.1,0.1,1.6c0.2,0.4,0.6,0.7,1.2,0.9c0.3,0.1,0.7,0.1,1.1,0c0.4-0.1,0.8-0.2,1.1-0.4
-		c0.2-0.1,0.3-0.2,0.4-0.3c0.1-0.1,0.2-0.3,0.2-0.5l0-0.1L139.9,56.8z M138.8,60.6c-0.5,0.3-1.1,0.6-1.7,0.6
-		c-0.6,0.1-1.1,0.1-1.7-0.1c-0.9-0.2-1.5-0.6-1.9-1.2c-0.4-0.6-0.5-1.2-0.2-2c0.2-0.7,0.5-1.2,1-1.6c0.5-0.3,1.2-0.5,2-0.4
-		c0.4,0,0.8,0.1,1.5,0.1c1.3,0.1,2,0.1,2.4-0.1l0.1-0.4c0.2-0.9,0.2-1.6,0-2.2c-0.3-0.5-0.8-0.9-1.6-1.1c-0.6-0.2-1.1-0.2-1.6,0
-		c-0.5,0.1-1,0.4-1.4,0.8l-0.2,0l0.3-1.1c0.5-0.3,1.1-0.4,1.7-0.5c0.6,0,1.2,0,1.9,0.2c1.1,0.3,1.9,0.8,2.2,1.5
-		c0.4,0.7,0.4,1.6,0.1,2.8l-0.1,0.3l-1,3.4l-0.2,0.6c-0.1,0.5-0.2,0.9-0.1,1.1c0.1,0.2,0.3,0.4,0.6,0.4c0.1,0,0.2,0,0.2,0.1
-		c0.1,0,0.1,0,0.1,0l0,0.4l-0.1,0c-0.7,0-1.3,0-1.7-0.1c-0.3-0.1-0.6-0.3-0.7-0.5C138.8,61.4,138.8,61,138.8,60.6 M113.2,199.8
-		c-0.6,0-1.1,0.3-1.5,0.8c-0.4,0.5-0.6,1.2-0.6,2c0,0.7,0.2,1.3,0.6,1.7c0.4,0.4,0.9,0.6,1.5,0.6c0.7,0,1.2-0.2,1.5-0.7
-		c0.4-0.5,0.5-1.1,0.5-1.9c0-0.8-0.2-1.4-0.5-1.9C114.3,200,113.8,199.8,113.2,199.8 M110.7,209.6v-0.2c0-0.1,0-0.1,0-0.2
-		c0-0.1,0-0.2,0-0.3v-0.3c0.2,0.2,0.5,0.3,0.8,0.5c0.3,0.1,0.5,0.1,0.8,0.1c0.4,0,0.8-0.1,1.1-0.3c0.3-0.2,0.6-0.5,0.9-0.9
-		c0.3-0.4,0.5-1,0.7-1.6c0.2-0.6,0.3-1.3,0.3-2c0-0.1,0-0.1,0-0.2c0-0.1,0-0.1,0-0.2c-0.2,0.5-0.6,0.8-1,1c-0.4,0.2-0.9,0.3-1.6,0.3
-		c-0.9,0-1.5-0.3-2.1-0.8c-0.5-0.5-0.8-1.3-0.8-2.1c0-1,0.3-1.8,1-2.4c0.6-0.6,1.5-0.9,2.5-0.9c1.1,0,1.9,0.4,2.5,1.1
-		c0.6,0.7,0.9,1.8,0.9,3.2c0,1.9-0.4,3.4-1.2,4.5c-0.8,1.1-1.9,1.7-3.2,1.7c-0.2,0-0.5,0-0.8-0.1
-		C111.2,209.7,110.9,209.7,110.7,209.6 M119.8,206.7c0,0.8,0.2,1.4,0.6,1.9c0.4,0.5,0.8,0.7,1.4,0.7c0.6,0,1.1-0.2,1.5-0.7
-		c0.4-0.5,0.5-1.1,0.5-2c0-0.8-0.2-1.5-0.5-1.9c-0.3-0.4-0.8-0.6-1.4-0.6c-0.6,0-1.1,0.2-1.5,0.7C120,205.3,119.8,205.9,119.8,206.7
-		 M119.7,204.9c0.3-0.4,0.7-0.8,1.2-1c0.4-0.2,0.9-0.3,1.5-0.3c0.9,0,1.6,0.3,2.1,0.8c0.5,0.5,0.8,1.2,0.8,2.1c0,1-0.3,1.9-0.9,2.5
-		c-0.6,0.6-1.4,0.9-2.5,0.9c-1.1,0-1.9-0.4-2.5-1.1c-0.6-0.8-0.9-1.8-0.9-3.2c0-1.8,0.4-3.3,1.3-4.5c0.8-1.1,2-1.7,3.3-1.7
-		c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0.1,0.5,0.1v0.2c0,0.1,0,0.1,0,0.2c0,0,0,0.1,0,0.2v0.2c-0.2-0.1-0.3-0.2-0.5-0.3
-		c-0.2-0.1-0.4-0.1-0.6-0.1c-0.9,0-1.6,0.4-2.1,1.3C120.2,202.1,119.8,203.3,119.7,204.9 M126.6,204.6c0-1.7,0.3-3,0.9-3.9
-		c0.6-0.9,1.5-1.3,2.7-1.3c1.2,0,2.1,0.4,2.7,1.3c0.6,0.9,0.9,2.2,0.9,4c0,1.7-0.3,3-0.9,3.9c-0.6,0.9-1.5,1.3-2.7,1.3
-		c-1.2,0-2.1-0.4-2.7-1.3C126.9,207.6,126.6,206.3,126.6,204.6 M127.9,204.6c0,1.7,0.2,2.9,0.5,3.7c0.4,0.7,1,1.1,1.8,1.1
-		c0.8,0,1.4-0.4,1.8-1.1c0.3-0.7,0.5-2,0.5-3.9c0-1.6-0.2-2.7-0.6-3.5c-0.4-0.7-1-1.1-1.7-1.1c-0.8,0-1.4,0.4-1.8,1.1
-		C128.1,201.7,127.9,202.9,127.9,204.6"/>
-	<path class="st5" d="M142.5,105.1h-1.2l-0.1,2.9h1.1L142.5,105.1z M138.4,163.1c-0.2,0.2-0.4,0.3-0.7,0.5l-0.3,6.6
-		c0.2,0,0.4,0.1,0.6,0.1L138.4,163.1z M99.1,163.1c0.2,0.2,0.4,0.3,0.7,0.5l0.3,6.6c-0.2,0-0.4,0.1-0.6,0.1L99.1,163.1z M100.4,164
-		c0.2,0.2,0.4,0.3,0.7,0.4l0.2,5.6c-0.2,0-0.4,0.1-0.6,0.1L100.4,164z M101.5,164.7c0.2,0.1,0.4,0.2,0.7,0.4l0.2,4.7
-		c-0.2,0-0.4,0.1-0.6,0.1L101.5,164.7z M135.9,164.7c-0.2,0.1-0.4,0.3-0.6,0.4l-0.2,4.7c0.2,0,0.4,0.1,0.6,0.1L135.9,164.7z
-		 M137.1,164c-0.2,0.2-0.4,0.3-0.7,0.4l-0.2,5.6c0.2,0,0.4,0.1,0.6,0.1L137.1,164z M95,105.1h1.1l0.1,2.9h-1.2L95,105.1z
-		 M97.1,105.1h1.2l0.1,2.9h-1.2L97.1,105.1z M99.2,105.1h1.2l0.1,2.9h-1.2L99.2,105.1z M116.1,105.1h1.2l0,2.9h-1.2L116.1,105.1z
-		 M118.1,105.1h1.1l0,2.9h-1.2L118.1,105.1z M120.2,105.1h1.2v2.9h-1.2V105.1z M138.3,105.1h-1.2l-0.1,2.9h1.2L138.3,105.1z
-		 M140.4,105.1h-1.2l-0.1,2.9h1.2L140.4,105.1z"/>
-	<path class="st6" d="M153.2,152.2c-1.7-0.1-3.4-0.1-5.1,0.4c-1.6,0.4-2.8,0.9-4.4,1.6l-0.3,2.6c0,0.1-0.2,0.5-0.4,0.8
-		c1.9,0.9,3.9,1.6,6.1,2.3c0.3-0.9,0.5-1.8,1.3-3.1C151.2,155.3,152.4,153.6,153.2,152.2 M105.6,110.4c0.1-0.3,0.3-0.3,0.6-0.1
-		c0.6,0.5,1.1,1.2,1.3,1.9c0.2,0.8-0.1,1.8-1.4,4c-0.5,1.2-0.6,1.5-0.7,2.1c0.3-0.6,1.2-1.3,2-2.1c0.3-0.4,0.6-0.8,0.8-1.3
-		c0.1-0.5,0.4-0.6,0.7-0.2c1.7,1.9,1.2,3.2,1.1,3.9c-0.7,2-1.4,3.2-1,4.4c0.1,0.3-0.1,0.5-0.4,0.4c-1.2-0.3-1.8-1.2-2.2-2.4
-		c-0.5,1-0.3,1.9,0.3,2.8c0.2,0.3,0.1,0.6-0.3,0.5c-1.5-0.3-2.5-1.3-2.9-2.4c-0.2,1.2,0.3,2.4,1.4,3.3c0.5,0.3,0.2,0.6-0.3,0.6
-		c-1.7,0-2.5-0.6-3.1-1.1c0.2,0.8,0.6,1.5,1.9,2.2c0.1,0,0.1,0.1,0.2,0.1c0.2,0.1,0.2,0.4-0.2,0.5c-1.4,0.4-2.5,0.2-3.6,0
-		c-2.7-0.8-4.2-2.2-5-4.1c-0.7-2.1-0.2-3.9,1.1-4.9c1-0.7,2-0.7,2.9-1c0.8-0.3,1.6-0.9,2.3-2.2c0.5-1.2,1.3-2.1,2.3-2.7
-		c0.7-0.4,1.2-0.7,1.5-1C105.3,111.3,105.5,110.9,105.6,110.4 M111.8,123.4c-0.8-1-1.6-0.8-2.4,0l-2.8,2.5h0l-2.8,2.5
-		c-0.9,0.8-1.1,1.6-0.2,2.4c-0.7,0.8-1,1.4-0.5,2.1c0.3,0.4,0.8,0.9,1.2,1.3c0.5,0.3,1,0.4,2-0.4c0.7,0.8,1.5,0.6,2.3-0.1l5.1,4.5
-		c-1.6-0.6-2.8-0.8-4.6-1.2c-2.3-0.3-4.5-0.1-6.3,0.6c-2.8,1.3-4.6,2.8-5.1,4.4c-0.8,2.5,0.5,5.7,3.2,7.5c1.3,0.9,2.9,1.7,4.3,2.4
-		c2.2,1.2,3.9,2.4,5.1,4.1c0.3,0.5,0.6,0.1,0.7-0.1c0.4-0.9,0.6-2.2,0.2-4c-0.2-0.9-0.5-1.4-0.8-1.7c-0.4-0.5-0.8-0.7-1-1.2
-		c-0.3-0.6-0.5-1.4-0.2-2.4c0.5-2.1,2.3-2.4,4-2.2c2.7,0.5,5.1,1.9,7,3.2l0.7,3.1c0,0.2,0.1,0.2,0.3,0.3l3,0.9
-		c0.3,0.4,0.7,0.9,0.9,1.5c0.1,0.4,0.2,0.7,0,1.6c-0.4,0.9-2.5,0.9-3.4,1.1c-0.3,0.1-0.7,0.2-0.9,0.3c-0.6,0.3-1,0.7-1.2,1.2
-		c-0.2,0.6,0,1.2,0.2,2c0,0.2,0.3,0.3,0.5,0.1c0.2-0.4,0.7-0.9,1.2-1c0.9-0.2,1.6,0,2,0.2c1.7,0.7,3,1.4,4,1.4
-		c0.7,0,1.3-0.2,1.7-0.6c0.4-0.4,0.8-0.9,0.9-1.4c0.9,0.6,1.7,0.8,3.5,1.1c1.1,0.1,2.4,0.3,3.5,0.3c0.2,0,0.3,0,0.4,0c0,0,0,0,0,0
-		c0-0.1,0.1-0.2,0.1-0.4c0.1-1.1,0.1-2.4,0-3.5c-0.1-1.8-0.3-2.6-0.8-3.6c0.6-0.1,1.1-0.4,1.5-0.8c0.4-0.4,0.7-1,0.8-1.7
-		c0.1-1.1-0.4-2.4-1-4.2c-0.1-0.4-0.3-1.1,0-2c0.1-0.5,0.7-0.9,1.1-1.1c0.2-0.1,0.1-0.4-0.1-0.5c-0.8-0.3-1.4-0.5-2-0.4
-		c-0.5,0.1-1,0.5-1.3,1.1c-0.1,0.3-0.3,0.6-0.4,0.9c-0.3,0.8-0.6,3-1.5,3.2c-1,0.2-1.4,0-1.7-0.1c-0.5-0.2-1-0.6-1.3-1l-0.7-3.1
-		c0-0.2,0-0.3-0.3-0.3l-3.1-1c-1.1-2-2.3-4.6-2.5-7.3c-0.1-1.8,0.4-3.5,2.5-3.8c1-0.1,1.7,0.1,2.3,0.5c0.5,0.3,0.7,0.7,1.1,1.1
-		c0.3,0.3,0.8,0.7,1.7,1c1.7,0.6,3.1,0.5,4,0.2c0.3-0.1,0.7-0.3,0.2-0.7c-1.6-1.3-2.6-3.2-3.6-5.4c-0.6-1.5-1.2-3.1-2-4.5
-		c-1.6-2.9-4.6-4.4-7.2-3.9c-1.7,0.3-3.3,2-4.8,4.6c-0.9,1.7-1.3,3.9-1.2,6.2c0.2,1.9,0.4,3,0.7,4.7l-4-5.5c0.8-0.7,1-1.4,0.3-2.2
-		c0.8-0.9,0.8-1.5,0.6-2c-0.4-0.5-0.7-0.9-1.2-1.3C113.2,122.6,112.7,122.8,111.8,123.4 M117.8,108.9h1.9h27.8
-		c-1.7,15.9-3.4,31.6-5.1,47.4c-1.6,3.4-4.2,5.9-7.3,7.6c-2.9,1.6-6.3,2.6-10.1,3.1c-2.6,0.2-2.9,0.3-5.3,0.4v0h-0.9h-0.9v0
-		c-2.4,0-2.7-0.1-5.3-0.4c-3.9-0.5-7.3-1.5-10.1-3.1c-3.1-1.7-5.7-4.2-7.3-7.6c-1.7-15.9-3.4-31.6-5.1-47.4H117.8z M84.3,152.2
-		c1.7-0.2,3.2-0.1,5,0.3c1.6,0.3,3.2,1,4.6,1.7l0.3,2.5c0,0.1,0.2,0.6,0.3,0.8c-1.9,0.9-3.8,1.6-6,2.3c-0.3-0.9-0.5-1.7-1.3-3.1
-		C86.2,155.2,85.1,153.6,84.3,152.2 M81.4,168.6c1.8,1.2,3.8,2.1,5.9,2.7c2.5,0.6,5.2,0.8,7.6,0.4c5.3-0.6,7.3-0.9,12.5-1.8
-		c4.3-0.6,8-1,11.4-1c3.4,0,7.1,0.4,11.4,1c5.1,0.8,7.1,1.2,12.5,1.8c2.4,0.3,5.1,0.2,7.6-0.4c2.1-0.6,4.1-1.5,5.8-2.7
-		c-0.6,3.1-1.5,6.1-2.7,9c-0.8,1.5-1.2,2-1.9,2.9c-1.2,1.1-2.4,1.9-4.4,2.4c-2.5,0.6-5,0.6-8,0.1c-1.9-0.5-4.1-0.9-6.4-1.4
-		c-3-0.6-6-0.9-9-1.1c-1.6-0.1-3.2-0.1-4.8-0.2l-0.1,0l-0.1,0c-1.6,0-3.2,0.1-4.8,0.2c-3,0.2-6,0.5-9,1.1c-2.3,0.5-4.5,0.9-6.4,1.4
-		c-3.2,0.5-5.6,0.4-8.1-0.1c-2.2-0.5-3.6-1.5-4.3-2.3c-0.8-0.8-1.7-2.4-2.2-3.6C82.7,174.1,82,171.6,81.4,168.6"/>
-	<path class="st7" d="M106,110.9c-0.5,1.3-1.3,1.6-2.8,2.6c-0.8,0.6-1.4,1.5-1.9,2.7c-0.7,1.2-1.5,1.8-2.6,2
-		c-1.9,0.3-3.9,1.3-3.6,3.9c0.2,3.1,4.2,6,8,5.3c-1.2-0.5-2-1.6-1.9-2.9c0.1-0.4,0.3-0.3,0.5-0.1c0.2,0.4,1.4,1.1,2.8,1.2
-		c-1.7-1.6-1.5-3.2-1.2-4.2c0.2-0.4,0.4-0.2,0.5,0c0.1,0.3,0.3,0.7,0.5,1.1c0.3,0.5,1.1,1.3,2,1.6c-0.7-1.2-0.7-2.5-0.1-3.5
-		c0.2-0.5,0.6-0.3,0.6,0c0,0.3,0.4,1.9,1.8,2.5c-0.3-1.5,0.5-3,0.8-3.8c1.1-2.4-0.4-3.8-0.7-4.1c-0.3,0.7-0.8,1.5-1.8,2.3
-		c-0.6,0.5-1,1-1.3,1.8c-0.1,0.4-0.6,0.3-0.6-0.1c0-1.6,0.5-2.6,0.7-3c0.3-0.6,0.5-1.1,0.8-1.6C107.2,113.4,107.4,112.1,106,110.9
-		 M81.4,167.5c-0.5-2.3,0.6-3.6,2-4.6c1.8-1.1,4.1-1.9,6.5-2.6c1.7-0.6,3.4-1.2,5-2c0.8,1.3,1.8,2.6,3,3.7c-1.8,1.2-3.8,2.4-5.8,3.9
-		c-2.2,1.7-3.1,3.2-3.3,4.8C87.4,170.5,85.1,170,81.4,167.5 M156,167.4c0.5-2.4-0.6-3.5-2-4.4c-1.9-1-4.1-1.9-6.5-2.7
-		c-1.7-0.6-3.5-1.1-5.1-2c-0.8,1.3-1.8,2.6-2.9,3.8c1.9,1.2,3.9,2.4,5.7,3.8c2.1,1.7,3.1,3.1,3.4,4.8
-		C150.1,170.4,152.4,170,156,167.4 M127.6,149.2l-1,0.9c0.7,0.8,1.4,2.1,1.9,4.4c0.7,2,1,3.5,3.2,4.1c1.5,0.5,3.2,0.6,5.2,0.7l0.1,0
-		v0c0.1-2,0.1-3.7-0.3-5.3c-0.4-2.3-1.8-2.7-3.8-3.6c-2.2-0.7-3.5-1.5-4.2-2.3L127.6,149.2z M120.7,147.6l6.2-5.6l2.7,0.8l-8.3,7.5
-		L120.7,147.6z M121.7,146l-1.1,1l-0.3,0.2c-2.7-1.8-5-2.8-6.9-3.1c-1.7-0.3-3,0.1-3.9,0.9c-0.9,1-1.1,2.4-0.8,3.4
-		c0.2,0.9,0.7,1.6,1.2,2c0.5,0.5,0.8,1.1,1,2.3c0.2,1.2,0.1,2.2-0.2,3c-0.6-0.8-1.3-1.4-1.9-2c-0.6-0.5-1.2-0.9-1.9-1.3
-		c-2.5-1.4-5.3-2.5-7-4.3c-0.4-0.4-0.8-1-1.2-1.6c-0.7-1.3-1-3.1-0.4-4.3c0.1-0.6,0.6-1.3,2.3-2.6c1.5-1.1,3.3-1.9,5.5-2.1
-		c2.5-0.2,5.1,0.6,8.3,1.6C117.1,141.5,119.2,143.6,121.7,146 M109,133.5l4.8-4.4c3.5,4.8,7.1,9.5,11,14l-2.8,2.5
-		C117.5,140.9,113.1,137,109,133.5 M125.2,142.7l1.3-1.1c-1.5-2.8-2.4-5.3-2.6-7.2c-0.2-1.8,0.4-3.1,1.3-3.9
-		c0.7-0.5,1.4-0.7,2.1-0.7c0.7,0,1.3,0.1,1.9,0.4c0.6,0.3,1,0.7,1.3,1.1c0.6,0.5,0.7,0.7,2.4,1.2c1,0.2,2,0.3,2.7,0.1
-		c-0.7-0.6-1.3-1.4-1.8-2.2c-0.4-0.6-0.7-1.3-1.1-2c-1.2-2.6-2-5.4-3.6-7.2c-0.3-0.5-0.9-0.9-1.5-1.3c-1.3-0.8-3-1.2-4.3-0.8
-		c-0.6,0.1-1.4,0.5-2.7,2.1c-1.2,1.4-2.2,3.1-2.5,5.3c-0.4,2.5,0.1,5.2,0.7,8.5C121.2,137.7,123,140,125.2,142.7 M106.3,128.8
-		c1.6-1.3,4-3.9,6-5.2c0.5-0.3,0.9-0.3,1.1-0.1c0.3,0.2,0.9,0.8,1.2,1.3c0.1,0.2,0.1,0.4-0.1,0.8c-0.3,0.5-1,1.1-1.5,1.6
-		c-1.3,1.3-3,2.8-4.5,4.1c-0.9,0.9-1.8,1.7-2.6,2.3c-0.7,0.4-0.9,0.5-1.3,0.2c-0.4-0.3-0.7-0.7-1-1c-0.4-0.4-0.4-0.7,0.1-1.2
-		C104.1,130.9,105.9,129.2,106.3,128.8"/>
-	<path class="st8" d="M124.6,151.9l1.6-1.5c0.4,0.6,1,1.3,1.5,3c0.4,1.6,0.7,3.2,1.9,4.6c0,0.6-0.7,1.6-1.7,1.8
-		c-0.9,0.2-1.8-0.2-4.1-1.1c-1.6-0.7-3.1-0.6-3.9,0.5c-0.3-1.1-0.1-1.8,0.8-2.2c1.1-0.4,2.2-0.3,3.5-0.8c1-0.4,1.2-0.8,1.3-1.9
-		C125.6,153.4,125.3,152.6,124.6,151.9 M114.3,128c-0.2,0.2-0.4,0.4-0.8,0.8c-1.4,1.3-3.9,3.6-5,4.6c-0.2,0.2-0.4,0.3-0.5,0.4
-		c-0.6,0.4-1,0-1.2-0.2c0.1-0.1,0.5-0.4,1.4-1.2c1-0.9,2.4-2.2,4.4-4.1c0.5-0.5,1-1,1.5-1.5c0.1,0.1,0.2,0.3,0.3,0.4
-		C114.6,127.5,114.4,127.8,114.3,128 M103.8,129.2c0.2-0.2,0.4-0.5,0.9-0.8c1.4-1.3,3.9-3.6,5-4.6c0.2-0.2,0.4-0.3,0.5-0.4
-		c0.6-0.4,0.9,0,1.2,0.3c-0.1,0.1-0.5,0.4-1.4,1.2c-1,0.9-2.5,2.2-4.4,4.1c-0.5,0.5-1,1-1.5,1.5c-0.1-0.1-0.2-0.2-0.3-0.4
-		C103.4,129.7,103.6,129.5,103.8,129.2 M130.5,145.9l-6.2,5.7l-2.7-0.8l8.2-7.6L130.5,145.9z M125.3,142.6l1.3-1
-		c-1.5-2.8-2.4-5.4-2.6-7.3c-0.1-1.7,0.3-3,1.3-3.9c1.1-0.8,2.4-0.9,3.5-0.5c0.9,0.3,1.6,0.8,1.9,1.4c0.5,0.5,1,0.9,2.2,1.2
-		c1.1,0.3,2.1,0.3,3,0.1l-0.1-0.1c-0.8,0-1.5-0.4-2.2-0.7c-0.6-0.4-1.2-0.9-1.8-1.4c-1-1.1-2-2.3-3-3.6c-0.5-0.6-1.2-1.6-1.8-1.8
-		c-0.6-0.3-1.2-0.2-1.7-0.1c-1.1,0.3-2.3,1-3.2,3.4c-0.5,1.5-1.1,3.3-0.4,6.4C122,136.5,123.3,139.7,125.3,142.6 M121.6,146
-		l-1.3,1.2c-2.7-1.7-5.1-2.8-6.9-3.1c-1.7-0.3-3,0.1-3.9,0.9c-0.9,1-1,2.4-0.8,3.4c0.2,0.9,0.7,1.5,1.2,1.9c0.5,0.6,0.8,1.2,1,2.4
-		c0.2,1.2,0.1,2.2-0.2,3l-0.1-0.1c0-0.8-0.1-1.5-0.4-2.2c-0.3-0.7-0.7-1.3-1.3-1.9c-1-1.1-2.2-2.2-3.3-3.3c-0.5-0.6-1.5-1.3-1.6-1.9
-		c-0.2-0.6-0.1-1.2,0.1-1.7c0.4-1.1,1.2-2.2,3.7-2.9c1.6-0.4,3.4-0.8,6.4,0.1C115.8,142.2,118.8,143.8,121.6,146 M130.7,146.3
-		l-1.6,1.5c0.6,0.5,1.2,1.1,2.9,1.7c1.5,0.6,3.2,1,4.4,2.3c0.6,0.1,1.8-0.5,2.1-1.4c0.3-0.9,0-1.9-0.8-4.2c-0.6-1.6-0.3-3.2,0.8-3.8
-		c-1.1-0.4-1.8-0.3-2.3,0.6c-0.5,1-0.5,2.1-1.1,3.4c-0.5,0.9-0.9,1.1-2,1.1C132.1,147.5,131.4,147,130.7,146.3"/>
-	<path class="st9" d="M147.9,76.5c-2.4,0.7-5.3,0.2-6.5,3.1c-0.5,1-0.8,1.8-1.5,2.8c-0.2,0.4-0.5,0.6-1.1,1c-1.8,1-5.4,2.2-5.7,4.2
-		c-0.3,2.1,0.2,4.2,2,5.4c-0.3-1-0.3-3.2,1.2-4.9c0.3-0.5,0.7-0.2,0.7,0.1c-0.1,0.8-0.1,2.8,0.7,3.8c0-2.8,1.7-5.7,3.7-7
-		c0.4-0.2,0.6,0.2,0.5,0.4c-0.2,0.5-0.4,1-0.6,1.5c-0.4,1.7-0.3,3.3,0.3,5c0.3-1.4,1.1-2.7,3.2-4.1c0.5-0.3,0.7,0.2,0.5,0.5
-		c-0.8,1.6-1.4,3.9-0.6,5.1c1.7-0.4,1.5-1.8,1.9-3.4c0.2-0.9,0.3-0.9,1.6-3.1c0.6-1.5,0.2-2.4-0.1-4.4c-0.3,0.4-1.2,2.9-4,3.2
-		c-0.6,0.1-1.1,0-0.7-0.6c0.8-1.1,1.5-1.9,1.8-3.2C145.4,79.7,146.6,78.4,147.9,76.5 M105.1,76.5c-2.3,0.7-5.3,0.2-6.5,3.1
-		c-0.5,1-0.8,1.8-1.5,2.8c-0.3,0.4-0.5,0.6-1.1,1c-1.8,1-5.4,2.2-5.7,4.2c-0.3,2.1,0.3,4.2,2,5.4c-0.3-1-0.3-3.2,1.2-4.9
-		c0.3-0.5,0.7-0.2,0.7,0.1c-0.1,0.8-0.1,2.8,0.7,3.8c0-2.8,1.7-5.7,3.7-7c0.5-0.2,0.6,0.2,0.5,0.4c-0.2,0.5-0.4,1-0.5,1.5
-		c-0.4,1.7-0.3,3.3,0.3,5c0.3-1.4,1.1-2.7,3.2-4.1c0.5-0.3,0.7,0.2,0.5,0.5c-0.8,1.6-1.4,3.9-0.6,5.1c1.8-0.4,1.5-1.8,1.9-3.4
-		c0.2-0.9,0.3-0.9,1.6-3.1c0.5-1.5,0.2-2.4-0.1-4.4c-0.3,0.4-1.1,2.9-4,3.2c-0.6,0.1-1.1,0-0.7-0.6c0.7-1.1,1.5-1.9,1.8-3.2
-		C102.6,79.7,103.8,78.4,105.1,76.5 M126.3,76.5c-2.4,0.7-5.3,0.2-6.5,3.1c-0.5,1-0.8,1.8-1.5,2.8c-0.2,0.4-0.5,0.6-1.1,1
-		c-1.8,1-5.4,2.2-5.7,4.2c-0.3,2.1,0.2,4.2,2,5.4c-0.3-1-0.3-3.2,1.2-4.9c0.3-0.5,0.7-0.2,0.7,0.1c-0.1,0.8-0.1,2.8,0.7,3.8
-		c0-2.8,1.7-5.7,3.7-7c0.4-0.2,0.6,0.2,0.5,0.4c-0.2,0.5-0.4,1-0.5,1.5c-0.4,1.7-0.3,3.3,0.3,5c0.3-1.4,1.1-2.7,3.2-4.1
-		c0.5-0.3,0.7,0.2,0.5,0.5c-0.8,1.6-1.4,3.9-0.6,5.1c1.7-0.4,1.5-1.8,1.9-3.4c0.2-0.9,0.3-0.9,1.6-3.1c0.5-1.5,0.2-2.4-0.1-4.4
-		c-0.3,0.4-1.2,2.9-4,3.2c-0.6,0.1-1.1,0-0.7-0.6c0.7-1.1,1.5-1.9,1.8-3.2C123.7,79.7,124.9,78.4,126.3,76.5"/>
-	<path class="st7" d="M88.4,173.3l0.2,2.3l-0.2-0.1c-0.1-0.4-0.2-0.8-0.3-1.1c-0.1-0.3-0.3-0.5-0.5-0.7c-0.2-0.2-0.4-0.3-0.7-0.4
-		c-0.3-0.1-0.4-0.1-0.6,0.1c-0.2,0.1-0.2,0.3-0.2,0.6c0,0.2,0.1,0.4,0.2,0.6c0.2,0.3,0.6,0.7,1.2,1.3c0.5,0.5,0.8,0.8,1,1
-		c0.2,0.2,0.3,0.5,0.4,0.7c0.1,0.3,0.2,0.5,0.2,0.8c0,0.5-0.1,0.9-0.4,1.2c-0.3,0.3-0.6,0.3-1.1,0.2c-0.2,0-0.3-0.1-0.5-0.2
-		c-0.1,0-0.3-0.2-0.5-0.3c-0.2-0.2-0.4-0.3-0.5-0.3c-0.1,0-0.1,0-0.1,0c0,0,0,0.1,0,0.3l-0.2-0.1l-0.2-2.3l0.2,0.1
-		c0.1,0.5,0.2,0.9,0.3,1.1c0.1,0.3,0.3,0.5,0.6,0.7c0.2,0.2,0.4,0.4,0.7,0.4c0.3,0.1,0.5,0.1,0.7-0.1c0.2-0.1,0.2-0.4,0.2-0.6
-		c0-0.2-0.1-0.3-0.1-0.5c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.1-0.4-0.4-0.9-0.8c-0.5-0.4-0.8-0.8-1-1c-0.2-0.2-0.4-0.5-0.5-0.7
-		c-0.1-0.2-0.2-0.5-0.2-0.8c0-0.5,0.1-0.9,0.4-1.1c0.3-0.3,0.6-0.3,1-0.2c0.3,0.1,0.6,0.2,0.9,0.5c0.2,0.1,0.2,0.2,0.3,0.2
-		c0.1,0,0.1,0,0.1,0c0,0,0.1-0.1,0.1-0.3L88.4,173.3z M114,171.3l0,2.3l-0.2,0c0-0.4-0.1-0.8-0.3-1c-0.1-0.2-0.3-0.4-0.5-0.5
-		c-0.2-0.1-0.5-0.2-0.7-0.2c-0.3,0-0.5,0.1-0.7,0.3c-0.2,0.2-0.3,0.4-0.3,0.7c0,0.2,0.1,0.3,0.2,0.5c0.2,0.2,0.5,0.5,1.2,0.8
-		c0.5,0.3,0.9,0.5,1.1,0.7c0.2,0.1,0.3,0.3,0.4,0.6c0.1,0.2,0.2,0.5,0.2,0.7c0,0.5-0.2,1-0.5,1.3c-0.3,0.4-0.7,0.6-1.3,0.7
-		c-0.2,0-0.3,0-0.5,0c-0.1,0-0.3,0-0.5-0.1c-0.3-0.1-0.4-0.1-0.5-0.1c-0.1,0-0.1,0-0.2,0.1c0,0.1-0.1,0.2-0.1,0.3l-0.2,0l0-2.3
-		l0.2,0c0.1,0.5,0.2,0.8,0.3,1c0.1,0.2,0.3,0.4,0.5,0.5c0.2,0.1,0.5,0.2,0.8,0.2c0.3,0,0.6-0.2,0.8-0.4c0.2-0.2,0.3-0.5,0.3-0.8
-		c0-0.2,0-0.3-0.1-0.5c-0.1-0.2-0.2-0.3-0.4-0.4c-0.1-0.1-0.4-0.3-0.9-0.5c-0.5-0.3-0.8-0.5-1-0.6c-0.2-0.2-0.4-0.4-0.5-0.6
-		c-0.1-0.2-0.2-0.5-0.2-0.7c0-0.5,0.2-0.9,0.5-1.2c0.3-0.4,0.7-0.6,1.2-0.6c0.3,0,0.6,0,0.9,0.2c0.2,0.1,0.3,0.1,0.3,0.1
-		c0.1,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.2,0.1-0.3L114,171.3z M121.8,175.1l0,1.9c0,0.4,0,0.6,0.1,0.7c0.1,0.1,0.2,0.2,0.4,0.2l0.2,0
-		l0,0.2l-2.3-0.1l-2,0v-0.2c0.2,0,0.4,0,0.4-0.1c0.1-0.1,0.1-0.1,0.1-0.2c0-0.1-0.1-0.4-0.2-0.7l-0.3-0.9l-2.1,0l-0.4,1
-		c-0.1,0.3-0.1,0.4-0.1,0.6c0,0.1,0,0.2,0.1,0.2c0.1,0.1,0.3,0.1,0.5,0.1v0.2l-1.8,0l0-0.2c0.2-0.1,0.4-0.1,0.5-0.2
-		c0.1-0.2,0.3-0.4,0.5-0.9l1.9-5.4h0.2l2,5.4c0.2,0.4,0.3,0.7,0.4,0.8c0.1,0.1,0.3,0.2,0.5,0.2c0.2,0,0.3-0.1,0.4-0.2
-		c0.1-0.1,0.1-0.3,0.1-0.7l0.1-4.2c0-0.4,0-0.7-0.1-0.8c-0.1-0.1-0.2-0.2-0.4-0.2l-0.3,0l0-0.2l2,0.1c0.5,0,0.9,0.1,1.2,0.2
-		c0.3,0.1,0.5,0.3,0.7,0.6c0.2,0.3,0.3,0.7,0.3,1.1c0,0.5-0.2,1-0.5,1.3c-0.3,0.3-0.7,0.5-1.3,0.4c-0.1,0-0.3,0-0.4-0.1
-		C122.1,175.1,122,175.1,121.8,175.1 M126.6,178.2l0,0.3l-2.4-0.2l0-0.3l0.2,0c0.2,0,0.4,0,0.5-0.2c0.1-0.1,0.1-0.3,0.2-0.7l0.4-4.2
-		c0-0.3,0-0.5,0-0.6c0-0.1,0-0.1-0.1-0.2c-0.1-0.1-0.2-0.1-0.3-0.1l-0.2,0l0-0.3l2.4,0.2l0,0.3l-0.2,0c-0.2,0-0.4,0.1-0.5,0.2
-		c-0.1,0.1-0.1,0.3-0.2,0.7l-0.4,4.2c0,0.3,0,0.5,0,0.6c0,0.1,0.1,0.1,0.1,0.2c0.1,0,0.1,0.1,0.2,0.1c0,0,0.1,0,0.2,0L126.6,178.2z
-		 M129.6,172.6l-0.3,2.5l1.2,0.2c0.3,0.1,0.5,0,0.6,0c0.2-0.1,0.3-0.4,0.3-0.7l0.2,0l-0.3,2.3l-0.2,0c0-0.3,0-0.6-0.1-0.6
-		c0-0.1-0.1-0.2-0.2-0.3c-0.1-0.1-0.3-0.1-0.5-0.2l-1.2-0.2l-0.2,2.2c0,0.3,0,0.4,0,0.5c0,0.1,0,0.1,0.1,0.2c0,0,0.1,0.1,0.3,0.1
-		l0.9,0.2c0.3,0.1,0.5,0.1,0.7,0.1c0.1,0,0.3-0.3,0.4-0.4c0.2-0.2,0.4-0.4,0.6-0.8l0.2,0l-0.7,1.6l-4.3-0.6l0-0.2l0.3,0
-		c0.1,0,0.2,0,0.3,0c0.1,0,0.2-0.1,0.2-0.2c0-0.1,0.1-0.3,0.1-0.6l0.5-4.3c0-0.4,0-0.6,0-0.7c-0.1-0.1-0.2-0.2-0.4-0.3l-0.2,0l0-0.2
-		l4.3,0.8l-0.1,1.5l-0.2,0c0-0.3-0.1-0.6-0.1-0.7c-0.1-0.1-0.1-0.2-0.3-0.3c-0.1-0.1-0.3-0.1-0.5-0.2L129.6,172.6z M142.9,180.6
-		l0-0.3l0.2,0c0.2,0,0.4-0.1,0.5-0.3c0.1-0.1,0.1-0.3,0.2-0.8l0.5-4.4c0-0.3,0-0.6,0-0.7c0-0.1-0.1-0.1-0.1-0.2
-		c-0.1-0.1-0.2-0.1-0.3-0.1l-0.2,0l0-0.3l2.5-0.2l0,0.3l-0.2,0c-0.2,0-0.4,0.1-0.5,0.2c-0.1,0.1-0.1,0.4-0.2,0.8l-0.5,4.4
-		c0,0.4,0,0.6,0,0.7c0,0.1,0.1,0.1,0.1,0.2c0.1,0.1,0.2,0.1,0.3,0.1l0.2,0c0.3,0,0.4-0.1,0.5-0.2c0.1-0.2,0.3-0.5,0.4-0.8l1.4-5.4
-		l0.1-0.3l3-0.9l0.3,1.5l-0.2,0c-0.1-0.3-0.2-0.6-0.3-0.7c-0.1-0.1-0.1-0.2-0.2-0.2c-0.1,0-0.2,0-0.4,0.1l-1.1,0.3l0.4,2.5l0.9-0.2
-		c0.2-0.1,0.4-0.2,0.4-0.3c0.1-0.2,0.1-0.5,0-0.8l0.2-0.1l0.3,2.3l-0.2,0.1c-0.1-0.3-0.1-0.5-0.2-0.6c-0.1-0.1-0.1-0.2-0.2-0.2
-		c-0.1,0-0.2,0-0.4,0l-0.9,0.3l0.3,2c0,0.3,0.1,0.4,0.1,0.5c0,0,0,0.1,0.1,0.1c0,0,0.1,0,0.2,0l0.7-0.2c0.2,0,0.3-0.1,0.5-0.2
-		c0.1-0.1,0.2-0.2,0.2-0.4c0.1-0.2,0.2-0.6,0.3-1l0.2-0.1l-0.1,1.8l-3.2,0.9l0-0.3l0.2,0c0.1,0,0.2-0.1,0.2-0.2
-		c0.1-0.1,0.1-0.2,0.1-0.3c0-0.1,0-0.3-0.1-0.6l-0.3-2l-1.2,0.4l-0.6,2.3c-0.1,0.3-0.1,0.4,0,0.6c0.1,0.1,0.3,0.1,0.6,0l0,0.2
-		C145.7,180.5,144.6,180.6,142.9,180.6 M132.9,172.8l1.4,0.2l2.5,5.1l0.4-3.6c0.1-0.4,0-0.6,0-0.7c-0.1-0.1-0.2-0.2-0.4-0.2l-0.2,0
-		l0-0.2l1.8,0.2l0,0.3l-0.2,0c-0.2,0-0.3,0-0.5,0.2c-0.1,0.1-0.1,0.3-0.2,0.7l-0.6,5.5l-0.2,0l-2.7-5.5l-0.4,3.9c0,0.4,0,0.6,0,0.8
-		c0.1,0.1,0.2,0.2,0.4,0.2l0.2,0l0,0.2l-1.8-0.3l0-0.3l0.2,0c0.2,0,0.4,0,0.5-0.2c0.1-0.1,0.1-0.3,0.1-0.7l0.5-4.5
-		c-0.1-0.2-0.2-0.4-0.3-0.5c-0.1-0.1-0.2-0.2-0.3-0.2c-0.1,0-0.2-0.1-0.4-0.1L132.9,172.8z M143.4,173.7l0,1.7l-0.2,0
-		c0-0.3,0-0.5-0.1-0.6c-0.1-0.2-0.2-0.3-0.3-0.4c-0.1-0.1-0.3-0.1-0.5-0.1l-0.7,0l-0.3,5.1c0,0.4,0,0.7,0.1,0.8
-		c0.1,0.1,0.2,0.2,0.5,0.2l0.2,0l0,0.2l-2.4-0.1l0-0.3l0.2,0c0.1,0,0.2,0,0.3,0c0.1,0,0.2-0.1,0.2-0.2c0.1-0.1,0.1-0.3,0.1-0.7
-		l0.3-5.1l-0.6,0c-0.2,0-0.4,0-0.5,0.1c-0.1,0.1-0.3,0.2-0.4,0.3c-0.1,0.2-0.2,0.4-0.2,0.7l-0.2,0l0.2-1.6L143.4,173.7z
-		 M148.2,173.8l-0.4,1.3l-0.3,1.3l1-0.3l-0.3-1.8C148.3,174.1,148.3,173.9,148.2,173.8 M118.1,175.5l-0.9-2.5l-0.9,2.5L118.1,175.5z
-		 M121.8,174.7c0.1,0,0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.3,0c0.3,0,0.5-0.1,0.7-0.3c0.2-0.3,0.3-0.6,0.3-1c0-0.3,0-0.5-0.1-0.8
-		c-0.1-0.2-0.2-0.4-0.4-0.5c-0.2-0.1-0.4-0.2-0.6-0.2c-0.1,0-0.3,0-0.5,0.1L121.8,174.7z M107.3,172.5l0.3,2.3l-0.2,0
-		c-0.1-0.4-0.2-0.8-0.4-1c-0.2-0.2-0.4-0.4-0.6-0.5c-0.3-0.1-0.5-0.1-0.7-0.1c-0.3,0.1-0.5,0.2-0.6,0.4c-0.2,0.2-0.2,0.5-0.2,0.7
-		c0,0.2,0.1,0.4,0.2,0.5c0.2,0.2,0.6,0.4,1.3,0.7c0.5,0.2,0.9,0.4,1.1,0.5c0.2,0.1,0.4,0.3,0.5,0.5c0.1,0.2,0.2,0.5,0.3,0.7
-		c0.1,0.5-0.1,1-0.3,1.4c-0.3,0.4-0.7,0.7-1.2,0.8c-0.2,0-0.3,0-0.5,0c-0.1,0-0.3,0-0.5-0.1c-0.3,0-0.4-0.1-0.5,0c0,0-0.1,0-0.1,0.1
-		c0,0-0.1,0.2-0.1,0.3l-0.2,0l-0.3-2.3l0.2,0c0.1,0.4,0.3,0.8,0.4,1c0.1,0.2,0.3,0.3,0.6,0.4c0.3,0.1,0.5,0.1,0.8,0.1
-		c0.3-0.1,0.6-0.2,0.7-0.5c0.2-0.2,0.2-0.5,0.2-0.8c0-0.2-0.1-0.3-0.2-0.4c-0.1-0.1-0.2-0.3-0.4-0.4c-0.1-0.1-0.4-0.2-0.9-0.4
-		c-0.5-0.2-0.9-0.4-1.1-0.5c-0.2-0.1-0.4-0.3-0.5-0.5c-0.1-0.2-0.2-0.4-0.2-0.7c-0.1-0.5,0-0.9,0.3-1.3c0.3-0.4,0.6-0.6,1.1-0.7
-		c0.3-0.1,0.6-0.1,0.9,0.1c0.2,0,0.3,0.1,0.3,0.1c0.1,0,0.1,0,0.2-0.1c0,0,0-0.2,0.1-0.3L107.3,172.5z M101.2,174.2l0.1,2.5l1.2-0.2
-		c0.3,0,0.5-0.1,0.6-0.2c0.2-0.2,0.2-0.5,0.2-0.8l0.2,0l0.1,2.3l-0.2,0c-0.1-0.3-0.1-0.5-0.1-0.6c-0.1-0.1-0.1-0.2-0.3-0.2
-		c-0.1-0.1-0.3-0.1-0.5,0l-1.2,0.2l0.1,2.1c0,0.3,0,0.5,0.1,0.5c0,0.1,0.1,0.1,0.1,0.1c0.1,0,0.1,0,0.3,0l0.9-0.2
-		c0.3,0,0.5-0.1,0.6-0.2c0.1-0.1,0.3-0.2,0.4-0.4c0.2-0.2,0.3-0.6,0.5-1l0.2,0l-0.4,1.8l-4.3,0.7l0-0.2l0.2,0c0.1,0,0.2-0.1,0.3-0.2
-		c0.1-0.1,0.1-0.1,0.2-0.2c0-0.1,0-0.3,0-0.6l-0.2-4.2c0-0.4-0.1-0.6-0.1-0.7c-0.1-0.1-0.2-0.1-0.5-0.1l-0.2,0l0-0.2l4.3-0.7
-		l0.1,1.5l-0.2,0c-0.1-0.3-0.1-0.6-0.2-0.7c-0.1-0.1-0.2-0.2-0.3-0.2c-0.1,0-0.3,0-0.6,0L101.2,174.2z M94.4,181.4l0-0.2l0.3,0
-		c0.2,0,0.3-0.2,0.4-0.3c0.1-0.1,0.1-0.3,0.1-0.7l-0.2-4.2c0-0.4-0.1-0.6-0.1-0.7c-0.1-0.1-0.2-0.2-0.4-0.1l-0.2,0l0-0.2l2.2-0.3
-		c0.8-0.1,1.4-0.1,1.8,0.1c0.4,0.2,0.8,0.5,1,1c0.3,0.5,0.4,1.1,0.5,1.7c0.1,0.9-0.1,1.7-0.5,2.4c-0.5,0.8-1.2,1.2-2.2,1.4
-		L94.4,181.4z M95.9,180.6c0.3,0,0.6,0,0.8,0c0.6-0.1,1-0.4,1.4-1c0.3-0.6,0.5-1.2,0.4-2.1c0-0.9-0.3-1.6-0.7-2
-		c-0.4-0.5-0.9-0.6-1.5-0.6c-0.2,0-0.5,0.1-0.7,0.3L95.9,180.6z M90.6,174.8l0.2,2.5l1.2,0.2c0.3,0,0.5,0,0.6-0.1
-		c0.1-0.1,0.2-0.4,0.2-0.7l0.2,0l0.2,2.3l-0.2,0c-0.1-0.3-0.1-0.5-0.2-0.6c0-0.1-0.1-0.2-0.3-0.3c-0.1-0.1-0.3-0.1-0.5-0.2l-1.2-0.2
-		l0.1,2.1c0,0.3,0,0.4,0.1,0.5c0,0.1,0.1,0.1,0.1,0.2c0.1,0,0.1,0.1,0.3,0.1l0.9,0.1c0.3,0,0.5,0.1,0.7,0c0.1,0,0.3-0.1,0.4-0.2
-		c0.1-0.2,0.3-0.5,0.5-0.8l0.2,0l-0.4,1.6l-4.4-0.6l0-0.3l0.2,0c0.1,0,0.2,0,0.3,0c0.1,0,0.1-0.1,0.2-0.2c0-0.1,0-0.3,0-0.6
-		l-0.3-4.2c0-0.4-0.1-0.7-0.2-0.7c-0.1-0.1-0.3-0.2-0.5-0.2l-0.2,0l0-0.2l4.4,0.6l0.2,1.5l-0.2,0c-0.1-0.3-0.2-0.6-0.2-0.7
-		c-0.1-0.1-0.2-0.2-0.3-0.3c-0.1-0.1-0.3-0.1-0.6-0.1L90.6,174.8z"/>
-</g>
-</svg>
-		</a>
-	</div>
-  <div class="header-text">
-    <h1>Gestão de Custos e Projetos Agropecuários</h1>
-    <p>Prof. <a href="https://lattes.cnpq.br/3234927929088147" target="_blank" rel="noopener">Róberson Macedo de Oliveira</a> · Colégio Politécnico da UFSM · 2026 · Contato: roberson.oliveira@ufsm.br</p>
-  </div>
-</div>
+<main class="capa">
+  <svg class="porteira" viewBox="0 0 64 64" role="img" aria-label="Porteira aberta ao nascer do sol">
+    <rect width="64" height="64" rx="12" fill="#2A331C"/>
+    <circle class="halo" cx="40" cy="30" r="18" fill="#E3C46E"/>
+    <circle class="sol" cx="40" cy="30" r="12" fill="#B89233"/>
+    <path d="M0 47 Q32 40 64 47 V52 Q64 64 52 64 H12 Q0 64 0 52 Z" fill="#3D4A2A"/>
+    <path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/>
+    <g stroke="#FAF7F0" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <!-- folha da porteira: aberta por padrão; fechada→aberta na primeira visita -->
+      <path id="folha" d="M14 22L29 15.5M14 31.5L29 30.5M14 41L29 46M14 41L29 15.5M29 15.5L29 46" stroke-width="2.7">
+        <animate id="abrir" attributeName="d" dur="1s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".45 .05 .25 1"
+          from="M14 22L50 22M14 31.5L50 31.5M14 41L50 41M14 41L50 22M50 22L50 41"
+          to="M14 22L29 15.5M14 31.5L29 30.5M14 41L29 46M14 41L29 15.5M29 15.5L29 46"/>
+      </path>
+      <path d="M14 15V51M50 15V51" stroke-width="4.2"/>
+    </g>
+  </svg>
 
-<section class="intro">
-  <div class="eyebrow">Guia de estudo · Gestão e Projetos</div>
-  <h2>Como este guia está organizado</h2>
-  <p>Este guia organiza os conceitos essenciais de custos e projetos no agronegócio em três movimentos: <strong>entender</strong> a propriedade como empresa, <strong>medir</strong> seus custos com método e <strong>decidir</strong> com base em números. O percurso termina com a elaboração de um projeto técnico.</p>
-</section>
+  <h1>Produzir Não Basta</h1>
+  <p class="sub">Gestão de custos e projetos no campo, para quem estuda e para quem produz.</p>
 
-<!-- ===== MAPA DO CURSO ===== -->
-<section class="coursemap">
-  <div class="cm-eyebrow">Mapa do curso · 6 partes</div>
-  <div class="cm-grid">
-    <a class="cm-item mov-e" href="parte-1.html">
-      <span class="cm-num">I</span>
-      <span><span class="cm-title">Fundamentos</span><span class="cm-sub">Mov. 1 · Entender</span></span>
+  <nav class="portas" aria-label="Escolha o ambiente">
+    <a class="porta" href="disciplina.html">
+      <span class="quem">Para estudantes</span>
+      <span class="nome">Gestão de Custos e Projetos Agropecuários</span>
+      <span class="desc">A disciplina do Colégio Politécnico da UFSM: as seis partes, os exercícios, o simulador e o projeto da disciplina.</span>
+      <span class="ir">Entrar na disciplina →</span>
     </a>
-    <a class="cm-item mov-m" href="parte-2.html">
-      <span class="cm-num">II</span>
-      <span><span class="cm-title">Estrutura de custos</span><span class="cm-sub">Mov. 2 · Medir</span></span>
+    <a class="porta prod" href="produtor/index.html">
+      <span class="quem">Para produtores</span>
+      <span class="nome">Gestão da Propriedade Rural</span>
+      <span class="desc">Doze módulos curtos para entender quanto custa, quanto sobra e como decidir melhor. No celular, com os seus números.</span>
+      <span class="ir">Entrar no curso →</span>
     </a>
-    <a class="cm-item mov-d" href="parte-3.html">
-      <span class="cm-num">III</span>
-      <span><span class="cm-title">Análise econômica</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
-    </a>
-    <a class="cm-item mov-d" href="parte-4.html">
-      <span class="cm-num">IV</span>
-      <span><span class="cm-title">Contexto operacional</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
-    </a>
-    <a class="cm-item mov-d" href="parte-5.html">
-      <span class="cm-num">V</span>
-      <span><span class="cm-title">Módulos aplicados</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
-    </a>
-    <a class="cm-item mov-d" href="parte-6.html">
-      <span class="cm-num">VI</span>
-      <span><span class="cm-title">Projeto final</span><span class="cm-sub">Mov. 3 · Decidir</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- ===== MOVIMENTO 1 · ENTENDER ===== -->
-<section class="movement mov-entender">
-  <div class="movement-head">
-    <span class="movement-num">01</span>
-    <h3 class="movement-name">Movimento · <em>Entender</em></h3>
-  </div>
-  <p class="movement-desc">A propriedade rural é uma empresa, e também um modo de vida. Antes de qualquer número, entender o que se gere e por que planejar.</p>
-  <div class="parts">
-    <a class="part-card" href="parte-1.html">
-      <span class="pn">I</span>
-      <span class="pbody"><span class="ptitle">Fundamentos</span><span class="psub">Propriedade como empresa · planejamento · diagnóstico estratégico</span></span>
-      <span class="parrow"></span>
-    </a>
-  </div>
-</section>
-
-<!-- ===== MOVIMENTO 2 · MEDIR ===== -->
-<section class="movement mov-medir">
-  <div class="movement-head">
-    <span class="movement-num">02</span>
-    <h3 class="movement-name">Movimento · <em>Medir</em></h3>
-  </div>
-  <p class="movement-desc">Transformar o gasto bruto em informação econômica: classificar custos, organizá-los em camadas e trazer o dado real do campo para a planilha.</p>
-  <div class="parts">
-    <a class="part-card" href="parte-2.html">
-      <span class="pn">II</span>
-      <span class="pbody"><span class="ptitle">Estrutura de custos</span><span class="psub">Croqui e CAR · classificação · COE, COT e CT · registro de campo</span></span>
-      <span class="parrow"></span>
-    </a>
-  </div>
-</section>
-
-<!-- ===== MOVIMENTO 3 · DECIDIR / APLICAR ===== -->
-<section class="movement mov-decidir">
-  <div class="movement-head">
-    <span class="movement-num">03</span>
-    <h3 class="movement-name">Movimento · <em>Decidir e aplicar</em></h3>
-  </div>
-  <p class="movement-desc">Com os custos medidos, decidir: analisar a viabilidade, situar o projeto no contexto do RS, aprofundar por atividade e entregar o produto final.</p>
-  <div class="parts">
-    <a class="part-card" href="parte-3.html">
-      <span class="pn">III</span>
-      <span class="pbody"><span class="ptitle">Análise econômica</span><span class="psub">Receita e margens · análise marginal · ponto de equilíbrio · cenários</span></span>
-      <span class="parrow"></span>
-    </a>
-    <a class="part-card" href="parte-4.html">
-      <span class="pn">IV</span>
-      <span class="pbody"><span class="ptitle">Contexto operacional</span><span class="psub">Fluxo de caixa · crédito rural · preço de venda no RS</span></span>
-      <span class="parrow"></span>
-    </a>
-    <a class="part-card" href="parte-5.html">
-      <span class="pn">V</span>
-      <span class="pbody"><span class="ptitle">Módulos aplicados</span><span class="psub">Pecuária · fruticultura e perenes · agricultura de precisão</span></span>
-      <span class="parrow"></span>
-    </a>
-    <a class="part-card" href="parte-6.html">
-      <span class="pn">VI</span>
-      <span class="pbody"><span class="ptitle">Projeto final</span><span class="psub">Projeto da disciplina · apresentação</span></span>
-      <span class="parrow"></span>
-    </a>
-  </div>
-</section>
-
+  </nav>
+</main>
 
 <footer>
-  <strong>Sobre este material</strong>
-  <p style="margin-bottom:6px">Guia de estudo para consulta rápida: o contexto de vários exemplos é discutido em sala de aula, com exercícios e materiais específicos.</p>
-  <p style="margin-bottom:14px">Este material atende à disciplina Gestão de Custos e Projetos, ministrada nos cursos técnicos em Agropecuária, Agricultura, Zootecnia, Agricultura de Precisão e Fruticultura, todos do Eixo Tecnológico Recursos Naturais do Colégio Politécnico da UFSM.</p>
-  <strong>Referência básica</strong>
-  <p style="margin-bottom:14px">KAY, Ronald D.; EDWARDS, William M.; DUFFY, Patricia A. <em>Gestão de propriedades rurais</em>. 7. ed. Porto Alegre: AMGH, 2014. E-book. ISBN 9788580553963. Disponível em: <a href="https://integrada.minhabiblioteca.com.br/reader/books/9788580553963/" target="_blank" rel="noopener" style="color:var(--olive);text-decoration:underline">Minha Biblioteca</a>. Acesso em: 29 maio 2026.</p>
-  <strong id="ia">Declaração de uso de Inteligência Artificial</strong>
-  <p>A ferramenta Claude, Anthropic, 2026 foi utilizada para auxiliar na organização e geração de código HTML/CSS/JS, organização estrutural do material, a partir dos materiais didáticos do professor. Todo o conteúdo técnico, a seleção de conceitos e os ajustes de linguagem são de responsabilidade do professor.</p>
-  <p style="margin-top:16px">
-    <a href="aulas.html" style="color:var(--stone);text-decoration:none;border-bottom:1px dotted var(--rule)">Aulas em vídeo</a>
-    &nbsp;·&nbsp;
-    <a href="quiz-geral.html" style="color:var(--stone);text-decoration:none;border-bottom:1px dotted var(--rule)">Avaliação geral</a>
-    &nbsp;·&nbsp;
-    <a href="roteiro.html" style="color:var(--stone);text-decoration:none;border-bottom:1px dotted var(--rule)">Acesso da turma · roteiro das aulas</a>
-  </p>
+  <p>Prof. <a href="https://lattes.cnpq.br/3234927929088147" target="_blank" rel="noopener">Róberson Macedo de Oliveira</a> · Colégio Politécnico da UFSM · <a href="mailto:roberson.oliveira@ufsm.br">roberson.oliveira@ufsm.br</a></p>
+  <p class="ia">A ferramenta Claude (Anthropic, 2026) foi utilizada para auxiliar na geração de código deste site. O conteúdo técnico é de responsabilidade do professor.</p>
 </footer>
 
+<script>
+  // primeira visita: porteira começa fechada e abre (SMIL, funciona também no Safari)
+  (function(){
+    var anima = !document.documentElement.classList.contains('direto') &&
+                !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var a = document.getElementById('abrir');
+    if(!anima || !a || !a.beginElement) return;
+    document.getElementById('folha').setAttribute('d', a.getAttribute('from'));
+    setTimeout(function(){ a.beginElement(); }, 450);
+  })();
+</script>
 </body>
 </html>
-
