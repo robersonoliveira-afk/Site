@@ -69,6 +69,12 @@ h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(38px,8vw
 .porta .ir{margin-top:auto;padding-top:10px;font-weight:600;font-size:16px;color:var(--terra-deep)}
 .porta.prod .ir{color:#6E5416}
 
+.sobre{display:flex;gap:20px;align-items:flex-start;width:100%;margin-top:34px;padding-top:28px;border-top:1px solid rgba(250,247,240,.16);text-align:left}
+.sobre img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid rgba(250,247,240,.2)}
+.sobre .rot{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mustard-soft);margin-bottom:6px}
+.sobre p{font-size:16px;color:rgba(250,247,240,.85);line-height:1.6;max-width:68ch}
+.sobre a{color:var(--paper);font-weight:500}
+@media(max-width:680px){.sobre{flex-direction:column;align-items:center;text-align:center}.sobre img{width:96px;height:96px}}
 footer{padding:22px 18px 28px;text-align:center;font-size:14px;color:rgba(250,247,240,.62);line-height:1.6}
 footer a{color:rgba(250,247,240,.82)}
 footer .autor{font-family:'Fraunces',Georgia,serif;font-size:17px;color:rgba(250,247,240,.9)}
@@ -136,6 +142,14 @@ footer .ia{max-width:70ch;margin:12px auto 0;font-size:13px}
       <span class="ir">Entrar no curso →</span>
     </a>
   </nav>
+
+  <section class="sobre" aria-label="Quem faz">
+    <img src="foto-roberson.jpg" alt="Róberson Macedo de Oliveira num parreiral com tela de proteção" width="104" height="104">
+    <div>
+      <p class="rot">Quem faz</p>
+      <p><strong>Róberson Macedo de Oliveira</strong> é zootecnista e professor do Colégio Politécnico da UFSM, onde ensina gestão de custos e projetos agropecuários. Doutor em Zootecnia pela UFPel, fez estágio pós-doutoral em Economia e Gestão na Universidade da Beira Interior, em Portugal. Antes, foi professor do Instituto Federal Farroupilha por dez anos. Tem interesse em gestão, educação e agroecologia. <a href="https://lattes.cnpq.br/3234927929088147" target="_blank" rel="noopener">Currículo Lattes</a></p>
+    </div>
+  </section>
 </main>
 
 <footer>
