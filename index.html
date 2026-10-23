@@ -49,7 +49,7 @@ a{color:inherit}
 
 /* porteira */
 .porteira{width:min(52vw,220px);height:auto;display:block;border-radius:22%;box-shadow:0 18px 50px rgba(0,0,0,.35)}
-.porteira .sol{transform-box:view-box;transform-origin:40px 30px;transform:translateY(-2.5px)}
+.porteira .sol,.porteira .halo{transform-box:view-box;transform:translate(3.5px,-1px)}
 .porteira .halo{opacity:.28}
 
 h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(38px,8vw,64px);line-height:1.02;letter-spacing:-.02em;margin:30px 0 12px}
@@ -100,15 +100,15 @@ footer .ia{max-width:70ch;margin:12px auto 0;font-size:13px}
   html:not(.direto) .porta.prod{animation-delay:1.27s}
 }
 @keyframes chega{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
-@keyframes nasce{from{transform:none}to{transform:translateY(-2.5px)}}
-@keyframes brilha{from{opacity:0}to{opacity:.28}}
+@keyframes nasce{from{transform:none}to{transform:translate(3.5px,-1px)}}
+@keyframes brilha{from{opacity:0;transform:none}to{opacity:.28;transform:translate(3.5px,-1px)}}
 @keyframes sobe{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
 <main class="capa">
-  <svg class="porteira" viewBox="0 0 64 64" role="img" aria-label="Porteira aberta ao nascer do sol">
+  <svg class="porteira" viewBox="0 0 64 64" role="img" aria-label="Porteira se abrindo para o sol">
     <rect width="64" height="64" rx="12" fill="#2A331C"/>
     <circle class="halo" cx="40" cy="30" r="18" fill="#E3C46E"/>
     <circle class="sol" cx="40" cy="30" r="12" fill="#B89233"/>
@@ -116,10 +116,10 @@ footer .ia{max-width:70ch;margin:12px auto 0;font-size:13px}
     <path d="M0 47 Q32 40 64 47" fill="none" stroke="#E3C46E" stroke-width="1.2" opacity=".7"/>
     <g stroke="#FAF7F0" stroke-linecap="round" stroke-linejoin="round" fill="none">
       <!-- folha da porteira: aberta por padrão; fechada→aberta na primeira visita -->
-      <path id="folha" d="M14 22L29 15.5M14 31.5L29 30.5M14 41L29 46M14 41L29 15.5M29 15.5L29 46" stroke-width="2.7">
+      <path id="folha" d="M14 22L35 18.5M14 31.5L35 31.5M14 41L35 44.5M14 41L35 18.5M35 18.5L35 44.5" stroke-width="2.7">
         <animate id="abrir" attributeName="d" dur="1s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".45 .05 .25 1"
           from="M14 22L50 22M14 31.5L50 31.5M14 41L50 41M14 41L50 22M50 22L50 41"
-          to="M14 22L29 15.5M14 31.5L29 30.5M14 41L29 46M14 41L29 15.5M29 15.5L29 46"/>
+          to="M14 22L35 18.5M14 31.5L35 31.5M14 41L35 44.5M14 41L35 18.5M35 18.5L35 44.5"/>
       </path>
       <path d="M14 15V51M50 15V51" stroke-width="4.2"/>
     </g>
