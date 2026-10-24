@@ -22,6 +22,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="versao-simulador" content="2026-10-24">
 <title>Simulador de Projeto Agropecuário · Gestão de Custos e Projetos Agropecuários</title>
@@ -672,8 +673,8 @@
       <div id="itens-coe"></div>
       <button class="btn" id="add-coe">+ adicionar item</button>
       <p class="note">Pesquise os preços dos insumos na agroveterinária, cooperativa ou nas bases da CONAB:
-        <a href="https://sistemas.conab.gov.br/consulta-precos-insumos/home" target="_blank" rel="noopener">Preços de insumos</a> ·
-        <a href="https://portaldeinformacoes.conab.gov.br/custos-de-producao.html" target="_blank" rel="noopener">Custos de produção</a>.</p>
+        <a href="https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/precos-agropecuarios" target="_blank" rel="noopener">Preços agropecuários e de insumos</a> ·
+        <a href="https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao" target="_blank" rel="noopener">Custos de produção</a>.</p>
       <datalist id="cats"></datalist>
       <div class="subtotal"><span>Subtotal dos itens diretos</span><span class="v" id="subtotal">R$ 0,00</span></div>
     </div>
@@ -2116,7 +2117,7 @@ const EXEMPLO = {
   p2:{campos:{sistema:"Plantio direto", cultivar:"Variedade precoce, ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
     observacoes:"Antes de semear, analise o solo e faça a calagem pelo Manual de Calagem e Adubação RS/SC: no plantio direto consolidado, aplicar calcário quando o pH em água da camada de 0 a 10 cm ficar abaixo de 5,5. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo, em R1 (floração), R3 (início de grão) e R5 (enchimento de grão), alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
   p3:{itens:[
-    {desc:"Fertilizantes: adubação de base 02-20-20 (350 kg/ha)", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"2000"},
+    {desc:"Fertilizantes: adubação de base 02-20-20 (350 kg/ha a R$ 3.300/t, referência de mercado out/2026)", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"1160"},
     {desc:"Defensivos: herbicidas, 3× fungicidas e inseticidas", cat:"Agrotóxicos", un:"ha", qtd:"1", preco:"1350"},
     {desc:"Sementes (variedade precoce + TSI)", cat:"Sementes/mudas", un:"ha", qtd:"1", preco:"680"},
     {desc:"Operações e combustível", cat:"Operações/mecanização", un:"ha", qtd:"1", preco:"580"},

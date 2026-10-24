@@ -231,7 +231,7 @@ svg.diagrama{width:100%;height:auto;display:block}
       <strong>Referência técnica</strong><br>
       Embrapa Uva e Vinho: <em>Implantação e manejo de vinhedos de base ecológica</em> (Documentos 75, 2011). Parâmetros para 1 ha em espaldeira:<br>
       <span class="mono">2,0 × 1,5 m · postes 5,0 m · 7 fios</span><br>
-      Postes externos: 102 · Rabichos: 102 · Postes internos: 969 · Tutores: 3.417 · Fios: ~36.000 m
+      Resultado da calculadora para 1 ha (100 × 100 m): postes externos 102 · rabichos 102 · postes internos 969 · tutores 3.417 · fios ~37.500 m (35.700 m + 5% de perda)
     </div>
   </div>
 
@@ -307,7 +307,7 @@ function calcular(){
   const fios_m = Math.round(nf * comp * n_linhas * 1.05);
 
   // Gemas/ha (referência: 65–80 mil/ha)
-  const gemas_planta = 6;  // estimativa conservadora (poda mista 2 varas × 3 gemas)
+  const gemas_planta = 20; // poda mista: 2 varas × 8 gemas + 2 esporões × 2 gemas
   const gemas_ha = Math.round(total_plantas * gemas_planta / area_ha);
 
   // --- RENDERIZAR ---
@@ -383,7 +383,7 @@ function calcular(){
           </tr>
           <tr><td colspan="4" class="sep">Referência de carga</td></tr>
           <tr>
-            <td colspan="2">Gemas/ha estimadas <span style="font-size:11px;color:var(--stone-light)">(2 varas × 3 gemas/vara × plantas/ha)</span></td>
+            <td colspan="2">Gemas/ha estimadas <span style="font-size:11px;color:var(--stone-light)">(20 gemas por planta: 2 varas × 8 + 2 esporões × 2, × plantas/ha)</span></td>
             <td colspan="2" style="text-align:right;color:${gemaOk?'var(--olive-mid)':'var(--terra)'}"><strong>${fmt(gemas_ha)}</strong> <span style="font-size:11px">${gemaOk?'✓ faixa ideal (65–80 mil/ha)':''+gemaWarn+', meta: 65–80 mil/ha'}</span></td>
           </tr>
         </tbody>

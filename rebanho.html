@@ -295,8 +295,10 @@ function calcular(){
   const pl       = n('pl') || 10;
   const ip       = n('ip') || 12;
   const ipp      = n('ipp') || 24;
-  const desc     = n('descarte') || 25;
-  const mort     = n('mort') || 5;
+  // padrão só quando o campo está vazio: 0% é um valor válido
+  const vazio    = id => document.getElementById(id).value.trim() === '';
+  const desc     = vazio('descarte') ? 25 : n('descarte');
+  const mort     = vazio('mort') ? 5 : n('mort');
 
   if(!vl || vl < 1){ alert('Informe o número de vacas em lactação.'); return; }
   if(ip < pl){ alert('O intervalo entre partos (IP) não pode ser menor que o período de lactação (PL). Ajuste os valores avançados.'); return; }

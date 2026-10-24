@@ -124,3 +124,11 @@ footer p{font-size:14px;line-height:1.6}
 @media (min-width:720px){
   h1.title{font-size:40px}
 }
+
+/* Impressão: abre todos os blocos e esconde navegação, sumário e quizzes */
+@media print{
+  nav.toptabs,.back-to-top,.toc,.toc-toggle,.block-quiz,.block-chevron{display:none!important}
+  .block-body{max-height:none!important;overflow:visible!important;transition:none!important}
+  .block{break-inside:auto}
+  .block-header{break-after:avoid}
+}
