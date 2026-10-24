@@ -368,11 +368,11 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · a variável escondida</div>
   <h2>A escala decide antes da tecnologia</h2>
-  <p>A economia da AP é <em>percentual sobre a área</em>; o custo do equipamento é <em>fixo</em>. A mesma ferramenta que se paga em 2 anos numa propriedade de 500 ha pode nunca se pagar em 50 ha.</p>
+  <p>A economia da AP é <em>percentual sobre a área</em>; o custo do equipamento é <em>fixo</em>. A mesma ferramenta que se paga em menos de 2 anos numa propriedade de 500 ha pode não se pagar em 50 ha.</p>
   <div class="formula">
     <span class="label">A conta que decide</span>
-    ganho líquido/ano = economia (% × gasto da área) − depreciação<br>
-    payback = investimento ÷ ganho líquido
+    economia/ano = % × gasto da área<br>
+    payback = investimento ÷ economia/ano (cabe na vida útil?)
   </div>
   <p class="note">Vale para o trator, o resfriador e o drone tanto quanto para o piloto automático: antes de perguntar se a tecnologia funciona, pergunte em que escala ela funciona <strong>aqui</strong>.</p>
 </section>
@@ -450,7 +450,7 @@ a{color:var(--accent-text)}
 <section class="slide" data-act="Exemplo RS">
   <div class="eyebrow"><b>Exemplo RS</b> · caso 3 · pecuária de corte</div>
   <h2>Confinamento: o método em kg</h2>
-  <p class="note">Lote de 100 bois, 90 dias, GMD 1,2 kg/dia → 10.800 kg produzidos. CT R$ 101.000; COE R$ 88.000; venda a R$ 13,50/kg vivo. Valores ilustrativos do site: usar os da planilha do grupo.</p>
+  <p class="note">Lote de 100 bois, 90 dias, GMD 1,2 kg/dia → 10.800 kg produzidos. CT R$ 101.000; COE R$ 88.000; venda a R$ 13,50/kg vivo, o mesmo preço por kg pago pelo magro. Valores ilustrativos do site: usar os da planilha do grupo.</p>
   <div class="cols2 asym">
     <div class="cascade">
       <div class="row"><span>custo por kg = 101.000 ÷ 10.800</span><span>R$ 9,35/kg</span></div>
@@ -500,9 +500,9 @@ a{color:var(--accent-text)}
       <tbody>
         <tr><td>Gasto com adubação (R$ 600/ha)</td><td class="num">300.000</td><td class="num">30.000</td></tr>
         <tr><td>Economia de 7%</td><td class="num">21.000/ano</td><td class="num">2.100/ano</td></tr>
-        <tr><td>− depreciação</td><td class="num">4.375</td><td class="num">4.375</td></tr>
-        <tr><td><strong>Ganho líquido</strong></td><td class="num"><b>+16.625/ano</b></td><td class="num"><b>−2.275/ano</b></td></tr>
-        <tr><td><strong>Payback</strong></td><td class="num">2,1 anos</td><td class="num">nunca</td></tr>
+        <tr><td><strong>Payback</strong> (35.000 ÷ economia)</td><td class="num"><b>1,7 ano</b></td><td class="num"><b>16,7 anos</b></td></tr>
+        <tr><td>Vida útil do equipamento</td><td class="num">8 anos</td><td class="num">8 anos</td></tr>
+        <tr><td>Resultado anual (economia − depreciação de 4.375)</td><td class="num">+16.625</td><td class="num">−2.275</td></tr>
       </tbody>
     </table>
     <figure class="foto side">
@@ -510,7 +510,7 @@ a{color:var(--accent-text)}
       <figcaption>receptor GPS de piloto automático na cabine · CC BY-SA 3.0, bdk/Wikimedia Commons</figcaption>
     </figure>
   </div>
-  <p class="note">A resposta à pergunta colocada na T6: <strong>depende da escala</strong>, neste exemplo, o equilíbrio fica em ~104 ha (onde 7% da adubação = depreciação). Alternativas abaixo disso: contratar o serviço, dividir o equipamento na cooperativa, ou NDVI gratuito.</p>
+  <p class="note">A resposta à pergunta colocada na T6: <strong>depende da escala</strong>, neste exemplo, o equilíbrio fica em ~104 ha: ali a economia (7% da adubação) iguala a depreciação e o payback chega aos 8 anos da vida útil. Em 50 ha, o equipamento acaba antes de se pagar. Alternativas abaixo disso: contratar o serviço, dividir o equipamento na cooperativa, ou NDVI gratuito.</p>
 </section>
 
 <!-- 22 · síntese dos casos -->
@@ -522,7 +522,7 @@ a{color:var(--accent-text)}
     <tbody>
       <tr><td><strong>Trator</strong></td><td class="num">TIR 13,8% vs. Selic 14,25%</td><td>empate: decide o não-monetário</td></tr>
       <tr><td><strong>Vinhedo</strong></td><td class="num">TIR 18,6% · vale de −140 mil</td><td>viável, se o caixa aguentar a formação</td></tr>
-      <tr><td><strong>Confinamento</strong></td><td class="num">MS ≈ 40% no preço do kg</td><td>opera com folga: atenção ao giro</td></tr>
+      <tr><td><strong>Confinamento</strong></td><td class="num">MS ≈ 40% no preço do kg</td><td>folga se magro e gordo andarem juntos; com o magro comprado, o risco é o preço de venda</td></tr>
       <tr><td><strong>Leite</strong></td><td class="num">payback 1,7 ano e ML de −0,05 a +0,03</td><td>investir no gargalo antes de crescer</td></tr>
       <tr><td><strong>Piloto automático</strong></td><td class="num">se paga a partir de ~104 ha</td><td>a escala decide, não a tecnologia</td></tr>
     </tbody>

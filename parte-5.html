@@ -381,9 +381,9 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>A arroba (@): unidade de comercialização</h3>
-    <p>A arroba é a unidade de venda do boi gordo no Brasil: <strong>1 @ = 15 kg</strong>. No Rio Grande do Sul, utilizamos peso vivo ou por peso de carcaça, e o rendimento de carcaça (RC) varia de <em>50 a 58%</em> em raças de corte.</p>
+    <p>A arroba é a unidade de venda do boi gordo no mercado nacional: <strong>1 @ = 15 kg de carcaça</strong>. No Rio Grande do Sul, o boi é negociado por kg vivo ou por kg de carcaça, e o rendimento de carcaça (RC) varia de <em>50 a 58%</em> em raças de corte.</p>
     <div class="example">
-      <p>Boi de saída com 388 kg vivos: 388 ÷ 15 = <span class="calc">25,9 @ de peso vivo</span>.</p>
+      <p>Boi de saída com <span class="calc">388 kg vivos</span>: é o peso que vale na venda por kg vivo.</p>
       <p>Em carcaça, a 52% de rendimento: 388 × 0,52 = 201,8 kg → 201,8 ÷ 15 = <span class="calc">13,5 @ de carcaça</span>. É indispensável saber <strong>qual base</strong> o comprador usa antes de fechar a receita.</p>
     </div>
 
@@ -402,13 +402,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
           <div>Ganho no período<b data-r="gpt"></b></div>
           <div>Peso de saída<b data-r="ps"></b></div>
           <div>UA, entrada e saída<b data-r="ua"></b></div>
-          <div>Peso vivo em arrobas<b data-r="av"></b></div>
           <div>Peso de carcaça<b data-r="kc"></b></div>
           <div class="real">Carcaça em arrobas<b data-r="ac"></b></div>
         </div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>1 UA = 450 kg de peso vivo; 1 @ = 15 kg. Começa com o boi do exemplo: 280 kg na entrada, GMD de 1,2 kg/dia, 90 dias e 52% de rendimento de carcaça.</figcaption>
+      <figcaption>1 UA = 450 kg de peso vivo; 1 @ = 15 kg de carcaça. Começa com o boi do exemplo: 280 kg na entrada, GMD de 1,2 kg/dia, 90 dias e 52% de rendimento de carcaça.</figcaption>
     </figure>
   </div></div>
 </section>
@@ -451,6 +450,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <p>Com CT de R$ 101.000 e COE de R$ 88.000, sem a compra dos bois magros <em>(valores ilustrativos, use os da sua planilha)</em>:</p>
       <p>Custo por kg = 101.000 ÷ 10.800 = <span class="calc">R$ 9,35/kg</span> · PE de preço = 88.000 ÷ 10.800 = <span class="calc">R$ 8,15/kg</span>.</p>
       <p>Vendendo o kg a R$ 13,50 a margem de segurança sobre o preço é (13,50 − 8,15) ÷ 13,50 = <strong>40%</strong> antes de operar no prejuízo de caixa.</p>
+      <p>Essa comparação entre o preço de venda e o custo do kg ganho supõe que o kg do boi magro custa o mesmo que o kg vendido. Com o magro já comprado, uma queda no preço de venda pesa sobre o peso inteiro do boi (388 kg), não só sobre os 108 kg ganhos, e a folga real fica bem menor.</p>
     </div>
 
     <div class="callout">
@@ -776,13 +776,13 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="example ex-ap">
       <p>Piloto automático em propriedade de 500 ha. Sistema: <strong>R$ 35.000</strong>, vida útil 8 anos → depreciação <span class="calc">R$ 4.375/ano</span>.</p>
       <p>Economia: 7% de sobreposição eliminada sobre uma adubação de R$ 300.000/safra → 300.000 × 7% = <span class="calc">R$ 21.000/ano</span>.</p>
-      <p>Ganho líquido = 21.000 − 4.375 = <span class="calc">R$ 16.625/ano</span>.</p>
-      <p>Payback = 35.000 ÷ 16.625 = <span class="calc">2,1 anos</span>. <strong>Conclusão:</strong> investimento altamente viável nesta escala.</p>
+      <p>Payback = 35.000 ÷ 21.000 = <span class="calc">1,7 ano</span>. O payback usa o dinheiro que volta por ano (a economia), sem descontar a depreciação: a depreciação é a própria recuperação dos R$ 35.000.</p>
+      <p>Resultado anual da tecnologia = 21.000 − 4.375 = <span class="calc">R$ 16.625/ano</span>, o quanto sobra depois de repor o equipamento. <strong>Conclusão:</strong> investimento altamente viável nesta escala.</p>
     </div>
 
     <div class="callout">
       <strong>Atenção à escala</strong>
-      A economia da AP cresce com a área. A mesma tecnologia que se paga em 2 anos numa propriedade de 500 ha pode não fechar o payback em 50 ha, porque a economia absoluta é menor, mas o custo do equipamento é o mesmo. Cada caso é um cálculo.
+      A economia da AP cresce com a área. A mesma tecnologia que se paga em menos de 2 anos numa propriedade de 500 ha pode não se pagar em 50 ha, porque a economia absoluta é menor, mas o custo do equipamento é o mesmo. Cada caso é um cálculo.
     </div>
 
     <figure class="dd ap-dd" id="dd-ap" style="--dd:var(--terra);--dd-deep:#7C3D1F">
@@ -794,12 +794,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="res-dd">
           <div>Economia por ano<b data-r="eco"></b></div>
           <div>Depreciação por ano<b data-r="dep"></b></div>
-          <div>Ganho líquido por ano<b data-r="gl"></b></div>
+          <div>Resultado anual (economia − depreciação)<b data-r="gl"></b></div>
           <div class="real" data-c="pb">Payback<b data-r="pb"></b></div>
         </div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Adubação de R$ 600/ha (os R$ 300 mil do exemplo em 500 ha), sistema de R$ 35 mil com vida útil de 8 anos. Payback calculado como no exemplo: investimento ÷ ganho líquido.</figcaption>
+      <figcaption>Adubação de R$ 600/ha (os R$ 300 mil do exemplo em 500 ha), sistema de R$ 35 mil com vida útil de 8 anos. Payback calculado como no exemplo: investimento ÷ economia por ano.</figcaption>
     </figure>
 
     <div class="callout success">
@@ -956,13 +956,13 @@ const QUIZ_C = [
     {t:"R$ 35.000: tudo no primeiro ano.", p:"op"},
     {t:"35.000 ÷ 8 = R$ 4.375/ano.", p:"es"},
     {t:"Uns R$ 5.000, arredondando.", p:"tr"} ]},
-  { q:"A economia é de R$ 21.000/ano e a depreciação, R$ 4.375/ano. O ganho líquido da tecnologia é:", a:[
+  { q:"A economia é de R$ 21.000/ano e a depreciação, R$ 4.375/ano. O resultado anual da tecnologia, depois de repor o equipamento, é:", a:[
     {t:"R$ 21.000: a economia cheia.", p:"op"},
     {t:"21.000 − 4.375 = R$ 16.625/ano.", p:"ge"},
     {t:"Algo em torno de R$ 20.000.", p:"tr"} ]},
-  { q:"O payback do sistema (R$ 35.000 ÷ R$ 16.625/ano) é:", a:[
+  { q:"O payback do sistema (R$ 35.000, com economia de R$ 21.000/ano) é:", a:[
     {t:"Não dá para calcular sem saber a safra inteira.", p:"op"},
-    {t:"Cerca de 2,1 anos: investimento altamente viável nessa escala.", p:"es"},
+    {t:"35.000 ÷ 21.000 = cerca de 1,7 ano: investimento altamente viável nessa escala.", p:"es"},
     {t:"Uns 2 ou 3 anos, por aí.", p:"tr"} ]},
   { q:"Sobre o sensoriamento remoto por satélite (Sentinel/Landsat):", a:[
     {t:"É caro, precisa de assinatura comercial.", p:"op"},
@@ -980,7 +980,7 @@ const QUIZ_C = [
 const PROFILES_C = {
   op:{ name:"Operador", msg:"Você olha a AP pelo que a tecnologia faz, não pelo que ela paga. O salto é inverter a pergunta: quanto ela economiza ou ganha por safra, e em quanto tempo se paga. Tecnologia sem conta de retorno é entusiasmo, não decisão.", revise:"Aulas C.1 (a pergunta econômica certa) e C.2 (payback do investimento em AP)." },
   tr:{ name:"Em transição", msg:"Você desconfia que há um cálculo por trás, mas ainda arredonda e não fecha o retorno. O passo seguinte é montar custo × economia × payback com os números reais da propriedade, a depreciação e a escala mudam a resposta.", revise:"Aulas C.2 (exemplo do piloto automático) e B.2 (payback e VPL)." },
-  ge:{ name:"Gestor", msg:"Você quantifica a economia, desconta a depreciação e chega ao ganho líquido. Reconhece que os indicadores do curso valem para qualquer investimento. O próximo passo é considerar a escala (a economia cresce com a área) e usar VPL/TIR em horizontes longos.", revise:"Reforce a aula C.2 (escala e payback) e revise B.2 (VPL/TIR)." },
+  ge:{ name:"Gestor", msg:"Você quantifica a economia, calcula o payback sobre ela e o resultado anual depois da depreciação. Reconhece que os indicadores do curso valem para qualquer investimento. O próximo passo é considerar a escala (a economia cresce com a área) e usar VPL/TIR em horizontes longos.", revise:"Reforce a aula C.2 (escala e payback) e revise B.2 (VPL/TIR)." },
   es:{ name:"Técnico estratégico", msg:"Você trata a AP como qualquer investimento: custo, economia, depreciação, payback, e entende que a economia escala com a área. Sabe que o NDVI público é gratuito e que o método do curso mede qualquer tecnologia. É essa leitura que convence o produtor com número.", revise:"Você domina o módulo e a Parte V. Avance para a Parte VI (projeto da disciplina e apresentação) ou faça a Avaliação geral." }
 };
 
@@ -1124,7 +1124,7 @@ peca('dd-conv', function(q, v, put){
   var gpt = g * d, ps = pe + gpt, carc = ps * rc / 100, esc = 800;
   put('@pe', f1(pe) + ' kg'); put('@gmd', f1(g, 1) + ' kg/dia'); put('@dias', d + ' dias'); put('@rc', rc + '%');
   put('gpt', f1(gpt) + ' kg'); put('ps', f1(ps) + ' kg'); put('ua', f1(pe / 450, 2) + ' → ' + f1(ps / 450, 2));
-  put('av', f1(ps / 15, 1) + ' @'); put('kc', f1(carc, 1) + ' kg'); put('ac', f1(carc / 15, 1) + ' @');
+  put('kc', f1(carc, 1) + ' kg'); put('ac', f1(carc / 15, 1) + ' @');
   q('[data-b=ent]').style.width = pe / esc * 100 + '%';
   q('[data-b=gan]').style.width = gpt / esc * 100 + '%';
   q('[data-b=carc]').style.width = carc / esc * 100 + '%';
@@ -1243,9 +1243,10 @@ peca('dd-vpl', function(q, v, put, el){
 /* 7. a escala da AP */
 peca('dd-ap', function(q, v, put, el){
   var INV = 35000, VIDA = 8, DEP = INV / VIDA, ADUB = 600, YM = 12;
-  var A = v('area'), e = v('eco') / 100, eco = A * ADUB * e, gl = eco - DEP, pb = gl > 0 ? INV / gl : null;
+  var anos = function(x){ return f1(x, 1) + (x < 2 ? ' ano' : ' anos'); };
+  var A = v('area'), e = v('eco') / 100, eco = A * ADUB * e, gl = eco - DEP, pb = eco > 0 ? INV / eco : null;
   put('@area', f1(A) + ' ha'); put('@eco', f1(v('eco'), v('eco') % 1 ? 1 : 0) + '%');
-  put('eco', R(eco)); put('dep', R(DEP)); put('gl', R(gl)); put('pb', pb === null ? 'não se paga' : f1(pb, 1) + ' anos');
+  put('eco', R(eco)); put('dep', R(DEP)); put('gl', R(gl)); put('pb', pb === null ? 'não se paga' : anos(pb));
   q('[data-c=pb]').classList.toggle('alerta', pb === null || pb > VIDA);
   var W = 340, Hh = 212, Lm = 34, Rm = 12, T = 24, B = 28;
   var X = function(a){ return Lm + a / 1000 * (W - Lm - Rm); }, Y = function(p){ return T + (YM - Math.min(p, YM)) / YM * (Hh - T - B); };
@@ -1256,15 +1257,15 @@ peca('dd-ap', function(q, v, put, el){
   [0, 4, 8, 12].forEach(function(p){ h += '<text x="' + (Lm - 5) + '" y="' + (Y(p) + 4) + '" text-anchor="end" font-size="11.5" fill="#6B6960">' + p + '</text>'; });
   [0, 250, 500, 750, 1000].forEach(function(a){ h += '<text x="' + X(a) + '" y="' + (Hh - 9) + '" text-anchor="' + (a === 1000 ? 'end' : a === 0 ? 'start' : 'middle') + '" font-size="11.5" fill="#6B6960">' + (a === 1000 ? '1.000 ha' : f1(a)) + '</text>'; });
   h += '<text x="' + (Lm - 5) + '" y="12" font-size="12" fill="#6B6960">payback, em anos</text>';
-  var pts = []; for (var a = 10; a <= 1000; a += 5){ var g2 = a * ADUB * e - DEP; if (g2 > 0 && INV / g2 <= YM) pts.push(X(a).toFixed(1) + ',' + Y(INV / g2).toFixed(1)); }
+  var pts = []; for (var a = 10; a <= 1000; a += 5){ var g2 = a * ADUB * e; if (g2 > 0 && INV / g2 <= YM) pts.push(X(a).toFixed(1) + ',' + Y(INV / g2).toFixed(1)); }
   h += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#1A1A17" stroke-width="2.2"/>';
   var cx = X(A), cy = pb === null ? Y(YM) : Y(pb), an2 = cx > W - 70 ? 'end' : 'start', dx = an2 === 'end' ? -8 : 8;
-  h += '<circle cx="' + cx + '" cy="' + cy + '" r="5.5" fill="#A8552E"/><text x="' + (cx + dx) + '" y="' + (cy < T + 24 ? cy + 18 : cy - 8) + '" text-anchor="' + an2 + '" font-size="13" font-weight="600" fill="#7C3D1F">' + (pb === null || pb > YM ? 'não se paga' : f1(pb, 1) + ' anos') + '</text>';
+  h += '<circle cx="' + cx + '" cy="' + cy + '" r="5.5" fill="#A8552E"/><text x="' + (cx + dx) + '" y="' + (cy < T + 24 ? cy + 18 : cy - 8) + '" text-anchor="' + an2 + '" font-size="13" font-weight="600" fill="#7C3D1F">' + (pb === null || pb > YM ? 'não se paga' : anos(pb)) + '</text>';
   var svg = q('svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hh); svg.innerHTML = h;
-  var amin = Math.ceil((INV / VIDA + DEP) / (ADUB * e) / 10) * 10, m;
-  if (gl <= 0) m = 'Em ' + f1(A) + ' ha, a economia de ' + R(eco) + ' por ano não cobre nem a depreciação do equipamento (' + R(DEP) + '). O investimento não se paga.';
-  else if (pb > VIDA) m = 'Payback de ' + f1(pb, 1) + ' anos, mais longo que a vida útil de 8 anos: o equipamento acaba antes de se pagar.';
-  else m = 'Payback de ' + f1(pb, 1) + ' anos, dentro da vida útil de 8 anos.';
+  var amin = Math.round(DEP / (ADUB * e)), m;
+  if (pb === null) m = 'Sem economia, o investimento não se paga.';
+  else if (pb > VIDA) m = 'Payback de ' + anos(pb) + ', mais longo que a vida útil de 8 anos. A economia de ' + R(eco) + ' por ano não cobre nem a depreciação (' + R(DEP) + '): o equipamento acaba antes de se pagar.';
+  else m = 'Payback de ' + anos(pb) + ', dentro da vida útil de 8 anos.';
   m += ' Com ' + f1(v('eco'), v('eco') % 1 ? 1 : 0) + '% de economia, o payback só cabe na vida útil a partir de cerca de ' + f1(amin) + ' ha.';
   q('[data-msg]').textContent = m;
 });

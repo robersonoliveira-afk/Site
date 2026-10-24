@@ -436,10 +436,10 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </figure>
 
     <h3>A conclusão (seção 9)</h3>
-    <p>É o objetivo final que todos queremos saber. Não é "o projeto parece bom": é uma sentença fundamentada nos indicadores das seções anteriores.</p>
+    <p>É o que todos querem saber. Não é "o projeto parece bom": é uma sentença fundamentada nos indicadores das seções anteriores.</p>
     <div class="callout success">
       <strong>Modelo de conclusão defensável</strong>
-      "O projeto é economicamente viável: IEE > 1, Lucro Econômico positivo e Rentabilidade ÷ CT acima do custo de oportunidade do capital. A margem de segurança de X% indica risco moderado; a viabilidade se mantém no cenário realista e otimista, e se perde apenas no pessimista, quando o preço cai abaixo do preço de nivelamento. Principal risco: preço de mercado."
+      "O projeto é economicamente viável: IEE > 1, Lucro Econômico positivo e Rentabilidade sobre o CT acima de zero (o CT já remunera a terra e o capital). A margem de segurança de X% indica risco moderado; a viabilidade se mantém no cenário realista e otimista, e se perde apenas no pessimista, quando o preço cai abaixo do equilíbrio sobre o CT (R$ Y/sc). Principal risco: preço de mercado."
     </div>
     <div class="callout">
       <strong>A conclusão que não defende</strong>
@@ -464,7 +464,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
 
     <h3>O que os professores avaliam</h3>
     <div class="hierarchy">
-      <div class="hier-row neu"><span class="hier-tag">Técnica</span><span>Correção dos cálculos e os processos envolvidos: os números estão certos e os manejos?</span></div>
+      <div class="hier-row neu"><span class="hier-tag">Técnica</span><span>Correção dos cálculos e do manejo: os números e as operações estão certos?</span></div>
       <div class="hier-row neu"><span class="hier-tag">Análise</span><span>Raciocínio: você entende o que calculou e o que decorre disso?</span></div>
       <div class="hier-row neu"><span class="hier-tag">Comunicação</span><span>Clareza e segurança: consegue explicar sem ler o slide?</span></div>
     </div>
@@ -624,14 +624,14 @@ var R = Didatica.reais;
   Didatica.classificador(el, {
     categorias:[{id:'d', t:'Se sustenta'},{id:'a', t:'Ambígua'},{id:'c', t:'Contradiz os números'}],
     itens:[
-      {t:'"O projeto é viável: IEE de 1,18, lucro econômico positivo e rentabilidade acima do custo de oportunidade."', c:'d', e:'Conclui e cita os indicadores que sustentam a conclusão.'},
+      {t:'"O projeto é viável: IEE de 1,18, lucro econômico positivo e rentabilidade sobre o CT positiva."', c:'d', e:'Conclui e cita os indicadores que sustentam a conclusão.'},
       {t:'"Acredito que o projeto seja viável."', c:'a', e:'Opinião sem indicador. Não diz por que nem em que condições.'},
       {t:'"O projeto parece bom e tem potencial."', c:'a', e:'Não conclui nada: bom em quê, medido por qual indicador?'},
       {t:'"O projeto é viável, apesar do lucro econômico negativo."', c:'c', e:'Lucro econômico negativo significa que o projeto não cobre o custo total: a frase contraria o próprio número.'},
-      {t:'"Viável nos cenários realista e otimista; no pessimista, o preço cai abaixo do preço de nivelamento."', c:'d', e:'Conclui e diz em que condição a viabilidade se perde.'},
+      {t:'"Viável nos cenários realista e otimista; no pessimista, o preço cai abaixo do equilíbrio sobre o CT."', c:'d', e:'Conclui e diz em que condição a viabilidade se perde.'},
       {t:'"Com IEE de 0,92, o projeto não cobre o custo total: não é viável nas condições previstas."', c:'d', e:'Concluir pela inviabilidade também é conclusão defensável, quando os números mostram isso.'},
       {t:'"O projeto deve dar certo se o clima ajudar."', c:'a', e:'Transfere a conclusão para o acaso, sem número nem risco medido.'},
-      {t:'"O projeto é viável, com margem de segurança de −5%."', c:'c', e:'Margem negativa: o preço esperado já está abaixo do nivelamento. A frase contraria o número.'}
+      {t:'"O projeto é viável, com margem de segurança de −5%."', c:'c', e:'Margem negativa: a produção esperada já está abaixo do ponto de equilíbrio. A frase contraria o número.'}
     ],
     fim:'Conclusão que se sustenta cita os indicadores e acompanha os números, seja o projeto viável ou não.'
   });

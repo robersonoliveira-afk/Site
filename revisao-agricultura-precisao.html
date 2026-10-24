@@ -234,7 +234,7 @@ a{color:var(--accent-text)}
       </ul>
     </div>
   </div>
-  <p class="note">A fraqueza "escala mínima" volta na T8: a mesma tecnologia que se paga em 500 ha pode nunca se pagar em 50 ha.</p>
+  <p class="note">A fraqueza "escala mínima" volta na T8: a mesma tecnologia que se paga em 500 ha pode não se pagar em 50 ha.</p>
 </section>
 
 <!-- 5 · T2 receita -->
@@ -277,10 +277,10 @@ a{color:var(--accent-text)}
   <div class="cascade">
     <div class="row"><span>COE por hectare (insumos, operações)</span><span>4.480</span></div>
     <div class="row"><span>+ depreciação do maquinário</span><span>800</span></div>
-    <div class="row"><span>+ depreciação do pacote de AP (piloto + taxa variável)</span><span>200</span></div>
-    <div class="row total"><span>COT por hectare</span><span>5.480</span></div>
+    <div class="row"><span>+ depreciação do pacote de AP (piloto R$ 35 mil + taxa variável R$ 50 mil, 8 anos ÷ 500 ha)</span><span>21</span></div>
+    <div class="row total"><span>COT por hectare</span><span>5.301</span></div>
     <div class="row"><span>+ oportunidade do capital e da terra</span><span>480</span></div>
-    <div class="row final"><span>CT por hectare</span><span>5.960</span></div>
+    <div class="row final"><span>CT por hectare</span><span>5.781</span></div>
   </div>
   <p class="note">A tecnologia entra no COT como depreciação (igual ao trator da T4), não como custeio do ano corrente.</p>
 </section>
@@ -292,8 +292,8 @@ a{color:var(--accent-text)}
   <div class="cascade">
     <div class="row total"><span>RL (500 ha)</span><span>3.719.808</span></div>
     <div class="row minus"><span>− COE (2.240.000)</span><span>MB = 1.479.808</span></div>
-    <div class="row minus"><span>− COT (2.740.000)</span><span>ML = 979.808</span></div>
-    <div class="row final"><span>− CT (2.980.000)</span><span>LE = 739.808</span></div>
+    <div class="row minus"><span>− COT (2.650.500)</span><span>ML = 1.069.308</span></div>
+    <div class="row final"><span>− CT (2.890.500)</span><span>LE = 829.308</span></div>
   </div>
   <p class="note">A conta fecha bem na média, mas é a análise por zona (T6) que mostra onde o resultado realmente se forma.</p>
 </section>
@@ -303,14 +303,14 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Revisão T6</b> · análise marginal</div>
   <h2>O quilo a mais de adubo paga o quilo a mais de grão?</h2>
   <table class="tbl">
-    <thead><tr><th>Dose adicional</th><th class="num">Custo marginal</th><th class="num">Resposta em grão</th><th class="num">Receita marginal</th></tr></thead>
+    <thead><tr><th>Faixa de dose de K₂O</th><th class="num">Custo marginal</th><th class="num">Grão a mais na faixa</th><th class="num">Receita marginal</th><th>Leitura</th></tr></thead>
     <tbody>
-      <tr><td>+20 kg/ha de N</td><td class="num">R$ 60</td><td class="num">+4 sc/ha</td><td class="num">R$ 512</td></tr>
-      <tr><td>+40 kg/ha de N</td><td class="num">R$ 120</td><td class="num">+6 sc/ha</td><td class="num">R$ 768</td></tr>
-      <tr><td>+60 kg/ha de N</td><td class="num">R$ 180</td><td class="num">+6,5 sc/ha</td><td class="num">R$ 832</td></tr>
+      <tr><td>de 0 a 20 kg/ha</td><td class="num">R$ 100</td><td class="num">+4 sc/ha</td><td class="num">R$ 512</td><td>RM &gt; CM: aplicar</td></tr>
+      <tr><td>de 20 a 40 kg/ha</td><td class="num">R$ 100</td><td class="num">+2 sc/ha</td><td class="num">R$ 256</td><td>RM &gt; CM: aplicar</td></tr>
+      <tr><td>de 40 a 60 kg/ha</td><td class="num">R$ 100</td><td class="num">+0,5 sc/ha</td><td class="num">R$ 64</td><td>RM &lt; CM: parar</td></tr>
     </tbody>
   </table>
-  <p class="note">Resposta marginal decrescente: cada dose adicional rende menos grão que a anterior. A dose ótima é onde a receita marginal ainda supera o custo marginal, passar disso é desperdício, mesmo que a produtividade continue subindo.</p>
+  <p class="note">Zona de solo raso com potássio baixo. K₂O a R$ 5,00/kg (KCl a R$ 3.000/t, 60% de K₂O; valor de referência) e soja a R$ 128/sc; respostas ilustrativas. A soja inoculada não responde a nitrogênio, por isso o nutriente é o potássio. Cada faixa de 20 kg custa o mesmo, mas rende menos grão que a anterior. A dose ótima fica na segunda faixa, onde a receita marginal ainda supera o custo marginal: passar disso é desperdício, mesmo que a produtividade continue subindo.</p>
 </section>
 
 <!-- 10 · T7 crédito -->
@@ -336,12 +336,12 @@ a{color:var(--accent-text)}
     <tbody>
       <tr><td>Gasto com adubação (R$ 600/ha)</td><td class="num">300.000</td><td class="num">30.000</td></tr>
       <tr><td>Economia de 7% (sobreposição eliminada)</td><td class="num">21.000/ano</td><td class="num">2.100/ano</td></tr>
-      <tr><td>− depreciação (35.000 ÷ 8 anos)</td><td class="num">4.375</td><td class="num">4.375</td></tr>
-      <tr><td><strong>Ganho líquido</strong></td><td class="num"><b>+16.625/ano</b></td><td class="num"><b>−2.275/ano</b></td></tr>
-      <tr><td><strong>Payback</strong></td><td class="num">2,1 anos</td><td class="num">nunca</td></tr>
+      <tr><td><strong>Payback</strong> (35.000 ÷ economia)</td><td class="num"><b>1,7 ano</b></td><td class="num"><b>16,7 anos</b></td></tr>
+      <tr><td>Vida útil do equipamento</td><td class="num">8 anos</td><td class="num">8 anos</td></tr>
+      <tr><td>Resultado anual (economia − depreciação de 4.375)</td><td class="num">+16.625</td><td class="num">−2.275</td></tr>
     </tbody>
   </table>
-  <p class="note">O equilíbrio fica em ~104 ha: abaixo disso, considerar contratar o serviço, dividir o equipamento na cooperativa, ou usar NDVI gratuito.</p>
+  <p class="note">O equilíbrio fica em ~104 ha, onde o payback chega aos 8 anos da vida útil: abaixo disso, considerar contratar o serviço, dividir o equipamento na cooperativa, ou usar NDVI gratuito.</p>
 </section>
 
 <!-- ============ ATO 3 · SÍNTESE ============ -->
@@ -354,10 +354,10 @@ a{color:var(--accent-text)}
     <thead><tr><th>Indicador</th><th class="num">Valor</th></tr></thead>
     <tbody>
       <tr><td>RB · RL (500 ha)</td><td class="num">3.840.000 · 3.719.808</td></tr>
-      <tr><td>COE · COT · CT (por ha)</td><td class="num">4.480 · 5.480 · 5.960</td></tr>
-      <tr><td>MB · ML · LE (500 ha)</td><td class="num">1.479.808 · 979.808 · 739.808</td></tr>
-      <tr><td>Piloto automático: payback (500 ha)</td><td class="num">2,1 anos</td></tr>
-      <tr><td>Piloto automático: payback (50 ha)</td><td class="num">nunca</td></tr>
+      <tr><td>COE · COT · CT (por ha)</td><td class="num">4.480 · 5.301 · 5.781</td></tr>
+      <tr><td>MB · ML · LE (500 ha)</td><td class="num">1.479.808 · 1.069.308 · 829.308</td></tr>
+      <tr><td>Piloto automático: payback (500 ha)</td><td class="num">1,7 ano</td></tr>
+      <tr><td>Piloto automático: payback (50 ha)</td><td class="num">16,7 anos (vida útil de 8)</td></tr>
       <tr><td>Escala de equilíbrio da tecnologia</td><td class="num">≈ 104 ha</td></tr>
     </tbody>
   </table>

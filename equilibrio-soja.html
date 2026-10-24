@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#2e7d4f">
+<meta name="theme-color" content="#3D4A2A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
 <title>Ponto de equilíbrio da soja: regiões do RS · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Ponto de equilíbrio da soja por região do RS: produtividade histórica, custo de produção (CONAB e proxy SICOR), calculadora de custo de plantio com insumos reais e relação de troca. Material do prof. Róberson Macedo de Oliveira.">
@@ -13,7 +16,7 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
 .toptabs-inner{display:flex;align-items:stretch;min-width:max-content}
 .toptabs a{display:flex;align-items:center;gap:7px;padding:13px 15px;text-decoration:none;font-family:'IBM Plex Mono',monospace,-apple-system,sans-serif;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#5b6b63;white-space:nowrap;border-right:1px solid #e8e3d3}
 .toptabs a.home{color:#1c2b24}
-.toptabs a.current{color:#fff;background:#2e7d4f;font-weight:600}
+.toptabs a.current{color:#fff;background:#A8552E;font-weight:600}
 .toptabs a.mov1{box-shadow:inset 0 -3px 0 #3D4A2A}
 .toptabs a.mov2{box-shadow:inset 0 -3px 0 #B89233}
 .toptabs a.mov3{box-shadow:inset 0 -3px 0 #A8552E}
@@ -22,14 +25,15 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
 </style>
 <style>
   :root{
-    --bg:#f4f6f5; --panel:#ffffff; --ink:#1c2b24; --muted:#5b6b63;
-    --line:#dce4e0; --accent:#2e7d4f; --accent-dk:#1f5c39; --accent-lt:#e6f3ea;
-    --warn:#b45309; --warn-lt:#fef3e2; --bad:#b3261e; --bad-lt:#fdecea;
-    --good:#2e7d4f; --good-lt:#e6f3ea;
+    --bg:#FAF7F0; --panel:#ffffff; --ink:#1A1A17; --muted:#6B6960;
+    --line:#D9D3C2; --accent:#3D4A2A; --accent-dk:#2A331C; --accent-lt:#E4EAD2;
+    --warn:#B89233; --warn-lt:#F2E8C9; --bad:#A8552E; --bad-lt:#F5E4D8;
+    --good:#3D4A2A; --good-lt:#E4EAD2;
     --tier-baixo:#b3261e; --tier-mb:#c77b1a; --tier-ma:#7a9a1f; --tier-alto:#1f7a4c;
   }
   *{box-sizing:border-box;}
-  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);}
+  body{margin:0;font-family:'IBM Plex Sans',-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);}
+  h1,.panel h2{font-family:'Fraunces',Georgia,serif;font-weight:600;}
   .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px;}
   header{margin-bottom:24px;}
   h1{font-size:1.6rem;margin:0 0 4px;color:var(--accent-dk);}
@@ -192,7 +196,7 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
       <tbody id="calcManualBody"></tbody>
       <tfoot>
         <tr style="font-weight:700;border-top:2px solid var(--line)">
-          <td colspan="5">Custo total estimado (R$/ha)</td>
+          <td colspan="5">Custo de plantio estimado (R$/ha)</td>
           <td id="calcTotalHa">-</td>
         </tr>
       </tfoot>
@@ -214,13 +218,13 @@ nav.toptabs{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px s
 <script>
 const DATA = {
  "gerado_em": "2026-08-17",
- "fonte": "RS_database.duckdb (CONAB - custos de producao por praca de referencia e cotacoes, IBGE-PAM, BCB/SICOR)",
+ "fonte": "CONAB (custos de produção por praça de referência e cotações), IBGE-PAM e BCB/SICOR",
  "saca_kg": 60.0,
  "tiers_definicao": {
-  "baixo": "< 41.6 sc/ha",
-  "medio-baixo": "41.6 - 47.1 sc/ha",
-  "medio-alto": "47.1 - 51.6 sc/ha",
-  "alto": "> 51.6 sc/ha"
+  "baixo": "abaixo de 41,6 sc/ha",
+  "medio-baixo": "41,6 a 47,1 sc/ha",
+  "medio-alto": "47,1 a 51,6 sc/ha",
+  "alto": "acima de 51,6 sc/ha"
  },
  "preco_soja": {
   "atual_r_kg": 1.9028333333333334,
@@ -7094,7 +7098,7 @@ const catLabel = {
 const fmtNum = (v, d=1) => v==null ? '-' : v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const fmtR = (v, d=2) => v==null ? '-' : 'R$ ' + v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
 
-document.getElementById('footDate').textContent = DATA.gerado_em;
+document.getElementById('footDate').textContent = DATA.gerado_em.split('-').reverse().join('/');
 document.getElementById('meta').textContent = 'Fonte: ' + DATA.fonte + ' · Saca de referência: ' + DATA.saca_kg + ' kg';
 
 const selCorede = document.getElementById('selCorede');
@@ -7143,7 +7147,7 @@ function serieCusteio(c){
       fonte: 'CONAB',
       praca: c.conab.municipio_referencia,
       coe: c.conab.coe_rs_ha,          // custo variavel (caixa/custeio)
-      cot: c.conab.cot_rs_ha,          // custo total real (inclui depreciacao, terra e capital)
+      cot: c.conab.cot_rs_ha,          // CONAB "custo total" (H+I): inclui depreciação, terra e capital
       cotEstimado: false,
     };
   }
@@ -7171,7 +7175,7 @@ function render(){
     '<span class="hint">Faixas: baixo ' + DATA.tiers_definicao['baixo'] + ' · médio-baixo ' + DATA.tiers_definicao['medio-baixo'] +
     ' · médio-alto ' + DATA.tiers_definicao['medio-alto'] + ' · alto ' + DATA.tiers_definicao['alto'] + '</span>' +
     (s.fonte==='CONAB'
-      ? '<span class="tier-badge" style="background:#2e6da4">★ CONAB: ' + s.praca + '</span>'
+      ? '<span class="tier-badge" style="background:#3D4A2A">★ CONAB: ' + s.praca + '</span>'
       : '<span class="tier-badge" style="background:#8a8f8b">proxy SICOR (sem praça CONAB)</span>');
 
   recalcKpis();
@@ -7222,7 +7226,7 @@ function recalcKpis(){
     {label:'Margem sobre custeio', value: (margemSacas>=0?'+':'') + fmtNum(margemSacas) + ' sc/ha', cls: margemSacas>=0?'good':'bad', foot: margemSacas>=0 ? 'produtividade média cobre o custeio' : 'produtividade média NÃO cobre o custeio'},
     {label:'Equilíbrio econômico (custo total' + (s.cotEstimado?', estimado':'') + ')', value: fmtNum(equilibrioCot) + ' sc/ha', foot: (s.cotEstimado ? 'custeio × 1,48 (estimativa)' : 'CONAB, inclui depreciação, terra e capital')},
     {label:'Margem sobre custo total', value: (margemCot>=0?'+':'') + fmtNum(margemCot) + ' sc/ha', cls: margemCot>=0?'good':'bad', foot: margemCot>=0 ? 'cobre também depreciação/terra/capital' : 'não cobre o custo econômico total'},
-    {label:'Lucro estimado (sobre custeio)', value: fmtR(lucroHa,0) + '/ha', cls: lucroHa>=0?'good':'bad', foot:'produtividade média × preço − custeio'},
+    {label:'Margem sobre o custeio', value: fmtR(lucroHa,0) + '/ha', cls: lucroHa>=0?'good':'bad', foot:'produtividade média × preço − custeio (ainda sem depreciação, terra e capital)'},
   ];
   document.getElementById('kpis').innerHTML = kpis.map(k=>
     '<div class="kpi"><div class="label">'+k.label+'</div><div class="value '+(k.cls||'')+'">'+k.value+'</div><div class="foot">'+k.foot+'</div></div>'
@@ -7276,7 +7280,7 @@ function drawChart(c, s){
   anos.forEach((a,i)=>{
     const v = produtividades[i];
     if(v!=null){
-      svgContent += `<rect x="${x(i)-barW/2}" y="${y(v)}" width="${barW}" height="${H-padB-y(v)}" fill="#2e7d4f" opacity="0.85" rx="2"/>`;
+      svgContent += `<rect x="${x(i)-barW/2}" y="${y(v)}" width="${barW}" height="${H-padB-y(v)}" fill="#3D4A2A" opacity="0.85" rx="2"/>`;
     }
     svgContent += `<text x="${x(i)}" y="${H-padB+18}" font-size="11" fill="#5b6b63" text-anchor="middle">${a}</text>`;
     const secaInfo = secaCorede[a];
@@ -7406,10 +7410,10 @@ function recalcCalc(){
   const lucroHa = receitaHa - total;
 
   const kpis = [
-    {label:'Custo total estimado', value: fmtR(total,0)+'/ha'},
+    {label:'Custo de plantio estimado', value: fmtR(total,0)+'/ha'},
     {label:'Sacas p/ pagar esse custo', value: fmtNum(equilibrioSacas)+' sc/ha'},
     {label:'Receita (produtividade média da região × preço)', value: fmtR(receitaHa,0)+'/ha'},
-    {label:'Lucro estimado', value: fmtR(lucroHa,0)+'/ha', cls: lucroHa>=0?'good':'bad'},
+    {label:'Margem sobre esse custo', value: fmtR(lucroHa,0)+'/ha', cls: lucroHa>=0?'good':'bad'},
   ];
   document.getElementById('calcKpis').innerHTML = kpis.map(k=>
     '<div class="kpi"><div class="label">'+k.label+'</div><div class="value '+(k.cls||'')+'">'+k.value+'</div></div>'

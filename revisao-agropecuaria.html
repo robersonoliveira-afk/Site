@@ -241,12 +241,12 @@ a{color:var(--accent-text)}
 <!-- 5 · T2 receita -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Revisão T2</b> · receita bruta e líquida</div>
-  <h2>10.800 kg vivos, um preço por kg</h2>
+  <h2>10.800 kg ganhos, um preço por kg</h2>
   <div class="formula">
-    <span class="label">Receita do lote (já líquida de comissão)</span>
-    RL = produção × preço = 10.800 kg × R$ 13,50/kg = <b>R$ 145.800</b>
+    <span class="label">Valor do ganho de peso (já líquido de comissão)</span>
+    kg ganhos × preço = 10.800 kg × R$ 13,50/kg = <b>R$ 145.800</b>
   </div>
-  <p class="note">No boi gordo em leilão, o preço já costuma sair líquido de comissão: tratamos R$ 13,50/kg como o valor efetivamente recebido (RL), sem uma etapa RB → RL separada.</p>
+  <p class="note">A conta supõe que o kg do boi magro custa o mesmo que o kg vendido (R$ 13,50): assim, a compra e a venda dos 280 kg de entrada se anulam e o resultado do lote vem do ganho de peso. Se o magro custar mais caro por kg, o resultado cai na mesma proporção. No leilão, o preço já sai líquido de comissão.</p>
 </section>
 
 <!-- 6 · T3 custo -->
@@ -272,7 +272,7 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Revisão T4</b> · COE, COT e Custo Total</div>
   <h2>Do cocho às instalações amortizadas</h2>
   <div class="cascade">
-    <div class="row"><span>COE (ração, sanidade, boi magro, mão de obra)</span><span>88.000</span></div>
+    <div class="row"><span>COE (ração, sanidade, mão de obra; sem a compra do magro)</span><span>88.000</span></div>
     <div class="row"><span>+ depreciação das instalações (currais, cocho)</span><span>5.000</span></div>
     <div class="row total"><span>COT</span><span>93.000</span></div>
     <div class="row"><span>+ oportunidade do capital de giro investido</span><span>8.000</span></div>
@@ -286,7 +286,7 @@ a{color:var(--accent-text)}
   <div class="eyebrow"><b>Revisão T5</b> · margens e indicadores</div>
   <h2>As três margens, no fim do ciclo</h2>
   <div class="cascade">
-    <div class="row total"><span>RL</span><span>145.800</span></div>
+    <div class="row total"><span>Valor do ganho de peso</span><span>145.800</span></div>
     <div class="row minus"><span>− COE (88.000)</span><span>MB = 57.800</span></div>
     <div class="row minus"><span>− COT (93.000)</span><span>ML = 52.800</span></div>
     <div class="row final"><span>− CT (101.000)</span><span>LE = 44.800</span></div>
@@ -304,7 +304,8 @@ a{color:var(--accent-text)}
       <ul class="bullets compact">
         <li>PE(COE) = 88.000 ÷ 10.800 = <strong>R$ 8,15/kg</strong></li>
         <li>PE(CT) = 101.000 ÷ 10.800 = <strong>R$ 9,35/kg</strong></li>
-        <li>margem de segurança (CT) ≈ <strong>31%</strong> sobre R$ 13,50/kg</li>
+        <li>margem de segurança (CT) ≈ <strong>31%</strong> sobre R$ 13,50/kg, se o magro acompanhar o preço</li>
+        <li>com o magro já comprado a R$ 13,50: (101.000 + 28.000 kg × 13,50) ÷ 38.800 kg = <strong>R$ 12,35/kg</strong>, folga de só 8,5%</li>
       </ul>
     </div>
     <div class="panel">
@@ -312,11 +313,12 @@ a{color:var(--accent-text)}
       <ul class="bullets compact">
         <li>milho/soja em alta: GMD cai (calor, ração mais pobre) → 9.720 kg no lote</li>
         <li>preço de venda −15% (entressafra fraca): R$ 11,48/kg</li>
-        <li>LE cai para <strong>+10.600</strong>: aperta, mas não quebra</li>
+        <li>o ganho vale 9.720 × 11,48 − 101.000 = +10.600, mas os 28.000 kg de entrada, pagos a R$ 13,50, perdem 28.000 × 2,02 = −56.560</li>
+        <li>LE cai para <strong>≈ −46.000</strong>: o lote fecha no vermelho</li>
       </ul>
     </div>
   </div>
-  <p class="note">O confinamento tolera melhor um ano ruim que uma perene ou o leite, o ciclo é curto e a decisão de continuar se refaz a cada 90 dias, não a cada 15 anos.</p>
+  <p class="note">O ciclo é curto e a decisão de continuar se refaz a cada 90 dias, mas, com o magro já comprado, a queda do preço de venda pesa sobre o peso inteiro do boi, não só sobre o ganho. É por isso que a venda antecipada e a relação de troca entre boi magro e boi gordo fazem parte da gestão do confinamento.</p>
 </section>
 
 <!-- 10 · T7 crédito -->
@@ -340,10 +342,10 @@ a{color:var(--accent-text)}
   <h2>As instalações se pagam rápido</h2>
   <div class="cascade">
     <div class="row minus"><span>investimento nas instalações (currais, cocho)</span><span>−60.000</span></div>
-    <div class="row"><span>retorno por ciclo (LE, ~1,5 ciclo/ano útil)</span><span>+67.200/ano</span></div>
-    <div class="row final"><span>payback = 60.000 ÷ 67.200</span><span>≈ 0,9 ano</span></div>
+    <div class="row"><span>caixa por ano (MB de 57.800 × ~1,5 ciclo/ano)</span><span>+86.700/ano</span></div>
+    <div class="row final"><span>payback = 60.000 ÷ 86.700</span><span>≈ 0,7 ano</span></div>
   </div>
-  <p class="note">Diferente do vinhedo (payback de anos): no confinamento o capital fixo é pequeno perto do capital de giro: a instalação se paga rápido, mas o risco está concentrado no preço do boi magro e da ração a cada novo lote.</p>
+  <p class="note">O payback usa o caixa (a margem bruta), não o LE, que já desconta depreciação e custo de oportunidade. Diferente do vinhedo (payback de anos): no confinamento o capital fixo é pequeno perto do capital de giro: a instalação se paga rápido, mas o risco está concentrado no preço do boi magro e da ração a cada novo lote.</p>
 </section>
 
 <!-- ============ ATO 3 · SÍNTESE ============ -->
@@ -355,13 +357,14 @@ a{color:var(--accent-text)}
   <table class="tbl">
     <thead><tr><th>Indicador</th><th class="num">Valor</th></tr></thead>
     <tbody>
-      <tr><td>RL (lote de 100 bois)</td><td class="num">145.800</td></tr>
+      <tr><td>Valor do ganho de peso (lote de 100 bois)</td><td class="num">145.800</td></tr>
       <tr><td>COE · COT · CT</td><td class="num">88.000 · 93.000 · 101.000</td></tr>
       <tr><td>MB · ML · LE</td><td class="num">57.800 · 52.800 · 44.800</td></tr>
       <tr><td>PE(COE) · PE(CT) por kg</td><td class="num">8,15 · 9,35</td></tr>
-      <tr><td>Margem de segurança (CT)</td><td class="num">≈ 31%</td></tr>
-      <tr><td>LE no cenário pessimista</td><td class="num">+10.600</td></tr>
-      <tr><td>Payback das instalações</td><td class="num">≈ 0,9 ano</td></tr>
+      <tr><td>Margem de segurança (CT), magro e gordo ao mesmo preço</td><td class="num">≈ 31%</td></tr>
+      <tr><td>Preço mínimo de venda com o magro já comprado</td><td class="num">R$ 12,35/kg (8,5%)</td></tr>
+      <tr><td>LE no cenário pessimista</td><td class="num">≈ −46.000</td></tr>
+      <tr><td>Payback das instalações</td><td class="num">≈ 0,7 ano</td></tr>
     </tbody>
   </table>
   <p class="note">Nada aqui é conceito novo, é a mesma sequência de T1 a T8, sobre o mesmo lote, do primeiro ao último número.</p>
