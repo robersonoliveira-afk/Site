@@ -456,7 +456,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>O padrão tem nome formal: <strong>Lei dos Rendimentos Decrescentes</strong>. Os rendimentos decrescentes começam quando o PMg atinge o máximo e passa a cair, ainda na Fase I; a Fase II é a região em que eles já atuam e o PMg segue positivo. A lei afirma que, mantidos os demais fatores constantes, <em>a partir de certo ponto, cada unidade adicional do insumo variável gera incrementos de produto cada vez menores</em>. É uma regularidade empírica, observada em milho, soja, leite, carne, aves, não uma exceção.</p>
     <div class="callout">
       <strong>Ponto ótimo econômico ≠ máxima produção</strong>
-      O gráfico mostra que a máxima produção ocorre em 200 kg/ha de N (PT = 200 sc/ha). O máximo lucro está antes, perto de 180 kg/ha, onde RM = CM, com milho a R$ 61/sc e N a R$ 7,00/kg. Os últimos 20 kg de N rendem cerca de 1 sc/ha e custam perto de R$ 145. A aula III.3 mostra como calcular esse ponto dose a dose.
+      O gráfico mostra que a máxima produção ocorre em 200 kg/ha de N (PT = 200 sc/ha). O máximo lucro está antes, perto de 180 kg/ha, onde RM = CM, com milho a R$ 61/sc e N a R$ 7,00/kg. Os últimos 20 kg de N rendem cerca de 1 sc/ha e custam R$ 140. A aula III.3 mostra como calcular esse ponto dose a dose.
     </div>
   </div></div>
 </section>
@@ -555,7 +555,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>A <strong>Margem de Segurança (MS)</strong> indica o quanto a produção pode cair, em percentual, antes que o projeto entre em prejuízo econômico. É o <em>principal indicador de risco</em> de um projeto agrícola: quanto maior a MS, mais a propriedade tolera uma quebra de safra ou uma queda de preço.</p>
 
     <div class="example">
-      <p>Se a soja precisa de 38 sc/ha para cobrir o COE e a média esperada é 60 sc/ha, a produção pode cair <span class="calc">~37%</span> antes de não pagar nem o caixa. Sobre o CT, a margem é menor, e é essa a que diz se o projeto resiste a um ano ruim sem corroer o patrimônio.</p>
+      <p>Na soja da III.1 (COE de R$ 188.000, 50 ha, R$ 120/sc), são precisos 188.000 ÷ 120 ÷ 50 = 31 sc/ha para cobrir o COE. Com média esperada de 60 sc/ha, a produção pode cair <span class="calc">~48%</span> antes de não pagar nem o caixa. Sobre o CT, a margem é menor, e é essa a que diz se o projeto resiste a um ano ruim sem corroer o patrimônio.</p>
     </div>
 
     <figure class="dd ms-dd" id="dd-ms" style="--dd:var(--terra);--dd-deep:#7C3D1F">
@@ -566,7 +566,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="ms-tab"></div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>PE do COE em 38 sc/ha, como no exemplo acima. PE do COT (46 sc/ha) e do CT (54 sc/ha) são valores de exemplo. Margem de segurança = (média esperada − PE) ÷ média esperada.</figcaption>
+      <figcaption>Com os custos da III.1: PE do COE em 31 sc/ha, do COT em 41 sc/ha e do CT em 56 sc/ha. Margem de segurança = (média esperada − PE) ÷ média esperada.</figcaption>
     </figure>
 
     <div class="callout success">
@@ -974,12 +974,12 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 /* ===== III.4 margem de segurança ===== */
 (function(){
   var el = document.getElementById('dd-ms'), svg = el.querySelector('svg'), q = function(s){ return el.querySelector(s); };
-  var MED = 60, PE = [['COE', 38, '#B89233'], ['COT', 46, '#D9895E'], ['CT', 54, '#3D4A2A']];
+  var MED = 60, PE = [['COE', 31, '#B89233'], ['COT', 41, '#D9895E'], ['CT', 56, '#3D4A2A']];
   var W = 340, L = 12, Rr = 12, xmax = 70, px = function(v){ return L + v / xmax * (W - L - Rr); };
   function calc(){
     var qb = +q('[data-i=quebra]').value, obt = MED * (1 - qb / 100), h = '';
     q('[data-v=quebra]').textContent = qb + '%';
-    var cor = obt >= 54 ? '#6E8A3A' : obt >= 38 ? '#B89233' : '#A8552E';
+    var cor = obt >= 56 ? '#6E8A3A' : obt >= 31 ? '#B89233' : '#A8552E';
     /* valor obtido acima da barra */
     h += '<text x="' + Math.max(px(obt), 120) + '" y="34" text-anchor="end" font-size="14" font-weight="600" fill="#1A1A17">obtido: ' + f1(obt, 1) + ' sc/ha</text>';
     h += '<rect x="' + L + '" y="44" width="' + (px(obt) - L) + '" height="26" fill="' + cor + '"/>';

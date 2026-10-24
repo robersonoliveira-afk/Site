@@ -350,7 +350,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><th>Modalidade</th><th>Taxa aprox. (a.a.)</th><th></th></tr>
       <tr><td><strong>Cartão de crédito rotativo</strong></td><td class="num">~440%</td><td class="no">Crédito livre: proibido para uso rural</td></tr>
       <tr><td><strong>Cheque especial</strong></td><td class="num">~134%</td><td class="no">Crédito livre: emergencial</td></tr>
-      <tr><td><strong>Crédito rural: demais produtores</strong></td><td class="num">12 a 20%</td><td>Regulado pelo MCR, fora dos planos subsidiados</td></tr>
+      <tr><td><strong>Crédito rural com recursos livres</strong></td><td class="num">12 a 20%</td><td>Regulado pelo MCR, a taxa de mercado, fora dos recursos controlados do Plano Safra</td></tr>
       <tr><td><strong>Agricultura Empresarial</strong></td><td class="num">8 a 12,5%</td><td class="ok">Subsidiado: Pronamp e demais linhas do MAPA</td></tr>
       <tr><td><strong>Agricultura Familiar (Pronaf)</strong></td><td class="num">0,5 a 7,5%</td><td class="ok">Fortemente subsidiado: MDA</td></tr>
     </table>
@@ -976,7 +976,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 /* 1. o peso dos juros */
 (function(){
   var el = document.getElementById('dd-juros'), q = function(s){ return el.querySelector(s); };
-  var M = [['Cartão de crédito rotativo', 440, '#7C3D1F'], ['Cheque especial', 134, '#A8552E'], ['Crédito rural: demais produtores', 16, '#B89233'], ['Agricultura Empresarial', 10.25, '#6E7A4E'], ['Pronaf, alimento básico', 2, '#3D4A2A']];
+  var M = [['Cartão de crédito rotativo', 440, '#7C3D1F'], ['Cheque especial', 134, '#A8552E'], ['Crédito rural, recursos livres', 16, '#B89233'], ['Agricultura Empresarial', 10.25, '#6E7A4E'], ['Pronaf, alimento básico', 2, '#3D4A2A']];
   q('.linhas').innerHTML = M.map(function(m, i){ return '<div class="lin" data-k="' + i + '"><div class="rot"><span>' + m[0] + ' <small>' + f1(m[1], m[1] % 1 ? 2 : 0) + '% a.a.</small></span><b></b></div><div class="tr"><i style="background:' + m[2] + '"></i></div></div>'; }).join('');
   function calc(){
     var v = +q('[data-i=valor]').value, p = +q('[data-i=prazo]').value;
