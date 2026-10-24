@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#A8552E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
-<title>Parte V: Módulos aplicados · Gestão de Custos Agropecuários</title>
+<title>Parte V: Módulos aplicados · Gestão de Custos e Projetos Agropecuários</title>
 <meta name="description" content="Parte V: Módulos aplicados: bovinocultura, leite, soja e outros sistemas produtivos do RS. Custos reais e indicadores por atividade agropecuária.">
 <link rel="canonical" href="https://produzirnaobasta.com.br/parte-5.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -284,7 +284,6 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <a href="parte-4.html" class="mov3"><span class="rn">IV</span> Contexto operacional</a>
     <a href="parte-5.html" class="mov3 current"><span class="rn">V</span> Módulos aplicados</a>
     <a href="parte-6.html" class="mov3"><span class="rn">VI</span> Projeto final</a>
-    <a href="aulas.html" class="vid"><span class="rn">&#9655;</span> Vídeos</a>
   </div>
 </nav>
 
@@ -492,7 +491,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="formula">
       <span class="label">Indicador-chave do leite</span>
       Custo por litro = CT ÷ total de litros no período<br>
-      Referência EMBRAPA (familiar): <b>R$ 1,50 a R$ 2,20/L</b>
+      Faixa de referência do curso (leite familiar): <b>R$ 1,50 a R$ 2,20/L</b>. Confira o custo da sua região no Cepea ou na EMATER/RS.
     </div>
 
     <h3>Dois ajustes que mudam o custo médio</h3>
@@ -519,7 +518,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         </div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Valores de exemplo: 20 litros por vaca em lactação por dia, concentrado a R$ 1,80/kg e R$ 20 por vaca por dia de demais custos (volumoso, sanidade, mão de obra, depreciação), seca ou em lactação. A faixa tracejada é a referência EMBRAPA de R$ 1,50 a R$ 2,20/L.</figcaption>
+      <figcaption>Valores de exemplo: 20 litros por vaca em lactação por dia, concentrado a R$ 1,80/kg e R$ 20 por vaca por dia de demais custos (volumoso, sanidade, mão de obra, depreciação), seca ou em lactação. A faixa tracejada é a referência do curso, de R$ 1,50 a R$ 2,20/L.</figcaption>
     </figure>
 
     <h3>O método se aplica a outros sistemas</h3>
@@ -529,7 +528,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><th>Sistema</th><th>Unidade</th><th>Indicador-chave</th></tr>
       <tr><td><strong>Apicultura</strong></td><td>Caixa (colmeia)</td><td>kg de mel/caixa/ano; custo/kg</td></tr>
       <tr><td><strong>Avicultura</strong></td><td>Frango alojado</td><td>Conversão alimentar; ração = 65–70% do custo</td></tr>
-      <tr><td><strong>Suinocultura</strong></td><td>Animal terminado</td><td>Conversão 2,8–3,2 kg ração/kg; ciclo 90–100 d</td></tr>
+      <tr><td><strong>Suinocultura</strong></td><td>Animal terminado</td><td>Conversão na terminação perto de 2,6 kg de ração/kg (SENAR-PR, 2025: 205 kg de ração para 80 kg de ganho); ciclo de 90–100 d</td></tr>
       <tr><td><strong>Aquicultura</strong></td><td>kg de peixe</td><td>Conversão alimentar; densidade por m³/ha</td></tr>
     </table>
     </div>
@@ -888,7 +887,7 @@ const QUIZ_A = [
     {t:"Bom sinal: a vaca está comendo bem.", p:"op"},
     {t:"Acima de 0,5 kg/L indica ineficiência alimentar; investigo dieta e custo/L.", p:"es"},
     {t:"Número alto, mas não tenho o limite na cabeça.", p:"tr"} ]},
-  { q:"O custo por litro de leite deu R$ 2,80, e a referência EMBRAPA é R$ 1,50–2,20. Você:", a:[
+  { q:"O custo por litro de leite deu R$ 2,80, e a referência do curso é R$ 1,50–2,20. Você:", a:[
     {t:"Está perto da faixa, segue o projeto.", p:"op"},
     {t:"Está acima: sinal de ineficiência; reviso alimentação, escala e vacas secas.", p:"es"},
     {t:"Acho alto, mas não sei bem com o que comparar.", p:"tr"} ]}
@@ -1171,7 +1170,7 @@ peca('dd-leite', function(q, v, put, el){
   q('[data-b=conc]').style.width = Math.min(conc / L / MX, 1) * 100 + '%';
   q('[data-b=lact]').style.width = lact / L / MX * 100 + '%';
   q('[data-b=seca]').style.width = seca / L / MX * 100 + '%';
-  var m = cl > 2.2 ? 'Custo acima da referência EMBRAPA para o leite familiar (R$ 1,50 a R$ 2,20/L).' : cl < 1.5 ? 'Custo abaixo da referência EMBRAPA para o leite familiar (R$ 1,50 a R$ 2,20/L).' : 'Custo dentro da referência EMBRAPA para o leite familiar (R$ 1,50 a R$ 2,20/L).';
+  var m = cl > 2.2 ? 'Custo acima da referência do curso para o leite familiar (R$ 1,50 a R$ 2,20/L).' : cl < 1.5 ? 'Custo abaixo da referência do curso para o leite familiar (R$ 1,50 a R$ 2,20/L).' : 'Custo dentro da referência do curso para o leite familiar (R$ 1,50 a R$ 2,20/L).';
   if (r > 0.5) m = 'Acima de 0,5 kg de concentrado por litro: ineficiência alimentar. ' + m;
   if (sec === 1) m += ' A vaca seca come e não dá leite: o custo dela soma R$ ' + f1(seca / L, 2) + ' a cada litro das outras.';
   else if (sec > 1) m += ' As ' + sec + ' vacas secas comem e não dão leite: o custo delas soma R$ ' + f1(seca / L, 2) + ' a cada litro das outras.';
