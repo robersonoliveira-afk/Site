@@ -23,7 +23,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versao-simulador" content="2026-10-23">
+<meta name="versao-simulador" content="2026-10-24">
 <title>Simulador de Projeto Agropecuário · Gestão de Custos Agropecuários</title>
 <meta name="description" content="Simulador de projeto agropecuário: preencha em 8 etapas e gere o projeto final com análise de viabilidade (VPL, TIR, payback e indicadores de custo).">
 <link rel="canonical" href="https://produzirnaobasta.com.br/projeto.html">
@@ -595,7 +595,7 @@
           <label class="lbl-aj" for="comerc">Comercialização (% sobre a receita)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-deducoes">?</button>
           </label>
-          <input type="text" inputmode="decimal" id="comerc" placeholder="ex.: 3">
+          <input type="text" inputmode="decimal" id="comerc" placeholder="ex.: 1,5">
           <div class="ajuda-box" id="aj-deducoes" hidden>
             <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE): isso é o passo seguinte.</p>
             <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
@@ -678,7 +678,7 @@
       <div class="subtotal"><span>Subtotal dos itens diretos</span><span class="v" id="subtotal">R$ 0,00</span></div>
     </div>
     <div class="card">
-      <h2><span class="n">2</span>Itens automáticos (% sobre o subtotal)</h2>
+      <h2><span class="n">2</span>Itens automáticos: seguro, assistência técnica e juros</h2>
       <div class="grid3">
         <div>
           <label class="lbl-aj" for="seguro">Seguro (%)
@@ -701,16 +701,23 @@
           </div>
         </div>
         <div>
-          <label class="lbl-aj" for="juros">Juros de custeio (%)
+          <label class="lbl-aj" for="juros">Juros de custeio (% a.a.)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-juros">?</button>
           </label>
-          <input type="text" inputmode="decimal" id="juros" placeholder="ex.: 8">
+          <input type="text" inputmode="decimal" id="juros" placeholder="ex.: 7,5">
           <div class="ajuda-box" id="aj-juros" hidden>
-            <p>Custo do crédito tomado. Sem crédito, coloque 0.</p>
+            <p>Taxa anual da linha de crédito (Plano Safra). Os juros são calculados sobre a parte do custeio financiada, pelos meses do financiamento: valor financiado × taxa × meses ÷ 12. Sem crédito, deixe em branco.</p>
             <a href="parte-4.html#credito" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
       </div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field"><label for="juros-fin">Parte do custeio financiada (%)</label>
+          <input type="text" inputmode="decimal" id="juros-fin" placeholder="100"></div>
+        <div class="field"><label for="juros-meses">Meses do financiamento</label>
+          <input type="text" inputmode="decimal" id="juros-meses" placeholder="ex.: 6"></div>
+      </div>
+      <p class="note">Seguro e assistência técnica são percentuais sobre o subtotal dos itens diretos. Os juros usam a taxa anual, a parte financiada e os meses; em branco, valem 100% e 12 meses.</p>
     </div>
     <div class="card destaque">
       <h2><span class="n">=</span>COE total</h2>
@@ -757,8 +764,9 @@
         <div class="field"><label for="outros">Outros fixos (R$)</label>
           <input type="text" inputmode="decimal" id="outros" placeholder="0"></div>
       </div>
-      <p class="note">Remuneração dos fatores é custo de oportunidade (opcional). Em geral
-      basta a mais perceptível; não precisa somar as duas.</p>
+      <p class="note">Remuneração dos fatores é custo de oportunidade: o CT soma as duas, a do
+      capital investido e a da terra própria. Se a terra é arrendada, o arrendamento pago vai no
+      custeio (passo 3) e a remuneração da terra aqui fica em zero.</p>
       <div class="grid2" style="margin-top:6px">
         <div class="field"><label for="taxa-cap">Remuneração do capital: taxa (% a.a.)</label>
           <input type="text" inputmode="decimal" id="taxa-cap" placeholder="ex.: 6 (poupança)"></div>
@@ -803,13 +811,16 @@
           </label>
           <input type="text" inputmode="decimal" id="form" placeholder="ex.: 3">
           <div class="ajuda-box" id="aj-perene" hidden>
-            <p>Perenes têm anos de formação antes de produzir. O investimento do ano 0 entra na análise plurianual (VPL/TIR/payback). A depreciação da formação flui automaticamente para o passo de custos fixos.</p>
+            <p>Perenes têm anos de formação antes de produzir. A implantação do ano 0 e o custo dos anos de formação entram na análise plurianual (VPL/TIR/payback) e, somados, são amortizados na vida produtiva: essa depreciação flui automaticamente para os custos fixos.</p>
             <a href="parte-5.html#perenes" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
         <div class="field"><label for="vida">Vida útil produtiva (anos)</label>
           <input type="text" inputmode="decimal" id="vida" placeholder="ex.: 20"></div>
       </div>
+      <div class="field"><label for="custoform">Custo de formação por ano (R$)</label>
+        <input type="text" inputmode="decimal" id="custoform" placeholder="0"></div>
+      <p class="note" id="dica-form"></p>
       <div class="timeline" id="timeline"></div>
       <p class="tl-leg" id="tl-leg"></p>
     </div>
@@ -871,12 +882,9 @@
         <a href="parte-5.html#ap-viabilidade" target="_blank" rel="noopener">ver no site →</a>
       </div>
       <div class="grid2">
-        <div class="field"><label for="custoform">Custo de formação anual (R$)</label>
-          <input type="text" inputmode="decimal" id="custoform" placeholder="0"></div>
         <div class="field"><label for="taxa">Taxa de desconto (% a.a.)</label>
           <input type="text" inputmode="decimal" id="taxa" placeholder="ex.: 6"></div>
       </div>
-      <p class="note" id="dica-form"></p>
       <div class="kpis">
         <div class="kpi"><div class="k">VPL</div><div class="v" id="k-vpl">-</div><div class="h" id="h-vpl"></div></div>
         <div class="kpi"><div class="k">TIR</div><div class="v" id="k-tir">-</div><div class="h" id="h-tir"></div></div>
@@ -1226,7 +1234,7 @@ function estadoVazio(){
     swot:{forcas:'',fraquezas:'',oportunidades:'',ameacas:''},
     p1:{produto:'',qtd:'',unQtd:'',prod:'',unProd:'',preco:'',unPreco:'',secDesc:'',secValor:'',comerc:''},
     p2:{campos:{},observacoes:''},
-    p3:{itens:[],seguro:'',ater:'',juros:''},
+    p3:{itens:[],seguro:'',ater:'',juros:'',jurosFin:'',jurosMeses:''},
     p4:{bens:[],prolabore:'',outros:'',taxaCapital:'',arrendamento:'',area:''},
     p5:{cultura:'uva',itens:[],area:'',form:'',vida:''},
     p6:{custoFormacao:'',taxaDesconto:''},
@@ -1264,7 +1272,8 @@ function coletarTudo(){
     itens:[...document.querySelectorAll('#itens-coe .item')].map(it=>({
       desc:it.querySelector('.i-desc').value, cat:it.querySelector('.i-cat').value,
       un:it.querySelector('.i-un').value, qtd:it.querySelector('.i-qtd').value, preco:it.querySelector('.i-preco').value})),
-    seguro:el('seguro').value, ater:el('ater').value, juros:el('juros').value};
+    seguro:el('seguro').value, ater:el('ater').value, juros:el('juros').value,
+    jurosFin:el('juros-fin').value, jurosMeses:el('juros-meses').value};
   // passo 4 — bens
   E.p4 = {
     bens:[...document.querySelectorAll('#itens-dep .item')].map(it=>({
@@ -1304,7 +1313,11 @@ function derivar(E){
   E.p3.itens.forEach(it=>{ subtotalCoe += numv(it.qtd)*numv(it.preco)*n*ciclosAno; });
   const seguro = subtotalCoe*numv(E.p3.seguro)/100;
   const ater   = subtotalCoe*numv(E.p3.ater)/100;
-  const juros  = subtotalCoe*numv(E.p3.juros)/100;
+  // juros = valor financiado × taxa a.a. × meses/12 (Parte IV.1); em branco: 100% financiado, 12 meses
+  const vazio = v => String(v==null?'':v).trim()==='';
+  const jurosFin   = vazio(E.p3.jurosFin) ? 1 : numv(E.p3.jurosFin)/100;
+  const jurosMeses = vazio(E.p3.jurosMeses) ? 12 : numv(E.p3.jurosMeses);
+  const juros  = subtotalCoe*jurosFin*numv(E.p3.juros)/100*jurosMeses/12;
   const coe = subtotalCoe + seguro + ater + juros;
 
   let investHa=0;
@@ -1313,7 +1326,10 @@ function derivar(E){
 
   const perene = ehPerene(E.template);
   const vidaProd = numv(E.p5.vida);
-  const depFormacao = (perene && vidaProd>0) ? investimento/vidaProd : 0;
+  // implantação (ano 0) + formação (custo anual × anos sem receita), amortizadas na vida produtiva (Parte V.B.1)
+  const custoFormacaoTotal = perene ? numv(E.p6.custoFormacao)*Math.max(0,Math.round(numv(E.p5.form))) : 0;
+  const capitalPerene = investimento + custoFormacaoTotal;
+  const depFormacao = (perene && vidaProd>0) ? capitalPerene/vidaProd : 0;
 
   let depBens=0, capMedio=0;
   E.p4.bens.forEach(b=>{
@@ -1321,7 +1337,7 @@ function derivar(E){
     depBens += vida>0 ? Math.max(0,(aq-res)/vida) : 0;
     capMedio += (aq+res)/2;
   });
-  if(perene) capMedio += investimento/2;
+  if(perene) capMedio += capitalPerene/2;
   const dep = depBens + depFormacao;
   const prol = numv(E.p4.prolabore), out = numv(E.p4.outros);
   const cot = coe + dep + prol + out;
@@ -1332,7 +1348,7 @@ function derivar(E){
   return {n, ciclosAno, nVend:qtdEfetiva*ciclosAno, principal, sec, rb, fAliq, fVal, comerc, rl,
     subtotalCoe, seguro, ater, juros, coe,
     depBens, depFormacao, dep, capMedio, prol, out, cot, remCap, remTerra, ct,
-    investHa, investimento};
+    investHa, investimento, custoFormacaoTotal, capitalPerene};
 }
 
 // --- finanças (mesma lógica dos passos 6 e 7) ---
@@ -1643,6 +1659,7 @@ function aplicarEstado(E){
   const p3=E.p3||{itens:[]};
   (p3.itens&&p3.itens.length?p3.itens:[{}]).forEach(it=>addCoe(it.desc,it.cat,it.un,it.qtd,it.preco));
   el('seguro').value=p3.seguro||''; el('ater').value=p3.ater||''; el('juros').value=p3.juros||'';
+  el('juros-fin').value=p3.jurosFin||''; el('juros-meses').value=p3.jurosMeses||'';
   // passo 4
   el('itens-dep').innerHTML='';
   const p4=E.p4||{bens:[]};
@@ -1723,9 +1740,9 @@ function pintar(E,D){
   el('r5-ha').textContent=brl(D.investHa);
   el('r5-area').textContent=area5.toLocaleString('pt-BR',{maximumFractionDigits:2})+' ha';
   el('r5-total').textContent=brl(D.investimento);
-  const depAnual=vida5>0?D.investimento/vida5:0;
   el('liga4').innerHTML=vida5>0?
-    'Depreciação da formação calculada automaticamente: <b>'+brl(depAnual)+'/ano</b> ('+brl(D.investimento)+' ÷ '+vida5+' anos). Ela entra automaticamente no próximo passo (custos fixos), não precisa lançar o pomar como bem depreciável.':
+    'Depreciação da formação calculada automaticamente: <b>'+brl(D.depFormacao)+'/ano</b> ('+brl(D.investimento)+' de implantação'+
+    (D.custoFormacaoTotal>0?' + '+brl(D.custoFormacaoTotal)+' de formação':'')+' ÷ '+vida5+' anos). Ela entra automaticamente nos custos fixos (passo 4), não precisa lançar o pomar como bem depreciável.':
     'Informe a vida útil produtiva para calcular a depreciação anual, que será incorporada automaticamente aos custos fixos.';
   const tl=el('timeline');tl.innerHTML='';
   const s0=document.createElement('div');s0.className='seg impl';s0.textContent='ano 0';tl.appendChild(s0);
@@ -1740,9 +1757,10 @@ function pintar(E,D){
   setSign('r6-mb',mb); setSign('r6-ml',ml); setSign('r6-res',res);
   el('r6-unid').textContent=D.n>0?('por unidade: COE '+brl(D.coe/D.n)+' · COT '+brl(D.cot/D.n)+' · CT '+brl(D.ct/D.n)+' / '+un):'';
   if(D.rl>0){
-    const ms=(D.rl-D.ct)/D.rl, qEq=D.ct/(D.rl/(D.n>0?D.n:1));
+    const ms=(D.rl-D.ct)/D.rl, prodAt=numv(E.p1.prod), unP=E.p1.unProd||TEMPLATES[E.template].unProd||'';
     let txt='Ponto de equilíbrio (CT): receita líquida de <b>'+brl(D.ct)+'</b>';
-    if(D.n>0) txt+=' ≈ <b>'+qEq.toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+un+'</b> de '+D.n.toLocaleString('pt-BR');
+    // mantida a escala, a receita varia com a produtividade: equilíbrio = produtividade × CT ÷ RL
+    if(prodAt>0) txt+=', ou produtividade de <b>'+(prodAt*D.ct/D.rl).toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+unP+'</b> (atual: '+prodAt.toLocaleString('pt-BR',{maximumFractionDigits:1})+')';
     txt+='. Margem de segurança sobre o CT: <b>'+pct(ms)+'</b>'+(ms<0?' (no vermelho)':'')+'.';
     el('equil').innerHTML=txt;
   }else{ el('equil').textContent='Informe a receita líquida para ver o ponto de equilíbrio.'; }
@@ -2009,8 +2027,8 @@ function montarDossie(C){
     '<tr class="tot"><td>CT</td><td class="v">'+brl(ct)+'</td></tr></table></div>';
 
   let pe='';
-  if(rl>0){const ms=(rl-ct)/rl;let t='Ponto de equilíbrio (CT): receita líquida de <b>'+brl(ct)+'</b>';
-    if(n>0){const q=ct/(rl/n);t+=' ≈ <b>'+q.toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+un+'</b> de '+n.toLocaleString('pt-BR');}
+  if(rl>0){const ms=(rl-ct)/rl, prodAt=num(p1.produtividade);let t='Ponto de equilíbrio (CT): receita líquida de <b>'+brl(ct)+'</b>';
+    if(prodAt>0){t+=', ou produtividade de <b>'+(prodAt*ct/rl).toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+esc(p1.unidProd||'')+'</b> (atual: '+prodAt.toLocaleString('pt-BR',{maximumFractionDigits:1})+')';}
     t+='. Margem de segurança sobre o CT: <b>'+pct(ms)+'</b>'+(ms<0?' (no vermelho)':'')+'.';pe='<div class="pe">'+t+'</div>';}
   const b5='<div class="bloco"><h2><span class="n">5</span>Resultado por nível</h2><table class="tab">'+
     '<tr><td>Receita líquida (RL)</td><td class="v">'+brl(rl)+'</td></tr>'+
@@ -2096,9 +2114,9 @@ const EXEMPLO = {
   },
   p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"115", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:""},
   p2:{campos:{sistema:"Plantio direto", cultivar:"Variedade precoce, ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
-    observacoes:"Antes de semear, analise o solo e corrija o pH para 6,0–6,5 com calcário. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo, em R1 (floração), R3 (início de grão) e R5 (enchimento de grão), alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
+    observacoes:"Antes de semear, analise o solo e faça a calagem pelo Manual de Calagem e Adubação RS/SC: no plantio direto consolidado, aplicar calcário quando o pH em água da camada de 0 a 10 cm ficar abaixo de 5,5. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo, em R1 (floração), R3 (início de grão) e R5 (enchimento de grão), alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
   p3:{itens:[
-    {desc:"Fertilizantes: NPK base + ureia cobertura", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"2000"},
+    {desc:"Fertilizantes: adubação de base 02-20-20 (350 kg/ha)", cat:"Fertilizantes", un:"ha", qtd:"1", preco:"2000"},
     {desc:"Defensivos: herbicidas, 3× fungicidas e inseticidas", cat:"Agrotóxicos", un:"ha", qtd:"1", preco:"1350"},
     {desc:"Sementes (variedade precoce + TSI)", cat:"Sementes/mudas", un:"ha", qtd:"1", preco:"680"},
     {desc:"Operações e combustível", cat:"Operações/mecanização", un:"ha", qtd:"1", preco:"580"},
