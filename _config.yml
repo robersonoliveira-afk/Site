@@ -1,0 +1,8 @@
+# Documentos internos: continuam no repositório, mas o GitHub Pages não os publica no site.
+exclude:
+  - docs/
+  - produtor/PLANO.md
+  - CLAUDE.md
+  - AGENTS.md
+  - auditoria_simulador_agricola.md
+  - Simulador_Agropecuario.xlsx
