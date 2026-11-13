@@ -46,7 +46,7 @@ Arcos e cores: Olhar = oliva, Medir = mostarda, Decidir = terra (mesma lógica d
 2. **De onde vem o preço.** Oferta e demanda; o produtor como tomador de preço ("você não manda no preço, manda no custo e na hora de vender"); cadeia produtiva (insumo, produtor, cerealista/cooperativa, indústria, varejo, consumidor); mercado internacional (Chicago, câmbio, prêmio de porto, China); insumos também são globais (fertilizante importado, petróleo, câmbio); preço do leite, do boi, das hortaliças (CEASA, mercado local, sazonalidade); onde acompanhar preços (CEPEA, EMATER, CONAB). Na sua propriedade: relação de troca (quantas sacas pagam o adubo).
 3. **Anotar para gerenciar.** O que anotar, como (caderno, planilha, aplicativo); inventário de bens; caderno de campo; notas fiscais e bloco de produtor. Na sua propriedade: inventário.
 4. **Quanto custa produzir.** Custo que sai do bolso, desgaste (depreciação), o que se deixa de ganhar (oportunidade); custo por unidade. Na sua propriedade: custo de uma atividade.
-5. **Quanto sobra.** Receita, margem, lucro, ponto de equilíbrio (quantas sacas para pagar a conta). Na sua propriedade: ponto de equilíbrio.
+5. **Quanto sobra.** Receita e o que chega de fato, margens e lucro, ponto de equilíbrio (quantas sacas para pagar a conta), a próxima dose se paga? Na sua propriedade: ponto de equilíbrio.
 6. **O dinheiro no tempo.** Fluxo de caixa mês a mês, safra concentrada x gasto o ano todo, reserva. Na sua propriedade: calendário de entradas e saídas.
 7. **Crédito rural.** Custeio, investimento, comercialização; PRONAF, PRONAMP; custo real do financiamento; quando vale a pena. Na sua propriedade: simulação de parcela x capacidade de pagamento.
 8. **Riscos e venda.** Clima, preço, saúde; PROAGRO, seguro rural, diversificação; vender em partes, venda antecipada, armazenagem. Na sua propriedade: mapa de riscos.
@@ -88,3 +88,19 @@ Nada linkado a partir da home do aluno até o autor decidir lançar. Quando lan�
 - 07/10/2026: roteiro, curso.css, curso.js, index.html, modulo-1.html. Perfil "quero começar" e módulo 9 novo (trilha passa a 10). Módulos 2 a 10 escritos, testados em tela de celular e com teste de interação sem erros. Cópia do caderno (baixar, enviar, carregar) e lembrete de 7 dias.
 - Módulo 9, Saber lidar com gente: trilha passa a 11 módulos; quadro Pessoas no retrato.
 - Módulo 11, Vender melhor e agregar valor; Planejar vira o 12. Lições novas: impostos e obrigações (módulo 3, lição 6) e solo e ambiente (módulo 8, lição 3). Curso fechado em 12 módulos.
+- 13/11/2026: números e conceitos alinhados ao livro *Produzir não basta*.
+  - Hora do funcionário pelas horas trabalhadas, 48 semanas no ano (`Curso.custoFuncionario` no `curso.js`). Os módulos 11 e 12 recalculam a partir dos campos gravados no caderno.
+  - SUSAF-RS no módulo 11.
+  - No módulo 11, os dados do USDA (Food Dollar, 2024) no lugar da divisão de exemplo dos R$ 10.
+  - No módulo 5:
+    - receita líquida e nomes das margens;
+    - lição nova "Produzir mais compensa?", com a próxima dose de nitrogênio.
+  - Aplicação de referência de 14% ao ano à vista nos módulos 4, 10 e 11 (no 10 e no 11, em campo editável). No 10, a frase sobre a valorização da terra.
+  - Soja dos módulos 4 e 5 a R$ 128, com margem de 6%.
+  - Exemplos com os preços de 2026:
+    - Chicago a 11,30;
+    - leite a R$ 2,40 e ração a R$ 96;
+    - ampliação do pomar no módulo 7;
+    - piso de R$ 2.014 no módulo 9.
+  - Pilha do capital de baixo para cima.
+  - `curso.js?v=2026-11-13` em todas as páginas.

@@ -38,6 +38,15 @@
         var d = inp.value.replace(/\D/g, '');
         inp.value = d ? parseInt(d, 10).toLocaleString('pt-BR') : '';
       });
+    },
+    /* custo de um funcionário: 12 salários, 13º e férias com um terço, com encargos, mais o que a propriedade oferece por mês.
+       A hora divide pelo que se trabalha: horas por semana em 48 semanas, porque o mês de férias é pago sem trabalho.
+       Recebe os campos gravados no caderno (pessoasCusto), por isso serve também para quem preencheu antes. */
+    custoFuncionario: function(d){
+      d = d || {};
+      var sal = +d.salario || 0, enc = (+d.encargos || 0) / 100, h = +d.horasSemana || 44;
+      var ano = sal * (12 + 1 + 1 / 3) * (1 + enc) + ((+d.moradia || 0) + (+d.outros || 0)) * 12;
+      return {ano:ano, mes:ano / 12, hora:sal ? ano / (h * 48) : 0};
     }
   };
 

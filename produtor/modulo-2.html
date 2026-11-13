@@ -206,7 +206,7 @@ input[type=range]{width:100%;accent-color:var(--olive);height:28px}
 
     <div class="formacao rv">
       <p class="rot">Simulador · preço da soja no interior</p>
-      <div class="slider"><div class="top"><span>Chicago</span><b id="s-cbot-v"></b></div><input type="range" id="s-cbot" min="8" max="16" step="0.1" value="10.5"><small>dólares por bushel</small></div>
+      <div class="slider"><div class="top"><span>Chicago</span><b id="s-cbot-v"></b></div><input type="range" id="s-cbot" min="8" max="16" step="0.1" value="11.3"><small>dólares por bushel</small></div>
       <div class="slider"><div class="top"><span>Prêmio de porto</span><b id="s-prem-v"></b></div><input type="range" id="s-prem" min="-1" max="2" step="0.05" value="0.5"><small>dólares por bushel, pode ser negativo</small></div>
       <div class="slider"><div class="top"><span>Câmbio</span><b id="s-cambio-v"></b></div><input type="range" id="s-cambio" min="4" max="7" step="0.05" value="5.4"><small>reais por dólar</small></div>
       <div class="slider"><div class="top"><span>Frete e despesas até o porto</span><b id="s-frete-v"></b></div><input type="range" id="s-frete" min="3" max="30" step="0.5" value="12"><small>reais por saca, maior quanto mais longe do porto</small></div>
@@ -241,7 +241,7 @@ input[type=range]{width:100%;accent-color:var(--olive);height:28px}
       <p class="rot">Exemplo</p>
       <p>Se uma tonelada de adubo custa R$ 3.300 e a saca de soja vale R$ 120, são necessárias 27,5 sacas para pagar uma tonelada. Se no ano seguinte o adubo for para R$ 3.600 e a soja para R$ 140, a soja subiu mais: bastam 25,7 sacas. O produtor ficou em situação melhor, mesmo pagando mais caro pelo adubo.</p>
     </div>
-    <p class="rv">A relação de troca é a forma mais simples de acompanhar se o momento é bom para comprar insumos. Você calcula a sua no fim deste módulo.</p>
+    <p class="rv">A relação de troca é a forma mais simples de acompanhar se o momento é bom para comprar insumos. E ela dispensa a correção pela inflação: a inflação atinge os dois preços e se cancela na divisão, por isso a relação de troca já mede o poder de compra. No Rio Grande do Sul, a tonelada de ureia custava 18,8 sacas de soja em janeiro de 2018 e 37,9 sacas em março de 2026: o dobro de sacas pela mesma ureia. A série está na <a href="../relacao-troca-precos.html">ferramenta de relação de troca</a> do site. Você calcula a sua no fim deste módulo.</p>
   </div>
 </section>
 
@@ -398,7 +398,7 @@ input[type=range]{width:100%;accent-color:var(--olive);height:28px}
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 /* ===== Medidor: o que mexe no preço ===== */
 (function(){
@@ -464,11 +464,11 @@ input[type=range]{width:100%;accent-color:var(--olive);height:28px}
     g('t-r1').textContent = fmt(rel) + ' × ' + prod;
     if (qtd > 0){
       g('t-l2w').hidden = false;
-      g('t-l2').textContent = 'Para pagar o ' + ins + ' do ano';
+      g('t-l2').textContent = 'Para pagar o ano todo de ' + ins;
       g('t-r2').textContent = fmt(rel * qtd) + ' × ' + prod;
     } else { g('t-l2w').hidden = true; }
     var v = g('t-ver'); v.className = 'veredito';
-    v.textContent = 'Guarde esse número. Quando for comprar de novo, refaça a conta: se for preciso menos ' + prod + ' para pagar o mesmo ' + ins + ', o momento está melhor do que agora, mesmo que os preços em reais tenham subido.';
+    v.textContent = 'Guarde esse número. Quando for comprar de novo, refaça a conta: se precisar de menos do seu produto para pagar a mesma quantidade de ' + ins + ', o momento está melhor do que agora, mesmo que os preços em reais tenham subido.';
     if (salvar !== false){
       var ok = Curso.salvarCaderno('m2troca', {insumo:ins, unidadeInsumo:insu, precoInsumo:insp, produto:prod, precoProduto:prodp, qtdAno:qtd, relacao:rel, data:new Date().toISOString().slice(0,10)});
       g('t-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
@@ -484,7 +484,7 @@ input[type=range]{width:100%;accent-color:var(--olive);height:28px}
     calc(false);
   }
   g('t-exemplo').addEventListener('click', function(){
-    var ex = {ins:'ração', insu:'saco de 40 kg', insp:'98', prod:'litro de leite', prodp:'2,45', qtd:'1200'};
+    var ex = {ins:'ração', insu:'saco de 40 kg', insp:'96', prod:'litro de leite', prodp:'2,40', qtd:'1200'};
     ids.forEach(function(k){ g('t-' + k).value = ex[k]; });
     calc(false);
     g('t-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';

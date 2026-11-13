@@ -49,6 +49,30 @@
 .tres .t i{width:14px;height:14px;border-radius:50%;display:block}
 .tres .t span{font-size:15px}
 .tres .t b{font-family:'IBM Plex Mono',monospace;font-size:16px;white-space:nowrap}
+
+/* a próxima dose se paga? */
+.dose{background:#fff;border:1px solid var(--rule);padding:16px;margin:22px 0}
+.dose .abas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.dose .abas button{font:inherit;font-size:14.5px;padding:8px 12px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;color:var(--ink)}
+.dose .abas button.on{background:var(--olive-deep);border-color:var(--olive-deep);color:var(--paper);font-weight:600}
+.dose .ctl{display:grid;grid-template-columns:minmax(150px,auto) 1fr;gap:6px 14px;align-items:center;margin-bottom:12px}
+.dose .ctl label{font-size:15px;color:var(--ink-soft);line-height:1.3}
+.dose .ctl output{display:block;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink)}
+.dose .ctl input{width:100%;accent-color:var(--terra);min-height:28px}
+@media (max-width:480px){.dose .ctl{grid-template-columns:1fr}.dose .ctl input{margin-bottom:6px}}
+.dose svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
+.dose svg text{font-family:'IBM Plex Mono',monospace;font-size:11.5px;fill:#6B6960}
+.dose svg text.v{font-size:12px;fill:#3A3833;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round}
+.dose svg text.custo-t{fill:#A8552E;font-size:12px}
+.dose svg text.otimo-t{fill:#1A1A17;font-size:12.5px;font-weight:600}
+.dose svg rect{transition:fill .3s}
+.dose .res{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.dose .res div{padding:10px 12px;border:1px solid var(--rule);background:var(--paper)}
+.dose .res small{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.dose .res b{font-family:'IBM Plex Mono',monospace;font-size:19px}
+.dose .cap{font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.5;min-height:68px}
+.dose .leg{font-size:14px;color:var(--stone);margin:10px 0 0;line-height:1.45}
+@media (max-width:480px){.dose{padding:12px}.dose svg text{font-size:13.5px}.dose svg text.v,.dose svg text.custo-t{font-size:13.5px}.dose svg text.otimo-t{font-size:14px}}
 </style>
 </head>
 <body class="arco-medir">
@@ -71,7 +95,7 @@
     <p class="arco">Medir · o resultado</p>
     <h1>Quanto sobra</h1>
     <p class="pergunta">Das sacas que você colhe, quantas são só para pagar a conta?</p>
-    <div class="meta"><span>5 lições</span><span>cerca de 25 minutos</span></div>
+    <div class="meta"><span>6 lições</span><span>cerca de 30 minutos</span></div>
   </div>
   <span class="credito">lavoura de soja em Novo Barreiro/RS · CC BY-SA 4.0, Lucas Friederich/Wikimedia Commons</span>
 </section>
@@ -80,10 +104,11 @@
   <div class="wrap">
     <p class="eyebrow">Neste módulo</p>
     <ol>
-      <li>O que entra na receita, inclusive o que costuma ser esquecido.</li>
+      <li>O que entra na receita, e o que chega de fato depois dos descontos da venda.</li>
       <li>As três sobras e o que cada uma diz.</li>
       <li>O ponto de equilíbrio: quantas sacas pagam a conta.</li>
       <li>Produtividade mínima e preço mínimo.</li>
+      <li>Produzir mais compensa? Até onde a próxima dose de adubo se paga.</li>
       <li>O que fazer quando o resultado é negativo.</li>
     </ol>
   </div>
@@ -102,6 +127,20 @@
       <li><strong>O que ficou no estoque:</strong> a soja guardada no silo também é produção do ano, mesmo que ainda não tenha sido vendida. Conte pelo preço de hoje.</li>
     </ul>
     <p class="rv">E uma coisa que não deve entrar: dinheiro que não veio da atividade, como aposentadoria, empréstimo ou venda de uma máquina velha. Isso é aporte, crédito ou venda de patrimônio, não receita.</p>
+    <h3 class="rv">O que chega de fato</h3>
+    <p class="rv">Da venda ainda saem descontos antes de o dinheiro chegar: o Funrural, descontado na nota, e as taxas da cooperativa ou do comprador, como a armazenagem e os descontos de umidade e impureza. O que sobra é a <strong>receita líquida</strong>, e é ela que enfrenta os custos. Planejar com o valor cheio e se surpreender no acerto da cooperativa é um erro comum.</p>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead><tr><th>Exemplo: soja, 3.000 sacas a R$ 128</th><th>R$</th></tr></thead>
+        <tbody>
+          <tr><td>Venda: 3.000 sacas × R$ 128</td><td class="num">384.000</td></tr>
+          <tr><td>− Funrural</td><td class="num">6.259</td></tr>
+          <tr><td>− taxas da cooperativa: armazenagem, umidade e impureza</td><td class="num">5.261</td></tr>
+          <tr><td><strong>O que chega de fato</strong></td><td class="num"><strong>372.480</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rv">Os descontos somam cerca de 3% da venda: perto de R$ 4 por saca somem antes de qualquer custo. Um cuidado: eles entram na conta uma vez só. Ou saem da receita, como aqui, ou entram no custo, nunca nos dois.</p>
   </div>
 </section>
 
@@ -111,10 +150,10 @@
     <div class="sep"></div>
     <p class="tag rv" style="margin-top:34px">Lição 2</p>
     <h2 class="rv">Três sobras</h2>
-    <p class="rv">Cada degrau do custo do módulo 4 gera uma sobra diferente quando é descontado da receita. Cada uma responde a uma pergunta, num prazo diferente.</p>
+    <p class="rv">Cada degrau do custo do módulo 4 gera uma sobra diferente quando é descontado da receita que chega de fato. Cada uma responde a uma pergunta, num prazo diferente. Nos relatórios de custo de produção, elas têm nome: margem bruta, margem líquida e lucro, também chamado de lucro econômico.</p>
     <div class="sobras">
-      <div class="sobra rv d1"><span class="luz" style="background:#B89233">1</span><div><span class="prazo">curto prazo</span><h4>Receita menos COE</h4><p>Sobra depois de pagar o que saiu do bolso. Se for negativa, a atividade não paga nem as contas do ano: cada unidade produzida aumenta o prejuízo.</p></div></div>
-      <div class="sobra rv d2"><span class="luz" style="background:#D9895E">2</span><div><span class="prazo">médio prazo</span><h4>Receita menos COT</h4><p>Sobra depois de repor os bens e pagar a família. Se for negativa, a atividade se mantém por um tempo, mas vai envelhecendo as máquinas ou apertando a família.</p></div></div>
+      <div class="sobra rv d1"><span class="luz" style="background:#B89233">1</span><div><span class="prazo">curto prazo</span><h4>Receita menos COE: a margem bruta</h4><p>Sobra depois de pagar o que saiu do bolso. Se for negativa, a atividade não paga nem as contas do ano: cada unidade produzida aumenta o prejuízo.</p></div></div>
+      <div class="sobra rv d2"><span class="luz" style="background:#D9895E">2</span><div><span class="prazo">médio prazo</span><h4>Receita menos COT: a margem líquida</h4><p>Sobra depois de repor os bens e pagar a família. Se for negativa, a atividade se mantém por um tempo, mas vai envelhecendo as máquinas ou apertando a família.</p></div></div>
       <div class="sobra rv d3"><span class="luz" style="background:#3D4A2A">3</span><div><span class="prazo">longo prazo</span><h4>Receita menos CT: o lucro</h4><p>Sobra depois de pagar também a terra e o dinheiro empatados. Se for positiva, produzir rende mais do que arrendar a terra e aplicar o dinheiro.</p></div></div>
     </div>
     <p class="rv">Repare na régua do lucro: <strong>basta ele ser maior que zero</strong>. O custo total já inclui o que a terra e o dinheiro renderiam em outro uso. Lucro de R$ 1 já significa que a atividade ganhou dessas alternativas.</p>
@@ -132,11 +171,12 @@
     <div class="caixa-sacas rv" data-anima id="sacas-ex">
       <div class="sacas" id="sacas-ex-grid"></div>
       <div class="leg-s"><span style="--c:#B89233">pagam o bolso</span><span style="--c:#D9895E">pagam desgaste e família</span><span style="--c:#7E8B5E">pagam terra e capital</span><span style="--c:#9DB86A">lucro</span></div>
-      <p class="cap">O exemplo da soja do módulo 4, com a saca a R$ 120: das 3.000 sacas colhidas, cada desenho representa 1% da produção.</p>
+      <p class="cap">O exemplo da soja do módulo 4, com a saca a R$ 128: das 3.000 sacas colhidas, cada desenho representa 1% da produção.</p>
     </div>
 
-    <p class="rv">No exemplo, das 3.000 sacas, 1.567 pagam o que saiu do bolso, outras 467 pagam o desgaste e a família, 783 pagam a terra e o capital. Sobram 183 sacas de lucro, cerca de 6% da colheita.</p>
+    <p class="rv">No exemplo, das 3.000 sacas, cerca de 1.560 pagam o que saiu do bolso, outras 470 pagam o desgaste e a família, 780 pagam a terra e o capital. Sobram cerca de 190 sacas de lucro, 6% da colheita.</p>
     <p class="rv">Visto assim, fica claro por que pequenas variações importam tanto. Uma quebra de 10% na produção leva embora 300 sacas: mais do que todo o lucro.</p>
+    <p class="rv">A conta em sacas usa o preço cheio, para ficar simples. Com os descontos da venda vistos na lição 1, perto de R$ 11,5 mil, o lucro de R$ 24.000 cai quase à metade: R$ 12.480.</p>
   </div>
 </section>
 
@@ -153,7 +193,7 @@
     </ul>
     <div class="exemplo rv">
       <p class="rot">Exemplo</p>
-      <p>No exemplo da soja, 50 hectares e custo total de R$ 338.000. Com a saca a R$ 120, são necessárias 2.817 sacas, ou 56,3 sacas por hectare, para pagar o custo total. Se a produtividade média da propriedade é 60 sacas por hectare, a folga é pequena: qualquer estiagem coloca a conta no vermelho.</p>
+      <p>No exemplo da soja, 50 hectares e custo total de R$ 360.000. Com a saca a R$ 128, são necessárias cerca de 2.810 sacas, pouco mais de 56 sacas por hectare, para pagar o custo total. Se a produtividade média da propriedade é 60 sacas por hectare, a folga é pequena: qualquer estiagem coloca a conta no vermelho. E essa conta usa o preço cheio: com o que chega de fato, R$ 124,16 a saca depois dos descontos, são 58 sacas por hectare. É o número que a calculadora abaixo mostra no exemplo.</p>
     </div>
   </div>
 </section>
@@ -163,6 +203,47 @@
   <div class="wrap">
     <div class="sep"></div>
     <p class="tag rv" style="margin-top:34px">Lição 5</p>
+    <h2 class="rv">Produzir mais compensa?</h2>
+    <p class="rv">Se um pouco de adubo é bom, mais é melhor? Até um ponto, sim; depois, não. A lavoura não responde em linha reta: os primeiros quilos rendem muito, os seguintes rendem cada vez menos. É a <strong>lei dos rendimentos decrescentes</strong>, e ela vale também para a ração da vaca e para o número de animais no mesmo pasto.</p>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead><tr><th>Nitrogênio no milho, kg por hectare</th><th>Milho, sacas por hectare</th><th>A mais nesta dose</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td class="num">90</td><td class="num"></td></tr>
+          <tr><td>40</td><td class="num">130</td><td class="num">+40</td></tr>
+          <tr><td>80</td><td class="num">160</td><td class="num">+30</td></tr>
+          <tr><td>120</td><td class="num">182</td><td class="num">+22</td></tr>
+          <tr><td>160</td><td class="num">196</td><td class="num">+14</td></tr>
+          <tr><td>200</td><td class="num">200</td><td class="num">+4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rv">A produção ainda sobe; o que cai é quanto cada dose acrescenta. Os primeiros 40 kg trazem 40 sacas; os últimos 40, só 4. Para decidir, importa o que a próxima dose traz, não a produção total. Os valores são ilustrativos.</p>
+    <p class="rv">A regra cabe numa frase: <strong>a próxima dose se paga se render mais sacas do que custa em sacas</strong>. Com o milho a R$ 61 a saca e o nitrogênio a R$ 7,00 o quilo, cada quilo custa 0,11 saca. Na faixa de 160 a 200 kg, cada quilo rende só 0,10 saca: não se paga. O ponto ótimo fica perto de 180 kg por hectare, e a produção máxima, em 200.</p>
+    <p class="rv">Agora é com você. Mude o preço do milho e o do nitrogênio, troque a zona do talhão e veja até onde a próxima dose se paga.</p>
+    <div class="dose rv" id="dose">
+      <div class="abas" id="dose-zona"></div>
+      <div class="ctl">
+        <label for="dose-pm">Milho <output id="dose-pm-v"></output></label>
+        <input type="range" id="dose-pm" min="40" max="90" step="1" value="61">
+        <label for="dose-pn">Nitrogênio <output id="dose-pn-v"></output></label>
+        <input type="range" id="dose-pn" min="4" max="15" step="0.5" value="7">
+      </div>
+      <svg viewBox="0 0 360 222" id="dose-svg" role="img" aria-label="Quanto cada quilo de nitrogênio rende, em sacas, em cada faixa de dose, contra o que ele custa"></svg>
+      <div class="res" aria-live="polite"><div><small>1 kg de N custa</small><b id="dose-custo"></b></div><div><small>O ótimo fica</small><b id="dose-otimo"></b></div></div>
+      <p class="cap" id="dose-cap"></p>
+      <p class="leg">Cada barra é o que cada quilo de nitrogênio rende, em média, naquela faixa de 40 kg, em sacas de milho. A linha tracejada é quanto o quilo custa, em sacas: o preço do nitrogênio dividido pelo do milho. O ótimo fica onde a curva que liga o meio das barras encontra essa linha. Valores ilustrativos.</p>
+    </div>
+    <p class="rv">Milho caro pede mais adubo; adubo caro pede menos. É a relação de troca do módulo 2, agora decidindo quanto aplicar. E cada zona do talhão tem a sua dose: onde o solo é raso ou compactado, a curva sobe menos e para antes. É o que a agricultura de precisão faz com a taxa variável.</p>
+    <p class="destaque rv">Máximo lucro não é máxima produção.</p>
+  </div>
+</section>
+
+<!-- ========== LIÇÃO 6 ========== -->
+<section class="licao">
+  <div class="wrap">
+    <div class="sep"></div>
+    <p class="tag rv" style="margin-top:34px">Lição 6</p>
     <h2 class="rv">Quando o resultado é negativo</h2>
     <p class="rv">Resultado negativo num ano ruim não é motivo para abandonar a atividade. O que importa é qual sobra ficou negativa, e por quanto tempo.</p>
     <ul class="lista rv">
@@ -186,7 +267,7 @@
 
     <div class="campos">
       <div class="campo"><label for="r-un">Unidade <small>saca, litro, kg, arroba</small></label><div class="inp"><input id="r-un" class="txt" autocomplete="off" placeholder="saca"></div></div>
-      <div class="campo"><label for="r-preco">Preço por unidade</label><div class="inp"><span>R$</span><input id="r-preco" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="r-preco">Preço por unidade <small>o que chega de fato, depois do Funrural e das taxas</small></label><div class="inp"><span>R$</span><input id="r-preco" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="r-prod">Produção no ano <small>na mesma unidade</small></label><div class="inp"><input id="r-prod" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="r-area">Área ou tamanho <small>opcional: hectares, número de vacas</small></label><div class="inp"><input id="r-area" inputmode="decimal" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="r-coe">COE no ano</label><div class="inp"><span>R$</span><input id="r-coe" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
@@ -212,10 +293,10 @@
     <p class="eyebrow">Para lembrar</p>
     <h2>O essencial do módulo</h2>
     <ol>
-      <li class="rv"><span class="n">1</span><span>A receita inclui autoconsumo, subprodutos e estoque. Aposentadoria, empréstimo e venda de bens não são receita.</span></li>
-      <li class="rv d1"><span class="n">2</span><span>Três sobras, três prazos: sobre o COE, sobre o COT e o lucro, sobre o CT.</span></li>
-      <li class="rv d2"><span class="n">3</span><span>Lucro acima de zero já significa ganhar das alternativas, porque o CT inclui arrendar a terra e aplicar o dinheiro.</span></li>
-      <li class="rv d3"><span class="n">4</span><span>O ponto de equilíbrio mostra quantas unidades pagam cada degrau do custo. Dele saem a produtividade mínima e o preço mínimo.</span></li>
+      <li class="rv"><span class="n">1</span><span>A receita que enfrenta os custos é a que chega de fato, depois dos descontos da venda. Ela inclui autoconsumo, subprodutos e estoque; aposentadoria, empréstimo e venda de bens não são receita.</span></li>
+      <li class="rv d1"><span class="n">2</span><span>Três sobras, três prazos: margem bruta, margem líquida e lucro. Lucro acima de zero já ganha das alternativas, porque o CT inclui arrendar a terra e aplicar o dinheiro.</span></li>
+      <li class="rv d2"><span class="n">3</span><span>O ponto de equilíbrio mostra quantas unidades pagam cada degrau do custo. Dele saem a produtividade mínima e o preço mínimo.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>Máximo lucro não é máxima produção: a próxima dose só vale se render mais do que custa.</span></li>
     </ol>
   </div>
 </section>
@@ -278,7 +359,7 @@
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 /* desenha 100 sacas: a escala vai até o maior valor entre receita e custo total */
 function desenhaSacas(grid, rec, coe, cot, ct){
@@ -301,7 +382,99 @@ function desenhaSacas(grid, rec, coe, cot, ct){
 
 /* exemplo da lição 3 */
 (function(){
-  desenhaSacas(document.getElementById('sacas-ex-grid'), 360000, 188000, 244000, 338000);
+  desenhaSacas(document.getElementById('sacas-ex-grid'), 384000, 200000, 260000, 360000);
+})();
+
+/* ===== A próxima dose se paga? Faixas de 40 kg de nitrogênio: quanto cada quilo rende, em sacas de milho (valores ilustrativos) ===== */
+(function(){
+  var DADOS = {"Média do talhão": [{"ini": 0, "fim": 40, "sc": 1.0}, {"ini": 40, "fim": 80, "sc": 0.75}, {"ini": 80, "fim": 120, "sc": 0.55}, {"ini": 120, "fim": 160, "sc": 0.35}, {"ini": 160, "fim": 200, "sc": 0.1}], "Zona baixa": [{"ini": 0, "fim": 40, "sc": 0.7}, {"ini": 40, "fim": 80, "sc": 0.45}, {"ini": 80, "fim": 120, "sc": 0.2}, {"ini": 120, "fim": 160, "sc": 0.05}]};
+  var svg = document.getElementById('dose-svg'); if (!svg) return;
+  var abas = document.getElementById('dose-zona'), pm = document.getElementById('dose-pm'), pn = document.getElementById('dose-pn');
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(t, a, txt){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+  function br(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d}); }
+  var x0 = 38, x1 = 296, y0 = 34, y1 = 186;
+  function X(kg){ return x0 + kg / 200 * (x1 - x0); }
+  function Y(sc){ return y1 - Math.max(0, Math.min(sc, 1)) * (y1 - y0); }
+
+  el('text', {x:2, y:12}, 'sacas por kg de N');
+  [0, 0.25, 0.5, 0.75, 1].forEach(function(v){
+    el('line', {x1:x0, x2:x1, y1:Y(v), y2:Y(v), stroke:'#E8E3D3'});
+    el('text', {x:x0 - 5, y:Y(v) + 3, 'text-anchor':'end'}, br(v, 2));
+  });
+  [0, 40, 80, 120, 160, 200].forEach(function(kg){ el('text', {x:X(kg), y:y1 + 14, 'text-anchor':'middle'}, kg); });
+  el('text', {x:x1, y:y1 + 30, 'text-anchor':'end'}, 'kg de N por hectare');
+
+  /* ordem de desenho: barras, a curva por cima delas, os valores por cima da curva (com contorno claro) */
+  var barras = [], rotulos = [], i;
+  for (i = 0; i < 5; i++) barras.push(el('rect', {x:0, width:0, y:y1, height:0}));
+  var curva = el('polyline', {fill:'none', stroke:'#1A1A17', 'stroke-width':1.4, points:''});
+  for (i = 0; i < 5; i++) rotulos.push(el('text', {'text-anchor':'middle', class:'v'}));
+  var custo = el('line', {x1:x0, x2:x1, stroke:'#A8552E', 'stroke-width':2, 'stroke-dasharray':'6 4'});
+  var custo1 = el('text', {x:x1 + 5, class:'custo-t'}, 'custa');
+  var custo2 = el('text', {x:x1 + 5, class:'custo-t'});
+  var guia = el('line', {y1:y0, y2:y1, stroke:'#1A1A17', 'stroke-width':1, 'stroke-dasharray':'2 3'});
+  var guiaTxt = el('text', {y:y0 - 6, 'text-anchor':'middle', class:'otimo-t'});
+
+  var zona = Object.keys(DADOS)[0];
+  function desenha(){
+    var f = DADOS[zona], m = +pm.value, n = +pn.value, c = n / m;
+    document.getElementById('dose-pm-v').textContent = 'R$ ' + br(m, 0) + ' a saca';
+    document.getElementById('dose-pn-v').textContent = 'R$ ' + br(n, 2) + ' o kg';
+    barras.forEach(function(r, k){
+      var b = f[k];
+      if (!b){ r.setAttribute('height', 0); rotulos[k].textContent = ''; return; }
+      r.setAttribute('x', X(b.ini) + 3); r.setAttribute('width', X(b.fim) - X(b.ini) - 6);
+      r.setAttribute('y', Y(b.sc)); r.setAttribute('height', y1 - Y(b.sc));
+      r.setAttribute('fill', b.sc > c ? '#9DB86A' : '#E59A72');
+      rotulos[k].setAttribute('x', (X(b.ini) + X(b.fim)) / 2); rotulos[k].setAttribute('y', Y(b.sc) - 4);
+      rotulos[k].textContent = br(b.sc, 2);
+    });
+    var meios = f.map(function(b){ return [(b.ini + b.fim) / 2, b.sc]; });
+    curva.setAttribute('points', meios.map(function(p){ return X(p[0]) + ',' + Y(p[1]); }).join(' '));
+    custo.setAttribute('y1', Y(c)); custo.setAttribute('y2', Y(c));
+    custo1.setAttribute('y', Y(c) - 4); custo2.setAttribute('y', Y(c) + 12); custo2.textContent = br(c, 2);
+
+    /* o ótimo: onde a linha que liga o meio das faixas cruza o custo */
+    var otimo = null, ultimo = meios[meios.length - 1];
+    for (var k = 0; k + 1 < meios.length; k++){
+      var a = meios[k], b = meios[k + 1];
+      if (a[1] > c && b[1] <= c){ otimo = a[0] + (a[1] - c) / (a[1] - b[1]) * (b[0] - a[0]); break; }
+    }
+    var txt, res;
+    if (otimo !== null){
+      var perto = Math.round(otimo / 10) * 10;
+      res = 'perto de ' + perto + ' kg';
+      txt = 'Até perto de ' + perto + ' kg por hectare, cada quilo de nitrogênio rende mais milho do que custa. Dali em diante a produção ainda sobe, mas o quilo a mais custa mais do que rende.';
+      guia.setAttribute('x1', X(otimo)); guia.setAttribute('x2', X(otimo)); guia.style.display = '';
+      guiaTxt.setAttribute('x', X(otimo)); guiaTxt.textContent = 'ótimo'; guiaTxt.style.display = '';
+    } else {
+      guia.style.display = 'none'; guiaTxt.style.display = 'none';
+      if (ultimo[1] > c){
+        res = 'acima de ' + ultimo[0] + ' kg';
+        txt = 'Com esses preços, até a última faixa medida cada quilo ainda rende mais do que custa: o ótimo passa de ' + ultimo[0] + ' kg. Milho caro ou adubo barato pedem mais dose.';
+      } else {
+        res = 'abaixo de ' + meios[0][0] + ' kg';
+        txt = 'Com esses preços, nem a primeira faixa se paga.';
+      }
+    }
+    if (zona !== Object.keys(DADOS)[0] && otimo !== null) txt += ' Na zona baixa, a curva sobe menos e cai antes: o ótimo vem antes.';
+    document.getElementById('dose-custo').textContent = br(c, 2) + ' saca';
+    document.getElementById('dose-otimo').textContent = res;
+    document.getElementById('dose-cap').textContent = txt;
+  }
+  Object.keys(DADOS).forEach(function(z){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = z;
+    b.addEventListener('click', function(){
+      zona = z;
+      abas.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); });
+      desenha();
+    });
+    abas.appendChild(b);
+  });
+  abas.firstChild.classList.add('on');
+  pm.addEventListener('input', desenha); pn.addEventListener('input', desenha);
+  desenha();
 })();
 
 /* calculadora */
@@ -359,7 +532,7 @@ function desenhaSacas(grid, rec, coe, cot, ct){
   }
   if (cad.m5){ var m = cad.m5; preenche({un:m.unidade, preco:m.preco, prod:m.producao, area:m.area, coe:m.coe, cot:m.cot, ct:m.ct}); calc(); }
   g('r-exemplo').addEventListener('click', function(){
-    preenche({un:'saca', preco:120, prod:3000, area:50, coe:188000, cot:244000, ct:338000});
+    preenche({un:'saca', preco:124.16, prod:3000, area:50, coe:200000, cot:260000, ct:360000});
     exemplo = true; calc();
     g('r-res').scrollIntoView({behavior:'smooth', block:'center'});
   });

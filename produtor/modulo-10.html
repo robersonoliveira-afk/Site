@@ -39,7 +39,7 @@
 .pilha .cam{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;margin-bottom:4px;color:#fff;font-size:15.5px;transform:translateX(-14px);opacity:0;transition:transform .5s,opacity .5s}
 .pilha.on .cam{transform:none;opacity:1}
 .pilha .cam b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;opacity:.85;text-align:right}
-.pilha.on .cam:nth-child(2){transition-delay:.12s}.pilha.on .cam:nth-child(3){transition-delay:.24s}.pilha.on .cam:nth-child(4){transition-delay:.36s}.pilha.on .cam:nth-child(5){transition-delay:.48s}.pilha.on .cam:nth-child(6){transition-delay:.6s}
+.pilha.on .cam:nth-child(5){transition-delay:.12s}.pilha.on .cam:nth-child(4){transition-delay:.24s}.pilha.on .cam:nth-child(3){transition-delay:.36s}.pilha.on .cam:nth-child(2){transition-delay:.48s}.pilha.on .cam:nth-child(1){transition-delay:.6s}
 
 /* checklist */
 .check{list-style:none;display:grid;gap:8px;margin:18px 0}
@@ -140,11 +140,11 @@
           <tr><td><strong>Capital</strong></td><td>Exige muito dinheiro de entrada, que fica empatado.</td><td>Exige pouco: o dinheiro vai para produzir.</td></tr>
           <tr><td><strong>Segurança</strong></td><td>A terra é sua, para investir e passar adiante.</td><td>Depende do contrato e da renovação.</td></tr>
           <tr><td><strong>Flexibilidade</strong></td><td>Difícil voltar atrás se a atividade não der certo.</td><td>Permite testar, mudar de área ou crescer aos poucos.</td></tr>
-          <tr><td><strong>Custo</strong></td><td>O custo de oportunidade do dinheiro empatado (módulo 4).</td><td>O valor do arrendamento, pago todo ano.</td></tr>
+          <tr><td><strong>Custo</strong></td><td>O que o dinheiro da compra renderia aplicado: o custo de oportunidade (módulo 4).</td><td>O valor do arrendamento, pago todo ano.</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="rv">Uma conta simples ajuda: <strong>quanto o dinheiro da compra renderia aplicado, por ano, comparado ao arrendamento de uma área igual</strong>. Se o arrendamento for menor, arrendar libera dinheiro para produzir. É a conta que você faz no fim deste módulo.</p>
+    <p class="rv">Uma conta simples ajuda: <strong>quanto o dinheiro da compra renderia por ano numa aplicação de referência, comparado ao arrendamento de uma área igual</strong>. Se o arrendamento for menor, arrendar libera dinheiro para produzir. É a conta que você faz no fim deste módulo. Ela tem um limite: se a terra se valorizar, esse ganho fica com quem comprou. A conta de cada ano não o mostra; ele aparece na venda.</p>
     <p class="rv">Arrendamento e parceria rural são regulados pelo Estatuto da Terra, que estabelece, entre outras coisas, prazos mínimos de contrato conforme a atividade. Faça sempre contrato por escrito, com prazo, valor, forma de pagamento e o que acontece com as benfeitorias.</p>
   </div>
 </section>
@@ -155,16 +155,16 @@
     <div class="sep"></div>
     <p class="tag rv" style="margin-top:34px">Lição 3</p>
     <h2 class="rv">O capital de entrada</h2>
-    <p class="rv">O erro mais comum de quem começa é gastar tudo na terra e nas máquinas e ficar sem dinheiro para produzir e para viver. O capital de entrada tem seis camadas, e todas precisam caber no plano:</p>
+    <p class="rv">O erro mais comum de quem começa é gastar tudo na terra e nas máquinas e ficar sem dinheiro para produzir e para viver. O capital de entrada tem seis camadas, empilhadas de baixo para cima, a partir da terra, e todas precisam caber no plano:</p>
     <div class="pilha" data-anima>
-      <div class="cam" style="background:#3D4A2A">Terra <b>comprar ou arrendar</b></div>
-      <div class="cam" style="background:#5E6B45">Construções e instalações <b>galpão, cercas, água, energia</b></div>
-      <div class="cam" style="background:#8A6C1F">Máquinas e equipamentos <b>módulo 3</b></div>
-      <div class="cam" style="background:#A88326">Animais ou implantação <b>rebanho, mudas, pomar</b></div>
-      <div class="cam" style="background:#A8552E">Capital de giro da primeira safra <b>módulo 6</b></div>
       <div class="cam" style="background:#7C3D1F">Reserva da família até a primeira venda <b>módulo 1</b></div>
+      <div class="cam" style="background:#A8552E">Capital de giro da primeira safra <b>módulo 6</b></div>
+      <div class="cam" style="background:#A88326">Animais ou implantação <b>rebanho, mudas, pomar</b></div>
+      <div class="cam" style="background:#8A6C1F">Máquinas e equipamentos <b>módulo 3</b></div>
+      <div class="cam" style="background:#5E6B45">Construções e instalações <b>galpão, cercas, água, energia</b></div>
+      <div class="cam" style="background:#3D4A2A">Terra <b>comprar ou arrendar</b></div>
     </div>
-    <p class="rv">As duas últimas camadas são as mais esquecidas e as que mais quebram negócios novos. Nas atividades de retorno lento, como pomares, vinhedos e gado de cria, elas podem ser maiores do que as máquinas.</p>
+    <p class="rv">As duas camadas de cima são as mais esquecidas e as que mais quebram negócios novos. Nas atividades de retorno lento, como pomares, vinhedos e gado de cria, elas podem ser maiores do que as máquinas.</p>
     <div class="dica rv">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
       <span>O site da disciplina tem calculadoras para dimensionar a implantação de um <a href="../vinhedo.html">vinhedo</a> e a estrutura de um <a href="../rebanho.html">rebanho leiteiro</a>.</span>
@@ -246,6 +246,7 @@
       <div class="campo"><label for="e-ha">Área <small>hectares</small></label><div class="inp"><input id="e-ha" inputmode="decimal" autocomplete="off" placeholder="0"><span style="padding-right:12px">ha</span></div></div>
       <div class="campo"><label for="e-preco">Preço da terra por hectare <small>para comprar</small></label><div class="inp"><span>R$</span><input id="e-preco" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="e-arr">Arrendamento por hectare por ano <small>na região, para comparar</small></label><div class="inp"><span>R$</span><input id="e-arr" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="e-taxa">Aplicação de referência <small>em % ao ano, para comparar: o que o dinheiro da compra renderia aplicado. Confira a taxa do momento</small></label><div class="inp"><input id="e-taxa" inputmode="decimal" autocomplete="off" placeholder="14"><span style="padding-right:12px">%</span></div></div>
     </div>
 
     <p class="grupo">As outras camadas</p>
@@ -301,11 +302,11 @@
     </div>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 2</span>Comprar 20 ha custa R$ 600 mil. Aplicado, esse dinheiro renderia R$ 36 mil por ano. Arrendar uma área igual custa R$ 16 mil por ano. Do ponto de vista do custo anual:</p>
+      <p class="enun"><span class="qn">Pergunta 2</span>Comprar 20 ha custa R$ 600 mil. Aplicado a 14% ao ano, esse dinheiro renderia R$ 84 mil por ano. Arrendar uma área igual custa R$ 16 mil por ano. Do ponto de vista do custo anual:</p>
       <button type="button" class="alt">Comprar é mais barato.</button>
       <button type="button" class="alt" data-certa>Arrendar é mais barato e libera dinheiro para produzir.</button>
       <button type="button" class="alt">Os dois custam igual.</button>
-      <p class="fb">R$ 16 mil de arrendamento contra R$ 36 mil que o dinheiro deixaria de render. Comprar pode valer por outros motivos, como segurança e patrimônio, mas custa mais por ano.</p>
+      <p class="fb">R$ 16 mil de arrendamento contra R$ 84 mil que o dinheiro deixaria de render. Comprar pode valer por outros motivos, como segurança, patrimônio e a valorização da terra, mas custa mais por ano.</p>
     </div>
 
     <div class="q rv">
@@ -343,7 +344,7 @@
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 /* comparador de atividades: 1 a 5 em cada critério */
 (function(){
@@ -412,14 +413,14 @@
     requestAnimationFrame(function(){ CAM.forEach(function(c, i){ emp.children[i].style.width = (val[c[0]] / tot * 100) + '%'; }); });
     var falta = Math.max(tot - v.prop, 0);
     g('e-tot').textContent = Curso.reais(tot); g('e-propv').textContent = Curso.reais(v.prop); g('e-falta').textContent = Curso.reais(falta);
-    var cmpTxt = '';
+    var cmpTxt = '', taxa = g('e-taxa').value.trim() === '' ? 14 : dec(g('e-taxa').value), tx = taxa.toLocaleString('pt-BR') + '%';
     if (ha > 0 && v.preco > 0 && v.arr > 0){
       g('e-cmp-w').hidden = false;
-      var rend = ha * v.preco * 0.06, arrAno = ha * v.arr;
+      var rend = ha * v.preco * taxa / 100, arrAno = ha * v.arr;
       g('e-cmp').textContent = Curso.reais(rend) + ' x ' + Curso.reais(arrAno);
       cmpTxt = rend > arrAno
-        ? ' O dinheiro da compra renderia ' + Curso.reais(rend) + ' por ano aplicado a 6%, mais do que o arrendamento de ' + Curso.reais(arrAno) + ': arrendar custa menos por ano e libera ' + Curso.reais(ha * v.preco) + ' para produzir.'
-        : ' O arrendamento de ' + Curso.reais(arrAno) + ' por ano é maior do que o rendimento do dinheiro da compra, ' + Curso.reais(rend) + ' a 6%: comprar faz sentido também pelo custo.';
+        ? ' O dinheiro da compra renderia ' + Curso.reais(rend) + ' por ano aplicado a ' + tx + ', mais do que o arrendamento de ' + Curso.reais(arrAno) + ': arrendar custa menos por ano e libera ' + Curso.reais(ha * v.preco) + ' para produzir. Se a terra se valorizar, esse ganho fica com quem compra e não aparece nesta conta.'
+        : ' O arrendamento de ' + Curso.reais(arrAno) + ' por ano é maior do que o rendimento do dinheiro da compra, ' + Curso.reais(rend) + ' a ' + tx + ': comprar faz sentido também pelo custo.';
     } else g('e-cmp-w').hidden = true;
     var semReserva = (v.giro + v.res) / tot < 0.1;
     var txt, cls;
@@ -431,11 +432,11 @@
     txt += cmpTxt;
     g('e-ver').className = 'veredito ' + cls; g('e-ver').textContent = txt;
     if (!exemplo){
-      var ok = Curso.salvarCaderno('m9', {modoTerra:modo, area:ha, precoHa:v.preco, arrendamentoHa:v.arr, terra:terra, construcoes:v.const, maquinas:v.maq, animais:v.anim, giro:v.giro, reserva:v.res, total:tot, recursosProprios:v.prop, falta:falta});
+      var ok = Curso.salvarCaderno('m9', {modoTerra:modo, area:ha, precoHa:v.preco, arrendamentoHa:v.arr, taxaAplicacao:taxa, terra:terra, construcoes:v.const, maquinas:v.maq, animais:v.anim, giro:v.giro, reserva:v.res, total:tot, recursosProprios:v.prop, falta:falta});
       g('e-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
     } else g('e-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
   }
-  nums.concat(['ha']).forEach(function(k){ g('e-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
+  nums.concat(['ha', 'taxa']).forEach(function(k){ g('e-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
   g('e-modo').addEventListener('change', function(){ exemplo = false; calc(); });
   var cad = Curso.caderno();
   function botao(id, valor, alvo){ if (valor > 0){ var b = g(id); b.hidden = false; b.addEventListener('click', function(){ g(alvo).value = Math.round(valor).toLocaleString('pt-BR'); exemplo = false; calc(); }); } }
@@ -446,10 +447,11 @@
     var m = cad.m9; g('e-modo').value = m.modoTerra || 'comprar'; g('e-ha').value = m.area ? String(m.area).replace('.', ',') : '';
     var mp = {preco:m.precoHa, arr:m.arrendamentoHa, const:m.construcoes, maq:m.maquinas, anim:m.animais, giro:m.giro, res:m.reserva, prop:m.recursosProprios};
     nums.forEach(function(k){ if (mp[k]) g('e-' + k).value = Math.round(mp[k]).toLocaleString('pt-BR'); });
+    if (m.taxaAplicacao !== undefined) g('e-taxa').value = String(m.taxaAplicacao).replace('.', ',');
     calc();
   }
   g('e-exemplo').addEventListener('click', function(){
-    g('e-modo').value = 'arrendar'; g('e-ha').value = '3';
+    g('e-modo').value = 'arrendar'; g('e-ha').value = '3'; g('e-taxa').value = '14';
     var ex = {preco:30000, arr:900, const:25000, maq:18000, anim:12000, giro:15000, res:30000, prop:80000};
     nums.forEach(function(k){ g('e-' + k).value = ex[k].toLocaleString('pt-BR'); });
     exemplo = true; calc();

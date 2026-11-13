@@ -241,7 +241,7 @@
     <p class="rv">Trabalhar em família tem uma força enorme: confiança, dedicação, conhecimento passado de geração em geração. E tem uma dificuldade própria: as relações da casa entram no trabalho, e as do trabalho entram na casa.</p>
     <ul class="lista rv">
       <li><strong>Separar os papéis.</strong> Na lavoura, o pai pode ser o gestor; na mesa de domingo, é o pai. Discutir trabalho no almoço de família, ou família na lida, costuma piorar os dois.</li>
-      <li><strong>Remunerar quem trabalha.</strong> O filho ou a filha que trabalha na propriedade precisa de uma renda própria e combinada, não de "quando sobrar". Sem isso, é comum que vá embora, com razão. É o pró-labore do módulo 4, agora visto do lado de quem recebe.</li>
+      <li><strong>Remunerar quem trabalha.</strong> O filho ou a filha que trabalha na propriedade precisa de uma renda própria e combinada, não de "quando sobrar". Sem isso, é comum que vá embora, com razão. No custo, o trabalho dele já entra como pró-labore (módulo 4); aqui a questão é ele receber de fato.</li>
       <li><strong>Combinar quem decide o quê.</strong> Quem compra os insumos, quem negocia com o laticínio, quem decide sobre um financiamento. Decisões grandes, em conjunto; as do dia a dia, com quem é responsável por elas.</li>
       <li><strong>Fazer reunião de família.</strong> Uma vez por mês, com hora para começar e terminar, para olhar os números (módulo 12) e combinar o próximo mês. Reunião só na hora da crise vira briga.</li>
     </ul>
@@ -311,7 +311,7 @@
       <div class="campo"><label for="f-enc">Encargos sobre a folha <small>em %. O FGTS é 8%; os demais dependem do tipo de empregador: pergunte ao contador</small></label><div class="inp"><input id="f-enc" inputmode="decimal" autocomplete="off" placeholder="0"><span style="padding-right:12px">%</span></div></div>
       <div class="campo"><label for="f-mor">Moradia, alimentação e energia <small>o que a propriedade oferece, por mês</small></label><div class="inp"><span>R$</span><input id="f-mor" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="f-out">Outros por mês <small>equipamento de proteção, uniforme, prêmio, transporte</small></label><div class="inp"><span>R$</span><input id="f-out" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
-      <div class="campo"><label for="f-h">Horas por semana</label><div class="inp"><input id="f-h" inputmode="numeric" autocomplete="off" placeholder="44"><span style="padding-right:12px">h</span></div></div>
+      <div class="campo"><label for="f-h">Horas por semana <small>de trabalho. A conta usa 48 semanas no ano, porque o mês de férias é pago sem trabalho</small></label><div class="inp"><input id="f-h" inputmode="numeric" autocomplete="off" placeholder="44"><span style="padding-right:12px">h</span></div></div>
     </div>
     <div class="resultado" id="f-res" hidden>
       <div class="linha"><span>Custo por ano</span><b id="f-ano"></b></div>
@@ -395,7 +395,7 @@
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 /* ===== Situações ===== */
 (function(){
@@ -532,8 +532,7 @@
     var h = dec(g('f-h').value) || 44;
     if (!sal){ g('f-res').hidden = true; return; }
     g('f-res').hidden = false;
-    /* 12 salários + 13º + férias com um terço, todos com encargos; mais benefícios mensais */
-    var folha = sal * (12 + 1 + 1 / 3) * (1 + enc), ano = folha + (mor + out) * 12, mes = ano / 12, hora = mes / (h * 5);
+    var cf = Curso.custoFuncionario({salario:sal, encargos:enc * 100, moradia:mor, outros:out, horasSemana:h}), ano = cf.ano, mes = cf.mes, hora = cf.hora;
     g('f-ano').textContent = Curso.reais(ano); g('f-mes').textContent = Curso.reais(mes); g('f-hora').textContent = f2(hora);
     var vezes = mes / sal;
     var t = 'O custo real é cerca de ' + vezes.toLocaleString('pt-BR', {maximumFractionDigits:1}) + ' vezes o salário. Esse é o número para comparar com outras saídas: contratar um serviço de terceiros, dividir um funcionário com um vizinho ou mecanizar uma tarefa.';
@@ -546,7 +545,7 @@
   }
   ['sal','enc','mor','out','h'].forEach(function(k){ g('f-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
   g('f-exemplo').addEventListener('click', function(){
-    g('f-sal').value = '2.200'; g('f-enc').value = '8'; g('f-mor').value = '600'; g('f-out').value = '150'; g('f-h').value = '44';
+    g('f-sal').value = '2.014'; g('f-enc').value = '8'; g('f-mor').value = '600'; g('f-out').value = '150'; g('f-h').value = '44';
     exemplo = true; calc();
     g('f-res').scrollIntoView({behavior:'smooth', block:'center'});
   });

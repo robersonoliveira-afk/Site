@@ -156,12 +156,13 @@
       <li><strong>Insumos:</strong> sementes, adubo, calcário, defensivos, ração, sal mineral, medicamentos.</li>
       <li><strong>Operações:</strong> diesel, manutenção de máquinas, serviços contratados de plantio, colheita ou transporte.</li>
       <li><strong>Mão de obra contratada:</strong> salários, diárias, encargos.</li>
-      <li><strong>Outros:</strong> energia, arrendamento pago, assistência técnica, seguro, juros do custeio, impostos e taxas sobre a produção.</li>
+      <li><strong>Outros:</strong> energia, arrendamento pago, assistência técnica, seguro, juros do custeio, taxas.</li>
     </ul>
+    <p class="rv">Os descontos na hora da venda, como o Funrural e as taxas da cooperativa, ficam do lado da receita: o módulo 5 mostra como. Eles entram na conta uma vez só.</p>
     <p class="rv">O COE responde a uma pergunta de curto prazo: <strong>a atividade paga as contas do ano?</strong> Se o preço não cobre nem o COE, cada saca produzida aumenta o prejuízo.</p>
     <div class="dica rv">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
-      <span>Os gastos da casa não entram aqui. Eles são pagos com a retirada da família, que aparece no próximo degrau. É a separação das duas caixas do módulo 1.</span>
+      <span>Os gastos da casa não entram aqui. Eles são pagos com a retirada da família. No custo, o trabalho da família entra no próximo degrau pelo que vale no mercado: o pró-labore. É a separação das duas caixas do módulo 1.</span>
     </div>
   </div>
 </section>
@@ -217,15 +218,15 @@
       <table class="tbl">
         <thead><tr><th>Exemplo: soja, 50 ha, 3.000 sacas</th><th>No ano</th><th>Por saca</th></tr></thead>
         <tbody>
-          <tr><td>COE: o que saiu do bolso</td><td class="num">R$ 188.000</td><td class="num">R$ 62,67</td></tr>
-          <tr><td>+ depreciação e família</td><td class="num">R$ 56.000</td><td class="num">R$ 18,67</td></tr>
-          <tr><td>COT</td><td class="num">R$ 244.000</td><td class="num">R$ 81,33</td></tr>
-          <tr><td>+ terra e capital</td><td class="num">R$ 94.000</td><td class="num">R$ 31,33</td></tr>
-          <tr><td><strong>CT</strong></td><td class="num"><strong>R$ 338.000</strong></td><td class="num"><strong>R$ 112,67</strong></td></tr>
+          <tr><td>COE: o que saiu do bolso</td><td class="num">R$ 200.000</td><td class="num">R$ 66,67</td></tr>
+          <tr><td>+ depreciação e família</td><td class="num">R$ 60.000</td><td class="num">R$ 20,00</td></tr>
+          <tr><td>COT</td><td class="num">R$ 260.000</td><td class="num">R$ 86,67</td></tr>
+          <tr><td>+ terra e capital</td><td class="num">R$ 100.000</td><td class="num">R$ 33,33</td></tr>
+          <tr><td><strong>CT</strong></td><td class="num"><strong>R$ 360.000</strong></td><td class="num"><strong>R$ 120,00</strong></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="rv">Agora a comparação com o preço é direta. Se a saca vale R$ 120, a soja desse exemplo paga todos os degraus e ainda sobra um pouco. Se vale R$ 100, paga o bolso, o desgaste e a família, mas rende menos do que arrendar a terra e aplicar o dinheiro. O módulo 5 trabalha essa comparação.</p>
+    <p class="rv">Agora a comparação com o preço é direta. Se a saca vale R$ 128, a soja desse exemplo paga todos os degraus e sobra pouco: R$ 8 por saca. Se vale R$ 100, paga o bolso, o desgaste e a família, mas rende menos do que arrendar a terra e aplicar o dinheiro. O módulo 5 trabalha essa comparação.</p>
     <p class="rv">O custo por unidade também permite comparar com outras propriedades e com as referências da CONAB e do Campo Futuro, e acompanhar a evolução de um ano para outro.</p>
   </div>
 </section>
@@ -263,7 +264,7 @@
     <p class="grupo">O que deixa de ganhar · CT</p>
     <div class="campos c3">
       <div class="campo"><label for="k-terra">Arrendamento que a terra própria renderia <small>por ano. Deixe zero se a terra é arrendada</small></label><div class="inp"><span>R$</span><input id="k-terra" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
-      <div class="campo"><label for="k-cap">Rendimento do dinheiro empatado <small>valor dos bens × juros de uma aplicação segura</small></label><div class="inp"><span>R$</span><input id="k-cap" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="k-usa-cap" hidden>calcular a 6% sobre o meu inventário</button></div>
+      <div class="campo"><label for="k-cap">Rendimento do dinheiro empatado <small>por ano: valor dos bens × o que rende uma aplicação de referência. O curso usa 14% ao ano; confira a taxa do momento</small></label><div class="inp"><span>R$</span><input id="k-cap" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="k-usa-cap" hidden>calcular a 14% ao ano sobre o meu inventário</button></div>
     </div>
 
     <div class="resultado" id="k-res" hidden>
@@ -351,7 +352,7 @@
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 (function(){
   var g = function(id){ return document.getElementById(id); };
@@ -397,7 +398,7 @@
     var bi = g('k-usa-inv'); bi.hidden = false;
     bi.addEventListener('click', function(){ g('k-dep').value = Math.round(cad.m3inv.depreciacaoAnual).toLocaleString('pt-BR'); exemplo = false; calc(); });
     var bc = g('k-usa-cap'); bc.hidden = false;
-    bc.addEventListener('click', function(){ g('k-cap').value = Math.round(cad.m3inv.valorTotal * 0.06).toLocaleString('pt-BR'); exemplo = false; calc(); });
+    bc.addEventListener('click', function(){ g('k-cap').value = Math.round(cad.m3inv.valorTotal * 0.14).toLocaleString('pt-BR'); exemplo = false; calc(); });
   }
   if (cad.m4){
     var m = cad.m4, mapa = {prod:m.producao, ins:m.insumos, op:m.operacoes, mo:m.maoDeObra, out:m.outros, dep:m.depreciacao, fam:m.familia, terra:m.terra, cap:m.capital};
@@ -406,7 +407,7 @@
     calc();
   }
   g('k-exemplo').addEventListener('click', function(){
-    var ex = {ativ:'soja', un:'saca', prod:3000, ins:140000, op:25000, mo:8000, out:15000, dep:20000, fam:36000, terra:70000, cap:24000};
+    var ex = {ativ:'soja', un:'saca', prod:3000, ins:150000, op:26000, mo:8000, out:16000, dep:24000, fam:36000, terra:64000, cap:36000};
     txt.forEach(function(k){ g('k-' + k).value = ex[k]; });
     num.forEach(function(k){ g('k-' + k).value = ex[k].toLocaleString('pt-BR'); });
     exemplo = true; calc();

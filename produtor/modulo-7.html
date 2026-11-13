@@ -198,7 +198,7 @@ details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8
     <h2>Simule um financiamento de investimento</h2>
     <p>Parcelas anuais com amortização constante, um formato comum nos financiamentos rurais de investimento. Confira no contrato qual é o seu. Use a taxa que o banco ou a cooperativa informou para a linha que você pretende usar.</p>
     <p class="so-novo">Para quem vai começar, use como sobra a estimativa de um ano normal, depois que a atividade estiver em produção. E lembre que, nos primeiros anos, ela costuma ser menor.</p>
-    <p style="margin:4px 0 6px"><button type="button" class="mini" id="c-exemplo">ver o exemplo de uma ordenhadeira</button></p>
+    <p style="margin:4px 0 6px"><button type="button" class="mini" id="c-exemplo">ver o exemplo da ampliação de um pomar</button></p>
 
     <div class="campos">
       <div class="campo"><label for="c-valor">Valor financiado</label><div class="inp"><span>R$</span><input id="c-valor" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
@@ -293,7 +293,7 @@ details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 /* alavanca */
 (function(){
@@ -387,8 +387,8 @@ details.tabela summary{cursor:pointer;font-size:14.5px;color:rgba(250,247,240,.8
     calc();
   }
   g('c-exemplo').addEventListener('click', function(){
-    g('c-valor').value = '80.000'; g('c-juros').value = '5'; g('c-prazo').value = '8'; g('c-car').value = '1';
-    g('c-sobra').value = '30.000'; g('c-outras').value = '6.000';
+    g('c-valor').value = '100.000'; g('c-juros').value = '5'; g('c-prazo').value = '8'; g('c-car').value = '1';
+    g('c-sobra').value = '30.000'; g('c-outras').value = '4.000';
     exemplo = true; calc();
     g('c-res').scrollIntoView({behavior:'smooth', block:'center'});
   });

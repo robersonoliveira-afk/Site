@@ -32,6 +32,7 @@
 .preco-final.on .pf-barra div:nth-child(2){transition-delay:.2s}.preco-final.on .pf-barra div:nth-child(3){transition-delay:.4s}.preco-final.on .pf-barra div:nth-child(4){transition-delay:.6s}.preco-final.on .pf-barra div:nth-child(5){transition-delay:.8s}
 .pf-leg{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-top:10px;font-size:14px;color:var(--ink-soft)}
 .pf-leg b{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
+.pf-leg.um{grid-template-columns:1fr}
 .pf-leg span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;background:var(--c)}
 .preco-final .cap{font-size:14.5px;color:var(--stone);margin-top:10px;line-height:1.45}
 
@@ -102,17 +103,17 @@
     <p class="rv">No módulo 2, a cadeia apareceu como um problema: o produtor aceita o preço que o mercado oferece. Este módulo olha a mesma cadeia pelo outro lado. Entre a porteira e a mesa, cada elo fica com uma parte do que o consumidor paga. <strong>Agregar valor é trazer para dentro da propriedade uma parte do trabalho, e do dinheiro, que hoje fica com outros elos.</strong></p>
 
     <div class="preco-final rv" data-anima>
-      <div class="tit"><span>Preço pago pelo consumidor</span><b>R$ 10,00</b></div>
+      <div class="tit"><span>Cada dólar gasto em comida nos Estados Unidos, 2024</span><b>100 centavos</b></div>
       <div class="pf-barra">
-        <div style="--w:32%;background:#3D4A2A"></div>
-        <div style="--w:24%;background:#8A6C1F"></div>
-        <div style="--w:12%;background:#A88326"></div>
-        <div style="--w:14%;background:#D9895E"></div>
-        <div style="--w:18%;background:#A8552E"></div>
+        <div style="--w:11.8%;background:#3D4A2A"></div>
+        <div style="--w:38.6%;background:#A88326"></div>
+        <div style="--w:49.6%;background:#A8552E"></div>
       </div>
-      <div class="pf-leg"><span style="--c:#3D4A2A">produtor <b>R$ 3,20</b></span><span style="--c:#8A6C1F">indústria <b>R$ 2,40</b></span><span style="--c:#A88326">transporte e armazenagem <b>R$ 1,20</b></span><span style="--c:#D9895E">impostos <b>R$ 1,40</b></span><span style="--c:#A8552E">comércio <b>R$ 1,80</b></span></div>
-      <p class="cap">Valores de exemplo. A divisão real muda muito de um produto para outro: o produtor fica com uma parte maior nos produtos vendidos quase in natura e com uma parte menor nos muito processados.</p>
+      <div class="pf-leg um"><span style="--c:#3D4A2A">fazenda <b>11,8 centavos</b></span><span style="--c:#A88326">restaurantes e serviços de alimentação <b>38,6</b></span><span style="--c:#A8552E">indústria, comércio, transporte, energia e outros <b>49,6</b></span></div>
+      <p class="cap">Fonte: USDA, Serviço de Pesquisa Econômica (ERS), Food Dollar Series, atualização de março de 2026.</p>
     </div>
+
+    <p class="rv">Pouco fica com quem produz, mas o maior pedaço não fica com o supermercado, como costuma se pensar: fica com tudo o que acontece entre a porteira e o prato. Na comida comprada para comer em casa, 18,5 centavos chegam à fazenda; na comida consumida fora de casa, só 7,1. A regra vale aqui também: quanto mais serviço entre a porteira e o prato, menor a parte de quem produz.</p>
 
     <p class="rv">Há quatro caminhos para ficar com uma parte maior: <strong>se juntar</strong> a outros produtores, <strong>transformar</strong> a produção, <strong>vender direto</strong> e <strong>diferenciar</strong> o produto. Nenhum deles é de graça. Cada um traz trabalho, investimento e risco. As próximas lições mostram o que cada caminho pede e o que oferece.</p>
   </div>
@@ -147,7 +148,7 @@
       <li><strong>Exigências:</strong> sanitárias, ambientais e fiscais. Produto de origem animal, por exemplo, precisa de inspeção sanitária.</li>
     </ul>
     <h3 class="rv">A legalização</h3>
-    <p class="rv">O serviço de inspeção define onde o produto pode ser vendido. Com a inspeção municipal, a venda é dentro do município. Com a estadual, no estado. Com a federal, ou com a adesão do serviço local ao sistema nacional de inspeção, em todo o país. Legalizar dá trabalho, mas é o que permite vender para mercados, restaurantes e a merenda escolar sem risco de apreensão.</p>
+    <p class="rv">O serviço de inspeção define onde o produto pode ser vendido. Com a inspeção municipal, a venda é dentro do município. Com a estadual, no estado. Com a federal, ou com a adesão do serviço local ao sistema nacional de inspeção, em todo o país. No Rio Grande do Sul há mais um caminho: o estabelecimento com inspeção municipal que se credencia no SUSAF-RS, o sistema estadual para a agroindústria familiar, artesanal e de pequeno porte, pode usar o selo do sistema e vender em todo o estado. Legalizar dá trabalho, mas é o que permite vender para mercados, restaurantes e a merenda escolar sem risco de apreensão.</p>
     <div class="dica rv">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#A8552E" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v5M9 12.5v.5"/></svg>
       <span>No Rio Grande do Sul, o Programa Estadual de Agroindústria Familiar apoia a legalização, a assistência técnica e a comercialização, e permite usar o selo Sabor Gaúcho nos produtos. Procure a EMATER ou a secretaria de agricultura do seu município para começar.</span>
@@ -236,6 +237,7 @@
       <div class="campo"><label for="v-cv">Custos de venda por mês <small>frete, banca na feira, comissão</small></label><div class="inp"><span>R$</span><input id="v-cv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="v-inv">Investimento <small>instalações, equipamentos, legalização</small></label><div class="inp"><span>R$</span><input id="v-inv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="v-anos">Em quantos anos dividir o investimento</label><div class="inp"><input id="v-anos" inputmode="numeric" autocomplete="off" placeholder="10"><span style="padding-right:12px">anos</span></div></div>
+      <div class="campo"><label for="v-taxa">Aplicação de referência <small>em % ao ano: o que o dinheiro do investimento renderia se ficasse aplicado. Confira a taxa do momento</small></label><div class="inp"><input id="v-taxa" inputmode="decimal" autocomplete="off" placeholder="14"><span style="padding-right:12px">%</span></div></div>
       <div class="campo"><label for="v-h">Horas de trabalho a mais por semana</label><div class="inp"><input id="v-h" inputmode="numeric" autocomplete="off" placeholder="0"><span style="padding-right:12px">h</span></div></div>
     </div>
 
@@ -246,6 +248,7 @@
       </div>
       <div class="linha"><span>Ganho a mais por mês</span><b id="v-ganho"></b></div>
       <div class="linha"><span>Quanto rende cada hora de trabalho a mais</span><b id="v-hora"></b></div>
+      <div class="linha" id="v-liq-w"><span>Por hora, descontado o que o investimento renderia aplicado</span><b id="v-liq"></b></div>
       <div class="veredito" id="v-ver"></div>
       <p class="salvo" id="v-salvo"></p>
     </div>
@@ -261,7 +264,7 @@
       <li class="rv"><span class="n">1</span><span>Agregar valor é trazer para dentro da propriedade uma parte do trabalho, e do dinheiro, que hoje fica com outros elos da cadeia.</span></li>
       <li class="rv d1"><span class="n">2</span><span>Quatro caminhos: se juntar, transformar, vender direto e diferenciar. Nenhum é de graça.</span></li>
       <li class="rv d2"><span class="n">3</span><span>A legalização define onde se pode vender. O PNAE compra, por lei, uma parte da merenda da agricultura familiar.</span></li>
-      <li class="rv d3"><span class="n">4</span><span>A conta que decide: quanto rende cada hora de trabalho a mais, depois de pagar todos os custos a mais.</span></li>
+      <li class="rv d3"><span class="n">4</span><span>A conta que decide: quanto rende cada hora de trabalho a mais, depois de pagar todos os custos a mais, inclusive o que o investimento renderia aplicado.</span></li>
     </ol>
   </div>
 </section>
@@ -274,11 +277,11 @@
     <p class="sub">Toque na resposta que achar certa.</p>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 1</span>Um queijo com inspeção apenas municipal pode ser vendido:</p>
+      <p class="enun"><span class="qn">Pergunta 1</span>Um queijo com inspeção apenas municipal, de um estabelecimento que não aderiu a nenhum sistema, pode ser vendido:</p>
       <button type="button" class="alt">Em todo o Brasil.</button>
       <button type="button" class="alt" data-certa>Dentro do município.</button>
       <button type="button" class="alt">Em qualquer cidade do estado.</button>
-      <p class="fb">O serviço de inspeção define a área de venda: municipal, no município; estadual, no estado; federal ou com adesão ao sistema nacional, no país.</p>
+      <p class="fb">O serviço de inspeção define a área de venda: municipal, no município; estadual, no estado; federal ou com adesão ao sistema nacional, no país. No RS, o credenciamento no SUSAF-RS amplia a venda ao estado.</p>
     </div>
 
     <div class="q rv">
@@ -324,7 +327,7 @@
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 /* comparador de caminhos */
 (function(){
@@ -355,46 +358,57 @@
   nums.forEach(function(k){ Curso.mascara(g('v-' + k)); });
   var dec = function(s){ s = String(s || '').replace(/\./g, '').replace(',', '.'); var v = parseFloat(s); return isFinite(v) ? v : 0; };
   var f2 = function(v){ return 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
-  var ids = ['mp','qtd','pmp','prod','qp','pp','ci','cv','inv','anos','h'];
+  var ids = ['mp','qtd','pmp','prod','qp','pp','ci','cv','inv','anos','taxa','h'];
   function calc(){
     var mp = g('v-mp').value.trim() || 'matéria-prima', prod = g('v-prod').value.trim() || 'produto';
     var qtd = Curso.num(g('v-qtd').value), pmp = dec(g('v-pmp').value), qp = Curso.num(g('v-qp').value), pp = dec(g('v-pp').value);
     var ci = Curso.num(g('v-ci').value), cv = Curso.num(g('v-cv').value), inv = Curso.num(g('v-inv').value), anos = dec(g('v-anos').value) || 10, h = dec(g('v-h').value);
+    var taxa = g('v-taxa').value.trim() === '' ? 14 : dec(g('v-taxa').value);
     if (!qtd || !pmp || !qp || !pp){ g('v-res').hidden = true; return; }
     g('v-res').hidden = false;
     var natura = qtd * pmp, transf = qp * pp - ci - cv - inv / (anos * 12), ganho = transf - natura, hmes = h * 52 / 12, hora = hmes ? ganho / hmes : 0;
+    /* custo de oportunidade: o que o investimento renderia aplicado, por mês */
+    var oport = inv * taxa / 100 / 12, liq = ganho - oport, horaLiq = hmes ? liq / hmes : 0;
     var mx = Math.max(natura, transf, 1);
     g('v-l1').textContent = 'Vendendo ' + mp + ' in natura'; g('v-l2').textContent = 'Transformando em ' + prod + ', já descontados os custos a mais';
     g('v-b1v').textContent = Curso.reais(natura); g('v-b2v').textContent = Curso.reais(transf);
     requestAnimationFrame(function(){ g('v-b1').style.width = (natura / mx * 100) + '%'; g('v-b2').style.width = (Math.max(transf, 0) / mx * 100) + '%'; });
     g('v-ganho').textContent = Curso.reais(ganho); g('v-hora').textContent = hmes ? f2(hora) : 'informe as horas';
-    var ref = (Curso.caderno().pessoasCusto || {}).custoHora, txt, cls;
+    g('v-liq-w').hidden = !(oport > 0 && hmes); g('v-liq').textContent = f2(horaLiq);
+    var ref = Curso.custoFuncionario(Curso.caderno().pessoasCusto).hora, txt, cls;
     if (ganho <= 0){ cls = 'alerta'; txt = 'Com esses números, transformar rende menos do que vender ' + mp + ' in natura. Reveja o preço do produto, os custos ou o rendimento antes de investir.'; }
     else if (!hmes){ cls = ''; txt = 'Transformar rende ' + Curso.reais(ganho) + ' a mais por mês. Informe as horas de trabalho a mais para saber se esse ganho paga o esforço.'; }
     else {
-      cls = ref && hora < ref ? '' : 'ok';
+      var h2 = oport > 0 ? horaLiq : hora;
       txt = 'Transformar rende ' + Curso.reais(ganho) + ' a mais por mês, ou ' + f2(hora) + ' por hora de trabalho a mais.';
-      if (ref) txt += hora >= ref ? ' É mais do que o custo por hora de um funcionário que você calculou no módulo 9 (' + f2(ref) + '): o trabalho a mais se paga, e há espaço até para contratar ajuda.'
+      if (oport > 0) txt += ' Os ' + Curso.reais(inv) + ' do investimento renderiam ' + Curso.reais(oport) + ' por mês aplicados a ' + taxa.toLocaleString('pt-BR') + '% ao ano. Descontado esse rendimento, ' + (liq > 0 ? 'ficam ' + f2(horaLiq) + ' por hora.' : 'não sobra nada: o dinheiro rende mais aplicado.');
+      if (oport > 0 && liq <= 0) cls = 'alerta';
+      else {
+        cls = ref && h2 < ref ? '' : 'ok';
+        if (ref) txt += h2 >= ref ? ' É mais do que o custo por hora de um funcionário que você calculou no módulo 9 (' + f2(ref) + '): o trabalho a mais se paga, e há espaço até para contratar ajuda.'
                                   : ' É menos do que o custo por hora de um funcionário (' + f2(ref) + ', módulo 9): só vale se a família tiver tempo livre e gostar desse trabalho.';
-      else txt += ' Compare com quanto a família ganharia usando esse tempo de outra forma, ou com o custo de um funcionário (módulo 9).';
+        else txt += ' Compare com quanto a família ganharia usando esse tempo de outra forma, ou com o custo de um funcionário (módulo 9).';
+      }
     }
     g('v-ver').className = 'veredito ' + cls; g('v-ver').textContent = txt;
     if (!exemplo){
-      var ok = Curso.salvarCaderno('m11valor', {materiaPrima:mp, quantidade:qtd, precoNatura:pmp, produto:prod, qtdProduto:qp, precoProduto:pp, custosMes:ci, custosVenda:cv, investimento:inv, anos:anos, horasSemana:h, natura:natura, transformado:transf, ganhoMes:ganho, ganhoHora:hora});
+      var ok = Curso.salvarCaderno('m11valor', {materiaPrima:mp, quantidade:qtd, precoNatura:pmp, produto:prod, qtdProduto:qp, precoProduto:pp, custosMes:ci, custosVenda:cv, investimento:inv, anos:anos, taxa:taxa, horasSemana:h, natura:natura, transformado:transf, ganhoMes:ganho, ganhoHora:hora, oportunidadeMes:oport, ganhoHoraLiquido:horaLiq});
       g('v-salvo').textContent = ok ? 'Salvo no caderno da sua propriedade, neste aparelho.' : '';
     } else g('v-salvo').textContent = 'Números de exemplo, não salvos. Troque pelos seus para guardar no caderno.';
   }
   ids.forEach(function(k){ g('v-' + k).addEventListener('input', function(){ exemplo = false; calc(); }); });
   function preenche(d){
     g('v-mp').value = d.mp || ''; g('v-prod').value = d.prod || '';
-    g('v-pmp').value = d.pmp ? String(d.pmp).replace('.', ',') : ''; g('v-pp').value = d.pp ? String(d.pp).replace('.', ',') : '';
+    var c2 = function(v){ return Number(v).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+    g('v-pmp').value = d.pmp ? c2(d.pmp) : ''; g('v-pp').value = d.pp ? c2(d.pp) : '';
     ['qtd','qp','ci','cv','inv'].forEach(function(k){ g('v-' + k).value = d[k] ? Math.round(d[k]).toLocaleString('pt-BR') : ''; });
     g('v-anos').value = d.anos || ''; g('v-h').value = d.h || '';
+    g('v-taxa').value = d.taxa !== undefined ? String(d.taxa).replace('.', ',') : '';
   }
   var c = Curso.caderno().m11valor;
-  if (c){ preenche({mp:c.materiaPrima, prod:c.produto, qtd:c.quantidade, pmp:c.precoNatura, qp:c.qtdProduto, pp:c.precoProduto, ci:c.custosMes, cv:c.custosVenda, inv:c.investimento, anos:c.anos, h:c.horasSemana}); calc(); }
+  if (c){ preenche({mp:c.materiaPrima, prod:c.produto, qtd:c.quantidade, pmp:c.precoNatura, qp:c.qtdProduto, pp:c.precoProduto, ci:c.custosMes, cv:c.custosVenda, inv:c.investimento, anos:c.anos, taxa:c.taxa, h:c.horasSemana}); calc(); }
   g('v-exemplo').addEventListener('click', function(){
-    preenche({mp:'leite', prod:'queijo colonial', qtd:3000, pmp:2.45, qp:300, pp:45, ci:1500, cv:800, inv:60000, anos:10, h:25});
+    preenche({mp:'leite', prod:'queijo colonial', qtd:3000, pmp:2.40, qp:300, pp:45, ci:1500, cv:800, inv:60000, anos:10, taxa:14, h:25});
     exemplo = true; calc();
     g('v-res').scrollIntoView({behavior:'smooth', block:'center'});
   });

@@ -203,7 +203,7 @@
     <h2 class="rv">Metas que dá para medir</h2>
     <p class="rv">"Melhorar a propriedade" é um desejo, não uma meta. Uma meta diz <strong>o quê</strong>, <strong>quanto</strong> e <strong>até quando</strong>. Assim, no fim do prazo, dá para saber se foi cumprida.</p>
     <div class="metas">
-      <div class="meta-par rv d1"><div class="vaga"><small>vaga</small>Gastar menos com a lavoura.</div><div class="clara"><small>clara</small>Baixar o custo que sai do bolso da soja de R$ 65 para R$ 60 por saca na próxima safra.</div></div>
+      <div class="meta-par rv d1"><div class="vaga"><small>vaga</small>Gastar menos com a lavoura.</div><div class="clara"><small>clara</small>Baixar o custo que sai do bolso da soja de R$ 67 para R$ 62 por saca na próxima safra.</div></div>
       <div class="meta-par rv d2"><div class="vaga"><small>vaga</small>Organizar as contas.</div><div class="clara"><small>clara</small>Anotar todas as entradas e saídas, separando casa e propriedade, de janeiro a dezembro.</div></div>
       <div class="meta-par rv d3"><div class="vaga"><small>vaga</small>Ter uma reserva.</div><div class="clara"><small>clara</small>Guardar R$ 30 mil até o fim da próxima safra, separando 10% de cada venda.</div></div>
       <div class="meta-par rv d4"><div class="vaga"><small>vaga</small>Começar a produzir.</div><div class="clara"><small>clara</small>Arrendar 3 ha e vender as primeiras caixas de hortaliças na feira do município até setembro.</div></div>
@@ -368,7 +368,7 @@
   </div>
 </footer>
 
-<script src="curso.js"></script>
+<script src="curso.js?v=2026-11-13"></script>
 <script>
 (function(){
   var g = function(id){ return document.getElementById(id); };
@@ -599,10 +599,13 @@
     if (cad.m11valor){
       var v = cad.m11valor;
       cv = L('De ' + esc(v.materiaPrima) + ' para ' + esc(v.produto), '') + L('Vendendo in natura', R(v.natura) + '/mês') + L('Transformando', R(v.transformado) + '/mês') + L('Ganho a mais', R(v.ganhoMes) + '/mês');
-      if (v.ganhoHora) cv += L('Por hora a mais', f2(v.ganhoHora));
-      var refH = (cad.pessoasCusto || {}).custoHora;
-      cv += v.ganhoMes <= 0 ? leit('alerta', 'Com esses números, transformar rende menos do que vender in natura.')
-          : (refH && v.ganhoHora && v.ganhoHora < refH ? leit('meio', 'Rende menos por hora do que custa um funcionário: vale se a família tiver tempo livre.')
+      /* por hora, já descontado o que o investimento renderia aplicado, quando o módulo 11 gravou esse valor */
+      var vh = v.ganhoHoraLiquido !== undefined ? v.ganhoHoraLiquido : v.ganhoHora;
+      if (vh) cv += L('Por hora a mais', f2(vh));
+      var refH = Curso.custoFuncionario(cad.pessoasCusto).hora;
+      var liqMes = v.ganhoMes - (v.oportunidadeMes || 0);
+      cv += liqMes <= 0 ? leit('alerta', v.ganhoMes <= 0 ? 'Com esses números, transformar rende menos do que vender in natura.' : 'Descontado o que o investimento renderia aplicado, transformar não deixa ganho.')
+          : (refH && vh && vh < refH ? leit('meio', 'Rende menos por hora do que custa um funcionário: vale se a família tiver tempo livre.')
           : leit('ok', 'Transformar paga os custos a mais e o tempo de trabalho.'));
     }
     h.push(card('Agregar valor', 11, cv));
