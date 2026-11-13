@@ -10,9 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="chart.umd.min.js"></script>
 <style>
   :root{
     --paper:#F3EEE2; --surface:#FBF7EC; --surface2:#EFE8D6; --ink:#2C2A24; --muted:#857C6A;
@@ -422,7 +422,7 @@ function renderMapa(){
   document.getElementById('leg-mid').textContent=metrica==='cust'?fmtR(vMid):fmtNum(vMid)+' ha';
   document.getElementById('leg-max').textContent=metrica==='cust'?fmtR(vMax):fmtNum(vMax)+' ha';
   function getColor(v){if(v<=0)return '#EFE8D6';const t=Math.pow(v/vMax,0.45);const idx=t*(ramp.length-1);const i=Math.floor(idx),j=Math.min(i+1,ramp.length-1),fr=idx-i;const r=Math.round(ramp[i][0]*(1-fr)+ramp[j][0]*fr),g=Math.round(ramp[i][1]*(1-fr)+ramp[j][1]*fr),b=Math.round(ramp[i][2]*(1-fr)+ramp[j][2]*fr);return `rgb(${r},${g},${b})`;}
-  if(!leafletMap){leafletMap=L.map('map',{zoomControl:true,attributionControl:false,preferCanvas:true}).setView([-29.7,-53.5],7);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(leafletMap);}
+  if(!leafletMap){leafletMap=L.map('map',{zoomControl:true,attributionControl:true,preferCanvas:true}).setView([-29.7,-53.5],7);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'}).addTo(leafletMap);}
   const mm={};MUNICIPIOS.forEach(m=>mm[m.cod]=m);
   if(!geoLayer){
     geoLayer=L.geoJSON(GEOJSON,{
