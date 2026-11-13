@@ -1,7 +1,19 @@
 Site/
 
-# Projeto separado (galinheiro móvel entre videiras), não é parte deste site — muito grande para o GitHub
-agricultura/
+# agricultura/ (Sistematização de Experiências em Agricultura): as páginas e os arquivos que elas usam são do site.
+# Ficam fora os brutos do galinheiro móvel (grandes demais para o GitHub) e os arquivos de trabalho.
+agricultura/assets/imagens/Galinhedo-1-001/
+agricultura/assets/imagens/Galinhedo-1-001.zip
+agricultura/assets/imagens/IMG_*.jpg
+agricultura/assets/imagens/*_1.jpg
+agricultura/assets/imagens/sala de aula.jpg
+agricultura/PROGRESSO-*.md
+agricultura/aula3-*.html
+agricultura/*.pdf
+
+# Documentos internos de revisão e segurança: não vão para o repositório público
+varredura-seguranca-site.md
+revisao_site_2026-10.html
 
 # Fotos brutas e originais de aula, ainda não processados para o site
 Aulas/*.zip
