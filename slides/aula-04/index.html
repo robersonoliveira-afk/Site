@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3D4A2A">
+<title>De onde vem o preço</title>
+<meta name="description" content="De onde vem o preço: do mundo até a porteira. Versão para videoaula e aula presencial.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--rule:#D9D3C2;--rule-soft:#E8E3D3;
+  --critical-bg:#F5E4D8;--success-bg:#E4EAD2;--accent:var(--olive);
+  /* tipografia para vídeo: cerca de 1,4× a versão de tela */
+  --fs-body:min(2.05vw,3.65vh);
+  --fs-lead:min(2.45vw,4.35vh);
+  --fs-small:min(1.6vw,2.85vh);
+  --fs-mono:min(1.15vw,2.05vh);
+  --fs-h2:min(3.7vw,6.6vh);
+  --fs-stat:min(4.6vw,8.2vh);
+  /* área da câmera */
+  --cam-w:26vw;--cam-h:33vh;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.4;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:9vh 6vw 6vh;background:var(--paper);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+.slide.on{opacity:1;visibility:visible;transition:opacity .4s ease}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--accent)}
+.fala{display:none}
+
+/* itens que entram um a um */
+.f{opacity:0;transform:translateY(1.6vh);transition:opacity .5s ease,transform .5s ease}
+.f.vis{opacity:1;transform:none}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:2.4vh}
+.eyebrow b{color:var(--accent);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.06;letter-spacing:-0.02em;color:var(--ink);margin-bottom:3.4vh;font-variation-settings:'opsz' 144;max-width:60vw}
+h2 em{font-style:italic;color:var(--accent);font-weight:500}
+p{font-size:var(--fs-body);color:var(--ink-soft);margin-bottom:2vh}
+p strong{color:var(--ink);font-weight:600}
+p em{color:var(--accent);font-style:italic;font-weight:500}
+.lead{font-size:var(--fs-lead);line-height:1.3;color:var(--ink)}
+.fonte{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);letter-spacing:0.04em;margin-top:1.5vh}
+
+/* colunas: a esquerda nunca passa de 60vw; a direita fica no alto */
+.esq{max-width:60vw}
+.esq.estreita{max-width:50vw}
+.dir{position:absolute;top:9vh;right:6vw;width:var(--w,34vw)}
+.dir figure img{width:100%;max-height:var(--h,54vh);object-fit:contain;display:block;border:1px solid var(--rule);background:#fff}
+figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:1vh;line-height:1.35}
+
+.callout{margin:2.4vh 0;padding:2vh 1.6vw;background:var(--critical-bg);border-left:6px solid var(--terra);font-size:var(--fs-body);line-height:1.35;color:var(--ink);max-width:60vw}
+.callout strong{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:0.8vh}
+.callout.ok{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.ok strong{color:var(--olive)}
+
+/* tabelas */
+.tbl{border-collapse:collapse;font-size:var(--fs-small);max-width:60vw}
+.tbl th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1.4vw 1vh 0;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.05vh 1.4vw 1.05vh 0;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:middle}
+.tbl .num{text-align:right;font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.tbl td.num b{color:var(--terra)}
+.tbl tr.total td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive);border-bottom:none}
+.tbl tr.total td:first-child{padding-left:1vw}
+.chip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);padding:0.5vh 1vw;border-radius:3px;white-space:nowrap}
+.chip.montante{background:#E4EAD2;color:var(--olive-deep)}
+.chip.jusante{background:#EFE6CC;color:#7A6020}
+.chip.ambiente{background:var(--rule-soft);color:var(--stone)}
+
+/* números grandes */
+.stats{display:flex;gap:2vh 4.5vw;flex-wrap:wrap;margin:1vh 0 2vh}
+.stat .num{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:var(--fs-stat);line-height:1;color:var(--terra);letter-spacing:-0.02em}
+.stat .lbl{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:1vh;max-width:32ch;line-height:1.35}
+.stats.vert{flex-direction:column;gap:3vh}
+
+/* painéis */
+.paineis{display:grid;grid-template-columns:1fr 1fr;gap:2vw;max-width:88vw;margin-bottom:1vh}
+.panel{border:1px solid var(--rule);background:#fff;padding:2.2vh 1.6vw}
+.panel h3{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1vh}
+.panel h3.alt{color:var(--terra)}
+.panel p{font-size:var(--fs-small);margin-bottom:0}
+
+/* lista com marcador */
+ul.itens{list-style:none;max-width:60vw}
+ul.itens li{font-size:var(--fs-body);color:var(--ink-soft);padding:1vh 0 1vh 1.6em;position:relative;line-height:1.3}
+ul.itens li::before{content:"›";position:absolute;left:0.3em;color:var(--accent);font-weight:700}
+ul.itens li strong{color:var(--ink)}
+
+/* etapas em sequência */
+.etapas{display:flex;flex-wrap:wrap;gap:1.2vh 1vw;align-items:center;max-width:60vw;margin:1vh 0 2vh}
+.etapas .step{border:1px solid var(--rule);background:#fff;padding:1.3vh 1.2vw;font-size:var(--fs-small);color:var(--ink)}
+.etapas .arr{color:var(--stone-light);font-size:var(--fs-body)}
+.etapas .volta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra)}
+
+/* cartões choque / tendência / ciclo */
+.cartoes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;max-width:88vw;margin:1vh 0 3vh}
+.cartao{border-top:6px solid var(--accent);background:#fff;padding:2.4vh 1.4vw;border-left:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.cartao .t{font-family:'Fraunces',serif;font-size:var(--fs-h2);font-weight:600;line-height:1;margin-bottom:1.6vh}
+.cartao p{font-size:var(--fs-small);margin-bottom:0.6vh}
+.cartao .vel{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.08em;color:var(--terra)}
+.cartao:nth-child(2){border-top-color:var(--mustard)}
+.cartao:nth-child(3){border-top-color:var(--terra)}
+
+/* barra de proporção animada */
+.propbar{margin:2vh 0 3vh;max-width:48vw}
+.propbar .track{position:relative;height:7vh;border:1px solid var(--rule);background:#fff}
+.propbar .fill{position:absolute;top:0;left:0;bottom:0;width:0;background:var(--terra);display:flex;align-items:center;padding-left:1vw;transition:width 1.4s cubic-bezier(.25,.8,.25,1) .2s;overflow:hidden}
+.propbar.vis .fill{width:56%}
+.propbar .fill span{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--paper);font-size:var(--fs-body)}
+.propbar .cap{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1vh}
+
+/* fotos em linha */
+.fotos{display:flex;gap:1.6vw;max-width:88vw;margin:0 0 2vh}
+.fotos figure{flex:1}
+.fotos img{width:100%;height:30vh;object-fit:cover;display:block;border:1px solid var(--rule)}
+
+/* capa */
+.cover{justify-content:center;padding-bottom:12vh}
+.cover .eyebrow{color:var(--accent);font-weight:600}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:min(7.4vw,13vh);line-height:0.98;letter-spacing:-0.03em;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent);font-weight:500}
+.cover .sub{margin-top:3vh;font-family:'Fraunces',serif;font-style:italic;font-size:var(--fs-lead);color:var(--stone)}
+.cover .cred{position:absolute;left:6vw;bottom:7vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:6.5vh;width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:0.4vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.05em;text-transform:uppercase;color:var(--stone)}
+
+/* referências */
+.refs p{font-size:var(--fs-mono);font-family:'IBM Plex Sans',sans-serif;max-width:60vw;line-height:1.5;margin-bottom:1.4vh}
+.refs p b{color:var(--ink)}
+
+/* área da câmera (tecla C) e contador (tecla H) */
+.cam{position:fixed;right:0;bottom:0;width:var(--cam-w);height:var(--cam-h);border:3px dashed var(--terra);background:rgba(168,85,46,0.08);display:none;z-index:20;pointer-events:none}
+.cam span{position:absolute;left:1vw;top:1vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--terra)}
+body.ver-cam .cam{display:block}
+.contador{position:fixed;left:6vw;bottom:2vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);display:none;z-index:20}
+body.ver-num .contador{display:block}
+.progress{position:fixed;top:0;left:0;height:6px;background:var(--olive-deep);z-index:11;transition:width .3s ease}
+
+/* impressão: um slide por página, tudo visível */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .progress,.cam,.contador{display:none!important}
+  .slide{position:relative;opacity:1;visibility:visible;width:297mm;height:210mm;page-break-after:always;break-after:page}
+  .f{opacity:1;transform:none}
+  .propbar .fill{width:56%}
+}
+
+/* ===== peças do vídeo 04 ===== */
+.cover h1{max-width:58vw}
+.cartao .vel{display:block;font-size:var(--fs-small);margin-bottom:1.2vh}
+.cartao p{font-size:var(--fs-body)}
+.tbl.eventos td,.tbl.fontes td,.tbl.cadeia td,.tbl.troca td{font-size:var(--fs-body);padding-top:1vh;padding-bottom:1vh}
+.tbl.eventos td:first-child{white-space:nowrap;color:var(--ink)}
+.tbl.eventos .seta-p{font-size:var(--fs-body);padding:0 1.4vw;text-align:center}
+.seta-p.sobe{color:var(--olive)}.seta-p.cai{color:var(--terra)}
+.tbl.eventos td:last-child{color:var(--stone)}
+.tbl.cadeia td{white-space:nowrap}
+.tbl.cadeia .un{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);padding-left:1vw}
+.tbl.fontes td:first-child{white-space:nowrap;padding-right:2vw}
+.tbl.fontes b{color:var(--ink)}
+.tbl.troca th{font-size:var(--fs-mono)}
+/* apertado dos dois lados */
+.aperto{display:flex;align-items:stretch;gap:1vw;max-width:88vw;margin:1vh 0 3vh}
+.aperto .ap-lado{flex:1;background:#fff;border:1px solid var(--rule);padding:2vh 1.2vw;font-size:var(--fs-body);color:var(--ink-soft);line-height:1.2}
+.aperto .ap-lado b{display:block;color:var(--terra)}
+.aperto .ap-lado span{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1vh}
+.aperto .ap-meio{flex:0.8;background:var(--olive-deep);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:var(--fs-lead);text-align:center;padding:1vh 1vw}
+.aperto .ap-seta{display:flex;align-items:center;font-size:var(--fs-h2);color:var(--stone-light)}
+/* barras da relação de troca */
+.barras-t{display:flex;flex-direction:column;gap:2.4vh;max-width:60vw;margin:1vh 0 3vh}
+.bt{display:grid;grid-template-columns:9vw 1fr 13vw;align-items:center;gap:1.2vw}
+.bt .ano{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--stone)}
+.bt .trilho{height:6vh;background:#fff;border:1px solid var(--rule)}
+.bt .enche{height:100%;width:0;background:var(--olive);transition:width 1.2s cubic-bezier(.25,.8,.25,1) .2s}
+.bt .enche.terra{background:var(--terra)}
+.bt.vis .enche{width:var(--p)}
+.bt .val{white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--ink)}
+/* foto em faixa */
+.faixa{max-width:88vw;margin:0 0 2.4vh}
+.faixa img{width:100%;height:24vh;object-fit:cover;object-position:center 85%;display:block;border:1px solid var(--rule)}
+/* sazonalidade */
+.saz{width:100%;display:block;margin:0 0 2vh;overflow:visible}
+.saz text{font-family:'IBM Plex Mono',monospace;font-size:13px;fill:#6B6960}
+.saz .linha{stroke-dasharray:520;stroke-dashoffset:520}
+.saz.vis .linha{transition:stroke-dashoffset 1.6s ease;stroke-dashoffset:0}
+@media print{.bt .enche{width:var(--p)}.saz .linha{stroke-dashoffset:0}}
+
+/* fundo branco é o padrão dos vídeos; tecla B (ou ?creme) volta ao creme */
+body:not(.creme){--paper:#FFFFFF;--paper-warm:#F3F1EB}
+body:not(.creme) .aperto .ap-lado,body:not(.creme) .ar .trilho,body:not(.creme) .bt .trilho,body:not(.creme) .cal,body:not(.creme) .caminhos4 .cm,body:not(.creme) .cartao,body:not(.creme) .cet .ct,body:not(.creme) .cr .eixo,body:not(.creme) .e3 .tr,body:not(.creme) .er .trk,body:not(.creme) .etapas .step,body:not(.creme) .ex,body:not(.creme) .fluxo3 .fx,body:not(.creme) .form-x,body:not(.creme) .maos span,body:not(.creme) .mg,body:not(.creme) .mini,body:not(.creme) .nove span,body:not(.creme) .op,body:not(.creme) .panel,body:not(.creme) .peso,body:not(.creme) .propbar .track,body:not(.creme) .r6,body:not(.creme) .sete span,body:not(.creme) .soma span,body:not(.creme) .tr3 .tk,body:not(.creme) .upa .lado,body:not(.creme) .upa-box,body:not(.creme) .vago div{background:#F6F4EF}
+/* ===== tela pequena e celular: navegação e leitura como nas aulas do site ===== */
+.hud{display:none;position:fixed;left:0;right:0;bottom:0;justify-content:space-between;align-items:center;gap:16px;padding:10px 16px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);background:linear-gradient(rgba(250,247,240,0),var(--paper) 40%);pointer-events:none;z-index:12}
+.hud .hud-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hud .hud-n{white-space:nowrap}
+.hud .mais{display:inline-block;width:1em;color:var(--accent);font-weight:700;margin-left:0.4em}
+body.ver-num .hud{display:flex}
+body.ver-num .contador{display:none}
+@media (hover:none) and (pointer:coarse), (max-width:900px), (max-height:500px){
+  :root{
+    --fs-body:max(15px,min(2.05vw,3.65vh));
+    --fs-lead:max(17px,min(2.45vw,4.35vh));
+    --fs-small:max(13px,min(1.6vw,2.85vh));
+    --fs-mono:max(11px,min(1.15vw,2.05vh));
+    --fs-h2:max(24px,min(3.7vw,6.6vh));
+    --fs-stat:max(30px,min(4.6vw,8.2vh));
+  }
+  .hud{display:flex}
+  .slide{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:56px}
+  .slide>*{flex-shrink:0}
+  .cam{display:none!important}
+}
+@media (orientation:portrait) and (max-width:900px){
+  :root{--fs-body:16px;--fs-lead:18px;--fs-small:14px;--fs-mono:11.5px;--fs-h2:26px;--fs-stat:34px}
+  .slide{padding:44px 20px 72px;justify-content:flex-start}
+  .cover{justify-content:flex-start;padding-top:56px}
+  .cover h1{font-size:40px}
+  .cover .cred{position:static;margin-top:28px}
+  h2{margin-bottom:18px}
+  .eyebrow{margin-bottom:12px}
+  .slide [style*="max-width"],h2,.esq,.esq.estreita,.callout,.tbl,ul.itens,.etapas,.propbar,.refs p,.paineis,.cartoes,.fotos{max-width:none!important}
+  .dir{position:static!important;width:100%!important;max-width:none!important;margin:18px 0 0!important;transform:none!important}
+  .dir figure img{max-height:34vh}
+  .slide img,.slide svg{max-width:100%}
+  .paineis,.cartoes{grid-template-columns:1fr!important;gap:12px}
+  .panel,.cartao{padding:14px 16px}
+  .stats{gap:16px 28px}
+  .fotos{flex-direction:column;gap:12px}
+  .fotos img{height:24vh}
+  .tbl{display:block;overflow-x:auto;width:100%}
+  .tbl th,.tbl td{padding-right:12px}
+  .callout{padding:12px 14px}
+}
+/* celular em pé: peças de cada vídeo */
+@media (orientation:portrait) and (max-width:900px){
+  .cover .cred{flex-direction:column;align-items:flex-start;gap:10px}
+  .bt,.cr,.ar,.eh,.er,.tr3{grid-template-columns:minmax(64px,28%) 1fr max-content!important;gap:8px!important}
+  .e3{grid-template-columns:minmax(56px,22%) 1fr max-content max-content!important;gap:6px!important}
+  .caminhos4,.cartoes.c4,.eixos4,.riscos6,.nove{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;max-width:none!important}
+  .mg3,.cals,.cartoes.c3x2,.upa,.upa-box .subs{grid-template-columns:1fr!important;gap:10px!important;max-width:none!important}
+  .aperto{flex-direction:column;max-width:none!important}
+  .mini .mt{font-size:18px}
+  .slide h2[style*="font-size"]{font-size:30px!important}
+  .slide p[style*="font-size"]{font-size:20px!important}
+  .duas,.hist,.parc,.vp{width:100%!important}
+  .soja{width:86%!important}
+  .tbl td:not(.num),.tbl .chip,.chip-l{white-space:normal!important}
+  .cover h1{font-size:34px}
+  .regua-p .rp-l i,.regua .mk i{white-space:normal!important;width:76px;text-align:center;font-size:10.5px!important;line-height:1.2}
+  .tbl th{white-space:normal!important;letter-spacing:0!important}
+  .leg-d,.leg-a{flex-direction:column;gap:6px;max-width:none!important}
+  .leg-s,.leg-anos{flex-wrap:wrap;gap:6px 14px}
+  .leg-d span,.leg-a span{width:auto!important;min-width:0!important;padding:4px 0 0 0!important}
+  .dolar{height:56px;max-width:none!important}
+  .dolar .pd span{font-size:12px}
+  .peso{height:52px;max-width:none!important}
+}
+.cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
+.cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
+@media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<section class="slide cover">
+  <div class="eyebrow">Olhar o todo</div>
+  <h1>De onde vem<br>o <em>preço</em></h1>
+  <div class="sub">do mundo até a sua porteira</div>
+  <div class="dir" style="--w:30vw;top:14vh">
+    <figure>
+      <img src="img/fila-caminhoes-soja.jpg" alt="Fila de caminhões carregados de soja em estrada" onerror="this.style.display='none'">
+      <figcaption>Joviânia/GO · CC BY 3.0, Tiago Firmino Boaventura</figcaption>
+    </figure>
+  </div>
+  <div class="cred">
+    <img src="img/logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span class="site"><img src="img/marca.svg" alt="" onerror="this.style.display='none'">produzirnaobasta.com.br</span></div>
+  </div>
+</section>
+
+<section class="slide" style="justify-content:center;padding-bottom:20vh">
+  <div class="eyebrow"><b>A pergunta</b></div>
+  <h2 style="font-size:min(5vw,8.6vh);max-width:62vw">Por que o preço da sua soja muda quando <em>chove nos Estados Unidos</em>?</h2>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O mercado</b> · oferta × demanda</div>
+  <h2>O preço é um cabo de guerra</h2>
+  <p class="lead" style="max-width:60vw">Muito produto e pouca procura, o preço cai. Pouco produto e muita procura, o preço sobe.</p>
+  <table class="tbl eventos">
+    <tbody>
+      <tr class="f"><td>Seca nos Estados Unidos</td><td class="seta-p sobe">▲</td><td>menos oferta no mundo</td></tr>
+      <tr class="f"><td>China compra mais</td><td class="seta-p sobe">▲</td><td>mais procura</td></tr>
+      <tr class="f"><td>Dólar sobe</td><td class="seta-p sobe">▲</td><td>mais reais por saca</td></tr>
+      <tr class="f"><td>Frete caro na colheita</td><td class="seta-p cai">▼</td><td>mais desconto no interior</td></tr>
+    </tbody>
+  </table>
+  <div class="callout f">Nenhum desses depende do produtor gaúcho.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O produtor</b> · tomador de preço</div>
+  <h2>Você não manda no preço</h2>
+  <p class="lead" style="max-width:60vw">Cem hectares de soja são um grão de areia no mercado mundial. Mas o produtor manda em três coisas:</p>
+  <div class="cartoes" style="max-width:66vw">
+    <div class="cartao f"><div class="vel">custo</div><p>produzir a saca, o litro, o kg por menos</p></div>
+    <div class="cartao f"><div class="vel">qualidade</div><p>gordura do leite, acabamento do boi, calibre da fruta</p></div>
+    <div class="cartao f"><div class="vel">hora e jeito de vender</div><p>não vender tudo quando todo mundo vende</p></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>A cadeia</b> · da porteira até a mesa</div>
+  <h2>Apertado dos dois lados</h2>
+  <div class="aperto">
+    <div class="ap-lado f">poucos <b>fornecedores</b><span>adubo, semente, máquina</span></div>
+    <div class="ap-seta f">→</div>
+    <div class="ap-meio f">a propriedade</div>
+    <div class="ap-seta f">→</div>
+    <div class="ap-lado f">poucos <b>compradores</b><span>cooperativa, laticínio, frigorífico</span></div>
+  </div>
+  <p class="lead f" style="max-width:60vw">Cada elo cobra: frete, armazenagem, indústria, impostos, margem.</p>
+  </section>
+
+<section class="slide">
+  <div class="esq" style="max-width:54vw">
+    <div class="eyebrow"><b>A soja</b> · preço mundial, exemplo</div>
+    <h2>Chicago, o dólar e o porto</h2>
+    <table class="tbl cadeia">
+      <tbody>
+        <tr class="f"><td>Chicago</td><td class="num">US$ 11,30</td><td class="un">por bushel</td></tr>
+        <tr class="f"><td>+ prêmio de porto</td><td class="num">US$ 0,50</td><td class="un">por bushel</td></tr>
+        <tr class="f"><td>na saca (2,2 bushels)</td><td class="num">US$ 26,00</td><td class="un">por saca</td></tr>
+        <tr class="f"><td>× dólar a R$ 5,40</td><td class="num">R$ 140</td><td class="un">no porto</td></tr>
+        <tr class="f"><td>− frete e despesas</td><td class="num">R$ 12</td><td class="un"></td></tr>
+        <tr class="f total"><td>na sua região</td><td class="num">R$ 128</td><td class="un">por saca</td></tr>
+      </tbody>
+    </table>
+    <div class="fonte">valores de exemplo</div>
+  </div>
+  <div class="dir" style="--w:28vw;top:24vh">
+    <p class="lead f"><strong>Dólar sobe</strong>: a soja vale mais em reais, sem nada mudar na lavoura.</p>
+    <p class="lead f"><strong>Frete sobe</strong>: quem está longe do porto recebe menos.</p>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="esq estreita">
+    <div class="eyebrow"><b>O preço que vale</b> · na porteira</div>
+    <h2>Cotação não é preço na porteira</h2>
+    <ul class="itens">
+      <li class="f"><strong>Frete</strong> até a cooperativa</li>
+      <li class="f"><strong>Umidade e impureza</strong>: soja acima de 14% tem desconto</li>
+      <li class="f"><strong>Funrural</strong>: 1,63% retido na venda</li>
+      <li class="f"><strong>Armazenagem</strong>, se esperar preço</li>
+    </ul>
+    <p class="lead f">R$ 140 na TV podem virar perto de <strong>R$ 128</strong> na cooperativa.</p>
+  </div>
+  <div class="dir" style="--w:34vw">
+    <figure>
+      <img src="img/fila-caminhoes-soja.jpg" alt="Fila de caminhões carregados de soja em estrada" onerror="this.style.display='none'">
+      <figcaption>o frete que encolhe o preço · CC BY 3.0, Tiago Firmino Boaventura</figcaption>
+    </figure>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Exemplo</b> · 50 ha de soja, 60 sc/ha, região de Santa Maria</div>
+  <h2>Porto ou cooperativa?</h2>
+  <div class="stats">
+    <div class="stat f"><span class="num">R$ 140</span><span class="lbl">saca no porto de Paranaguá, o indicador que sai na TV</span></div>
+    <div class="stat f"><span class="num" style="color:var(--olive)">R$ 128</span><span class="lbl">saca na cooperativa da região</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat f"><span class="num">R$ 36 mil</span><span class="lbl">a mais no papel, em 3.000 sacas</span></div>
+  </div>
+  <div class="callout f"><strong>Premissa: o número de partida da conta</strong>Uma premissa errada, e o projeto parece melhor do que é.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O outro lado</b> · o que se compra</div>
+  <h2>Os insumos também vêm de longe</h2>
+  <ul class="itens">
+    <li class="f"><strong>Adubo</strong>: a maior parte é importada, segue o dólar</li>
+    <li class="f"><strong>Diesel</strong>: segue o petróleo</li>
+    <li class="f"><strong>Defensivos e peças</strong>: matéria-prima de fora</li>
+    <li class="f"><strong>Ração</strong>: milho e farelo, cotados como a soja</li>
+  </ul>
+  <div class="callout f">Dólar alto é faca de dois gumes: valoriza a soja, encarece o adubo.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Relação de troca</b> · o preço que importa</div>
+  <h2>Quanto do seu produto paga o insumo?</h2>
+  <table class="tbl troca">
+    <thead><tr><th></th><th class="num">Adubo, t</th><th class="num">Soja, sc</th><th class="num">Sacas por t</th></tr></thead>
+    <tbody>
+      <tr class="f"><td>Um ano</td><td class="num">R$ 3.300</td><td class="num">R$ 120</td><td class="num"><b>27,5</b></td></tr>
+      <tr class="f"><td>No ano seguinte</td><td class="num">R$ 3.600</td><td class="num">R$ 140</td><td class="num"><b style="color:var(--olive)">25,7</b></td></tr>
+    </tbody>
+  </table>
+  <p class="lead f" style="max-width:60vw">Pagou mais caro pelo adubo, e ficou em situação melhor.</p>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Relação de troca</b> · soja × ureia, RS, valores reais</div>
+  <h2>O dobro de sacas pela mesma ureia</h2>
+  <div class="barras-t">
+    <div class="bt f"><span class="ano">jan/2018</span><div class="trilho"><div class="enche" style="--p:49.6%"></div></div><span class="val">18,8 sc/t</span></div>
+    <div class="bt f"><span class="ano">mar/2026</span><div class="trilho"><div class="enche terra" style="--p:100%"></div></div><span class="val">37,9 sc/t</span></div>
+  </div>
+  <p class="lead f" style="max-width:60vw">O preço em reais sobe todo ano com a inflação. A relação de troca mostra o <em>poder de compra</em>.</p>
+  <div class="fonte">NESPro/UFRGS, Camnpal e CONAB</div>
+  </section>
+
+<section class="slide">
+  <div class="esq estreita">
+    <div class="eyebrow"><b>Nem tudo é Chicago</b> · leite</div>
+    <h2>O leite tem regra própria</h2>
+    <ul class="itens">
+      <li class="f">O <strong>laticínio</strong> define, mês a mês</li>
+      <li class="f">Pasto bom, muito leite: o preço <strong>cai</strong></li>
+      <li class="f"><strong>Qualidade e volume</strong> rendem bonificação</li>
+      <li class="f">No RS, o <strong>Conseleite</strong> publica referência</li>
+    </ul>
+    <p class="lead f">Um saco de ração de 40 kg a R$ 96 = <strong>40 litros</strong> de leite a R$ 2,40.</p>
+  </div>
+  <div class="dir" style="--w:34vw">
+    <figure>
+      <img src="img/resfriador-tanque-leite.jpg" alt="Resfriador de leite a granel em sala de ordenha" onerror="this.style.display='none'">
+      <figcaption>resfriador de leite a granel · CC BY-SA 3.0, Fotonovela</figcaption>
+    </figure>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Nem tudo é Chicago</b> · boi, vendido em kg</div>
+  <h2>O boi tem ciclo próprio</h2>
+  <figure class="faixa">
+    <img src="img/rebanho-pampa-bage.jpg" alt="Rebanho de corte em campo nativo do Pampa" onerror="this.style.display='none'">
+    <figcaption>rebanho de corte no Pampa, Bagé/RS · CC BY-SA 3.0, Paula Cavalheiro</figcaption>
+  </figure>
+  <p class="lead f" style="max-width:60vw">Vendido em kg vivo. O preço sobe e desce em ciclos de anos, que o vídeo sobre pecuária na prática explica.</p>
+  </section>
+
+<section class="slide">
+  <div class="esq estreita">
+    <div class="eyebrow"><b>Nem tudo é Chicago</b> · perecíveis e venda direta</div>
+    <h2>Hortaliças e frutas não esperam</h2>
+    <ul class="itens">
+      <li class="f">O preço muda <strong>semana a semana</strong> na CEASA</li>
+      <li class="f">A <strong>entressafra</strong> paga melhor: escalonar o plantio</li>
+      <li class="f"><strong>Feira, cestas, PNAE</strong>: preço mais estável</li>
+    </ul>
+    <div class="callout f">Venda direta exige organização, regularidade e documentação.</div>
+  </div>
+  <div class="dir" style="--w:34vw">
+    <figure>
+      <img src="img/produtor-rural-horta-planaltina.jpg" alt="Produtor rural levando a colheita de hortaliças para comercializar" onerror="this.style.display='none'">
+      <figcaption>Planaltina/DF · CC BY-SA 2.0, Sergio Amaral/MDS</figcaption>
+    </figure>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="esq">
+    <div class="eyebrow"><b>O tempo do preço</b> · sazonalidade</div>
+    <h2>O preço tem estação</h2>
+    <svg class="saz f" viewBox="0 0 400 170" role="img" aria-label="Curva ilustrativa: o preço cai na colheita e sobe na entressafra">
+      <line x1="20" y1="140" x2="390" y2="140" stroke="#D9D3C2" stroke-width="2"/>
+      <path class="linha" d="M20 50 C70 60 100 120 140 125 C190 128 230 95 280 70 C320 52 350 45 390 42" fill="none" stroke="#A8552E" stroke-width="4"/>
+      <text x="140" y="160" text-anchor="middle">colheita ▼</text>
+      <text x="350" y="160" text-anchor="middle">entressafra ▲</text>
+    </svg>
+    <p class="lead f">Na colheita, todo mundo vende ao mesmo tempo e o preço cai. Na entressafra, ele tende a se recuperar.</p>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Onde acompanhar</b> · no RS</div>
+  <h2>Fontes de preço</h2>
+  <table class="tbl fontes">
+    <tbody>
+      <tr class="f"><td><b>Cooperativa ou comprador</b></td><td>o preço que vale, já com o frete da região</td></tr>
+      <tr class="f"><td><b>EMATER/RS</b></td><td>Informativo Conjuntural, toda semana</td></tr>
+      <tr class="f"><td><b>CEPEA</b></td><td>indicador diário, nacional: tendência</td></tr>
+      <tr class="f"><td><b>CONAB</b></td><td>histórico de preços, safra, custos</td></tr>
+      <tr class="f"><td><b>CEASA/RS</b></td><td>hortaliças e frutas no atacado</td></tr>
+    </tbody>
+  </table>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>No projeto</b> · a pergunta que sempre vem</div>
+  <h2>"Por que você usou esse preço?"</h2>
+  <div class="cartoes">
+    <div class="cartao f"><div class="vel">fonte</div><p>de onde veio o número</p></div>
+    <div class="cartao f"><div class="vel">data</div><p>quando foi consultado</p></div>
+    <div class="cartao f"><div class="vel">representatividade</div><p>por que vale para a sua safra e a sua região</p></div>
+  </div>
+  </section>
+
+<section class="slide" style="justify-content:center;padding-bottom:20vh">
+  <div class="eyebrow"><b>Para lembrar</b></div>
+  <h2 style="font-size:min(4.6vw,8vh);max-width:62vw">Você não manda no preço.</h2>
+  <p class="lead f" style="max-width:60vw;font-size:min(3vw,5.3vh)">Manda no <strong>custo</strong>, na <strong>qualidade</strong> e na <strong>hora de vender</strong>.</p>
+</section>
+
+<section class="slide refs">
+  <div class="eyebrow">De onde vem o preço</div>
+  <h2>Referências</h2>
+  <p><b>KAY, R. D.; EDWARDS, W. M.; DUFFY, P. A.</b> Gestão de propriedades rurais. 7. ed. Porto Alegre: AMGH, 2014.</p>
+  <p><b>OLIVEIRA, R. M.</b> Gestão da Propriedade Rural, módulo 2: de onde vem o preço. Produzir Não Basta, 2026. produzirnaobasta.com.br/produtor</p>
+  <p><b>Dados:</b> CEPEA/Esalq-USP · CONAB · EMATER/RS-ASCAR · Conseleite · relação de troca: NESPro/UFRGS, Camnpal e CONAB (ferramenta do site).</p>
+  <p><b>Fotos:</b> caminhões, Tiago Firmino Boaventura (CC BY 3.0) · resfriador, Fotonovela (CC BY-SA 3.0) · rebanho, Paula Cavalheiro (CC BY-SA 3.0) · horta, Sergio Amaral/MDS (CC BY-SA 2.0) · silo-bolsa, Roblespepe (CC BY-SA 3.0).</p>
+  <p style="color:var(--stone)">Material elaborado pelo Prof. Róberson Macedo de Oliveira (Colégio Politécnico da UFSM), com apoio de IA (Claude, Anthropic) na organização didática e na diagramação; conteúdo, seleção e decisões de ensino são do docente.</p>
+</section>
+
+</main>
+
+<div class="cam"><span>câmera</span></div>
+<div class="hud"><span class="hud-t">Vídeo 4 · De onde vem o preço</span><span class="hud-n"><span class="contador-n" id="contador"></span><span class="mais" id="mais"></span></span></div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const progress=document.getElementById('progress');
+  const contador=document.getElementById('contador');
+  let cur=0, passo=0;
+  const mais=document.getElementById('mais');
+  function hud(){mais.textContent=passo<frags(slides[cur]).length?'›':''}
+  const frags=s=>[...s.querySelectorAll('.f')];
+
+  function mostrar(s,n){frags(s).forEach((el,i)=>el.classList.toggle('vis',i<n))}
+  function go(n,todos){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    passo=todos?frags(slides[cur]).length:0;
+    mostrar(slides[cur],passo);
+    slides[cur].classList.add('on');
+    contador.textContent=(cur+1)+' / '+total;
+    progress.style.width=((cur+1)/total*100)+'%';
+    history.replaceState(null,'','#'+(cur+1));hud();
+  }
+  function next(){
+    const fs=frags(slides[cur]);
+    if(passo<fs.length){fs[passo].classList.add('vis');passo++;hud()}
+    else if(cur<total-1)go(cur+1);
+  }
+  function prev(){
+    if(passo>0){passo--;frags(slides[cur])[passo].classList.remove('vis');hud()}
+    else if(cur>0)go(cur-1,true);
+  }
+
+  const h=parseInt(location.hash.slice(1),10);
+  slides[0].classList.add('on');
+  go(isNaN(h)?0:h-1,true);
+
+  document.addEventListener('keydown',e=>{
+    const k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();next()}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev()}
+    else if(k==='ArrowDown'){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowUp'){e.preventDefault();go(cur-1)}
+    else if(k==='Home'){e.preventDefault();go(0)}
+    else if(k==='End'){e.preventDefault();go(total-1,true)}
+    else if(k==='c'||k==='C'){document.body.classList.toggle('ver-cam')}
+    else if(k==='h'||k==='H'){document.body.classList.toggle('ver-num')}
+    else if(k==='b'||k==='B'){document.body.classList.toggle('creme');try{localStorage.setItem('pnb-fundo',document.body.classList.contains('creme')?'creme':'branco')}catch(e){}}
+    else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  });
+  // clique ou toque: metade direita avança, metade esquerda volta; deslizar o dedo também
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+  window.addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1,true)});
+
+  try{if(localStorage.getItem('pnb-fundo')==='creme')document.body.classList.add('creme')}catch(e){}
+  if(location.search.indexOf('creme')>=0)document.body.classList.add('creme');
+  if(location.search.indexOf('cam')>=0)document.body.classList.add('ver-cam');
+  // conferência: ?check lista o que invade a área da câmera ou sai da tela
+  if(location.search.indexOf('check')>=0){
+    document.body.classList.add('ver-cam');
+    document.fonts.ready.then(()=>setTimeout(()=>{
+      const W=innerWidth,H=innerHeight,cx=W*0.74,cy=H*0.67,out=[];
+      slides.forEach((s,i)=>{
+        slides.forEach(o=>o.classList.remove('on'));s.classList.add('on');
+        frags(s).forEach(el=>{el.classList.add('vis');el.style.transition='none'});
+        s.style.transition='none';
+        const rects=[];
+        const w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT);
+        while(w.nextNode()){const t=w.currentNode;if(!t.textContent.trim()||t.parentElement.closest('.fala'))continue;const r=document.createRange();r.selectNodeContents(t);[...r.getClientRects()].forEach(x=>rects.push(['texto: '+t.textContent.trim().slice(0,30),x]))}
+        s.querySelectorAll('img').forEach(im=>rects.push(['imagem: '+im.getAttribute('src'),im.getBoundingClientRect()]));
+        s.querySelectorAll('*').forEach(el=>{if(el.closest('.fala'))return;const cs=getComputedStyle(el);const fundo=cs.backgroundColor!=='rgba(0, 0, 0, 0)'&&cs.backgroundColor!=='transparent';const borda=parseFloat(cs.borderTopWidth)>0||parseFloat(cs.borderLeftWidth)>0||parseFloat(cs.borderBottomWidth)>0;if((fundo||borda||el.tagName==='svg')&&el!==s)rects.push(['caixa: '+el.tagName.toLowerCase()+'.'+(el.className.baseVal!==undefined?el.className.baseVal:el.className),el.getBoundingClientRect()])});
+        rects.forEach(([n,r])=>{
+          if(r.width===0)return;
+          if(r.right>cx+1&&r.bottom>cy+1)out.push((i+1)+' CAMERA '+n);
+          if(r.bottom>H-2||r.right>W-2)out.push((i+1)+' FORA '+n);
+        });
+      });
+      const pre=document.createElement('pre');pre.id='check';pre.textContent=out.length?out.join('\n'):'OK';document.body.appendChild(pre);
+    },600));
+  }
+})();
+</script>
+
+</body>
+</html>

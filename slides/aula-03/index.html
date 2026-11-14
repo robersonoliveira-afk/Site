@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3D4A2A">
+<title>Diagnóstico do negócio</title>
+<meta name="description" content="Diagnóstico: um olhar para o negócio. Versão para videoaula e aula presencial.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--rule:#D9D3C2;--rule-soft:#E8E3D3;
+  --critical-bg:#F5E4D8;--success-bg:#E4EAD2;--accent:var(--olive);
+  /* tipografia para vídeo: cerca de 1,4× a versão de tela */
+  --fs-body:min(2.05vw,3.65vh);
+  --fs-lead:min(2.45vw,4.35vh);
+  --fs-small:min(1.6vw,2.85vh);
+  --fs-mono:min(1.15vw,2.05vh);
+  --fs-h2:min(3.7vw,6.6vh);
+  --fs-stat:min(4.6vw,8.2vh);
+  /* área da câmera */
+  --cam-w:26vw;--cam-h:33vh;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.4;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:9vh 6vw 6vh;background:var(--paper);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+.slide.on{opacity:1;visibility:visible;transition:opacity .4s ease}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--accent)}
+.fala{display:none}
+
+/* itens que entram um a um */
+.f{opacity:0;transform:translateY(1.6vh);transition:opacity .5s ease,transform .5s ease}
+.f.vis{opacity:1;transform:none}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:2.4vh}
+.eyebrow b{color:var(--accent);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.06;letter-spacing:-0.02em;color:var(--ink);margin-bottom:3.4vh;font-variation-settings:'opsz' 144;max-width:60vw}
+h2 em{font-style:italic;color:var(--accent);font-weight:500}
+p{font-size:var(--fs-body);color:var(--ink-soft);margin-bottom:2vh}
+p strong{color:var(--ink);font-weight:600}
+p em{color:var(--accent);font-style:italic;font-weight:500}
+.lead{font-size:var(--fs-lead);line-height:1.3;color:var(--ink)}
+.fonte{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);letter-spacing:0.04em;margin-top:1.5vh}
+
+/* colunas: a esquerda nunca passa de 60vw; a direita fica no alto */
+.esq{max-width:60vw}
+.esq.estreita{max-width:50vw}
+.dir{position:absolute;top:9vh;right:6vw;width:var(--w,34vw)}
+.dir figure img{width:100%;max-height:var(--h,54vh);object-fit:contain;display:block;border:1px solid var(--rule);background:#fff}
+figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:1vh;line-height:1.35}
+
+.callout{margin:2.4vh 0;padding:2vh 1.6vw;background:var(--critical-bg);border-left:6px solid var(--terra);font-size:var(--fs-body);line-height:1.35;color:var(--ink);max-width:60vw}
+.callout strong{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:0.8vh}
+.callout.ok{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.ok strong{color:var(--olive)}
+
+/* tabelas */
+.tbl{border-collapse:collapse;font-size:var(--fs-small);max-width:60vw}
+.tbl th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1.4vw 1vh 0;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.05vh 1.4vw 1.05vh 0;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:middle}
+.tbl .num{text-align:right;font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.tbl td.num b{color:var(--terra)}
+.tbl tr.total td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive);border-bottom:none}
+.tbl tr.total td:first-child{padding-left:1vw}
+.chip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);padding:0.5vh 1vw;border-radius:3px;white-space:nowrap}
+.chip.montante{background:#E4EAD2;color:var(--olive-deep)}
+.chip.jusante{background:#EFE6CC;color:#7A6020}
+.chip.ambiente{background:var(--rule-soft);color:var(--stone)}
+
+/* números grandes */
+.stats{display:flex;gap:2vh 4.5vw;flex-wrap:wrap;margin:1vh 0 2vh}
+.stat .num{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:var(--fs-stat);line-height:1;color:var(--terra);letter-spacing:-0.02em}
+.stat .lbl{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:1vh;max-width:32ch;line-height:1.35}
+.stats.vert{flex-direction:column;gap:3vh}
+
+/* painéis */
+.paineis{display:grid;grid-template-columns:1fr 1fr;gap:2vw;max-width:88vw;margin-bottom:1vh}
+.panel{border:1px solid var(--rule);background:#fff;padding:2.2vh 1.6vw}
+.panel h3{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1vh}
+.panel h3.alt{color:var(--terra)}
+.panel p{font-size:var(--fs-small);margin-bottom:0}
+
+/* lista com marcador */
+ul.itens{list-style:none;max-width:60vw}
+ul.itens li{font-size:var(--fs-body);color:var(--ink-soft);padding:1vh 0 1vh 1.6em;position:relative;line-height:1.3}
+ul.itens li::before{content:"›";position:absolute;left:0.3em;color:var(--accent);font-weight:700}
+ul.itens li strong{color:var(--ink)}
+
+/* etapas em sequência */
+.etapas{display:flex;flex-wrap:wrap;gap:1.2vh 1vw;align-items:center;max-width:60vw;margin:1vh 0 2vh}
+.etapas .step{border:1px solid var(--rule);background:#fff;padding:1.3vh 1.2vw;font-size:var(--fs-small);color:var(--ink)}
+.etapas .arr{color:var(--stone-light);font-size:var(--fs-body)}
+.etapas .volta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra)}
+
+/* cartões choque / tendência / ciclo */
+.cartoes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;max-width:88vw;margin:1vh 0 3vh}
+.cartao{border-top:6px solid var(--accent);background:#fff;padding:2.4vh 1.4vw;border-left:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.cartao .t{font-family:'Fraunces',serif;font-size:var(--fs-h2);font-weight:600;line-height:1;margin-bottom:1.6vh}
+.cartao p{font-size:var(--fs-small);margin-bottom:0.6vh}
+.cartao .vel{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.08em;color:var(--terra)}
+.cartao:nth-child(2){border-top-color:var(--mustard)}
+.cartao:nth-child(3){border-top-color:var(--terra)}
+
+/* barra de proporção animada */
+.propbar{margin:2vh 0 3vh;max-width:48vw}
+.propbar .track{position:relative;height:7vh;border:1px solid var(--rule);background:#fff}
+.propbar .fill{position:absolute;top:0;left:0;bottom:0;width:0;background:var(--terra);display:flex;align-items:center;padding-left:1vw;transition:width 1.4s cubic-bezier(.25,.8,.25,1) .2s;overflow:hidden}
+.propbar.vis .fill{width:56%}
+.propbar .fill span{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--paper);font-size:var(--fs-body)}
+.propbar .cap{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1vh}
+
+/* fotos em linha */
+.fotos{display:flex;gap:1.6vw;max-width:88vw;margin:0 0 2vh}
+.fotos figure{flex:1}
+.fotos img{width:100%;height:30vh;object-fit:cover;display:block;border:1px solid var(--rule)}
+
+/* capa */
+.cover{justify-content:center;padding-bottom:12vh}
+.cover .eyebrow{color:var(--accent);font-weight:600}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:min(7.4vw,13vh);line-height:0.98;letter-spacing:-0.03em;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent);font-weight:500}
+.cover .sub{margin-top:3vh;font-family:'Fraunces',serif;font-style:italic;font-size:var(--fs-lead);color:var(--stone)}
+.cover .cred{position:absolute;left:6vw;bottom:7vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:6.5vh;width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:0.4vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.05em;text-transform:uppercase;color:var(--stone)}
+
+/* referências */
+.refs p{font-size:var(--fs-mono);font-family:'IBM Plex Sans',sans-serif;max-width:60vw;line-height:1.5;margin-bottom:1.4vh}
+.refs p b{color:var(--ink)}
+
+/* área da câmera (tecla C) e contador (tecla H) */
+.cam{position:fixed;right:0;bottom:0;width:var(--cam-w);height:var(--cam-h);border:3px dashed var(--terra);background:rgba(168,85,46,0.08);display:none;z-index:20;pointer-events:none}
+.cam span{position:absolute;left:1vw;top:1vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--terra)}
+body.ver-cam .cam{display:block}
+.contador{position:fixed;left:6vw;bottom:2vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);display:none;z-index:20}
+body.ver-num .contador{display:block}
+.progress{position:fixed;top:0;left:0;height:6px;background:var(--olive-deep);z-index:11;transition:width .3s ease}
+
+/* impressão: um slide por página, tudo visível */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .progress,.cam,.contador{display:none!important}
+  .slide{position:relative;opacity:1;visibility:visible;width:297mm;height:210mm;page-break-after:always;break-after:page}
+  .f{opacity:1;transform:none}
+  .propbar .fill{width:56%}
+}
+
+/* ===== peças do vídeo 03 ===== */
+.cover h1{max-width:58vw}
+.cartao .vel{display:block;font-size:var(--fs-small);margin-bottom:1.2vh}
+.cartao p{font-size:var(--fs-body)}
+.panel .quad{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.08em;color:var(--stone);margin-top:1.2vh}
+/* matriz */
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1.2vw;max-width:62vw}
+.swot-cell{padding:1.6vh 1.4vw;border:1px solid var(--rule)}
+.swot-cell h4{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.8vh}
+.swot-cell p{font-size:var(--fs-small);margin:0;line-height:1.3;color:var(--ink)}
+.swot-cell ul{list-style:none}
+.swot-cell li{font-size:var(--fs-small);padding:0.4vh 0;color:var(--ink);line-height:1.25}
+.swot-cell li::before{content:"› ";color:var(--stone-light)}
+.swot-f{background:#E4EAD2}.swot-f h4{color:var(--olive-deep)}
+.swot-fr{background:#F5E4D8}.swot-fr h4{color:var(--terra)}
+.swot-o{background:#EFE6CC}.swot-o h4{color:#7A6020}
+.swot-a{background:#E8DAD2}.swot-a h4{color:#7A3A1F}
+/* cruzamentos */
+.chip-q{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);padding:1vh 1.2vw;border:1px solid var(--rule);color:var(--ink)}
+.cruz{display:flex;align-items:center;gap:1.2vw;margin-bottom:2.4vh}
+.cruz .x,.par .x{font-family:'Fraunces',serif;font-size:var(--fs-h2);color:var(--stone-light);line-height:1}
+.cruz .seta-c{font-size:var(--fs-h2);color:var(--stone-light);line-height:1}
+.cruz .estr{font-family:'Fraunces',serif;font-size:var(--fs-h2);font-weight:600;color:var(--olive)}
+.cruz .estr.alt{color:var(--terra)}
+.acoes{display:flex;flex-direction:column;gap:3vh;max-width:62vw}
+.acao{border-left:6px solid var(--olive);padding:0.6vh 0 0.6vh 1.4vw}
+.acao+.acao{border-left-color:var(--terra)}
+.acao .par{display:flex;align-items:center;gap:1vw;margin-bottom:1.4vh}
+.acao p{font-size:var(--fs-body);margin:0;line-height:1.3}
+/* item vago */
+.vago{display:flex;flex-direction:column;gap:2.4vh;max-width:62vw;margin-bottom:2vh}
+.vago div{font-family:'Fraunces',serif;font-size:var(--fs-h2);line-height:1.1;padding:2vh 1.6vw;border:1px solid var(--rule);background:#fff}
+.vago .ruim{color:var(--stone)}
+.vago .ruim s{text-decoration-color:var(--terra);text-decoration-thickness:3px}
+.vago .bom{color:var(--ink);border-left:6px solid var(--olive)}
+.vago .rot{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1vh;text-decoration:none}
+.vago .bom .rot{color:var(--olive)}
+
+/* barra de três partes (Baum et al.) */
+.barra3{display:flex;height:9vh;max-width:60vw;border:1px solid var(--rule);background:#fff;margin:1vh 0 1.4vh;overflow:hidden}
+.barra3 .seg{width:0;display:flex;align-items:center;padding-left:0.8vw;overflow:hidden;white-space:nowrap;transition:width 1.2s cubic-bezier(.25,.8,.25,1)}
+.barra3.vis .seg{width:var(--p)}
+.barra3.vis .man{transition-delay:.5s}.barra3.vis .gen{transition-delay:1s}
+.barra3 .seg span{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600}
+.barra3 .amb{background:var(--rule)}.barra3 .amb span{color:var(--ink-soft)}
+.barra3 .man{background:var(--olive)}.barra3 .man span{color:var(--paper)}
+.barra3 .gen{background:var(--mustard)}.barra3 .gen span{color:#3A2F08}
+.legenda3{display:flex;max-width:60vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2.6vh}
+.legenda3 .l-amb{width:41%;color:var(--stone);border-top:3px solid var(--rule);padding-top:0.8vh}
+.legenda3 .l-dec{width:58%;color:var(--olive);border-top:3px solid var(--olive);padding-top:0.8vh;font-weight:600}
+/* exercício */
+.tbl.jogo td{font-size:var(--fs-body);padding-top:0.8vh;padding-bottom:0.8vh;white-space:nowrap}
+.tbl.jogo td:last-child{padding-left:2vw}
+.tbl.jogo .chip-q{padding:0.4vh 1vw}
+/* SWOT por atividade */
+.mini2{display:grid;grid-template-columns:1fr 1fr;gap:2vw;max-width:88vw}
+.mini{background:#fff;border:1px solid var(--rule);padding:2vh 1.4vw}
+.mini .mt{font-family:'Fraunces',serif;font-size:min(2.6vw,4.6vh);font-weight:600;margin-bottom:1.6vh;line-height:1.1}
+.mini p{font-size:var(--fs-small);margin:0 0 1vh;display:flex;align-items:baseline;gap:0.8vw;line-height:1.25;color:var(--ink)}
+.mini .q{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:700;width:2.6vw;text-align:center;padding:0.3vh 0;border-radius:2px}
+/* cada item volta como número */
+.tbl.volta-n td{font-size:var(--fs-body);padding-top:1vh;padding-bottom:1vh;white-space:nowrap}
+.tbl.volta-n .seta-t{color:var(--stone-light);padding:0 1.2vw}
+.tbl.volta-n .chip-q{padding:0.5vh 1vw}
+@media print{.barra3 .seg{width:var(--p)}}
+
+/* fundo branco é o padrão dos vídeos; tecla B (ou ?creme) volta ao creme */
+body:not(.creme){--paper:#FFFFFF;--paper-warm:#F3F1EB}
+body:not(.creme) .aperto .ap-lado,body:not(.creme) .ar .trilho,body:not(.creme) .bt .trilho,body:not(.creme) .cal,body:not(.creme) .caminhos4 .cm,body:not(.creme) .cartao,body:not(.creme) .cet .ct,body:not(.creme) .cr .eixo,body:not(.creme) .e3 .tr,body:not(.creme) .er .trk,body:not(.creme) .etapas .step,body:not(.creme) .ex,body:not(.creme) .fluxo3 .fx,body:not(.creme) .form-x,body:not(.creme) .maos span,body:not(.creme) .mg,body:not(.creme) .mini,body:not(.creme) .nove span,body:not(.creme) .op,body:not(.creme) .panel,body:not(.creme) .peso,body:not(.creme) .propbar .track,body:not(.creme) .r6,body:not(.creme) .sete span,body:not(.creme) .soma span,body:not(.creme) .tr3 .tk,body:not(.creme) .upa .lado,body:not(.creme) .upa-box,body:not(.creme) .vago div{background:#F6F4EF}
+/* ===== tela pequena e celular: navegação e leitura como nas aulas do site ===== */
+.hud{display:none;position:fixed;left:0;right:0;bottom:0;justify-content:space-between;align-items:center;gap:16px;padding:10px 16px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);background:linear-gradient(rgba(250,247,240,0),var(--paper) 40%);pointer-events:none;z-index:12}
+.hud .hud-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hud .hud-n{white-space:nowrap}
+.hud .mais{display:inline-block;width:1em;color:var(--accent);font-weight:700;margin-left:0.4em}
+body.ver-num .hud{display:flex}
+body.ver-num .contador{display:none}
+@media (hover:none) and (pointer:coarse), (max-width:900px), (max-height:500px){
+  :root{
+    --fs-body:max(15px,min(2.05vw,3.65vh));
+    --fs-lead:max(17px,min(2.45vw,4.35vh));
+    --fs-small:max(13px,min(1.6vw,2.85vh));
+    --fs-mono:max(11px,min(1.15vw,2.05vh));
+    --fs-h2:max(24px,min(3.7vw,6.6vh));
+    --fs-stat:max(30px,min(4.6vw,8.2vh));
+  }
+  .hud{display:flex}
+  .slide{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:56px}
+  .slide>*{flex-shrink:0}
+  .cam{display:none!important}
+}
+@media (orientation:portrait) and (max-width:900px){
+  :root{--fs-body:16px;--fs-lead:18px;--fs-small:14px;--fs-mono:11.5px;--fs-h2:26px;--fs-stat:34px}
+  .slide{padding:44px 20px 72px;justify-content:flex-start}
+  .cover{justify-content:flex-start;padding-top:56px}
+  .cover h1{font-size:40px}
+  .cover .cred{position:static;margin-top:28px}
+  h2{margin-bottom:18px}
+  .eyebrow{margin-bottom:12px}
+  .slide [style*="max-width"],h2,.esq,.esq.estreita,.callout,.tbl,ul.itens,.etapas,.propbar,.refs p,.paineis,.cartoes,.fotos{max-width:none!important}
+  .dir{position:static!important;width:100%!important;max-width:none!important;margin:18px 0 0!important;transform:none!important}
+  .dir figure img{max-height:34vh}
+  .slide img,.slide svg{max-width:100%}
+  .paineis,.cartoes{grid-template-columns:1fr!important;gap:12px}
+  .panel,.cartao{padding:14px 16px}
+  .stats{gap:16px 28px}
+  .fotos{flex-direction:column;gap:12px}
+  .fotos img{height:24vh}
+  .tbl{display:block;overflow-x:auto;width:100%}
+  .tbl th,.tbl td{padding-right:12px}
+  .callout{padding:12px 14px}
+}
+/* celular em pé: peças de cada vídeo */
+@media (orientation:portrait) and (max-width:900px){
+  .cover .cred{flex-direction:column;align-items:flex-start;gap:10px}
+  .bt,.cr,.ar,.eh,.er,.tr3{grid-template-columns:minmax(64px,28%) 1fr max-content!important;gap:8px!important}
+  .e3{grid-template-columns:minmax(56px,22%) 1fr max-content max-content!important;gap:6px!important}
+  .caminhos4,.cartoes.c4,.eixos4,.riscos6,.nove{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;max-width:none!important}
+  .mg3,.cals,.cartoes.c3x2,.upa,.upa-box .subs{grid-template-columns:1fr!important;gap:10px!important;max-width:none!important}
+  .aperto{flex-direction:column;max-width:none!important}
+  .mini .mt{font-size:18px}
+  .slide h2[style*="font-size"]{font-size:30px!important}
+  .slide p[style*="font-size"]{font-size:20px!important}
+  .duas,.hist,.parc,.vp{width:100%!important}
+  .soja{width:86%!important}
+  .tbl td:not(.num),.tbl .chip,.chip-l{white-space:normal!important}
+  .cover h1{font-size:34px}
+  .regua-p .rp-l i,.regua .mk i{white-space:normal!important;width:76px;text-align:center;font-size:10.5px!important;line-height:1.2}
+  .tbl th{white-space:normal!important;letter-spacing:0!important}
+  .leg-d,.leg-a{flex-direction:column;gap:6px;max-width:none!important}
+  .leg-s,.leg-anos{flex-wrap:wrap;gap:6px 14px}
+  .leg-d span,.leg-a span{width:auto!important;min-width:0!important;padding:4px 0 0 0!important}
+  .dolar{height:56px;max-width:none!important}
+  .dolar .pd span{font-size:12px}
+  .peso{height:52px;max-width:none!important}
+}
+.cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
+.cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
+@media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<section class="slide cover">
+  <div class="eyebrow">Olhar o todo</div>
+  <h1>Diagnóstico:<br>um olhar para o <em>negócio</em></h1>
+  <div class="sub">a fotografia antes do número</div>
+  <div class="dir" style="--w:30vw;top:14vh">
+    <figure>
+      <img src="img/gado-leiteiro-palmeira-pr.jpg" alt="Vacas holandesas pastando em piquete verde, com mata ao fundo" onerror="this.style.display='none'">
+      <figcaption>Palmeira/PR · CC BY-SA 3.0, Deyvid A. R. Setti</figcaption>
+    </figure>
+  </div>
+  <div class="cred">
+    <img src="img/logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span class="site"><img src="img/marca.svg" alt="" onerror="this.style.display='none'">produzirnaobasta.com.br</span></div>
+  </div>
+</section>
+
+<section class="slide" style="justify-content:center;padding-bottom:20vh">
+  <div class="eyebrow"><b>A pergunta</b></div>
+  <h2 style="font-size:min(5vw,8.6vh);max-width:62vw">Antes de mexer em qualquer número: o que está <em>a seu favor</em>, e o que está contra?</h2>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Diagnóstico</b> · uma ferramenta, três olhares</div>
+  <h2>Serve para olhar</h2>
+  <div class="cartoes">
+    <div class="cartao f"><div class="vel">a propriedade</div><p>como ela está hoje, por inteiro</p></div>
+    <div class="cartao f"><div class="vel">o negócio</div><p>uma atividade: o leite, a soja, o vinhedo</p></div>
+    <div class="cartao f"><div class="vel">o projeto</div><p>começar, ampliar, mudar de atividade</p></div>
+  </div>
+  <p class="lead f" style="max-width:60vw">É o primeiro passo: vem antes do custo, da margem e do plano.</p>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Por que diagnosticar</b> · o que se decide e o que só se acompanha</div>
+  <h2>Quanto está nas mãos do gestor?</h2>
+  <p style="max-width:60vw">Variação da dose ótima de nitrogênio no milho:</p>
+  <div class="barra3 f">
+    <div class="seg amb" style="--p:41%"><span>ambiente · 41%</span></div>
+    <div class="seg man" style="--p:31%"><span>manejo · 31%</span></div>
+    <div class="seg gen" style="--p:27%"><span>genética · 27%</span></div>
+  </div>
+  <div class="legenda3 f"><span class="l-amb">só monitorar: clima, solo</span><span class="l-dec">decisão humana: ≈ 59%</span></div>
+  <p class="lead f" style="max-width:60vw">Separar o que se muda do que só se acompanha: <em>é isso que a SWOT organiza.</em></p>
+  <div class="fonte">Baum et al. (2024), simulação nos EUA · valores arredondados</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Diagnóstico</b> · a divisão que organiza tudo</div>
+  <h2>Dentro e fora da porteira</h2>
+  <div class="swot" style="max-width:60vw">
+    <div class="swot-cell swot-f f"><h4>Forças</h4><p>dentro · a favor</p></div>
+    <div class="swot-cell swot-fr f"><h4>Fraquezas</h4><p>dentro · contra</p></div>
+    <div class="swot-cell swot-o f"><h4>Oportunidades</h4><p>fora · a favor</p></div>
+    <div class="swot-cell swot-a f"><h4>Ameaças</h4><p>fora · contra</p></div>
+  </div>
+  <div class="callout ok f">Dentro, se controla. Fora, se acompanha.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Exercício</b> · em qual quadrante?</div>
+  <h2>Monte a SWOT</h2>
+  <table class="tbl jogo">
+    <tbody>
+      <tr class="f"><td>Rebanho com boa genética</td><td><span class="chip-q swot-f f">força</span></td></tr>
+      <tr class="f"><td>Ninguém anota os custos</td><td><span class="chip-q swot-fr f">fraqueza</span></td></tr>
+      <tr class="f"><td>Cooperativa abriu compra de leite na região</td><td><span class="chip-q swot-o f">oportunidade</span></td></tr>
+      <tr class="f"><td>Previsão de estiagem para o verão</td><td><span class="chip-q swot-a f">ameaça</span></td></tr>
+      <tr class="f"><td>Máquinas velhas, manutenção atrasada</td><td><span class="chip-q swot-fr f">fraqueza</span></td></tr>
+      <tr class="f"><td>Nova linha de crédito para irrigação</td><td><span class="chip-q swot-o f">oportunidade</span></td></tr>
+      <tr class="f"><td>Alta do dólar encarecendo o adubo</td><td><span class="chip-q swot-a f">ameaça</span></td></tr>
+    </tbody>
+  </table>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Diagnóstico</b> · como investigar</div>
+  <h2>Não basta listar, é preciso perguntar</h2>
+  <div class="swot">
+    <div class="swot-cell swot-f f"><h4>Forças</h4><p>O que faz a sua propriedade melhor que as vizinhas?</p></div>
+    <div class="swot-cell swot-fr f"><h4>Fraquezas</h4><p>O que está freando? O resultado é calculado ou estimado?</p></div>
+    <div class="swot-cell swot-o f"><h4>Oportunidades</h4><p>Há cooperativa, PNAE, PAA, crédito ainda não usado?</p></div>
+    <div class="swot-cell swot-a f"><h4>Ameaças</h4><p>Que fraqueza vira risco sério se o preço cair?</p></div>
+  </div>
+  <div class="fonte">adaptado de Ohio State University Extension (2024)</div>
+  </section>
+
+<section class="slide">
+  <div class="esq estreita">
+    <div class="eyebrow"><b>Caso</b> · região de Santa Maria</div>
+    <h2>Uma propriedade de leite</h2>
+    <ul class="itens">
+      <li class="f"><strong>25 ha</strong> de terra própria, parte com pastagem degradada</li>
+      <li class="f"><strong>35 vacas</strong> Holandês × Jersey, cerca de 450 L por dia</li>
+      <li class="f"><strong>Ordenha antiga</strong>; o casal e um filho trabalham</li>
+      <li class="f">Leite entregue a uma <strong>cooperativa</strong> da região</li>
+    </ul>
+    <div class="callout f"><strong>Antes de seguir</strong>Liste duas forças e duas fraquezas.</div>
+  </div>
+  <div class="dir" style="--w:34vw">
+    <figure>
+      <img src="img/ordenha-balde-ao-pe.jpg" alt="Produtor ordenhando vaca com ordenhadeira mecânica de balde ao pé, dentro de estábulo simples" onerror="this.style.display='none'">
+      <figcaption>ordenha mecânica, balde ao pé · CC BY 3.0, Andrevruas</figcaption>
+    </figure>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Caso</b> · da porteira para dentro</div>
+  <h2>Ambiente interno</h2>
+  <div class="paineis" style="max-width:62vw">
+    <div class="swot-cell swot-f"><h4>Forças</h4><ul><li class="f">Mão de obra da família, estável</li><li class="f">Cooperativa perto: coleta garantida</li><li class="f">Terra própria, sem arrendamento</li><li class="f">Rebanho adaptado ao pasto</li></ul></div>
+    <div class="swot-cell swot-fr"><h4>Fraquezas</h4><ul><li class="f">Nenhum registro de custos</li><li class="f">Ordenha antiga: risco na qualidade</li><li class="f">Parte da pastagem degradada</li><li class="f">Um só comprador</li></ul></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Caso</b> · da porteira para fora</div>
+  <h2>Ambiente externo</h2>
+  <div class="paineis" style="max-width:62vw">
+    <div class="swot-cell swot-o"><h4>Oportunidades</h4><ul><li class="f">Pronaf Mais Alimentos para a ordenha</li><li class="f">Queijo artesanal, PNAE</li><li class="f">Assistência da EMATER/RS</li><li class="f">Preço de referência: Conseleite</li></ul></div>
+    <div class="swot-cell swot-a"><h4>Ameaças</h4><ul><li class="f">Preço do leite volátil</li><li class="f">Estiagens na região central</li><li class="f">Sucessão: o filho fica?</li><li class="f">Bacias leiteiras maiores</li></ul></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Caso</b> · a fotografia completa</div>
+  <h2>A matriz montada</h2>
+  <div class="swot">
+    <div class="swot-cell swot-f"><h4>Forças</h4><ul><li>Mão de obra da família</li><li>Cooperativa perto</li><li>Terra própria</li><li>Rebanho adaptado</li></ul></div>
+    <div class="swot-cell swot-fr"><h4>Fraquezas</h4><ul><li>Sem registro de custos</li><li>Ordenha antiga</li><li>Pastagem degradada</li><li>Um só comprador</li></ul></div>
+    <div class="swot-cell swot-o"><h4>Oportunidades</h4><ul><li>Pronaf Mais Alimentos</li><li>Queijo artesanal, PNAE</li><li>EMATER/RS</li><li>Conseleite</li></ul></div>
+    <div class="swot-cell swot-a"><h4>Ameaças</h4><ul><li>Preço volátil</li><li>Estiagens</li><li>Sucessão incerta</li><li>Bacias concorrentes</li></ul></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Da lista à ação</b> · cruzar os quadrantes</div>
+  <h2>Cruzar não é só listar</h2>
+  <div class="cruz f">
+    <span class="chip-q swot-f">força</span><span class="x">×</span><span class="chip-q swot-o">oportunidade</span><span class="seta-c">→</span><span class="estr">crescer</span>
+  </div>
+  <div class="cruz f">
+    <span class="chip-q swot-fr">fraqueza</span><span class="x">×</span><span class="chip-q swot-a">ameaça</span><span class="seta-c">→</span><span class="estr alt">defender</span>
+  </div>
+  <p class="lead f" style="max-width:60vw">Usar o que se tem de bom para aproveitar o que aparece. Corrigir o que é fraco antes que o problema chegue.</p>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Caso</b> · da fotografia à ação</div>
+  <h2>Dois cruzamentos, duas ações</h2>
+  <div class="acoes">
+    <div class="acao f">
+      <div class="par"><span class="chip-q swot-f">cooperativa perto</span><span class="x">×</span><span class="chip-q swot-o">Pronaf</span></div>
+      <p><strong>Crescer</strong>: modernizar a ordenha com crédito e assistência, melhorar a qualidade e o preço do leite.</p>
+    </div>
+    <div class="acao f">
+      <div class="par"><span class="chip-q swot-fr">sem registro</span><span class="x">×</span><span class="chip-q swot-a">preço volátil</span></div>
+      <p><strong>Defender</strong>: começar o registro de custos já. Quem não conhece o custo não sabe a que preço sobrevive.</p>
+    </div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Cada atividade, a sua fotografia</b> · 1 de 2</div>
+  <h2>Lavoura e boi</h2>
+  <div class="mini2">
+    <div class="mini f">
+      <div class="mt">Soja · 50 ha</div>
+      <p><span class="q swot-f">F</span>solo corrigido, maquinário próprio</p>
+      <p><span class="q swot-fr">Fr</span>um só comprador</p>
+      <p><span class="q swot-o">O</span>preço em alta, câmbio favorável</p>
+      <p><span class="q swot-a">A</span>estiagem em janeiro e fevereiro</p>
+    </div>
+    <div class="mini f">
+      <div class="mt">Confinamento · 90 dias</div>
+      <p><span class="q swot-f">F</span>milho e silagem próprios</p>
+      <p><span class="q swot-fr">Fr</span>pouco dinheiro para comprar o lote</p>
+      <p><span class="q swot-o">O</span>boi gordo mais caro na entressafra</p>
+      <p><span class="q swot-a">A</span>ração mais cara, kg vivo oscilando</p>
+    </div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Cada atividade, a sua fotografia</b> · 2 de 2</div>
+  <h2>Vinhedo e agricultura de precisão</h2>
+  <div class="mini2">
+    <div class="mini f">
+      <div class="mt">Vinhedo · 2 ha, uva fina</div>
+      <p><span class="q swot-f">F</span>clima e solo aptos, vinícola perto</p>
+      <p><span class="q swot-fr">Fr</span>sem dinheiro para 2 anos sem colheita</p>
+      <p><span class="q swot-o">O</span>crédito com carência para perenes</p>
+      <p><span class="q swot-a">A</span>granizo, preço da uva oscilando</p>
+    </div>
+    <div class="mini f">
+      <div class="mt">Precisão · 500 ha em zonas</div>
+      <p><span class="q swot-f">F</span>histórico de mapas de colheita</p>
+      <p><span class="q swot-fr">Fr</span>tecnologia cara sem escala em algumas áreas</p>
+      <p><span class="q swot-o">O</span>imagem de satélite gratuita</p>
+      <p><span class="q swot-a">A</span>adubo caro: a sobreposição custa mais</p>
+    </div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>A SWOT não é exercício de sala</b></div>
+  <h2>Cada item volta como número</h2>
+  <table class="tbl volta-n">
+    <tbody>
+      <tr class="f"><td><span class="chip-q swot-a">estiagem, granizo, ração cara</span></td><td class="seta-t">→</td><td><strong>cenário pessimista</strong></td></tr>
+      <tr class="f"><td><span class="chip-q swot-fr">sem capital de giro</span></td><td class="seta-t">→</td><td><strong>crédito</strong></td></tr>
+      <tr class="f"><td><span class="chip-q swot-o">preço em alta</span></td><td class="seta-t">→</td><td><strong>receita</strong></td></tr>
+      <tr class="f"><td><span class="chip-q swot-fr">sem registro de custos</span></td><td class="seta-t">→</td><td><strong>margem</strong> que ninguém vê</td></tr>
+      <tr class="f"><td><span class="chip-q swot-fr">escala mínima</span></td><td class="seta-t">→</td><td><strong>investimento</strong> que não se paga</td></tr>
+    </tbody>
+  </table>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Na prática</b> · escrever bem cada item</div>
+  <h2>Item vago não diagnostica</h2>
+  <div class="vago">
+    <div class="ruim f"><span class="rot">não orienta</span><s>"Estrutura ruim"</s></div>
+    <div class="bom f"><span class="rot">orienta</span>"Ordenha de 1995, sem resfriador a granel"</div>
+  </div>
+  <p class="lead f" style="max-width:60vw">Quanto mais específico o item, mais clara a ação.</p>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Fechamento</b> · a SWOT não vai para a gaveta</div>
+  <h2>Uma fotografia por ano</h2>
+  <ul class="itens">
+    <li class="f"><strong>Rever</strong> ao menos uma vez por ano</li>
+    <li class="f"><strong>Fazer junto</strong>: família, funcionários, extensionista</li>
+    <li class="f"><strong>Levar para o projeto</strong>: é a primeira página do plano</li>
+  </ul>
+  <div class="callout f">Perspectivas diferentes revelam pontos cegos.</div>
+  </section>
+
+<section class="slide refs">
+  <div class="eyebrow">Diagnóstico: um olhar para o negócio</div>
+  <h2>Referências</h2>
+  <p><b>BAUM, M. E.; SAWYER, J. E.; CASTELLANO, M. J.; ARCHONTOULIS, S. V.</b> Ranking genotype, environment, management effects on the optimum nitrogen rate for maize: a cropping system modeling analysis. Agronomy Journal, v. 116, p. 1775-1791, 2024. doi.org/10.1002/agj2.21596</p>
+  <p><b>OHIO STATE UNIVERSITY EXTENSION.</b> Conducting a SWOT analysis of your agricultural business. ANR-42. Revisão de Chris Zoller, 2024.</p>
+  <p><b>Casos:</b> revisões por curso e simulador de projetos do site Produzir Não Basta (produzirnaobasta.com.br).</p>
+  <p><b>Fotos:</b> gado leiteiro a pasto, Palmeira/PR, Deyvid A. R. Setti (CC BY-SA 3.0) · ordenha mecânica, Andrevruas (CC BY 3.0).</p>
+  <p style="color:var(--stone)">Material elaborado pelo Prof. Róberson Macedo de Oliveira (Colégio Politécnico da UFSM), com apoio de IA (Claude, Anthropic) na organização didática e na diagramação; conteúdo, seleção e decisões de ensino são do docente.</p>
+</section>
+
+</main>
+
+<div class="cam"><span>câmera</span></div>
+<div class="hud"><span class="hud-t">Vídeo 3 · Diagnóstico do negócio</span><span class="hud-n"><span class="contador-n" id="contador"></span><span class="mais" id="mais"></span></span></div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const progress=document.getElementById('progress');
+  const contador=document.getElementById('contador');
+  let cur=0, passo=0;
+  const mais=document.getElementById('mais');
+  function hud(){mais.textContent=passo<frags(slides[cur]).length?'›':''}
+  const frags=s=>[...s.querySelectorAll('.f')];
+
+  function mostrar(s,n){frags(s).forEach((el,i)=>el.classList.toggle('vis',i<n))}
+  function go(n,todos){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    passo=todos?frags(slides[cur]).length:0;
+    mostrar(slides[cur],passo);
+    slides[cur].classList.add('on');
+    contador.textContent=(cur+1)+' / '+total;
+    progress.style.width=((cur+1)/total*100)+'%';
+    history.replaceState(null,'','#'+(cur+1));hud();
+  }
+  function next(){
+    const fs=frags(slides[cur]);
+    if(passo<fs.length){fs[passo].classList.add('vis');passo++;hud()}
+    else if(cur<total-1)go(cur+1);
+  }
+  function prev(){
+    if(passo>0){passo--;frags(slides[cur])[passo].classList.remove('vis');hud()}
+    else if(cur>0)go(cur-1,true);
+  }
+
+  const h=parseInt(location.hash.slice(1),10);
+  slides[0].classList.add('on');
+  go(isNaN(h)?0:h-1,true);
+
+  document.addEventListener('keydown',e=>{
+    const k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();next()}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev()}
+    else if(k==='ArrowDown'){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowUp'){e.preventDefault();go(cur-1)}
+    else if(k==='Home'){e.preventDefault();go(0)}
+    else if(k==='End'){e.preventDefault();go(total-1,true)}
+    else if(k==='c'||k==='C'){document.body.classList.toggle('ver-cam')}
+    else if(k==='h'||k==='H'){document.body.classList.toggle('ver-num')}
+    else if(k==='b'||k==='B'){document.body.classList.toggle('creme');try{localStorage.setItem('pnb-fundo',document.body.classList.contains('creme')?'creme':'branco')}catch(e){}}
+    else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  });
+  // clique ou toque: metade direita avança, metade esquerda volta; deslizar o dedo também
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+  window.addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1,true)});
+
+  try{if(localStorage.getItem('pnb-fundo')==='creme')document.body.classList.add('creme')}catch(e){}
+  if(location.search.indexOf('creme')>=0)document.body.classList.add('creme');
+  if(location.search.indexOf('cam')>=0)document.body.classList.add('ver-cam');
+  // conferência: ?check lista o que invade a área da câmera ou sai da tela
+  if(location.search.indexOf('check')>=0){
+    document.body.classList.add('ver-cam');
+    document.fonts.ready.then(()=>setTimeout(()=>{
+      const W=innerWidth,H=innerHeight,cx=W*0.74,cy=H*0.67,out=[];
+      slides.forEach((s,i)=>{
+        slides.forEach(o=>o.classList.remove('on'));s.classList.add('on');
+        frags(s).forEach(el=>{el.classList.add('vis');el.style.transition='none'});
+        s.style.transition='none';
+        const rects=[];
+        const w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT);
+        while(w.nextNode()){const t=w.currentNode;if(!t.textContent.trim()||t.parentElement.closest('.fala'))continue;const r=document.createRange();r.selectNodeContents(t);[...r.getClientRects()].forEach(x=>rects.push(['texto: '+t.textContent.trim().slice(0,30),x]))}
+        s.querySelectorAll('img').forEach(im=>rects.push(['imagem: '+im.getAttribute('src'),im.getBoundingClientRect()]));
+        s.querySelectorAll('*').forEach(el=>{if(el.closest('.fala'))return;const cs=getComputedStyle(el);const fundo=cs.backgroundColor!=='rgba(0, 0, 0, 0)'&&cs.backgroundColor!=='transparent';const borda=parseFloat(cs.borderTopWidth)>0||parseFloat(cs.borderLeftWidth)>0||parseFloat(cs.borderBottomWidth)>0;if((fundo||borda||el.tagName==='svg')&&el!==s)rects.push(['caixa: '+el.tagName.toLowerCase()+'.'+(el.className.baseVal!==undefined?el.className.baseVal:el.className),el.getBoundingClientRect()])});
+        rects.forEach(([n,r])=>{
+          if(r.width===0)return;
+          if(r.right>cx+1&&r.bottom>cy+1)out.push((i+1)+' CAMERA '+n);
+          if(r.bottom>H-2||r.right>W-2)out.push((i+1)+' FORA '+n);
+        });
+      });
+      const pre=document.createElement('pre');pre.id='check';pre.textContent=out.length?out.join('\n'):'OK';document.body.appendChild(pre);
+    },600));
+  }
+})();
+</script>
+
+</body>
+</html>

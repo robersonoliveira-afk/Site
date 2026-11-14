@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%233D4A2A%27/%3E%3Cpath d=%27M8 11h16M8 16h16M8 21h10%27 stroke=%27%23FAF7F0%27 stroke-width=%272.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2724%27 cy=%2721%27 r=%272.6%27 fill=%27%23B89233%27/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3D4A2A">
+<title>Crédito rural</title>
+<meta name="description" content="Crédito rural: quando vale a pena. Versão para videoaula e aula presencial.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F0;--paper-warm:#F4EFE2;--ink:#1A1A17;--ink-soft:#3A3833;
+  --stone:#6B6960;--stone-light:#9B9890;--olive:#3D4A2A;--olive-deep:#2A331C;
+  --terra:#A8552E;--mustard:#B89233;--rule:#D9D3C2;--rule-soft:#E8E3D3;
+  --critical-bg:#F5E4D8;--success-bg:#E4EAD2;--accent:var(--olive);
+  /* tipografia para vídeo: cerca de 1,4× a versão de tela */
+  --fs-body:min(2.05vw,3.65vh);
+  --fs-lead:min(2.45vw,4.35vh);
+  --fs-small:min(1.6vw,2.85vh);
+  --fs-mono:min(1.15vw,2.05vh);
+  --fs-h2:min(3.7vw,6.6vh);
+  --fs-stat:min(4.6vw,8.2vh);
+  /* área da câmera */
+  --cam-w:26vw;--cam-h:33vh;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.4;-webkit-font-smoothing:antialiased;overflow:hidden}
+
+/* ===== deck ===== */
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:9vh 6vw 6vh;background:var(--paper);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+.slide.on{opacity:1;visibility:visible;transition:opacity .4s ease}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--accent)}
+.fala{display:none}
+
+/* itens que entram um a um */
+.f{opacity:0;transform:translateY(1.6vh);transition:opacity .5s ease,transform .5s ease}
+.f.vis{opacity:1;transform:none}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:2.4vh}
+.eyebrow b{color:var(--accent);font-weight:600}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:var(--fs-h2);line-height:1.06;letter-spacing:-0.02em;color:var(--ink);margin-bottom:3.4vh;font-variation-settings:'opsz' 144;max-width:60vw}
+h2 em{font-style:italic;color:var(--accent);font-weight:500}
+p{font-size:var(--fs-body);color:var(--ink-soft);margin-bottom:2vh}
+p strong{color:var(--ink);font-weight:600}
+p em{color:var(--accent);font-style:italic;font-weight:500}
+.lead{font-size:var(--fs-lead);line-height:1.3;color:var(--ink)}
+.fonte{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);letter-spacing:0.04em;margin-top:1.5vh}
+
+/* colunas: a esquerda nunca passa de 60vw; a direita fica no alto */
+.esq{max-width:60vw}
+.esq.estreita{max-width:50vw}
+.dir{position:absolute;top:9vh;right:6vw;width:var(--w,34vw)}
+.dir figure img{width:100%;max-height:var(--h,54vh);object-fit:contain;display:block;border:1px solid var(--rule);background:#fff}
+figcaption{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:1vh;line-height:1.35}
+
+.callout{margin:2.4vh 0;padding:2vh 1.6vw;background:var(--critical-bg);border-left:6px solid var(--terra);font-size:var(--fs-body);line-height:1.35;color:var(--ink);max-width:60vw}
+.callout strong{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:0.8vh}
+.callout.ok{background:var(--success-bg);border-left-color:var(--olive)}
+.callout.ok strong{color:var(--olive)}
+
+/* tabelas */
+.tbl{border-collapse:collapse;font-size:var(--fs-small);max-width:60vw}
+.tbl th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);padding:1vh 1.4vw 1vh 0;border-bottom:2px solid var(--rule)}
+.tbl td{padding:1.05vh 1.4vw 1.05vh 0;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:middle}
+.tbl .num{text-align:right;font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.tbl td.num b{color:var(--terra)}
+.tbl tr.total td{background:var(--success-bg);font-weight:600;color:var(--ink);border-top:2px solid var(--olive);border-bottom:none}
+.tbl tr.total td:first-child{padding-left:1vw}
+.chip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);padding:0.5vh 1vw;border-radius:3px;white-space:nowrap}
+.chip.montante{background:#E4EAD2;color:var(--olive-deep)}
+.chip.jusante{background:#EFE6CC;color:#7A6020}
+.chip.ambiente{background:var(--rule-soft);color:var(--stone)}
+
+/* números grandes */
+.stats{display:flex;gap:2vh 4.5vw;flex-wrap:wrap;margin:1vh 0 2vh}
+.stat .num{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:var(--fs-stat);line-height:1;color:var(--terra);letter-spacing:-0.02em}
+.stat .lbl{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);margin-top:1vh;max-width:32ch;line-height:1.35}
+.stats.vert{flex-direction:column;gap:3vh}
+
+/* painéis */
+.paineis{display:grid;grid-template-columns:1fr 1fr;gap:2vw;max-width:88vw;margin-bottom:1vh}
+.panel{border:1px solid var(--rule);background:#fff;padding:2.2vh 1.6vw}
+.panel h3{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1vh}
+.panel h3.alt{color:var(--terra)}
+.panel p{font-size:var(--fs-small);margin-bottom:0}
+
+/* lista com marcador */
+ul.itens{list-style:none;max-width:60vw}
+ul.itens li{font-size:var(--fs-body);color:var(--ink-soft);padding:1vh 0 1vh 1.6em;position:relative;line-height:1.3}
+ul.itens li::before{content:"›";position:absolute;left:0.3em;color:var(--accent);font-weight:700}
+ul.itens li strong{color:var(--ink)}
+
+/* etapas em sequência */
+.etapas{display:flex;flex-wrap:wrap;gap:1.2vh 1vw;align-items:center;max-width:60vw;margin:1vh 0 2vh}
+.etapas .step{border:1px solid var(--rule);background:#fff;padding:1.3vh 1.2vw;font-size:var(--fs-small);color:var(--ink)}
+.etapas .arr{color:var(--stone-light);font-size:var(--fs-body)}
+.etapas .volta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra)}
+
+/* cartões choque / tendência / ciclo */
+.cartoes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;max-width:88vw;margin:1vh 0 3vh}
+.cartao{border-top:6px solid var(--accent);background:#fff;padding:2.4vh 1.4vw;border-left:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.cartao .t{font-family:'Fraunces',serif;font-size:var(--fs-h2);font-weight:600;line-height:1;margin-bottom:1.6vh}
+.cartao p{font-size:var(--fs-small);margin-bottom:0.6vh}
+.cartao .vel{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.08em;color:var(--terra)}
+.cartao:nth-child(2){border-top-color:var(--mustard)}
+.cartao:nth-child(3){border-top-color:var(--terra)}
+
+/* barra de proporção animada */
+.propbar{margin:2vh 0 3vh;max-width:48vw}
+.propbar .track{position:relative;height:7vh;border:1px solid var(--rule);background:#fff}
+.propbar .fill{position:absolute;top:0;left:0;bottom:0;width:0;background:var(--terra);display:flex;align-items:center;padding-left:1vw;transition:width 1.4s cubic-bezier(.25,.8,.25,1) .2s;overflow:hidden}
+.propbar.vis .fill{width:56%}
+.propbar .fill span{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--paper);font-size:var(--fs-body)}
+.propbar .cap{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1vh}
+
+/* fotos em linha */
+.fotos{display:flex;gap:1.6vw;max-width:88vw;margin:0 0 2vh}
+.fotos figure{flex:1}
+.fotos img{width:100%;height:30vh;object-fit:cover;display:block;border:1px solid var(--rule)}
+
+/* capa */
+.cover{justify-content:center;padding-bottom:12vh}
+.cover .eyebrow{color:var(--accent);font-weight:600}
+.cover h1{font-family:'Fraunces',serif;font-weight:600;font-size:min(7.4vw,13vh);line-height:0.98;letter-spacing:-0.03em;font-variation-settings:'opsz' 144}
+.cover h1 em{font-style:italic;color:var(--accent);font-weight:500}
+.cover .sub{margin-top:3vh;font-family:'Fraunces',serif;font-style:italic;font-size:var(--fs-lead);color:var(--stone)}
+.cover .cred{position:absolute;left:6vw;bottom:7vh;display:flex;align-items:center;gap:1.4vw}
+.cover .cred img{height:6.5vh;width:auto}
+.cover .cred .lines{display:flex;flex-direction:column;gap:0.4vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);letter-spacing:0.05em;text-transform:uppercase;color:var(--stone)}
+
+/* referências */
+.refs p{font-size:var(--fs-mono);font-family:'IBM Plex Sans',sans-serif;max-width:60vw;line-height:1.5;margin-bottom:1.4vh}
+.refs p b{color:var(--ink)}
+
+/* área da câmera (tecla C) e contador (tecla H) */
+.cam{position:fixed;right:0;bottom:0;width:var(--cam-w);height:var(--cam-h);border:3px dashed var(--terra);background:rgba(168,85,46,0.08);display:none;z-index:20;pointer-events:none}
+.cam span{position:absolute;left:1vw;top:1vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--terra)}
+body.ver-cam .cam{display:block}
+.contador{position:fixed;left:6vw;bottom:2vh;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone-light);display:none;z-index:20}
+body.ver-num .contador{display:block}
+.progress{position:fixed;top:0;left:0;height:6px;background:var(--olive-deep);z-index:11;transition:width .3s ease}
+
+/* impressão: um slide por página, tudo visível */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  .deck{position:static}
+  .progress,.cam,.contador{display:none!important}
+  .slide{position:relative;opacity:1;visibility:visible;width:297mm;height:210mm;page-break-after:always;break-after:page}
+  .f{opacity:1;transform:none}
+  .propbar .fill{width:56%}
+}
+
+/* ===== peças do vídeo 04 ===== */
+.cover h1{max-width:58vw}
+.cartao .vel{display:block;font-size:var(--fs-small);margin-bottom:1.2vh}
+.cartao p{font-size:var(--fs-body)}
+.tbl.eventos td,.tbl.fontes td,.tbl.cadeia td,.tbl.troca td{font-size:var(--fs-body);padding-top:1vh;padding-bottom:1vh}
+.tbl.eventos td:first-child{white-space:nowrap;color:var(--ink)}
+.tbl.eventos .seta-p{font-size:var(--fs-body);padding:0 1.4vw;text-align:center}
+.seta-p.sobe{color:var(--olive)}.seta-p.cai{color:var(--terra)}
+.tbl.eventos td:last-child{color:var(--stone)}
+.tbl.cadeia td{white-space:nowrap}
+.tbl.cadeia .un{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);padding-left:1vw}
+.tbl.fontes td:first-child{white-space:nowrap;padding-right:2vw}
+.tbl.fontes b{color:var(--ink)}
+.tbl.troca th{font-size:var(--fs-mono)}
+/* apertado dos dois lados */
+.aperto{display:flex;align-items:stretch;gap:1vw;max-width:88vw;margin:1vh 0 3vh}
+.aperto .ap-lado{flex:1;background:#fff;border:1px solid var(--rule);padding:2vh 1.2vw;font-size:var(--fs-body);color:var(--ink-soft);line-height:1.2}
+.aperto .ap-lado b{display:block;color:var(--terra)}
+.aperto .ap-lado span{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:1vh}
+.aperto .ap-meio{flex:0.8;background:var(--olive-deep);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:var(--fs-lead);text-align:center;padding:1vh 1vw}
+.aperto .ap-seta{display:flex;align-items:center;font-size:var(--fs-h2);color:var(--stone-light)}
+/* barras da relação de troca */
+.barras-t{display:flex;flex-direction:column;gap:2.4vh;max-width:60vw;margin:1vh 0 3vh}
+.bt{display:grid;grid-template-columns:9vw 1fr 13vw;align-items:center;gap:1.2vw}
+.bt .ano{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--stone)}
+.bt .trilho{height:6vh;background:#fff;border:1px solid var(--rule)}
+.bt .enche{height:100%;width:0;background:var(--olive);transition:width 1.2s cubic-bezier(.25,.8,.25,1) .2s}
+.bt .enche.terra{background:var(--terra)}
+.bt.vis .enche{width:var(--p)}
+.bt .val{white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--ink)}
+/* foto em faixa */
+.faixa{max-width:88vw;margin:0 0 2.4vh}
+.faixa img{width:100%;height:24vh;object-fit:cover;object-position:center 85%;display:block;border:1px solid var(--rule)}
+/* sazonalidade */
+.saz{width:100%;display:block;margin:0 0 2vh;overflow:visible}
+.saz text{font-family:'IBM Plex Mono',monospace;font-size:13px;fill:#6B6960}
+.saz .linha{stroke-dasharray:520;stroke-dashoffset:520}
+.saz.vis .linha{transition:stroke-dashoffset 1.6s ease;stroke-dashoffset:0}
+@media print{.bt .enche{width:var(--p)}.saz .linha{stroke-dashoffset:0}}
+
+/* ===== peças do vídeo 05 ===== */
+.dolar{display:flex;height:10vh;max-width:62vw;border:1px solid var(--rule);background:#fff;overflow:hidden;margin:1vh 0 1vh}
+.dolar .pd{width:0;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;transition:width 1.2s cubic-bezier(.25,.8,.25,1)}
+.dolar.vis .pd{width:var(--p)}
+.dolar.vis .res{transition-delay:.5s}.dolar.vis .out{transition-delay:1s}
+.dolar .pd span{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600}
+.dolar .faz{background:var(--olive)}.dolar .faz span{color:var(--paper)}
+.dolar .res{background:var(--terra)}.dolar .res span{color:var(--paper)}
+.dolar .out{background:var(--rule)}.dolar .out span{color:var(--ink-soft)}
+.leg-d{display:flex;max-width:62vw;gap:0;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.04em;line-height:1.3;margin-bottom:2.4vh}
+.leg-d span{padding-top:0.8vh;border-top:3px solid}
+.leg-d .l-faz{width:11.8%;color:var(--olive);border-color:var(--olive);min-width:7vw}
+.leg-d .l-res{width:38.6%;color:var(--terra);border-color:var(--terra);padding-right:1vw}
+.leg-d .l-out{width:49.6%;color:var(--stone);border-color:var(--rule)}
+.gondola{display:flex;gap:3vw;margin:1vh 0 3vh}
+.etq{background:#FFF7D6;border:2px solid #E2C34F;padding:2vh 2vw;display:flex;flex-direction:column;min-width:20vw;box-shadow:0 4px 14px rgba(26,26,23,.08)}
+.etq .dia{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);text-transform:uppercase;letter-spacing:0.1em;color:var(--stone)}
+.etq .pr{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:var(--fs-stat);color:var(--olive);line-height:1.1}
+.etq.caro .pr{color:var(--terra)}
+.etq .un{font-size:var(--fs-small);color:var(--ink-soft)}
+.tbl.arranjos td,.tbl.compara td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.arranjos td:first-child,.tbl.compara td:first-child{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.06em;color:var(--stone);white-space:nowrap}
+.tbl.arranjos,.tbl.compara{max-width:66vw}
+.divide{display:flex;height:9vh;max-width:60vw;border:1px solid var(--rule);margin:1vh 0 3vh;overflow:hidden}
+.divide .parte{width:var(--p);display:flex;align-items:center;padding-left:1vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600;white-space:nowrap}
+.divide .novo{background:var(--mustard);color:#3A2F08}
+.divide .velho{background:var(--paper-warm);color:var(--ink-soft)}
+@media print{.dolar .pd{width:var(--p)}}
+
+/* ===== peças do vídeo 06 ===== */
+.caminhos4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2vw;max-width:88vw;margin-top:2vh}
+.caminhos4 .cm{background:#fff;border:1px solid var(--rule);border-top:6px solid var(--terra);padding:2vh 1.2vw}
+.caminhos4 .cm.feito{border-top-color:var(--rule);opacity:.55}
+.caminhos4 .cm.feito.vis{opacity:.55}
+.caminhos4 b{display:block;font-family:'Fraunces',serif;font-size:var(--fs-lead);font-weight:600;color:var(--ink);margin-bottom:0.8vh}
+.caminhos4 span{font-size:var(--fs-small);color:var(--stone)}
+.tbl.transf td{font-size:var(--fs-lead);padding:1vh 0}
+.tbl.transf .seta-t{color:var(--stone-light);padding:0 1.6vw}
+.tbl.transf b{font-family:'Fraunces',serif;font-weight:600;color:var(--terra)}
+.aneis{width:100%;max-height:50vh;display:block}
+.aneis circle{fill:none;stroke-width:3;transform-origin:150px 150px;transform:scale(.2);opacity:0;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.slide.on .aneis circle{transform:scale(1);opacity:1}
+.slide.on .aneis .a2{transition-delay:.3s}.slide.on .aneis .a3{transition-delay:.6s}
+.aneis .a1{stroke:var(--olive);fill:#E4EAD2}.aneis .a2{stroke:var(--mustard);fill:rgba(239,230,204,.5)}.aneis .a3{stroke:var(--terra);fill:rgba(245,228,216,.35)}
+.aneis text{font-family:'IBM Plex Mono',monospace;font-size:15px;fill:#3A3833;text-transform:uppercase;letter-spacing:.08em}
+.tbl.conta td{font-size:var(--fs-body);padding-top:1vh;padding-bottom:1vh;white-space:nowrap}
+.ig2{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;max-width:66vw;margin-bottom:2vh}
+.ig2 img{width:100%;height:24vh;object-fit:cover;display:block;border:1px solid var(--rule)}
+.ig2 figcaption b{color:var(--ink)}
+.tbl.pontos td{font-size:var(--fs-small);padding-top:0.9vh;padding-bottom:0.9vh}
+.tbl.pontos td:first-child{white-space:nowrap;padding-right:1.6vw;color:var(--ink)}
+.tbl.pontos th{font-size:var(--fs-mono);text-align:center;padding-right:0.6vw}
+.tbl.pontos .dots{white-space:nowrap;text-align:center;padding-right:0.6vw}
+.dots i{display:inline-block;width:1.1vw;height:1.1vw;border-radius:50%;background:var(--rule-soft);margin:0 0.12vw;vertical-align:middle}
+.dots i.on{background:var(--terra)}
+@media print{.aneis circle{transform:none;opacity:1}}
+
+/* ===== peças do vídeo 07 ===== */
+.tbl.faz{max-width:66vw}
+.tbl.faz td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.faz td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;padding-right:2vw}
+.formula-g{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-lead);background:var(--paper-warm);border-left:6px solid var(--olive);padding:1.6vh 1.6vw;margin:0 0 2.4vh;max-width:50vw}
+.formula-g b{color:var(--terra)}
+.cartoes.c4{grid-template-columns:repeat(4,1fr)}
+.cartoes.c4 .cartao p{font-size:var(--fs-small)}
+.tbl.leite td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.leite td:first-child{padding-right:1.6vw}
+.tbl.leite .chip{font-size:var(--fs-mono)}
+.dolar .cv{background:var(--terra)}.dolar .cv span{color:var(--paper)}
+.dolar .dp{background:var(--mustard)}
+.dolar .rf{background:var(--olive)}.dolar .rf span{color:var(--paper)}
+.dolar.vis .dp{transition-delay:.5s}.dolar.vis .rf{transition-delay:1s}
+.leg-a{display:flex;max-width:62vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.04em;line-height:1.3;margin-bottom:2.4vh}
+.leg-a span{padding-top:0.8vh;border-top:3px solid}
+.leg-a .l-cv{width:74.7%;color:var(--terra);border-color:var(--terra);padding-right:1vw}
+.leg-a .l-dp{width:7.9%;color:#7A6020;border-color:var(--mustard);min-width:7vw;padding-right:0.6vw}
+.leg-a .l-rf{width:17.4%;color:var(--olive);border-color:var(--olive)}
+
+/* ===== peças do vídeo 08 ===== */
+.tbl.unid{max-width:72vw}
+.tbl.unid td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.unid td:first-child{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.06em;color:var(--stone);white-space:nowrap;padding-right:1.6vw}
+.cartao .vende{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--olive);margin-top:1.2vh;text-transform:uppercase;letter-spacing:0.04em}
+.vender{background:var(--olive-deep);color:var(--paper);padding:2.4vh 1.8vw;display:flex;flex-direction:column;gap:1vh}
+.vender .t{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.1em;color:#E3C46E;margin-bottom:0.6vh}
+.vender span{font-size:var(--fs-body)}
+.vender b{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-lead);color:#E3C46E;margin-right:0.6vw}
+.peso{display:flex;height:9vh;max-width:60vw;border:1px solid var(--rule);background:#fff;overflow:hidden;margin:1vh 0 2.4vh}
+.peso div{width:0;display:flex;align-items:center;padding-left:1vw;white-space:nowrap;overflow:hidden;transition:width 1.2s cubic-bezier(.25,.8,.25,1)}
+.peso.vis div{width:var(--p)}
+.peso.vis .ga{transition-delay:.9s}
+.peso .pe{background:var(--rule)}.peso .pe span{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);color:var(--ink-soft)}
+.peso .ga{background:var(--olive)}.peso .ga span{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--paper)}
+.cen{display:flex;flex-direction:column;gap:2vh;max-width:64vw;margin:1vh 0 2.4vh}
+.cr{display:grid;grid-template-columns:15vw 1fr 12vw;align-items:center;gap:1.2vw}
+.cr .nome{font-family:'Fraunces',serif;font-size:var(--fs-lead);font-weight:600;line-height:1.1}
+.cr .nome small{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:400;color:var(--stone)}
+.cr .eixo{height:6vh;background:#fff;border:1px solid var(--rule)}
+.cr .b{height:100%;width:0;transition:width 1.1s cubic-bezier(.25,.8,.25,1) .2s}
+.cr.vis .b{width:var(--p)}
+.cr .b.neg{background:var(--terra)}.cr .b.pos{background:var(--olive)}
+.cr .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--olive);white-space:nowrap}
+.cr .v.neg{color:var(--terra)}
+.caixa{display:flex;gap:3vw;align-items:flex-start;height:34vh;margin:1vh 0 2vh;max-width:60vw}
+.caixa .mes{display:flex;flex-direction:column;align-items:center;width:9vw}
+.caixa .col{height:26vh;width:100%;display:flex;flex-direction:column;justify-content:flex-start;border-top:2px solid var(--ink-soft)}
+.caixa .mes:last-child .col{justify-content:flex-start}
+.caixa .b{width:100%;height:0;transition:height 1s cubic-bezier(.25,.8,.25,1) .1s}
+.caixa .mes.vis .b{height:var(--h)}
+.caixa .b.neg{background:var(--terra)}.caixa .b.pos{background:var(--olive)}
+.caixa .m{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--stone);margin-top:0.8vh;text-transform:uppercase}
+.caixa .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600;color:var(--terra)}
+.caixa .v.pos{color:var(--olive)}
+@media print{.peso div{width:var(--p)}.cr .b{width:var(--p)}.caixa .b{height:var(--h)}}
+
+/* ===== peças do vídeo 09 ===== */
+.anos{display:flex;flex-direction:column;gap:1.8vh;max-width:72vw;margin:1vh 0 1.4vh}
+.ar{display:grid;grid-template-columns:13vw 1fr 15vw;align-items:center;gap:1.2vw}
+.ar .nome{font-size:var(--fs-body);color:var(--ink)}
+.ar .trilho{height:5.5vh;background:#fff;border:1px solid var(--rule);display:flex}
+.ar .fm,.ar .pp{height:100%;width:0;transition:width 1s cubic-bezier(.25,.8,.25,1) .1s}
+.ar.vis .fm{width:calc(var(--a) / 7 * 100%)}
+.ar.vis .pp{width:calc(var(--a) / 7 * 100%);transition-delay:.7s}
+.ar .fm{background:var(--terra)}.ar .pp{background:var(--mustard)}
+.ar .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);line-height:1.3}
+.leg-anos{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.05em}
+.leg-anos span::before{content:"";display:inline-block;width:1.4vw;height:1.4vh;margin-right:0.6vw;vertical-align:middle}
+.leg-anos .l-fm{color:var(--terra)}.leg-anos .l-fm::before{background:var(--terra)}
+.leg-anos .l-pp{color:#7A6020}.leg-anos .l-pp::before{background:var(--mustard)}
+.vale{display:flex;gap:2vw;align-items:flex-start;height:34vh;margin:1vh 0 2vh;max-width:64vw}
+.vale .va{display:flex;flex-direction:column;align-items:center;width:8vw}
+.vale .col{height:25vh;width:100%;display:flex;flex-direction:column;border-top:2px solid var(--ink-soft)}
+.vale .b{width:100%;height:0;transition:height 1s cubic-bezier(.25,.8,.25,1) .1s}
+.vale .va.vis .b{height:var(--h)}
+.vale .b.neg{background:var(--terra)}.vale .b.pos{background:var(--olive)}
+.vale .m{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);margin-top:0.8vh;text-transform:uppercase;white-space:nowrap}
+.vale .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600;color:var(--terra)}
+.vale .v.pos{color:var(--olive)}
+.pendente{border:3px dashed var(--mustard);background:#FFF7D6;padding:2.4vh 2vw;max-width:56vw}
+.pendente p{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);text-transform:uppercase;letter-spacing:0.06em;color:#7A6020;margin-bottom:1.2vh}
+.pendente ul{margin-left:2vw}
+.pendente li{font-size:var(--fs-body);color:var(--ink-soft);padding:0.4vh 0}
+@media print{.ar .fm,.ar .pp{width:calc(var(--a) / 7 * 100%)}.vale .b{height:var(--h)}}
+
+/* ===== peças do vídeo 10 ===== */
+.circ{width:100%;max-height:52vh;display:block}
+.circ circle{transform-origin:150px 150px;transform:scale(.2);opacity:0;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s;stroke-width:3}
+.slide.on .circ circle{transform:scale(1);opacity:1}
+.slide.on .circ .c2{transition-delay:.3s}.slide.on .circ .c3{transition-delay:.6s}
+.circ .c1{fill:#E4EAD2;stroke:var(--olive)}.circ .c2{fill:rgba(239,230,204,.55);stroke:var(--mustard)}.circ .c3{fill:rgba(245,228,216,.35);stroke:var(--terra)}
+.circ text{font-family:'IBM Plex Mono',monospace;font-size:14px;fill:#3A3833;text-transform:uppercase;letter-spacing:.06em}
+.opcoes{display:flex;flex-direction:column;gap:1.4vh;max-width:58vw;margin-top:1vh}
+.op{background:#fff;border:1px solid var(--rule);border-left:6px solid var(--rule);padding:1.6vh 1.4vw;font-size:var(--fs-body);color:var(--ink-soft);line-height:1.3;transition:background .4s,border-color .4s,opacity .4s}
+.marca{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--olive);margin-top:1.6vh;text-transform:uppercase;letter-spacing:0.08em}
+.esq:has(.marca.vis) .op{opacity:.45}
+.esq:has(.marca.vis) .op.melhor{opacity:1;background:var(--success-bg);border-left-color:var(--olive);color:var(--ink)}
+ul.mini-l{list-style:none}
+ul.mini-l li{font-size:var(--fs-small);padding:0.5vh 0;color:var(--ink);line-height:1.25}
+ul.mini-l li::before{content:"› ";color:var(--stone-light)}
+.tbl.tarefas td{font-size:var(--fs-small);padding-top:0.9vh;padding-bottom:0.9vh}
+.tbl.tarefas td:nth-child(2) b{color:var(--terra)}
+.tbl.tarefas tr.alerta td:nth-child(3){color:var(--terra);font-weight:600}
+@media print{.circ circle{transform:none;opacity:1}}
+
+/* ===== peças do vídeo 11 ===== */
+.maos{display:flex;gap:1.6vw;margin-top:3vh;flex-wrap:wrap;max-width:62vw}
+.maos span{border:2px solid var(--rule);background:#fff;padding:1.4vh 1.6vw;font-size:var(--fs-body);color:var(--ink)}
+.etapas .step.destaque{border-color:var(--terra);border-width:3px;font-weight:600}
+.folha{background:#FFFDF4;border:1px solid var(--rule);box-shadow:0 4px 16px rgba(26,26,23,.1);padding:2.4vh 1.6vw;display:flex;flex-direction:column;gap:1.2vh;transform:rotate(-2deg);position:relative;overflow:hidden;background-image:repeating-linear-gradient(transparent 0 4.6vh,#D6E1EA 4.6vh calc(4.6vh + 1px))}
+.folha span{font-family:'Fraunces',serif;font-style:italic;font-size:var(--fs-small);color:#3B4A6B}
+.folha .t{font-family:'IBM Plex Mono',monospace;font-style:normal;font-size:var(--fs-mono);text-transform:uppercase;color:var(--stone)}
+.folha .mancha{position:absolute;right:-2vw;bottom:-3vh;width:12vw;height:12vw;border-radius:50%;background:radial-gradient(rgba(120,90,60,.35),rgba(120,90,60,0) 70%)}
+.dois-forms{display:flex;gap:3vw;align-items:flex-start;margin:1vh 0 2.4vh}
+.form-x{background:#fff;border:1px solid var(--rule);border-top:6px solid var(--terra);padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh;min-width:22vw}
+.form-x.bom{border-top-color:var(--olive)}
+.form-x .cab{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;color:var(--stone)}
+.form-x .campos{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-stat);color:var(--terra);line-height:1}
+.form-x .linha{border:1px solid var(--rule);padding:0.8vh 0.8vw;font-size:var(--fs-small);color:var(--ink-soft)}
+.form-x .res{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600;text-transform:uppercase;color:var(--olive)}
+.form-x .res.ruim{color:var(--terra)}
+.tbl.caixa-t td{font-size:var(--fs-small);padding-top:0.9vh;padding-bottom:0.9vh}
+.tbl.caixa-t{max-width:70vw}
+.fluxo3{display:flex;align-items:stretch;gap:1vw;max-width:88vw;margin:1vh 0 2.4vh}
+.fluxo3 .fx{flex:1;background:#fff;border:1px solid var(--rule);padding:1.8vh 1.2vw;display:flex;flex-direction:column;gap:1vh;font-size:var(--fs-small);color:var(--ink-soft)}
+.fluxo3 .fx .cab{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;color:var(--olive);font-weight:600}
+.fluxo3 .ar{display:flex;align-items:center;font-size:var(--fs-h2);color:var(--stone-light)}
+.hist{width:56vw;display:block;margin:0 0 2vh}
+.hist .hb{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d)}
+.hist.vis .hb{transform:scaleY(1)}
+.hist .leve{fill:var(--terra)}.hist .medio{fill:var(--olive)}.hist .pesado{fill:var(--mustard)}
+.hist .corte{stroke:var(--ink-soft);stroke-width:2;stroke-dasharray:6 5}
+.hist .base{stroke:var(--ink-soft);stroke-width:2}
+.hist text.t{font-family:'IBM Plex Mono',monospace;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+.hist text.leve{fill:var(--terra)}.hist text.medio{fill:var(--olive)}.hist text.pesado{fill:#7A6020}
+.tbl.inv td{font-size:var(--fs-small);padding-top:0.8vh;padding-bottom:0.8vh;color:var(--ink-soft);font-weight:400}
+.tbl.inv td.num b{color:var(--terra)}
+.tbl.papeis{max-width:88vw}
+.tbl.papeis td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.papeis td:nth-child(odd){font-weight:600;color:var(--ink);white-space:nowrap;padding-right:1vw}
+.tbl.papeis td:nth-child(2){padding-right:3vw}
+@media print{.hist .hb{transform:none}}
+
+/* ===== peças do vídeo 12 ===== */
+.cover h1{font-size:min(5.6vw,10vh);max-width:60vw}
+.camadas{display:flex;gap:3vw;align-items:flex-end;margin-top:1vh;max-width:70vw}
+.cam-l{display:flex;flex-direction:column;align-items:flex-start;width:19vw}
+.pilha{height:36vh;width:9vw;display:flex;flex-direction:column-reverse;border-bottom:3px solid var(--ink-soft);margin-bottom:1.4vh}
+.pilha div{width:100%;transform-origin:bottom;transform:scaleY(0);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.cam-l.vis .pilha div{transform:scaleY(1)}
+.cam-l.vis .pilha .p2{transition-delay:.25s}.cam-l.vis .pilha .p3{transition-delay:.5s}
+.pilha .p1{height:55%;background:var(--terra)}.pilha .p2{height:20%;background:var(--mustard)}.pilha .p3{height:20%;background:var(--olive)}
+.cam-l .sig{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-lead);font-weight:700;color:var(--ink)}
+.cam-l .perg{font-family:'Fraunces',serif;font-size:var(--fs-body);font-weight:600;color:var(--terra)}
+.cam-l .o-que{font-size:var(--fs-small);color:var(--stone);line-height:1.25;margin-top:0.6vh}
+.escala3{display:flex;flex-direction:column;gap:2vh;max-width:70vw;margin:1vh 0 2.4vh}
+.e3{display:grid;grid-template-columns:9vw 1fr 11vw 15vw;align-items:center;gap:1.2vw}
+.e3 .ha{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--ink)}
+.e3 .tr{height:5.5vh;background:#fff;border:1px solid var(--rule)}
+.e3 .bb{height:100%;width:0;background:var(--terra);transition:width 1s cubic-bezier(.25,.8,.25,1) .1s}
+.e3 .bb.ok{background:var(--olive)}
+.e3.vis .bb{width:var(--p)}
+.e3 .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600;color:var(--terra);white-space:nowrap}
+.e3 .l{font-size:var(--fs-small);color:var(--stone)}
+.tbl tr.total.neg td{background:var(--critical-bg);border-top-color:var(--terra);color:var(--terra)}
+.escada{display:flex;flex-direction:column;gap:1.4vh;max-width:72vw;margin:0.4vh 0 2vh}
+.eh,.er{display:grid;grid-template-columns:10vw 1fr 15vw;align-items:center;gap:1.2vw}
+.trk-h{position:relative;height:6.6vh}
+.trk-h .mk:nth-child(2){bottom:3.2vh}
+.trk-h .mk{position:absolute;bottom:0;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--ink-soft);white-space:nowrap}
+.trk-h .mk i{font-style:normal}
+.er .rot{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--ink);white-space:nowrap}
+.er .trk{position:relative;height:5.4vh;background:#fff;border:1px solid var(--rule)}
+.er .bar{height:100%;width:0;transition:width 1s cubic-bezier(.25,.8,.25,1) .1s}
+.er.vis .bar{width:var(--p)}
+.er .ln{position:absolute;top:-0.6vh;bottom:-0.6vh;width:0;border-left:2px dashed var(--ink-soft)}
+.bar.r4{background:var(--olive)}.bar.r3{background:#7E8B4E}.bar.r2{background:var(--mustard)}.bar.r1{background:var(--terra)}
+.er .ver{font-size:var(--fs-small);font-weight:600}
+.ver.r4{color:var(--olive)}.ver.r3{color:#5F6B34}.ver.r2{color:#7A6020}.ver.r1{color:var(--terra)}
+.tbl.leituras td{font-size:var(--fs-small);padding-top:1.2vh;padding-bottom:1.2vh}
+.chip-l{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);padding:0.6vh 0.9vw;color:var(--paper);white-space:nowrap}
+.chip-l.r1{background:var(--terra)}.chip-l.r2{background:var(--mustard);color:#3A2F08}.chip-l.r3{background:#7E8B4E}.chip-l.r4{background:var(--olive)}
+@media print{.pilha div{transform:none}.e3 .bb,.er .bar{width:var(--p)}}
+
+/* ===== peças do vídeo 13 ===== */
+.mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;max-width:88vw;margin-top:1vh}
+.mg{background:#fff;border:1px solid var(--rule);border-top:6px solid var(--terra);padding:2.2vh 1.4vw;display:flex;flex-direction:column;gap:1vh}
+.mg:nth-child(2){border-top-color:var(--mustard)}.mg:nth-child(3){border-top-color:var(--olive)}
+.mg .nome{font-family:'Fraunces',serif;font-size:var(--fs-lead);font-weight:600;color:var(--ink);line-height:1.1}
+.mg .conta{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone);text-transform:uppercase;letter-spacing:0.04em;line-height:1.35}
+.mg .perg{font-size:var(--fs-body);color:var(--ink-soft);line-height:1.25}
+.mg .prazo{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--terra);font-weight:600}
+.tbl .num.neg{color:var(--terra)}
+.tbl.abcd td{font-size:var(--fs-body);padding-top:1vh;padding-bottom:1vh}
+.tbl.abcd td:first-child{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);padding-right:2vw}
+.tbl.abcd .d{font-size:var(--fs-small);background:var(--paper-warm);padding:0.5vh 0.8vw;color:var(--ink)}
+.tbl.abcd.zonas td{font-size:var(--fs-small)}
+.tbl.abcd.zonas td:first-child{font-family:'IBM Plex Sans',sans-serif;font-weight:600;white-space:nowrap}
+.tbl.indices td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.indices td:first-child{white-space:nowrap;padding-right:1.6vw}
+.tbl.indices b{color:var(--ink)}
+.ton{display:flex;flex-direction:column;gap:2vh;margin:1vh 0 2.4vh}
+.tr3{display:grid;grid-template-columns:7vw 1fr 9vw;align-items:center;gap:1vw}
+.tr3 .z{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);text-transform:uppercase;color:var(--stone)}
+.tr3 .tk{position:relative;height:6vh;background:#fff;border:1px solid var(--rule)}
+.tr3 .b{height:100%;width:0;transition:width 1s cubic-bezier(.25,.8,.25,1) .1s}
+.tr3.vis .b{width:var(--p)}
+.tr3 .b.ok{background:var(--olive)}.tr3 .b.neg{background:var(--terra)}
+.tr3 .lim{position:absolute;top:-0.8vh;bottom:-0.8vh;border-left:3px dashed var(--ink-soft)}
+.tr3 .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);font-weight:600;color:var(--olive);white-space:nowrap}
+.tr3 .v.neg{color:var(--terra)}
+@media print{.tr3 .b{width:var(--p)}}
+
+/* ===== peças do vídeo 14 ===== */
+.cover h1{max-width:60vw}
+.waffle{display:grid;grid-template-columns:repeat(10,1fr);gap:0.4vw;width:100%;max-width:52vh}
+.waffle i{display:block;aspect-ratio:1;background:var(--rule-soft);border-radius:2px;transition:background .3s}
+.slide.on .waffle i{animation:pinta .35s forwards;animation-delay:calc(var(--k) * 18ms)}
+@keyframes pinta{to{background:var(--c)}}
+.leg-w{list-style:none;margin-top:1vh}
+.leg-w li{font-size:var(--fs-body);color:var(--ink-soft);padding:1vh 0;display:flex;align-items:center;gap:1vw}
+.leg-w i{display:inline-block;width:2.4vh;height:2.4vh;border-radius:2px;flex:0 0 auto}
+.leg-w b{font-family:'IBM Plex Mono',monospace;color:var(--ink);min-width:6vw}
+.w1{background:var(--terra)}.w2{background:var(--mustard)}.w3{background:#7E8B4E}.w4{background:var(--olive-deep)}
+.formula-p{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body)!important;color:var(--terra)!important;margin:0.6vh 0!important}
+.folga{max-width:66vw;margin:5vh 0 6.5vh}
+.regua{position:relative;height:5.6vh;background:linear-gradient(90deg,var(--critical-bg),#F1ECDA 60%,var(--success-bg));border:1px solid var(--rule)}
+.regua .mk{position:absolute;top:-1vh;bottom:-1vh;border-left:3px solid var(--ink-soft)}
+.regua .mk i{position:absolute;bottom:100%;transform:translateX(-50%);font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);white-space:nowrap;color:var(--ink);padding-bottom:0.4vh}
+.regua .mk.baixo i{bottom:auto;top:100%;padding-top:0.4vh}
+.regua .mk.m1 i{color:var(--terra)}
+.regua .mk.m3{border-left-color:var(--olive)}
+.regua .mk.m3 i{color:var(--olive);font-weight:600}
+.curva{width:100%;display:block;margin-top:1vh;overflow:visible}
+.curva .eixo{stroke:var(--ink-soft);stroke-width:2}
+.curva .linha{stroke:var(--terra);stroke-width:4;stroke-dasharray:560;stroke-dashoffset:560}
+.curva.vis .linha{transition:stroke-dashoffset 1.6s ease;stroke-dashoffset:0}
+.curva text{font-family:'IBM Plex Mono',monospace;font-size:13px;fill:#6B6960;text-transform:uppercase}
+.tbl.nitro td{font-size:var(--fs-small);padding-top:0.9vh;padding-bottom:0.9vh}
+.tbl.nitro .ok{color:var(--olive);font-weight:600}.tbl.nitro .nao{color:var(--terra);font-weight:600}
+@media print{.waffle i{background:var(--c)}.curva .linha{stroke-dashoffset:0}}
+
+/* ===== peças do vídeo 15 ===== */
+.cover h1{max-width:60vw}
+.cals{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;max-width:72vw;margin:0 0 2vh}
+.cal{background:#fff;border:1px solid var(--rule);padding:1.2vh 0.8vw}
+.cal-n{font-family:'Fraunces',serif;font-size:var(--fs-body);font-weight:600;color:var(--ink)}
+.cal svg{width:100%;display:block;overflow:visible}
+.cal .zero,.soja .zero{stroke:var(--ink-soft);stroke-width:1.5;stroke-dasharray:4 4}
+.cal .area{fill:rgba(168,85,46,.12)}
+.cal .lin,.soja .lin{fill:none;stroke:var(--olive-deep);stroke-width:3.5;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900}
+.cal.vis .lin,.soja.vis .lin{transition:stroke-dashoffset 1.6s ease .2s;stroke-dashoffset:0}
+.cal text,.soja text{font-family:'IBM Plex Mono',monospace;font-size:15px}
+.cal .vmin,.soja .vmin{fill:var(--terra);font-weight:600}
+.cal .vfim,.soja .vfim{fill:var(--olive);font-weight:600}
+.cal .mes,.soja .mes{fill:#6B6960;font-size:13px;text-transform:uppercase}
+.soja{width:52vw;display:block;overflow:visible;margin-bottom:0.6vh}
+.soja .bx{transform-box:fill-box;transform-origin:top;transform:scaleY(0);transition:transform .5s ease;transition-delay:var(--d)}
+.soja .bx.pos{transform-origin:bottom;fill:var(--olive)}
+.soja .bx.neg{fill:var(--terra)}
+.soja.vis .bx{transform:scaleY(1)}
+.soja .dentro{fill:#FAF7F0;font-weight:600;font-size:14px}
+.leg-s{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;margin-bottom:1.6vh}
+.leg-s span::before{content:"";display:inline-block;width:1.6vw;height:1.2vh;margin-right:0.5vw;vertical-align:middle}
+.leg-s .l1::before{background:var(--terra)}.leg-s .l2::before{background:var(--olive)}.leg-s .l3::before{height:3px;background:var(--olive-deep)}
+@media print{.cal .lin,.soja .lin{stroke-dashoffset:0}.soja .bx{transform:none}}
+
+/* ===== peças do vídeo 16 ===== */
+.cover h1{max-width:60vw}
+.tbl.taxas td{font-size:var(--fs-body);padding-top:0.9vh;padding-bottom:0.9vh}
+.panel .grande{white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:min(3.4vw,6vh)!important;font-weight:600;color:var(--terra)!important;margin:0.6vh 0!important;line-height:1.1}
+.tbl.enq{max-width:72vw}
+.tbl.enq td{font-size:var(--fs-small);padding-top:1.1vh;padding-bottom:1.1vh}
+.tbl.enq b{color:var(--ink)}
+.degraus{display:flex;align-items:flex-end;gap:2vw;height:44vh;max-width:64vw;margin:1vh 0 1vh;border-bottom:3px solid var(--ink-soft)}
+.dg{flex:1;height:var(--h);background:var(--olive);display:flex;flex-direction:column;justify-content:flex-start;padding:1vh 0.8vw;position:relative;transform-origin:bottom}
+.dg:nth-child(2){background:#7E8B4E}.dg:nth-child(3){background:var(--mustard)}.dg:nth-child(4){background:var(--terra)}
+.dg .t{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-lead);font-weight:700;color:var(--paper)}
+.dg .o{position:absolute;bottom:calc(100% + 0.8vh);left:0;right:0;font-size:var(--fs-small);line-height:1.2;color:var(--ink)}
+.dg:nth-child(1) .o,.dg:nth-child(2) .o{bottom:calc(100% + 0.8vh)}
+.cet{display:flex;align-items:center;gap:1.4vw;margin:2vh 0 3vh}
+.cet .ct{background:#fff;border:1px solid var(--rule);border-top:6px solid var(--olive);padding:1.8vh 1.4vw;display:flex;flex-direction:column;min-width:13vw}
+.cet .ct.neg{border-top-color:var(--terra)}
+.cet .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-stat);font-weight:600;color:var(--ink);line-height:1.1}
+.cet .ct.neg .v{color:var(--terra)}
+.cet .l{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;color:var(--stone)}
+.cet .seta{font-size:var(--fs-h2);color:var(--stone-light)}
+.cr{grid-template-columns:17vw 1fr 12vw!important}
+.parc{width:52vw;display:block;overflow:visible;margin-bottom:0.6vh}
+.parc .base{stroke:var(--ink-soft);stroke-width:2}
+.parc .am{fill:var(--mustard)}.parc .ju{fill:var(--terra)}
+.parc .pb{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform .5s ease;transition-delay:var(--d)}
+.parc.vis .pb{transform:scaleY(1)}
+.parc .sob{stroke:var(--olive);stroke-width:3;stroke-dasharray:8 6}
+.parc text{font-family:'IBM Plex Mono',monospace;font-size:15px}
+.parc .ano{fill:#6B6960}
+.parc .tsob{fill:var(--olive);font-weight:600}
+.parc .tmai{fill:var(--terra);font-weight:600}
+.leg-s{display:flex;gap:2vw;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;margin-bottom:1.6vh}
+.leg-s span::before{content:"";display:inline-block;width:1.6vw;height:1.2vh;margin-right:0.5vw;vertical-align:middle}
+.leg-s .l1::before{background:var(--terra)}.leg-s .l2::before{background:var(--mustard)}.leg-s .l3::before{height:3px;background:var(--olive)}
+@media print{.parc .pb{transform:none}}
+
+.tbl.passos{max-width:62vw}
+.tbl.passos td{font-size:var(--fs-small);padding-top:1.3vh;padding-bottom:1.3vh;vertical-align:top;line-height:1.35}
+.tbl.passos td:first-child{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:0.06em;color:var(--terra);white-space:nowrap;padding-right:2vw;padding-top:1.7vh}
+/* fundo branco é o padrão dos vídeos; tecla B (ou ?creme) volta ao creme */
+body:not(.creme){--paper:#FFFFFF;--paper-warm:#F3F1EB}
+body:not(.creme) .aperto .ap-lado,body:not(.creme) .ar .trilho,body:not(.creme) .bt .trilho,body:not(.creme) .cal,body:not(.creme) .caminhos4 .cm,body:not(.creme) .cartao,body:not(.creme) .cet .ct,body:not(.creme) .cr .eixo,body:not(.creme) .e3 .tr,body:not(.creme) .er .trk,body:not(.creme) .etapas .step,body:not(.creme) .ex,body:not(.creme) .fluxo3 .fx,body:not(.creme) .form-x,body:not(.creme) .maos span,body:not(.creme) .mg,body:not(.creme) .mini,body:not(.creme) .nove span,body:not(.creme) .op,body:not(.creme) .panel,body:not(.creme) .peso,body:not(.creme) .propbar .track,body:not(.creme) .r6,body:not(.creme) .sete span,body:not(.creme) .soma span,body:not(.creme) .tr3 .tk,body:not(.creme) .upa .lado,body:not(.creme) .upa-box,body:not(.creme) .vago div{background:#F6F4EF}
+/* ===== tela pequena e celular: navegação e leitura como nas aulas do site ===== */
+.hud{display:none;position:fixed;left:0;right:0;bottom:0;justify-content:space-between;align-items:center;gap:16px;padding:10px 16px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);background:linear-gradient(rgba(250,247,240,0),var(--paper) 40%);pointer-events:none;z-index:12}
+.hud .hud-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hud .hud-n{white-space:nowrap}
+.hud .mais{display:inline-block;width:1em;color:var(--accent);font-weight:700;margin-left:0.4em}
+body.ver-num .hud{display:flex}
+body.ver-num .contador{display:none}
+@media (hover:none) and (pointer:coarse), (max-width:900px), (max-height:500px){
+  :root{
+    --fs-body:max(15px,min(2.05vw,3.65vh));
+    --fs-lead:max(17px,min(2.45vw,4.35vh));
+    --fs-small:max(13px,min(1.6vw,2.85vh));
+    --fs-mono:max(11px,min(1.15vw,2.05vh));
+    --fs-h2:max(24px,min(3.7vw,6.6vh));
+    --fs-stat:max(30px,min(4.6vw,8.2vh));
+  }
+  .hud{display:flex}
+  .slide{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:56px}
+  .slide>*{flex-shrink:0}
+  .cam{display:none!important}
+}
+@media (orientation:portrait) and (max-width:900px){
+  :root{--fs-body:16px;--fs-lead:18px;--fs-small:14px;--fs-mono:11.5px;--fs-h2:26px;--fs-stat:34px}
+  .slide{padding:44px 20px 72px;justify-content:flex-start}
+  .cover{justify-content:flex-start;padding-top:56px}
+  .cover h1{font-size:40px}
+  .cover .cred{position:static;margin-top:28px}
+  h2{margin-bottom:18px}
+  .eyebrow{margin-bottom:12px}
+  .slide [style*="max-width"],h2,.esq,.esq.estreita,.callout,.tbl,ul.itens,.etapas,.propbar,.refs p,.paineis,.cartoes,.fotos{max-width:none!important}
+  .dir{position:static!important;width:100%!important;max-width:none!important;margin:18px 0 0!important;transform:none!important}
+  .dir figure img{max-height:34vh}
+  .slide img,.slide svg{max-width:100%}
+  .paineis,.cartoes{grid-template-columns:1fr!important;gap:12px}
+  .panel,.cartao{padding:14px 16px}
+  .stats{gap:16px 28px}
+  .fotos{flex-direction:column;gap:12px}
+  .fotos img{height:24vh}
+  .tbl{display:block;overflow-x:auto;width:100%}
+  .tbl th,.tbl td{padding-right:12px}
+  .callout{padding:12px 14px}
+}
+/* celular em pé: peças de cada vídeo */
+@media (orientation:portrait) and (max-width:900px){
+  .cover .cred{flex-direction:column;align-items:flex-start;gap:10px}
+  .bt,.cr,.ar,.eh,.er,.tr3{grid-template-columns:minmax(64px,28%) 1fr max-content!important;gap:8px!important}
+  .e3{grid-template-columns:minmax(56px,22%) 1fr max-content max-content!important;gap:6px!important}
+  .caminhos4,.cartoes.c4,.eixos4,.riscos6,.nove{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;max-width:none!important}
+  .mg3,.cals,.cartoes.c3x2,.upa,.upa-box .subs{grid-template-columns:1fr!important;gap:10px!important;max-width:none!important}
+  .aperto{flex-direction:column;max-width:none!important}
+  .mini .mt{font-size:18px}
+  .slide h2[style*="font-size"]{font-size:30px!important}
+  .slide p[style*="font-size"]{font-size:20px!important}
+  .duas,.hist,.parc,.vp{width:100%!important}
+  .soja{width:86%!important}
+  .tbl td:not(.num),.tbl .chip,.chip-l{white-space:normal!important}
+  .cover h1{font-size:34px}
+  .regua-p .rp-l i,.regua .mk i{white-space:normal!important;width:76px;text-align:center;font-size:10.5px!important;line-height:1.2}
+  .tbl th{white-space:normal!important;letter-spacing:0!important}
+  .leg-d,.leg-a{flex-direction:column;gap:6px;max-width:none!important}
+  .leg-s,.leg-anos{flex-wrap:wrap;gap:6px 14px}
+  .leg-d span,.leg-a span{width:auto!important;min-width:0!important;padding:4px 0 0 0!important}
+  .dolar{height:56px;max-width:none!important}
+  .dolar .pd span{font-size:12px}
+  .peso{height:52px;max-width:none!important}
+}
+
+/* ===== matemática dos juros: calculadora, notas, curva, sacas, balança, simulador ===== */
+.calc{background:var(--olive-deep);border-radius:1.2vh;padding:1.3vh .9vw 1.5vh;box-shadow:0 1vh 2.4vh rgba(42,51,28,.22)}
+.calc .tela{background:#E6EAD6;border-radius:.6vh;padding:.8vh .7vw;text-align:right;margin-bottom:1.1vh;font-family:'IBM Plex Mono',monospace;color:var(--olive-deep);overflow:hidden}
+.calc .fita{font-size:var(--fs-mono);min-height:2.6vh;white-space:nowrap;opacity:.72}
+.calc .res{font-size:min(2.5vw,4.4vh);font-weight:600;line-height:1.15;white-space:nowrap}
+.teclas{display:grid;grid-template-columns:repeat(4,1fr);gap:.6vh .35vw}
+.tec{height:5.2vh;display:flex;align-items:center;justify-content:center;border-radius:.5vh;background:#55633B;color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);transition:background .12s,transform .12s}
+.tec.zero{grid-column:span 3}
+.tec.on{background:var(--mustard);color:#1A1A17;transform:scale(.92)}
+.alug{display:flex;gap:2vw;align-items:flex-start;max-width:68vw;margin-bottom:1.6vh}
+.notas-fig{flex:0 0 25vw;margin:0}
+.notas{display:grid;grid-template-columns:repeat(10,1fr);gap:.3vh .25vw}
+.notas i{display:block;aspect-ratio:2/1;background:#9AA97A;border-radius:2px;transition:background .45s,transform .45s;transition-delay:calc(var(--k)*30ms)}
+.slide:has(.marca9.vis) .notas i:nth-child(-n+9){background:var(--terra);transform:translateY(-.5vh)}
+.linhas p{font-size:var(--fs-body);margin-bottom:1.5vh;line-height:1.28}
+.bola{width:47vw;display:block;overflow:visible;margin:.4vh 0 1.2vh}
+.bola .eixo{stroke:var(--ink-soft);stroke-width:2}
+.bola .lin{fill:none;stroke-width:4;stroke-dasharray:1;stroke-dashoffset:1}
+.bola.vis .lin{transition:stroke-dashoffset 1.8s ease;stroke-dashoffset:0}
+.bola .l1{stroke:var(--olive)}.bola .l2{stroke:var(--terra)}
+.bola text{font-family:'IBM Plex Mono',monospace;font-size:16px;fill:#6B6960}
+.bola .t1{fill:var(--olive);font-weight:600}.bola .t2{fill:var(--terra);font-weight:600}
+.jrs{display:flex;flex-direction:column;gap:1.25vh;max-width:67vw}
+.jr{display:grid;grid-template-columns:19vw 1fr 11vw 7vw;gap:1vw;align-items:center}
+.jr.topo{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--stone);text-align:right}
+.jr .nome{font-size:var(--fs-small);font-weight:600;color:var(--ink);line-height:1.1}
+.jr .nome small{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:400;color:var(--stone)}
+.jr .eixo{height:3.4vh;background:#F6F4EF;border:1px solid var(--rule)}
+.jr .b{height:100%;width:0;min-width:2px;background:var(--olive);transition:width 1.1s cubic-bezier(.25,.8,.25,1)}
+.jr .b.neg{background:var(--terra)}
+.jr.vis .b{width:var(--p)}
+.jr .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);font-weight:600;color:var(--olive);text-align:right;white-space:nowrap}
+.jr .v.neg{color:var(--terra)}
+.jr .sc{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--ink-soft);text-align:right;white-space:nowrap}
+.bal{width:100%;display:block;overflow:visible}
+.bal path,.bal line{fill:none;stroke:var(--olive-deep);stroke-width:3}
+.bal circle{fill:var(--olive-deep)}
+.bal .cuba{fill:var(--success-bg);stroke:var(--olive)}.bal .cuba.c2{fill:var(--critical-bg);stroke:var(--terra)}
+.bal .trav{transform-origin:160px 52px;transition:transform 1s cubic-bezier(.3,1.5,.5,1)}
+.bal .prato{transition:transform 1s cubic-bezier(.3,1.5,.5,1)}
+.bal text{text-anchor:middle;font-family:'IBM Plex Mono',monospace}
+.bal .rot{font-size:16px;fill:#3A3833}.bal .val{font-size:18px;font-weight:600;fill:#1A1A17}
+.simu{display:grid;grid-template-columns:1fr 1fr;gap:2.2vw;max-width:70vw}
+.sc-ctl label{display:block;font-size:var(--fs-small);color:var(--ink-soft);margin-bottom:1.6vh}
+.sc-ctl output{float:right;font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink)}
+.sc-ctl input[type=range]{width:100%;accent-color:var(--olive);margin-top:.7vh;height:2.6vh;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:.7vh .5vw}
+.chips button{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);padding:.8vh .6vw;background:#fff;border:1px solid var(--rule);border-radius:2px;cursor:pointer;color:var(--ink-soft)}
+.chips button.on{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+.sc-res .gran .num{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:var(--fs-stat);line-height:1.05;color:var(--terra);white-space:nowrap}
+.sc-res .gran .lbl{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--stone)}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:1vw;margin:1.6vh 0}
+.dupla b{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-body);color:var(--ink);white-space:nowrap}
+.dupla span{font-size:var(--fs-mono);color:var(--stone);line-height:1.25;display:block}
+.cb{margin-bottom:1vh}
+.cb .ba{display:block;height:2vh;min-width:2px;max-width:100%;transition:width .35s}
+.ba.terra{background:var(--terra)}.ba.oliva{background:var(--olive)}
+.cb em{font-style:normal;font-size:var(--fs-mono);color:var(--stone)}.cb em b{color:var(--ink)}
+@media print{.jr .b{width:var(--p)}.notas i:nth-child(-n+9){background:var(--terra)}.bola .lin{stroke-dashoffset:0}}
+@media (orientation:portrait) and (max-width:900px){
+  .alug{flex-direction:column;max-width:none}
+  .notas-fig{flex:none;width:100%}
+  .calc{max-width:290px}
+  .calc .res{font-size:26px}.tec{height:38px}
+  .bola{width:82%}
+  .jrs{max-width:none;gap:10px}
+  .jr{grid-template-columns:34% 1fr auto 40px;gap:6px}
+  .jr .eixo{height:16px}
+  .simu{grid-template-columns:1fr;max-width:none}
+  .chips button{padding:6px 8px}
+  .bal{max-width:280px}
+  .tec.zero{grid-column:span 3}
+}
+.cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
+.cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
+@media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+<section class="slide cover">
+  <div class="eyebrow">Avaliar e planejar</div>
+  <h1>Crédito rural:<br>quando vale a <em>pena</em></h1>
+  <div class="sub">o dinheiro emprestado também é custo</div>
+  <div class="dir" style="--w:30vw;top:14vh">
+    <figure>
+      <img src="img/cooperativa-credito-sertao-santana.jpg" alt="Agência de cooperativa de crédito em cidade do interior" onerror="this.style.display='none'">
+      <figcaption>Sertão Santana/RS · CC BY-SA 3.0 BR, Paulo rsmenezes</figcaption>
+    </figure>
+  </div>
+  <div class="cred">
+    <img src="img/logo-politecnico.png" alt="Colégio Politécnico da UFSM" onerror="this.style.display='none'">
+    <div class="lines"><span>Prof. Róberson Macedo de Oliveira</span><span class="site"><img src="img/marca.svg" alt="" onerror="this.style.display='none'">produzirnaobasta.com.br</span></div>
+  </div>
+</section>
+
+<section class="slide" style="justify-content:center;padding-bottom:20vh">
+  <div class="eyebrow"><b>A pergunta</b></div>
+  <h2 style="font-size:min(4.6vw,8vh);max-width:62vw">Antes de perguntar quanto o banco empresta, pergunte <em>quanto aquilo vai render</em>.</h2>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Crédito</b> · dinheiro emprestado, que volta com juros</div>
+  <h2>Crédito é alavanca</h2>
+  <div class="paineis" style="max-width:64vw">
+    <div class="panel f"><h3>No lugar certo</h3><p>Faz hoje o que levaria anos, e o resultado paga a conta: a ordenha que melhora a qualidade, a correção do solo, o custeio de uma safra que se paga.</p></div>
+    <div class="panel f"><h3 class="alt">No lugar errado</h3><p>A alavanca vira contra quem a segura: o que não gera renda, ou o que rende menos que os juros.</p></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Matemática básica</b> · o que é juro</div>
+  <h2>Juro é o aluguel do dinheiro</h2>
+  <div class="alug">
+    <figure class="notas-fig f"><div class="notas" role="img" aria-label="100 notas de 100 reais; 9 delas em destaque"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i><i style="--k:13"></i><i style="--k:14"></i><i style="--k:15"></i><i style="--k:16"></i><i style="--k:17"></i><i style="--k:18"></i><i style="--k:19"></i><i style="--k:20"></i><i style="--k:21"></i><i style="--k:22"></i><i style="--k:23"></i><i style="--k:24"></i><i style="--k:25"></i><i style="--k:26"></i><i style="--k:27"></i><i style="--k:28"></i><i style="--k:29"></i><i style="--k:30"></i><i style="--k:31"></i><i style="--k:32"></i><i style="--k:33"></i><i style="--k:34"></i><i style="--k:35"></i><i style="--k:36"></i><i style="--k:37"></i><i style="--k:38"></i><i style="--k:39"></i><i style="--k:40"></i><i style="--k:41"></i><i style="--k:42"></i><i style="--k:43"></i><i style="--k:44"></i><i style="--k:45"></i><i style="--k:46"></i><i style="--k:47"></i><i style="--k:48"></i><i style="--k:49"></i><i style="--k:50"></i><i style="--k:51"></i><i style="--k:52"></i><i style="--k:53"></i><i style="--k:54"></i><i style="--k:55"></i><i style="--k:56"></i><i style="--k:57"></i><i style="--k:58"></i><i style="--k:59"></i><i style="--k:60"></i><i style="--k:61"></i><i style="--k:62"></i><i style="--k:63"></i><i style="--k:64"></i><i style="--k:65"></i><i style="--k:66"></i><i style="--k:67"></i><i style="--k:68"></i><i style="--k:69"></i><i style="--k:70"></i><i style="--k:71"></i><i style="--k:72"></i><i style="--k:73"></i><i style="--k:74"></i><i style="--k:75"></i><i style="--k:76"></i><i style="--k:77"></i><i style="--k:78"></i><i style="--k:79"></i><i style="--k:80"></i><i style="--k:81"></i><i style="--k:82"></i><i style="--k:83"></i><i style="--k:84"></i><i style="--k:85"></i><i style="--k:86"></i><i style="--k:87"></i><i style="--k:88"></i><i style="--k:89"></i><i style="--k:90"></i><i style="--k:91"></i><i style="--k:92"></i><i style="--k:93"></i><i style="--k:94"></i><i style="--k:95"></i><i style="--k:96"></i><i style="--k:97"></i><i style="--k:98"></i><i style="--k:99"></i></div><figcaption>100 notas de R$ 100: R$ 10.000</figcaption></figure>
+    <div class="linhas">
+      <p class="f marca9"><strong>9%</strong> quer dizer 9 em cada 100.</p>
+      <p class="f" data-calc="C10000×9%">R$ 10.000 a 9% ao ano: <strong>R$ 900</strong> de juros.</p>
+      <p class="f" data-calc="C10000+900=">No fim do ano, voltam <strong>R$ 10.900</strong>.</p>
+    </div>
+  </div>
+  <div class="callout ok f" style="max-width:60vw">A conta é a mesma para o empréstimo e para a aplicação. Só muda quem recebe o aluguel.</div>
+  <div class="dir" style="--w:19vw;right:4vw;top:11vh">
+    <div class="calc" aria-hidden="true"><div class="tela"><div class="fita">&nbsp;</div><div class="res">0</div></div><div class="teclas"><span class="tec" data-k="C">C</span><span class="tec" data-k="%">%</span><span class="tec" data-k="÷">÷</span><span class="tec" data-k="×">×</span><span class="tec" data-k="7">7</span><span class="tec" data-k="8">8</span><span class="tec" data-k="9">9</span><span class="tec" data-k="−">−</span><span class="tec" data-k="4">4</span><span class="tec" data-k="5">5</span><span class="tec" data-k="6">6</span><span class="tec" data-k="+">+</span><span class="tec" data-k="1">1</span><span class="tec" data-k="2">2</span><span class="tec" data-k="3">3</span><span class="tec" data-k=",">,</span><span class="tec zero" data-k="0">0</span><span class="tec" data-k="=">=</span></div></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Matemática básica</b> · juro sobre juro</div>
+  <h2>1% ao mês não é 12% ao ano</h2>
+  <div class="linhas" style="max-width:62vw">
+    <p class="f" data-calc="C10000×1,01=">Mês 1: R$ 10.000 mais 1% dá <strong>R$ 10.100</strong>.</p>
+    <p class="f" data-calc="×1,01=">Mês 2: o juro do mês 1 também paga juro: <strong>R$ 10.201</strong>.</p>
+    <p class="f" data-calc="×1,01=×1,01=×1,01=×1,01=×1,01=×1,01=×1,01=×1,01=×1,01=×1,01=" data-vel="75">Mês 12: <strong>R$ 11.268</strong>. São 12,7% ao ano.</p>
+  </div>
+  <svg class="bola f" viewBox="0 0 660 222" role="img" aria-label="Em 12 meses, R$ 10.000 viram R$ 11.268 a 1% ao mês e R$ 23.818 a 7,5% ao mês">
+    <line x1="40" y1="190" x2="568" y2="190" class="eixo"/>
+    <path d="M40.0 190.0 L84.0 188.8 L128.0 187.6 L172.0 186.4 L216.0 185.2 L260.0 183.9 L304.0 182.7 L348.0 181.4 L392.0 180.1 L436.0 178.8 L480.0 177.5 L524.0 176.2 L568.0 174.9" pathLength="1" class="lin l1"/>
+    <path d="M40.0 190.0 L84.0 181.0 L128.0 171.4 L172.0 161.1 L216.0 149.9 L260.0 138.0 L304.0 125.1 L348.0 111.3 L392.0 96.4 L436.0 80.5 L480.0 63.3 L524.0 44.8 L568.0 25.0" pathLength="1" class="lin l2"/>
+    <text x="576" y="181" class="t1">R$ 11.268 · 1% ao mês</text>
+    <text x="576" y="31" class="t2">R$ 23.818 · 7,5% ao mês</text>
+    <text x="40" y="212" text-anchor="middle">0</text><text x="172" y="212" text-anchor="middle">3</text><text x="304" y="212" text-anchor="middle">6</text><text x="436" y="212" text-anchor="middle">9</text><text x="568" y="212" text-anchor="middle">12</text><text x="20" y="212" text-anchor="middle">mês</text>
+  </svg>
+  <div class="callout f" style="max-width:62vw">7,5% ao mês parece pouco, e vira 138% ao ano. <strong style="display:inline;font:inherit;text-transform:none;letter-spacing:0">Pergunte sempre a taxa ao ano.</strong></div>
+  <div class="dir" style="--w:19vw;right:4vw;top:11vh">
+    <div class="calc" aria-hidden="true"><div class="tela"><div class="fita">&nbsp;</div><div class="res">0</div></div><div class="teclas"><span class="tec" data-k="C">C</span><span class="tec" data-k="%">%</span><span class="tec" data-k="÷">÷</span><span class="tec" data-k="×">×</span><span class="tec" data-k="7">7</span><span class="tec" data-k="8">8</span><span class="tec" data-k="9">9</span><span class="tec" data-k="−">−</span><span class="tec" data-k="4">4</span><span class="tec" data-k="5">5</span><span class="tec" data-k="6">6</span><span class="tec" data-k="+">+</span><span class="tec" data-k="1">1</span><span class="tec" data-k="2">2</span><span class="tec" data-k="3">3</span><span class="tec" data-k=",">,</span><span class="tec zero" data-k="0">0</span><span class="tec" data-k="=">=</span></div></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Por que existe crédito rural</b> · R$ 10 mil por um ano, pagando tudo no fim</div>
+  <h2>O crédito comum é caro demais para financiar comida</h2>
+  <div class="jrs">
+    <div class="jr topo"><span></span><span></span><span>juros</span><span>sacas de soja</span></div>
+    <div class="jr f"><span class="nome">Pronaf, alimento básico<small>2% ao ano</small></span><div class="eixo"><div class="b pos" style="--p:0.44%"></div></div><span class="v pos" data-cont="200">R$ 200</span><span class="sc">≈ 2</span></div>
+    <div class="jr f"><span class="nome">Pronaf, soja<small>7,5%</small></span><div class="eixo"><div class="b pos" style="--p:1.67%"></div></div><span class="v pos" data-cont="750">R$ 750</span><span class="sc">≈ 6</span></div>
+    <div class="jr f"><span class="nome">Pronamp<small>9%</small></span><div class="eixo"><div class="b pos" style="--p:2.00%"></div></div><span class="v pos" data-cont="900">R$ 900</span><span class="sc">7</span></div>
+    <div class="jr f"><span class="nome">Crédito pessoal<small>~ 110%</small></span><div class="eixo"><div class="b neg" style="--p:24.44%"></div></div><span class="v neg" data-cont="11000">R$ 11.000</span><span class="sc">≈ 86</span></div>
+    <div class="jr f"><span class="nome">Cheque especial<small>~ 140%</small></span><div class="eixo"><div class="b neg" style="--p:31.11%"></div></div><span class="v neg" data-cont="14000">R$ 14.000</span><span class="sc">≈ 109</span></div>
+    <div class="jr f"><span class="nome">Cartão rotativo<small>~ 450%</small></span><div class="eixo"><div class="b neg" style="--p:100.00%"></div></div><span class="v neg" data-cont="45000">R$ 45.000</span><span class="sc">≈ 352</span></div>
+    </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Para que serve</b> · cada uso, a sua linha</div>
+  <h2>Quatro tipos de crédito rural</h2>
+  <div class="cartoes c4">
+    <div class="cartao f"><div class="vel">custeio</div><p>a safra ou o ciclo; paga na colheita</p></div>
+    <div class="cartao f"><div class="vel">investimento</div><p>máquinas, construções, matrizes, pomar; anos, com carência</p></div>
+    <div class="cartao f"><div class="vel">comercialização</div><p>guardar e vender depois</p></div>
+    <div class="cartao f"><div class="vel">industrialização</div><p>agroindústria, queijaria, embalagem</p></div>
+  </div>
+  <div class="callout f">Máquina paga com dinheiro de custeio: devolver em meses um bem que rende por dez anos.</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Plano Safra</b> · todo ano, de julho a junho</div>
+  <h2>O Brasil tem dois Planos Safra</h2>
+  <div class="paineis" style="max-width:66vw">
+    <div class="panel f"><h3>Agricultura empresarial</h3><p>médio e grande produtor, cooperativas; Ministério da Agricultura</p></div>
+    <div class="panel f"><h3 class="alt">Agricultura familiar</h3><p>Pronaf, com Proagro Mais, Garantia-Safra, assistência e compras públicas; Ministério do Desenvolvimento Agrário</p></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Enquadramento</b> · quem é quem para o banco</div>
+  <h2>Pronaf, Pronamp, ou demais</h2>
+  <table class="tbl enq">
+    <thead><tr><th></th><th>Quem</th><th class="num">juro</th></tr></thead>
+    <tbody>
+      <tr class="f"><td><b>Pronaf</b></td><td>agricultura familiar: até 4 módulos fiscais, trabalho da família, renda até o teto do ano, CAF válido</td><td class="num">o menor</td></tr>
+      <tr class="f"><td><b>Pronamp</b></td><td>médio produtor: renda até o teto do ano, ao menos 80% dela vinda do agro</td><td class="num">intermediário</td></tr>
+      <tr class="f"><td><b>Demais</b></td><td>acima dos tetos</td><td class="num">o maior</td></tr>
+    </tbody>
+  </table>
+  <div class="callout ok f">O enquadramento vem antes do orçamento fechar: a linha muda o juro, e o juro muda o resultado.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O Plano Safra do ano · 2026/27</b> · Pronaf custeio: conferir as taxas vigentes</div>
+  <h2>O juro tem intenção</h2>
+  <div class="degraus">
+    <div class="dg f" style="--h:13%"><span class="t">1%</span><span class="o">agroecologia, orgânicos, sociobiodiversidade</span></div>
+    <div class="dg f" style="--h:27%"><span class="t">2%</span><span class="o">alimentos básicos: arroz, feijão, mandioca, trigo, hortaliças, leite</span></div>
+    <div class="dg f" style="--h:73%"><span class="t">5,5%</span><span class="o">demais culturas e criações, como a uva</span></div>
+    <div class="dg f" style="--h:100%"><span class="t">7,5%</span><span class="o">soja, algodão e boi de corte</span></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>No orçamento</b> · R$ 100 mil de custeio por 6 meses</div>
+  <h2>Juros são custo, e vão para a planilha</h2>
+  <div class="formula-g f">valor × taxa ao ano × fração do ano</div>
+  <table class="tbl conta" style="max-width:56vw">
+    <tbody>
+      <tr class="f"><td>Pronaf, alimento básico, 2%</td><td class="num">R$ 1.000</td></tr>
+      <tr class="f"><td>Pronamp, 9%</td><td class="num">R$ 4.500</td></tr>
+    </tbody>
+  </table>
+  <div class="callout f">Crédito sem juros na planilha é manejo sem custo.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O custo de verdade</b> · custeio Pronamp por 6 meses, exemplo</div>
+  <h2>A taxa do contrato não é o custo real</h2>
+  <div class="cet f">
+    <div class="ct"><span class="v">9%</span><span class="l">taxa do contrato</span></div>
+    <span class="seta">→</span>
+    <div class="ct"><span class="v">~ 14%</span><span class="l">+ serviços e projeto</span></div>
+    <span class="seta">→</span>
+    <div class="ct neg"><span class="v">~ 23,5%</span><span class="l">+ seguro ou Proagro</span></div>
+  </div>
+  <p class="lead f" style="max-width:62vw">Pergunte: <strong>quanto vou pagar no total, até a última parcela?</strong> E compare entre bancos e cooperativas.</p>
+  <div class="callout f">Condicionar o crédito à compra de outro produto (capitalização, seguro de vida, consórcio) é proibido. Dá para recusar.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O pomar de pêssego</b> · R$ 60 mil de custeio, por 6 meses, taxas de exemplo</div>
+  <h2>Quanto custa o mesmo dinheiro</h2>
+  <div class="cen">
+    <div class="cr f"><span class="nome">Pronaf frutas<small>5,5% ao ano</small></span><div class="eixo"><div class="b pos" style="--p:3.9%"></div></div><span class="v">R$ 1.650</span></div>
+    <div class="cr f"><span class="nome">Pronamp<small>9%</small></span><div class="eixo"><div class="b pos" style="--p:6.4%"></div></div><span class="v">R$ 2.700</span></div>
+    <div class="cr f"><span class="nome">Empresarial<small>12,5%</small></span><div class="eixo"><div class="b pos" style="--p:8.9%"></div></div><span class="v">R$ 3.750</span></div>
+    <div class="cr f"><span class="nome">Cheque especial<small>~ 140%</small></span><div class="eixo"><div class="b neg" style="--p:100%"></div></div><span class="v neg">~ R$ 42 mil</span></div>
+  </div>
+  <p class="lead f" style="max-width:62vw">No cheque especial, os juros comem quase dois terços da margem bruta do pomar.</p>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Do outro lado do balcão</b> · R$ 10 mil por um ano</div>
+  <h2>E quem tem o dinheiro guardado?</h2>
+  <div class="linhas" style="max-width:56vw">
+    <p class="f" data-bal="Poupança|829|Pronaf soja|750"><strong>Poupança</strong>: cerca de 8% ao ano, sem imposto. R$ 829, contra os R$ 750 do Pronaf da soja.</p>
+    <p class="f" data-bal="CDB|1126|Pronaf soja|750"><strong>CDB</strong> a 100% do CDI: R$ 1.365, ou R$ 1.126 depois do imposto.</p>
+    <p class="f" data-bal="CDB|1126|Pronamp|900">Contra o <strong>Pronamp</strong>, de R$ 900: ainda rende mais.</p>
+    <p class="f" data-bal="CDB|1126|A mercado|1300">Contra o <strong>crédito rural a taxa de mercado</strong>, de R$ 1.300: a balança vira.</p>
+  </div>
+  <div class="callout ok f" style="max-width:56vw">Se o dinheiro rende mais do que o crédito custa, pode valer financiar e deixar o seu aplicado.</div>
+  <div class="dir" style="--w:29vw;right:3vw;top:11vh">
+    <svg class="bal" viewBox="0 0 320 250" role="img" aria-label="Balança entre o que o dinheiro rende e o que o crédito custa">
+      <path d="M160 52 V226 M116 232 H204" class="poste"/>
+      <g class="trav"><line x1="50" y1="52" x2="270" y2="52"/><circle cx="160" cy="52" r="6"/></g>
+      <g class="prato pe"><path d="M50 52 L18 124 M50 52 L82 124"/><path d="M12 124 H88 Q84 148 50 148 Q16 148 12 124Z" class="cuba"/><text x="50" y="170" class="rot" data-b="r1">rende</text><text x="50" y="190" class="val" data-b="v1"></text></g>
+      <g class="prato pd"><path d="M270 52 L238 124 M270 52 L302 124"/><path d="M232 124 H308 Q304 148 270 148 Q236 148 232 124Z" class="cuba c2"/><text x="270" y="170" class="rot" data-b="r2">custa</text><text x="270" y="190" class="val" data-b="v2"></text></g>
+    </svg>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>E se tiver o dinheiro?</b> · os mesmos R$ 60 mil, por 6 meses</div>
+  <h2>Dinheiro próprio também tem preço</h2>
+  <table class="tbl conta" style="max-width:58vw">
+    <tbody>
+      <tr class="f"><td>Aplicado a 14% ao ano renderia</td><td class="num" style="color:var(--olive)">+ R$ 4.200</td></tr>
+      <tr class="f"><td>Financiado no Pronaf a 5,5% custa</td><td class="num">− R$ 1.650</td></tr>
+      <tr class="f total"><td>Diferença a favor de financiar</td><td class="num">R$ 2.550</td></tr>
+    </tbody>
+  </table>
+  <p class="lead f" style="max-width:60vw">Com juro subsidiado abaixo do que o dinheiro renderia aplicado, tomar crédito pode ser racional mesmo para quem tem o dinheiro.</p>
+  </section>
+
+
+<section class="slide">
+  <div class="eyebrow"><b>Faça a sua conta</b> · pagando tudo no fim do prazo</div>
+  <h2>Mexa nos números</h2>
+  <div class="simu" id="simu">
+    <div class="sc-ctl">
+      <label>Quanto <output data-o="valor">R$ 10.000</output><input type="range" data-i="valor" min="1000" max="300000" step="1000" value="10000"></label>
+      <label>Por quantos meses <output data-o="prazo">12</output><input type="range" data-i="prazo" min="1" max="60" step="1" value="12"></label>
+      <label>Juros ao ano <output data-o="taxa">9%</output><input type="range" data-i="taxa" min="0.5" max="150" step="0.5" value="9"></label>
+      <div class="chips"><button type="button" data-t="2">Pronaf 2%</button><button type="button" data-t="7.5">Pronaf 7,5%</button><button type="button" data-t="9">Pronamp 9%</button><button type="button" data-t="12.5">Empresarial 12,5%</button><button type="button" data-t="110">Pessoal 110%</button><button type="button" data-t="140">Cheque 140%</button></div>
+    </div>
+    <div class="sc-res">
+      <div class="gran"><span class="num" data-o="juros">R$ 900</span><span class="lbl">de juros</span></div>
+      <div class="dupla"><div><b data-o="total">R$ 10.900</b><span>volta ao todo</span></div><div><b data-o="sacas">7</b><span>sacas de soja a R$ 128</span></div></div>
+      <div class="cmp"><div class="cb"><span class="ba terra" data-o="bcusto"></span><em>custa</em></div><div class="cb"><span class="ba oliva" data-o="brende"></span><em>aplicado a 14%, renderia <b data-o="rende">R$ 1.400</b></em></div></div>
+    </div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Como acessar</b> · o caminho do Pronaf, em três passos</div>
+  <h2>O crédito não é automático</h2>
+  <table class="tbl passos">
+    <tbody>
+      <tr class="f"><td>1 · CAF-Pronaf</td><td>Cadastro gratuito, que substituiu a DAP. Em entidade credenciada, como a EMATER/RS, o sindicato rural ou a prefeitura.</td></tr>
+      <tr class="f"><td>2 · projeto técnico</td><td>Produção, mercado com cenários e orçamento, dentro da janela do zoneamento. Mais detalhe, menos chance de recusa.</td></tr>
+      <tr class="f"><td>3 · banco</td><td>Confere os documentos, analisa o projeto, formaliza o contrato e libera o dinheiro conforme o cronograma.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout ok f" style="max-width:62vw">Pronamp e demais seguem o mesmo caminho, com comprovação de renda no lugar do CAF.</div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>O que o banco pede</b> · quatro grupos</div>
+  <h2>A pasta do crédito</h2>
+  <div class="cartoes c4">
+    <div class="cartao f"><div class="vel">o produtor</div><p>proposta; CAF (Pronaf) ou comprovação de renda</p></div>
+    <div class="cartao f"><div class="vel">o projeto</div><p>o orçamento técnico; plantio no zoneamento; licença ambiental; ficha sanitária</p></div>
+    <div class="cartao f"><div class="vel">o imóvel</div><p>CAR; matrícula ou posse; arrendamento registrado</p></div>
+    <div class="cartao f"><div class="vel">a garantia</div><p>penhor da safra, alienação do bem, aval ou hipoteca</p></div>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Ampliar o pomar</b> · 2 ha, R$ 100 mil, 5% ao ano, 8 anos, 3 de carência</div>
+  <h2>A parcela cabe na sobra?</h2>
+  <svg class="parc f" viewBox="0 0 640 300" role="img" aria-label="Parcelas por ano de um financiamento de 100 mil reais com 3 anos de carência: só juros de 5 mil reais nos anos 1 a 3 e a maior parcela, 25 mil reais, no ano 4, abaixo da sobra do pomar atual">
+<line x1="20" y1="260" x2="630" y2="260" class="base"/>
+<g class="pb" style="--d:0.0s"><rect x="30" y="260.0" width="56" height="0.0" class="am"/><rect x="30" y="219.0" width="56" height="41.0" class="ju"/></g><text x="58.0" y="282" text-anchor="middle" class="ano">1</text><g class="pb" style="--d:0.1s"><rect x="104" y="260.0" width="56" height="0.0" class="am"/><rect x="104" y="219.0" width="56" height="41.0" class="ju"/></g><text x="132.0" y="282" text-anchor="middle" class="ano">2</text><g class="pb" style="--d:0.2s"><rect x="178" y="260.0" width="56" height="0.0" class="am"/><rect x="178" y="219.0" width="56" height="41.0" class="ju"/></g><text x="206.0" y="282" text-anchor="middle" class="ano">3</text><g class="pb" style="--d:0.3s"><rect x="252" y="96.0" width="56" height="164.0" class="am"/><rect x="252" y="55.0" width="56" height="41.0" class="ju"/></g><text x="280.0" y="282" text-anchor="middle" class="ano">4</text><g class="pb" style="--d:0.4s"><rect x="326" y="96.0" width="56" height="164.0" class="am"/><rect x="326" y="63.2" width="56" height="32.8" class="ju"/></g><text x="354.0" y="282" text-anchor="middle" class="ano">5</text><g class="pb" style="--d:0.5s"><rect x="400" y="96.0" width="56" height="164.0" class="am"/><rect x="400" y="71.4" width="56" height="24.6" class="ju"/></g><text x="428.0" y="282" text-anchor="middle" class="ano">6</text><g class="pb" style="--d:0.6s"><rect x="474" y="96.0" width="56" height="164.0" class="am"/><rect x="474" y="79.6" width="56" height="16.4" class="ju"/></g><text x="502.0" y="282" text-anchor="middle" class="ano">7</text><g class="pb" style="--d:0.7s"><rect x="548" y="96.0" width="56" height="164.0" class="am"/><rect x="548" y="87.8" width="56" height="8.2" class="ju"/></g><text x="576.0" y="282" text-anchor="middle" class="ano">8</text>
+<line x1="20" y1="46.8" x2="630" y2="46.8" class="sob"/>
+<text x="628" y="38.8" text-anchor="end" class="tsob">sobra do pomar atual: R$ 26.000</text>
+<text x="280" y="47.0" text-anchor="middle" class="tmai">25.000</text>
+</svg>
+<div class="leg-s f"><span class="l2">amortização</span><span class="l1">juros</span><span class="l3">sobra do pomar atual</span></div>
+  <p class="lead f" style="max-width:62vw">Com 3 anos de carência, a parcela pesada chega quando o pomar novo já colhe: a maior usa <strong>66%</strong> da sobra.</p>
+  </section>
+<section class="slide">
+  <div class="eyebrow"><b>Nas perenes</b> · cada momento, a sua linha</div>
+  <h2>Carência para os anos sem colheita</h2>
+  <div class="paineis" style="max-width:62vw">
+    <div class="panel f"><h3>Anos 0 a 2 · implantar e formar</h3><p>Investimento (Pronaf ou Pronamp) com carência: não há receita para pagar parcela.</p></div>
+    <div class="panel f"><h3 class="alt">Ano 3 em diante · produzir</h3><p>Custeio de cada safra: poda, defensivos, colheita.</p></div>
+  </div>
+  <div class="callout f">Pedir prazo curto demais é o erro mais comum: a parcela vence antes da primeira fruta.</div>
+  </section>
+
+
+<section class="slide">
+  <div class="eyebrow"><b>No seu município</b> · dados do Banco Central</div>
+  <h2>O painel do crédito rural do RS</h2>
+  <ul class="itens">
+    <li class="f">Os <strong>municípios</strong> gaúchos, com os contratos reais</li>
+    <li class="f">Quanto entra por ano em <strong>custeio</strong> e em <strong>investimento</strong></li>
+    <li class="f">Qual atividade <strong>domina</strong> o crédito local</li>
+    <li class="f">O município ao lado da sua região</li>
+  </ul>
+  <p class="lead f" style="max-width:60vw">No site produzirnaobasta.com.br, a partir da Matriz de Dados do Crédito Rural.</p>
+  </section>
+
+<section class="slide" style="justify-content:center;padding-bottom:20vh">
+  <div class="eyebrow"><b>Para lembrar</b></div>
+  <h2 style="font-size:min(4.6vw,8vh);max-width:62vw">Crédito no lugar certo paga a si mesmo.</h2>
+  <p class="lead f" style="max-width:60vw;font-size:min(3vw,5.3vh)">A linha certa, o custo de verdade, e a parcela que <strong>cabe na sobra</strong>.</p>
+</section>
+
+<section class="slide refs">
+  <div class="eyebrow">Crédito rural</div>
+  <h2>Referências</h2>
+  <p><b>BRASIL.</b> Lei nº 4.829, de 5 de novembro de 1965 (crédito rural). · <b>BANCO CENTRAL DO BRASIL.</b> Manual de Crédito Rural, atualização nº 760, 22 out. 2026; Matriz de Dados do Crédito Rural; Sistema Gerenciador de Séries Temporais. · <b>CMN.</b> Resoluções 5.321 a 5.324, 30 jun. 2026. · <b>BRASIL.</b> Decreto nº 6.306/2007 (IOF). · <b>MDA.</b> O que é o CAF.</p>
+  <p><b>MAPA.</b> Plano Safra 2026/2027, agricultura empresarial. · <b>MDA.</b> Plano Safra da Agricultura Familiar 2026/2027.</p>
+  <p><b>OLIVEIRA, R. M.</b> Gestão de Custos e Projetos Agropecuários: crédito rural e fluxo de caixa; painel do crédito rural do RS. · Gestão da Propriedade Rural, módulo 7. Produzir Não Basta, 2026.</p>
+  <p><b>Foto:</b> cooperativa de crédito, Paulo rsmenezes (CC BY-SA 3.0 BR).</p>
+  <p style="color:var(--stone)">Material elaborado pelo Prof. Róberson Macedo de Oliveira (Colégio Politécnico da UFSM), com apoio de IA (Claude, Anthropic) na organização didática e na diagramação; conteúdo, seleção e decisões de ensino são do docente.</p>
+</section>
+
+</main>
+
+<div class="cam"><span>câmera</span></div>
+<div class="hud"><span class="hud-t">Vídeo 17 · Crédito rural</span><span class="hud-n"><span class="contador-n" id="contador"></span><span class="mais" id="mais"></span></span></div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const progress=document.getElementById('progress');
+  const contador=document.getElementById('contador');
+  let cur=0, passo=0;
+  const mais=document.getElementById('mais');
+  function hud(){mais.textContent=passo<frags(slides[cur]).length?'›':''}
+  const frags=s=>[...s.querySelectorAll('.f')];
+
+  function mostrar(s,n){frags(s).forEach((el,i)=>el.classList.toggle('vis',i<n))}
+  function go(n,todos){
+    n=Math.max(0,Math.min(total-1,n));
+    slides[cur].classList.remove('on');
+    cur=n;
+    passo=todos?frags(slides[cur]).length:0;
+    mostrar(slides[cur],passo);
+    slides[cur].classList.add('on');
+    contador.textContent=(cur+1)+' / '+total;
+    progress.style.width=((cur+1)/total*100)+'%';
+    history.replaceState(null,'','#'+(cur+1));hud();
+  }
+  function next(){
+    const fs=frags(slides[cur]);
+    if(passo<fs.length){fs[passo].classList.add('vis');passo++;hud()}
+    else if(cur<total-1)go(cur+1);
+  }
+  function prev(){
+    if(passo>0){passo--;frags(slides[cur])[passo].classList.remove('vis');hud()}
+    else if(cur>0)go(cur-1,true);
+  }
+
+  const h=parseInt(location.hash.slice(1),10);
+  slides[0].classList.add('on');
+  go(isNaN(h)?0:h-1,true);
+
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches&&e.target.matches('input'))return;
+    const k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();next()}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev()}
+    else if(k==='ArrowDown'){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowUp'){e.preventDefault();go(cur-1)}
+    else if(k==='Home'){e.preventDefault();go(0)}
+    else if(k==='End'){e.preventDefault();go(total-1,true)}
+    else if(k==='c'||k==='C'){document.body.classList.toggle('ver-cam')}
+    else if(k==='h'||k==='H'){document.body.classList.toggle('ver-num')}
+    else if(k==='b'||k==='B'){document.body.classList.toggle('creme');try{localStorage.setItem('pnb-fundo',document.body.classList.contains('creme')?'creme':'branco')}catch(e){}}
+    else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  });
+  // clique ou toque: metade direita avança, metade esquerda volta; deslizar o dedo também
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button,input,label'))return;
+    if(window.getSelection().toString())return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{if(e.target.closest('.simu')){tx=null;return}tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}
+    tx=ty=null;
+  },{passive:true});
+  window.addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1,true)});
+
+  try{if(localStorage.getItem('pnb-fundo')==='creme')document.body.classList.add('creme')}catch(e){}
+  if(location.search.indexOf('creme')>=0)document.body.classList.add('creme');
+  if(location.search.indexOf('cam')>=0)document.body.classList.add('ver-cam');
+  // conferência: ?check lista o que invade a área da câmera ou sai da tela
+  if(location.search.indexOf('check')>=0){
+    document.body.classList.add('ver-cam');
+    document.fonts.ready.then(()=>setTimeout(()=>{
+      const W=innerWidth,H=innerHeight,cx=W*0.74,cy=H*0.67,out=[];
+      slides.forEach((s,i)=>{
+        slides.forEach(o=>o.classList.remove('on'));s.classList.add('on');
+        frags(s).forEach(el=>{el.classList.add('vis');el.style.transition='none'});
+        s.style.transition='none';
+        const rects=[];
+        const w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT);
+        while(w.nextNode()){const t=w.currentNode;if(!t.textContent.trim()||t.parentElement.closest('.fala'))continue;const r=document.createRange();r.selectNodeContents(t);[...r.getClientRects()].forEach(x=>rects.push(['texto: '+t.textContent.trim().slice(0,30),x]))}
+        s.querySelectorAll('img').forEach(im=>rects.push(['imagem: '+im.getAttribute('src'),im.getBoundingClientRect()]));
+        s.querySelectorAll('*').forEach(el=>{if(el.closest('.fala'))return;const cs=getComputedStyle(el);const fundo=cs.backgroundColor!=='rgba(0, 0, 0, 0)'&&cs.backgroundColor!=='transparent';const borda=parseFloat(cs.borderTopWidth)>0||parseFloat(cs.borderLeftWidth)>0||parseFloat(cs.borderBottomWidth)>0;if((fundo||borda||el.tagName==='svg')&&el!==s)rects.push(['caixa: '+el.tagName.toLowerCase()+'.'+(el.className.baseVal!==undefined?el.className.baseVal:el.className),el.getBoundingClientRect()])});
+        rects.forEach(([n,r])=>{
+          if(r.width===0)return;
+          if(r.right>cx+1&&r.bottom>cy+1)out.push((i+1)+' CAMERA '+n);
+          if(r.bottom>H-2||r.right>W-2)out.push((i+1)+' FORA '+n);
+        });
+      });
+      const pre=document.createElement('pre');pre.id='check';pre.textContent=out.length?out.join('\n'):'OK';document.body.appendChild(pre);
+    },600));
+  }
+})();
+</script>
+
+<script>
+// matemática dos juros: calculadora que digita, contadores, balança e simulador
+(function(){
+  const fmt=(v,d=2)=>v.toLocaleString('pt-BR',{maximumFractionDigits:d});
+  const rs=v=>'R$ '+fmt(Math.round(v),0);
+  const val=e=>parseFloat(e.replace(',','.'));
+  const apl=(a,o,b)=>o==='×'?a*b:o==='÷'?a/b:o==='+'?a+b:a-b;
+  const novo=()=>({e:'0',a:null,o:null,fresco:true,fita:'',res:'0'});
+  function tecla(st,k){
+    if(k==='C'){Object.assign(st,novo());return}
+    if(/[0-9,]/.test(k)){
+      if(st.fresco){st.e='';st.fresco=false}
+      st.e+=k;st.res=fmt(val(st.e));
+      st.fita=st.fita.replace(/[=]$/,'');return
+    }
+    const fixa=()=>{const n=val(st.e);st.fita+=st.fita?'':'';return n};
+    if('×÷+−'.includes(k)){
+      if(!st.fresco){const n=val(st.e);st.a=st.o?apl(st.a,st.o,n):n;st.fita=(st.o?st.fita+' '+fmt(n):fmt(n))}
+      else if(st.a===null){st.a=val(st.e)}
+      if(st.fresco&&st.o===null)st.fita=fmt(st.a);
+      st.o=k;st.fita+=' '+k;st.fresco=true;st.res=fmt(st.a);return
+    }
+    if(k==='%'){const n=val(st.e);st.fita+=' '+fmt(n)+'%';st.a=st.a*n/100;st.o=null;st.fresco=true;st.res=fmt(st.a);return}
+    if(k==='='){if(st.o&&!st.fresco){const n=val(st.e);st.fita+=' '+fmt(n)+' =';st.a=apl(st.a,st.o,n);st.o=null;st.fresco=true;st.res=fmt(st.a)}}
+  }
+  const seqDe=s=>[...s];
+  document.querySelectorAll('.slide').forEach(sl=>{
+    const c=sl.querySelector('.calc'),ps=[...sl.querySelectorAll('[data-calc]')];
+    if(c&&ps.length){
+      const tela=()=>{c.querySelector('.fita').textContent=st.fita||'\u00a0';c.querySelector('.res').textContent=st.res};
+      let st=novo(),feitos=0,tok=0;
+      const ate=n=>{const x=novo();ps.slice(0,n).forEach(p=>seqDe(p.dataset.calc).forEach(k=>tecla(x,k)));return x};
+      const sync=()=>{
+        const n=ps.filter(p=>p.classList.contains('vis')).length;
+        if(n===feitos)return;
+        tok++;const t=tok;
+        if(n===feitos+1&&sl.classList.contains('on')&&location.search.indexOf('check')<0){
+          st=ate(feitos);tela();
+          const seq=seqDe(ps[n-1].dataset.calc),vel=+(ps[n-1].dataset.vel||210);let i=0;
+          const passo=()=>{
+            if(t!==tok)return;
+            if(i>=seq.length)return;
+            const k=seq[i++];tecla(st,k);tela();
+            const el=c.querySelector('[data-k="'+k+'"]');
+            if(el){el.classList.add('on');setTimeout(()=>el.classList.remove('on'),Math.min(vel,160))}
+            setTimeout(passo,vel);
+          };
+          setTimeout(passo,350);
+        }else{st=ate(n);tela()}
+        feitos=n;
+      };
+      new MutationObserver(sync).observe(sl,{subtree:true,attributes:true,attributeFilter:['class']});
+      sync();
+      window.addEventListener('beforeprint',()=>{tok++;st=ate(ps.length);tela()});
+    }
+    // balança
+    const bal=sl.querySelector('.bal'),bs=[...sl.querySelectorAll('[data-bal]')];
+    if(bal&&bs.length){
+      const tr=bal.querySelector('.trav'),pe=bal.querySelector('.pe'),pd=bal.querySelector('.pd');
+      const t=(k,v)=>{bal.querySelector('[data-b="'+k+'"]').textContent=v};
+      const bsync=()=>{
+        const f=bs.filter(p=>p.classList.contains('vis')).pop();
+        if(!f){tr.style.transform=pe.style.transform=pd.style.transform='';t('r1','rende');t('r2','custa');t('v1','');t('v2','');return}
+        const [a,x,b,y]=f.dataset.bal.split('|');t('r1',a);t('r2',b);t('v1',rs(+x));t('v2',rs(+y));
+        const ang=Math.max(-13,Math.min(13,(+x-+y)/(+x+ +y)*60)),d=Math.sin(ang*Math.PI/180)*110;
+        tr.style.transform='rotate('+(-ang)+'deg)';pe.style.transform='translateY('+d+'px)';pd.style.transform='translateY('+(-d)+'px)';
+      };
+      new MutationObserver(bsync).observe(sl,{subtree:true,attributes:true,attributeFilter:['class']});
+      bsync();
+    }
+    // contadores
+    sl.querySelectorAll('.f').forEach(f=>{
+      const v=f.querySelector('[data-cont]');if(!v)return;
+      const alvo=+v.dataset.cont;
+      new MutationObserver(ms=>{
+        if(!f.classList.contains('vis')||!sl.classList.contains('on')||f.dataset.contou)return;
+        f.dataset.contou='1';const t0=performance.now();
+        const q=t=>{const p=Math.min(1,(t-t0)/1000),e=1-Math.pow(1-p,3);v.textContent=rs(alvo*e);if(p<1)requestAnimationFrame(q)};
+        requestAnimationFrame(q);
+      }).observe(f,{attributes:true,attributeFilter:['class']});
+    });
+  });
+  // simulador
+  const si=document.getElementById('simu');
+  if(si){
+    const i=n=>si.querySelector('[data-i='+n+']'),o=(n,v)=>{si.querySelector('[data-o='+n+']').textContent=v};
+    const conta=()=>{
+      const V=+i('valor').value,n=+i('prazo').value,t=+i('taxa').value;
+      const juros=V*(Math.pow(1+t/100,n/12)-1),rende=V*(Math.pow(1.14,n/12)-1);
+      o('valor',rs(V));o('prazo',n+(n===1?' mês':' meses'));o('taxa',fmt(t,1)+'%');
+      o('juros',rs(juros));o('total',rs(V+juros));
+      const sc=juros/128;o('sacas',sc<10?fmt(sc,1):fmt(Math.round(sc),0));o('rende',rs(rende));
+      const m=Math.max(juros,rende)||1;
+      si.querySelector('[data-o=bcusto]').style.width=(juros/m*100)+'%';
+      si.querySelector('[data-o=brende]').style.width=(rende/m*100)+'%';
+      si.querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',+b.dataset.t===t));
+    };
+    si.querySelectorAll('input').forEach(x=>{x.addEventListener('input',conta);x.addEventListener('change',()=>x.blur())});
+    si.querySelectorAll('[data-t]').forEach(b=>b.addEventListener('click',()=>{i('taxa').value=b.dataset.t;conta();b.blur()}));
+    conta();
+  }
+})();
+</script>
+</body>
+</html>
