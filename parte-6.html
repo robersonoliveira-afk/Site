@@ -406,7 +406,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td><strong>3. Manejo</strong></td><td>Principais operações da cultura ou criação: preparo do solo, semeadura, tratos fitossanitários e colheita (lavoura), ou alimentação, sanidade e reprodução (pecuária). Descrever os coeficientes técnicos adotados e como cada operação se reflete no custeio.</td></tr>
       <tr><td><strong>4. Estrutura de custos</strong></td><td>Resumo de COE, COT e CT por hectare (ou cabeça/caixa), destacando os <em>três maiores grupos</em> de custo.</td></tr>
       <tr><td><strong>5. Receita e margens</strong></td><td>Receita Bruta, Receita Líquida, Margem Bruta, Margem Líquida e Lucro Econômico: em valor total <em>e</em> por unidade.</td></tr>
-      <tr><td><strong>6. Indicadores</strong></td><td>IEE, Lucratividade (%), Rentabilidade (%) <em>÷ CT</em>, Produtividade e Preço de Nivelamento, Margem de Segurança.</td></tr>
+      <tr><td><strong>6. Indicadores</strong></td><td>IEE, Lucratividade (%) e Rentabilidade sobre o custo (%), os três sobre a receita líquida; Produtividade e Preço de Nivelamento, Margem de Segurança.</td></tr>
       <tr><td><strong>7. Cenários</strong></td><td>Resultado nos três cenários (pessimista, realista, otimista) e a conclusão sobre o risco.</td></tr>
       <tr><td><strong>8. Fluxo de caixa</strong></td><td>Meses de maior déficit (necessidade de capital de giro/crédito) e meses de superávit.</td></tr>
       <tr><td><strong>9. Conclusão</strong></td><td>O projeto é ou não é viável? Quais as condições para a viabilidade? Que riscos merecem atenção?</td></tr>
@@ -416,29 +416,29 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <h3>A regra do preço e da produtividade</h3>
     <p>Duas premissas decidem a viabilidade na seção 2 e voltam na apresentação. O preço é o <strong>regional, posto cooperativa</strong>, não a cotação cheia do porto. A produtividade é a <strong>média histórica</strong> da região (CONAB/EMATER), não o melhor ano. Premissa otimista infla a viabilidade e cai na primeira pergunta dos professores.</p>
     <div class="example">
-      <p>Exemplo: Soja, 50 ha, São Gabriel/RS, safra 2025/26. Produtividade de <span class="calc">60 sc/ha</span> (média histórica) e preço posto cooperativa de <span class="calc">R$ 120/sc</span>. Produção esperada: 3.000 sc.</p>
-      <p>Receita Bruta = <span class="calc">60 × 50 × 120 = R$ 360.000</span>. É esse o número que abre a seção 5, com a fonte e a data da consulta registradas na seção 2.</p>
+      <p>Exemplo: Soja, 50 ha, São Gabriel/RS, safra 2025/26. Produtividade de <span class="calc">60 sc/ha</span> (média histórica) e preço posto cooperativa de <span class="calc">R$ 128/sc</span>. Produção esperada: 3.000 sc.</p>
+      <p>Receita Bruta = <span class="calc">60 × 50 × 128 = R$ 384.000</span>. É esse o número que abre a seção 5, com a fonte e a data da consulta registradas na seção 2.</p>
     </div>
 
     <figure class="dd prem-dd" id="dd-prem" style="--dd:var(--terra);--dd-deep:#7C3D1F">
       <div class="dd-cab">Soja, 50 ha: o que a premissa faz com a receita</div>
       <div class="dd-corpo">
-        <div class="grupo"><span>Preço de venda</span><div class="opcao" data-g="preco"><button type="button" data-v="120" class="on">Posto cooperativa, R$ 120/sc</button><button type="button" data-v="130">Cotação cheia, R$ 130/sc</button></div></div>
+        <div class="grupo"><span>Preço de venda</span><div class="opcao" data-g="preco"><button type="button" data-v="128" class="on">Posto cooperativa, R$ 128/sc</button><button type="button" data-v="140">Cotação do porto, R$ 140/sc</button></div></div>
         <div class="grupo"><span>Produtividade</span><div class="opcao" data-g="prod"><button type="button" data-v="60" class="on">Média histórica, 60 sc/ha</button><button type="button" data-v="70">Melhor ano, 70 sc/ha</button></div></div>
         <div class="barras">
-          <div class="rot"><span>Receita com premissas conservadoras</span><b>R$ 360.000</b></div><div class="tr"><i data-b="base" style="background:var(--olive)"></i></div>
+          <div class="rot"><span>Receita com premissas conservadoras</span><b>R$ 384.000</b></div><div class="tr"><i data-b="base" style="background:var(--olive)"></i></div>
           <div class="rot"><span>Receita com as premissas escolhidas</span><b data-r="rb"></b></div><div class="tr"><i data-b="rb" style="background:var(--terra)"></i></div>
         </div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Receita bruta = produtividade × área × preço. A cotação cheia é a da Parte IV, antes de frete, descontos e Funrural; o "melhor ano" é um valor de exemplo.</figcaption>
+      <figcaption>Receita bruta = produtividade × área × preço. A cotação do porto é a da Parte IV, antes do frete e das despesas; o "melhor ano" é um valor de exemplo.</figcaption>
     </figure>
 
     <h3>A conclusão (seção 9)</h3>
     <p>É o que todos querem saber. Não é "o projeto parece bom": é uma sentença fundamentada nos indicadores das seções anteriores.</p>
     <div class="callout success">
       <strong>Modelo de conclusão defensável</strong>
-      "O projeto é economicamente viável: IEE > 1, Lucro Econômico positivo e Rentabilidade sobre o CT acima de zero (o CT já remunera a terra e o capital). A margem de segurança de X% indica risco moderado; a viabilidade se mantém no cenário realista e otimista, e se perde apenas no pessimista, quando o preço cai abaixo do equilíbrio sobre o CT (R$ Y/sc). Principal risco: preço de mercado."
+      "O projeto é economicamente viável: IEE > 1, Lucro Econômico positivo e rentabilidade sobre o custo acima de zero (o CT já remunera a terra e o capital). A margem de segurança de X% indica risco moderado; a viabilidade se mantém no cenário realista e otimista, e se perde apenas no pessimista, quando o preço cai abaixo do equilíbrio sobre o CT (R$ Y/sc). Principal risco: preço de mercado."
     </div>
     <div class="callout">
       <strong>A conclusão que não defende</strong>
@@ -479,7 +479,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td><strong>5 · Manejo</strong></td><td>Operações principais da cultura ou criação: preparo, semeadura, tratos, colheita (lavoura) ou alimentação, sanidade, reprodução (pecuária).</td><td>Linha do tempo ou tabela de operações; destacar a decisão técnica central; evidenciar como cada operação alimenta o custeio.</td></tr>
       <tr><td><strong>6 · Estrutura de custos</strong></td><td>COE, COT, CT em valores; gráfico da proporção dos grupos.</td><td>Gráfico de pizza/barras é mais eficiente que tabela.</td></tr>
       <tr><td><strong>7 · Receita e margens</strong></td><td>RB, Margem Bruta, Margem Líquida, Lucro Econômico.</td><td>Sinal claro: verde positivo, vermelho negativo.</td></tr>
-      <tr><td><strong>8 · Indicadores</strong></td><td>IEE, Lucratividade, Rentabilidade, Prod. e Preço de Niv., Margem de Segurança.</td><td>Formato: Indicador = Valor | interpretação em uma linha.</td></tr>
+      <tr><td><strong>8 · Indicadores</strong></td><td>IEE, Lucratividade, Rentabilidade sobre o custo, Prod. e Preço de Niv., Margem de Segurança.</td><td>Formato: Indicador = Valor | interpretação em uma linha.</td></tr>
       <tr><td><strong>9 · Cenários</strong></td><td>Pessimista/realista/otimista: lucro ou prejuízo em cada.</td><td>Concluir: "viável em X dos 3 cenários".</td></tr>
       <tr><td><strong>10 · Fluxo de caixa</strong></td><td>Entradas e saídas por mês; saldo acumulado.</td><td>Mostrar o mês de maior déficit: justifica o custeio.</td></tr>
       <tr><td><strong>11 · Conclusão</strong></td><td>Viabilidade, principais riscos, recomendação final.</td><td>Frase direta, sem ambiguidade. Domínio do resultado.</td></tr>
@@ -606,7 +606,7 @@ var R = Didatica.reais;
 
 /* 1. premissa otimista */
 (function(){
-  var el = document.getElementById('dd-prem'), q = function(s){ return el.querySelector(s); }, BASE = 60 * 50 * 120, MX = 70 * 50 * 130;
+  var el = document.getElementById('dd-prem'), q = function(s){ return el.querySelector(s); }, BASE = 60 * 50 * 128, MX = 70 * 50 * 140;
   function calc(){
     var p = +q('[data-g=preco] .on').dataset.v, y = +q('[data-g=prod] .on').dataset.v, rb = y * 50 * p, d = rb - BASE;
     q('[data-r=rb]').textContent = R(rb);
@@ -625,7 +625,7 @@ var R = Didatica.reais;
   Didatica.classificador(el, {
     categorias:[{id:'d', t:'Se sustenta'},{id:'a', t:'Ambígua'},{id:'c', t:'Contradiz os números'}],
     itens:[
-      {t:'"O projeto é viável: IEE de 1,18, lucro econômico positivo e rentabilidade sobre o CT positiva."', c:'d', e:'Conclui e cita os indicadores que sustentam a conclusão.'},
+      {t:'"O projeto é viável: IEE de 1,18, lucro econômico positivo e rentabilidade sobre o custo positiva."', c:'d', e:'Conclui e cita os indicadores que sustentam a conclusão.'},
       {t:'"Acredito que o projeto seja viável."', c:'a', e:'Opinião sem indicador. Não diz por que nem em que condições.'},
       {t:'"O projeto parece bom e tem potencial."', c:'a', e:'Não conclui nada: bom em quê, medido por qual indicador?'},
       {t:'"O projeto é viável, apesar do lucro econômico negativo."', c:'c', e:'Lucro econômico negativo significa que o projeto não cobre o custo total: a frase contraria o próprio número.'},
@@ -663,18 +663,18 @@ var R = Didatica.reais;
   ];
   var FIM = '<div class="fim"><h4>Obrigado</h4><p>Contato do grupo: e-mail ou telefone</p></div>';
   var EX = {
-    soja:{fl:[-10, -35, -95, -125, -155, -175, -183, 172], meses:['set','out','nov','dez','jan','fev','mar','abr'], mx:190, s:[
+    soja:{fl:[-10, -35, -95, -125, -155, -175, -183, 189], meses:['set','out','nov','dez','jan','fev','mar','abr'], mx:190, s:[
       '<div class="capa"><small>Projeto da disciplina · Gestão de Custos</small><h4>Viabilidade da soja em São Gabriel/RS</h4><p>50 ha · safra 2025/26</p><p style="color:var(--stone)">Integrantes do grupo</p></div>' + LAV,
       '<h4>Identificação</h4><div class="duas"><dl class="kv"><dt>Propriedade</dt><dd>área do grupo</dd><dt>Município</dt><dd>São Gabriel/RS</dd><dt>Área</dt><dd>50 ha de soja</dd><dt>Ciclo</dt><dd>safra 2025/26</dd></dl><svg viewBox="0 0 100 82" data-sem-piso aria-label="Croqui"><path d="M4 8 L92 4 L96 74 L8 78 Z" fill="#F4EFE2" stroke="#3A3833" stroke-width="1.2"/><path d="M10 12 L62 10 L64 56 L12 58 Z" fill="#E2C46A"/><text x="37" y="39" text-anchor="middle" font-size="13" font-weight="600" fill="#3A3833">soja</text><path d="M66 10 L90 9 L92 40 L68 41 Z" fill="#5E7A3A"/><text x="79" y="30" text-anchor="middle" font-size="11" fill="#fff">RL</text><rect x="72" y="52" width="9" height="7" fill="none" stroke="#3A3833"/><path d="M8 68 C30 62 55 74 94 64" stroke="#5B8DB8" stroke-width="3" fill="none"/></svg></div>',
-      '<h4>Premissas</h4><div class="cards"><div><b>60 sc/ha</b>média histórica (CONAB/EMATER)</div><div><b>R$ 120/sc</b>posto cooperativa</div><div><b>3.000 sc</b>produção esperada</div></div><p class="pe">Fonte da cotação: cooperativa da região, consulta em set/2025. Safra de referência: 2025/26.</p>',
+      '<h4>Premissas</h4><div class="cards"><div><b>60 sc/ha</b>média histórica (CONAB/EMATER)</div><div><b>R$ 128/sc</b>posto cooperativa</div><div><b>3.000 sc</b>produção esperada</div></div><p class="pe">Fonte da cotação: cooperativa da região, consulta em set/2025. Safra de referência: 2025/26.</p>',
       '<h4>Laudo de solo</h4><div class="laudo"><div>pH<b>5,1</b></div><div>V%<b>48</b></div><div>P<b>7</b></div><div>K<b>90</b></div><div>MO<b>2,2%</b></div></div><div class="seta">laudo &rarr; cálculo &rarr; custo</div><div class="cards"><div><b>2,5 t/ha</b>calcário</div><div><b>R$ 375</b>por hectare</div><div><b>R$ 18.750</b>nos 50 ha</div></div>',
       '<h4>Manejo</h4><div class="linha-t"><div><b>set</b>dessecação</div><div><b>nov</b>semeadura</div><div><b>dez–fev</b>3 aplicações</div><div><b>abr</b>colheita</div></div><div class="destaque">Decisão central: semear na janela do zoneamento (ZARC), no início de novembro.</div>',
       '<h4>Estrutura de custos</h4><div class="barras"><div><span>COE</span><i data-w="55.6" style="--c:#B89233"></i><b>R$ 188 mil</b></div><div><span>COT</span><i data-w="72.2" style="--c:#A8552E"></i><b>R$ 244 mil</b></div><div><span>CT</span><i data-w="100" style="--c:#3A3833"></i><b>R$ 338 mil</b></div></div><p class="pe">Maiores grupos do COE: fertilizantes 28% · defensivos 27% · operações com máquinas 18%.</p>',
-      '<h4>Receita e margens</h4><div class="barras"><div><span>RB</span><i data-w="100" style="--c:#6B6960"></i><b>R$ 360.000</b></div><div><span>MB</span><i data-w="47.8" style="--c:#3D6B2A"></i><b class="pos">R$ 172.000</b></div><div><span>ML</span><i data-w="32.2" style="--c:#3D6B2A"></i><b class="pos">R$ 116.000</b></div><div><span>LE</span><i data-w="6.1" style="--c:#3D6B2A"></i><b class="pos">R$ 22.000</b></div></div><p class="pe">As três margens são positivas: a receita cobre o custo total.</p>',
-      '<h4>Indicadores</h4><div class="ind"><div><b>IEE = 1,07</b> <span>| a receita cobre o CT</span></div><div><b>Lucratividade = 6,1%</b> <span class="neg">| abaixo de 15 a 20%</span></div><div><b>Rentabilidade = 6,5%</b> <span>| acima de zero</span></div><div><b>Preço de niv. = R$ 62,67</b> <span>| bem abaixo de R$ 120</span></div><div><b>Prod. de niv. = 31,3 sc/ha</b> <span>| bem abaixo de 60</span></div></div>',
-      '<h4>Cenários</h4><div class="cen"><div style="--c:#A8552E">Pessimista<b class="neg">- R$ 79,5 mil</b>51 sc · R$ 108</div><div style="--c:#B89233">Realista<b class="pos">R$ 22 mil</b>60 sc · R$ 120</div><div style="--c:#3D6B2A">Otimista<b class="pos">R$ 97,6 mil</b>66 sc · R$ 132</div></div><div class="destaque">Viável em 2 dos 3 cenários. No pessimista, o prejuízo passa de 25% da receita.</div>',
-      '<h4>Fluxo de caixa</h4><div class="fluxo"></div><div class="meses"></div><p class="pe">Saldo acumulado. Maior déficit em março: <span class="neg mono">- R$ 183 mil</span>, coberto com custeio ou capital próprio até a venda em abril.</p>',
-      '<h4>Conclusão</h4><p class="frase">Viável no cenário realista: IEE de 1,07 e lucro econômico de R$ 22 mil. A margem é estreita (lucratividade de 6,1%) e, no pessimista, o prejuízo é de R$ 79,5 mil.</p><div class="destaque">Principal risco: quebra de safra somada à queda de preço. Recomendação: seguro da produção e venda antecipada de parte da safra.</div>',
+      '<h4>Receita e margens</h4><div class="barras"><div><span>RL</span><i data-w="100" style="--c:#6B6960"></i><b>R$ 372.480</b></div><div><span>MB</span><i data-w="49.5" style="--c:#3D6B2A"></i><b class="pos">R$ 184.480</b></div><div><span>ML</span><i data-w="34.5" style="--c:#3D6B2A"></i><b class="pos">R$ 128.480</b></div><div><span>LE</span><i data-w="9.3" style="--c:#3D6B2A"></i><b class="pos">R$ 34.480</b></div></div><p class="pe">RL = 3.000 sc × R$ 128, menos 3% de Funrural e taxas da cooperativa. As três margens são positivas: a receita cobre o custo total.</p>',
+      '<h4>Indicadores</h4><div class="ind"><div><b>IEE = 1,10</b> <span>| a receita cobre o CT</span></div><div><b>Lucratividade = 9,3%</b> <span class="neg">| abaixo de 15 a 20%</span></div><div><b>Rentabilidade sobre o custo = 10,2%</b> <span>| acima de zero</span></div><div><b>Preço de niv. = R$ 62,67</b> <span>| bem abaixo de R$ 128</span></div><div><b>Prod. de niv. = 29,4 sc/ha</b> <span>| bem abaixo de 60</span></div></div>',
+      '<h4>Cenários</h4><div class="cen"><div style="--c:#A8552E">Pessimista<b class="neg">- R$ 70,4 mil</b>51 sc · R$ 115</div><div style="--c:#B89233">Realista<b class="pos">R$ 34,5 mil</b>60 sc · R$ 128</div><div style="--c:#3D6B2A">Otimista<b class="pos">R$ 113,3 mil</b>66 sc · R$ 141</div></div><div class="destaque">Viável em 2 dos 3 cenários. No pessimista, com o custo 5% maior, o prejuízo passa de 20% da receita.</div>',
+      '<h4>Fluxo de caixa</h4><div class="fluxo"></div><div class="meses"></div><p class="pe">Saldo acumulado. Maior déficit em março: <span class="neg mono">- R$ 183 mil</span>, coberto com custeio ou capital próprio até a venda em abril, quando entra a receita líquida.</p>',
+      '<h4>Conclusão</h4><p class="frase">Viável no cenário realista: IEE de 1,10 e lucro econômico de R$ 34,5 mil. A margem é estreita (lucratividade de 9,3%) e, no pessimista, o prejuízo é de R$ 70,4 mil.</p><div class="destaque">Principal risco: quebra de safra somada à queda de preço. Recomendação: seguro da produção e venda antecipada de parte da safra.</div>',
       FIM]},
     boi:{fl:[-421, -450, -480, 44], meses:['abr','mai','jun','jul'], mx:500, s:[
       '<div class="capa"><small>Projeto da disciplina · Gestão de Custos</small><h4>Viabilidade do confinamento de bovinos em São Gabriel/RS</h4><p>100 bois · 90 dias · 2026</p><p style="color:var(--stone)">Integrantes do grupo</p></div>' + PAS,

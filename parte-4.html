@@ -548,7 +548,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
     <div class="callout success">
       <strong>Mesmo sem financiar, há custo de capital</strong>
-      Se o produtor usa capital próprio, o custo de oportunidade desse capital (Selic ou CDI) entra como custo implícito no <em>Custo Total</em>. O dinheiro aplicado na lavoura deixou de render na renda fixa, e a Parte III já tratou a Rentabilidade ÷ CT exatamente por isso.
+      Se o produtor usa capital próprio, o custo de oportunidade desse capital entra como custo implícito no <em>Custo Total</em>: o que ele renderia na aplicação de referência, que o curso fixa em 14% ao ano. O dinheiro aplicado na lavoura deixou de render na renda fixa, e a Parte III já tratou a rentabilidade sobre o custo exatamente por isso.
     </div>
 
     <h3>Custo Efetivo Total (CET)</h3>
@@ -705,7 +705,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <li><strong>Armazenagem:</strong> custo mensal por saca, se o produto aguarda preço melhor no armazém.</li>
     </ul>
     <div class="example">
-      <p>Se a soja é cotada a R$ 130/sc na TV, o preço posto cooperativa em São Gabriel pode ficar perto de <span class="calc">R$ 120/sc</span> depois do frete e das deduções. É esse o número que sustenta a receita do projeto. Usar a cotação cheia <em>superestima</em> a viabilidade.</p>
+      <p>Se a soja vale R$ 140/sc no porto, o preço posto cooperativa em São Gabriel pode ficar perto de <span class="calc">R$ 128/sc</span> depois do frete e das despesas. É esse o número que sustenta a receita do projeto; o Funrural e as taxas da cooperativa saem depois, uma vez só, na receita líquida. Usar a cotação cheia <em>superestima</em> a viabilidade.</p>
     </div>
 
     <figure class="dd cascata" id="dd-porteira4" style="--dd:var(--terra);--dd-deep:#7C3D1F">
@@ -829,7 +829,7 @@ const QUIZ = [
     q: "Capital próprio na lavoura, sem financiamento. Sobre o custo do capital:",
     a: [
       {t:"Não há custo: o dinheiro é do produtor.", p:"op"},
-      {t:"Entra o custo de oportunidade (Selic/CDI) como custo implícito no CT.", p:"ge"},
+      {t:"Entra o custo de oportunidade (o que renderia aplicado) como custo implícito no CT.", p:"ge"},
       {t:"Só se o produtor quiser considerar.", p:"tr"}
     ]
   }
@@ -1086,9 +1086,9 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 
 /* 8. da cotação ao preço na porteira */
 Didatica.cascata(document.getElementById('dd-porteira4'), {
-  inicio:{t:'Cotação vista na TV', v:130},
-  itens:[{t:'Frete até a cooperativa', v:5},{t:'Descontos de umidade e impureza', v:3},{t:'Funrural (1,63%)', v:2}],
-  msgs:['A cotação nacional é o ponto de partida, não o preço que o produtor recebe.','O frete da propriedade até a cooperativa sai do preço. Quanto mais longe, maior o desconto.','Soja acima de 14% de umidade ou com impureza sofre desconto por ponto percentual.','O Funrural é descontado sobre a receita bruta, no momento da venda. Chega-se aos cerca de R$ 120 por saca do exemplo de São Gabriel.']
+  inicio:{t:'Cotação no porto (Paranaguá)', v:140},
+  itens:[{t:'Frete até o porto', v:9},{t:'Despesas, umidade e impureza', v:3}],
+  msgs:['A cotação do porto, a que aparece na TV, é o ponto de partida, não o preço que o produtor recebe.','O frete até o porto sai do preço. Quanto mais longe, maior o desconto.','Despesas de recebimento e o desconto da soja úmida ou com impureza. Chega-se aos R$ 128 por saca posto cooperativa. O Funrural e as taxas da cooperativa saem depois, sobre a venda, na receita líquida.']
 });
 </script>
 <script data-goatcounter="https://roberson.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

@@ -596,9 +596,9 @@
           <label class="lbl-aj" for="comerc">Comercialização (% sobre a receita)
             <button type="button" class="ajuda-btn" aria-expanded="false" aria-controls="aj-deducoes">?</button>
           </label>
-          <input type="text" inputmode="decimal" id="comerc" placeholder="ex.: 1,5">
+          <input type="text" inputmode="decimal" id="comerc" placeholder="ex.: 1,37">
           <div class="ajuda-box" id="aj-deducoes" hidden>
-            <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE): isso é o passo seguinte.</p>
+            <p>Comercialização e Funrural saem da receita bruta para chegar à líquida. Não entram no custeio (COE): isso é o passo seguinte. No exemplo do curso, o Funrural (1,63%) e as taxas da cooperativa (1,37%) somam 3% da venda.</p>
             <a href="parte-3.html#receita-margens" target="_blank" rel="noopener">ver no site →</a>
           </div>
         </div>
@@ -767,10 +767,10 @@
       </div>
       <p class="note">Remuneração dos fatores é custo de oportunidade: o CT soma as duas, a do
       capital investido e a da terra própria. Se a terra é arrendada, o arrendamento pago vai no
-      custeio (passo 3) e a remuneração da terra aqui fica em zero.</p>
+      custeio (passo 3) e a remuneração da terra aqui fica em zero. O capital remunerado é o capital médio dos bens, (valor de compra + valor final) ÷ 2: é o que esse dinheiro imobilizado renderia aplicado. O curso usa a aplicação de referência, 14% ao ano.</p>
       <div class="grid2" style="margin-top:6px">
         <div class="field"><label for="taxa-cap">Remuneração do capital: taxa (% a.a.)</label>
-          <input type="text" inputmode="decimal" id="taxa-cap" placeholder="ex.: 6 (poupança)"></div>
+          <input type="text" inputmode="decimal" id="taxa-cap" placeholder="ex.: 14 (aplicação de referência)"></div>
         <div class="field"><label for="arrend">Remuneração da terra: arrendamento (R$/ha)</label>
           <input type="text" inputmode="decimal" id="arrend" placeholder="0"></div>
       </div>
@@ -879,12 +879,12 @@
       </h2>
       <div class="ajuda-box" id="aj-viab" hidden>
         <p>VPL, TIR e payback medem se o investimento perene compensa ao longo do tempo.</p>
-        <p>O fluxo de caixa da fase produtiva é a receita líquida menos os custos que saem do bolso. Ficam de fora as depreciações, que não são desembolso, e a remuneração do capital, porque o custo do capital já entra pela taxa de desconto. A remuneração da terra permanece, quando informada no passo 4. Use como taxa de desconto o custo de oportunidade do capital, por exemplo a taxa de captação do crédito ou a Selic.</p>
+        <p>O fluxo de caixa da fase produtiva é a receita líquida menos os custos que saem do bolso. Ficam de fora as depreciações, que não são desembolso, e a remuneração do capital, porque o custo do capital já entra pela taxa de desconto. A remuneração da terra permanece, quando informada no passo 4. Use como taxa de desconto o custo de oportunidade do capital: o curso usa a aplicação de referência, 14% ao ano.</p>
         <a href="parte-5.html#ap-viabilidade" target="_blank" rel="noopener">ver no site →</a>
       </div>
       <div class="grid2">
         <div class="field"><label for="taxa">Taxa de desconto (% a.a.)</label>
-          <input type="text" inputmode="decimal" id="taxa" placeholder="ex.: 6"></div>
+          <input type="text" inputmode="decimal" id="taxa" placeholder="ex.: 14"></div>
       </div>
       <div class="kpis">
         <div class="kpi"><div class="k">VPL</div><div class="v" id="k-vpl">-</div><div class="h" id="h-vpl"></div></div>
@@ -1856,11 +1856,11 @@ function calcIndic(v){
   return { res, mb, cf, prodNiv,
     precoNiv: fr(v.coe)==null?null:v.preco*fr(v.coe),
     msCoe:ms(v.coe), msCot:ms(v.cot), msCt:ms(v.ct),
-    lucr: v.rb>0? res/v.rb : null,
-    roi:  v.ct>0? res/v.ct : null,   // rentabilidade = LE ÷ CT (convenção do curso, Parte III.1)
-    recCF: cf>0? v.rb/cf : null,
-    pctCF: v.rb>0? cf/v.rb : null,
-    efic: v.ct>0? v.rb/v.ct : null };
+    lucr: v.rl>0? res/v.rl : null,      // os três índices sobre a receita líquida (livro, Tabela 14.6)
+    roi:  v.ct>0? res/v.ct : null,   // rentabilidade sobre o custo = LE ÷ CT = IEE − 1
+    recCF: cf>0? v.rl/cf : null,
+    pctCF: v.rl>0? cf/v.rl : null,
+    efic: v.ct>0? v.rl/v.ct : null };
 }
 
 function svgEscada(v){
@@ -1935,18 +1935,18 @@ function visuaisHTML(v){
   if(ind.efic!=null){ const e=ind.efic, max=Math.max(2,e*1.1), fill=Math.min(100,e/max*100), mark=1/max*100, cor=e>=1?'var(--verde-ok)':'var(--vermelho)';
     eficCard='<div class="indic"><div class="k">Eficiência econômica</div><div class="val '+(e>=1?'pos':'neg')+'">'+fmtN(e,2)+'</div>'+
       '<div class="efic-bar"><div class="efic-fill" style="width:'+fill+'%;background:'+cor+'"></div><div class="efic-mark" style="left:'+mark+'%"></div></div>'+
-      '<div class="desc">quantas vezes a RB cobre o CT (1,0 = equilíbrio)</div></div>'; }
+      '<div class="desc">IEE: quantas vezes a receita líquida cobre o CT (1,0 = equilíbrio)</div></div>'; }
   const cards=
     (ind.prodNiv!=null?card('Produtividade de nivelamento',fmtN(ind.prodNiv,1)+' '+(v.unProd||''),'produção mínima para cobrir o COE, já descontados Funrural e comercialização'):'')+
     (ind.precoNiv!=null?card('Preço de nivelamento',brl(ind.precoNiv),'preço mínimo de venda para cobrir o COE, já descontados Funrural e comercialização'):'')+
     (ind.msCoe!=null?card('Margem de segurança · COE',pct(ind.msCoe),'quanto a produção pode cair e ainda pagar o custeio',sgn(ind.msCoe)):'')+
     (ind.msCot!=null?card('Margem de segurança · COT',pct(ind.msCot),'quanto pode cair e ainda cobrir depreciação e pró-labore',sgn(ind.msCot)):'')+
     (ind.msCt!=null?card('Margem de segurança · CT',pct(ind.msCt),'quanto pode cair e ainda remunerar terra e capital',sgn(ind.msCt)):'')+
-    (ind.lucr!=null?card('Lucratividade',pct(ind.lucr),'lucro líquido sobre a receita bruta',sgn(ind.lucr)):'')+
-    (ind.roi!=null?card('Rentabilidade',pct(ind.roi),'lucro econômico sobre o custo total (acima de zero: rende mais que arrendar e aplicar)',sgn(ind.roi)):'')+
+    (ind.lucr!=null?card('Lucratividade',pct(ind.lucr),'lucro econômico sobre a receita líquida',sgn(ind.lucr)):'')+
+    (ind.roi!=null?card('Rentabilidade sobre o custo',pct(ind.roi),'lucro econômico sobre o custo total; acima de zero, rende mais que arrendar a terra e aplicar o capital. É o IEE menos 1',sgn(ind.roi)):'')+
     eficCard+
-    (ind.recCF!=null?card('Receita / custos fixos',fmtN(ind.recCF,2)+'×','quantas vezes a RB cobre os custos fixos'):'')+
-    (ind.pctCF!=null?card('% custos fixos da RB',pct(ind.pctCF),'parte da receita comprometida com fixos'):'');
+    (ind.recCF!=null?card('Receita / custos fixos',fmtN(ind.recCF,2)+'×','quantas vezes a receita líquida cobre os custos fixos'):'')+
+    (ind.pctCF!=null?card('% custos fixos da receita',pct(ind.pctCF),'parte da receita líquida comprometida com fixos'):'');
   let out='';
   if(escadaSvg) out+='<div class="viz-sep">Estrutura de custos e resultado</div>'+escadaSvg;
   if(beSvg) out+='<div class="viz-sep">Ponto de equilíbrio e margem de segurança</div>'+beSvg;
@@ -2113,7 +2113,7 @@ const EXEMPLO = {
     oportunidades:"Demanda internacional aquecida (China) sustenta preços; linhas de crédito rural com juros subsidiados (Pronaf/Plano Safra) para custeio; lançamento de cultivares mais produtivas e resistentes a doenças; cooperativas da região oferecendo assistência técnica e logística de armazenagem.",
     ameacas:"Veranicos e irregularidade de chuvas no período crítico da cultura; oscilação do câmbio e do preço internacional da commodity; pragas e doenças com resistência crescente (percevejo, ferrugem-asiática); alta do custo de fertilizantes e defensivos importados.",
   },
-  p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"115", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:""},
+  p1:{produto:"Soja", qtd:"50", unQtd:"ha", prod:"60", unProd:"sc/ha", preco:"128", unPreco:"R$/sc", secDesc:"", secValor:"", comerc:"1.37"},
   p2:{campos:{sistema:"Plantio direto", cultivar:"Variedade precoce, ciclo 110–120 dias", mes_plantio:"nov", mes_colheita:"abr", adub_base:"350 kg/ha 02-20-20 na semeadura + inoculação", ap_fung:"3"},
     observacoes:"Antes de semear, analise o solo e faça a calagem pelo Manual de Calagem e Adubação RS/SC: no plantio direto consolidado, aplicar calcário quando o pH em água da camada de 0 a 10 cm ficar abaixo de 5,5. Inocule as sementes com Bradyrhizobium + co-inoculação com Azospirillum e aplique fungicida + inseticida no tratamento de sementes (TSI). Semeie em novembro, espaçamento 45–50 cm, 12–14 plantas por metro. Controle plantas daninhas com herbicida pré-emergente logo após a semeadura e complementação pós-emergente se necessário. Realize 3 aplicações de fungicida ao longo do ciclo, em R1 (floração), R3 (início de grão) e R5 (enchimento de grão), alternando grupos químicos para evitar resistência. Monitore percevejo e lagarta conforme limiar de ação. Na colheita, regule a colheitadeira para perdas abaixo de 1 sc/ha e colha com umidade ≤ 14%. Registre a produtividade por talhão para ajustar o planejamento da próxima safra. Cotação de referência: R$ 115/sc (Emater/RS-Ascar, jun/2026)."},
   p3:{itens:[
@@ -2124,7 +2124,7 @@ const EXEMPLO = {
     {desc:"Frete, secagem e outros", cat:"Outros", un:"ha", qtd:"1", preco:"390"},
   ], seguro:"", ater:"", juros:""},
   p4:{bens:[{desc:"Máquinas e implementos", aq:"180000", res:"0", vida:"10"}],
-    prolabore:"24000", outros:"6000", taxaCapital:"6", arrendamento:"500", area:"50"},
+    prolabore:"24000", outros:"6000", taxaCapital:"14", arrendamento:"500", area:"50"},
   p5:{cultura:"uva", itens:[], area:"", form:"", vida:""},
   p6:{custoFormacao:"", taxaDesconto:""},
 };
@@ -2163,7 +2163,7 @@ const EXEMPLO_UVA = {
       {desc:"Mão de obra de implantação (15% dos materiais)", un:"ha", qtd:"1", preco:"13560"},
     ],
     area:"1", form:"2", vida:"15"},
-  p6:{custoFormacao:"9000", taxaDesconto:"6"},
+  p6:{custoFormacao:"9000", taxaDesconto:"14"},
 };
 
 // ===========================================================================

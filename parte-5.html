@@ -491,7 +491,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="formula">
       <span class="label">Indicador-chave do leite</span>
       Custo por litro = CT ÷ total de litros no período<br>
-      Faixa de referência do curso (leite familiar): <b>R$ 1,50 a R$ 2,20/L</b>. Confira o custo da sua região no Cepea ou na EMATER/RS.
+      Compare com o <b>preço recebido</b>: no tambo de 25 vacas do curso, a R$ 2,40 o litro, o COE é de R$ 1,93 e o CT, de R$ 2,70. O preço paga o caixa, não paga tudo. Para a sua região, confira o custo no Cepea ou na EMATER/RS.
     </div>
 
     <h3>Dois ajustes que mudam o custo médio</h3>
@@ -507,7 +507,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="ctrl"><div class="top"><span>Concentrado por litro</span><b data-v="rc"></b></div><input type="range" data-i="rc" min="0.2" max="0.8" step="0.05" value="0.35" aria-label="Concentrado por litro"></div>
         <div class="vacas" aria-hidden="true"></div>
         <div class="leg-dd"><span style="--c:var(--olive)">vaca em lactação</span><span style="--c:#CFC9B8">vaca seca</span></div>
-        <div class="custo" aria-hidden="true"><div class="ref" style="left:42.857%;width:20%"><span>referência</span></div><div class="tr"><i data-b="conc" style="background:var(--terra)"></i><i data-b="lact" style="background:#6E7A4E"></i><i data-b="seca" style="background:#9B9890"></i></div></div>
+        <div class="custo" aria-hidden="true"><div class="ref" style="left:68.571%;width:0"><span>R$ 2,40</span></div><div class="tr"><i data-b="conc" style="background:var(--terra)"></i><i data-b="lact" style="background:#6E7A4E"></i><i data-b="seca" style="background:#9B9890"></i></div></div>
         <div class="eixo-r" style="margin-top:6px"><span style="left:0">R$ 0</span><span style="left:28.571%">1</span><span style="left:57.143%">2</span><span style="left:85.714%">3/L</span></div>
         <div class="leg-dd"><span style="--c:var(--terra)">concentrado</span><span style="--c:#6E7A4E">demais custos das vacas em lactação</span><span style="--c:#9B9890">custo das vacas secas</span></div>
         <div class="res-dd">
@@ -518,7 +518,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         </div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Valores de exemplo: 20 litros por vaca em lactação por dia, concentrado a R$ 1,80/kg e R$ 20 por vaca por dia de demais custos (volumoso, sanidade, mão de obra, depreciação), seca ou em lactação. A faixa tracejada é a referência do curso, de R$ 1,50 a R$ 2,20/L.</figcaption>
+      <figcaption>Valores de exemplo: 20 litros por vaca em lactação por dia, concentrado a R$ 1,80/kg e R$ 20 por vaca por dia de demais custos (volumoso, sanidade, mão de obra, depreciação), seca ou em lactação. A linha tracejada marca o preço do leite na tabela do curso, R$ 2,40 o litro.</figcaption>
     </figure>
 
     <h3>O método se aplica a outros sistemas</h3>
@@ -657,7 +657,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>VPL: Valor Presente Líquido</h3>
-    <p>Traz todos os fluxos futuros (entradas e saídas) para o valor de hoje, usando uma <em>taxa de desconto</em>, normalmente a Selic ou o custo de oportunidade do capital.</p>
+    <p>Traz todos os fluxos futuros (entradas e saídas) para o valor de hoje, usando uma <em>taxa de desconto</em>: o que o dinheiro renderia na aplicação de referência, que o curso fixa em 14% ao ano.</p>
     <div class="hierarchy">
       <div class="hier-row ok"><span class="hier-tag">VPL &gt; 0</span><span>Viável. Gera valor acima da taxa de desconto.</span></div>
       <div class="hier-row warn"><span class="hier-tag">VPL = 0</span><span>Empata com a alternativa de investimento.</span></div>
@@ -665,11 +665,11 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>TIR: Taxa Interna de Retorno</h3>
-    <p>É a taxa de desconto que torna o VPL igual a zero, na prática, o <em>rendimento anual</em> do projeto. Compara-se direto com a Selic.</p>
+    <p>É a taxa de desconto que torna o VPL igual a zero, na prática, o <em>rendimento anual</em> do projeto. Compara-se direto com a aplicação de referência.</p>
     <div class="formula">
       <span class="label">Regra de decisão da TIR</span>
-      TIR &gt; Selic → <b>projeto viável</b><br>
-      TIR &lt; Selic → melhor aplicar em renda fixa
+      TIR &gt; aplicação de referência → <b>projeto viável</b><br>
+      TIR &lt; aplicação de referência → melhor deixar aplicado
     </div>
     <figure class="dd vpl-dd" id="dd-vpl" style="--dd:var(--terra);--dd-deep:#7C3D1F">
       <div class="dd-cab">O pomar no tempo: payback, VPL e TIR</div>
@@ -677,7 +677,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="ctrl"><div class="top"><span>Investimento na implantação</span><b data-v="inv"></b></div><input type="range" data-i="inv" min="50" max="400" step="10" value="200" aria-label="Investimento na implantação"></div>
         <div class="ctrl"><div class="top"><span>Lucro anual na produção</span><b data-v="luc"></b></div><input type="range" data-i="luc" min="10" max="80" step="5" value="40" aria-label="Lucro anual na produção"></div>
         <div class="ctrl"><div class="top"><span>Anos de formação, sem lucro</span><b data-v="form"></b></div><input type="range" data-i="form" min="0" max="5" step="1" value="0" aria-label="Anos de formação, sem lucro"></div>
-        <div class="ctrl"><div class="top"><span>Taxa de desconto</span><b data-v="tx"></b></div><input type="range" data-i="tx" min="2" max="20" step="0.5" value="10" aria-label="Taxa de desconto"></div>
+        <div class="ctrl"><div class="top"><span>Taxa de desconto</span><b data-v="tx"></b></div><input type="range" data-i="tx" min="2" max="20" step="0.5" value="14" aria-label="Taxa de desconto"></div>
         <div class="ctrl"><div class="top"><span>Horizonte da análise</span><b data-v="hz"></b></div><input type="range" data-i="hz" min="8" max="25" step="1" value="15" aria-label="Horizonte da análise"></div>
         <svg role="img" aria-label="Saldo acumulado do projeto, ano a ano" style="margin-top:12px"></svg>
         <div class="leg-dd"><span class="ln" style="--c:var(--ink)">saldo acumulado</span><span class="tr" style="--c:var(--terra)">saldo acumulado descontado</span></div>
@@ -689,7 +689,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         </div>
         <div class="estado-dd"></div>
       </div>
-      <figcaption>Começa com o pomar do exemplo. Nos anos de formação o lucro é zero e o custo de formação está somado ao investimento. A taxa de desconto é de exemplo: use a Selic do momento ou o seu custo de oportunidade.</figcaption>
+      <figcaption>Começa com o pomar do exemplo. Nos anos de formação o lucro é zero e o custo de formação está somado ao investimento. A taxa começa nos 14% ao ano da aplicação de referência do curso; mude para o que o produtor consegue de fato.</figcaption>
     </figure>
 
     <div class="callout success">
@@ -889,9 +889,9 @@ const QUIZ_A = [
     {t:"Bom sinal: a vaca está comendo bem.", p:"op"},
     {t:"Acima de 0,5 kg/L indica ineficiência alimentar; investigo dieta e custo/L.", p:"es"},
     {t:"Número alto, mas não tenho o limite na cabeça.", p:"tr"} ]},
-  { q:"O custo por litro de leite deu R$ 2,80, e a referência do curso é R$ 1,50–2,20. Você:", a:[
-    {t:"Está perto da faixa, segue o projeto.", p:"op"},
-    {t:"Está acima: sinal de ineficiência; reviso alimentação, escala e vacas secas.", p:"es"},
+  { q:"O custo total por litro de leite deu R$ 2,80, e o leite é vendido a R$ 2,40. Você:", a:[
+    {t:"O leite paga as contas do mês, então segue o projeto.", p:"op"},
+    {t:"Cada litro custa mais do que vale: reviso alimentação, escala e vacas secas antes de seguir.", p:"es"},
     {t:"Acho alto, mas não sei bem com o que comparar.", p:"tr"} ]}
 ];
 const PROFILES_A = {
@@ -925,22 +925,22 @@ const QUIZ_B = [
     {t:"Algo deu errado na conta, vou refazer.", p:"tr"} ]},
   { q:"A TIR de um projeto é a taxa que:", a:[
     {t:"O banco cobra de juros no financiamento.", p:"op"},
-    {t:"Zera o VPL: o 'rendimento anual' do projeto, comparável à Selic.", p:"es"},
+    {t:"Zera o VPL: o 'rendimento anual' do projeto, comparável à aplicação de referência.", p:"es"},
     {t:"Mostra mais ou menos o retorno esperado.", p:"tr"} ]},
   { q:"Banana (colhe em 1–1,5 ano) versus maçã (2–3 anos). Para o fluxo de caixa do projeto:", a:[
     {t:"Dá no mesmo: as duas são frutas.", p:"op"},
     {t:"A banana exige bem menos capital de giro na formação; a receita entra antes.", p:"es"},
     {t:"A banana é mais rápida, mas não calculo o impacto.", p:"tr"} ]},
-  { q:"A TIR do pomar deu 9% a.a. e a Selic está em 11% a.a. O projeto:", a:[
-    {t:"É viável: rende 9% ao ano.", p:"op"},
-    {t:"TIR abaixo da Selic: o capital renderia mais na renda fixa; não recomendado assim.", p:"es"},
-    {t:"Está perto da Selic, deve servir.", p:"tr"} ]}
+  { q:"A TIR do pomar deu 12% a.a. e a aplicação de referência rende 14% a.a. O projeto:", a:[
+    {t:"É viável: rende 12% ao ano.", p:"op"},
+    {t:"TIR abaixo da aplicação: o capital renderia mais aplicado; não recomendado assim.", p:"es"},
+    {t:"Está perto da aplicação, deve servir.", p:"tr"} ]}
 ];
 const PROFILES_B = {
   op:{ name:"Operador", msg:"Você analisa o pomar como se fosse uma lavoura anual, olhando o resultado de um ano e o custo da safra. Em perene isso engana: a formação é negativa por definição. O salto é separar implantação (investimento) de manutenção (COE/COT) e pensar o projeto pelo horizonte inteiro.", revise:"Aulas B.1 (fases da perene) e B.2 (payback como leitura do tempo)." },
   tr:{ name:"Em transição", msg:"Você intui que o tempo importa, mas ainda aproxima os números e não fecha a conta. O passo seguinte é montar o fluxo de caixa ano a ano e levá-lo ao payback, ao VPL e à TIR, premissa aproximada não resiste às perguntas.", revise:"Aulas B.1 (custo de implantação amortizado) e B.2 (VPL e TIR na decisão)." },
-  ge:{ name:"Gestor", msg:"Você trata a implantação como investimento amortizável e reconhece a limitação do payback simples. O próximo passo é usar VPL e TIR com a taxa de desconto certa (Selic/custo de oportunidade) e ler o resultado como decisão, não como número de planilha.", revise:"Reforce a aula B.2 (regra de decisão de VPL e TIR) e avance para o Módulo C." },
-  es:{ name:"Técnico estratégico", msg:"Você lê o projeto perene pelo que ele é: um investimento no tempo. Separa fases, amortiza a implantação, compara TIR com a Selic e entende que VPL negativo significa destruir valor. Vê o capital de giro da formação como variável de sobrevivência.", revise:"Você domina o módulo. Aplique VPL/TIR a um pomar real e avance para o Módulo C (precisão)." }
+  ge:{ name:"Gestor", msg:"Você trata a implantação como investimento amortizável e reconhece a limitação do payback simples. O próximo passo é usar VPL e TIR com a taxa de desconto certa (a aplicação de referência) e ler o resultado como decisão, não como número de planilha.", revise:"Reforce a aula B.2 (regra de decisão de VPL e TIR) e avance para o Módulo C." },
+  es:{ name:"Técnico estratégico", msg:"Você lê o projeto perene pelo que ele é: um investimento no tempo. Separa fases, amortiza a implantação, compara a TIR com a aplicação de referência e entende que VPL negativo significa destruir valor. Vê o capital de giro da formação como variável de sobrevivência.", revise:"Você domina o módulo. Aplique VPL/TIR a um pomar real e avance para o Módulo C (precisão)." }
 };
 
 /* ---------- MÓDULO C — AGRICULTURA DE PRECISÃO ---------- */
@@ -1172,7 +1172,7 @@ peca('dd-leite', function(q, v, put, el){
   q('[data-b=conc]').style.width = Math.min(conc / L / MX, 1) * 100 + '%';
   q('[data-b=lact]').style.width = lact / L / MX * 100 + '%';
   q('[data-b=seca]').style.width = seca / L / MX * 100 + '%';
-  var m = cl > 2.2 ? 'Custo acima da referência do curso para o leite familiar (R$ 1,50 a R$ 2,20/L).' : cl < 1.5 ? 'Custo abaixo da referência do curso para o leite familiar (R$ 1,50 a R$ 2,20/L).' : 'Custo dentro da referência do curso para o leite familiar (R$ 1,50 a R$ 2,20/L).';
+  var m = cl > 2.4 ? 'Cada litro custa mais do que o preço de R$ 2,40: a conta não fecha.' : 'Cada litro custa R$ ' + f1(2.4 - cl, 2) + ' menos do que o preço de R$ 2,40. A conta ainda não inclui a remuneração da terra e do capital, que completa o custo total.';
   if (r > 0.5) m = 'Acima de 0,5 kg de concentrado por litro: ineficiência alimentar. ' + m;
   if (sec === 1) m += ' A vaca seca come e não dá leite: o custo dela soma R$ ' + f1(seca / L, 2) + ' a cada litro das outras.';
   else if (sec > 1) m += ' As ' + sec + ' vacas secas comem e não dão leite: o custo delas soma R$ ' + f1(seca / L, 2) + ' a cada litro das outras.';

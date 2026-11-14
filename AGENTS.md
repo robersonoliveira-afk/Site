@@ -42,8 +42,11 @@ Quiz é bloco acordeão, painel interno oliva-deep + acento mostarda (não muda 
 
 ## Padrões editoriais
 
-- Caso central: soja, 50 ha, 60 sc/ha, São Gabriel/RS, safra 2025/26. Par de preços fixado: cotação de porto ~R$ 130/sc — preço posto cooperativa ~R$ 120/sc. RBT = R$ 360.000. Idêntico em todas as Partes.
-- Rentabilidade sempre calculada como ÷ CT (não sobre COE nem COT). Só o CT incorpora custo de oportunidade da terra e do capital.
+- Referência de tudo (desde 14/11/2026): o livro e o curso "Produzir Não Basta" (20 aulas, 4 eixos). Números de exemplo vêm da tabela de preços do livro (base 2026) e de `ebook/ferramentas/casos.py`. O roteiro do semestre (`roteiro.html`) tem 10 encontros; os slides de sala ficam em `slides/aula-NN/`, gerados por `Produzir_Nao_Basta/roteiro/publicar_slides.py` (não editar à mão). As aulas T1 a T8 e os `revisao-*.html` são arquivo: noindex e sem link.
+- Caso central: soja, 50 ha, 60 sc/ha, São Gabriel/RS. Preços do livro (aula 4): R$ 140/sc no porto, menos R$ 12 de frete e despesas, dá R$ 128/sc posto cooperativa. RBT = R$ 384.000. Funrural (R$ 6.259) e taxas da cooperativa (R$ 5.261) somam 3% da venda: RL = R$ 372.480. Os descontos entram uma vez só, na receita líquida.
+- Margens e os três índices sobre a receita líquida (livro, Tabela 14.6): lucratividade = LE ÷ RL; rentabilidade sobre o custo = LE ÷ CT, com a régua no zero (nunca comparar com taxa de aplicação); IEE = RL ÷ CT. IEE − 1 = rentabilidade sobre o custo.
+- Custo do capital e taxa de desconto: a aplicação de referência, 14% ao ano (livro, aulas 13 e 19). Não usar Selic, CDI ou poupança datados no texto.
+- Leite: sem faixa fixa de custo por litro. Comparar com o preço (R$ 2,40) e com o tambo de 25 vacas do curso (COE R$ 1,93, CT R$ 2,70 por litro).
 - Funrural: 1,63% pessoa física (2,23% PJ), LC 224/2025. Nunca usar 1,5%.
 - Fontes: CNA/Campo Futuro (metodologia Matsunaga/IEA), CONAB, CEPEA/ESALQ, EMATER/RS, BCB (MCR), MAPA (Plano Safra Empresarial), MDA (Plano Safra Familiar), Lei 12.651/2012 (CAR/SICAR), EMBRAPA (UA, GMD, custo/L).
 - Declaração de uso de IA (texto FECHADO) em todos os rodapés: *"A ferramenta Claude Opus 4.7 (Anthropic, 2026) foi utilizada para auxiliar na organização e estruturação do material, a partir dos materiais didáticos do professor. Todo o conteúdo técnico, a seleção de conceitos e os ajustes de linguagem são de responsabilidade do professor."*

@@ -326,25 +326,26 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>Medir o custo foi o trabalho da Parte II. Agora começa a decisão: confrontar o custo com a <strong>receita</strong> e ler o resultado em camadas. Cada camada de margem responde a uma pergunta gerencial diferente, e a ordem importa, porque uma margem positiva no topo pode esconder um prejuízo embaixo.</p>
 
     <h3>Receita bruta e receita líquida</h3>
-    <p>A <strong>Receita Bruta Total (RBT)</strong> é o valor da venda sem nenhuma dedução: produtividade × área (ou nº de animais) × preço unitário. A <strong>Receita Líquida</strong> é o que efetivamente entra no caixa, já descontados os encargos sobre a venda: Funrural (1,63%), taxas de comercialização (1,0 a 2,0%), corretagem.</p>
+    <p>A <strong>Receita Bruta Total (RBT)</strong> é o valor da venda sem nenhuma dedução: produtividade × área (ou nº de animais) × preço unitário. A <strong>Receita Líquida</strong> é o que efetivamente entra no caixa, já descontados os encargos sobre a venda: Funrural (1,63%), taxas de comercialização (1,0 a 2,0%), corretagem. No exemplo do curso, Funrural e taxas da cooperativa somam cerca de 3% da venda. <strong>É a receita líquida que enfrenta os custos.</strong></p>
     <div class="formula">
       <span class="label">Receita bruta</span>
       RBT = produtividade × área × <b>preço unitário</b>
     </div>
 
     <div class="example">
-      <p>Soja, 50 ha, 60 sc/ha, a <span class="calc">R$ 120/sc</span> (<a href="https://camnpal.com.br/cotacao-de-graos.html" target="_blank" rel="noopener">cotação da cooperativa</a>):</p>
-      <p>RBT = 60 × 50 × 120 = <span class="calc">R$ 360.000</span> na safra. Produção total: 3.000 sc.</p>
+      <p>Soja, 50 ha, 60 sc/ha, a <span class="calc">R$ 128/sc</span> (<a href="https://camnpal.com.br/cotacao-de-graos.html" target="_blank" rel="noopener">cotação da cooperativa</a>):</p>
+      <p>RBT = 60 × 50 × 128 = <span class="calc">R$ 384.000</span> na safra. Produção total: 3.000 sc.</p>
+      <p>Com 3% de descontos (Funrural de R$ 6.259 e taxas da cooperativa de R$ 5.261), a receita líquida é de <span class="calc">R$ 372.480</span>.</p>
     </div>
 
     <h3>As três margens</h3>
-    <p>Cada margem subtrai uma camada de custo da Parte II. Lê-se de cima para baixo, e <em>só a última diz se o projeto é viável</em>.</p>
+    <p>Cada margem parte da receita líquida e subtrai uma camada de custo da Parte II. Lê-se de cima para baixo, e <em>só a última diz se o projeto é viável</em>.</p>
     <div class="tbl-wrap">
     <table class="tbl">
       <tr><th>Margem</th><th>Fórmula</th><th>O que responde</th></tr>
-      <tr><td><strong>Margem Bruta (MB)</strong></td><td class="num">RB − COE</td><td>Quanto sobra após pagar os desembolsos. Curto prazo. Se negativa, parar imediatamente.</td></tr>
-      <tr><td><strong>Margem Líquida (ML)</strong></td><td class="num">RB − COT</td><td>Quanto sobra após remunerar o trabalho e repor o patrimônio. Sustentabilidade.</td></tr>
-      <tr><td><strong>Lucro Econômico (LE)</strong></td><td class="num">RB − CT</td><td>A riqueza acima das melhores alternativas de mercado. Viabilidade definitiva.</td></tr>
+      <tr><td><strong>Margem Bruta (MB)</strong></td><td class="num">RL − COE</td><td>Quanto sobra após pagar os desembolsos. Curto prazo. Se negativa, parar imediatamente.</td></tr>
+      <tr><td><strong>Margem Líquida (ML)</strong></td><td class="num">RL − COT</td><td>Quanto sobra após remunerar o trabalho e repor o patrimônio. Sustentabilidade.</td></tr>
+      <tr><td><strong>Lucro Econômico (LE)</strong></td><td class="num">RL − CT</td><td>A riqueza acima das melhores alternativas de mercado. Viabilidade definitiva.</td></tr>
     </table>
     </div>
     <div class="callout">
@@ -353,34 +354,34 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>Indicadores de viabilidade</h3>
-    <p>As margens dão valores absolutos; os indicadores tornam o projeto <em>comparável</em>: com outros projetos e com a média da região.</p>
+    <p>As margens dão valores absolutos; os indicadores tornam o projeto <em>comparável</em>: com outros projetos e com a média da região. Os três índices de resultado usam a receita líquida (RL).</p>
     <div class="tbl-wrap">
     <table class="tbl">
       <tr><th>Indicador</th><th>Fórmula</th><th>Referência de qualidade</th></tr>
-      <tr><td>Lucratividade (%)</td><td class="num">LE ÷ RB × 100</td><td>&gt; 15 a 20%</td></tr>
-      <tr><td>Rentabilidade (%)</td><td class="num">LE ÷ CT × 100</td><td>&gt; 0 (o CT já inclui arrendar e aplicar)</td></tr>
-      <tr><td>IEE</td><td class="num">RB ÷ CT</td><td>&gt; 1,0 (quanto maior, melhor)</td></tr>
+      <tr><td>Lucratividade (%)</td><td class="num">LE ÷ RL × 100</td><td>&gt; 15 a 20%</td></tr>
+      <tr><td>Rentabilidade sobre o custo (%)</td><td class="num">LE ÷ CT × 100</td><td>&gt; 0 (o CT já inclui arrendar e aplicar)</td></tr>
+      <tr><td>IEE</td><td class="num">RL ÷ CT</td><td>&gt; 1,0 (quanto maior, melhor)</td></tr>
       <tr><td>Prod. de nivelamento</td><td class="num">COE ÷ preço ÷ área</td><td>bem abaixo da média regional</td></tr>
       <tr><td>Preço de nivelamento</td><td class="num">COE ÷ produção</td><td>bem abaixo do preço de mercado</td></tr>
     </table>
     </div>
     <div class="callout success">
       <strong>Convenção do curso</strong>
-      A <strong>Rentabilidade</strong> é sempre calculada sobre o <em>CT</em> (LE ÷ CT), nunca sobre o COE. Só o CT incorpora o custo de oportunidade da terra e do capital, e é a única base que compara o projeto com a alternativa de simplesmente arrendar e aplicar. Por isso a referência é zero: rentabilidade positiva já significa render mais que essa alternativa. Compará-la com a Selic contaria o capital duas vezes.
+      A <strong>rentabilidade sobre o custo</strong> é calculada sobre o <em>CT</em> (LE ÷ CT), nunca sobre o COE. Só o CT incorpora o custo de oportunidade da terra e do capital, e é a única base que compara o projeto com a alternativa de simplesmente arrendar e aplicar. Por isso a referência é zero: rentabilidade positiva já significa render mais que essa alternativa. Compará-la com uma taxa de aplicação contaria o capital duas vezes. Com a receita líquida nos três índices, eles ficam amarrados entre si: <strong>IEE − 1 = rentabilidade sobre o custo</strong>.
     </div>
-    <p>A <strong>Lucratividade</strong> mede quanto da receita vira lucro (eficiência sobre o que se fatura); a <strong>Rentabilidade</strong> mede quanto o projeto rende sobre o capital nele imobilizado (eficiência sobre o que se investe). O <strong>IEE</strong> resume tudo num número: quantas vezes a receita cobre o custo total. IEE = 1,0 é o equilíbrio econômico; abaixo disso, o projeto destrói valor.</p>
+    <p>A <strong>Lucratividade</strong> mede quanto da receita vira lucro (eficiência sobre o que se fatura); a <strong>rentabilidade sobre o custo</strong> mede quanto o projeto rende acima de tudo o que custou, incluída a remuneração da terra e do capital. Na literatura de administração, rentabilidade costuma ser o lucro sobre o capital investido; aqui a conta é sobre o custo total, e por isso o nome completo. O <strong>IEE</strong> resume tudo num número: quantas vezes a receita cobre o custo total. IEE = 1,0 é o equilíbrio econômico; abaixo disso, o projeto destrói valor.</p>
 
     <figure class="dd calc-dd" id="dd-margens" style="--dd:var(--terra);--dd-deep:#7C3D1F">
       <div class="dd-cab">Margens e indicadores · soja, 50 ha</div>
       <div class="dd-corpo">
-        <div class="ctrl"><div class="top"><span>Preço da soja</span><b data-v="preco"></b></div><input type="range" data-i="preco" min="60" max="180" step="2" value="120" aria-label="Preço da soja"></div>
+        <div class="ctrl"><div class="top"><span>Preço da soja</span><b data-v="preco"></b></div><input type="range" data-i="preco" min="60" max="180" step="2" value="128" aria-label="Preço da soja"></div>
         <div class="ctrl"><div class="top"><span>Produtividade</span><b data-v="prod"></b></div><input type="range" data-i="prod" min="30" max="80" step="1" value="60" aria-label="Produtividade"></div>
-        <div class="linha-rb"><span>Receita bruta</span><b data-v="rb"></b></div>
+        <div class="linha-rb"><span>Receita líquida</span><b data-v="rb"></b></div>
         <div class="margens"></div>
         <div class="inds"></div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Custos de exemplo, mantidos fixos: COE de R$ 188.000, COT de R$ 244.000 e CT de R$ 338.000. Só o preço e a produtividade variam.</figcaption>
+      <figcaption>Custos de exemplo, mantidos fixos: COE de R$ 188.000, COT de R$ 244.000 e CT de R$ 338.000. Só o preço e a produtividade variam. A receita líquida desconta 3% da venda (Funrural e taxas da cooperativa).</figcaption>
     </figure>
   </div></div>
 </section>
@@ -554,7 +555,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>A <strong>Margem de Segurança (MS)</strong> indica o quanto a produção pode cair, em percentual, antes que o projeto entre em prejuízo econômico. É o <em>principal indicador de risco</em> de um projeto agrícola: quanto maior a MS, mais a propriedade tolera uma quebra de safra ou uma queda de preço.</p>
 
     <div class="example">
-      <p>Na soja da III.1 (COE de R$ 188.000, 50 ha, R$ 120/sc), são precisos 188.000 ÷ 120 ÷ 50 = 31 sc/ha para cobrir o COE. Com média esperada de 60 sc/ha, a produção pode cair <span class="calc">~48%</span> antes de não pagar nem o caixa. Sobre o CT, a margem é menor, e é essa a que diz se o projeto resiste a um ano ruim sem corroer o patrimônio.</p>
+      <p>Na soja da III.1 (COE de R$ 188.000, 50 ha, R$ 128/sc), são precisos 188.000 ÷ 128 ÷ 50 = 29,4 sc/ha para cobrir o COE. Com média esperada de 60 sc/ha, a produção pode cair <span class="calc">~51%</span> antes de não pagar nem o caixa. Sobre o CT, a margem é menor, e é essa a que diz se o projeto resiste a um ano ruim sem corroer o patrimônio.</p>
     </div>
 
     <figure class="dd ms-dd" id="dd-ms" style="--dd:var(--terra);--dd-deep:#7C3D1F">
@@ -588,7 +589,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>O futuro é incerto. Projetar um único resultado (como se a produtividade fosse exatamente 60 sc/ha e o preço exatamente R$ 120/sc) é uma armadilha: o gestor que conhece apenas o cenário base pode ser destruído pelo primeiro desvio da realidade. A análise de cenários não elimina o risco, mas <em>o torna visível e mensurável</em>.</p>
+    <p>O futuro é incerto. Projetar um único resultado (como se a produtividade fosse exatamente 60 sc/ha e o preço exatamente R$ 128/sc) é uma armadilha: o gestor que conhece apenas o cenário base pode ser destruído pelo primeiro desvio da realidade. A análise de cenários não elimina o risco, mas <em>o torna visível e mensurável</em>.</p>
 
     <h3>Os três cenários padrão</h3>
     <div class="tbl-wrap">
@@ -615,7 +616,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         </details>
         <div class="estado"></div>
       </div>
-      <figcaption>Base: 60 sc/ha, R$ 120/sc e CT de R$ 338.000 (valores de exemplo). Critério deste exemplo para separar atenção de repensar: prejuízo de até 10% da receita no cenário pessimista é moderado. A linha correspondente da escada abaixo também se destaca.</figcaption>
+      <figcaption>Base: 60 sc/ha, R$ 128/sc, 3% de descontos sobre a venda e CT de R$ 338.000 (valores de exemplo). Critério deste exemplo para separar atenção de repensar: prejuízo de até 10% da receita no cenário pessimista é moderado. A linha correspondente da escada abaixo também se destaca.</figcaption>
     </figure>
 
     <h3>Como decidir com os cenários</h3>
@@ -721,7 +722,7 @@ const QUIZ = [
     ]
   },
   {
-    q: "Você só projetou o cenário realista (60 sc/ha, R$ 120/sc). Sobre isso:",
+    q: "Você só projetou o cenário realista (60 sc/ha, R$ 128/sc). Sobre isso:",
     a: [
       {t:"Suficiente: é a média histórica, a mais provável.", p:"op"},
       {t:"Aceitável para começar, depois acrescento os outros.", p:"tr"},
@@ -734,7 +735,7 @@ const PROFILES = {
   op: {
     name: "Operador",
     msg: "Você ainda lê o resultado pela camada de cima, caixa e produção bruta. A decisão econômica (margem líquida, lucro sobre o CT, ponto ótimo de insumo) ainda parece detalhe técnico, não ferramenta. O próximo passo é descer todas as camadas antes de concluir, e tratar cada dose de insumo como uma escolha de margem.",
-    revise: "Aulas III.1 (as três margens e a rentabilidade ÷ CT) e III.3 (análise marginal e RM = CM)."
+    revise: "Aulas III.1 (as três margens e a rentabilidade sobre o custo) e III.3 (análise marginal e RM = CM)."
   },
   tr: {
     name: "Em transição",
@@ -743,7 +744,7 @@ const PROFILES = {
   },
   ge: {
     name: "Gestor",
-    msg: "Você raciocina por camadas: não confunde caixa com lucro e recorre aos cenários quando o risco aparece. O produtor que conta com você decide com informação, não com otimismo. O próximo passo é o lado estratégico: ler o ponto ótimo de cada insumo e a rentabilidade sobre o capital como rotina, não só quando perguntam.",
+    msg: "Você raciocina por camadas: não confunde caixa com lucro e recorre aos cenários quando o risco aparece. O produtor que conta com você decide com informação, não com otimismo. O próximo passo é o lado estratégico: ler o ponto ótimo de cada insumo e a rentabilidade sobre o custo como rotina, não só quando perguntam.",
     revise: "Reforce as aulas III.2 (fatores de produção) e III.3 (análise marginal), e avance para a Parte IV."
   },
   es: {
@@ -875,10 +876,10 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 (function(){
   var el = document.getElementById('dd-margens'), q = function(s){ return el.querySelector(s); };
   var AREA = 50, COE = 188000, COT = 244000, CT = 338000;
-  var M = [['Margem bruta (RB − COE)', 'MB'], ['Margem líquida (RB − COT)', 'ML'], ['Lucro econômico (RB − CT)', 'LE']];
+  var M = [['Margem bruta (RL − COE)', 'MB'], ['Margem líquida (RL − COT)', 'ML'], ['Lucro econômico (RL − CT)', 'LE']];
   q('.margens').innerHTML = M.map(function(m){ return '<div class="m" data-m="' + m[1] + '"><div class="rot"><span>' + m[0] + '</span><b></b></div><div class="tr"><i></i></div></div>'; }).join('');
   function calc(){
-    var preco = +q('[data-i=preco]').value, prod = +q('[data-i=prod]').value, rb = preco * prod * AREA;
+    var preco = +q('[data-i=preco]').value, prod = +q('[data-i=prod]').value, rb = preco * prod * AREA * 0.97;
     q('[data-v=preco]').textContent = 'R$ ' + preco + '/sc'; q('[data-v=prod]').textContent = prod + ' sc/ha'; q('[data-v=rb]').textContent = R(rb);
     var v = {MB: rb - COE, ML: rb - COT, LE: rb - CT}, esc = 240000;
     M.forEach(function(m){
@@ -889,7 +890,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
     var le = v.LE, luc = le / rb * 100, ren = le / CT * 100, iee = rb / CT, pn = COE / preco / AREA, prn = COE / (prod * AREA);
     var I = [
       ['Lucratividade', f1(luc, 1) + '%', '> 15 a 20%', luc > 15],
-      ['Rentabilidade', f1(ren, 1) + '%', '> 0', ren > 0],
+      ['Rentabilidade sobre o custo', f1(ren, 1) + '%', '> 0', ren > 0],
       ['IEE', f1(iee, 2), '> 1,0', iee > 1],
       ['Prod. de nivelamento', f1(pn, 1) + ' sc/ha', 'bem abaixo de ' + prod, pn < prod * 0.8],
       ['Preço de nivelamento', 'R$ ' + f1(prn, 2), 'bem abaixo de R$ ' + preco, prn < preco * 0.8]
@@ -975,17 +976,17 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 /* ===== III.4 margem de segurança ===== */
 (function(){
   var el = document.getElementById('dd-ms'), svg = el.querySelector('svg'), q = function(s){ return el.querySelector(s); };
-  var MED = 60, PE = [['COE', 31, '#B89233'], ['COT', 41, '#D9895E'], ['CT', 56, '#3D4A2A']];
+  var MED = 60, PE = [['COE', 29.4, '#B89233'], ['COT', 38.1, '#D9895E'], ['CT', 52.8, '#3D4A2A']];
   var W = 340, L = 12, Rr = 12, xmax = 70, px = function(v){ return L + v / xmax * (W - L - Rr); };
   function calc(){
     var qb = +q('[data-i=quebra]').value, obt = MED * (1 - qb / 100), h = '';
     q('[data-v=quebra]').textContent = qb + '%';
-    var cor = obt >= 56 ? '#6E8A3A' : obt >= 31 ? '#B89233' : '#A8552E';
+    var cor = obt >= PE[2][1] ? '#6E8A3A' : obt >= PE[0][1] ? '#B89233' : '#A8552E';
     /* valor obtido acima da barra */
     h += '<text x="' + Math.max(px(obt), 120) + '" y="34" text-anchor="end" font-size="14" font-weight="600" fill="#1A1A17">obtido: ' + f1(obt, 1) + ' sc/ha</text>';
     h += '<rect x="' + L + '" y="44" width="' + (px(obt) - L) + '" height="26" fill="' + cor + '"/>';
     /* linhas dos pontos de equilíbrio e da média, com rótulos escalonados abaixo da barra */
-    var marcas = PE.map(function(p){ return [p[1], 'PE do ' + p[0] + ' · ' + p[1], p[2], false]; }).concat([[MED, 'média esperada · ' + MED, '#1A1A17', true]]);
+    var marcas = PE.map(function(p){ return [p[1], 'PE do ' + p[0] + ' · ' + f1(p[1], 1), p[2], false]; }).concat([[MED, 'média esperada · ' + MED, '#1A1A17', true]]);
     marcas.forEach(function(m, i){
       var y = 98 + i * 18;
       h += '<line x1="' + px(m[0]) + '" x2="' + px(m[0]) + '" y1="38" y2="' + (y + 3) + '" stroke="' + m[2] + '" stroke-width="' + (m[3] ? 1.5 : 2.5) + '"' + (m[3] ? ' stroke-dasharray="3 3"' : '') + '/>';
@@ -1006,7 +1007,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
 /* ===== III.5 cenários ===== */
 (function(){
   var el = document.getElementById('dd-cen'), q = function(s){ return el.querySelector(s); };
-  var PROD = 60, PRECO = 120, AREA = 50, CT = 338000, LIM = 0.10;
+  var PROD = 60, PRECO = 128, AREA = 50, CT = 338000, LIM = 0.10;
   var rows = document.querySelectorAll('#cenarios .hierarchy .hier-row');
   var C = [['Pessimista', 'pes'], ['Realista (base)', 'base'], ['Otimista', 'oti']];
   q('.barras-cen').innerHTML = C.map(function(c){ return '<div class="c" data-c="' + c[1] + '"><div class="rot"><span>' + c[0] + '</span><b></b></div><div class="tr"><i></i></div><small></small></div>'; }).join('');
@@ -1019,7 +1020,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
     };
     var res = {};
     C.forEach(function(c){
-      var x = cen[c[1]], rb = x.prod * x.preco * AREA, le = rb - x.ct; res[c[1]] = {rb:rb, le:le};
+      var x = cen[c[1]], rb = x.prod * x.preco * AREA * 0.97, le = rb - x.ct; res[c[1]] = {rb:rb, le:le};
       var d = q('[data-c=' + c[1] + ']'), w = Math.min(Math.abs(le) / 200000 * 50, 50);
       d.querySelector('b').textContent = R(le); d.querySelector('b').style.color = le < 0 ? 'var(--terra)' : 'var(--olive-deep)';
       var i = d.querySelector('i'); i.style.width = w + '%'; i.style.left = (le < 0 ? 50 - w : 50) + '%'; i.style.background = le < 0 ? '#A8552E' : '#6E8A3A';
