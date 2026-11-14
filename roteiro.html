@@ -103,6 +103,28 @@ h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;line-height:1.15;
 .road-cell b{font-size:12.5px}
 .road-legend{font-size:12.5px}
 </style>
+<style>
+/* roteiro pelas 20 aulas do curso: quarto eixo, semanas sem aula nova, estudo no MOOC */
+:root{--eixo4:#5A4A6B}
+.accent.mov4{background:var(--eixo4)}
+.road-cell.mov4{border-top:3px solid var(--eixo4)}
+.road-legend .c4{background:var(--eixo4)}
+.road-cell.off{border-top:3px dashed var(--stone-light);background:var(--paper-warm)}
+.accent.off{background:repeating-linear-gradient(var(--stone-light) 0 4px,transparent 4px 8px)}
+.row.off .title{color:var(--ink-soft)}
+.title .tn{display:inline-block;min-width:2.2em}
+.antes{margin-top:7px;font-size:13.5px;color:var(--ink-soft)}
+.antes b{font-weight:600;color:var(--ink)}
+.mooc{margin-top:8px;padding:7px 10px;background:var(--paper-warm);border-left:3px solid var(--rule);font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+.mooc b{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);font-weight:600;margin-right:6px}
+.cobre{padding:18px 0;border-bottom:1px solid var(--rule)}
+.cobre h2{font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin-bottom:8px}
+.cobre p{font-size:15px;color:var(--ink-soft);margin-bottom:10px;max-width:60ch}
+.cobre table{width:100%;border-collapse:collapse;font-size:14px}
+.cobre th,.cobre td{text-align:left;padding:6px 8px 6px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.cobre th{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--stone);text-transform:uppercase;letter-spacing:0.06em}
+.cobre td:first-child{font-family:'IBM Plex Mono',monospace;color:var(--stone);white-space:nowrap}
+</style>
 </head>
 <body>
 
@@ -116,31 +138,32 @@ h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;line-height:1.15;
   <header class="head">
     <div class="eyebrow">Gestão de Custos e Projetos Agropecuários</div>
     <h1>Roteiro das aulas</h1>
-    <p>A aula de abertura, os 8 encontros teóricos e as aulas de laboratório do semestre, na ordem da semana letiva, e uma aula extra no fim da lista. Cada linha abre os slides da aula; o material para impressão está dentro dos próprios slides. Conteúdo de estudo completo em <a href="disciplina.html" style="color:var(--olive)">Partes I–VI</a>.</p>
+    <p>O curso tem 20 aulas, organizadas em quatro eixos, e cada uma tem vídeo, texto e o "Confira" no Moodle. No semestre são 10 encontros de duas horas, incluído o laboratório de registros. Nas semanas restantes ficam a saída técnica, as provas e a apresentação dos projetos. As aulas que não têm encontro são estudadas a distância, no Moodle, e entram nas provas como as outras.</p>
   </header>
 
   <section class="roadmap">
     <div class="road-grid">
-      <div class="road-cell mov1"><b>S1</b>plano</div>
-      <div class="road-cell mov1"><b>S2</b>lab</div>
-      <div class="road-cell mov1"><b>S3</b>T1</div>
-      <div class="road-cell mov2"><b>S4</b>T2</div>
-      <div class="road-cell mov2"><b>S5</b>T3</div>
-      <div class="road-cell mov2"><b>S6</b>T4</div>
-      <div class="road-cell mov2"><b>S7</b>P1</div>
-      <div class="road-cell mov2"><b>S8</b>lab</div>
-      <div class="road-cell mov3"><b>S9</b>T5</div>
-      <div class="road-cell mov3"><b>S10</b>T6</div>
-      <div class="road-cell mov3"><b>S11</b>T7</div>
-      <div class="road-cell mov3"><b>S12</b>T8</div>
-      <div class="road-cell mov3"><b>S13</b>lab</div>
-      <div class="road-cell mov3"><b>S14</b>P2</div>
-      <div class="road-cell mov3"><b>S15</b>apresentação</div>
+      <div class="road-cell mov1"><b>S1</b>E1</div>
+      <div class="road-cell mov1"><b>S2</b>E2</div>
+      <div class="road-cell mov1"><b>S3</b>E3</div>
+      <div class="road-cell mov2"><b>S4</b>E4</div>
+      <div class="road-cell off"><b>S5</b>saída</div>
+      <div class="road-cell mov3"><b>S6</b>E5 lab</div>
+      <div class="road-cell mov3"><b>S7</b>E6</div>
+      <div class="road-cell off"><b>S8</b>P1</div>
+      <div class="road-cell mov3"><b>S9</b>E7</div>
+      <div class="road-cell mov3"><b>S10</b>E8</div>
+      <div class="road-cell mov4"><b>S11</b>E9</div>
+      <div class="road-cell off"><b>S12</b>saída</div>
+      <div class="road-cell mov4"><b>S13</b>E10</div>
+      <div class="road-cell off"><b>S14</b>P2</div>
+      <div class="road-cell off"><b>S15</b>projetos</div>
     </div>
     <div class="road-legend">
-      <span><i class="c1"></i>Entender</span>
-      <span><i class="c2"></i>Medir</span>
-      <span><i class="c3"></i>Decidir</span>
+      <span><i class="c1"></i>I · Olhar o todo</span>
+      <span><i class="c2"></i>II · Fazer</span>
+      <span><i class="c3"></i>III · Anotar e medir</span>
+      <span><i class="c4"></i>IV · Avaliar e planejar</span>
     </div>
   </section>
 
@@ -150,11 +173,26 @@ h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;line-height:1.15;
       <div class="week">S1</div>
       <div class="accent mov1"></div>
       <div class="main">
-        <div class="title"><span class="tn">T0</span>Do post ao hectare: a aula do ovo</div>
-        <div class="meta"><span>Abertura do semestre</span><span>Aula dialogada, três tempos</span></div>
+        <div class="title"><span class="tn">E1</span>Aula 1 · Do post ao hectare: a cadeia produtiva por trás do produto</div>
+        <div class="meta"><span>Abertura do semestre: a aula do ovo</span><span>Apresentação do projeto da disciplina</span></div>
       </div>
       <div class="actions">
         <a class="btn" href="aula-t0.html">abrir &rarr;</a>
+        <a class="btn-extra" href="slides/aula-01/">+ slides do vídeo</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="week">S2</div>
+      <div class="accent mov1"></div>
+      <div class="main">
+        <div class="title"><span class="tn">E2</span>Aulas 2 e 3 · A propriedade como empresa · Diagnóstico</div>
+        <div class="meta"><span>Simulador · passo 0: a atividade e o diagnóstico</span></div>
+        <div class="antes"><b>Antes do encontro:</b> o vídeo da aula 2. O encontro faz o diagnóstico do projeto.</div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/aula-03/">abrir &rarr;</a>
+        <a class="btn-extra" href="slides/aula-02/">+ slides da aula 2</a>
       </div>
     </div>
 
@@ -162,106 +200,185 @@ h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;line-height:1.15;
       <div class="week">S3</div>
       <div class="accent mov1"></div>
       <div class="main">
-        <div class="title"><span class="tn">T1</span>A propriedade como empresa + SWOT</div>
-        <div class="meta"><span>Parte I completa</span><span>Simulador · passo 0</span></div>
+        <div class="title"><span class="tn">E3</span>Aula 4 · De onde vem o preço</div>
+        <div class="meta"><span>Com a receita bruta e a líquida</span><span>Simulador · passo 1: receita</span></div>
+        <div class="mooc"><b>No Moodle</b>Aula 5 · Para quem vender: os canais de comercialização, com o Prof. Gustavo Pinto</div>
       </div>
-      <div class="actions">
-        <a class="btn" href="aula-t1.html">abrir &rarr;</a>
-        <a class="btn-extra" href="aula-t1-animacao/">+ versão narrada</a>
-      </div>
+      <div class="actions"><a class="btn" href="slides/aula-04/">abrir &rarr;</a></div>
     </div>
 
     <div class="row">
       <div class="week">S4</div>
       <div class="accent mov2"></div>
       <div class="main">
-        <div class="title"><span class="tn">T2</span>Receita: da bruta à líquida</div>
-        <div class="meta"><span>Parte III bl.1 + Parte IV bl.3</span><span>Simulador · passo 1</span></div>
+        <div class="title"><span class="tn">E4</span>Aula 7 · Do manejo ao custo: o processo produtivo</div>
+        <div class="meta"><span>Coeficientes técnicos</span><span>Simulador · passos 2 e 3</span></div>
+        <div class="mooc"><b>No Moodle</b>Aula 6 · Agregar valor: transformar e diferenciar</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t2.html">abrir &rarr;</a></div>
+      <div class="actions"><a class="btn" href="slides/aula-07/">abrir &rarr;</a></div>
     </div>
 
-    <div class="row">
+    <div class="row off">
       <div class="week">S5</div>
-      <div class="accent mov2"></div>
+      <div class="accent off"></div>
       <div class="main">
-        <div class="title"><span class="tn">T3</span>Do manejo técnico ao custo</div>
-        <div class="meta"><span>Parte II bl.1 + bl.3</span><span>Simulador · passos 2–3</span></div>
+        <div class="title"><span class="tn">Saída</span>Saída técnica: uma propriedade da região</div>
+        <div class="meta"><span>Manejo, registros e custos de verdade</span><span>Coletar os coeficientes do projeto</span></div>
+        <div class="mooc"><b>No Moodle</b>Aula 11 · Saber lidar com gente</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t3.html">abrir &rarr;</a></div>
+      <div class="actions"><span class="tag">sem aula nova</span></div>
     </div>
 
     <div class="row">
       <div class="week">S6</div>
-      <div class="accent mov2"></div>
+      <div class="accent mov3"></div>
       <div class="main">
-        <div class="title"><span class="tn">T4</span>COE, COT e Custo Total</div>
-        <div class="meta"><span>Parte II bl.4–5</span><span>Simulador · passos 3–4</span></div>
+        <div class="title"><span class="tn">E5</span>Aula 12 · Registros e controle: do campo à decisão</div>
+        <div class="meta"><span>Laboratório</span><span>Google Forms + Sheets · tema livre</span></div>
+        <div class="mooc"><b>No Moodle</b>Aula 12 completa: o caderno de caixa, o inventário dos bens e os papéis. O inventário do projeto sai daqui.</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t4.html">abrir &rarr;</a></div>
+      <div class="actions"><a class="btn" href="aula-lab-registros.html">abrir &rarr;</a></div>
     </div>
 
     <div class="row">
-      <div class="week">S8</div>
-      <div class="accent mov2"></div>
+      <div class="week">S7</div>
+      <div class="accent mov3"></div>
       <div class="main">
-        <div class="title"><span class="tn">Lab</span>Registros e controle: do campo à decisão</div>
-        <div class="meta"><span>Parte II bl.5</span><span>Google Forms + Sheets · tema livre</span></div>
+        <div class="title"><span class="tn">E6</span>Aula 13 · O que sai do bolso, o desgaste e o que se deixa de ganhar</div>
+        <div class="meta"><span>COE, COT e custo total</span><span>Simulador · passos 3 e 4</span></div>
+        <div class="mooc"><b>No Moodle</b>A aula da área do seu curso: 9 · Pecuária na prática, ou 10 · Fruticultura na prática: o vinhedo</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-lab-registros.html">abrir &rarr;</a></div>
+      <div class="actions"><a class="btn" href="slides/aula-13/">abrir &rarr;</a></div>
+    </div>
+
+    <div class="row off">
+      <div class="week">S8</div>
+      <div class="accent off"></div>
+      <div class="main">
+        <div class="title"><span class="tn">P1</span>Prova 1</div>
+        <div class="meta"><span>Aulas 1 a 13, as dos encontros e as do Moodle</span></div>
+      </div>
+      <div class="actions"><span class="tag">prova</span></div>
     </div>
 
     <div class="row">
       <div class="week">S9</div>
       <div class="accent mov3"></div>
       <div class="main">
-        <div class="title"><span class="tn">T5</span>Margens e indicadores</div>
-        <div class="meta"><span>Parte III bl.1</span><span>Simulador · passo 6</span></div>
+        <div class="title"><span class="tn">E7</span>Aula 14 · Margens: quanto sobra</div>
+        <div class="meta"><span>Simulador · passo 6: indicadores</span></div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t5.html">abrir &rarr;</a></div>
+      <div class="actions"><a class="btn" href="slides/aula-14/">abrir &rarr;</a></div>
     </div>
 
     <div class="row">
       <div class="week">S10</div>
       <div class="accent mov3"></div>
       <div class="main">
-        <div class="title"><span class="tn">T6</span>Equilíbrio, análise marginal e cenários</div>
-        <div class="meta"><span>Parte III bl.2–5</span><span>Simulador · passo 6 (cenários)</span></div>
+        <div class="title"><span class="tn">E8</span>Aulas 15 e 8 · Ponto de equilíbrio e cenários · Quanto produzir</div>
+        <div class="meta"><span>Simulador · passo 6: cenários</span></div>
+        <div class="antes"><b>Antes do encontro:</b> o vídeo da aula 8 e a peça da próxima dose, no Moodle.</div>
+        <div class="mooc"><b>No Moodle</b>Aula 18 · Riscos e formas de venda</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t6.html">abrir &rarr;</a></div>
+      <div class="actions">
+        <a class="btn" href="slides/aula-15/">abrir &rarr;</a>
+        <a class="btn-extra" href="slides/aula-08/">+ slides da aula 8</a>
+      </div>
     </div>
 
     <div class="row">
       <div class="week">S11</div>
-      <div class="accent mov3"></div>
+      <div class="accent mov4"></div>
       <div class="main">
-        <div class="title"><span class="tn">T7</span>Crédito rural e fluxo de caixa</div>
-        <div class="meta"><span>Parte IV bl.1–2 + credito.html</span><span>Simulador · passo 0 (crédito)</span></div>
+        <div class="title"><span class="tn">E9</span>Aulas 16 e 17 · Fluxo de caixa · Crédito rural</div>
+        <div class="meta"><span>Painel do crédito rural</span><span>Simulador · passo 0: crédito</span></div>
+        <div class="antes"><b>Antes do encontro:</b> o vídeo da aula 16. O encontro faz o fluxo e o crédito do projeto.</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t7.html">abrir &rarr;</a></div>
+      <div class="actions">
+        <a class="btn" href="slides/aula-17/">abrir &rarr;</a>
+        <a class="btn-extra" href="slides/aula-16/">+ slides da aula 16</a>
+      </div>
+    </div>
+
+    <div class="row off">
+      <div class="week">S12</div>
+      <div class="accent off"></div>
+      <div class="main">
+        <div class="title"><span class="tn">Saída</span>Segunda saída ou laboratório do projeto</div>
+        <div class="meta"><span>Cooperativa de crédito, EMATER ou agroindústria; ou orientação dos projetos</span></div>
+      </div>
+      <div class="actions"><span class="tag">sem aula nova</span></div>
     </div>
 
     <div class="row">
-      <div class="week">S12</div>
-      <div class="accent mov3"></div>
+      <div class="week">S13</div>
+      <div class="accent mov4"></div>
       <div class="main">
-        <div class="title"><span class="tn">T8</span>Módulos aplicados + investimento</div>
-        <div class="meta"><span>Parte V + vinhedo.html</span><span>Simulador · passos 5–6</span></div>
+        <div class="title"><span class="tn">E10</span>Aulas 19 e 20 · Começar ou ampliar · O plano da propriedade</div>
+        <div class="meta"><span>Simulador · passos 5 a 7</span></div>
+        <div class="antes"><b>Antes do encontro:</b> o vídeo da aula 20. O encontro faz a conta do investimento e fecha o plano do projeto.</div>
+        <div class="mooc"><b>No Moodle</b>Aula 20, parte 2 · ATER digital: onde buscar apoio, com o Prof. Ezequiel Redin</div>
       </div>
-      <div class="actions"><a class="btn" href="aula-t8.html">abrir &rarr;</a></div>
+      <div class="actions">
+        <a class="btn" href="slides/aula-19/">abrir &rarr;</a>
+        <a class="btn-extra" href="slides/aula-20/">+ slides da aula 20</a>
+      </div>
+    </div>
+
+    <div class="row off">
+      <div class="week">S14</div>
+      <div class="accent off"></div>
+      <div class="main">
+        <div class="title"><span class="tn">P2</span>Prova 2</div>
+        <div class="meta"><span>Aulas 14 a 20, as dos encontros e as do Moodle</span></div>
+      </div>
+      <div class="actions"><span class="tag">prova</span></div>
+    </div>
+
+    <div class="row off">
+      <div class="week">S15</div>
+      <div class="accent off"></div>
+      <div class="main">
+        <div class="title"><span class="tn">Proj.</span>Apresentação dos projetos</div>
+      </div>
+      <div class="actions"><span class="tag">apresentação</span></div>
     </div>
 
     <div class="row">
       <div class="week">Extra</div>
-      <div class="accent mov3"></div>
+      <div class="accent mov4"></div>
       <div class="main">
         <div class="title">Decisão do produtor e desempenho da propriedade</div>
-        <div class="meta"><span>Revisão de 24 estudos (Heliyon, 2023)</span><span>Fatores e princípios, com exemplos do RS</span></div>
+        <div class="meta"><span>Leitura opcional</span><span>Revisão de 24 estudos (Heliyon, 2023)</span></div>
       </div>
       <div class="actions"><a class="btn" href="aula-extra-decisao.html">abrir &rarr;</a></div>
     </div>
 
   </div>
+
+  <section class="cobre">
+    <h2>As 20 aulas no semestre</h2>
+    <p>Nenhuma aula fica de fora: 14 são trabalhadas nos encontros e 6 são estudadas no Moodle, na semana indicada.</p>
+    <table>
+      <tr><th>Aula</th><th>Onde</th></tr>
+      <tr><td>1</td><td>encontro 1</td></tr>
+      <tr><td>2 e 3</td><td>encontro 2 (a 2 em vídeo, antes)</td></tr>
+      <tr><td>4</td><td>encontro 3</td></tr>
+      <tr><td>5</td><td>Moodle, semana 3</td></tr>
+      <tr><td>6</td><td>Moodle, semana 4</td></tr>
+      <tr><td>7</td><td>encontro 4</td></tr>
+      <tr><td>8</td><td>encontro 8 (em vídeo, antes)</td></tr>
+      <tr><td>9 ou 10</td><td>Moodle, semana 7, conforme o curso</td></tr>
+      <tr><td>11</td><td>Moodle, semana 5</td></tr>
+      <tr><td>12</td><td>encontro 5, no laboratório, e no Moodle</td></tr>
+      <tr><td>13</td><td>encontro 6</td></tr>
+      <tr><td>14</td><td>encontro 7</td></tr>
+      <tr><td>15</td><td>encontro 8</td></tr>
+      <tr><td>16 e 17</td><td>encontro 9 (a 16 em vídeo, antes)</td></tr>
+      <tr><td>18</td><td>Moodle, semana 10</td></tr>
+      <tr><td>19 e 20</td><td>encontro 10 (a 20 em vídeo, antes; a parte 2 no Moodle)</td></tr>
+    </table>
+  </section>
 
   <footer class="foot">
     <p>Prof. Róberson Macedo de Oliveira · Colégio Politécnico da UFSM · 2026 · <a href="disciplina.html">voltar ao guia de estudo</a></p>
