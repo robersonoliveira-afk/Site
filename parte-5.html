@@ -751,7 +751,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="tbl-wrap">
     <table class="tbl">
       <tr><th>Ferramenta</th><th>Custo (ref.)</th><th>Impacto econômico</th></tr>
-      <tr><td><strong>Piloto autom. + GPS RTK</strong></td><td class="num">15–50 mil/trator</td><td>Elimina sobreposição: 5–8% de economia em insumos e combustível</td></tr>
+      <tr><td><strong>Piloto autom. + GPS RTK</strong></td><td class="num">cerca de 50 mil/trator, com base RTK</td><td>Elimina sobreposição: 5–8% de economia em insumos e combustível</td></tr>
       <tr><td><strong>Taxa variável (ATR)</strong></td><td class="num">20–80 mil</td><td>Aplica só onde precisa: 10–20% em fertilizantes em lavoura heterogênea</td></tr>
       <tr><td><strong>Amostragem georref.</strong></td><td class="num">R$ 15–40/ponto</td><td>Evita sub/superdosagem; reduz corretivos e adubos no longo prazo</td></tr>
       <tr><td><strong>Mapa de produtividade</strong></td><td class="num">5–20 mil</td><td>Identifica zonas fracas para investigação e decisão por talhão</td></tr>
@@ -773,19 +773,19 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>A decisão de investir numa ferramenta de AP é tratada como <strong>qualquer análise de investimento</strong>: quanto custa, quanto economiza ou ganha, em quanto tempo se paga. Reaproveita-se o payback (e, em horizontes longos, VPL/TIR) do Módulo B.</p>
 
     <div class="example ex-ap">
-      <p>Piloto automático em propriedade de 500 ha. Sistema: <strong>R$ 35.000</strong>, vida útil 8 anos → depreciação <span class="calc">R$ 4.375/ano</span>.</p>
+      <p>Piloto automático em propriedade de 500 ha. Sistema completo, com base RTK própria: <strong>R$ 50.000</strong>, vida útil 8 anos → depreciação <span class="calc">R$ 6.250/ano</span>.</p>
       <p>Economia: 7% de sobreposição eliminada sobre uma adubação de R$ 300.000/safra → 300.000 × 7% = <span class="calc">R$ 21.000/ano</span>.</p>
-      <p>Payback = 35.000 ÷ 21.000 = <span class="calc">1,7 ano</span>. O payback usa o dinheiro que volta por ano (a economia), sem descontar a depreciação: a depreciação é a própria recuperação dos R$ 35.000.</p>
-      <p>Resultado anual da tecnologia = 21.000 − 4.375 = <span class="calc">R$ 16.625/ano</span>, o quanto sobra depois de repor o equipamento. <strong>Conclusão:</strong> investimento altamente viável nesta escala.</p>
+      <p>Payback = 50.000 ÷ 21.000 = <span class="calc">2,4 anos</span>. O payback usa o dinheiro que volta por ano (a economia), sem descontar a depreciação: a depreciação é a própria recuperação dos R$ 50.000.</p>
+      <p>Resultado anual da tecnologia = 21.000 − 6.250 = <span class="calc">R$ 14.750/ano</span>, o quanto sobra depois de repor o equipamento. <strong>Conclusão:</strong> investimento altamente viável nesta escala.</p>
     </div>
 
     <div class="callout">
       <strong>Atenção à escala</strong>
-      A economia da AP cresce com a área. A mesma tecnologia que se paga em menos de 2 anos numa propriedade de 500 ha pode não se pagar em 50 ha, porque a economia absoluta é menor, mas o custo do equipamento é o mesmo. Cada caso é um cálculo.
+      A economia da AP cresce com a área. A mesma tecnologia que se paga em cerca de 2 anos e meio numa propriedade de 500 ha pode não se pagar em 50 ha, porque a economia absoluta é menor, mas o custo do equipamento é o mesmo. Cada caso é um cálculo.
     </div>
 
     <figure class="dd ap-dd" id="dd-ap" style="--dd:var(--terra);--dd-deep:#7C3D1F">
-      <div class="dd-cab">Piloto automático de R$ 35 mil: a área muda a conta</div>
+      <div class="dd-cab">Piloto automático de R$ 50 mil: a área muda a conta</div>
       <div class="dd-corpo">
         <div class="ctrl"><div class="top"><span>Área adubada</span><b data-v="area"></b></div><input type="range" data-i="area" min="20" max="1000" step="10" value="500" aria-label="Área adubada"></div>
         <div class="ctrl"><div class="top"><span>Economia com a sobreposição eliminada</span><b data-v="eco"></b></div><input type="range" data-i="eco" min="5" max="8" step="0.5" value="7" aria-label="Economia com a sobreposição eliminada"></div>
@@ -798,7 +798,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         </div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Adubação de R$ 600/ha (os R$ 300 mil do exemplo em 500 ha), sistema de R$ 35 mil com vida útil de 8 anos. Payback calculado como no exemplo: investimento ÷ economia por ano.</figcaption>
+      <figcaption>Adubação de R$ 600/ha (os R$ 300 mil do exemplo em 500 ha), sistema de R$ 50 mil com vida útil de 8 anos. Payback calculado como no exemplo: investimento ÷ economia por ano.</figcaption>
     </figure>
 
     <div class="callout success">
@@ -953,17 +953,17 @@ const QUIZ_C = [
     {t:"Deixar a operação mais moderna e bonita.", p:"op"},
     {t:"Eliminar sobreposição de faixas: 5 a 8% de economia em insumos.", p:"ge"},
     {t:"Gastar um pouco menos de combustível, mais ou menos.", p:"tr"} ]},
-  { q:"Um sistema custou R$ 35.000 e tem vida útil de 8 anos. A depreciação anual é:", a:[
-    {t:"R$ 35.000: tudo no primeiro ano.", p:"op"},
-    {t:"35.000 ÷ 8 = R$ 4.375/ano.", p:"es"},
-    {t:"Uns R$ 5.000, arredondando.", p:"tr"} ]},
-  { q:"A economia é de R$ 21.000/ano e a depreciação, R$ 4.375/ano. O resultado anual da tecnologia, depois de repor o equipamento, é:", a:[
+  { q:"Um sistema custou R$ 50.000 e tem vida útil de 8 anos. A depreciação anual é:", a:[
+    {t:"R$ 50.000: tudo no primeiro ano.", p:"op"},
+    {t:"50.000 ÷ 8 = R$ 6.250/ano.", p:"es"},
+    {t:"Uns R$ 6.000, arredondando.", p:"tr"} ]},
+  { q:"A economia é de R$ 21.000/ano e a depreciação, R$ 6.250/ano. O resultado anual da tecnologia, depois de repor o equipamento, é:", a:[
     {t:"R$ 21.000: a economia cheia.", p:"op"},
-    {t:"21.000 − 4.375 = R$ 16.625/ano.", p:"ge"},
+    {t:"21.000 − 6.250 = R$ 14.750/ano.", p:"ge"},
     {t:"Algo em torno de R$ 20.000.", p:"tr"} ]},
-  { q:"O payback do sistema (R$ 35.000, com economia de R$ 21.000/ano) é:", a:[
+  { q:"O payback do sistema (R$ 50.000, com economia de R$ 21.000/ano) é:", a:[
     {t:"Não dá para calcular sem saber a safra inteira.", p:"op"},
-    {t:"35.000 ÷ 21.000 = cerca de 1,7 ano: investimento altamente viável nessa escala.", p:"es"},
+    {t:"50.000 ÷ 21.000 = cerca de 2,4 anos: investimento viável nessa escala.", p:"es"},
     {t:"Uns 2 ou 3 anos, por aí.", p:"tr"} ]},
   { q:"Sobre o sensoriamento remoto por satélite (Sentinel/Landsat):", a:[
     {t:"É caro, precisa de assinatura comercial.", p:"op"},
@@ -1243,7 +1243,7 @@ peca('dd-vpl', function(q, v, put, el){
 
 /* 7. a escala da AP */
 peca('dd-ap', function(q, v, put, el){
-  var INV = 35000, VIDA = 8, DEP = INV / VIDA, ADUB = 600, YM = 12;
+  var INV = 50000, VIDA = 8, DEP = INV / VIDA, ADUB = 600, YM = 12;
   var anos = function(x){ return f1(x, 1) + (x < 2 ? ' ano' : ' anos'); };
   var A = v('area'), e = v('eco') / 100, eco = A * ADUB * e, gl = eco - DEP, pb = eco > 0 ? INV / eco : null;
   put('@area', f1(A) + ' ha'); put('@eco', f1(v('eco'), v('eco') % 1 ? 1 : 0) + '%');
