@@ -692,6 +692,20 @@ body.ver-num .contador{display:none}
 .cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
 .cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
 @media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+
+/* a corrida das duas contas (slide 8) */
+svg.corr-s{width:min(56vw,100vh);height:auto;display:block;margin:0.5vh 0 1vh;overflow:visible}
+svg.corr-s .base{stroke:var(--ink-soft);stroke-width:1.5}
+svg.corr-s .grade{stroke:var(--rule-soft);stroke-width:1}
+svg.corr-s .eixo{font-family:'IBM Plex Mono',monospace;font-size:14px;fill:var(--stone)}
+svg.corr-s .la{fill:none;stroke:var(--terra);stroke-width:4;stroke-dasharray:10 7}
+svg.corr-s .lb{fill:none;stroke:var(--olive-deep);stroke-width:4.5}
+svg.corr-s .ta{font-family:'IBM Plex Sans',sans-serif;font-size:17px;font-weight:600;fill:var(--terra)}
+svg.corr-s .tb{font-family:'IBM Plex Sans',sans-serif;font-size:17px;font-weight:600;fill:var(--olive-deep)}
+svg.corr-s .pay{stroke:var(--ink-soft);stroke-width:2;stroke-dasharray:3 4}
+svg.corr-s .tp{font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;fill:var(--ink)}
+svg.corr-s .tp2{font-family:'IBM Plex Sans',sans-serif;font-size:15px;fill:var(--ink-soft)}
+svg.corr-s .cz{fill:var(--olive-deep)}
 </style>
 </head>
 <body>
@@ -777,21 +791,23 @@ body.ver-num .contador{display:none}
   </section>
 
 <section class="slide">
-  <div class="eyebrow"><b>Payback</b> · o mais intuitivo</div>
-  <h2>Em quanto tempo o dinheiro volta?</h2>
-  <div class="formula-g f">investimento ÷ retorno por ano</div>
-  <p class="lead f" style="max-width:60vw">Pomar de R$ 200 mil que rende R$ 40 mil por ano: <strong>5 anos</strong>.</p>
-  <div class="callout f">Não vê que R$ 1 no ano 5 vale menos, nem o que acontece depois que o dinheiro volta.</div>
+  <div class="eyebrow"><b>Payback, VPL e TIR</b> · R$ 200 mil: um pomar que devolve R$ 40 mil por ano, ou a aplicação a 10%</div>
+  <h2>A corrida das duas contas</h2>
+  <svg class="corr-s" viewBox="0 0 640 300" role="img" aria-label="A corrida das duas contas: a aplicação começa com 200 mil reais e chega a 518.748; a conta do pomar começa do zero, passa a da aplicação entre o ano 7 e o 8 e chega a 637.497"><line x1="70" y1="250" x2="520" y2="250" class="base"/><line x1="70" y1="185.4" x2="520" y2="185.4" class="grade"/><text x="62" y="190.4" text-anchor="end" class="eixo">200 mil</text><line x1="70" y1="120.9" x2="520" y2="120.9" class="grade"/><text x="62" y="125.9" text-anchor="end" class="eixo">400 mil</text><line x1="70" y1="56.3" x2="520" y2="56.3" class="grade"/><text x="62" y="61.3" text-anchor="end" class="eixo">600 mil</text><text x="70.0" y="272" text-anchor="middle" class="eixo">0</text><text x="115.0" y="272" text-anchor="middle" class="eixo">1</text><text x="160.0" y="272" text-anchor="middle" class="eixo">2</text><text x="205.0" y="272" text-anchor="middle" class="eixo">3</text><text x="250.0" y="272" text-anchor="middle" class="eixo">4</text><text x="295.0" y="272" text-anchor="middle" class="eixo">5</text><text x="340.0" y="272" text-anchor="middle" class="eixo">6</text><text x="385.0" y="272" text-anchor="middle" class="eixo">7</text><text x="430.0" y="272" text-anchor="middle" class="eixo">8</text><text x="475.0" y="272" text-anchor="middle" class="eixo">9</text><text x="520.0" y="272" text-anchor="middle" class="eixo">10</text><text x="295.0" y="294" text-anchor="middle" class="eixo">ano</text><g class="f"><polyline points="70.0,185.4 115.0,179.0 160.0,171.9 205.0,164.1 250.0,155.5 295.0,146.0 340.0,135.6 385.0,124.2 430.0,111.6 475.0,97.7 520.0,82.5" class="la"/><text x="528.0" y="88.5" class="ta">aplicação</text></g><g class="f"><polyline points="70.0,250.0 115.0,237.1 160.0,222.9 205.0,207.3 250.0,190.1 295.0,171.2 340.0,150.4 385.0,127.5 430.0,102.3 475.0,74.6 520.0,44.2" class="lb"/><text x="528.0" y="50.2" class="tb">pomar</text></g><g class="f"><line x1="295.0" y1="24" x2="295.0" y2="250" class="pay"/><text x="287.0" y="38" text-anchor="end" class="tp">payback: o dinheiro voltou</text><text x="287.0" y="56" text-anchor="end" class="tp2">mas o pomar ainda perde</text></g><g class="f"><circle cx="397.3" cy="120.9" r="7" class="cz"/><text x="411.3" y="152.9" class="tb">o pomar passa à frente</text></g></svg>
+  <p class="lead f" style="max-width:60vw">No ano 10, o pomar termina <strong>R$ 118.749 na frente</strong>.</p>
   </section>
 
 <section class="slide">
-  <div class="eyebrow"><b>VPL e TIR</b> · o investimento contra a renda fixa</div>
-  <h2>Rende mais do que deixar aplicado?</h2>
-  <div class="paineis" style="max-width:66vw">
-    <div class="panel f"><h3>Valor presente líquido</h3><p>Traz todos os anos para o valor de hoje. Positivo: rende mais que a aplicação. Negativo: melhor aplicar.</p></div>
-    <div class="panel f"><h3 class="alt">Taxa interna de retorno</h3><p>O rendimento por ano do projeto. Maior que a aplicação de referência: viável. Menor: melhor aplicar.</p></div>
-  </div>
-  <div class="callout ok f">A planilha calcula. O trabalho do técnico é montar o fluxo certo e ler o resultado.</div>
+  <div class="eyebrow"><b>Payback, VPL e TIR</b> · o mesmo pomar, três perguntas</div>
+  <h2>Três perguntas, três medidas</h2>
+  <table class="tbl vered">
+    <tbody>
+      <tr class="f"><td><b>Payback</b></td><td>Em quanto tempo o dinheiro volta?</td><td>5 anos, sem contar os juros</td></tr>
+      <tr class="f"><td><b>VPL</b></td><td>Quanto a mais, em dinheiro de hoje?</td><td>+ R$ 45,8 mil: ganha da aplicação</td></tr>
+      <tr class="f"><td><b>TIR</b></td><td>Quanto rende por ano?</td><td>15,1%, contra 10% da aplicação</td></tr>
+    </tbody>
+  </table>
+  <div class="callout ok f" style="max-width:62vw">A planilha calcula. O trabalho do técnico é montar o fluxo certo, ano a ano, e ler o resultado.</div>
   </section>
 
 <section class="slide">
