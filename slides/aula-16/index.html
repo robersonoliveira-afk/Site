@@ -595,6 +595,47 @@ body.ver-num .contador{display:none}
 .cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
 .cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
 @media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+
+/* planilha mês a mês (slide 5b) */
+.xl{max-width:66vw;border:1px solid #C9C6BC;background:#fff;position:relative;margin-top:0.5vh}
+.xl-barra,.xl-f{display:flex;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);height:4.2vh;align-items:stretch;background:#fff}
+.xl-barra{border-bottom:1px solid #C9C6BC}
+.xl-f{position:absolute;left:0;right:0;top:0;border-bottom:1px solid #C9C6BC;opacity:0;transition:opacity .3s}
+.xl-col.mes.vis .xl-f{opacity:1}
+.xl .nm{width:6vw;display:flex;align-items:center;justify-content:center;border-right:1px solid #C9C6BC}
+.xl .fx{width:3vw;display:flex;align-items:center;justify-content:center;border-right:1px solid #C9C6BC;color:var(--stone);font-style:italic;background:#F3F2EE}
+.xl .fm{flex:1;display:flex;align-items:center;padding:0 1vw;color:var(--ink)}
+.xl-grade{display:grid;grid-template-columns:2.2vw 14.5vw repeat(8,6.1vw);grid-template-rows:auto}
+.xl-col{display:flex;flex-direction:column;grid-row:1}
+.xl-col.ln{grid-column:1}.xl-col.it{grid-column:2}.xl-col:nth-child(3){grid-column:3}
+.xl-col.mes.f{opacity:1;transform:none}
+.xl .c{height:3.55vh;display:flex;align-items:center;justify-content:flex-end;padding:0 0.5vw;border-right:1px solid #E2E0D8;border-bottom:1px solid #E2E0D8;font-family:'IBM Plex Mono',monospace;font-size:min(1.2vw,2.15vh);color:var(--ink);white-space:nowrap}
+.xl-col.ln .c{justify-content:center;background:#F3F2EE;color:var(--stone);padding:0}
+.xl-col.it .c{justify-content:flex-start;font-family:'IBM Plex Sans',sans-serif}
+.xl .c.h{background:#F3F2EE;font-weight:600;justify-content:center}
+.xl-col.it .c.h{background:#F3F2EE}
+.xl .c.t{font-weight:600;border-top:1.5px solid #9B9890}
+.xl .c.s{font-weight:600;background:#F2E8C9}
+.xl .c.neg{color:#B3261E}
+.xl-col.mes .c:not(.h){opacity:0;transition:opacity .25s ease calc(var(--i) * .09s)}
+.xl-col.mes.vis .c{opacity:1}
+.xl-fundo{grid-row:1;align-self:end;height:3.55vh;outline:0.35vh solid var(--terra);outline-offset:-0.35vh;pointer-events:none}
+.xl-fundo.f{transform:none}
+.xl-nota{font-size:var(--fs-small);color:var(--ink-soft);margin-top:1.6vh;max-width:60vw}
+.xl-nota b{color:var(--terra)}
+@media print{.xl-col.mes .c,.xl-f{opacity:1}}
+
+/* a década da soja no RS (slide 11b) */
+svg.rs{width:min(58vw,103vh);height:auto;display:block;margin:0.5vh 0 1vh}
+svg.rs .vb{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;fill:#fff}
+svg.rs .ano{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;fill:var(--ink)}
+svg.rs .ev{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;fill:var(--ink-soft)}
+svg.rs .ev.est{fill:var(--terra)}
+svg.rs .ref{stroke:var(--ink);stroke-width:2.5;stroke-dasharray:9 6}
+svg.rs .base{stroke:var(--ink-soft);stroke-width:1.5}
+svg.rs .rot{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700;fill:var(--ink)}
+svg.rs .rot2{font-family:'IBM Plex Sans',sans-serif;font-size:14px;fill:var(--ink-soft)}
+.nota-fonte{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);color:var(--stone)}
 </style>
 </head>
 <body>
@@ -674,6 +715,16 @@ body.ver-num .contador{display:none}
 </section>
 
 <section class="slide">
+  <div class="eyebrow"><b>Na planilha</b> · um sítio com milho, queijo e ovos · R$</div>
+  <h2>Montando o fluxo de caixa, mês a mês</h2>
+  <div class="xl">
+    <div class="xl-barra"><span class="nm">B11</span><span class="fx">fx</span><span class="fm">8000</span></div>
+    <div class="xl-grade"><div class="xl-col ln"><div class="c h">1</div><div class="c ">2</div><div class="c ">3</div><div class="c ">4</div><div class="c t">5</div><div class="c ">6</div><div class="c ">7</div><div class="c ">8</div><div class="c t">9</div><div class="c s">10</div><div class="c s">11</div></div><div class="xl-col it"><div class="c h"></div><div class="c ">Queijo colonial</div><div class="c ">Ovos</div><div class="c ">Venda de milho</div><div class="c t">Total de entradas</div><div class="c ">Insumos do milho</div><div class="c ">Ração e insumos</div><div class="c ">Retirada da família</div><div class="c t">Total de saídas</div><div class="c s">Saldo do mês</div><div class="c s">Saldo acumulado</div></div><div class="xl-col"><div class="c h" style="--i:0">início</div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c t" style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c t" style="--i:0"></div><div class="c s" style="--i:0"></div><div class="c s" style="--i:0">8.000</div></div><div class="xl-col mes f" style="grid-column:4"><div class="c h" style="--i:0">set</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5">21.550</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">25.750</div><div class="c s neg" style="--i:9">-21.250</div><div class="c s neg" style="--i:10">-13.250</div><div class="xl-f"><span class="nm">C5</span><span class="fx">fx</span><span class="fm">=SOMA(C2:C4)</span></div></div><div class="xl-col mes f" style="grid-column:5"><div class="c h" style="--i:0">out</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5">4.500</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">8.700</div><div class="c s neg" style="--i:9">-4.200</div><div class="c s neg" style="--i:10">-17.450</div><div class="xl-f"><span class="nm">D9</span><span class="fx">fx</span><span class="fm">=SOMA(D6:D8)</span></div></div><div class="xl-col mes f" style="grid-column:6"><div class="c h" style="--i:0">nov</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5">9.660</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">13.860</div><div class="c s neg" style="--i:9">-9.360</div><div class="c s neg" style="--i:10">-26.810</div><div class="xl-f"><span class="nm">E10</span><span class="fx">fx</span><span class="fm">=E5-E9</span></div></div><div class="xl-col mes f" style="grid-column:7"><div class="c h" style="--i:0">dez</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5"></div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">4.200</div><div class="c s" style="--i:9">300</div><div class="c s neg" style="--i:10">-26.510</div><div class="xl-f"><span class="nm">F11</span><span class="fx">fx</span><span class="fm">=E11+F10</span></div></div><div class="xl-col mes f" style="grid-column:8"><div class="c h" style="--i:0">jan</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5"></div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">4.200</div><div class="c s" style="--i:9">300</div><div class="c s neg" style="--i:10">-26.210</div><div class="xl-f"><span class="nm">G11</span><span class="fx">fx</span><span class="fm">=F11+G10</span></div></div><div class="xl-col mes f" style="grid-column:9"><div class="c h" style="--i:0">fev</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5"></div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">4.200</div><div class="c s" style="--i:9">300</div><div class="c s neg" style="--i:10">-25.910</div><div class="xl-f"><span class="nm">H11</span><span class="fx">fx</span><span class="fm">=G11+H10</span></div></div><div class="xl-col mes f" style="grid-column:10"><div class="c h" style="--i:0">mar</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3">82.838</div><div class="c t" style="--i:4">87.338</div><div class="c " style="--i:5">2.500</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">6.700</div><div class="c s" style="--i:9">80.638</div><div class="c s" style="--i:10">54.728</div><div class="xl-f"><span class="nm">I4</span><span class="fx">fx</span><span class="fm">=10*140*61*0,97</span></div></div><div class="xl-fundo f" style="grid-column:6"></div></div>
+  </div>
+  <p class="xl-nota f">Fundo do vale (exposição máxima de caixa): <b>−R$ 26.810</b>, em novembro.</p>
+  </section>
+
+<section class="slide">
   <div class="eyebrow"><b>O erro clássico</b></div>
   <h2>Crédito não é receita</h2>
   <div class="paineis" style="max-width:62vw">
@@ -706,6 +757,7 @@ body.ver-num .contador{display:none}
     <div class="stat f"><span class="num">R$ 180 mil</span><span class="lbl">em março, com o leite</span></div>
     <div class="stat f"><span class="num" style="color:var(--stone)">R$ 225 mil</span><span class="lbl">se a casa vivesse só da soja</span></div>
   </div>
+  <p class="lead f" style="max-width:60vw">No banco e nos projetos, o fundo do vale se chama <strong>exposição máxima de caixa</strong>: é a base do limite de crédito.</p>
   <p class="lead f" style="max-width:60vw">Alguém precisa financiar esse dinheiro. E todo dinheiro tem custo.</p>
   </section>
 
@@ -756,6 +808,14 @@ body.ver-num .contador{display:none}
   </section>
 
 <section class="slide">
+  <div class="eyebrow"><b>Anos ruins</b> · soja no Rio Grande do Sul · sacas por hectare</div>
+  <h2>Quatro estiagens em seis safras</h2>
+  <svg class="rs" viewBox="0 0 730 300" role="img" aria-label="Produtividade média da soja no Rio Grande do Sul, de 2016 a 2025: perto de 53 sacas por hectare nos anos normais; 31,4 em 2020, 25,1 em 2022, 31,9 em 2023 e 33,5 em 2025, anos de estiagem"><line x1="30" y1="54.6" x2="638" y2="54.6" class="ref"/><rect x="36" y="67.8" width="38" height="182.2" style="fill:var(--olive)"/><text x="55.0" y="87.8" text-anchor="middle" class="vb">49,7</text><text x="55.0" y="272" text-anchor="middle" class="ano">2016</text><rect x="98" y="43.2" width="38" height="206.8" style="fill:var(--olive)"/><text x="117.0" y="63.2" text-anchor="middle" class="vb">56,4</text><text x="117.0" y="272" text-anchor="middle" class="ano">2017</text><rect x="160" y="60.4" width="38" height="189.6" style="fill:var(--olive)"/><text x="179.0" y="80.4" text-anchor="middle" class="vb">51,7</text><text x="179.0" y="272" text-anchor="middle" class="ano">2018</text><rect x="222" y="55.7" width="38" height="194.3" style="fill:var(--olive)"/><text x="241.0" y="75.7" text-anchor="middle" class="vb">53,0</text><text x="241.0" y="272" text-anchor="middle" class="ano">2019</text><rect x="284" y="134.9" width="38" height="115.1" style="fill:var(--terra)"/><text x="303.0" y="154.9" text-anchor="middle" class="vb">31,4</text><text x="303.0" y="272" text-anchor="middle" class="ano">2020</text><text x="303.0" y="292" text-anchor="middle" class="ev est">estiagem</text><rect x="346" y="45.8" width="38" height="204.2" style="fill:var(--olive)"/><text x="365.0" y="65.8" text-anchor="middle" class="vb">55,7</text><text x="365.0" y="272" text-anchor="middle" class="ano">2021</text><rect x="408" y="158.0" width="38" height="92.0" style="fill:var(--terra)"/><text x="427.0" y="178.0" text-anchor="middle" class="vb">25,1</text><text x="427.0" y="272" text-anchor="middle" class="ano">2022</text><text x="427.0" y="292" text-anchor="middle" class="ev est">estiagem</text><rect x="470" y="133.0" width="38" height="117.0" style="fill:var(--terra)"/><text x="489.0" y="153.0" text-anchor="middle" class="vb">31,9</text><text x="489.0" y="272" text-anchor="middle" class="ano">2023</text><text x="489.0" y="292" text-anchor="middle" class="ev est">estiagem</text><rect x="532" y="78.4" width="38" height="171.6" style="fill:var(--mustard)"/><text x="551.0" y="98.4" text-anchor="middle" class="vb">46,8</text><text x="551.0" y="272" text-anchor="middle" class="ano">2024</text><text x="551.0" y="292" text-anchor="middle" class="ev">enchente</text><rect x="594" y="127.2" width="38" height="122.8" style="fill:var(--terra)"/><text x="613.0" y="147.2" text-anchor="middle" class="vb">33,5</text><text x="613.0" y="272" text-anchor="middle" class="ano">2025</text><text x="613.0" y="292" text-anchor="middle" class="ev est">estiagem</text><line x1="30" y1="250" x2="638" y2="250" class="base"/><text x="644" y="59.6" class="rot">53,3</text><text x="644" y="78.6" class="rot2">anos</text><text x="644" y="95.6" class="rot2">normais</text></svg>
+  <p class="lead f" style="max-width:60vw">Com 25 sacas por hectare, a soja de 40 ha não fecha o vale: abril termina em <strong style="color:var(--terra)">−R$ 55 mil</strong>.</p>
+  <p class="nota-fonte">Fonte: IBGE, Produção Agrícola Municipal.</p>
+  </section>
+
+<section class="slide">
   <div class="eyebrow"><b>Reserva</b> · o colchão</div>
   <h2>Para um ano ruim não virar dívida cara</h2>
   <div class="cartoes">
@@ -789,6 +849,7 @@ body.ver-num .contador{display:none}
   <div class="eyebrow">Fluxo de caixa</div>
   <h2>Referências</h2>
   <p><b>KAY, R. D.; EDWARDS, W. M.; DUFFY, P. A.</b> Gestão de propriedades rurais. 7. ed. Porto Alegre: AMGH, 2014.</p>
+  <p><b>IBGE.</b> Produção Agrícola Municipal: tabela 1612. Rio de Janeiro: IBGE, 2026. sidra.ibge.gov.br/tabela/1612</p>
   <p><b>OLIVEIRA, R. M.</b> Gestão de Custos e Projetos Agropecuários: crédito rural e fluxo de caixa. · Gestão da Propriedade Rural, módulo 6: o dinheiro no tempo. Produzir Não Basta, 2026. produzirnaobasta.com.br</p>
   <p><b>Fotos:</b> silos, Paulo RS Menezes (CC BY-SA 3.0 BR) · resfriador, Fotonovela (CC BY-SA 3.0).</p>
   <p style="color:var(--stone)">Material elaborado pelo Prof. Róberson Macedo de Oliveira (Colégio Politécnico da UFSM), com apoio de IA (Claude, Anthropic) na organização didática e na diagramação; conteúdo, seleção e decisões de ensino são do docente.</p>
