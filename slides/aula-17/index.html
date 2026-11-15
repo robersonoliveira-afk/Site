@@ -708,6 +708,13 @@ body.ver-num .contador{display:none}
 .cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
 .cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
 @media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+
+/* ícones do 'juro tem intenção' e os agentes financeiros */
+.dg .o .ic{display:block;width:min(3.6vw,6.4vh);height:min(3.6vw,6.4vh);margin-bottom:0.8vh;fill:none;stroke:var(--olive);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.agentes{display:flex;flex-wrap:wrap;gap:0.8vh 0.8vw;align-items:center;max-width:66vw;margin:0 0 2.4vh}
+.agentes span{font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-small);font-weight:600;color:var(--ink);border:1px solid var(--rule);background:#fff;padding:0.8vh 1vw}
+.agentes .rot{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--terra);border:0;background:none;padding-left:0}
+.agentes .outros{font-weight:400;color:var(--stone);border-style:dashed}
 </style>
 </head>
 <body>
@@ -808,8 +815,8 @@ body.ver-num .contador{display:none}
     <div class="cartao f"><div class="vel">comercialização</div><p>guardar e vender depois</p></div>
     <div class="cartao f"><div class="vel">industrialização</div><p>agroindústria, queijaria, embalagem</p></div>
   </div>
-  <div class="callout f">Máquina paga com dinheiro de custeio: devolver em meses um bem que rende por dez anos.</div>
-</section>
+  <div class="callout f">O custeio paga o orçamento da safra. Usar uma parte para tapar outro furo, como a parcela do trator, é desvio de finalidade.</div>
+  </section>
 
 <section class="slide">
   <div class="eyebrow"><b>Plano Safra</b> · todo ano, de julho a junho</div>
@@ -838,8 +845,8 @@ body.ver-num .contador{display:none}
   <div class="eyebrow"><b>O Plano Safra do ano · 2026/27</b> · Pronaf custeio: conferir as taxas vigentes</div>
   <h2>O juro tem intenção</h2>
   <div class="degraus">
-    <div class="dg f" style="--h:13%"><span class="t">1%</span><span class="o">agroecologia, orgânicos, sociobiodiversidade</span></div>
-    <div class="dg f" style="--h:27%"><span class="t">2%</span><span class="o">alimentos básicos: arroz, feijão, mandioca, trigo, hortaliças, leite</span></div>
+    <div class="dg f" style="--h:13%"><span class="t">1%</span><span class="o"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20c0-9 6-15 15-15 0 9-6 15-15 15z"/><path d="M5 20 15 10M9.5 15.5h4M12 13V9"/></svg>agroecologia, orgânicos, sociobiodiversidade</span></div>
+    <div class="dg f" style="--h:27%"><span class="t">2%</span><span class="o"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18l-2.2 9.5H5.2z"/><path d="M8 10l3-6M16 10l-3-6M9 13.5v3M12 13.5v3M15 13.5v3"/></svg>alimentos básicos: arroz, feijão, mandioca, trigo, hortaliças, leite</span></div>
     <div class="dg f" style="--h:73%"><span class="t">5,5%</span><span class="o">demais culturas e criações, como a uva</span></div>
     <div class="dg f" style="--h:100%"><span class="t">7,5%</span><span class="o">soja, algodão e boi de corte</span></div>
   </div>
@@ -885,15 +892,15 @@ body.ver-num .contador{display:none}
   </section>
 
 <section class="slide">
-  <div class="eyebrow"><b>Do outro lado do balcão</b> · R$ 10 mil por um ano</div>
-  <h2>E quem tem o dinheiro guardado?</h2>
+  <div class="eyebrow"><b>Tenho o dinheiro</b> · os mesmos R$ 60 mil do pomar, por 6 meses</div>
+  <h2>Uso o meu ou financio?</h2>
   <div class="linhas" style="max-width:56vw">
-    <p class="f" data-bal="Poupança|829|Pronaf soja|750"><strong>Poupança</strong>: cerca de 8% ao ano, sem imposto. R$ 829, contra os R$ 750 do Pronaf da soja.</p>
-    <p class="f" data-bal="CDB|1126|Pronaf soja|750"><strong>CDB</strong> a 100% do CDI: R$ 1.365, ou R$ 1.126 depois do imposto.</p>
-    <p class="f" data-bal="CDB|1126|Pronamp|900">Contra o <strong>Pronamp</strong>, de R$ 900: ainda rende mais.</p>
-    <p class="f" data-bal="CDB|1126|A mercado|1300">Contra o <strong>crédito rural a taxa de mercado</strong>, de R$ 1.300: a balança vira.</p>
+    <p class="f">Aplicado a 10% ao ano, já descontado o imposto, o meu dinheiro renderia <strong>R$ 3.000</strong>.</p>
+    <p class="f" data-bal="o meu|3000|Pronaf|1650"><strong>Pronaf, 5,5%</strong>: custa R$ 1.650. Financio e deixo o meu aplicado: sobram R$ 1.350.</p>
+    <p class="f" data-bal="o meu|3000|Pronamp|2700"><strong>Pronamp, 9%</strong>: custa R$ 2.700. Sobram só R$ 300, e as tarifas comem isso.</p>
+    <p class="f" data-bal="o meu|3000|Empresarial|3750"><strong>Empresarial, 12,5%</strong>: custa R$ 3.750. Uso o meu.</p>
   </div>
-  <div class="callout ok f" style="max-width:56vw">Se o dinheiro rende mais do que o crédito custa, pode valer financiar e deixar o seu aplicado.</div>
+  <div class="callout ok f" style="max-width:56vw">Compare o que o seu dinheiro rende com o custo total do crédito, não só com a taxa.</div>
   <div class="dir" style="--w:29vw;right:3vw;top:11vh">
     <svg class="bal" viewBox="0 0 320 250" role="img" aria-label="Balança entre o que o dinheiro rende e o que o crédito custa">
       <path d="M160 52 V226 M116 232 H204" class="poste"/>
@@ -902,19 +909,6 @@ body.ver-num .contador{display:none}
       <g class="prato pd"><path d="M270 52 L238 124 M270 52 L302 124"/><path d="M232 124 H308 Q304 148 270 148 Q236 148 232 124Z" class="cuba c2"/><text x="270" y="170" class="rot" data-b="r2">custa</text><text x="270" y="190" class="val" data-b="v2"></text></g>
     </svg>
   </div>
-  </section>
-
-<section class="slide">
-  <div class="eyebrow"><b>E se tiver o dinheiro?</b> · os mesmos R$ 60 mil, por 6 meses</div>
-  <h2>Dinheiro próprio também tem preço</h2>
-  <table class="tbl conta" style="max-width:58vw">
-    <tbody>
-      <tr class="f"><td>Aplicado a 14% ao ano renderia</td><td class="num" style="color:var(--olive)">+ R$ 4.200</td></tr>
-      <tr class="f"><td>Financiado no Pronaf a 5,5% custa</td><td class="num">− R$ 1.650</td></tr>
-      <tr class="f total"><td>Diferença a favor de financiar</td><td class="num">R$ 2.550</td></tr>
-    </tbody>
-  </table>
-  <p class="lead f" style="max-width:60vw">Com juro subsidiado abaixo do que o dinheiro renderia aplicado, tomar crédito pode ser racional mesmo para quem tem o dinheiro.</p>
   </section>
 
 
@@ -931,7 +925,7 @@ body.ver-num .contador{display:none}
     <div class="sc-res">
       <div class="gran"><span class="num" data-o="juros">R$ 900</span><span class="lbl">de juros</span></div>
       <div class="dupla"><div><b data-o="total">R$ 10.900</b><span>volta ao todo</span></div><div><b data-o="sacas">7</b><span>sacas de soja a R$ 128</span></div></div>
-      <div class="cmp"><div class="cb"><span class="ba terra" data-o="bcusto"></span><em>custa</em></div><div class="cb"><span class="ba oliva" data-o="brende"></span><em>aplicado a 14%, renderia <b data-o="rende">R$ 1.400</b></em></div></div>
+      <div class="cmp"><div class="cb"><span class="ba terra" data-o="bcusto"></span><em>custa</em></div><div class="cb"><span class="ba oliva" data-o="brende"></span><em>aplicado a 10%, renderia <b data-o="rende">R$ 1.000</b></em></div></div>
     </div>
   </div>
   </section>
@@ -950,6 +944,19 @@ body.ver-num .contador{display:none}
   </section>
 
 <section class="slide">
+  <div class="eyebrow"><b>Não vá sozinho</b> · quem ajuda a tomar o crédito</div>
+  <h2>O crédito se faz em equipe</h2>
+  <div class="cartoes c4">
+    <div class="cartao f"><div class="vel">o técnico</div><p>elabora o projeto e a planilha de custos</p></div>
+    <div class="cartao f"><div class="vel">a EMATER/RS</div><p>orienta, faz o CAF e acompanha o projeto</p></div>
+    <div class="cartao f"><div class="vel">o sindicato</div><p>faz o CAF e informa sobre o Plano Safra</p></div>
+    <div class="cartao f"><div class="vel">o agente financeiro</div><p>analisa, contrata e libera o dinheiro</p></div>
+  </div>
+  <div class="agentes f"><span class="rot">Onde tomar: livre escolha</span><span>Banco do Brasil</span><span>Caixa</span><span>Banrisul</span><span>Sicredi</span><span>Sicoob</span><span>Cresol</span><span class="outros">e outros</span></div>
+  <div class="callout ok f" style="max-width:62vw">Do técnico: conhecer o Manual de Crédito Rural, acompanhar o que muda a cada Plano Safra e conversar com o gerente antes de fechar o projeto.</div>
+  </section>
+
+<section class="slide">
   <div class="eyebrow"><b>O que o banco pede</b> · quatro grupos</div>
   <h2>A pasta do crédito</h2>
   <div class="cartoes c4">
@@ -961,17 +968,13 @@ body.ver-num .contador{display:none}
   </section>
 
 <section class="slide">
-  <div class="eyebrow"><b>Ampliar o pomar</b> · 2 ha, R$ 100 mil, 5% ao ano, 8 anos, 3 de carência</div>
+  <div class="eyebrow"><b>Ampliar o pomar</b> · 2 ha, R$ 100 mil, Pronaf Mais Alimentos a 7,5%, 8 anos, 3 de carência</div>
   <h2>A parcela cabe na sobra?</h2>
-  <svg class="parc f" viewBox="0 0 640 300" role="img" aria-label="Parcelas por ano de um financiamento de 100 mil reais com 3 anos de carência: só juros de 5 mil reais nos anos 1 a 3 e a maior parcela, 25 mil reais, no ano 4, abaixo da sobra do pomar atual">
-<line x1="20" y1="260" x2="630" y2="260" class="base"/>
-<g class="pb" style="--d:0.0s"><rect x="30" y="260.0" width="56" height="0.0" class="am"/><rect x="30" y="219.0" width="56" height="41.0" class="ju"/></g><text x="58.0" y="282" text-anchor="middle" class="ano">1</text><g class="pb" style="--d:0.1s"><rect x="104" y="260.0" width="56" height="0.0" class="am"/><rect x="104" y="219.0" width="56" height="41.0" class="ju"/></g><text x="132.0" y="282" text-anchor="middle" class="ano">2</text><g class="pb" style="--d:0.2s"><rect x="178" y="260.0" width="56" height="0.0" class="am"/><rect x="178" y="219.0" width="56" height="41.0" class="ju"/></g><text x="206.0" y="282" text-anchor="middle" class="ano">3</text><g class="pb" style="--d:0.3s"><rect x="252" y="96.0" width="56" height="164.0" class="am"/><rect x="252" y="55.0" width="56" height="41.0" class="ju"/></g><text x="280.0" y="282" text-anchor="middle" class="ano">4</text><g class="pb" style="--d:0.4s"><rect x="326" y="96.0" width="56" height="164.0" class="am"/><rect x="326" y="63.2" width="56" height="32.8" class="ju"/></g><text x="354.0" y="282" text-anchor="middle" class="ano">5</text><g class="pb" style="--d:0.5s"><rect x="400" y="96.0" width="56" height="164.0" class="am"/><rect x="400" y="71.4" width="56" height="24.6" class="ju"/></g><text x="428.0" y="282" text-anchor="middle" class="ano">6</text><g class="pb" style="--d:0.6s"><rect x="474" y="96.0" width="56" height="164.0" class="am"/><rect x="474" y="79.6" width="56" height="16.4" class="ju"/></g><text x="502.0" y="282" text-anchor="middle" class="ano">7</text><g class="pb" style="--d:0.7s"><rect x="548" y="96.0" width="56" height="164.0" class="am"/><rect x="548" y="87.8" width="56" height="8.2" class="ju"/></g><text x="576.0" y="282" text-anchor="middle" class="ano">8</text>
-<line x1="20" y1="46.8" x2="630" y2="46.8" class="sob"/>
-<text x="628" y="38.8" text-anchor="end" class="tsob">sobra do pomar atual: R$ 26.000</text>
-<text x="280" y="47.0" text-anchor="middle" class="tmai">25.000</text>
+  <svg class="parc f" viewBox="0 0 640 300" role="img" aria-label="Parcelas por ano de um financiamento de 100 mil reais a 7,5% com 3 anos de carência: só juros de 7.500 reais nos anos 1 a 3 e a maior parcela, 27.500 reais, no ano 4, quando a sobra sobe para 38 mil reais com o pomar novo">
+<line x1="20" y1="260" x2="630" y2="260" class="base"/><g class="pb" style="--d:0.0s"><rect x="30" y="260.0" width="56" height="0.0" class="am"/><rect x="30" y="216.5" width="56" height="43.5" class="ju"/></g><text x="58.0" y="282" text-anchor="middle" class="ano">1</text><g class="pb" style="--d:0.1s"><rect x="104" y="260.0" width="56" height="0.0" class="am"/><rect x="104" y="216.5" width="56" height="43.5" class="ju"/></g><text x="132.0" y="282" text-anchor="middle" class="ano">2</text><g class="pb" style="--d:0.2s"><rect x="178" y="260.0" width="56" height="0.0" class="am"/><rect x="178" y="216.5" width="56" height="43.5" class="ju"/></g><text x="206.0" y="282" text-anchor="middle" class="ano">3</text><g class="pb" style="--d:0.3s"><rect x="252" y="144.0" width="56" height="116.0" class="am"/><rect x="252" y="100.5" width="56" height="43.5" class="ju"/></g><text x="280.0" y="282" text-anchor="middle" class="ano">4</text><g class="pb" style="--d:0.4s"><rect x="326" y="144.0" width="56" height="116.0" class="am"/><rect x="326" y="109.2" width="56" height="34.8" class="ju"/></g><text x="354.0" y="282" text-anchor="middle" class="ano">5</text><g class="pb" style="--d:0.5s"><rect x="400" y="144.0" width="56" height="116.0" class="am"/><rect x="400" y="117.9" width="56" height="26.1" class="ju"/></g><text x="428.0" y="282" text-anchor="middle" class="ano">6</text><g class="pb" style="--d:0.6s"><rect x="474" y="144.0" width="56" height="116.0" class="am"/><rect x="474" y="126.6" width="56" height="17.4" class="ju"/></g><text x="502.0" y="282" text-anchor="middle" class="ano">7</text><g class="pb" style="--d:0.7s"><rect x="548" y="144.0" width="56" height="116.0" class="am"/><rect x="548" y="135.3" width="56" height="8.7" class="ju"/></g><text x="576.0" y="282" text-anchor="middle" class="ano">8</text><path d="M20 109.2 H243 V39.6 H630" class="sob" style="fill:none"/><text x="24" y="101.2" class="tsob">sobra atual: R$ 26.000</text><text x="628" y="31.6" text-anchor="end" class="tsob">com o pomar novo: R$ 38.000</text><text x="280" y="92.5" text-anchor="middle" class="tmai">27.500</text>
 </svg>
-<div class="leg-s f"><span class="l2">amortização</span><span class="l1">juros</span><span class="l3">sobra do pomar atual</span></div>
-  <p class="lead f" style="max-width:62vw">Com 3 anos de carência, a parcela pesada chega quando o pomar novo já colhe: a maior usa <strong>66%</strong> da sobra.</p>
+<div class="leg-s f"><span class="l2">amortização</span><span class="l1">juros</span><span class="l3">sobra disponível</span></div>
+  <p class="lead f" style="max-width:62vw">Com 3 anos de carência, a parcela pesada chega quando o pomar novo já colhe: a maior usa <strong>72%</strong> da sobra.</p>
   </section>
 <section class="slide">
   <div class="eyebrow"><b>Nas perenes</b> · cada momento, a sua linha</div>
@@ -1201,7 +1204,7 @@ body.ver-num .contador{display:none}
     const i=n=>si.querySelector('[data-i='+n+']'),o=(n,v)=>{si.querySelector('[data-o='+n+']').textContent=v};
     const conta=()=>{
       const V=+i('valor').value,n=+i('prazo').value,t=+i('taxa').value;
-      const juros=V*(Math.pow(1+t/100,n/12)-1),rende=V*(Math.pow(1.14,n/12)-1);
+      const juros=V*(Math.pow(1+t/100,n/12)-1),rende=V*(Math.pow(1.10,n/12)-1);
       o('valor',rs(V));o('prazo',n+(n===1?' mês':' meses'));o('taxa',fmt(t,1)+'%');
       o('juros',rs(juros));o('total',rs(V+juros));
       const sc=juros/128;o('sacas',sc<10?fmt(sc,1):fmt(Math.round(sc),0));o('rende',rs(rende));

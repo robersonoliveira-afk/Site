@@ -264,7 +264,7 @@
     <p class="grupo">O que deixa de ganhar · CT</p>
     <div class="campos c3">
       <div class="campo"><label for="k-terra">Arrendamento que a terra própria renderia <small>por ano. Deixe zero se a terra é arrendada</small></label><div class="inp"><span>R$</span><input id="k-terra" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
-      <div class="campo"><label for="k-cap">Rendimento do dinheiro empatado <small>por ano: valor dos bens × o que rende uma aplicação de referência. O curso usa 14% ao ano; confira a taxa do momento</small></label><div class="inp"><span>R$</span><input id="k-cap" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="k-usa-cap" hidden>calcular a 14% ao ano sobre o meu inventário</button></div>
+      <div class="campo"><label for="k-cap">Rendimento do dinheiro empatado <small>por ano: valor dos bens × o que rende uma aplicação de referência. O curso usa 10% ao ano, já descontado o imposto; confira o que você consegue de fato</small></label><div class="inp"><span>R$</span><input id="k-cap" inputmode="numeric" autocomplete="off" placeholder="0"></div><button type="button" class="mini" id="k-usa-cap" hidden>calcular a 10% ao ano sobre o meu inventário</button></div>
     </div>
 
     <div class="resultado" id="k-res" hidden>
@@ -398,7 +398,7 @@
     var bi = g('k-usa-inv'); bi.hidden = false;
     bi.addEventListener('click', function(){ g('k-dep').value = Math.round(cad.m3inv.depreciacaoAnual).toLocaleString('pt-BR'); exemplo = false; calc(); });
     var bc = g('k-usa-cap'); bc.hidden = false;
-    bc.addEventListener('click', function(){ g('k-cap').value = Math.round(cad.m3inv.valorTotal * 0.14).toLocaleString('pt-BR'); exemplo = false; calc(); });
+    bc.addEventListener('click', function(){ g('k-cap').value = Math.round(cad.m3inv.valorTotal * 0.10).toLocaleString('pt-BR'); exemplo = false; calc(); });
   }
   if (cad.m4){
     var m = cad.m4, mapa = {prod:m.producao, ins:m.insumos, op:m.operacoes, mo:m.maoDeObra, out:m.outros, dep:m.depreciacao, fam:m.familia, terra:m.terra, cap:m.capital};

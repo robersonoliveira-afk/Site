@@ -767,10 +767,10 @@
       </div>
       <p class="note">Remuneração dos fatores é custo de oportunidade: o CT soma as duas, a do
       capital investido e a da terra própria. Se a terra é arrendada, o arrendamento pago vai no
-      custeio (passo 3) e a remuneração da terra aqui fica em zero. O capital remunerado é o capital médio dos bens, (valor de compra + valor final) ÷ 2: é o que esse dinheiro imobilizado renderia aplicado. O curso usa a aplicação de referência, 14% ao ano.</p>
+      custeio (passo 3) e a remuneração da terra aqui fica em zero. O capital remunerado é o capital médio dos bens, (valor de compra + valor final) ÷ 2: é o que esse dinheiro imobilizado renderia aplicado. O curso usa a aplicação de referência, 10% ao ano, já descontado o imposto.</p>
       <div class="grid2" style="margin-top:6px">
         <div class="field"><label for="taxa-cap">Remuneração do capital: taxa (% a.a.)</label>
-          <input type="text" inputmode="decimal" id="taxa-cap" placeholder="ex.: 14 (aplicação de referência)"></div>
+          <input type="text" inputmode="decimal" id="taxa-cap" placeholder="ex.: 10 (aplicação de referência)"></div>
         <div class="field"><label for="arrend">Remuneração da terra: arrendamento (R$/ha)</label>
           <input type="text" inputmode="decimal" id="arrend" placeholder="0"></div>
       </div>
@@ -879,12 +879,12 @@
       </h2>
       <div class="ajuda-box" id="aj-viab" hidden>
         <p>VPL, TIR e payback medem se o investimento perene compensa ao longo do tempo.</p>
-        <p>O fluxo de caixa da fase produtiva é a receita líquida menos os custos que saem do bolso. Ficam de fora as depreciações, que não são desembolso, e a remuneração do capital, porque o custo do capital já entra pela taxa de desconto. A remuneração da terra permanece, quando informada no passo 4. Use como taxa de desconto o custo de oportunidade do capital: o curso usa a aplicação de referência, 14% ao ano.</p>
+        <p>O fluxo de caixa da fase produtiva é a receita líquida menos os custos que saem do bolso. Ficam de fora as depreciações, que não são desembolso, e a remuneração do capital, porque o custo do capital já entra pela taxa de desconto. A remuneração da terra permanece, quando informada no passo 4. Use como taxa de desconto o custo de oportunidade do capital: o curso usa a aplicação de referência, 10% ao ano, já descontado o imposto.</p>
         <a href="parte-5.html#ap-viabilidade" target="_blank" rel="noopener">ver no site →</a>
       </div>
       <div class="grid2">
         <div class="field"><label for="taxa">Taxa de desconto (% a.a.)</label>
-          <input type="text" inputmode="decimal" id="taxa" placeholder="ex.: 14"></div>
+          <input type="text" inputmode="decimal" id="taxa" placeholder="ex.: 10"></div>
       </div>
       <div class="kpis">
         <div class="kpi"><div class="k">VPL</div><div class="v" id="k-vpl">-</div><div class="h" id="h-vpl"></div></div>
@@ -2124,7 +2124,7 @@ const EXEMPLO = {
     {desc:"Frete, secagem e outros", cat:"Outros", un:"ha", qtd:"1", preco:"390"},
   ], seguro:"", ater:"", juros:""},
   p4:{bens:[{desc:"Máquinas e implementos", aq:"180000", res:"0", vida:"10"}],
-    prolabore:"24000", outros:"6000", taxaCapital:"14", arrendamento:"500", area:"50"},
+    prolabore:"24000", outros:"6000", taxaCapital:"10", arrendamento:"500", area:"50"},
   p5:{cultura:"uva", itens:[], area:"", form:"", vida:""},
   p6:{custoFormacao:"", taxaDesconto:""},
 };
@@ -2163,7 +2163,7 @@ const EXEMPLO_UVA = {
       {desc:"Mão de obra de implantação (15% dos materiais)", un:"ha", qtd:"1", preco:"13560"},
     ],
     area:"1", form:"2", vida:"15"},
-  p6:{custoFormacao:"9000", taxaDesconto:"14"},
+  p6:{custoFormacao:"9000", taxaDesconto:"10"},
 };
 
 // ===========================================================================

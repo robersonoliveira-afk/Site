@@ -237,7 +237,7 @@
       <div class="campo"><label for="v-cv">Custos de venda por mês <small>frete, banca na feira, comissão</small></label><div class="inp"><span>R$</span><input id="v-cv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="v-inv">Investimento <small>instalações, equipamentos, legalização</small></label><div class="inp"><span>R$</span><input id="v-inv" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="v-anos">Em quantos anos dividir o investimento</label><div class="inp"><input id="v-anos" inputmode="numeric" autocomplete="off" placeholder="10"><span style="padding-right:12px">anos</span></div></div>
-      <div class="campo"><label for="v-taxa">Aplicação de referência <small>em % ao ano: o que o dinheiro do investimento renderia se ficasse aplicado. Confira a taxa do momento</small></label><div class="inp"><input id="v-taxa" inputmode="decimal" autocomplete="off" placeholder="14"><span style="padding-right:12px">%</span></div></div>
+      <div class="campo"><label for="v-taxa">Aplicação de referência <small>em % ao ano: o que o dinheiro do investimento renderia se ficasse aplicado. Confira a taxa do momento</small></label><div class="inp"><input id="v-taxa" inputmode="decimal" autocomplete="off" placeholder="10"><span style="padding-right:12px">%</span></div></div>
       <div class="campo"><label for="v-h">Horas de trabalho a mais por semana</label><div class="inp"><input id="v-h" inputmode="numeric" autocomplete="off" placeholder="0"><span style="padding-right:12px">h</span></div></div>
     </div>
 
@@ -363,7 +363,7 @@
     var mp = g('v-mp').value.trim() || 'matéria-prima', prod = g('v-prod').value.trim() || 'produto';
     var qtd = Curso.num(g('v-qtd').value), pmp = dec(g('v-pmp').value), qp = Curso.num(g('v-qp').value), pp = dec(g('v-pp').value);
     var ci = Curso.num(g('v-ci').value), cv = Curso.num(g('v-cv').value), inv = Curso.num(g('v-inv').value), anos = dec(g('v-anos').value) || 10, h = dec(g('v-h').value);
-    var taxa = g('v-taxa').value.trim() === '' ? 14 : dec(g('v-taxa').value);
+    var taxa = g('v-taxa').value.trim() === '' ? 10 : dec(g('v-taxa').value);
     if (!qtd || !pmp || !qp || !pp){ g('v-res').hidden = true; return; }
     g('v-res').hidden = false;
     var natura = qtd * pmp, transf = qp * pp - ci - cv - inv / (anos * 12), ganho = transf - natura, hmes = h * 52 / 12, hora = hmes ? ganho / hmes : 0;
@@ -408,7 +408,7 @@
   var c = Curso.caderno().m11valor;
   if (c){ preenche({mp:c.materiaPrima, prod:c.produto, qtd:c.quantidade, pmp:c.precoNatura, qp:c.qtdProduto, pp:c.precoProduto, ci:c.custosMes, cv:c.custosVenda, inv:c.investimento, anos:c.anos, taxa:c.taxa, h:c.horasSemana}); calc(); }
   g('v-exemplo').addEventListener('click', function(){
-    preenche({mp:'leite', prod:'queijo colonial', qtd:3000, pmp:2.40, qp:300, pp:45, ci:1500, cv:800, inv:60000, anos:10, taxa:14, h:25});
+    preenche({mp:'leite', prod:'queijo colonial', qtd:3000, pmp:2.40, qp:300, pp:45, ci:1500, cv:800, inv:60000, anos:10, taxa:10, h:25});
     exemplo = true; calc();
     g('v-res').scrollIntoView({behavior:'smooth', block:'center'});
   });

@@ -95,7 +95,7 @@ Nada linkado a partir da home do aluno até o autor decidir lançar. Quando lan�
   - No módulo 5:
     - receita líquida e nomes das margens;
     - lição nova "Produzir mais compensa?", com a próxima dose de nitrogênio.
-  - Aplicação de referência de 14% ao ano à vista nos módulos 4, 10 e 11 (no 10 e no 11, em campo editável). No 10, a frase sobre a valorização da terra.
+  - Aplicação de referência de 10% ao ano, já descontado o imposto (era 14% até 16/11/2026), à vista nos módulos 4, 10 e 11 (no 10 e no 11, em campo editável). No 10, a frase sobre a valorização da terra.
   - Soja dos módulos 4 e 5 a R$ 128, com margem de 6%.
   - Exemplos com os preços de 2026:
     - Chicago a 11,30;

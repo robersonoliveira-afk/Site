@@ -657,7 +657,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     </div>
 
     <h3>VPL: Valor Presente Líquido</h3>
-    <p>Traz todos os fluxos futuros (entradas e saídas) para o valor de hoje, usando uma <em>taxa de desconto</em>: o que o dinheiro renderia na aplicação de referência, que o curso fixa em 14% ao ano.</p>
+    <p>Traz todos os fluxos futuros (entradas e saídas) para o valor de hoje, usando uma <em>taxa de desconto</em>: o que o dinheiro renderia na aplicação de referência, que o curso fixa em 10% ao ano, já descontado o imposto.</p>
     <div class="hierarchy">
       <div class="hier-row ok"><span class="hier-tag">VPL &gt; 0</span><span>Viável. Gera valor acima da taxa de desconto.</span></div>
       <div class="hier-row warn"><span class="hier-tag">VPL = 0</span><span>Empata com a alternativa de investimento.</span></div>
@@ -677,7 +677,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="ctrl"><div class="top"><span>Investimento na implantação</span><b data-v="inv"></b></div><input type="range" data-i="inv" min="50" max="400" step="10" value="200" aria-label="Investimento na implantação"></div>
         <div class="ctrl"><div class="top"><span>Lucro anual na produção</span><b data-v="luc"></b></div><input type="range" data-i="luc" min="10" max="80" step="5" value="40" aria-label="Lucro anual na produção"></div>
         <div class="ctrl"><div class="top"><span>Anos de formação, sem lucro</span><b data-v="form"></b></div><input type="range" data-i="form" min="0" max="5" step="1" value="0" aria-label="Anos de formação, sem lucro"></div>
-        <div class="ctrl"><div class="top"><span>Taxa de desconto</span><b data-v="tx"></b></div><input type="range" data-i="tx" min="2" max="20" step="0.5" value="14" aria-label="Taxa de desconto"></div>
+        <div class="ctrl"><div class="top"><span>Taxa de desconto</span><b data-v="tx"></b></div><input type="range" data-i="tx" min="2" max="20" step="0.5" value="10" aria-label="Taxa de desconto"></div>
         <div class="ctrl"><div class="top"><span>Horizonte da análise</span><b data-v="hz"></b></div><input type="range" data-i="hz" min="8" max="25" step="1" value="15" aria-label="Horizonte da análise"></div>
         <svg role="img" aria-label="Saldo acumulado do projeto, ano a ano" style="margin-top:12px"></svg>
         <div class="leg-dd"><span class="ln" style="--c:var(--ink)">saldo acumulado</span><span class="tr" style="--c:var(--terra)">saldo acumulado descontado</span></div>
@@ -689,7 +689,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         </div>
         <div class="estado-dd"></div>
       </div>
-      <figcaption>Começa com o pomar do exemplo. Nos anos de formação o lucro é zero e o custo de formação está somado ao investimento. A taxa começa nos 14% ao ano da aplicação de referência do curso; mude para o que o produtor consegue de fato.</figcaption>
+      <figcaption>Começa com o pomar do exemplo. Nos anos de formação o lucro é zero e o custo de formação está somado ao investimento. A taxa começa nos 10% ao ano da aplicação de referência do curso, já descontado o imposto; mude para o que o produtor consegue de fato.</figcaption>
     </figure>
 
     <div class="callout success">
@@ -931,8 +931,8 @@ const QUIZ_B = [
     {t:"Dá no mesmo: as duas são frutas.", p:"op"},
     {t:"A banana exige bem menos capital de giro na formação; a receita entra antes.", p:"es"},
     {t:"A banana é mais rápida, mas não calculo o impacto.", p:"tr"} ]},
-  { q:"A TIR do pomar deu 12% a.a. e a aplicação de referência rende 14% a.a. O projeto:", a:[
-    {t:"É viável: rende 12% ao ano.", p:"op"},
+  { q:"A TIR do pomar deu 8% a.a. e a aplicação de referência rende 10% a.a. O projeto:", a:[
+    {t:"É viável: rende 8% ao ano.", p:"op"},
     {t:"TIR abaixo da aplicação: o capital renderia mais aplicado; não recomendado assim.", p:"es"},
     {t:"Está perto da aplicação, deve servir.", p:"tr"} ]}
 ];

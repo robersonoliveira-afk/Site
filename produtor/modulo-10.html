@@ -246,7 +246,7 @@
       <div class="campo"><label for="e-ha">Área <small>hectares</small></label><div class="inp"><input id="e-ha" inputmode="decimal" autocomplete="off" placeholder="0"><span style="padding-right:12px">ha</span></div></div>
       <div class="campo"><label for="e-preco">Preço da terra por hectare <small>para comprar</small></label><div class="inp"><span>R$</span><input id="e-preco" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
       <div class="campo"><label for="e-arr">Arrendamento por hectare por ano <small>na região, para comparar</small></label><div class="inp"><span>R$</span><input id="e-arr" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
-      <div class="campo"><label for="e-taxa">Aplicação de referência <small>em % ao ano, para comparar: o que o dinheiro da compra renderia aplicado. Confira a taxa do momento</small></label><div class="inp"><input id="e-taxa" inputmode="decimal" autocomplete="off" placeholder="14"><span style="padding-right:12px">%</span></div></div>
+      <div class="campo"><label for="e-taxa">Aplicação de referência <small>em % ao ano, para comparar: o que o dinheiro da compra renderia aplicado. Confira a taxa do momento</small></label><div class="inp"><input id="e-taxa" inputmode="decimal" autocomplete="off" placeholder="10"><span style="padding-right:12px">%</span></div></div>
     </div>
 
     <p class="grupo">As outras camadas</p>
@@ -302,11 +302,11 @@
     </div>
 
     <div class="q rv">
-      <p class="enun"><span class="qn">Pergunta 2</span>Comprar 20 ha custa R$ 600 mil. Aplicado a 14% ao ano, esse dinheiro renderia R$ 84 mil por ano. Arrendar uma área igual custa R$ 16 mil por ano. Do ponto de vista do custo anual:</p>
+      <p class="enun"><span class="qn">Pergunta 2</span>Comprar 20 ha custa R$ 600 mil. Aplicado a 10% ao ano, já descontado o imposto, esse dinheiro renderia R$ 60 mil por ano. Arrendar uma área igual custa R$ 16 mil por ano. Do ponto de vista do custo anual:</p>
       <button type="button" class="alt">Comprar é mais barato.</button>
       <button type="button" class="alt" data-certa>Arrendar é mais barato e libera dinheiro para produzir.</button>
       <button type="button" class="alt">Os dois custam igual.</button>
-      <p class="fb">R$ 16 mil de arrendamento contra R$ 84 mil que o dinheiro deixaria de render. Comprar pode valer por outros motivos, como segurança, patrimônio e a valorização da terra, mas custa mais por ano.</p>
+      <p class="fb">R$ 16 mil de arrendamento contra R$ 60 mil que o dinheiro deixaria de render. Comprar pode valer por outros motivos, como segurança, patrimônio e a valorização da terra, mas custa mais por ano.</p>
     </div>
 
     <div class="q rv">
@@ -413,7 +413,7 @@
     requestAnimationFrame(function(){ CAM.forEach(function(c, i){ emp.children[i].style.width = (val[c[0]] / tot * 100) + '%'; }); });
     var falta = Math.max(tot - v.prop, 0);
     g('e-tot').textContent = Curso.reais(tot); g('e-propv').textContent = Curso.reais(v.prop); g('e-falta').textContent = Curso.reais(falta);
-    var cmpTxt = '', taxa = g('e-taxa').value.trim() === '' ? 14 : dec(g('e-taxa').value), tx = taxa.toLocaleString('pt-BR') + '%';
+    var cmpTxt = '', taxa = g('e-taxa').value.trim() === '' ? 10 : dec(g('e-taxa').value), tx = taxa.toLocaleString('pt-BR') + '%';
     if (ha > 0 && v.preco > 0 && v.arr > 0){
       g('e-cmp-w').hidden = false;
       var rend = ha * v.preco * taxa / 100, arrAno = ha * v.arr;
@@ -451,7 +451,7 @@
     calc();
   }
   g('e-exemplo').addEventListener('click', function(){
-    g('e-modo').value = 'arrendar'; g('e-ha').value = '3'; g('e-taxa').value = '14';
+    g('e-modo').value = 'arrendar'; g('e-ha').value = '3'; g('e-taxa').value = '10';
     var ex = {preco:30000, arr:900, const:25000, maq:18000, anim:12000, giro:15000, res:30000, prop:80000};
     nums.forEach(function(k){ g('e-' + k).value = ex[k].toLocaleString('pt-BR'); });
     exemplo = true; calc();
