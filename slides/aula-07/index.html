@@ -347,6 +347,14 @@ body.ver-num .contador{display:none}
 .cover .cred .lines .site{display:inline-flex;align-items:center;gap:0.5vw}
 .cover .cred .lines .site img{height:min(1.9vw,3.4vh);width:auto;border-radius:22%}
 @media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
+
+/* três ciclos (slide 7c) */
+svg.ciclos3{width:min(66vw,118vh);display:block;margin:1vh 0 1.5vh;overflow:visible}
+svg.ciclos3 .mes{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:var(--stone)}
+svg.ciclos3 .nome{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:600;fill:var(--ink)}
+svg.ciclos3 .fase{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;fill:#fff}
+svg.ciclos3 .fase.p{font-size:10.5px}
+svg.ciclos3 .fundo{fill:var(--rule-soft)}
 </style>
 </head>
 <body>
@@ -453,6 +461,32 @@ body.ver-num .contador{display:none}
   </div>
   </section>
 
+
+<section class="slide">
+  <div class="eyebrow"><b>Ver como processo</b> · o ciclo diz o que fazer</div>
+  <h2>O ciclo manda no manejo</h2>
+  <div class="etapas" style="max-width:88vw">
+    <span class="step f">fase do ciclo</span><span class="arr f">→</span>
+    <span class="step f">manejo</span><span class="arr f">→</span>
+    <span class="step f">insumos e serviços</span><span class="arr f">→</span>
+    <span class="step f">despesa</span><span class="arr f">→</span>
+    <span class="step f">custo</span>
+  </div>
+  <div class="esq" style="max-width:62vw">
+    <ul class="itens">
+      <li class="f"><strong>Soja na floração</strong>, janeiro e fevereiro: a fase mais sensível</li>
+      <li class="f"><strong>O manejo</strong>: fungicida contra a ferrugem-asiática, controle de percevejos</li>
+      <li class="f"><strong>O que consome</strong>: fungicida, inseticida, pulverizador, diesel, horas de trabalho</li>
+    </ul>
+  </div>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Ver como processo</b> · três atividades, de julho a junho</div>
+  <h2>Três ciclos, três calendários</h2>
+  <svg class="ciclos3" viewBox="0 0 640 210" role="img" aria-label="Os ciclos da soja, da videira e dos ovinos no ano-safra, de julho a junho"><text x="130.0" y="18" text-anchor="middle" class="mes">jul</text><text x="174.0" y="18" text-anchor="middle" class="mes">ago</text><text x="218.0" y="18" text-anchor="middle" class="mes">set</text><text x="262.0" y="18" text-anchor="middle" class="mes">out</text><text x="306.0" y="18" text-anchor="middle" class="mes">nov</text><text x="350.0" y="18" text-anchor="middle" class="mes">dez</text><text x="394.0" y="18" text-anchor="middle" class="mes">jan</text><text x="438.0" y="18" text-anchor="middle" class="mes">fev</text><text x="482.0" y="18" text-anchor="middle" class="mes">mar</text><text x="526.0" y="18" text-anchor="middle" class="mes">abr</text><text x="570.0" y="18" text-anchor="middle" class="mes">mai</text><text x="614.0" y="18" text-anchor="middle" class="mes">jun</text><g class="f"><text x="96" y="53.0" text-anchor="end" class="nome">Soja</text><rect x="108" y="30" width="528" height="34" class="fundo"/><rect x="197" y="30" width="86" height="34" style="fill:#3D4A2A"/><text x="240.0" y="52.0" text-anchor="middle" class="fase">preparo</text><rect x="285" y="30" width="42" height="34" style="fill:#B89233"/><text x="306.0" y="52.0" text-anchor="middle" class="fase p">plantio</text><rect x="329" y="30" width="42" height="34" style="fill:#A8552E"/><text x="350.0" y="52.0" text-anchor="middle" class="fase p">cresce</text><rect x="373" y="30" width="86" height="34" style="fill:#6E7A4E"/><text x="416.0" y="52.0" text-anchor="middle" class="fase">flor e grão</text><rect x="461" y="30" width="86" height="34" style="fill:#7C3D1F"/><text x="504.0" y="52.0" text-anchor="middle" class="fase">colheita</text></g><g class="f"><text x="96" y="113.0" text-anchor="end" class="nome">Videira</text><rect x="108" y="90" width="528" height="34" class="fundo"/><rect x="109" y="90" width="86" height="34" style="fill:#3D4A2A"/><text x="152.0" y="112.0" text-anchor="middle" class="fase">poda</text><rect x="593" y="90" width="42" height="34" style="fill:#3D4A2A"/><rect x="197" y="90" width="42" height="34" style="fill:#B89233"/><text x="218.0" y="112.0" text-anchor="middle" class="fase p">brota</text><rect x="241" y="90" width="42" height="34" style="fill:#A8552E"/><text x="262.0" y="112.0" text-anchor="middle" class="fase p">flor</text><rect x="285" y="90" width="86" height="34" style="fill:#6E7A4E"/><text x="328.0" y="112.0" text-anchor="middle" class="fase">frutificação</text><rect x="373" y="90" width="86" height="34" style="fill:#7C3D1F"/><text x="416.0" y="112.0" text-anchor="middle" class="fase">colheita</text><rect x="461" y="90" width="130" height="34" style="fill:#9B8A55"/><text x="526.0" y="112.0" text-anchor="middle" class="fase">pós-colheita</text></g><g class="f"><text x="96" y="173.0" text-anchor="end" class="nome">Ovinos</text><rect x="108" y="150" width="528" height="34" class="fundo"/><rect x="373" y="150" width="130" height="34" style="fill:#3D4A2A"/><text x="438.0" y="172.0" text-anchor="middle" class="fase">preparo</text><rect x="505" y="150" width="86" height="34" style="fill:#B89233"/><text x="548.0" y="172.0" text-anchor="middle" class="fase">cobertura</text><rect x="109" y="150" width="86" height="34" style="fill:#A8552E"/><text x="152.0" y="172.0" text-anchor="middle" class="fase">gestação</text><rect x="593" y="150" width="42" height="34" style="fill:#A8552E"/><rect x="197" y="150" width="86" height="34" style="fill:#6E7A4E"/><text x="240.0" y="172.0" text-anchor="middle" class="fase">parição</text><rect x="285" y="150" width="86" height="34" style="fill:#7C3D1F"/><text x="328.0" y="172.0" text-anchor="middle" class="fase">esquila</text></g></svg>
+  <p class="lead f" style="max-width:62vw">Com o ciclo na mão, a lista do que se gasta se escreve fase a fase.</p>
+  </section>
 
 <section class="slide">
   <div class="eyebrow"><b>Antes de classificar</b> · listar tudo</div>
