@@ -500,7 +500,8 @@ ul.mini-l li::before{content:"› ";color:var(--stone-light)}
 
 /* ===== peças do vídeo 15 ===== */
 .cover h1{max-width:60vw}
-.cals{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;max-width:72vw;margin:0 0 2vh}
+.cals{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vw;max-width:80vw;margin:0 0 2vh}
+.cal.cal-anos{border-style:dashed}
 .cal{background:#fff;border:1px solid var(--rule);padding:1.2vh 0.8vw}
 .cal-n{font-family:'Fraunces',serif;font-size:var(--fs-body);font-weight:600;color:var(--ink)}
 .cal svg{width:100%;display:block;overflow:visible}
@@ -597,7 +598,7 @@ body.ver-num .contador{display:none}
 @media (orientation:portrait) and (max-width:900px){.cover .cred .lines .site{gap:6px}.cover .cred .lines .site img{height:20px}}
 
 /* planilha mês a mês (slide 5b) */
-.xl{max-width:66vw;border:1px solid #C9C6BC;background:#fff;position:relative;margin-top:0.5vh}
+.xl{max-width:67vw;border:1px solid #C9C6BC;background:#fff;position:relative;margin-top:0.5vh}
 .xl-barra,.xl-f{display:flex;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-mono);height:4.2vh;align-items:stretch;background:#fff}
 .xl-barra{border-bottom:1px solid #C9C6BC}
 .xl-f{position:absolute;left:0;right:0;top:0;border-bottom:1px solid #C9C6BC;opacity:0;transition:opacity .3s}
@@ -605,21 +606,24 @@ body.ver-num .contador{display:none}
 .xl .nm{width:6vw;display:flex;align-items:center;justify-content:center;border-right:1px solid #C9C6BC}
 .xl .fx{width:3vw;display:flex;align-items:center;justify-content:center;border-right:1px solid #C9C6BC;color:var(--stone);font-style:italic;background:#F3F2EE}
 .xl .fm{flex:1;display:flex;align-items:center;padding:0 1vw;color:var(--ink)}
-.xl-grade{display:grid;grid-template-columns:2.2vw 14.5vw repeat(8,6.1vw);grid-template-rows:auto}
+.xl-grade{display:grid;grid-template-columns:2.2vw 13vw repeat(8,6.4vw);grid-template-rows:auto}
 .xl-col{display:flex;flex-direction:column;grid-row:1}
 .xl-col.ln{grid-column:1}.xl-col.it{grid-column:2}.xl-col:nth-child(3){grid-column:3}
 .xl-col.mes.f{opacity:1;transform:none}
-.xl .c{height:3.55vh;display:flex;align-items:center;justify-content:flex-end;padding:0 0.5vw;border-right:1px solid #E2E0D8;border-bottom:1px solid #E2E0D8;font-family:'IBM Plex Mono',monospace;font-size:min(1.2vw,2.15vh);color:var(--ink);white-space:nowrap}
+.xl .c{height:3.0vh;display:flex;align-items:center;justify-content:flex-end;padding:0 0.4vw;border-right:1px solid #E2E0D8;border-bottom:1px solid #E2E0D8;font-family:'IBM Plex Mono',monospace;font-size:min(1.1vw,2vh);color:var(--ink);white-space:nowrap}
 .xl-col.ln .c{justify-content:center;background:#F3F2EE;color:var(--stone);padding:0}
 .xl-col.it .c{justify-content:flex-start;font-family:'IBM Plex Sans',sans-serif}
 .xl .c.h{background:#F3F2EE;font-weight:600;justify-content:center}
+.xl-col.it .c.g{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:min(0.95vw,1.75vh);letter-spacing:0.06em;color:var(--ink-soft)}
 .xl-col.it .c.h{background:#F3F2EE}
 .xl .c.t{font-weight:600;border-top:1.5px solid #9B9890}
 .xl .c.s{font-weight:600;background:#F2E8C9}
 .xl .c.neg{color:#B3261E}
+.xl .c.l{height:2.6vh;background:#F3F2EE;color:var(--stone);justify-content:center;font-size:min(0.95vw,1.7vh)}
 .xl-col.mes .c:not(.h){opacity:0;transition:opacity .25s ease calc(var(--i) * .09s)}
+.xl-col.mes .c.l{opacity:1}
 .xl-col.mes.vis .c{opacity:1}
-.xl-fundo{grid-row:1;align-self:end;height:3.55vh;outline:0.35vh solid var(--terra);outline-offset:-0.35vh;pointer-events:none}
+.xl-fundo{grid-row:1;align-self:end;height:3.0vh;outline:0.35vh solid var(--terra);outline-offset:-0.35vh;pointer-events:none}
 .xl-fundo.f{transform:none}
 .xl-nota{font-size:var(--fs-small);color:var(--ink-soft);margin-top:1.6vh;max-width:60vw}
 .xl-nota b{color:var(--terra)}
@@ -687,8 +691,8 @@ svg.rs .rot2{font-family:'IBM Plex Sans',sans-serif;font-size:14px;fill:var(--in
   </section>
 
 <section class="slide">
-  <div class="eyebrow"><b>Mesmo resultado no ano</b> · saldo acumulado, R$ mil, de julho a junho</div>
-  <h2>Três atividades, três calendários</h2>
+  <div class="eyebrow"><b>Cada uma com o seu vale</b> · saldo acumulado, R$ mil</div>
+  <h2>Quatro atividades, quatro calendários</h2>
   <div class="cals"><div class="cal f"><span class="cal-n">Soja</span>
 <svg viewBox="0 0 300 200" role="img" aria-label="Saldo acumulado da Soja, de julho a junho, termina em 46 mil reais">
 <line x1="14" y1="58.4" x2="294" y2="58.4" class="zero"/>
@@ -707,8 +711,16 @@ svg.rs .rot2{font-family:'IBM Plex Sans',sans-serif;font-size:14px;fill:var(--in
 <path d="M20,58.4 L20,68.6 L44,78.9 L68,89.8 L92,100.6 L116,110.9 L140,121.1 L164,131.4 L188,141.6 L212,151.8 L236,162.1 L260,76.3 L284,29.0 L284,58.4 Z" class="area"/><polyline points="20,68.6 44,78.9 68,89.8 92,100.6 116,110.9 140,121.1 164,131.4 188,141.6 212,151.8 236,162.1 260,76.3 284,29.0" class="lin"/>
 <text x="236" y="178.1" text-anchor="middle" class="vmin">-162</text><text x="284" y="21.0" text-anchor="end" class="vfim">+46</text>
 <text x="20" y="196" class="mes">jul</text><text x="284" y="196" text-anchor="end" class="mes">jun</text>
+</svg></div><div class="cal cal-anos f"><span class="cal-n">Nogueira-pecã</span>
+<svg viewBox="0 0 300 200" role="img" aria-label="Saldo acumulado da nogueira-pecã, do ano 0 ao ano 10: fundo de 180 mil reais no ano 4, volta ao zero no ano 10">
+<text x="20" y="22" class="mes">10 ha · em anos</text>
+<line x1="14" y1="58.4" x2="294" y2="58.4" class="zero"/>
+<path d="M20,58.4 L20,148.0 L46,155.7 L73,163.4 L99,171.0 L126,173.6 L152,172.3 L178,165.9 L205,149.9 L231,124.3 L258,92.3 L284,53.9 L284,58.4 Z" class="area"/><polyline points="20,148.0 46,155.7 73,163.4 99,171.0 126,173.6 152,172.3 178,165.9 205,149.9 231,124.3 258,92.3 284,53.9" class="lin"/>
+<text x="126" y="189.6" text-anchor="middle" class="vmin">-180</text><text x="284" y="45.9" text-anchor="end" class="vfim">+7</text>
+<text x="20" y="196" class="mes">ano 0</text><text x="284" y="196" text-anchor="end" class="mes">ano 10</text>
 </svg></div></div>
-  <p class="lead f" style="max-width:62vw">As três terminam o ano com <strong>+R$ 46 mil</strong>. Só o leite nunca fica no vermelho.</p>
+  <p class="lead f" style="max-width:62vw">As três primeiras terminam o ano com <strong>+R$ 46 mil</strong>. Só o leite nunca fica no vermelho.</p>
+  <p class="lead f" style="max-width:62vw">A nogueira-pecã leva <strong>dez anos</strong> para voltar ao zero.</p>
   </section>
 
 <section class="slide">
@@ -716,24 +728,14 @@ svg.rs .rot2{font-family:'IBM Plex Sans',sans-serif;font-size:14px;fill:var(--in
   <h2>Entradas, saídas, saldo</h2>
   <table class="tbl unid">
     <tbody>
-      <tr class="f"><td>Entradas</td><td>venda da produção e subprodutos, financiamentos recebidos, outras receitas</td></tr>
-      <tr class="f"><td>Saídas</td><td>cada custo no mês em que é pago; parcelas e juros</td></tr>
+      <tr class="f"><td>Entradas</td><td>venda da produção e subprodutos, outras receitas; à parte, o crédito liberado, como o custeio da lavoura</td></tr>
+      <tr class="f"><td>Saídas</td><td>cada custo no mês em que é pago; a retirada da família; parcelas e juros</td></tr>
       <tr class="f"><td>Saldo do mês</td><td>entradas − saídas</td></tr>
       <tr class="f"><td>Saldo acumulado</td><td>o saldo anterior + o saldo do mês</td></tr>
     </tbody>
   </table>
   <div class="callout ok f">O mês de saldo acumulado mais baixo é a maior necessidade de dinheiro do ano.</div>
 </section>
-
-<section class="slide">
-  <div class="eyebrow"><b>Na planilha</b> · um sítio com milho, queijo e ovos · R$</div>
-  <h2>Montando o fluxo de caixa, mês a mês</h2>
-  <div class="xl">
-    <div class="xl-barra"><span class="nm">B11</span><span class="fx">fx</span><span class="fm">8000</span></div>
-    <div class="xl-grade"><div class="xl-col ln"><div class="c h">1</div><div class="c ">2</div><div class="c ">3</div><div class="c ">4</div><div class="c t">5</div><div class="c ">6</div><div class="c ">7</div><div class="c ">8</div><div class="c t">9</div><div class="c s">10</div><div class="c s">11</div></div><div class="xl-col it"><div class="c h"></div><div class="c ">Queijo colonial</div><div class="c ">Ovos</div><div class="c ">Venda de milho</div><div class="c t">Total de entradas</div><div class="c ">Insumos do milho</div><div class="c ">Ração e insumos</div><div class="c ">Retirada da família</div><div class="c t">Total de saídas</div><div class="c s">Saldo do mês</div><div class="c s">Saldo acumulado</div></div><div class="xl-col"><div class="c h" style="--i:0">início</div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c t" style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c t" style="--i:0"></div><div class="c s" style="--i:0"></div><div class="c s" style="--i:0">8.000</div></div><div class="xl-col mes f" style="grid-column:4"><div class="c h" style="--i:0">set</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5">21.550</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">25.750</div><div class="c s neg" style="--i:9">-21.250</div><div class="c s neg" style="--i:10">-13.250</div><div class="xl-f"><span class="nm">C5</span><span class="fx">fx</span><span class="fm">=SOMA(C2:C4)</span></div></div><div class="xl-col mes f" style="grid-column:5"><div class="c h" style="--i:0">out</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5">4.500</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">8.700</div><div class="c s neg" style="--i:9">-4.200</div><div class="c s neg" style="--i:10">-17.450</div><div class="xl-f"><span class="nm">D9</span><span class="fx">fx</span><span class="fm">=SOMA(D6:D8)</span></div></div><div class="xl-col mes f" style="grid-column:6"><div class="c h" style="--i:0">nov</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5">9.660</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">13.860</div><div class="c s neg" style="--i:9">-9.360</div><div class="c s neg" style="--i:10">-26.810</div><div class="xl-f"><span class="nm">E10</span><span class="fx">fx</span><span class="fm">=E5-E9</span></div></div><div class="xl-col mes f" style="grid-column:7"><div class="c h" style="--i:0">dez</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5"></div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">4.200</div><div class="c s" style="--i:9">300</div><div class="c s neg" style="--i:10">-26.510</div><div class="xl-f"><span class="nm">F11</span><span class="fx">fx</span><span class="fm">=E11+F10</span></div></div><div class="xl-col mes f" style="grid-column:8"><div class="c h" style="--i:0">jan</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5"></div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">4.200</div><div class="c s" style="--i:9">300</div><div class="c s neg" style="--i:10">-26.210</div><div class="xl-f"><span class="nm">G11</span><span class="fx">fx</span><span class="fm">=F11+G10</span></div></div><div class="xl-col mes f" style="grid-column:9"><div class="c h" style="--i:0">fev</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">4.500</div><div class="c " style="--i:5"></div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">4.200</div><div class="c s" style="--i:9">300</div><div class="c s neg" style="--i:10">-25.910</div><div class="xl-f"><span class="nm">H11</span><span class="fx">fx</span><span class="fm">=G11+H10</span></div></div><div class="xl-col mes f" style="grid-column:10"><div class="c h" style="--i:0">mar</div><div class="c " style="--i:1">2.700</div><div class="c " style="--i:2">1.800</div><div class="c " style="--i:3">82.838</div><div class="c t" style="--i:4">87.338</div><div class="c " style="--i:5">2.500</div><div class="c " style="--i:6">1.200</div><div class="c " style="--i:7">3.000</div><div class="c t" style="--i:8">6.700</div><div class="c s" style="--i:9">80.638</div><div class="c s" style="--i:10">54.728</div><div class="xl-f"><span class="nm">I4</span><span class="fx">fx</span><span class="fm">=10*140*61*0,97</span></div></div><div class="xl-fundo f" style="grid-column:6"></div></div>
-  </div>
-  <p class="xl-nota f">Fundo do vale (exposição máxima de caixa): <b>−R$ 26.810</b>, em novembro.</p>
-  </section>
 
 <section class="slide">
   <div class="eyebrow"><b>O erro clássico</b></div>
@@ -759,6 +761,16 @@ svg.rs .rot2{font-family:'IBM Plex Sans',sans-serif;font-size:14px;fill:var(--in
 </svg>
 <div class="leg-s f"><span class="l1">saída da soja</span><span class="l2">venda da soja</span><span class="l3">saldo, com o leite</span><span style="color:var(--stone)">- - se fosse só a soja</span></div>
   <p class="lead f" style="max-width:62vw">A soja faz o resultado do ano. O leite segura o mês.</p>
+  </section>
+
+<section class="slide">
+  <div class="eyebrow"><b>Na planilha</b> · a mesma propriedade, de outubro a abril · R$</div>
+  <h2>Montando o fluxo de caixa, mês a mês</h2>
+  <div class="xl">
+    <div class="xl-barra"><span class="nm">B14</span><span class="fx">fx</span><span class="fm">120</span></div>
+    <div class="xl-grade"><div class="xl-col ln"><div class="c l"></div><div class="c h">1</div><div class="c g">2</div><div class="c ">3</div><div class="c ">4</div><div class="c t">5</div><div class="c g">6</div><div class="c ">7</div><div class="c ">8</div><div class="c ">9</div><div class="c ">10</div><div class="c ">11</div><div class="c t">12</div><div class="c s">13</div><div class="c s">14</div></div><div class="xl-col it"><div class="c l">A</div><div class="c h" style="justify-content:flex-start">Fluxo de caixa</div><div class="c g">ENTRADAS</div><div class="c ">Venda do leite</div><div class="c ">Venda da soja</div><div class="c t">Total de entradas</div><div class="c g">SAÍDAS</div><div class="c ">Soja: plantio</div><div class="c ">Soja: tratos</div><div class="c ">Soja: colheita</div><div class="c ">Leite: custos</div><div class="c ">Retirada da família</div><div class="c t">Total de saídas</div><div class="c s">Saldo do mês</div><div class="c s">Saldo acumulado</div></div><div class="xl-col"><div class="c l">B</div><div class="c h" style="--i:0">início</div><div class="c g" style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c t" style="--i:0"></div><div class="c g" style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c " style="--i:0"></div><div class="c t" style="--i:0"></div><div class="c s" style="--i:0"></div><div class="c s" style="--i:0">120</div></div><div class="xl-col mes f" style="grid-column:4"><div class="c l">C</div><div class="c h" style="--i:0">out</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">23.040</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6">36.000</div><div class="c " style="--i:7"></div><div class="c " style="--i:8"></div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">59.000</div><div class="c s neg" style="--i:12">-35.960</div><div class="c s neg" style="--i:13">-35.840</div><div class="xl-f"><span class="nm">C5</span><span class="fx">fx</span><span class="fm">=SOMA(C3:C4)</span></div></div><div class="xl-col mes f" style="grid-column:5"><div class="c l">D</div><div class="c h" style="--i:0">nov</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">23.040</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6">36.000</div><div class="c " style="--i:7"></div><div class="c " style="--i:8"></div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">59.000</div><div class="c s neg" style="--i:12">-35.960</div><div class="c s neg" style="--i:13">-71.800</div><div class="xl-f"><span class="nm">D12</span><span class="fx">fx</span><span class="fm">=SOMA(D7:D11)</span></div></div><div class="xl-col mes f" style="grid-column:6"><div class="c l">E</div><div class="c h" style="--i:0">dez</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">23.040</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6">36.000</div><div class="c " style="--i:7"></div><div class="c " style="--i:8"></div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">59.000</div><div class="c s neg" style="--i:12">-35.960</div><div class="c s neg" style="--i:13">-107.760</div><div class="xl-f"><span class="nm">E13</span><span class="fx">fx</span><span class="fm">=E5-E12</span></div></div><div class="xl-col mes f" style="grid-column:7"><div class="c l">F</div><div class="c h" style="--i:0">jan</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">23.040</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6"></div><div class="c " style="--i:7">27.000</div><div class="c " style="--i:8"></div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">50.000</div><div class="c s neg" style="--i:12">-26.960</div><div class="c s neg" style="--i:13">-134.720</div><div class="xl-f"><span class="nm">F14</span><span class="fx">fx</span><span class="fm">=E14+F13</span></div></div><div class="xl-col mes f" style="grid-column:8"><div class="c l">G</div><div class="c h" style="--i:0">fev</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">23.040</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6"></div><div class="c " style="--i:7">27.000</div><div class="c " style="--i:8"></div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">50.000</div><div class="c s neg" style="--i:12">-26.960</div><div class="c s neg" style="--i:13">-161.680</div><div class="xl-f"><span class="nm">G8</span><span class="fx">fx</span><span class="fm">=180000*0,15</span></div></div><div class="xl-col mes f" style="grid-column:9"><div class="c l">H</div><div class="c h" style="--i:0">mar</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3"></div><div class="c t" style="--i:4">23.040</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6"></div><div class="c " style="--i:7"></div><div class="c " style="--i:8">18.000</div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">41.000</div><div class="c s neg" style="--i:12">-17.960</div><div class="c s neg" style="--i:13">-179.640</div><div class="xl-f"><span class="nm">H14</span><span class="fx">fx</span><span class="fm">=G14+H13</span></div></div><div class="xl-col mes f" style="grid-column:10"><div class="c l">I</div><div class="c h" style="--i:0">abr</div><div class="c g" style="--i:1"></div><div class="c " style="--i:2">23.040</div><div class="c " style="--i:3">297.984</div><div class="c t" style="--i:4">321.024</div><div class="c g" style="--i:5"></div><div class="c " style="--i:6"></div><div class="c " style="--i:7"></div><div class="c " style="--i:8"></div><div class="c " style="--i:9">18.000</div><div class="c " style="--i:10">5.000</div><div class="c t" style="--i:11">23.000</div><div class="c s" style="--i:12">298.024</div><div class="c s" style="--i:13">118.384</div><div class="xl-f"><span class="nm">I4</span><span class="fx">fx</span><span class="fm">=2400*128*0,97</span></div></div><div class="xl-fundo f" style="grid-column:9"></div></div>
+  </div>
+  <p class="xl-nota f">Fundo do vale (exposição máxima de caixa): <b>−R$ 179.640</b>, em março.</p>
   </section>
 
 <section class="slide">
