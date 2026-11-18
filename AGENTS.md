@@ -56,6 +56,7 @@ Quiz é bloco acordeão, painel interno oliva-deep + acento mostarda (não muda 
   - pró-labore: o que um empregado recebe no ano (12 salários, 13º e terço de férias; R$ 26.853 no piso de R$ 2.014);
   - agronegócio no sentido de Davis e Goldberg (o sistema inteiro); nunca opor agricultura familiar e agronegócio;
   - ovo do capítulo 1: ração de postura da EMATER-DF (60% milho, 23% farelo de soja, 5% farelo de trigo, 8% calcário, 4% núcleo); 3.400 m², 48% de um campo; 64 mil ha na conta de escala.
+- Antes de publicar: `python ferramentas/conferir_site.py`, rodado na pasta `Produzir_Nao_Basta/ebook`. Confere estas convenções e os números do livro em todas as páginas que o Git acompanha, inclusive nos textos dos scripts; ERRO trava, aviso pede um olho humano.
 - Fontes: CNA/Campo Futuro (metodologia Matsunaga/IEA), CONAB, CEPEA/ESALQ, EMATER/RS, BCB (MCR), MAPA (Plano Safra Empresarial), MDA (Plano Safra Familiar), Lei 12.651/2012 (CAR/SICAR), EMBRAPA (UA, GMD, custo/L).
 - Declaração de uso de IA (texto FECHADO) em todos os rodapés: *"A ferramenta Claude Opus 4.7 (Anthropic, 2026) foi utilizada para auxiliar na organização e estruturação do material, a partir dos materiais didáticos do professor. Todo o conteúdo técnico, a seleção de conceitos e os ajustes de linguagem são de responsabilidade do professor."*
 - Tabelas em 380px: reduza colunas ao essencial; resultado textual vira tag colorida (`td.ok`/`td.no`); nunca deixe scroll horizontal feio como padrão.

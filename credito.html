@@ -319,7 +319,7 @@ function pativ(p){return (PRODMETA[p]&&PRODMETA[p].atividade)||'Ambos';}
 function getFilters(){return{ano:parseInt(document.getElementById('f-ano').value)||0,produto:document.getElementById('f-produto').value,atividade:document.getElementById('f-atividade').value,recorteTipo:document.getElementById('f-recorte-tipo').value,recorteValor:document.getElementById('f-recorte-valor')?.value||'TODOS'};}
 function getRegAgrupa(){const s=document.querySelector('input[name="reg-agrup"]:checked');return s?s.value:'corede';}
 function getMunsFiltrados(f){f=f||getFilters();if(f.recorteTipo==='TODOS'||!f.recorteValor||f.recorteValor==='TODOS')return MUNICIPIOS;return MUNICIPIOS.filter(m=>{const v=f.recorteTipo==='bioma'?m.bioma:f.recorteTipo==='corede'?m.corede:m.emater;return v===f.recorteValor;});}
-function getRecorteLabel(f){f=f||getFilters();if(f.recorteTipo==='TODOS')return null;const t=f.recorteTipo==='bioma'?'Bioma':f.recorteTipo==='corede'?'COREDE':'Emater';return t+': '+f.recorteValor;}
+function getRecorteLabel(f){f=f||getFilters();if(f.recorteTipo==='TODOS')return null;const t=f.recorteTipo==='bioma'?'Bioma':f.recorteTipo==='corede'?'COREDE':'EMATER';return t+': '+f.recorteValor;}
 function getProdutosAtivos(f){
   let base;
   if(f.produto==='TODOS')base=PRODUTOS;
@@ -447,7 +447,7 @@ function renderRegioes(){
   const badge=document.getElementById('reg-recorte-badge');if(rl){badge.style.display='';document.getElementById('reg-recorte-label').textContent=rl;}else badge.style.display='none';
   const grupos={};muns.forEach(m=>{const k=nivel==='bioma'?m.bioma:nivel==='corede'?m.corede:m.emater;if(!grupos[k])grupos[k]={cust:0,area:0,count:0};const{cust,area}=getCustMun(m,prods,f.ano);grupos[k].cust+=cust;grupos[k].area+=area;grupos[k].count++;});
   const sorted=Object.entries(grupos).map(([k,v])=>({k,...v})).sort((a,b)=>b.cust-a.cust);
-  const titulo=nivel==='bioma'?'bioma':nivel==='corede'?'COREDE':'regional Emater';
+  const titulo=nivel==='bioma'?'bioma':nivel==='corede'?'COREDE':'regional EMATER';
   document.getElementById('reg-title').textContent=LBL()+' por '+titulo+' (R$)';
   destroyChart('chart-regioes-bar');
   charts['chart-regioes-bar']=new Chart(document.getElementById('chart-regioes-bar'),{type:'bar',data:{labels:sorted.map(x=>x.k),datasets:[{data:sorted.map(x=>x.cust),backgroundColor:sorted.map((_,i)=>CORES[i%CORES.length]+'cc'),borderColor:sorted.map((_,i)=>CORES[i%CORES.length]),borderWidth:1,borderRadius:4}]},options:{...chartOpts(),indexAxis:nivel==='bioma'?'x':'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmtRFull(c.raw)}}}}});
