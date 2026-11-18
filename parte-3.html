@@ -307,7 +307,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <ol>
       <li><a href="#receita-margens"><span class="toc-num">III.1</span> Receita, margens e indicadores</a></li>
       <li><a href="#fatores-producao"><span class="toc-num">III.2</span> Fatores de produção e função de produção</a></li>
-      <li><a href="#marginal"><span class="toc-num">III.3</span> Análise marginal: RM = CM</a></li>
+      <li><a href="#marginal"><span class="toc-num">III.3</span> Análise marginal: VPM = CMI</a></li>
       <li><a href="#equilibrio"><span class="toc-num">III.4</span> Ponto de equilíbrio e margem de segurança</a></li>
       <li><a href="#cenarios"><span class="toc-num">III.5</span> Análise de cenários</a></li>
       <li class="quiz-link"><a href="#quiz"><span class="toc-num">→</span> Autoavaliação · Parte III</a></li>
@@ -358,7 +358,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <div class="tbl-wrap">
     <table class="tbl">
       <tr><th>Indicador</th><th>Fórmula</th><th>Referência de qualidade</th></tr>
-      <tr><td>Lucratividade (%)</td><td class="num">LE ÷ RL × 100</td><td>&gt; 15 a 20%</td></tr>
+      <tr><td>Lucratividade (%)</td><td class="num">LE ÷ RL × 100</td><td>&gt; 0 (o nível se compara com a mesma atividade)</td></tr>
       <tr><td>Rentabilidade sobre o custo (%)</td><td class="num">LE ÷ CT × 100</td><td>&gt; 0 (o CT já inclui arrendar e aplicar)</td></tr>
       <tr><td>IEE</td><td class="num">RL ÷ CT</td><td>&gt; 1,0 (quanto maior, melhor)</td></tr>
       <tr><td>Prod. de nivelamento</td><td class="num">COE ÷ preço ÷ área</td><td>bem abaixo da média regional</td></tr>
@@ -394,7 +394,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <span class="block-chevron"></span>
   </button>
   <div class="block-body"><div class="block-content">
-    <p>A regra RM = CM (aula III.3) encontra o ponto ótimo de insumo porque parte de uma lei fundamental: a resposta da lavoura ou do rebanho a qualquer insumo <strong>não é linear</strong>. Para entender por que, e aplicar a análise marginal com consistência, é preciso conhecer os fatores de produção, a função que os relaciona ao produto e as três fases dessa relação.</p>
+    <p>A regra VPM = CMI (aula III.3) encontra o ponto ótimo de insumo porque parte de uma lei fundamental: a resposta da lavoura ou do rebanho a qualquer insumo <strong>não é linear</strong>. Para entender por que, e aplicar a análise marginal com consistência, é preciso conhecer os fatores de produção, a função que os relaciona ao produto e as três fases dessa relação.</p>
 
     <h3>Os quatro fatores de produção</h3>
     <p>Todo processo produtivo combina quatro categorias de recursos. Na agropecuária gaúcha, eles assumem formas concretas, e cada um tem uma remuneração específica:</p>
@@ -427,12 +427,12 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><th>Conceito</th><th>Símbolo</th><th>Como calcular</th><th>Para que serve</th></tr>
       <tr><td><strong>Produto Total</strong></td><td class="num">PT</td><td>Soma produzida com X unidades do insumo</td><td>Ver o resultado acumulado da dose</td></tr>
       <tr><td><strong>Produto Médio</strong></td><td class="num">PM = PT ÷ X</td><td>Produção por unidade do insumo utilizado</td><td>Medir a eficiência técnica média</td></tr>
-      <tr><td><strong>Produto Marginal</strong></td><td class="num">PMg = ΔPT ÷ ΔX</td><td>Incremento no PT ao adicionar 1 unidade extra</td><td>Base da regra RM = CM (aula III.3)</td></tr>
+      <tr><td><strong>Produto Marginal</strong></td><td class="num">PMg = ΔPT ÷ ΔX</td><td>Incremento no PT ao adicionar 1 unidade extra</td><td>Base da regra VPM = CMI (aula III.3)</td></tr>
     </table>
     </div>
 
     <h3>Gráfico da função de produção: milho e nitrogênio</h3>
-    <p>O gráfico mostra como o Produto Total (sc/ha) responde ao aumento da dose de N, revelando as três fases. Dados ilustrativos de milho em plantio direto, com o teto calibrado no custo referencial de alta tecnologia da Epagri/Cepa:</p>
+    <p>O gráfico mostra como o Produto Total (sc/ha) responde ao aumento da dose de N, revelando as três fases. Dados ilustrativos de milho em plantio direto, com o teto calibrado no custo referencial de alta tecnologia da EPAGRI/CEPA:</p>
 
     <figure class="dd funcao-dd" id="dd-funcao" style="--dd:var(--terra);--dd-deep:#7C3D1F">
       <div class="dd-cab">Função de produção · milho e nitrogênio</div>
@@ -441,14 +441,14 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
         <div class="doses" aria-label="Escolha a dose de nitrogênio"></div>
         <div class="leit-dd"></div>
       </div>
-      <figcaption>Milho em plantio direto, dados ilustrativos: 90 sc/ha sem N (o N do próprio solo) e teto de 200 sc/ha, o rendimento esperado no custo referencial de alta tecnologia da Epagri/Cepa (SC, jul/2026). Toque numa dose para ver o produto total, o produto médio e o produto marginal.</figcaption>
+      <figcaption>Milho em plantio direto, dados ilustrativos: 90 sc/ha sem N (o N do próprio solo) e teto de 200 sc/ha, o rendimento esperado no custo referencial de alta tecnologia da EPAGRI/CEPA (SC, jul/2026). Toque numa dose para ver o produto total, o produto médio e o produto marginal.</figcaption>
     </figure>
     <p>Repare que o gráfico começa na Fase II. Sem adubação, o milho já colhe 90 sc/ha com o nitrogênio do solo: a Fase I, em que o PM ainda sobe, fica antes do zero do gráfico. Por isso lavouras reais respondem ao N já na Fase II, que é justamente onde a decisão econômica acontece.</p>
 
     <h3>As três fases da produção</h3>
     <div class="hierarchy">
       <div class="hier-row ok"><span class="hier-tag">FASE I</span><span><strong>Do zero até o PM máximo (PMg = PM):</strong> o PM ainda sobe. O fator fixo está subutilizado, então parar aqui desperdiça a estrutura da propriedade. Produtores abaixo desse nível operam abaixo da eficiência mínima.</span></div>
-      <div class="hier-row warn"><span class="hier-tag">FASE II</span><span><strong>Do PM máximo até o PT máximo (PMg = 0):</strong> PMg positivo, o PT ainda cresce. É a <em>zona racional de produção</em>. O ponto ótimo econômico (RM = CM) está sempre aqui.</span></div>
+      <div class="hier-row warn"><span class="hier-tag">FASE II</span><span><strong>Do PM máximo até o PT máximo (PMg = 0):</strong> PMg positivo, o PT ainda cresce. É a <em>zona racional de produção</em>. O ponto ótimo econômico (VPM = CMI) está sempre aqui.</span></div>
       <div class="hier-row danger"><span class="hier-tag">FASE III</span><span><strong>PMg &lt; 0:</strong> o PT cai. Excesso de N causa toxicidade e acamamento. Nenhum produtor racional opera aqui.</span></div>
     </div>
 
@@ -456,7 +456,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <p>O padrão tem nome formal: <strong>Lei dos Rendimentos Decrescentes</strong>. Os rendimentos decrescentes começam quando o PMg atinge o máximo e passa a cair, ainda na Fase I; a Fase II é a região em que eles já atuam e o PMg segue positivo. A lei afirma que, mantidos os demais fatores constantes, <em>a partir de certo ponto, cada unidade adicional do insumo variável gera incrementos de produto cada vez menores</em>. É uma regularidade empírica, observada em milho, soja, leite, carne, aves, não uma exceção.</p>
     <div class="callout">
       <strong>Ponto ótimo econômico ≠ máxima produção</strong>
-      O gráfico mostra que a máxima produção ocorre em 200 kg/ha de N (PT = 200 sc/ha). O máximo lucro está antes, perto de 180 kg/ha, onde RM = CM, com milho a R$ 61/sc e N a R$ 7,00/kg. Os últimos 20 kg de N rendem cerca de 1 sc/ha e custam R$ 140. A aula III.3 mostra como calcular esse ponto dose a dose.
+      O gráfico mostra que a máxima produção ocorre em 200 kg/ha de N (PT = 200 sc/ha). O máximo lucro está antes, perto de 180 kg/ha, onde VPM = CMI, com milho a R$ 61/sc e N a R$ 7,00/kg. Os últimos 20 kg de N rendem cerca de 1 sc/ha e custam R$ 140. A aula III.3 mostra como calcular esse ponto dose a dose.
     </div>
   </div></div>
 </section>
@@ -474,46 +474,46 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
     <h3>Os três conceitos</h3>
     <ul class="bullets">
       <li><strong>PM (produto marginal):</strong> o quanto a produção aumenta ao se adicionar uma unidade do insumo.</li>
-      <li><strong>RM (receita marginal):</strong> o valor dessa produção extra (PM × preço do produto).</li>
-      <li><strong>CM (custo marginal):</strong> o custo de uma unidade adicional do insumo.</li>
+      <li><strong>VPM (valor do produto marginal):</strong> o valor dessa produção extra (PM × preço do produto).</li>
+      <li><strong>CMI (custo marginal do insumo):</strong> o custo de uma unidade adicional do insumo.</li>
     </ul>
 
-    <h3>A regra de ouro: RM = CM</h3>
-    <p>O lucro é máximo no ponto em que a receita gerada pela última unidade de insumo iguala exatamente o custo dessa unidade. <em>Aplique enquanto RM &gt; CM; pare quando RM = CM.</em> Aplicar além desse ponto reduz o lucro, mesmo que a produção ainda esteja subindo.</p>
+    <h3>A regra de ouro: VPM = CMI</h3>
+    <p>O lucro é máximo no ponto em que a receita gerada pela última unidade de insumo iguala exatamente o custo dessa unidade. <em>Aplique enquanto VPM &gt; CMI; pare quando VPM = CMI.</em> Aplicar além desse ponto reduz o lucro, mesmo que a produção ainda esteja subindo.</p>
     <div class="formula">
       <span class="label">Regra de ouro</span>
-      ponto de máximo lucro → <b>RM = CM</b><br>(RM &gt; CM: aplicar mais · RM &lt; CM: já passou do ponto)
+      ponto de máximo lucro → <b>VPM = CMI</b><br>(VPM &gt; CMI: aplicar mais · VPM &lt; CMI: já passou do ponto)
     </div>
 
     <h3><svg class="ico-dd" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A8552E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2.6 0 4 3 4 7.5S14.6 19 12 19s-4-4-4-8.5S9.4 3 12 3z"/><path d="M10 7h4M9.5 10.5h5M10 14h4M12 3v16"/><path d="M8 13c-2 1-3.5 3.5-3.5 7.5 2.5 0 5.5-1.5 7.5-4M16 13c2 1 3.5 3.5 3.5 7.5-2.5 0-5.5-1.5-7.5-4"/></svg>Exemplo: milho e nitrogênio</h3>
     <p>A mesma curva da aula III.2, em um exemplo didático. Milho a R$ 61/sc e nitrogênio a R$ 7,00 por kg de N, o que equivale a ureia a R$ 3.220/t (as cotações de ureia nos portos variam de R$ 2.890 a 3.800/t, ou R$ 6,28 a 8,26 por kg de N):</p>
     <div class="tbl-wrap">
     <table class="tbl">
-      <tr><th>N (kg/ha)</th><th>Milho (sc/ha)</th><th>RM (R$/kg N)</th><th>CM (R$/kg N)</th><th></th></tr>
+      <tr><th>N (kg/ha)</th><th>Milho (sc/ha)</th><th>VPM (R$/kg N)</th><th>CMI (R$/kg N)</th><th></th></tr>
       <tr><td class="num">0</td><td class="num">90</td><td class="num">n/d</td><td class="num">n/d</td><td>partida</td></tr>
-      <tr><td class="num">40</td><td class="num">130</td><td class="num">61,00</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">80</td><td class="num">160</td><td class="num">45,75</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">120</td><td class="num">182</td><td class="num">33,55</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">160</td><td class="num">196</td><td class="num">21,35</td><td class="num">7,00</td><td class="ok">RM &gt; CM</td></tr>
-      <tr><td class="num">200</td><td class="num">200</td><td class="num">6,10</td><td class="num">7,00</td><td class="no">RM &lt; CM</td></tr>
+      <tr><td class="num">40</td><td class="num">130</td><td class="num">61,00</td><td class="num">7,00</td><td class="ok">VPM &gt; CMI</td></tr>
+      <tr><td class="num">80</td><td class="num">160</td><td class="num">45,75</td><td class="num">7,00</td><td class="ok">VPM &gt; CMI</td></tr>
+      <tr><td class="num">120</td><td class="num">182</td><td class="num">33,55</td><td class="num">7,00</td><td class="ok">VPM &gt; CMI</td></tr>
+      <tr><td class="num">160</td><td class="num">196</td><td class="num">21,35</td><td class="num">7,00</td><td class="ok">VPM &gt; CMI</td></tr>
+      <tr><td class="num">200</td><td class="num">200</td><td class="num">6,10</td><td class="num">7,00</td><td class="no">VPM &lt; CMI</td></tr>
       <tr><td class="num">240</td><td class="num">196</td><td class="num">−6,10</td><td class="num">7,00</td><td class="no">Fase III</td></tr>
     </table>
     </div>
-    <p>A RM cai a cada faixa e cruza o CM entre 160 e 200 kg/ha: de 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00. Pela curva, o ponto exato em que RM = CM fica perto de 180 kg/ha de N (199 sc/ha), antes da <strong>máxima produção</strong>, em 200 kg/ha. Com o N a R$ 6,28 ou a R$ 8,26, o ótimo fica entre 175 e 181 kg/ha: a conclusão não muda. Perto do topo a curva é quase plana: os últimos 40 kg de N rendem 4 sc/ha (R$ 244) e custam R$ 280. <em>Enquanto RM for maior que CM, compensa aplicar mais; passado o cruzamento, cada kg a mais tira lucro, mesmo com a produção subindo.</em></p>
+    <p>A VPM cai a cada faixa e cruza o CMI entre 160 e 200 kg/ha: de 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00. Pela curva, o ponto exato em que VPM = CMI fica perto de 180 kg/ha de N (199 sc/ha), antes da <strong>máxima produção</strong>, em 200 kg/ha. Com o N a R$ 6,28 ou a R$ 8,26, o ótimo fica entre 175 e 181 kg/ha: a conclusão não muda. Perto do topo a curva é quase plana: os últimos 40 kg de N rendem 4 sc/ha (R$ 244) e custam R$ 280. <em>Enquanto VPM for maior que CMI, compensa aplicar mais; passado o cruzamento, cada kg a mais tira lucro, mesmo com a produção subindo.</em></p>
 
     <figure class="dd rmcm-dd" id="dd-rmcm" style="--dd:var(--terra);--dd-deep:#7C3D1F">
-      <div class="dd-cab">RM × CM por faixa de dose</div>
+      <div class="dd-cab">VPM × CMI por faixa de dose</div>
       <div class="dd-corpo">
         <svg role="img" aria-label="Receita marginal por faixa de dose de nitrogênio comparada ao custo marginal"></svg>
-        <div class="leg"><span style="--c:#3D4A2A">RM maior que CM</span><span style="--c:#A8552E">RM menor que CM</span><span style="--c:#1A1A17">CM: preço do kg de N</span></div>
+        <div class="leg"><span style="--c:#3D4A2A">VPM maior que CMI</span><span style="--c:#A8552E">VPM menor que CMI</span><span style="--c:#1A1A17">CMI: preço do kg de N</span></div>
         <div class="ctrl"><div class="top"><span>Preço do milho</span><b data-v="milho"></b></div><input type="range" data-i="milho" min="50" max="100" step="1" value="61" aria-label="Preço do milho"></div>
         <div class="ctrl"><div class="top"><span>Nitrogênio, R$ por kg de N</span><b data-v="ureia"></b></div><input type="range" data-i="ureia" min="3" max="14" step="0.1" value="7" aria-label="Preço do kg de nitrogênio"></div>
         <p data-msg class="msg-dd"></p>
       </div>
-      <figcaption>Os dados da tabela acima, de 0 a 200 kg/ha. Mude o preço do N ou do milho para ver onde o RM cruza o CM.</figcaption>
+      <figcaption>Os dados da tabela acima, de 0 a 200 kg/ha. Mude o preço do N ou do milho para ver onde o VPM cruza o CMI.</figcaption>
     </figure>
     <h3>Caso real: média ou alta tecnologia no milho</h3>
-    <p>A análise marginal não serve só para a dose de um insumo. Serve também para escolher entre pacotes inteiros. A Epagri/Cepa publica o custo referencial do milho em plantio direto com semente transgênica em dois níveis de tecnologia (Santa Catarina, julho de 2026). O COT da planilha é COE + depreciação:</p>
+    <p>A análise marginal não serve só para a dose de um insumo. Serve também para escolher entre pacotes inteiros. A EPAGRI/CEPA publica o custo referencial do milho em plantio direto com semente transgênica em dois níveis de tecnologia (Santa Catarina, julho de 2026). O COT da planilha é COE + depreciação:</p>
     <div class="tbl-wrap">
     <table class="tbl">
       <tr><th></th><th>Média tecnologia</th><th>Alta tecnologia</th><th>Diferença</th></tr>
@@ -523,7 +523,7 @@ footer p{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;
       <tr><td>Lucro operacional (R$/ha)</td><td class="num">+553</td><td class="num">+371</td><td class="num no">−182</td></tr>
     </table>
     </div>
-    <p>Subir de pacote acrescenta 35 sc/ha e R$ 2.317/ha de custo. As 35 sacas a mais rendem R$ 2.135: na margem, RM &lt; CM, e a lavoura que colhe mais lucra menos. O pacote de alta tecnologia só compensa com o milho acima de <strong>R$ 66,20/sc</strong> (2.317 ÷ 35). Com o preço usado na própria planilha, R$ 58,92/sc, o resultado é o mesmo: −R$ 45/ha na alta tecnologia contra +R$ 210/ha na média.</p>
+    <p>Subir de pacote acrescenta 35 sc/ha e R$ 2.317/ha de custo. As 35 sacas a mais rendem R$ 2.135: na margem, VPM &lt; CMI, e a lavoura que colhe mais lucra menos. O pacote de alta tecnologia só compensa com o milho acima de <strong>R$ 66,20/sc</strong> (2.317 ÷ 35). Com o preço usado na própria planilha, R$ 58,92/sc, o resultado é o mesmo: −R$ 45/ha na alta tecnologia contra +R$ 210/ha na média.</p>
     <div class="callout">
       <strong>Por que isso exige registro de campo</strong>
       Na propriedade, uma tabela assim só existe se o produtor anotar produção e dose safra a safra (aula II.5). Sem histórico, não há análise marginal, só chute. O mesmo vale para o exemplo do leite: 8 kg de concentrado/vaca/dia lucra mais do que 12 kg, embora produza menos leite.
@@ -693,7 +693,7 @@ const QUIZ = [
     q: "Pedem sua opinião sobre subir a dose de N no milho de 160 para 200 kg/ha, já que 'rende mais saca'. Você:",
     a: [
       {t:"Concorda: mais insumo, mais produção, mais receita.", p:"op"},
-      {t:"Calcula RM e CM: de 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00, então a dose maior colhe mais e lucra menos.", p:"es"},
+      {t:"Calcula VPM e CMI: de 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00, então a dose maior colhe mais e lucra menos.", p:"es"},
       {t:"Sugere testar um pouco mais e ver no fim da safra.", p:"tr"}
     ]
   },
@@ -735,7 +735,7 @@ const PROFILES = {
   op: {
     name: "Operador",
     msg: "Você ainda lê o resultado pela camada de cima, caixa e produção bruta. A decisão econômica (margem líquida, lucro sobre o CT, ponto ótimo de insumo) ainda parece detalhe técnico, não ferramenta. O próximo passo é descer todas as camadas antes de concluir, e tratar cada dose de insumo como uma escolha de margem.",
-    revise: "Aulas III.1 (as três margens e a rentabilidade sobre o custo) e III.3 (análise marginal e RM = CM)."
+    revise: "Aulas III.1 (as três margens e a rentabilidade sobre o custo) e III.3 (análise marginal e VPM = CMI)."
   },
   tr: {
     name: "Em transição",
@@ -749,7 +749,7 @@ const PROFILES = {
   },
   es: {
     name: "Técnico estratégico",
-    msg: "Você opera no nível que o mercado demanda: distingue as três margens, calcula rentabilidade sobre o CT, encontra o ponto ótimo pelo RM = CM e torna o risco visível com cenários. Lê o resultado econômico como um todo, não em fragmentos. Mantenha esse rigor: é o que sustenta a confiança do produtor em decisões de longo prazo.",
+    msg: "Você opera no nível que o mercado demanda: distingue as três margens, calcula rentabilidade sobre o CT, encontra o ponto ótimo pelo VPM = CMI e torna o risco visível com cenários. Lê o resultado econômico como um todo, não em fragmentos. Mantenha esse rigor: é o que sustenta a confiança do produtor em decisões de longo prazo.",
     revise: "Você domina a Parte III. Aplique a análise marginal e os cenários a casos novos a cada safra e avance com segurança para a Parte IV."
   }
 };
@@ -889,7 +889,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
     });
     var le = v.LE, luc = le / rb * 100, ren = le / CT * 100, iee = rb / CT, pn = COE / preco / AREA, prn = COE / (prod * AREA);
     var I = [
-      ['Lucratividade', f1(luc, 1) + '%', '> 15 a 20%', luc > 15],
+      ['Lucratividade', f1(luc, 1) + '%', '> 0', luc > 0],
       ['Rentabilidade sobre o custo', f1(ren, 1) + '%', '> 0', ren > 0],
       ['IEE', f1(iee, 2), '> 1,0', iee > 1],
       ['Prod. de nivelamento', f1(pn, 1) + ' sc/ha', 'bem abaixo de ' + prod, pn < prod * 0.8],
@@ -920,7 +920,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
   h += '<text x="11" y="' + ((H - B + T) / 2) + '" text-anchor="middle" font-size="12" fill="#3A3833" transform="rotate(-90 11 ' + ((H - B + T) / 2) + ')">PT (sc/ha)</text>';
   h += '<line x1="' + L + '" y1="' + (H - B) + '" x2="' + (W - Rr) + '" y2="' + (H - B) + '" stroke="#3A3833"/>';
   h += '<polyline points="' + X.map(function(x, i){ return px(x) + ',' + py(PT[i]); }).join(' ') + '" fill="none" stroke="#2A331C" stroke-width="2.6" stroke-linejoin="round"/>';
-  h += '<line x1="' + px(179) + '" y1="' + py(198.8) + '" x2="' + px(179) + '" y2="' + (H - B) + '" stroke="#8A6E1A" stroke-dasharray="3 3"/><text x="' + (px(179) - 4) + '" y="' + py(110) + '" text-anchor="end" font-size="11" font-weight="600" fill="#8A6E1A">RM = CM</text><text x="' + (px(179) - 4) + '" y="' + (py(110) + 14) + '" text-anchor="end" font-size="11" fill="#8A6E1A">≈ 180 kg/ha</text>';
+  h += '<line x1="' + px(179) + '" y1="' + py(198.8) + '" x2="' + px(179) + '" y2="' + (H - B) + '" stroke="#8A6E1A" stroke-dasharray="3 3"/><text x="' + (px(179) - 4) + '" y="' + py(110) + '" text-anchor="end" font-size="11" font-weight="600" fill="#8A6E1A">VPM = CMI</text><text x="' + (px(179) - 4) + '" y="' + (py(110) + 14) + '" text-anchor="end" font-size="11" fill="#8A6E1A">≈ 180 kg/ha</text>';
   h += '<text x="' + (px(200) + 4) + '" y="' + (py(200) - 10) + '" text-anchor="middle" font-size="11" font-weight="600" fill="#A8552E">PT máx · 200</text>';
   X.forEach(function(x, i){ h += '<circle data-p="' + i + '" cx="' + px(x) + '" cy="' + py(PT[i]) + '" r="4.5" fill="#fff" stroke="#2A331C" stroke-width="2"/>'; });
   svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
@@ -942,7 +942,7 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
   rows.forEach(function(r){ r.classList.remove('aceso'); });
 })();
 
-/* ===== III.3 RM x CM ===== */
+/* ===== III.3 VPM x CMI ===== */
 (function(){
   var el = document.getElementById('dd-rmcm'), svg = el.querySelector('svg'), q = function(s){ return el.querySelector(s); };
   var U = [0, 40, 80, 120, 160, 200], M = [90, 130, 160, 182, 196, 200];
@@ -962,13 +962,17 @@ var f1 = function(v, d){ return v.toLocaleString('pt-BR', {minimumFractionDigits
       h += '<text x="' + (L + i * bw) + '" y="' + (H - B + 15) + '" text-anchor="middle" font-size="10.5" fill="#6B6960">' + U[i] + '</text>';
     });
     h += '<text x="' + (L + rm.length * bw) + '" y="' + (H - B + 15) + '" text-anchor="end" font-size="10.5" fill="#6B6960">' + U[U.length - 1] + '</text>';
-    h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">faixa de N (kg/ha) · RM em R$ por kg</text>';
+    h += '<text x="' + ((W + L) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="12" fill="#3A3833">faixa de N (kg/ha) · VPM em R$ por kg</text>';
     h += '<line x1="' + L + '" y1="' + py(pu) + '" x2="' + (W - Rr) + '" y2="' + py(pu) + '" stroke="#1A1A17" stroke-width="2.2" stroke-dasharray="6 4"/>';
     h += '<line x1="' + L + '" y1="' + py(0) + '" x2="' + (W - Rr) + '" y2="' + py(0) + '" stroke="#3A3833"/>';
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
-    q('[data-msg]').textContent = corte < 0
-      ? 'Em todas as faixas, RM > CM: cada kg extra de N ainda rende mais do que custa. Com esses preços, o ponto RM = CM está além de 200 kg/ha.'
-      : 'A partir da faixa de ' + U[corte] + '–' + U[corte + 1] + ' kg/ha, o RM fica abaixo do CM: na média da faixa, cada kg a mais custa mais do que rende. Com esses preços, o ponto RM = CM está entre ' + U[corte] + ' e ' + U[corte + 1] + ' kg/ha.';
+    /* o ótimo pela regra marginal: cada valor vale para o meio da faixa; o ótimo fica onde o VPM cruza o CMI, entre os meios */
+    var mei = rm.map(function(v, i){ return (U[i] + U[i + 1]) / 2; }), otimo = null, msg;
+    for (var k = 0; k + 1 < rm.length; k++) { if (rm[k] > pu && rm[k + 1] <= pu) { otimo = mei[k] + (rm[k] - pu) / (rm[k] - rm[k + 1]) * (mei[k + 1] - mei[k]); break; } }
+    if (rm[0] <= pu) msg = 'Nem a primeira faixa se paga: com esses preços, cada kg de N custa mais do que rende desde o começo.';
+    else if (otimo !== null) msg = 'Cada valor vale para o meio da faixa. O VPM cruza o CMI perto de ' + Math.round(otimo / 10) * 10 + ' kg/ha: até ali, cada kg de N rende mais do que custa; dali em diante, custa mais do que rende.';
+    else msg = 'Em todas as faixas, na média, o VPM supera o CMI: o ótimo passa de ' + mei[mei.length - 1] + ' kg/ha, mas não chega a ' + U[U.length - 1] + ', onde a produção é máxima e o kg a mais já quase não rende. Máximo lucro não é máxima produção.';
+    q('[data-msg]').textContent = msg;
   }
   el.querySelectorAll('input').forEach(function(i){ i.addEventListener('input', calc); }); calc();
 })();

@@ -48,6 +48,14 @@ Quiz é bloco acordeão, painel interno oliva-deep + acento mostarda (não muda 
 - Custo do capital e taxa de desconto: a aplicação de referência, 10% ao ano, já descontado o imposto de renda (livro, aulas 6, 13, 17 e 19): número redondo entre a poupança e um CDB depois do imposto. Não usar Selic, CDI ou poupança datados no texto.
 - Leite: sem faixa fixa de custo por litro. Comparar com o preço (R$ 2,40) e com o tambo de 25 vacas do curso (COE R$ 1,93, CT R$ 2,70 por litro).
 - Funrural: 1,63% pessoa física (2,23% PJ), LC 224/2025. Nunca usar 1,5%.
+- Convenções da revisão do livro (17 e 18/11/2026), que valem também aqui:
+  - siglas de instituição em maiúsculas (CEPEA, CONAB, EMATER, EMBRAPA, ESALQ, ABIOVE, EPAGRI); nomes de programa como estão (Pronaf, Pronamp, Proagro, Funrural);
+  - "ciclo da gestão", nunca "roda"; "dar sobra", nunca "o leite sobra" ou "sobrar menos";
+  - direto e indireto pelo objeto de custeio, que é a atividade: o que serve a uma atividade só é direto (sala de ordenha, espaldeira); o que serve a várias é indireto, com rateio;
+  - análise marginal do insumo: VPM (valor do produto marginal) contra CMI (custo marginal do insumo); cada valor de faixa vale para o meio dela; o ótimo nunca é a produção máxima;
+  - pró-labore: o que um empregado recebe no ano (12 salários, 13º e terço de férias; R$ 26.853 no piso de R$ 2.014);
+  - agronegócio no sentido de Davis e Goldberg (o sistema inteiro); nunca opor agricultura familiar e agronegócio;
+  - ovo do capítulo 1: ração de postura da EMATER-DF (60% milho, 23% farelo de soja, 5% farelo de trigo, 8% calcário, 4% núcleo); 3.400 m², 48% de um campo; 64 mil ha na conta de escala.
 - Fontes: CNA/Campo Futuro (metodologia Matsunaga/IEA), CONAB, CEPEA/ESALQ, EMATER/RS, BCB (MCR), MAPA (Plano Safra Empresarial), MDA (Plano Safra Familiar), Lei 12.651/2012 (CAR/SICAR), EMBRAPA (UA, GMD, custo/L).
 - Declaração de uso de IA (texto FECHADO) em todos os rodapés: *"A ferramenta Claude Opus 4.7 (Anthropic, 2026) foi utilizada para auxiliar na organização e estruturação do material, a partir dos materiais didáticos do professor. Todo o conteúdo técnico, a seleção de conceitos e os ajustes de linguagem são de responsabilidade do professor."*
 - Tabelas em 380px: reduza colunas ao essencial; resultado textual vira tag colorida (`td.ok`/`td.no`); nunca deixe scroll horizontal feio como padrão.

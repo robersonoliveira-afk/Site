@@ -327,12 +327,12 @@ a{color:var(--accent-text)}
   <h2>A pergunta certa é sempre sobre a <em>próxima</em> dose</h2>
   <p>Se cada dose rende menos que a anterior, existe um ponto em que a dose seguinte deixa de se pagar. Encontrá-lo exige comparar duas grandezas na margem:</p>
   <ul class="bullets">
-    <li><strong>RM: receita marginal</strong>: o valor do produto extra da última unidade (PMg × preço do produto).</li>
-    <li><strong>CM: custo marginal</strong>: o custo dessa unidade de insumo.</li>
+    <li><strong>VPM: valor do produto marginal</strong>: o valor do produto extra da última unidade (PMg × preço do produto).</li>
+    <li><strong>CMI: custo marginal do insumo</strong>: o custo dessa unidade de insumo.</li>
   </ul>
   <div class="formula">
     <span class="label">Regra de ouro do máximo lucro</span>
-    aplicar enquanto RM &gt; CM · parar quando <b>RM = CM</b>
+    aplicar enquanto VPM &gt; CMI · parar quando <b>VPM = CMI</b>
   </div>
   <p class="note">Aplicar além desse ponto reduz o lucro, mesmo com a produção ainda subindo.</p>
 </section>
@@ -344,13 +344,13 @@ a{color:var(--accent-text)}
   <p class="note">Milho a R$ 61/sc, N a R$ 7,00/kg (ureia a R$ 3.220/t): exemplo didático, a curva da Parte III.2 do site.</p>
   <div class="cols2 asym">
     <table class="tbl">
-      <thead><tr><th class="num">N (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">RM (R$/kg N)</th><th class="num">CM (R$/kg N)</th><th>Leitura</th></tr></thead>
+      <thead><tr><th class="num">N (kg/ha)</th><th class="num">Milho (sc/ha)</th><th class="num">VPM (R$/kg N)</th><th class="num">CMI (R$/kg N)</th><th>Leitura</th></tr></thead>
       <tbody>
-        <tr><td class="num">40</td><td class="num">130</td><td class="num"><span class="gap"><span data-p="1">61,00</span></span></td><td class="num">7,00</td><td><span data-p="1">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">80</td><td class="num">160</td><td class="num"><span class="gap"><span data-p="2">45,75</span></span></td><td class="num">7,00</td><td><span data-p="2">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">120</td><td class="num">182</td><td class="num"><span class="gap"><span data-p="3">33,55</span></span></td><td class="num">7,00</td><td><span data-p="3">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">160</td><td class="num">196</td><td class="num"><span class="gap"><span data-p="4">21,35</span></span></td><td class="num">7,00</td><td><span data-p="4">RM &gt; CM: seguir</span></td></tr>
-        <tr><td class="num">200</td><td class="num">200</td><td class="num"><span class="gap"><span data-p="5">6,10</span></span></td><td class="num">7,00</td><td><strong data-p="5">RM &lt; CM: não compensa</strong></td></tr>
+        <tr><td class="num">40</td><td class="num">130</td><td class="num"><span class="gap"><span data-p="1">61,00</span></span></td><td class="num">7,00</td><td><span data-p="1">VPM &gt; CMI: seguir</span></td></tr>
+        <tr><td class="num">80</td><td class="num">160</td><td class="num"><span class="gap"><span data-p="2">45,75</span></span></td><td class="num">7,00</td><td><span data-p="2">VPM &gt; CMI: seguir</span></td></tr>
+        <tr><td class="num">120</td><td class="num">182</td><td class="num"><span class="gap"><span data-p="3">33,55</span></span></td><td class="num">7,00</td><td><span data-p="3">VPM &gt; CMI: seguir</span></td></tr>
+        <tr><td class="num">160</td><td class="num">196</td><td class="num"><span class="gap"><span data-p="4">21,35</span></span></td><td class="num">7,00</td><td><span data-p="4">VPM &gt; CMI: seguir</span></td></tr>
+        <tr><td class="num">200</td><td class="num">200</td><td class="num"><span class="gap"><span data-p="5">6,10</span></span></td><td class="num">7,00</td><td><strong data-p="5">VPM &lt; CMI: não compensa</strong></td></tr>
       </tbody>
     </table>
     <figure class="foto side">
@@ -358,14 +358,14 @@ a{color:var(--accent-text)}
       <figcaption>lavoura de milho em Barão do Triunfo/RS · CC BY-SA 3.0 BR, Paulo RS Menezes/Wikimedia Commons</figcaption>
     </figure>
   </div>
-  <p class="note" data-p="6">De 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00: a RM cruzou o CM. Pela curva, o ótimo fica perto de 180 kg/ha; a máxima produção, em 200. Na propriedade, uma tabela assim só existe se alguém <strong>anotar dose e produção</strong> safra a safra.</p>
+  <p class="note" data-p="6">De 160 para 200 kg, cada kg de N rende R$ 6,10 e custa R$ 7,00: a VPM cruzou o CMI. Pela curva, o ótimo fica perto de 180 kg/ha; a máxima produção, em 200. Na propriedade, uma tabela assim só existe se alguém <strong>anotar dose e produção</strong> safra a safra.</p>
 </section>
 
 <!-- 10b · caso real Epagri -->
 <section class="slide" data-act="Conceito">
   <div class="eyebrow"><b>Conceito</b> · caso real · média ou alta tecnologia</div>
   <h2>35 sacas a mais, lucro menor</h2>
-  <p class="note">Custo referencial do milho, plantio direto e semente transgênica · Epagri/Cepa (SC), julho de 2026 · COT = COE + depreciação · milho a R$ 61/sc.</p>
+  <p class="note">Custo referencial do milho, plantio direto e semente transgênica · EPAGRI/CEPA (SC), julho de 2026 · COT = COE + depreciação · milho a R$ 61/sc.</p>
   <table class="tbl">
     <thead><tr><th></th><th class="num">Média tecnologia</th><th class="num">Alta tecnologia</th><th class="num">Diferença</th></tr></thead>
     <tbody>
@@ -390,7 +390,7 @@ a{color:var(--accent-text)}
       <p>A dose ótima depende da resposta da lavoura, e a resposta <strong>muda de zona para zona</strong>: solo corrigido responde pouco a mais adubo; zona deficiente responde muito.</p>
       <ul class="bullets">
         <li>Dose única na média: sobra insumo onde não responde, falta onde responderia: desperdício dos dois lados.</li>
-        <li>Taxa variável: resolver <strong>RM = CM em cada zona de manejo</strong>: o mapa de prescrição aplica essa lógica ponto a ponto.</li>
+        <li>Taxa variável: resolver <strong>VPM = CMI em cada zona de manejo</strong>: o mapa de prescrição aplica essa lógica ponto a ponto.</li>
       </ul>
     </div>
     <figure class="foto side">
